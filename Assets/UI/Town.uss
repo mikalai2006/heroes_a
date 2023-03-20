@@ -1,0 +1,25 @@
+.town_bg {
+    flex-grow: 1;
+    flex-direction: row;
+    margin-bottom: 36px;
+}
+
+.town_side {
+    max-width: 20%;
+    border-left-width: 2px;
+    background-image: url('project://database/Assets/Sprites/UI/Bg.png?fileID=2800000&guid=0641c76439a64674aa800f9e3d79c6a4&type=3#Bg');
+    -unity-background-scale-mode: scale-and-crop;
+}
+
+.town_box {
+    flex-grow: 1;
+    -unity-background-scale-mode: scale-and-crop;
+    flex-shrink: 1;
+}
+
+.town_hero_area {
+    height: 20%;
+    border-top-width: 2px;
+    background-image: url('project://database/Assets/Sprites/UI/Bg.png?fileID=2800000&guid=0641c76439a64674aa800f9e3d79c6a4&type=3#Bg');
+    -unity-background-scale-mode: scale-and-crop;
+}

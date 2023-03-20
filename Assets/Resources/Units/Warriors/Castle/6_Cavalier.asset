@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6892427306879841ae9bdf6a40176c7, type: 3}
+  m_Name: 6_Cavalier
+  m_EditorClassIdentifier: 
+  idObject: 5dce2544167f4b39b049fdbfa6a2a84f
+  typeGround: 20
+  typeInput: 1
+  TypeUnit: 7
+  listTypeNoPath: 
+  Prefab: {fileID: 6583251884411609870, guid: 906ce8626d0014e40ac9aeb8ef04056a, type: 3}
+  MenuSprite: {fileID: 1760757411, guid: 27742d24928e1224185ed5b7cfd9f093, type: 3}
+  level: 6

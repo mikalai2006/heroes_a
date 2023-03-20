@@ -1,0 +1,3 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:VisualElement name="section" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); background-image: url(&apos;project://database/Assets/Sprites/UI/MenuBackground.png?fileID=2800000&amp;guid=32b8550e7d9e1c84287df7b202142e31&amp;type=3#MenuBackground&apos;); min-width: 100%; min-height: 50px; -unity-slice-left: 10; -unity-slice-top: 10; -unity-slice-right: 10; -unity-slice-bottom: 10;" />
+</ui:UXML>

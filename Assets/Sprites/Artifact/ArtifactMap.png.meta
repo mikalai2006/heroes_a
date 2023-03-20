@@ -1,0 +1,2820 @@
+fileFormatVersion: 2
+guid: c12233e7f9e1938489974c1fb7749211
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 50
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: ArtifactMap_0
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 196
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a2acb42f41f77c44b7fed6212f9f724
+      internalID: 274441678
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_1
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 196
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e711f111422b7d45b1cd97a856484f0
+      internalID: -1789483383
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_2
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 196
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b0b2c0190d5d7d4983729953db40edb
+      internalID: -178433574
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_3
+      rect:
+        serializedVersion: 2
+        x: 155
+        y: 196
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d11aa076c2111844fb59c1b9385c2612
+      internalID: -2009437803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_4
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 196
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 88e3baa604876a142b58be0a574fd7c8
+      internalID: 2041647751
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_5
+      rect:
+        serializedVersion: 2
+        x: 253
+        y: 196
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a98a406eb93d10444a86aed02612d53d
+      internalID: -1044778049
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_6
+      rect:
+        serializedVersion: 2
+        x: 302
+        y: 196
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 923a64faa2a622143a9b4f03355ca5ad
+      internalID: 1916280067
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_7
+      rect:
+        serializedVersion: 2
+        x: 351
+        y: 196
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ccc28ff06558ac43a936b0c933e0e53
+      internalID: 1773521718
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_8
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 196
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9aa097bc4a8608f4ca434d70b54433d0
+      internalID: -868116922
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_9
+      rect:
+        serializedVersion: 2
+        x: 449
+        y: 196
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 10135d08663b921448190af05cce632f
+      internalID: 1038683306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_10
+      rect:
+        serializedVersion: 2
+        x: 498
+        y: 196
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 33baf753432873246af02a21ac6a4a2c
+      internalID: -2032327897
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_11
+      rect:
+        serializedVersion: 2
+        x: 547
+        y: 196
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8bc60dcfa6b24284eae4c46907c58b62
+      internalID: 2134548644
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_12
+      rect:
+        serializedVersion: 2
+        x: 596
+        y: 196
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 319ed42226759eb42b990981d0e64b56
+      internalID: 328794186
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_13
+      rect:
+        serializedVersion: 2
+        x: 645
+        y: 196
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ad26180d486c2e498b820606d0a4adf
+      internalID: 174350311
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_14
+      rect:
+        serializedVersion: 2
+        x: 694
+        y: 196
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 509fba3e90c02e744bbe8f2fc391250a
+      internalID: -152136752
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_15
+      rect:
+        serializedVersion: 2
+        x: 743
+        y: 196
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9fc88deb92445dd4b8868f2dbb4a7c20
+      internalID: -1979622640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_16
+      rect:
+        serializedVersion: 2
+        x: 792
+        y: 196
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0132bdd073e34c140baaad5b27d865c7
+      internalID: -364580355
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_17
+      rect:
+        serializedVersion: 2
+        x: 841
+        y: 196
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a2c0e1e3aed6af4c9b64f4fa40a0b4c
+      internalID: -966325648
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_18
+      rect:
+        serializedVersion: 2
+        x: 890
+        y: 196
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: affa5e041bafbea4398e84dcc31a76f2
+      internalID: -1204115048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_19
+      rect:
+        serializedVersion: 2
+        x: 939
+        y: 196
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2256473d010829c4a9c90920bd5461f5
+      internalID: 1146720003
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_20
+      rect:
+        serializedVersion: 2
+        x: 988
+        y: 196
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: faa469f2ba048834cba3434c253e95e7
+      internalID: -252798506
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_21
+      rect:
+        serializedVersion: 2
+        x: 1037
+        y: 196
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 38525c4eeb1fd0a4f99ba5756ba92f82
+      internalID: -1631125596
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_22
+      rect:
+        serializedVersion: 2
+        x: 1086
+        y: 196
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af81857ff8e96e6468fe97da49821565
+      internalID: -86677369
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_23
+      rect:
+        serializedVersion: 2
+        x: 1135
+        y: 196
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eae8a1fdddbe6fd4783e238ca98e5a89
+      internalID: -401019790
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_24
+      rect:
+        serializedVersion: 2
+        x: 1184
+        y: 196
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d530cd81c162b8c448389cf6b041534a
+      internalID: 555212842
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_25
+      rect:
+        serializedVersion: 2
+        x: 1233
+        y: 196
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f6b151e987c76684fb25e8bdb902be3a
+      internalID: -275572037
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_26
+      rect:
+        serializedVersion: 2
+        x: 1282
+        y: 196
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0dfc692924987c142aada1ae17fee254
+      internalID: -1579801575
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_27
+      rect:
+        serializedVersion: 2
+        x: 1331
+        y: 196
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26c86cdc19a2db5468c676d3696a5ae6
+      internalID: -1934764477
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_28
+      rect:
+        serializedVersion: 2
+        x: 1380
+        y: 196
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e195cc0904b4f624b9811bbfe2812912
+      internalID: -1726183873
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_29
+      rect:
+        serializedVersion: 2
+        x: 1429
+        y: 196
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ffdc1f1d67e9f8f49b4e5babad3da43a
+      internalID: -139317054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_30
+      rect:
+        serializedVersion: 2
+        x: 1478
+        y: 196
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff757bd26ed9a7f46a9d7ecc4f511b7b
+      internalID: -246494401
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_31
+      rect:
+        serializedVersion: 2
+        x: 1527
+        y: 196
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc94ec5eb51fb274db3bc2cfc66c8fde
+      internalID: 1663026599
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_32
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 131
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db6a277b9be56704a8fa4cc1bf89d094
+      internalID: -128948903
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_33
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 131
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f39c409ff3cbb2f4a9a807e197da1742
+      internalID: 1851531703
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_34
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 131
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df8b64932b54f784abef8d2b1e708718
+      internalID: 1695475376
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_35
+      rect:
+        serializedVersion: 2
+        x: 155
+        y: 131
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0486ba276de939b479f743f85f0e515d
+      internalID: -1404970240
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_36
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 131
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 25b6b1bf46c3b1e48aa672f84ea0140f
+      internalID: -1624132830
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_37
+      rect:
+        serializedVersion: 2
+        x: 253
+        y: 131
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c51df5a52702c1a4cbfed553f07ca67c
+      internalID: 26553533
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_38
+      rect:
+        serializedVersion: 2
+        x: 302
+        y: 131
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f25953a7662e4ef478909a09dd350b1a
+      internalID: -704875309
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_39
+      rect:
+        serializedVersion: 2
+        x: 351
+        y: 131
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 116038c4dce50e84f9e4198ff4c06170
+      internalID: -1464896436
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_40
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 131
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9a126e8cc850d143addb56d925fe1fb
+      internalID: -774825842
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_41
+      rect:
+        serializedVersion: 2
+        x: 449
+        y: 131
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06e44594ddf2498419f267f26cb739e5
+      internalID: 311207854
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_42
+      rect:
+        serializedVersion: 2
+        x: 498
+        y: 131
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c70801917ee4f994f857511c161e5b29
+      internalID: -1214457023
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_43
+      rect:
+        serializedVersion: 2
+        x: 547
+        y: 131
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f3acd0f2f48f474b8f7446737150a4a
+      internalID: 1871235416
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_44
+      rect:
+        serializedVersion: 2
+        x: 596
+        y: 131
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f676898793a6f64394e216a4962ab83
+      internalID: 1839097568
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_45
+      rect:
+        serializedVersion: 2
+        x: 645
+        y: 131
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3ea6d3dab327b9429fb2e92c2642c1a
+      internalID: -1588290160
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_46
+      rect:
+        serializedVersion: 2
+        x: 694
+        y: 131
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 015048fa04a4b2f4684711ea1f3b4806
+      internalID: -1327942097
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_47
+      rect:
+        serializedVersion: 2
+        x: 743
+        y: 131
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d80751d5d085c42489f45c85e1b15b90
+      internalID: 694840386
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_48
+      rect:
+        serializedVersion: 2
+        x: 792
+        y: 131
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b926b1e7762fbe4e84718770bbad0d7
+      internalID: 1206788010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_49
+      rect:
+        serializedVersion: 2
+        x: 841
+        y: 131
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f6c04167db5f6254f84537a6d6e6d71e
+      internalID: 1054935064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_50
+      rect:
+        serializedVersion: 2
+        x: 890
+        y: 131
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d5b933c5f06001449624b6e1e916ce2
+      internalID: -2063535839
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_51
+      rect:
+        serializedVersion: 2
+        x: 939
+        y: 131
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd4bbb5739a393e458cdb12e8fb9c27e
+      internalID: 431016646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_52
+      rect:
+        serializedVersion: 2
+        x: 988
+        y: 131
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d40ad0cdb332a994aaa1d32d38a38d29
+      internalID: -636055293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_53
+      rect:
+        serializedVersion: 2
+        x: 1037
+        y: 131
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f437bf19d99538409fefb58091d4f0b
+      internalID: 2135899452
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_54
+      rect:
+        serializedVersion: 2
+        x: 1086
+        y: 131
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb87697e41678bf4cb7edda455e8f825
+      internalID: 875635042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_55
+      rect:
+        serializedVersion: 2
+        x: 1135
+        y: 131
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b6846b0e622ee2418b7c01631e4700b
+      internalID: -1115655367
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_56
+      rect:
+        serializedVersion: 2
+        x: 1184
+        y: 131
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89120f8a1f30500439a76a0f4861af11
+      internalID: -406506006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_57
+      rect:
+        serializedVersion: 2
+        x: 1233
+        y: 131
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75df1a585b0d24b45a420a86cfae206d
+      internalID: 1703682939
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_58
+      rect:
+        serializedVersion: 2
+        x: 1282
+        y: 131
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d699b2931a535a74b9bc62ad75a8cba7
+      internalID: -1618415840
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_59
+      rect:
+        serializedVersion: 2
+        x: 1331
+        y: 131
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b2d1a9e03ed57a849bf2b5c5908a1de4
+      internalID: -1282207576
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_60
+      rect:
+        serializedVersion: 2
+        x: 1380
+        y: 131
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22267344a8b395e4396769f72092a67c
+      internalID: -64258043
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_61
+      rect:
+        serializedVersion: 2
+        x: 1429
+        y: 131
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f8d1e83e7384334392dd7947011cab4
+      internalID: -1725758519
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_62
+      rect:
+        serializedVersion: 2
+        x: 1478
+        y: 131
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5bc1a3d74bf92c94aaffa46100c75d46
+      internalID: 1777276655
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_63
+      rect:
+        serializedVersion: 2
+        x: 1527
+        y: 131
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ccbf7bd07a2d2bf4ebca1e4ce412c4a6
+      internalID: -1229215933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_64
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 66
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: caf66364d74b1fb448a6c84fe991c692
+      internalID: -1888907221
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_65
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 66
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8378c09461b585244bca4f46b1ad5350
+      internalID: 629477313
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_66
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 66
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 029dddf6ad5c3a64aa1dd8f57e493aff
+      internalID: -913704865
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_67
+      rect:
+        serializedVersion: 2
+        x: 155
+        y: 66
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cff3af03b7a4dd8439e335f9267c37d0
+      internalID: 19768090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_68
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 66
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3fdcdbbe77535074abf9a9e5c05cde99
+      internalID: -704220962
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_69
+      rect:
+        serializedVersion: 2
+        x: 253
+        y: 66
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e512e367fc9049e4fa2aacc25e8707a2
+      internalID: -1388067465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_70
+      rect:
+        serializedVersion: 2
+        x: 302
+        y: 66
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5c05cfd115f2794ba77f9d20e810123
+      internalID: -1347704032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_71
+      rect:
+        serializedVersion: 2
+        x: 351
+        y: 66
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 316811cbd30a52c4fbdd38d084a0c3c5
+      internalID: 1194469265
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_72
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 66
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a484b504aa9f9884f8bfffbe5ecd8611
+      internalID: -1888077954
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_73
+      rect:
+        serializedVersion: 2
+        x: 449
+        y: 66
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 18c071b98f427bd41a6f54eece887b00
+      internalID: -1638633988
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_74
+      rect:
+        serializedVersion: 2
+        x: 498
+        y: 66
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 78d735a0e043e75428b896bedc5b6f5b
+      internalID: 1562259322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_75
+      rect:
+        serializedVersion: 2
+        x: 547
+        y: 66
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b516f37abfbbbf541aa7e39f3567367a
+      internalID: -1927552926
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_76
+      rect:
+        serializedVersion: 2
+        x: 596
+        y: 66
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2f084fe5510831247bc9e3a433f41de0
+      internalID: 989639847
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_77
+      rect:
+        serializedVersion: 2
+        x: 645
+        y: 66
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63739289a03e29c47baf54646a4ad504
+      internalID: 704561489
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_78
+      rect:
+        serializedVersion: 2
+        x: 694
+        y: 66
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db0d9e6088c2368488749042aa224e4d
+      internalID: 1988648827
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_79
+      rect:
+        serializedVersion: 2
+        x: 743
+        y: 66
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7bd1362dda7fca642adb8a620b69fea0
+      internalID: -685733972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_80
+      rect:
+        serializedVersion: 2
+        x: 792
+        y: 66
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa86684a4246450459725e6e8ebb5c04
+      internalID: -1764774434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_81
+      rect:
+        serializedVersion: 2
+        x: 841
+        y: 66
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c8b4fc03d2caf4049b16ac64a0d3b333
+      internalID: 462770814
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_82
+      rect:
+        serializedVersion: 2
+        x: 890
+        y: 66
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9c9909cd7799a84a9ac85a38985bd58
+      internalID: -2089586695
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_83
+      rect:
+        serializedVersion: 2
+        x: 939
+        y: 66
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 581de7a632c4af9499b9ed1cebbdf9cd
+      internalID: 1986549049
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_84
+      rect:
+        serializedVersion: 2
+        x: 988
+        y: 66
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bbabbc72ac67fc04783b54e3333e37a9
+      internalID: -829277939
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_85
+      rect:
+        serializedVersion: 2
+        x: 1037
+        y: 66
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa481c3ac769d634589d02b8344adb06
+      internalID: 1687110877
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_86
+      rect:
+        serializedVersion: 2
+        x: 1086
+        y: 66
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0beafb888816a2b469a962c82b6e4d93
+      internalID: -1295156860
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_87
+      rect:
+        serializedVersion: 2
+        x: 1135
+        y: 66
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16811942038083c47824ba45b8e546f1
+      internalID: -1092088787
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_88
+      rect:
+        serializedVersion: 2
+        x: 1184
+        y: 66
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 431beba160c792a41a4f34a202856e32
+      internalID: -476621697
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_89
+      rect:
+        serializedVersion: 2
+        x: 1233
+        y: 66
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ebf42f8cd0336840b0bf0add5598a2b
+      internalID: 217489179
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_90
+      rect:
+        serializedVersion: 2
+        x: 1282
+        y: 66
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91658226e95c25d48932a2d499398229
+      internalID: 2022630850
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_91
+      rect:
+        serializedVersion: 2
+        x: 1331
+        y: 66
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6261e858dc87fd740a277e2dff928e48
+      internalID: -1492741180
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_92
+      rect:
+        serializedVersion: 2
+        x: 1380
+        y: 66
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc700137a4d91dc40be26bdb0523799f
+      internalID: -422396538
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_93
+      rect:
+        serializedVersion: 2
+        x: 1429
+        y: 66
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 176e3561c6805b041aae8bcf7463177e
+      internalID: -514160821
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_94
+      rect:
+        serializedVersion: 2
+        x: 1478
+        y: 66
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d13b72ea91faf7442b3876fa5fa5e93d
+      internalID: -769535137
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_95
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 1
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd6dac6017ddef445af12ee52515d7e4
+      internalID: -610660357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_96
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 1
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 645dfc6154ddbf0468c8c287d32c72de
+      internalID: -1230582520
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_97
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 1
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b8a7096ed5de6204db0791887f86aded
+      internalID: -1836625828
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_98
+      rect:
+        serializedVersion: 2
+        x: 155
+        y: 1
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7305ca8ca4bc86843a371c57cc3429a0
+      internalID: -2118592358
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_99
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 1
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 656d4835ec4acfa4aab7c5a2470d3ddb
+      internalID: -2131771194
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_100
+      rect:
+        serializedVersion: 2
+        x: 253
+        y: 1
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0bf069309968a9544856c0b2ccf17f72
+      internalID: -1256455087
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_101
+      rect:
+        serializedVersion: 2
+        x: 302
+        y: 1
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc910c1d015cfd3448b9fd3e4947802b
+      internalID: 1151251257
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_102
+      rect:
+        serializedVersion: 2
+        x: 351
+        y: 1
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 320e02123ce2e904791853315ceb1506
+      internalID: -28071550
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_103
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 1
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f233d469f905f08468a489f83cff1b6b
+      internalID: -394227327
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_104
+      rect:
+        serializedVersion: 2
+        x: 449
+        y: 1
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fbc8cea4713f29843aef303be9dacbd4
+      internalID: -1346229995
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_105
+      rect:
+        serializedVersion: 2
+        x: 498
+        y: 1
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a4bad0f49d8ab54bb44ca76c5e8fe20
+      internalID: 61537122
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_106
+      rect:
+        serializedVersion: 2
+        x: 547
+        y: 1
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 36e64942c822d8243be1a1e1ddab4af1
+      internalID: 886590801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_107
+      rect:
+        serializedVersion: 2
+        x: 596
+        y: 1
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f5e42d5f89700aa469adbf5e4dcb041e
+      internalID: 758878417
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_108
+      rect:
+        serializedVersion: 2
+        x: 645
+        y: 1
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d2b4552c75edd9d4eaa7679310f84e25
+      internalID: -204250487
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_109
+      rect:
+        serializedVersion: 2
+        x: 694
+        y: 1
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b2b7145107e1f9c4d9f5487078f5d71f
+      internalID: -571027343
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_110
+      rect:
+        serializedVersion: 2
+        x: 743
+        y: 1
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c2157575547ae741a92ddf79b9169b0
+      internalID: -175050847
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_111
+      rect:
+        serializedVersion: 2
+        x: 792
+        y: 1
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2df9c90c40241174580cfa9397edb58b
+      internalID: 1083526606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_112
+      rect:
+        serializedVersion: 2
+        x: 841
+        y: 1
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3fe975fd376beed45bdc60a69807c285
+      internalID: -1902789788
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_113
+      rect:
+        serializedVersion: 2
+        x: 890
+        y: 1
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8de87c3ff112792429f980f76f02436f
+      internalID: -599793949
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_114
+      rect:
+        serializedVersion: 2
+        x: 939
+        y: 1
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3da235472ff07eb4c97d1b6fce9a19a1
+      internalID: 1623637269
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_115
+      rect:
+        serializedVersion: 2
+        x: 988
+        y: 1
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 235e83bbee528614697c7e2ab2a3cfb9
+      internalID: 1314826417
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_116
+      rect:
+        serializedVersion: 2
+        x: 1037
+        y: 1
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dfab56e6c8f38c74396fc31ec2bb1ec2
+      internalID: 1218871030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_117
+      rect:
+        serializedVersion: 2
+        x: 1086
+        y: 1
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 856b92ceaa328c04eb592d7e2221d406
+      internalID: -1590893530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_118
+      rect:
+        serializedVersion: 2
+        x: 1135
+        y: 1
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 76c9cc924e4bbe34eba8961804414c79
+      internalID: 2040258505
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_119
+      rect:
+        serializedVersion: 2
+        x: 1184
+        y: 1
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a3afb7645b00ff4a98f75d8e2d78045
+      internalID: -376308441
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_120
+      rect:
+        serializedVersion: 2
+        x: 1233
+        y: 1
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cdeae005c488e5441afdf623b0ffad8a
+      internalID: 2084497350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArtifactMap_121
+      rect:
+        serializedVersion: 2
+        x: 1282
+        y: 1
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e18f01cd4ffb6784e84020ca8b26b178
+      internalID: -1189255988
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      ArtifactMap_0: 274441678
+      ArtifactMap_1: -1789483383
+      ArtifactMap_10: -2032327897
+      ArtifactMap_100: -1256455087
+      ArtifactMap_101: 1151251257
+      ArtifactMap_102: -28071550
+      ArtifactMap_103: -394227327
+      ArtifactMap_104: -1346229995
+      ArtifactMap_105: 61537122
+      ArtifactMap_106: 886590801
+      ArtifactMap_107: 758878417
+      ArtifactMap_108: -204250487
+      ArtifactMap_109: -571027343
+      ArtifactMap_11: 2134548644
+      ArtifactMap_110: -175050847
+      ArtifactMap_111: 1083526606
+      ArtifactMap_112: -1902789788
+      ArtifactMap_113: -599793949
+      ArtifactMap_114: 1623637269
+      ArtifactMap_115: 1314826417
+      ArtifactMap_116: 1218871030
+      ArtifactMap_117: -1590893530
+      ArtifactMap_118: 2040258505
+      ArtifactMap_119: -376308441
+      ArtifactMap_12: 328794186
+      ArtifactMap_120: 2084497350
+      ArtifactMap_121: -1189255988
+      ArtifactMap_13: 174350311
+      ArtifactMap_14: -152136752
+      ArtifactMap_15: -1979622640
+      ArtifactMap_16: -364580355
+      ArtifactMap_17: -966325648
+      ArtifactMap_18: -1204115048
+      ArtifactMap_19: 1146720003
+      ArtifactMap_2: -178433574
+      ArtifactMap_20: -252798506
+      ArtifactMap_21: -1631125596
+      ArtifactMap_22: -86677369
+      ArtifactMap_23: -401019790
+      ArtifactMap_24: 555212842
+      ArtifactMap_25: -275572037
+      ArtifactMap_26: -1579801575
+      ArtifactMap_27: -1934764477
+      ArtifactMap_28: -1726183873
+      ArtifactMap_29: -139317054
+      ArtifactMap_3: -2009437803
+      ArtifactMap_30: -246494401
+      ArtifactMap_31: 1663026599
+      ArtifactMap_32: -128948903
+      ArtifactMap_33: 1851531703
+      ArtifactMap_34: 1695475376
+      ArtifactMap_35: -1404970240
+      ArtifactMap_36: -1624132830
+      ArtifactMap_37: 26553533
+      ArtifactMap_38: -704875309
+      ArtifactMap_39: -1464896436
+      ArtifactMap_4: 2041647751
+      ArtifactMap_40: -774825842
+      ArtifactMap_41: 311207854
+      ArtifactMap_42: -1214457023
+      ArtifactMap_43: 1871235416
+      ArtifactMap_44: 1839097568
+      ArtifactMap_45: -1588290160
+      ArtifactMap_46: -1327942097
+      ArtifactMap_47: 694840386
+      ArtifactMap_48: 1206788010
+      ArtifactMap_49: 1054935064
+      ArtifactMap_5: -1044778049
+      ArtifactMap_50: -2063535839
+      ArtifactMap_51: 431016646
+      ArtifactMap_52: -636055293
+      ArtifactMap_53: 2135899452
+      ArtifactMap_54: 875635042
+      ArtifactMap_55: -1115655367
+      ArtifactMap_56: -406506006
+      ArtifactMap_57: 1703682939
+      ArtifactMap_58: -1618415840
+      ArtifactMap_59: -1282207576
+      ArtifactMap_6: 1916280067
+      ArtifactMap_60: -64258043
+      ArtifactMap_61: -1725758519
+      ArtifactMap_62: 1777276655
+      ArtifactMap_63: -1229215933
+      ArtifactMap_64: -1888907221
+      ArtifactMap_65: 629477313
+      ArtifactMap_66: -913704865
+      ArtifactMap_67: 19768090
+      ArtifactMap_68: -704220962
+      ArtifactMap_69: -1388067465
+      ArtifactMap_7: 1773521718
+      ArtifactMap_70: -1347704032
+      ArtifactMap_71: 1194469265
+      ArtifactMap_72: -1888077954
+      ArtifactMap_73: -1638633988
+      ArtifactMap_74: 1562259322
+      ArtifactMap_75: -1927552926
+      ArtifactMap_76: 989639847
+      ArtifactMap_77: 704561489
+      ArtifactMap_78: 1988648827
+      ArtifactMap_79: -685733972
+      ArtifactMap_8: -868116922
+      ArtifactMap_80: -1764774434
+      ArtifactMap_81: 462770814
+      ArtifactMap_82: -2089586695
+      ArtifactMap_83: 1986549049
+      ArtifactMap_84: -829277939
+      ArtifactMap_85: 1687110877
+      ArtifactMap_86: -1295156860
+      ArtifactMap_87: -1092088787
+      ArtifactMap_88: -476621697
+      ArtifactMap_89: 217489179
+      ArtifactMap_9: 1038683306
+      ArtifactMap_90: 2022630850
+      ArtifactMap_91: -1492741180
+      ArtifactMap_92: -422396538
+      ArtifactMap_93: -514160821
+      ArtifactMap_94: -769535137
+      ArtifactMap_95: -610660357
+      ArtifactMap_96: -1230582520
+      ArtifactMap_97: -1836625828
+      ArtifactMap_98: -2118592358
+      ArtifactMap_99: -2131771194
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

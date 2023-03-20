@@ -1,0 +1,9 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UIEditor/LandscapeManager.uss?fileID=7433441132597879392&amp;guid=74679e381844cfd43b837ecd1ca5cacd&amp;type=3#LandscapeManager[UNSUPPORTED_IN_UI_BUILDER]" />
+    <ui:VisualElement name="tabitem" class="tab_button" style="background-color: rgba(0, 0, 0, 0); justify-content: center; padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 10px;">
+        <ui:VisualElement name="row" style="background-color: rgba(0, 0, 0, 0); align-items: center; flex-direction: row; flex-grow: 1; flex-shrink: 1;">
+            <ui:VisualElement name="icon" style="background-color: rgba(0, 0, 0, 0); height: 40px; background-image: url(&apos;project://database/Packages/com.unity.collab-proxy/Editor/PlasticSCM/Assets/Images/buttonssosigninunity.png?fileID=2800000&amp;guid=f9161c6c9e06dc445ada3ee16d991f90&amp;type=3#buttonssosigninunity&apos;); -unity-background-scale-mode: scale-to-fit; width: 40px;" />
+            <ui:Label tabindex="-1" text="Label" display-tooltip-when-elided="true" name="name" style="flex-grow: 1; padding-left: 10px;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

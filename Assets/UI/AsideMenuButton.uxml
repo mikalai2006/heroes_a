@@ -1,0 +1,6 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/AsideMenu.uss?fileID=7433441132597879392&amp;guid=e55e2feb94a32ea4281de07ce70e415f&amp;type=3#AsideMenu" />
+    <ui:Button display-tooltip-when-elided="true" name="button" class="aside_menu_button">
+        <ui:VisualElement name="image" class="aside_menu_buttonimg" />
+    </ui:Button>
+</ui:UXML>

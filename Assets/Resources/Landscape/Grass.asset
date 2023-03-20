@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3cff73568744154cb466614101c87c9, type: 3}
+  m_Name: Grass
+  m_EditorClassIdentifier: 
+  idObject: 0a31a61f22bc41a1ab2c174c590aa608
+  objectName: Grass
+  tileRule: {fileID: 11400000, guid: 3b54c8ae1870146439158180ba9ba305, type: 2}
+  dataNode:
+    speed: 100
+  speed: 100
+  isWalkable: 1
+  isFraction: 1
+  typeGround: 20

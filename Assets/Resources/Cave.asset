@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e48d7b04eb11ecd4582db1e2d7a51955, type: 3}
+  m_Name: Cave
+  m_EditorClassIdentifier: 
+  idObject: 376806cf255a40efba21a8d68930cc86
+  typeGround: 10
+  TypeMapGameObject: 0
+  TypeUnit: 3
+  listTypeNoPath: 
+  Prefab: {fileID: 370010816670693983, guid: f7199a93e1f965746b5fc746fa54f61f, type: 3}
+  MenuSprite: {fileID: 0}
+  mapObjectType: 0

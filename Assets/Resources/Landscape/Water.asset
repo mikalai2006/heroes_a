@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3cff73568744154cb466614101c87c9, type: 3}
+  m_Name: Water
+  m_EditorClassIdentifier: 
+  idObject: 9c5883b3eecf45c3b878530232476c96
+  objectName: Water
+  tileRule: {fileID: 11400000, guid: 4c8189fefff514f44a44fc829d389c40, type: 2}
+  dataNode:
+    speed: 0
+  speed: 50
+  isWalkable: 0
+  typeGround: 10

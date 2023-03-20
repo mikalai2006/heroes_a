@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6892427306879841ae9bdf6a40176c7, type: 3}
+  m_Name: 3_Walf
+  m_EditorClassIdentifier: 
+  idObject: e206c715acdd4387bce6ee488c7ca76d
+  typeGround: 30
+  typeInput: 1
+  TypeUnit: 7
+  listTypeNoPath: 
+  Prefab: {fileID: 7446350713360772316, guid: 7ce8b917644436b4893a4a0e5d5d77dc, type: 3}
+  MenuSprite: {fileID: 1892277944, guid: 432140726f3ec3d489d729c011fd81b2, type: 3}
+  level: 3

@@ -1,0 +1,14 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/buttons.uss?fileID=7433441132597879392&amp;guid=5902336253b28b941b1a91c0c4450170&amp;type=3#buttons" />
+    <Style src="project://database/Assets/UI/ButtonHero.uss?fileID=7433441132597879392&amp;guid=338317b2fb9014c42b7f5257d06503a4&amp;type=3#ButtonHero" />
+    <Style src="project://database/Assets/UI/Base.uss?fileID=7433441132597879392&amp;guid=fa07b064290e7384d9ad2e26e79f5953&amp;type=3#Base" />
+    <ui:Button display-tooltip-when-elided="true" name="ButtonAside" class="button_bg aside_button" style="flex-grow: 1;">
+        <ui:VisualElement name="bar" class="button_bar">
+            <ui:VisualElement name="hit" class="button_bar_value button_bar_hit" />
+        </ui:VisualElement>
+        <ui:VisualElement name="image" class="button_img" />
+        <ui:VisualElement name="bar" class="button_bar">
+            <ui:VisualElement name="mana" class="button_bar_value button_bar_mana" />
+        </ui:VisualElement>
+    </ui:Button>
+</ui:UXML>

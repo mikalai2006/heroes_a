@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a65baad6a8d2c64fb97367c32a952a6, type: 3}
+  m_Name: Grass Town
+  m_EditorClassIdentifier: 
+  idObject: e9eaed07d9a941279244fd9b6d3c53de
+  typeGround: 20
+  TypeMapGameObject: 0
+  TypeUnit: 1
+  listTypeNoPath: 080000000e0000000c000000090000000700000006000000030000000f000000
+  Prefab: {fileID: 7611858330927151199, guid: a9109f9599358f84fa65b703f5f4dca4, type: 3}
+  MenuSprite: {fileID: 21300000, guid: 89f0e95d08d1e874ca5e3dc10293026c, type: 3}
+  heroes:
+  - {fileID: 11400000, guid: 4f8e8d86a04c76d4f893e884b639d2d5, type: 2}
+  - {fileID: 11400000, guid: 8268c8fea98a7e249a8fc20babf31991, type: 2}
+  mines:
+  - {fileID: 11400000, guid: 35e2a54aecab46c43980fab5c6855c95, type: 2}
+  - {fileID: 11400000, guid: 0bf796cd05f1ed04a9b2b5c7d8a494fe, type: 2}
+  warriors:
+  - {fileID: 11400000, guid: 4f0e4cab83e761f41b24200683cb8d4b, type: 2}

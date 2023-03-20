@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6892427306879841ae9bdf6a40176c7, type: 3}
+  m_Name: 5_Roc
+  m_EditorClassIdentifier: 
+  idObject: 64b9fd57a19f4c4a9518ef9cc3379293
+  typeGround: 30
+  typeInput: 1
+  TypeUnit: 7
+  listTypeNoPath: 
+  Prefab: {fileID: -5931924195318819508, guid: d5173f978e5dc504eb618f938b12d5b0, type: 3}
+  MenuSprite: {fileID: 135391731, guid: cee6b22b090175144a6c1388e9d59776, type: 3}
+  level: 5

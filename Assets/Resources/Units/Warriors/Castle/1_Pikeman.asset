@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6892427306879841ae9bdf6a40176c7, type: 3}
+  m_Name: 1_Pikeman
+  m_EditorClassIdentifier: 
+  idObject: 36cb8884bb04453d93a47d3799249daa
+  typeGround: 20
+  typeInput: 1
+  TypeUnit: 7
+  listTypeNoPath: 
+  Prefab: {fileID: 8195460152588547095, guid: 84c4be2db55a8d1409a0512e51efb96b, type: 3}
+  MenuSprite: {fileID: 1553045870, guid: 211c3996d9c5ed94faa80c63928ab087, type: 3}
+  level: 1

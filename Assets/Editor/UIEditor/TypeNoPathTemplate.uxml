@@ -1,0 +1,7 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UIEditor/LandscapeManager.uss?fileID=7433441132597879392&amp;guid=74679e381844cfd43b837ecd1ca5cacd&amp;type=3#LandscapeManager[UNSUPPORTED_IN_UI_BUILDER]" />
+    <ui:VisualElement name="node" class="node">
+        <ui:Label tabindex="-1" text="0" display-tooltip-when-elided="true" name="NodeValue" class="node_value" style="color: rgb(70, 70, 70);" />
+        <ui:VisualElement name="NodeCheck" class="node_check node_check_hidden" />
+    </ui:VisualElement>
+</ui:UXML>

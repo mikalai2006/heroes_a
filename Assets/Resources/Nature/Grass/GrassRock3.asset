@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16429bf882a319a4fa6cb0590513cfee, type: 3}
+  m_Name: GrassRock3
+  m_EditorClassIdentifier: 
+  m_DefaultSprite: {fileID: 21300000, guid: 8135c0c893d01004eb19c9d0c73669f0, type: 3}
+  m_DefaultGameObject: {fileID: 0}
+  m_DefaultColliderType: 1
+  m_TilingRules: []
+  idObject: 6d0a5e7776294b368c4c1c582987dd19
+  typeGround: 20
+  tile: {fileID: 0}
+  dataNode:
+    speed: 0
+  isWalkable: 0
+  isCorner: 1
+  listTypeNoPath: 0c0000000e0000000f000000120000001100000009000000080000000a000000

@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8b37f45c729ee418999a23f24a7d53, type: 3}
+  m_Name: Box
+  m_EditorClassIdentifier: 
+  idObject: 469cdbbfc7d74fc7922b028f4d940c29
+  level: 1
+  typeGround: 1000
+  typeInput: 1
+  TypeUnit: 5
+  listTypeNoPath: 
+  Prefab: {fileID: -6912311537691652818, guid: 1ff2b6ac40a146842914d5fb9421c236, type: 3}
+  MenuSprite: {fileID: 21300000, guid: 203a61265f76b1547980872c0a810897, type: 3}
+  TypeWork: 1
+  ListResource:
+  - TypeResource: 10
+    listValue: c4090000e8030000
+  - TypeResource: 40
+    listValue: 050000000a000000
+  Curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
