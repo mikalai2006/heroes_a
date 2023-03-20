@@ -2,6 +2,7 @@
     <Style src="project://database/Assets/UI/StartMenu.uss?fileID=7433441132597879392&amp;guid=0573e25767d79a448968409d1afe7050&amp;type=3#StartMenu" />
     <Style src="project://database/Assets/UI/Base.uss?fileID=7433441132597879392&amp;guid=fa07b064290e7384d9ad2e26e79f5953&amp;type=3#Base" />
     <ui:VisualElement name="StartScreen" class="startmenu">
+        <ui:VisualElement name="OverBG" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); background-image: url(&apos;project://database/Assets/Sprites/UI/ZPIC1005.bmp?fileID=2800000&amp;guid=d1f71b58e46a95a4a88bb05b8f3a051e&amp;type=3#ZPIC1005&apos;); position: absolute; -unity-background-scale-mode: scale-to-fit; height: 100%; width: 65%; align-items: flex-start;" />
         <ui:VisualElement name="ButtonsSection" class="startmenu_panel" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
             <ui:Button text="#new_game" display-tooltip-when-elided="true" name="newgame" class="startmenu_btn" />
             <ui:Button text="#load_game" display-tooltip-when-elided="true" name="loadgame" class="startmenu_btn" />
