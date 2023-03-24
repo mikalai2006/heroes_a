@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Tilemaps;
@@ -7,23 +5,22 @@ using UnityEngine.Tilemaps;
 [RequireComponent(typeof(EventTrigger))]
 public class EventTilemap : MonoBehaviour
 {
-    [SerializeField] Tilemap _tileMap;
+    [SerializeField] readonly Tilemap _tileMap;
     private Vector3 Origin;
     private Vector3 Difference;
     private Vector3 ResetCamera;
-
     public float zoomMin = 5f;
     public float zoomMax = 8f;
+    private Camera _camera;
 
-    //Assign this Camera in the Inspector
-    public Camera m_OrthographicCamera;
-    //These are the positions and dimensions of the Camera view in the Game view
-    float m_ViewPositionX, m_ViewPositionY, m_ViewWidth, m_ViewHeight;
+    private void Awake()
+    {
+        _camera = Camera.main;
+    }
 
     void Start()
     {
-
-        ResetCamera = Camera.main.transform.position;
+        ResetCamera = _camera.transform.position;
 
         EventTrigger trigger = this.GetComponent<EventTrigger>();
         EventTrigger.Entry entry = new EventTrigger.Entry();
@@ -45,15 +42,15 @@ public class EventTilemap : MonoBehaviour
 
     private void OnStartDragTilemap(PointerEventData data)
     {
-        Origin = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Origin = _camera.ScreenToWorldPoint(Input.mousePosition);
 
     }
     private void OnDragTilemap(PointerEventData data)
     {
 
-        Difference = Origin - Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Difference = Origin - _camera.ScreenToWorldPoint(Input.mousePosition);
 
-        Camera.main.transform.position += Difference;
+        _camera.transform.position += Difference;
     }
 
 
@@ -63,51 +60,23 @@ public class EventTilemap : MonoBehaviour
         {
             //Debug.Log($"Dragging {Input.touchCount}");
             return;
-        } else
+        }
+        else
         {
-            GameManager.Instance.mapManager.ChangePath();
+            GameManager.Instance.MapManager.ChangePath();
         }
 
         zoom(Input.GetAxis("Mouse ScrollWheel"));
     }
 
-    //public void OnZoomTilemap(PointerEventData data)
-    //{
-    //    if (Input.touchCount == 2)
-    //    {
-    //        Touch touchZero = Input.GetTouch(0);
-    //        Touch touchOne = Input.GetTouch(1);
-
-    //        Vector2 touchZeroPrevPos = touchZero.position - touchZero.deltaPosition;
-    //        Vector2 touchOnePrevPos = touchOne.position - touchOne.deltaPosition;
-
-    //        float prevMagnitude = (touchZeroPrevPos - touchOnePrevPos).magnitude;
-    //        float currentMagnitude = (touchZero.position - touchOne.position).magnitude;
-
-    //        float difference = currentMagnitude - prevMagnitude;
-
-    //        zoom(difference * 0.01f);
-
-    //    }
-    //    else if (Input.GetMouseButton(0))
-    //    {
-    //        Difference = Origin - Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-    //        Camera.main.transform.position += Difference;
-
-    //    }
-
-    //    zoom(Input.GetAxis("Mouse ScrollWheel"));
-    //}
-
     void zoom(float increment)
     {
-        Camera.main.orthographicSize = Mathf.Clamp(Camera.main.orthographicSize - increment, zoomMin, zoomMax);
+        _camera.orthographicSize = Mathf.Clamp(_camera.orthographicSize - increment, zoomMin, zoomMax);
     }
 
     void Update()
     {
-        
+
         if (Input.touchCount == 2)
         {
             Touch touchZero = Input.GetTouch(0);
@@ -126,8 +95,6 @@ public class EventTilemap : MonoBehaviour
         }
 
         zoom(Input.GetAxis("Mouse ScrollWheel"));
-
-
     }
 
 }

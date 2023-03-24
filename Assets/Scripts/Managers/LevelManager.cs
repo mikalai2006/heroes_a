@@ -1,57 +1,20 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEngine;
 
+using UnityEngine;
 
 public class LevelManager : Singleton<LevelManager>, IDataPlay
 {
     [SerializeField] private Transform _camera;
-        
-    [SerializeField] public DataLevel level;
+    public DataLevel Level;
 
     [Header("General")]
     [Space(10)]
     public bool isWater = false;
-    [SerializeField] private int countArea;
-    public int CountArea => countArea;
+    [SerializeField] private int _countArea;
+    public int CountArea => _countArea;
 
-    [SerializeField] public DataGameMode gameModeData;
-
-    //public int width;
-    //public int height;
-    //[Range(0.5f, 1.0f)] public float koofSizeArea;
-
-    //[Header("Mountains")]
-    //[Range(0f, 0.2f)] public float noiseScaleMontain;
-    //[Range(0f, 0.6f)] public float koofMountains;
-
-
-    //[Header("Nature")]
-    //[Range(0f, 0.2f)] public float koofNature;
-
-    //[Header("Mines")]
-    ////[Range(0f, 0.2f)] public float noiseScaleMines;
-    //[Range(0f, 0.8f)] public float koofMines;
-
-
-    //[Range(.01f, .2f)] public float koofMinTown;
-    
-
-    //[Header("Resource")]
-    //[Range(0f, 0.01f)] public float koofResource;
-    //[Range(0f, 0.05f)] public float koofFreeResource;
-
-
-    //[Header("Explore")]
-    //[Range(0f, 0.01f)] public float koofExplore;
-
-    //[Header("Skills")]
-    //[Range(0f, 0.1f)] public float koofSchoolSkills;
-
-    //[Header("Artifacts")]
-    //[Range(0f, 0.1f)] public float koofArtifacts;
+    public DataGameMode GameModeData;
 
     [Header("Setting level")]
     [Space(10)]
@@ -67,19 +30,18 @@ public class LevelManager : Singleton<LevelManager>, IDataPlay
         Color.cyan
     };
 
-    GridTileHelper mapHelper;
-
     public Player ActivePlayer
     {
-        get { return level.listPlayer[level.activePlayer]; }
-        set {
-            level.listPlayer[level.activePlayer] = value;
+        get { return Level.listPlayer[Level.activePlayer]; }
+        set
+        {
+            Level.listPlayer[Level.activePlayer] = value;
         }
     }
 
     public LevelManager()
     {
-        gameModeData = new DataGameMode();
+        GameModeData = new DataGameMode();
     }
 
     //protected override void Awake()
@@ -114,14 +76,14 @@ public class LevelManager : Singleton<LevelManager>, IDataPlay
     //            break;
     //    }
     //}
-    
+
     public void NewLevel()
     {
 
-        level = new DataLevel();
-        level.countPlayer = countPlayer;
-        countArea = Mathf.CeilToInt((gameModeData.width * gameModeData.height) / (((gameModeData.width * gameModeData.height)  / countPlayer) * gameModeData.koofSizeArea));
-        level.activePlayer = -1;
+        Level = new DataLevel();
+        Level.countPlayer = countPlayer;
+        _countArea = Mathf.CeilToInt((GameModeData.width * GameModeData.height) / (((GameModeData.width * GameModeData.height) / countPlayer) * GameModeData.koofSizeArea));
+        Level.activePlayer = -1;
 
         for (int i = 0; i < countPlayer; i++)
         {
@@ -131,7 +93,7 @@ public class LevelManager : Singleton<LevelManager>, IDataPlay
             dataPlayer.playerType = PlayerType.User;
 
             var player = new Player(dataPlayer);
-            level.listPlayer.Add(player);
+            Level.listPlayer.Add(player);
         }
 
         for (int i = countPlayer; i < (countPlayer + countBot); i++)
@@ -142,20 +104,20 @@ public class LevelManager : Singleton<LevelManager>, IDataPlay
             dataPlayer.playerType = PlayerType.Bot;
             var player = new Player(dataPlayer);
 
-            level.listPlayer.Add(player);
+            Level.listPlayer.Add(player);
         }
 
     }
 
     public void StepNextPlayer()
     {
-        if (level.activePlayer < countPlayer - 1)
+        if (Level.activePlayer < countPlayer - 1)
         {
-            level.activePlayer++;
+            Level.activePlayer++;
         }
         else
         {
-            level.activePlayer = 0;
+            Level.activePlayer = 0;
         }
 
         //level.activePlayer = level.activePlayer < (countPlayer + countEnemies + 1) ? level.activePlayer++ : 0;
@@ -168,35 +130,35 @@ public class LevelManager : Singleton<LevelManager>, IDataPlay
 
         SetPositionCamera(new Vector3(ActivePlayer.ActiveHero.Position.x, ActivePlayer.ActiveHero.Position.y, -10f));
 
-        GameManager.Instance.mapManager.ResetSky(ActivePlayer.DataPlayer.nosky);
+        // GameManager.Instance.MapManager.ResetSky(ActivePlayer.DataPlayer.nosky);
 
-        if (ActivePlayer.DataPlayer.nosky.Count == 0)
-        {
-            List<GridTileNode> listNoskyNode = GameManager.Instance.mapManager.DrawSky(ActivePlayer.ActiveHero.OccupiedNode, 5);
-            ActivePlayer.SetNosky(listNoskyNode);
-        }
+        // if (ActivePlayer.DataPlayer.nosky.Count == 0)
+        // {
+        //     List<GridTileNode> listNoskyNode = GameManager.Instance.MapManager.DrawSky(ActivePlayer.ActiveHero.OccupiedNode, 5);
+        //     ActivePlayer.SetNosky(listNoskyNode);
+        // }
 
         //Debug.Log($" Active Hero {level.activePlayer}");
     }
 
-    public void AddArea(int id, TypeGround typeGround)
+    public void AddArea(int id, TileLandscape landscape)
     {
         //Debug.Log($"Add area {id}");
         Area area = new Area();
         area.id = id;
-        area.typeGround = typeGround;
-        TileLandscape landscape = ResourceSystem.Instance.GetLandscape(typeGround);
+        area.typeGround = landscape.typeGround;
+        //TileLandscape landscape = ResourceSystem.Instance.GetLandscape(typeGround);
         area.isFraction = landscape.isFraction;
-        level.listArea.Add(area);
+        Level.listArea.Add(area);
     }
     public void RemoveArea(Area area)
     {
-        level.listArea.Remove(area);
+        Level.listArea.Remove(area);
     }
     public Area GetArea(int id)
     {
         //Debug.Log($"Get area {id}");
-        List<Area> listArea = level.listArea.Where(t => t.id == id).ToList();
+        List<Area> listArea = Level.listArea.Where(t => t.id == id).ToList();
         return listArea.Count > 0 ? listArea[0] : null;
     }
 
@@ -208,15 +170,12 @@ public class LevelManager : Singleton<LevelManager>, IDataPlay
     public Player GetPlayer(int id)
     {
         //Debug.Log($"GetPlayer {id}");
-        if (id >= level.listPlayer.Count) return null;
-
-        return level.listPlayer[id];
+        return id >= Level.listPlayer.Count ? null : Level.listPlayer[id];
     }
 
-#if UNITY_EDITOR
     public override string ToString()
     {
-        string text = string.Format("Level::: \r\n {0}", level.ToString());
+        string text = string.Format("Level::: \r\n {0}", Level.ToString());
         //foreach (Player player in listPlayer.Values)
         //{
         //    text += string.Format("\r\nPlayer::: id:[{0}] color:[{1}] type:[{2}]",
@@ -225,7 +184,7 @@ public class LevelManager : Singleton<LevelManager>, IDataPlay
         //        player.data.playerType
         //        );
         //}
-        foreach (Area area in level.listArea)
+        foreach (Area area in Level.listArea)
         {
             text += string.Format("\r\nArea::: id:[{0}] countNode:[{1}] startPosition:[{2}] \n {3}",
                 area.id,
@@ -237,7 +196,6 @@ public class LevelManager : Singleton<LevelManager>, IDataPlay
         return text;
     }
 
-#endif
     public void SetPositionCamera(Vector3 pos)
     {
         _camera.transform.position = pos;
@@ -245,7 +203,7 @@ public class LevelManager : Singleton<LevelManager>, IDataPlay
 
     public void LoadDataPlay(DataPlay data)
     {
-        level = data.Level;
+        Level = data.Level;
         //foreach (Player player in level.listPlayer)
         //{
         //    player.DataPlayer = new PlayerData()
@@ -260,6 +218,6 @@ public class LevelManager : Singleton<LevelManager>, IDataPlay
 
     public void SaveDataPlay(ref DataPlay data)
     {
-        data.Level = level;
+        data.Level = Level;
     }
 }

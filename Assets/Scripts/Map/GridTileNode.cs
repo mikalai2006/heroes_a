@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
 
 [Serializable]
@@ -16,12 +17,12 @@ public enum TypeStateNode
 [Serializable]
 public class GridTileNode : IHeapItem<GridTileNode>
 {
-    [NonSerialized] private GridTile<GridTileNode> _grid;
-    [NonSerialized] private GridTileHelper _gridHelper;
-    public int x;
-    public int y;
-    public int keyArea = 0;
-    public TypeGround typeGround = TypeGround.None;
+    [NonSerialized] private readonly GridTile<GridTileNode> _grid;
+    [NonSerialized] private readonly GridTileHelper _gridHelper;
+    public int X;
+    public int Y;
+    public int KeyArea = 0;
+    public TypeGround TypeGround = TypeGround.None;
     [SerializeField] private TypeStateNode _state;
     public TypeStateNode State
     {
@@ -38,7 +39,7 @@ public class GridTileNode : IHeapItem<GridTileNode>
     public bool Road => _isRoad;
 
     [NonSerialized] public int level;
-    [NonSerialized] public Vector3Int _position;
+    [NonSerialized] public Vector3Int position;
 
     [NonSerialized] private UnitBase _ocuppiedUnit = null;
     public UnitBase OccupiedUnit => _ocuppiedUnit;
@@ -47,7 +48,8 @@ public class GridTileNode : IHeapItem<GridTileNode>
     public bool Protected => _protectedUnit != null;
 
     private int heapIndex;
-    public int HeapIndex {
+    public int HeapIndex
+    {
         get
         {
             return heapIndex;
@@ -72,11 +74,11 @@ public class GridTileNode : IHeapItem<GridTileNode>
 
     public GridTileNode(GridTile<GridTileNode> grid, GridTileHelper gridHelper, int x, int y)
     {
-        _position = new Vector3Int(x,y,0);
+        position = new Vector3Int(x, y, 0);
         _gridHelper = gridHelper;
         _grid = grid;
-        this.x = x;
-        this.y = y;
+        this.X = x;
+        this.Y = y;
         //_isWalkable = tileData.isWalkable;
         //typeGround = tileData.typeGround;
     }
@@ -111,8 +113,8 @@ public class GridTileNode : IHeapItem<GridTileNode>
         //        _state = TypeStateNode.Protected;
         //    }
         //}
-        GameManager.Instance.mapManager.SetColorForTile(
-            _position,
+        GameManager.Instance.MapManager.SetColorForTile(
+            position,
             _protectedUnit == null ? Color.yellow : Color.red
         );
     }
@@ -164,18 +166,18 @@ public class GridTileNode : IHeapItem<GridTileNode>
     public override string ToString()
     {
         return "GridTileNode:::" +
-            "[x" + _position.x + ",y" + _position.y + "] \n" +
+            "[x" + position.x + ",y" + position.y + "] \n" +
             "Empty=" + Empty + ",\n" +
             "Disable=" + Disable + ",\n" +
             "Enable=" + Enable + ",\n" +
             "Protected=" + Protected + ",\n" +
             "Road=" + Road + ",\n" +
-            "keyArea=" + keyArea + ",\n" +
-            "typeGround=" + typeGround + ",\n" +
+            "keyArea=" + KeyArea + ",\n" +
+            "typeGround=" + TypeGround + ",\n" +
             "OccupiedUnit=" + OccupiedUnit?.ToString() + ",\n" +
             "ProtectedUnit=" + ProtectedUnit?.ToString() + ",\n" +
             "countNeighbours=" + countRelatedNeighbors + ",\n" +
-            "(gCost=" + gCost + ") (hCost=" + hCost + ") (fCost=" + fCost +")";
+            "(gCost=" + gCost + ") (hCost=" + hCost + ") (fCost=" + fCost + ")";
     }
 
     public void SetAsRoad()

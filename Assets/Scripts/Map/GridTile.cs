@@ -1,71 +1,66 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
 
 public class GridTile<TGridObject>
 {
 
-    private int width;
-    private int height;
-    private float _cellSize;
-    private TGridObject[,] gridArray;
+    private readonly int _width;
+    private readonly int _height;
+    private readonly float _cellSize;
+    private readonly TGridObject[,] _gridArray;
 
-    public int SizeGrid { get { return width * height; } private set { } }
+    public int SizeGrid { get { return _width * _height; } private set { } }
 
     public GridTile(int width, int height, float cellSize, GridTileHelper gridTileHelper, Func<GridTile<TGridObject>, GridTileHelper, int, int, TGridObject> createValue)
     {
-        this.width = width;
-        this.height = height;
-        this._cellSize = cellSize;
+        _width = width;
+        _height = height;
+        _cellSize = cellSize;
 
-        gridArray = new TGridObject[width,height];
+        _gridArray = new TGridObject[width, height];
 
-        for (int x = 0; x < gridArray.GetLength(0); x++)
+        for (int x = 0; x < _gridArray.GetLength(0); x++)
         {
-            for (int y = 0; y < gridArray.GetLength(1); y++)
+            for (int y = 0; y < _gridArray.GetLength(1); y++)
             {
-                gridArray[x, y] = createValue(this, gridTileHelper, x, y);
+                _gridArray[x, y] = createValue(this, gridTileHelper, x, y);
             }
         }
 
         // return gridArray;
     }
 
-    private Vector3 GetWorldPosition(int x, int y)
-    {
-        return new Vector3(x, 0, y) * _cellSize;
-    }
+    // private Vector3 GetWorldPosition(int x, int y)
+    // {
+    //     return new Vector3(x, 0, y) * _cellSize;
+    // }
 
-    public void SetValue(int x, int y, TGridObject Value)
+    public void SetValue(int x, int y, TGridObject value)
     {
-        gridArray[x, y] = Value;
+        _gridArray[x, y] = value;
     }
 
     public TGridObject[,] GetGrid()
     {
-        return gridArray;
+        return _gridArray;
     }
-    public TGridObject getGridObject(Vector3Int pos)
+    public TGridObject GetGridObject(Vector3Int pos)
     {
         //Debug.Log($"GetGrid {x},{z}: {GetWorldPosition(x, z)}");
-        if (pos.x >= 0 && pos.y >= 0 && pos.x < width && pos.y < height)
-        {
-            return gridArray[pos.x, pos.y];
-        } else
-        {
-            return default(TGridObject);
-        }
+        return pos.x >= 0 && pos.y >= 0 && pos.x < _width && pos.y < _height ? _gridArray[pos.x, pos.y] : default;
     }
 
     public int GetHeight()
     {
-        return height;
+        return _height;
     }
 
     public int GetWidth()
     {
-        return width;
+        return _width;
     }
 
 }

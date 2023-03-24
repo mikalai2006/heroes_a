@@ -1,10 +1,11 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+
 using UnityEditor;
 using UnityEditor.UIElements;
+
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -17,8 +18,8 @@ public class UnitManagerEditor
 
     private ListView m_ListUnit;
     private VisualElement m_Tabs, m_SectionNoPath;
-    private float m_ItemHeight = 50, m_NoPathsize = 30;
-    private int countNoPath = 2;
+    private readonly float m_ItemHeight = 50, m_NoPathsize = 30;
+    private readonly int countNoPath = 2;
     private ScriptableUnitBase m_activeItem;
     private ScrollView m_SectionDetails;
 
@@ -38,7 +39,7 @@ public class UnitManagerEditor
 
         m_Tabs = rootFromUXML.Q<VisualElement>("UnitListTab");
         m_SectionDetails = rootFromUXML.Q<ScrollView>("UnitDetails");
-        m_SectionNoPath= rootFromUXML.Q<VisualElement>("BoxNoPath");
+        m_SectionNoPath = rootFromUXML.Q<VisualElement>("BoxNoPath");
 
 
         GenerateListView();
@@ -65,7 +66,7 @@ public class UnitManagerEditor
                 col++;
                 continue;
             };
-            
+
             var newNode = m_NoPathTemplate.CloneTree();
 
             newNode.style.position = Position.Absolute;
@@ -76,18 +77,20 @@ public class UnitManagerEditor
             if ((TypeNoPath)x > 0)
             {
                 newNode.RegisterCallback<ClickEvent>(NoPathOnClick);
-                if (IsExistsRuleNoPath((TypeNoPath)x)) {
+                if (IsExistsRuleNoPath((TypeNoPath)x))
+                {
                     newNode.Q<VisualElement>("NodeCheck").RemoveFromClassList("node_check_hidden");
-                } else
+                }
+                else
                 {
                     newNode.Q<VisualElement>("NodeCheck").AddToClassList("node_check_hidden");
                 }
             }
-            
+
             m_SectionNoPath.Add(newNode);
 
             col++;
-            if (x % ((countNoPath* 2) + 1) == 0)
+            if (x % ((countNoPath * 2) + 1) == 0)
             {
                 row++;
                 col = 0;
@@ -112,7 +115,8 @@ public class UnitManagerEditor
         {
             m_activeItem.listTypeNoPath.Remove((TypeNoPath)index);
             clickedTab.Q<VisualElement>("NodeCheck").AddToClassList("node_check_hidden");
-        } else
+        }
+        else
         {
             m_activeItem.listTypeNoPath.Add((TypeNoPath)index);
             clickedTab.Q<VisualElement>("NodeCheck").RemoveFromClassList("node_check_hidden");
@@ -131,7 +135,7 @@ public class UnitManagerEditor
     private void LoadAllItems()
     {
         m_UnitDB.Clear();
-        string[] allPaths = Directory.GetFiles("Assets/Resources/Units", "*.asset",
+        string[] allPaths = Directory.GetFiles("Assets/ScriptableObjects/Units", "*.asset",
             SearchOption.AllDirectories);
         foreach (string path in allPaths)
         {
@@ -152,7 +156,8 @@ public class UnitManagerEditor
             {
                 e.Q<VisualElement>("icon").style.backgroundImage = new StyleBackground(m_UnitDB[i].MenuSprite);
 
-            } else
+            }
+            else
             {
                 SpriteRenderer[] sprites = m_UnitDB[i].Prefab.gameObject.GetComponentsInChildren<SpriteRenderer>();
                 e.Q<VisualElement>("icon").style.backgroundImage = new StyleBackground(sprites[0].sprite);
@@ -183,7 +188,7 @@ public class UnitManagerEditor
         m_activeItem = (ScriptableUnitBase)selectedItems.First();
         SerializedObject so = new SerializedObject(m_activeItem);
         m_SectionDetails.Bind(so);
-        
+
 
         if (m_activeItem.MenuSprite != null)
         {

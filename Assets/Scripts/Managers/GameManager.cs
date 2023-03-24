@@ -1,31 +1,33 @@
 using System;
 using UnityEngine;
+using Login;
+using System.Collections.Generic;
+using Loader;
 
-/// <summary>
-/// Nice, easy to understand enum-based game manager. For larger and more complex games, look into
-/// state machines. But this will serve just fine for most games.
-/// </summary>
-public class GameManager : StaticInstance<GameManager> {
-
+public class GameManager : StaticInstance<GameManager>
+{
     public static event Action<GameState> OnBeforeStateChanged;
     public static event Action<GameState> OnAfterStateChanged;
-
-    [SerializeField] public MapManager mapManager;
-
+    [SerializeField] public MapManager MapManager;
+    [SerializeField] public LevelManager LevelManager;
+    public LoadingScreenProvider LoadingScreenProvider { get; private set; }
+    public LoginWindowProvider LoginWindowProvider { get; private set; }
+    public AssetProvider AssetProvider { get; private set; }
     public GameState State { get; private set; }
 
-    // Kick the game off with the first state
-    void Start() {
+    void Start()
+    {
         //QualitySettings.vSyncCount = 0;
-#if UNITY_EDITOR
-        Debug.unityLogger.logEnabled = true;
-#else
-	    Debug.unityLogger.logEnabled = false;
-#endif
-
 
         ChangeState(GameState.StartApp);
 
+    }
+
+    public void Init()
+    {
+        LoadingScreenProvider = new LoadingScreenProvider();
+        LoginWindowProvider = new LoginWindowProvider();
+        AssetProvider = new AssetProvider();
     }
 
     public void ChangeState(GameState newState, object Params = null)
@@ -35,7 +37,8 @@ public class GameManager : StaticInstance<GameManager> {
         OnBeforeStateChanged?.Invoke(newState);
 
         State = newState;
-        switch (newState) {
+        switch (newState)
+        {
             case GameState.StartApp:
                 HandleStarting();
                 break;
@@ -51,21 +54,6 @@ public class GameManager : StaticInstance<GameManager> {
             case GameState.CreateMap:
                 HandleCreateMap();
                 break;
-            //case GameState.SpawningTowns:
-            //    HandleSpawningTowns();
-            //    break;
-            //case GameState.SpawningMapObjects:
-            //    HandleSpawningMapObjects();
-            //    break;
-            //case GameState.SpawningPortals:
-            //    HandleSpawningPortals();
-            //    break;
-            //case GameState.SpawningRoads:
-            //    HandleSpawningRoads();
-            //    break;
-            //case GameState.SpawningEnemies:
-            //    HandleSpawningEnemies();
-            //    break;
             case GameState.StepNextPlayer:
                 HandleSetActivePlayer();
                 break;
@@ -93,7 +81,7 @@ public class GameManager : StaticInstance<GameManager> {
                 HandleStopMoveHero();
                 break;
             case GameState.CreatePathHero:
-                
+
                 break;
             case GameState.SaveGame:
                 HandleSaveGame();
@@ -105,19 +93,25 @@ public class GameManager : StaticInstance<GameManager> {
         OnAfterStateChanged?.Invoke(newState);
     }
 
-    private void HandleNewGame()
+    private async void HandleNewGame()
     {
-        ChangeState(GameState.CreateLevel);
+        LevelManager.Instance.NewLevel();
 
+        var operations = new Queue<ILoadingOperation>();
+        operations.Enqueue(new GameInitOperation());
+        await LoadingScreenProvider.LoadAndDestroy(operations);
+
+        await MapManager.NewMap();
+        ChangeState(GameState.StepNextPlayer);
     }
     private void HandleCreateLevel()
     {
         LevelManager.Instance.NewLevel();
         ChangeState(GameState.CreateMap);
     }
-    private void HandleCreateMap()
+    private async void HandleCreateMap()
     {
-        StartCoroutine(mapManager.NewMap());
+        await MapManager.NewMap();
     }
 
     private void HandleLoadGame()
@@ -137,7 +131,7 @@ public class GameManager : StaticInstance<GameManager> {
     }
     private void HandleChooseHero()
     {
-        
+
     }
 
     private void HandleStartMoveHero()
@@ -153,57 +147,16 @@ public class GameManager : StaticInstance<GameManager> {
         //ChangeState(GameState.ShowMenu);
     }
 
-
-    //private void HandleSpawningPortals()
-    //{
-    //    for (int i = 0; i < countArea; i++)
-    //    {
-
-    //        UnitManager.Instance.SpawnUnitsByTypeAndCount(TypeUnit.Portal, i, 1);
-
-    //    }
-
-    //    ChangeState(GameState.SpawningRoads);
-    //}
-    //private void HandleSpawningMapObjects()
-    //{
-    //    //UnitManager.Instance.SpawnUnitsByTypeAndCount(TypeUnit.MapObject, 5, 5);
-
-    //    ChangeState(GameState.SpawningEnemies);
-    //}
-    //private void HandleSpawningRoads()
-    //{
-    //    Grid2DManager.Instance.onDrawRoads();
-
-    //    ChangeState(GameState.SpawningMapObjects);
-
-    //}
-
-
-    //private void HandleSpawningEnemies() {
-        
-    //    // Spawn enemies
-        
-    //    ChangeState(GameState.HeroTurn);
-    //}
-
-    private void HandleSetActivePlayer() {
-        // If you're making a turn based game, this could show the turn menu, highlight available units etc
-
-        // Keep track of how many units need to make a move, once they've all finished, change the state. This could
-        // be monitored in the unit manager or the units themselves.
+    private void HandleSetActivePlayer()
+    {
         LevelManager.Instance.StepNextPlayer();
-
     }
 
 }
 
-/// <summary>
-/// This is obviously an example and I have no idea what kind of game you're making.
-/// You can use a similar manager for controlling your menu states or dynamic-cinematics, etc
-/// </summary>
 [Serializable]
-public enum GameState {
+public enum GameState
+{
     StartApp = 0,
     CreateMap = 1,
     StepNextPlayer = 2,

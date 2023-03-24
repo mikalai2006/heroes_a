@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UIElements;
@@ -89,10 +90,12 @@ public class UIMenuNewGameView : UIView
 
             Hide();
 
-        } catch (Exception e) {
+        }
+        catch (Exception e)
+        {
             Debug.LogWarning("Menu Ne Game error: \n" + e);
         }
-        
+
     }
 
     private void RefreshOptions()
@@ -111,11 +114,12 @@ public class UIMenuNewGameView : UIView
         if (
             (LevelManager.Instance.countPlayer < 2 && LevelManager.Instance.countBot == 0)
             ||
-            (LevelManager.Instance.gameModeData.title == "")
+            (LevelManager.Instance.GameModeData.title == "")
             )
         {
             _btnNewGame.SetEnabled(false);
-        } else
+        }
+        else
         {
             _btnNewGame.SetEnabled(true);
         }
@@ -135,7 +139,7 @@ public class UIMenuNewGameView : UIView
         NewColBoxBtn.Clear();
 
         var newSlider = new Slider();
-        newSlider.value = LevelManager.Instance.gameModeData.koofSizeArea;
+        newSlider.value = LevelManager.Instance.GameModeData.koofSizeArea;
         newSlider.highValue = 1f;
         newSlider.lowValue = 0f;
         newSlider.style.flexGrow = 1;
@@ -143,7 +147,7 @@ public class UIMenuNewGameView : UIView
 
         newSlider.RegisterValueChangedCallback(x =>
         {
-            LevelManager.Instance.gameModeData.koofSizeArea = x.newValue;
+            LevelManager.Instance.GameModeData.koofSizeArea = x.newValue;
         });
         NewColBoxBtn.Add(newSlider);
 
@@ -165,7 +169,7 @@ public class UIMenuNewGameView : UIView
             var btn = newButtonBox.Q<Button>("Btn");
             btn.text = currentMode.GameModeData.title;
 
-            if (currentMode.GameModeData.title == LevelManager.Instance.gameModeData.title)
+            if (currentMode.GameModeData.title == LevelManager.Instance.GameModeData.title)
             {
                 btn.AddToClassList("button_checked");
                 btn.RemoveFromClassList("button_bg");
@@ -174,7 +178,7 @@ public class UIMenuNewGameView : UIView
             {
                 btn.clickable.clicked += () =>
                 {
-                    LevelManager.Instance.gameModeData = currentMode.GameModeData;
+                    LevelManager.Instance.GameModeData = currentMode.GameModeData;
                     RefreshOptions();
                 };
             }
@@ -204,7 +208,8 @@ public class UIMenuNewGameView : UIView
             {
                 newBtn.AddToClassList("button_checked");
                 newBtn.RemoveFromClassList("button_bg");
-            } else
+            }
+            else
             {
                 newBtn.clickable.clicked += () =>
                 {

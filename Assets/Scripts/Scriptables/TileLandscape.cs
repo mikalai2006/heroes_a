@@ -1,6 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -37,18 +35,6 @@ public class TileLandscape : ScriptableObject
     public TypeGround typeGround;
 
     //public List<TileNature> natureTiles;
-#if UNITY_EDITOR
-    //private void OnEnable()
-    //{
-    //    if (idObject == "")
-    //    {
-    //        string id = System.Guid.NewGuid().ToString("N");
-    //        idObject = id;
-
-    //        EditorUtility.SetDirty(this);
-    //    }
-    //}
-#endif
 }
 
 [System.Serializable]

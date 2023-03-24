@@ -3,8 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+
 using UnityEditor;
 using UnityEditor.UIElements;
+
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -48,7 +50,7 @@ public class LandscapeManagerEditor
     private void LoadAllItems()
     {
         m_ItemDatabase.Clear();
-        string[] allPaths = Directory.GetFiles("Assets/Resources/Landscape", "*.asset",
+        string[] allPaths = Directory.GetFiles("Assets/ScriptableObjects/Landscape", "*.asset",
             SearchOption.AllDirectories);
         foreach (string path in allPaths)
         {

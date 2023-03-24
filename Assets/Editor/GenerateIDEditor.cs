@@ -1,12 +1,15 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+
 using UnityEditor;
+
 using UnityEngine;
 
 public class GenerateIDEditor : Editor
 {
     public SerializedProperty idObject;
+    protected int _countClass;
 
     protected void OnEnable()
     {
@@ -14,6 +17,7 @@ public class GenerateIDEditor : Editor
     }
     public override void OnInspectorGUI()
     {
+        // Debug.Log($"Get type {target.GetType()}={_countClass}");
         DrawDefaultInspector();
         serializedObject.Update();
 
@@ -42,6 +46,14 @@ public class GenerateIDEditor : Editor
 //[CanEditMultipleObjects]
 class GenerateIDUnitBaseEditor : GenerateIDEditor
 {
+    // public override void OnInspectorGUI()
+    // {
+
+    //     Type type = target.GetType();
+    //     _countClass = UnityEngine.Object.FindObjectsOfType<typeof(type)>();
+
+    //     base.OnInspectorGUI();
+    // }
     //SerializedProperty idObject;
 
     //void OnEnable()
@@ -66,8 +78,8 @@ class GenerateIDUnitBaseEditor : GenerateIDEditor
     //}
 }
 
-[CustomEditor(typeof (ScriptableTown))]
-class GenerateIDTownEditor: GenerateIDUnitBaseEditor
+[CustomEditor(typeof(ScriptableTown))]
+class GenerateIDTownEditor : GenerateIDUnitBaseEditor
 {
 
 }

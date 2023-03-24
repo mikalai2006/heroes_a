@@ -1,11 +1,12 @@
 //using System;
 using System.Collections.Generic;
 using System.Linq;
+
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class UnitManager : MonoBehaviour {
-
+public class UnitManager : MonoBehaviour
+{
     [Header("Unit tilemap settings")]
     [Space(10)]
     [SerializeField] private Tilemap _tileMapUnits;
@@ -29,7 +30,7 @@ public class UnitManager : MonoBehaviour {
         // Spawn town.
         UnitBase createdTown = null;
         ScriptableTown town = ResourceSystem.Instance.GetUnitsByType<ScriptableTown>(TypeUnit.Town)
-            .Where(t => t.typeGround == gridNode.typeGround).First();
+            .Where(t => t.typeGround == gridNode.TypeGround).First();
 
         if (town != null)
         {
@@ -96,14 +97,14 @@ public class UnitManager : MonoBehaviour {
     public UnitBase SpawnResource(GridTileNode node, List<TypeWork> typeWork, int level = 0)
     {
         List<ScriptableResource> listObject = ResourceSystem.Instance.GetUnitsByType<ScriptableResource>(TypeUnit.Resources).Where(t =>
-            (t.typeGround == node.typeGround
+            (t.typeGround == node.TypeGround
             || t.typeGround == TypeGround.None)
-            && typeWork.Contains(t.TypeWork) 
+            && typeWork.Contains(t.TypeWork)
             ).ToList();
         ScriptableUnitBase unit = listObject[Random.Range(0, listObject.Count)];
         if (unit.name == "MillWater")
         {
-            GameManager.Instance.mapManager.CreateCreeks(node);
+            GameManager.Instance.MapManager.CreateCreeks(node);
         }
         UnitBase createdUnit = SpawnUnitToNode(unit, node);
         //node.OccupiedUnit = createdUnit;
@@ -113,14 +114,14 @@ public class UnitManager : MonoBehaviour {
     public UnitBase SpawnMapObjectToPosition(GridTileNode node, MapObjectType typeMapObject, int level = 0)
     {
         List<ScriptableMapObject> listMapObject = ResourceSystem.Instance.GetUnitsByType<ScriptableMapObject>(TypeUnit.MapObject).Where(t =>
-            t.typeGround == node.typeGround
+            t.typeGround == node.TypeGround
             || t.typeGround == TypeGround.None
             ).ToList();
         ScriptableUnitBase unit = listMapObject[Random.Range(0, listMapObject.Count)];
         //Debug.Log($"MapObject {unit.name}");
         if (unit.name == "MillWater")
         {
-            GameManager.Instance.mapManager.CreateCreeks(node);
+            GameManager.Instance.MapManager.CreateCreeks(node);
         }
         UnitBase createdUnit = SpawnUnitToNode(unit, node);
         //node._noPath = true;
@@ -142,9 +143,9 @@ public class UnitManager : MonoBehaviour {
     public UnitBase SpawnMine(GridTileNode node, TypeMine typeMine)
     {
         List<ScriptableMine> listMine = ResourceSystem.Instance.GetUnitsByType<ScriptableMine>(TypeUnit.Mines);
-        ScriptableUnitBase unit = listMine.Where(t => 
-            t.typeMine == typeMine 
-            && (node.typeGround == t.typeGround || t.typeGround == TypeGround.None)
+        ScriptableUnitBase unit = listMine.Where(t =>
+            t.typeMine == typeMine
+            && (node.TypeGround == t.typeGround || t.typeGround == TypeGround.None)
         ).OrderBy(t => Random.value).First();
         UnitBase createdUnit = SpawnUnitToNode(unit, node);
         //node.OccupiedUnit = createdUnit;
@@ -153,7 +154,7 @@ public class UnitManager : MonoBehaviour {
 
     public UnitBase SpawnUnitToNode(ScriptableUnitBase unit, GridTileNode node)
     {
-        Vector3Int pos = node._position;
+        Vector3Int pos = node.position;
 
         if (unit.Prefab.OccupiedNode != null)
         {
@@ -165,7 +166,7 @@ public class UnitManager : MonoBehaviour {
         }
 
         UnitBase spawnedUnit = Instantiate(unit.Prefab, pos, Quaternion.identity, _tileMapUnits.transform);
-        
+
         spawnedUnit.InitUnit(unit, pos);
         spawnedUnit.OccupiedNode = node;
         node.SetOcuppiedUnit(spawnedUnit);
@@ -173,7 +174,8 @@ public class UnitManager : MonoBehaviour {
         if (unit.typeInput == TypeInput.None)
         {
             // GameManager.Instance.mapManager.SetNotPath(node);
-        } else
+        }
+        else
         {
 
             //List<GridTileNode> list = new List<GridTileNode>();
@@ -195,12 +197,12 @@ public class UnitManager : MonoBehaviour {
             //}
             if (unit.RulesDraw.Count > 0)
             {
-                GameManager.Instance.mapManager.SetDisableNode(node, unit.RulesDraw, Color.red);
+                GameManager.Instance.MapManager.GridTileHelper().SetDisableNode(node, unit.RulesDraw, Color.red);
             }
 
-            GameManager.Instance.mapManager.SetColorForTile(pos, Color.magenta);
+            GameManager.Instance.MapManager.SetColorForTile(pos, Color.magenta);
         }
-        
+
         return spawnedUnit;
     }
 

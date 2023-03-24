@@ -1,6 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -37,17 +35,4 @@ public class TileNature : RuleTile<TileNature.Neighbor>
         }
         return base.RuleMatch(neighbor, tile);
     }
-#if UNITY_EDITOR
-    //private void OnEnable()
-    //{
-    //    if (idObject == "")
-    //    {
-    //        string id = System.Guid.NewGuid().ToString("N");
-    //        idObject = id;
-
-    //        EditorUtility.SetDirty(this);
-
-    //    }
-    //}
-#endif
 }

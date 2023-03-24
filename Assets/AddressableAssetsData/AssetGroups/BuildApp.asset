@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: BuildApp
+  m_EditorClassIdentifier: 
+  m_GroupName: BuildApp
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 205fe26251a552f4d9c6ee5cd6710d54
+  m_SerializeEntries:
+  - m_GUID: a5bea38c3aa06bd4b9d6805ac538f14a
+    m_Address: UILoaderScreen
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fa07b064290e7384d9ad2e26e79f5953
+    m_Address: Assets/UI/Base.uss
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d1f71b58e46a95a4a88bb05b8f3a051e
+    m_Address: Assets/Sprites/UI/ZPIC1005.bmp
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6231c614a3209b54db9daa1e3c1c0cd5
+    m_Address: Assets/UI/Panel Settings.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 225e5a78eac714545becc15e59b21cf2
+    m_Address: Assets/Sprites/UI
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 9a6380555b06f9d46b9bf47dd32221de, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 2574a729f914a8e4da8569484b644895, type: 2}
+    - {fileID: 11400000, guid: 7889876d57847ae409145eeeac5169f3, type: 2}

@@ -1,0 +1,13 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/Loader/UI/Loader.uss?fileID=7433441132597879392&amp;guid=f3bdaf12f4a36a54f8000475d879db68&amp;type=3#Loader" />
+    <ui:VisualElement name="Loader" class="loader">
+        <ui:VisualElement name="OverBG" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); background-image: url(&apos;project://database/Assets/Sprites/UI/ZPIC1005.bmp?fileID=2800000&amp;guid=d1f71b58e46a95a4a88bb05b8f3a051e&amp;type=3#ZPIC1005&apos;); position: absolute; -unity-background-scale-mode: scale-to-fit; align-items: stretch; left: 0; top: 0; right: 0; bottom: 0;" />
+        <ui:VisualElement name="ProgressBarSection" class="progress-bar__section">
+            <ui:Label tabindex="-1" text="Create map" display-tooltip-when-elided="true" name="ProgressBarText" class="text_big" />
+            <ui:VisualElement name="ProgressBarBox" class="progress-bar__box">
+                <ui:VisualElement name="ProgressBarOverlay" class="progress-bar__overlay" />
+                <ui:VisualElement name="ProgressBar" class="progress-bar" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

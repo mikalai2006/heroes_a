@@ -1,7 +1,6 @@
 using System;
 using UnityEngine;
 using System.Collections.Generic;
-using UnityEditor;
 
 /// <summary>
 /// Keeping all relevant information about a unit on a scriptable means we can gather and show
@@ -25,19 +24,6 @@ public abstract class ScriptableUnitBase : ScriptableObject {
     // Used in menus
     //public string Description;
     public Sprite MenuSprite;
-
-#if UNITY_EDITOR
-    //private void OnEnable()
-    //{
-    //    if (idObject == "")
-    //    {
-    //        string id = System.Guid.NewGuid().ToString("N");
-    //        idObject = id;
-
-    //        EditorUtility.SetDirty(this);
-    //    }
-    //}
-#endif
 
 }
 

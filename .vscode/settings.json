@@ -1,0 +1,14 @@
+{
+  "files.exclude": {
+    "**/*.meta": true
+  },
+  "editor.tabSize": 4,
+  "editor.insertSpaces": true,
+  "editor.detectIndentation": false,
+
+  //   "omnisharp.enableRoslynAnalyzers": true,
+  "omnisharp.enableEditorConfigSupport": true,
+  //   "omnisharp.useModernNet": false,
+
+  "editor.fontSize": 16
+}

@@ -1,7 +1,5 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Reflection;
+
 using UnityEngine;
 
 [System.Serializable]
@@ -57,7 +55,8 @@ public class Player
     public Hero ActiveHero
     {
         get { return _data.ActiveHero; }
-        set {
+        set
+        {
             GameManager.Instance.ChangeState(GameState.ChooseHero);
 
             _data.ActiveHero = value;
@@ -66,7 +65,7 @@ public class Player
 
             if (value.path != null)
             {
-                GameManager.Instance.mapManager.DrawCursor(value.path, DataPlayer.ActiveHero);
+                GameManager.Instance.MapManager.DrawCursor(value.path, DataPlayer.ActiveHero);
             }
 
         }
@@ -91,11 +90,11 @@ public class Player
 
     public void SetNosky(List<GridTileNode> listNode)
     {
-        for(int i = 0; i < listNode.Count; i++)
+        for (int i = 0; i < listNode.Count; i++)
         {
-            if (!_data.nosky.ContainsKey(listNode[i]._position))
+            if (!_data.nosky.ContainsKey(listNode[i].position))
             {
-                _data.nosky.Add(listNode[i]._position, true);
+                _data.nosky.Add(listNode[i].position, true);
             }
         }
     }
@@ -107,11 +106,6 @@ public class Player
     }
     public void ChangeResource(TypeResource typeResource, int value = 0)
     {
-        //PropertyInfo propertyInfo = _data.Resource.GetType().GetProperty(typeResource);
-        //var field = typeof(PlayerResource).GetField(typeResource, BindingFlags.Instance | BindingFlags.NonPublic);
-        //var val = (int)field?.GetValue(_data.Resource);
-        //val += value;
-        //propertyInfo.SetValue(_data.Resource, Convert.ChangeType(val, propertyInfo.PropertyType), null);
         switch (typeResource)
         {
             case TypeResource.Gold:
@@ -145,11 +139,6 @@ public class Player
         return DataPlayer.ListHero[id];
     }
 
-    
-    //public Hero GetActiveHero()
-    //{
-    //    return DataPlayer.ActiveHero;
-    //}
     public void SetActiveTown(BaseTown town)
     {
         GameManager.Instance.ChangeState(GameState.ChooseHero);
@@ -168,12 +157,12 @@ public class Player
     {
         Hero activeHero = DataPlayer.ActiveHero;
         Vector3Int startPoint = new Vector3Int(activeHero.Position.x, activeHero.Position.y);
-        List<GridTileNode> path = GameManager.Instance.mapManager.GridTileHelper().FindPath(startPoint, endPoint, isTrigger, force);
-        
+        List<GridTileNode> path = GameManager.Instance.MapManager.GridTileHelper().FindPath(startPoint, endPoint, isTrigger, force);
+
         if (path != null && DataPlayer.ActiveHero != null)
         {
             activeHero.SetPathHero(path);
-            GameManager.Instance.mapManager.DrawCursor(path, activeHero);
+            GameManager.Instance.MapManager.DrawCursor(path, activeHero);
             GameManager.Instance.ChangeState(GameState.CreatePathHero);
         }
 

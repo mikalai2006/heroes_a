@@ -1,20 +1,18 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
+using UnityEngine;
 
 [System.Serializable]
 public class DataLevel
 {
 
     [SerializeField] public int countPlayer;
-    //[SerializeField] public int countEnemy;
     [SerializeField] public int countArea;
     [SerializeField] public List<Player> listPlayer;
     [SerializeField] public List<Area> listArea;
     [SerializeField] public int countDay;
     [SerializeField] public int activePlayer;
-    
+
     public DataLevel()
     {
         listPlayer = new List<Player>();

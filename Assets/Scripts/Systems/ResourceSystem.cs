@@ -1,165 +1,167 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+
 using UnityEngine;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.ResourceLocations;
 
 /// <summary>
 /// One repository for all scriptable objects. Create your query methods here to keep your business logic clean.
 /// I make this a MonoBehaviour as sometimes I add some debug/development references in the editor.
 /// If you don't feel free to make this a standard class
 /// </summary>
-public class ResourceSystem : StaticInstance<ResourceSystem> {
-    private List<ScriptableUnitBase> _units;
-    //public List<ScriptableHero> Heroes { get; private set; }
-    public Dictionary<TypeGround, TileLandscape> Landscape { get; private set; } = new Dictionary<TypeGround, TileLandscape>();
-    public List<TileNature> Nature { get; private set; } = new List<TileNature>();
-    //public List<ScriptableResource> Resource { get; private set; } = new List<ScriptableResource>();
-    //public Dictionary<TypeUnit, List<ScriptableUnitBase>> Units { get; private set; } = new Dictionary<TypeUnit, List<ScriptableUnitBase>>();
-    //public Dictionary<TypeGround, ScriptableTown> Towns { get; private set; }
-    //public Dictionary<TypeGround, List<ScriptableHero>> Heroes { get; private set; } = new Dictionary<TypeGround, List<ScriptableHero>>();  
-    //public List<ScriptableWarriors> Warriors { get; private set; } = new List<ScriptableWarriors>();    
-    //public Dictionary<MapObjectType, List<ScriptableMapObject>> MapObjects { get; private set; } = new Dictionary<MapObjectType, List<ScriptableMapObject>>();
+public class ResourceSystem : StaticInstance<ResourceSystem>
+{
 
-    protected override void Awake() {
-        base.Awake();
-        AssembleResources();
+    public Dictionary<string, List<Object>> ResourceAssets = new Dictionary<string, List<Object>>();
+
+    public List<T> GetAllAssetsByLabel<T>(string label)
+       where T : Object
+    {
+        var output = new List<T>();
+        ResourceAssets.TryGetValue(label, out List<Object> list);
+        for (int i = 0; i < list.Count; i++)
+        {
+            var item = list[i] as T;
+            output.Add(item);
+        }
+
+        //Debug.Log($"GetAllAssetsByLabel::: label={label}, values={ttt.Count}");
+        return output;
     }
 
-    private void AssembleResources()
+    public async Task<List<T>> LoadCollectionsAsset<T>(string assetNameOrLabel)
+       where T : Object
     {
-        ////Directory.GetFiles("Assets/Resources/Landscape", "*.asset",
-        ////    SearchOption.AllDirectories)
-        Landscape = Resources.LoadAll<TileLandscape>("Landscape").ToDictionary(t => t.typeGround, t => t);
-        Nature = Resources.LoadAll<TileNature>("Nature").ToList();
-        //Resource = Resources.LoadAll<ScriptableResource>("Units/Resources").ToList();
+        List<T> createdObjs = new List<T>();
+        var locations = await Addressables.LoadResourceLocationsAsync(assetNameOrLabel).Task;
 
-        _units = Resources.LoadAll<ScriptableUnitBase>("Units").ToList();
-        //foreach (var unit in _units)
-        //{
-        //    if (!Units.ContainsKey(unit.TypeUnit)) Units.Add(unit.TypeUnit, new List<ScriptableUnitBase>());
-        //    Units[unit.TypeUnit].Add(unit);
-        //}
-        ////List<ScriptableUnitBase> Towns = Resources.LoadAll<ScriptableTown>("Towns").ToList();
-        ////Heroes = Resources.LoadAll<ScriptableHero>("Heroes").ToList();
-        //Towns = Resources.LoadAll<ScriptableTown>("Units/Towns")
-        //    .ToList()
-        //    .ToDictionary(r => r.typeGround, r => r);
-        ////Towns = _towns.ToDictionary(r => r.typeGround, r => r);
+        await CreateAssetsThenUpdateCollection<T>(locations, createdObjs);
 
-        //List<ScriptableHero> heroes = Resources.LoadAll<ScriptableHero>("Units/Heroes").ToList();
-        //foreach (var hero in heroes)
-        //{
-        //    if (!Heroes.ContainsKey(hero.typeGround)) Heroes.Add(hero.typeGround, new List<ScriptableHero>());
-        //    Heroes[hero.typeGround].Add(hero);
-        //}
+        List<Object> list = new List<Object>();
+        foreach (var asset in createdObjs)
+        {
+            //Debug.Log($"list name = {asset.GetType()}");
+            list.Add(asset);
+        }
+        if (!ResourceAssets.ContainsKey(assetNameOrLabel))
+        {
+            ResourceAssets.Add(assetNameOrLabel, list);
+            //Debug.Log($"Load {assetNameOrLabel}::: {list.Count}");
 
-        //Warriors = Resources.LoadAll<ScriptableWarriors>("Units/Warriors").ToList();
-        ////foreach (var warrior in warriors)
-        ////{
-        ////    if (!Warriors.ContainsKey(warrior.typeGround)) Warriors.Add(warrior.typeGround, new List<ScriptableWarriors>());
-        ////    Warriors[warrior.typeGround].Add(warrior);
-        ////}
+        }
+        else
+        {
+            Debug.LogWarning($" {assetNameOrLabel} is exists");
 
-        //List<ScriptableMapObject> _MapObjects = Resources.LoadAll<ScriptableMapObject>("Units/MapObject").ToList();
-        //foreach (var mapObject in _MapObjects) {
-        //    if (!MapObjects.ContainsKey(mapObject.mapObjectType)) MapObjects.Add(mapObject.mapObjectType, new List<ScriptableMapObject>());
-        //    MapObjects[mapObject.mapObjectType].Add(mapObject); //  = _MapObjects.ToDictionary(r => r.mapObjectType, r => r);
-        //}
+        }
+        return createdObjs;
+    }
+    private async Task CreateAssetsThenUpdateCollection<T>(IList<IResourceLocation> locations, List<T> createdObjs)
+        where T : Object
+    {
+        foreach (var location in locations)
+        {
+            var output = await Addressables.LoadAssetAsync<T>(location).Task as T;
+            createdObjs.Add(output);
+        }
     }
 
-    //public T GetRandomHero<T>(TypeUnit faction) where T : ScriptableHero
-    //{
-    //    return (T)_units.Where(h => h.TypeUnit == faction).OrderBy(o => Random.value).First();
-    //}
-
-    public List<TileNature> GetNature() => Nature;
-    public TileNature GetNature(string id) => Nature.Where(t => t.idObject == id)?.First();
-    public TileLandscape GetLandscape(TypeGround typeGround) => Landscape[typeGround];
-    public Dictionary<TypeGround, TileLandscape> AllLandscape() => Landscape;
-
-
-    //public ScriptableTown GetTown(TypeGround typeGround) => (ScriptableTown)_units.Where(t => t.TypeUnit == TypeUnit.Town && t.typeGround == typeGround).First();
-    //public List<ScriptableMapObject> GetMapObject(MapObjectType t) => MapObjects[t];
-    //public List<ScriptableHero> GetHeroes(TypeGround t) => Heroes[t];
-    //public List<ScriptableWarriors> GetWarriors() => Warriors;
-
-    //public List<ScriptableResource> GetResource() => Resource;
-    //public ScriptableResource GetResourceById(string id) => Resource.Where(t => t.idObject == id).First();
-    //public List<ScriptableUnitBase> GetUnitsByTypeUnit(TypeUnit typeUnit) => Units[typeUnit];
-
-    public List<T> GetUnitsByType<T>(TypeUnit typeUnit) where T: ScriptableUnitBase
+    public List<ScriptableGameMode> GetGameMode()
     {
+        // ResourceAssets.Values.OfType<ScriptableGameMode>().ToList();
+        return GetAllAssetsByLabel<ScriptableGameMode>("gamemode");
+    }
 
-        // Filter units by faction.
+    public void DestroyAssets()
+    {
+        foreach (var asset in ResourceAssets)
+        {
+            if (asset.Value.Count > 0)
+            {
+                foreach (var item in asset.Value)
+                {
+                    if (item != null) Addressables.Release(item);
+                }
+            }
+        }
+    }
+
+    public void DestroyAssetsByLabel(string label)
+    {
+        ResourceAssets.TryGetValue(label, out List<Object> list);
+        foreach (var asset in list)
+        {
+            if (asset != null) Addressables.Release(asset);
+        }
+    }
+
+    public List<TileNature> GetNature() => GetAllAssetsByLabel<TileNature>("nature");
+    public TileNature GetNature(string id) => GetNature().Where(t => t.idObject == id)?.First();
+    public List<TileLandscape> GetLandscape() => GetAllAssetsByLabel<TileLandscape>("landscape");
+    public TileLandscape GetLandscape(TypeGround typeGround) => GetLandscape().Where(t => t.typeGround == typeGround).First();
+    public List<ScriptableUnitBase> GetUnits() => GetAllAssetsByLabel<ScriptableUnitBase>("units");
+    public List<T> GetUnitsByType<T>(TypeUnit typeUnit) where T : ScriptableUnitBase
+    {
+        var listUnits = GetUnits();
+
         List<T> units = new List<T>();
 
-        for (int i = 0; i < _units.Count; i++)
+        for (int i = 0; i < listUnits.Count; i++)
         {
-            if (typeUnit == _units[i].TypeUnit) units.Add((T)_units[i]);
+            if (typeUnit == listUnits[i].TypeUnit) units.Add((T)listUnits[i]);
         }
-        //Debug.Log($"units {typeUnit} Count = {units.Count}");
 
         return units;
     }
 
     public T GetUnit<T>(TypeUnit typeUnit) where T : ScriptableUnitBase
     {
+        var listUnits = GetUnits();
 
         // Filter units by faction.
         List<ScriptableUnitBase> units = new List<ScriptableUnitBase>();
 
-        for (int i = 0; i < _units.Count; i++)
+        for (int i = 0; i < listUnits.Count; i++)
         {
-            if (typeUnit == _units[i].TypeUnit) units.Add(_units[i]);
+            if (typeUnit == listUnits[i].TypeUnit) units.Add(listUnits[i]);
         }
-        //Debug.Log($"units {typeUnit} Count = {units.Count}");
         var index = Random.Range(0, units.Count);
 
         return (T)units[index];
     }
     public T GetUnit<T>(TypeUnit typeUnit, TypeGround typeGround) where T : ScriptableUnitBase
     {
+        var listUnits = GetUnits();
 
         List<ScriptableUnitBase> units = new List<ScriptableUnitBase>();
 
-        for (int i = 0; i < _units.Count; i++)
+        for (int i = 0; i < listUnits.Count; i++)
         {
-            if (typeUnit == _units[i].TypeUnit && typeGround == _units[i].typeGround)
-                units.Add(_units[i]);
+            if (typeUnit == listUnits[i].TypeUnit && typeGround == listUnits[i].typeGround)
+                units.Add(listUnits[i]);
         }
-        //Debug.Log($"units {typeUnit} Count = {units.Count}");
+
         var index = Random.Range(0, units.Count);
 
         return (T)units[index];
     }
     public T GetUnit<T>(string idObject) where T : ScriptableUnitBase
     {
+        var listUnits = GetUnits();
 
         ScriptableUnitBase unitById = null;
 
-        for (int i = 0; i < _units.Count; i++)
+        for (int i = 0; i < listUnits.Count; i++)
         {
-            if (idObject == _units[i].idObject)
+            if (idObject == listUnits[i].idObject)
             {
-                unitById = _units[i];
+                unitById = listUnits[i];
                 break;
             }
         }
 
         return (T)unitById;
     }
-    //public T GetUnitByGroundType<T>(TypeUnit typeUnit, TypeGround typeGround) where T : ScriptableUnitBase
-    //{
-
-    //    // Filter units by typeUnit and typeGround.
-    //    List<ScriptableUnitBase> units = new List<ScriptableUnitBase>();
-
-    //    for (int i = 0; i < _units.Count; i++)
-    //    {
-    //        if (typeUnit == _units[i].TypeUnit && _units[i].TypeGround == typeGround) units.Add(_units[i]);
-    //    }
-    //    //Debug.Log($"units {faction} Count = {units.Count}");
-    //    var index = Random.Range(0, units.Count);
-
-    //    return (T)units[index];
-    //}
 }

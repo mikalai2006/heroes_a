@@ -1,17 +1,14 @@
 using System;
-//using System.Collections;
-//using System.Collections.Generic;
+
 using UnityEngine;
-//using UnityEngine.Events;
-//using UnityEngine.UIElements;
 
 public class UIMenuView : UIView
 {
-    [SerializeField] private UIMenuAppView menuApp;
-    public UIMenuAppView MenuApp => menuApp;
+    [SerializeField] private readonly UIMenuAppView _menuApp;
+    public UIMenuAppView MenuApp => _menuApp;
 
-    [SerializeField] private UIMenuNewGameView newGame;
-    public UIMenuNewGameView NewGame => newGame;
+    [SerializeField] private readonly UIMenuNewGameView _newGame;
+    public UIMenuNewGameView NewGame => _newGame;
 
     public void Init()
     {

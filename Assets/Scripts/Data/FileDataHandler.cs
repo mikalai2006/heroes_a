@@ -1,32 +1,31 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.IO;
+
 using UnityEngine;
 
 public class FileDataHandler
 {
-    private string dataDirPath;
+    private readonly string _dataDirPath;
 
-    private string dataFileName;
+    private readonly string _dataFileName;
 
-    private string mapFileName;
+    private readonly string _mapFileName;
 
-    private bool useEncryption = false;
+    private readonly bool _useEncryption = false;
 
-    private readonly string encryptionCodeWord = "word";
+    private readonly string _encryptionCodeWord = "word";
 
     public FileDataHandler(string dataDirPath, string dataFileName, string mapFileName, bool useEncryption)
     {
-        this.dataDirPath = dataDirPath;
-        this.dataFileName = dataFileName;
-        this.useEncryption = useEncryption;
-        this.mapFileName = mapFileName;
+        this._dataDirPath = dataDirPath;
+        this._dataFileName = dataFileName;
+        this._useEncryption = useEncryption;
+        this._mapFileName = mapFileName;
     }
 
     public DataPlay LoadDataPlay()
     {
-        string fullPath = Path.Combine(dataDirPath, dataFileName);
+        string fullPath = Path.Combine(_dataDirPath, _dataFileName);
 
         DataPlay loadedData = null;
 
@@ -46,13 +45,15 @@ public class FileDataHandler
 
                 loadedData = JsonUtility.FromJson<DataPlay>(dataToLoad);
 
-                if (useEncryption)
+                if (_useEncryption)
                 {
                     dataToLoad = EncryptDecrypt(dataToLoad);
                 }
 
-            } catch(Exception e) {
-                Debug.Log("Error Load file::: " + fullPath + "\n" + e);
+            }
+            catch (Exception e)
+            {
+                Debug.LogError("Error Load file::: " + fullPath + "\n" + e);
             }
         }
 
@@ -62,14 +63,15 @@ public class FileDataHandler
 
     public void SaveDataPlay(DataPlay data)
     {
-        string fullPath = Path.Combine(dataDirPath, dataFileName);
+        string fullPath = Path.Combine(_dataDirPath, _dataFileName);
 
-        try {
+        try
+        {
             Directory.CreateDirectory(Path.GetDirectoryName(fullPath));
 
             string dataToStore = JsonUtility.ToJson(data);
 
-            if (useEncryption)
+            if (_useEncryption)
             {
                 dataToStore = EncryptDecrypt(dataToStore);
             }
@@ -82,14 +84,15 @@ public class FileDataHandler
                 }
             }
         }
-        catch(Exception e) {
-            Debug.Log("Error Save file::: " + fullPath + "\n" + e);
+        catch (Exception e)
+        {
+            Debug.LogError("Error Save file::: " + fullPath + "\n" + e);
         }
     }
 
     public DataGame LoadDataGame()
     {
-        string fullPath = Path.Combine(dataDirPath, mapFileName);
+        string fullPath = Path.Combine(_dataDirPath, _mapFileName);
 
         DataGame loadedData = null;
 
@@ -109,7 +112,7 @@ public class FileDataHandler
 
                 loadedData = JsonUtility.FromJson<DataGame>(dataToLoad);
 
-                if (useEncryption)
+                if (_useEncryption)
                 {
                     dataToLoad = EncryptDecrypt(dataToLoad);
                 }
@@ -117,7 +120,7 @@ public class FileDataHandler
             }
             catch (Exception e)
             {
-                Debug.Log("Error Load file::: " + fullPath + "\n" + e);
+                Debug.LogError("Error Load file::: " + fullPath + "\n" + e);
             }
         }
 
@@ -127,7 +130,7 @@ public class FileDataHandler
 
     public void SaveDataGame(DataGame data)
     {
-        string fullPath = Path.Combine(dataDirPath, mapFileName);
+        string fullPath = Path.Combine(_dataDirPath, _mapFileName);
 
         try
         {
@@ -135,7 +138,7 @@ public class FileDataHandler
 
             string dataToStore = JsonUtility.ToJson(data);
 
-            if (useEncryption)
+            if (_useEncryption)
             {
                 dataToStore = EncryptDecrypt(dataToStore);
             }
@@ -150,7 +153,7 @@ public class FileDataHandler
         }
         catch (Exception e)
         {
-            Debug.Log("Error Save file::: " + fullPath + "\n" + e);
+            Debug.LogError("Error Save file::: " + fullPath + "\n" + e);
         }
     }
 
@@ -160,7 +163,7 @@ public class FileDataHandler
 
         for (int i = 0; i < data.Length; i++)
         {
-            modifierData += (char)(data[i] ^ encryptionCodeWord[i % encryptionCodeWord.Length]);
+            modifierData += (char)(data[i] ^ _encryptionCodeWord[i % _encryptionCodeWord.Length]);
         }
 
         return modifierData;

@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,8 +6,6 @@ public class DataMap
 {
     [SerializeField] public List<GridTileNode> mapNode;
     [SerializeField] public List<GridTileNatureNode> natureNode;
-    //public int width;
-    //public int height;
     public DataGameMode GameModeData;
     public bool isWater;
     public int countArea;

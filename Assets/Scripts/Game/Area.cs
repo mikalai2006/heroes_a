@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
@@ -16,15 +14,11 @@ public class Area
     public int countMine;
     public int countMountain;
     public AreaStat Stat;
-    //public AreaStat Stat => _stat;
 
     public Area()
     {
-        //levelData = _levelData;
         Stat = new AreaStat();
     }
-
-    
 }
 
 [SerializeField]
@@ -62,7 +56,7 @@ public struct AreaStat
             countEveryResourceN,
             countFreeResourceN,
             countForceN,
-            
+
             countExploreN,
             countExplore,
 

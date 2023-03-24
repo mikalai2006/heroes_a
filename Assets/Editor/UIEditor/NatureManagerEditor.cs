@@ -3,8 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+
 using UnityEditor;
 using UnityEditor.UIElements;
+
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -17,8 +19,8 @@ public class NatureManagerEditor
 
     private ListView m_ListNature;
     private VisualElement m_TabsNature, m_SectionNoPath;
-    private float m_ItemHeight = 50, m_NoPathsize = 30;
-    private int countNoPath = 2;
+    private readonly float m_ItemHeight = 50, m_NoPathsize = 30;
+    private readonly int countNoPath = 2;
     private TileNature m_activeItem;
     private ScrollView m_SectionDetails;
 
@@ -38,7 +40,7 @@ public class NatureManagerEditor
 
         m_TabsNature = rootFromUXML.Q<VisualElement>("NatureListTab");
         m_SectionDetails = rootFromUXML.Q<ScrollView>("NatureDetails");
-        m_SectionNoPath= rootFromUXML.Q<VisualElement>("BoxNoPath");
+        m_SectionNoPath = rootFromUXML.Q<VisualElement>("BoxNoPath");
 
 
         GenerateListView();
@@ -65,7 +67,7 @@ public class NatureManagerEditor
                 col++;
                 continue;
             };
-            
+
             var newNode = m_NoPathTemplate.CloneTree();
 
             newNode.style.position = Position.Absolute;
@@ -76,18 +78,20 @@ public class NatureManagerEditor
             if ((TypeNoPath)x > 0)
             {
                 newNode.RegisterCallback<ClickEvent>(NoPathOnClick);
-                if (IsExistsRuleNoPath((TypeNoPath)x)) {
+                if (IsExistsRuleNoPath((TypeNoPath)x))
+                {
                     newNode.Q<VisualElement>("NodeCheck").RemoveFromClassList("node_check_hidden");
-                } else
+                }
+                else
                 {
                     newNode.Q<VisualElement>("NodeCheck").AddToClassList("node_check_hidden");
                 }
             }
-            
+
             m_SectionNoPath.Add(newNode);
 
             col++;
-            if (x % ((countNoPath* 2) + 1) == 0)
+            if (x % ((countNoPath * 2) + 1) == 0)
             {
                 row++;
                 col = 0;
@@ -112,7 +116,8 @@ public class NatureManagerEditor
         {
             m_activeItem.listTypeNoPath.Remove((TypeNoPath)index);
             clickedTab.Q<VisualElement>("NodeCheck").AddToClassList("node_check_hidden");
-        } else
+        }
+        else
         {
             m_activeItem.listTypeNoPath.Add((TypeNoPath)index);
             clickedTab.Q<VisualElement>("NodeCheck").RemoveFromClassList("node_check_hidden");
@@ -130,7 +135,7 @@ public class NatureManagerEditor
     private void LoadAllItems()
     {
         m_NatureDB.Clear();
-        string[] allPaths = Directory.GetFiles("Assets/Resources/Nature", "*.asset",
+        string[] allPaths = Directory.GetFiles("Assets/ScriptableObjects/Nature", "*.asset",
             SearchOption.AllDirectories);
         foreach (string path in allPaths)
         {

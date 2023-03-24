@@ -1,6 +1,9 @@
+//using Cysharp.Threading.Tasks;
+//using Loading;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UIElements;
@@ -59,11 +62,16 @@ public class UIMenuAppView : UIView
 
             progressBarSection.visible = false;
 
+
         } catch (Exception e) {
             Debug.LogWarning("Menu Ne Game error: \n" + e);
         }
         
     }
+
+    private void ResetFill() { }
+    private void OnProgress(float progress) { }
+
 
     public void InitNewGame()
     {
