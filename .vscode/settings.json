@@ -10,5 +10,8 @@
   "omnisharp.enableEditorConfigSupport": true,
   //   "omnisharp.useModernNet": false,
 
-  "editor.fontSize": 16
+  "editor.fontSize": 16,
+  "editor.tokenColorCustomizations": {
+    "comments": "#444"
+  }
 }

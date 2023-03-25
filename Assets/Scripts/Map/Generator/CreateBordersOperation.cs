@@ -9,7 +9,7 @@ using Random = UnityEngine.Random;
 
 public class CreateBordersOperation : ILoadingOperation
 {
-    public string Description => "Create Landscape ...";
+    private Action<string> _onSetNotify;
 
     private readonly MapManager _root;
 
@@ -18,8 +18,9 @@ public class CreateBordersOperation : ILoadingOperation
         _root = generator;
     }
 
-    public async UniTask Load(Action<float> onProgress)
+    public async UniTask Load(Action<float> onProgress, Action<string> onSetNotify)
     {
+        _onSetNotify = onSetNotify;
         var task1 = CreateEdgeMountain();
         var task2 = CreateBorderMountain();
         var task3 = CreateRandomMountain();
@@ -35,6 +36,8 @@ public class CreateBordersOperation : ILoadingOperation
     /// <returns>UniTask</returns>
     private async UniTask CreateBorderMountain()
     {
+        _onSetNotify("Create Mountains ...");
+
         List<GridTileNode> nodes = _root.gridTileHelper.GetAllGridNodes().Where(t =>
             _root.gridTileHelper.CalculateNeighboursByArea(t) < 4
             && t.Empty
@@ -78,6 +81,7 @@ public class CreateBordersOperation : ILoadingOperation
     /// <returns>UniTask</returns>
     private async UniTask CreateEdgeMountain()
     {
+        _onSetNotify("Create Edge Mountains ...");
 
         foreach (GridTileNode tileNode in _root.gridTileHelper.GetAllGridNodes().Where(t =>
             t.isEdge
@@ -108,6 +112,8 @@ public class CreateBordersOperation : ILoadingOperation
 
     private async UniTask CreateRandomMountain()
     {
+        _onSetNotify("Normalize Mountains ...");
+
         if (LevelManager.Instance.GameModeData.noiseScaleMontain == 0 || LevelManager.Instance.GameModeData.koofMountains == 0)
         {
             return;

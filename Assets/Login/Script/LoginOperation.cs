@@ -12,20 +12,22 @@ namespace Login
 {
     public class LoginOperation : ILoadingOperation
     {
-        public string Description => "Login to server...";
-
         private readonly AppInfoContainer _appInfoContainer;
 
         private Action<float> _onProgress;
+        private Action<string> _onSetNotify;
 
         public LoginOperation(AppInfoContainer appInfoContainer)
         {
             _appInfoContainer = appInfoContainer;
         }
 
-        public async UniTask Load(Action<float> onProgress)
+        public async UniTask Load(Action<float> onProgress, Action<string> onSetNotify)
         {
             _onProgress = onProgress;
+            _onSetNotify = onSetNotify;
+
+            _onSetNotify?.Invoke("Login to server...");
             _onProgress?.Invoke(0.1f);
             _appInfoContainer.UserInfo = await GetUserInfo(DeviceInfo.GetDeviceId());
 

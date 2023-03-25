@@ -130,13 +130,13 @@ public class LevelManager : Singleton<LevelManager>, IDataPlay
 
         SetPositionCamera(new Vector3(ActivePlayer.ActiveHero.Position.x, ActivePlayer.ActiveHero.Position.y, -10f));
 
-        // GameManager.Instance.MapManager.ResetSky(ActivePlayer.DataPlayer.nosky);
+        GameManager.Instance.MapManager.ResetSky(ActivePlayer.DataPlayer.nosky);
 
-        // if (ActivePlayer.DataPlayer.nosky.Count == 0)
-        // {
-        //     List<GridTileNode> listNoskyNode = GameManager.Instance.MapManager.DrawSky(ActivePlayer.ActiveHero.OccupiedNode, 5);
-        //     ActivePlayer.SetNosky(listNoskyNode);
-        // }
+        if (ActivePlayer.DataPlayer.nosky.Count == 0)
+        {
+            List<GridTileNode> listNoskyNode = GameManager.Instance.MapManager.DrawSky(ActivePlayer.ActiveHero.OccupiedNode, 5);
+            ActivePlayer.SetNosky(listNoskyNode);
+        }
 
         //Debug.Log($" Active Hero {level.activePlayer}");
     }

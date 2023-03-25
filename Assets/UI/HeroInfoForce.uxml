@@ -1,7 +1,0 @@
-<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
-    <Style src="project://database/Assets/UI/HeroInfoBox.uss?fileID=7433441132597879392&amp;guid=244c2fc00bdb3364e8ae63d4903d5670&amp;type=3#HeroInfoBox" />
-    <ui:VisualElement name="HeroInfoForce" class="heroinfo_force">
-        <ui:VisualElement name="img" class="heroinfo_force_img" style="background-image: url(&apos;project://database/Assets/Sprites/Town/Castle%20Town/Force/Pickman.png?fileID=2800000&amp;guid=69a3d01e8e66dea4da23e7ada45886a9&amp;type=3#Pickman&apos;);" />
-        <ui:Label tabindex="-1" text="1" display-tooltip-when-elided="true" name="ForceValue" class="heroinfo_force_value" />
-    </ui:VisualElement>
-</ui:UXML>

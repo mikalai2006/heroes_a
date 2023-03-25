@@ -11,15 +11,15 @@ public class CreateExploreOperation : ILoadingOperation
 {
     private readonly MapManager _root;
 
-    public string Description => "Create explore ...";
-
     public CreateExploreOperation(MapManager generator)
     {
         _root = generator;
     }
 
-    public async UniTask Load(Action<float> onProgress)
+    public async UniTask Load(Action<float> onProgress, Action<string> onSetNotify)
     {
+        onSetNotify("Create explore ...");
+
         for (int x = 0; x < LevelManager.Instance.Level.listArea.Count; x++)
         {
             Area area = LevelManager.Instance.Level.listArea[x];

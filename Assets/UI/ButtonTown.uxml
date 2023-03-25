@@ -1,8 +1,0 @@
-<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
-    <Style src="project://database/Assets/UI/ButtonTown.uss?fileID=7433441132597879392&amp;guid=d05629c3164d1fb409e9066695c98926&amp;type=3#ButtonTown" />
-    <Style src="project://database/Assets/UI/Base.uss?fileID=7433441132597879392&amp;guid=fa07b064290e7384d9ad2e26e79f5953&amp;type=3#Base" />
-    <Style src="project://database/Assets/UI/buttons.uss?fileID=7433441132597879392&amp;guid=5902336253b28b941b1a91c0c4450170&amp;type=3#buttons" />
-    <ui:Button text="Button" display-tooltip-when-elided="true" name="ButtonAside" class="button_bg aside_button" style="flex-grow: 1;">
-        <ui:VisualElement name="image" class="button_town_img" style="background-image: url(&apos;project://database/Assets/Sprites/UI/Bg.png?fileID=2800000&amp;guid=0641c76439a64674aa800f9e3d79c6a4&amp;type=3#Bg&apos;);" />
-    </ui:Button>
-</ui:UXML>

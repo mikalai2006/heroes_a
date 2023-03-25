@@ -6,6 +6,12 @@ public class Constants
         public const string SCENE_GAME = "GameScene";
     }
 
+    public class UILabels
+    {
+        public const string UI_GAME_ASIDE = "UIGameAside";
+
+    }
+
     public class Labels
     {
         public const string LABEL_UNIT = "units";

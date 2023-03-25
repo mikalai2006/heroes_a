@@ -13,7 +13,7 @@ public class AssetProvider : ILoadingOperation
     private bool _isReady;
 
     public string Description => "Assets Initialization...";
-    public async UniTask Load(Action<float> onProgress)
+    public async UniTask Load(Action<float> onProgress, Action<string> onSetNotify)
     {
         Debug.LogWarning("Init addressables");
         var operation = Addressables.InitializeAsync();

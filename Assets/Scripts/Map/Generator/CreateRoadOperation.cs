@@ -9,13 +9,14 @@ using System.Linq;
 public class CreateRoadOperation : ILoadingOperation
 {
     private readonly MapManager _root;
-    public string Description => "Create roads ...";
     public CreateRoadOperation(MapManager generator)
     {
         _root = generator;
     }
-    public async UniTask Load(Action<float> onProgress)
+    public async UniTask Load(Action<float> onProgress, Action<string> onSetNotify)
     {
+        onSetNotify("Create roads ...");
+
         List<Area> listArea = LevelManager.Instance.Level.listArea.Where(t =>
             t.portal != null
             || t.town != null

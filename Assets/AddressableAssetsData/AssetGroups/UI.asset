@@ -17,8 +17,13 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: cf60ddac94fdca748b798d07b94e856a
   m_SerializeEntries:
-  - m_GUID: 3febbb3ea5c617242852e6b7f2947bd6
-    m_Address: Assets/UI
+  - m_GUID: 9577aa2a82c3399439ab3d021f984a02
+    m_Address: Assets/UI/Toolkit
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 97e0f912d5cd2294b8b9a715402f094e
+    m_Address: Assets/UI/Sprites
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

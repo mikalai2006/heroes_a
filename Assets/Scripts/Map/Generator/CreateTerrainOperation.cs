@@ -13,8 +13,6 @@ using Random = UnityEngine.Random;
 
 public class CreateTerrainOperation : ILoadingOperation
 {
-    public string Description => "Create terrain";
-
     private readonly MapManager _root;
 
     public CreateTerrainOperation(MapManager generator)
@@ -22,9 +20,9 @@ public class CreateTerrainOperation : ILoadingOperation
         _root = generator;
     }
 
-    public async UniTask Load(Action<float> onProgress)
+    public async UniTask Load(Action<float> onProgress, Action<string> onSetNotify)
     {
-        //Debug.Log("Load Create Terrain");
+        onSetNotify("Create terrain ...");
 
         for (int x = 0; x < _root.gameModeData.width; x++)
         {
@@ -49,7 +47,7 @@ public class CreateTerrainOperation : ILoadingOperation
 
                 c.a = (tileNode.KeyArea * .5f) * (tileNode.KeyArea * .2f);
 
-                _root.SetColorForTile(tileNode.position, c);
+                // _root.SetColorForTile(tileNode.position, c);
 
                 _root._tileMap.SetTile(pos, drawRule);
             }

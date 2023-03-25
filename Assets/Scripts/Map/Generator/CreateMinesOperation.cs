@@ -11,15 +11,15 @@ public class CreateMinesOperation : ILoadingOperation
 {
     private readonly MapManager _root;
 
-    public string Description => "Create mines ...";
-
     public CreateMinesOperation(MapManager generator)
     {
         _root = generator;
     }
 
-    public async UniTask Load(Action<float> onProgress)
+    public async UniTask Load(Action<float> onProgress, Action<string> onSetNotify)
     {
+        onSetNotify("Create mines ...");
+
         for (int keyArea = 0; keyArea < LevelManager.Instance.Level.listArea.Count; keyArea++)
         {
             Area area = LevelManager.Instance.Level.listArea[keyArea];

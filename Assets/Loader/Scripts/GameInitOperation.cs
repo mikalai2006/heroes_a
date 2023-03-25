@@ -9,9 +9,7 @@ namespace Loader
 {
     public class GameInitOperation : ILoadingOperation
     {
-        public string Description => "Game init loading ...";
-
-        public async UniTask Load(Action<float> onProgress)
+        public async UniTask Load(Action<float> onProgress, Action<string> onSetNotify)
         {
             onProgress?.Invoke(0.1f);
 
@@ -20,18 +18,30 @@ namespace Loader
             // {
             //     await UniTask.Delay(1);
             // }
-            onProgress?.Invoke(0.7f);
 
             // var scene = SceneManager.GetSceneByName(Constants.Scenes.SCENE_GAME);
+            onSetNotify?.Invoke("Load game scene ...");
             var environment = await GameManager.Instance.AssetProvider.LoadSceneAdditive(Constants.Scenes.SCENE_GAME);
             var rootObjects = environment.Scene.GetRootGameObjects();
-            onProgress?.Invoke(0.85f);
+
+            onProgress?.Invoke(0.7f);
+
             MapManager MapManager = GameObject.FindGameObjectWithTag("MapManager")?.GetComponent<MapManager>();
 
             if (MapManager != null)
             {
                 GameManager.Instance.MapManager = MapManager;
             }
+
+            onProgress?.Invoke(0.85f);
+
+            UIGameAside UIGameAside = GameObject.FindGameObjectWithTag("GameAside")?.GetComponent<UIGameAside>();
+
+            if (UIGameAside != null)
+            {
+                UIGameAside.Init();
+            }
+
             // editorGame.Init(environment);
             // editorGame.BeginNewGame();
             onProgress?.Invoke(1f);

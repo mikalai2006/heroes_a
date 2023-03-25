@@ -11,14 +11,14 @@ public class CreateNatureOperation : ILoadingOperation
 {
     private readonly MapManager _root;
 
-    public string Description => "Create nature ...";
-
     public CreateNatureOperation(MapManager generator)
     {
         _root = generator;
     }
-    public async UniTask Load(Action<float> onProgress)
+    public async UniTask Load(Action<float> onProgress, Action<string> onSetNotify)
     {
+        onSetNotify("Create nature ...");
+
         for (int x = 0; x < LevelManager.Instance.Level.listArea.Count; x++)
         {
             Area area = LevelManager.Instance.Level.listArea[x];

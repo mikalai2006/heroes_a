@@ -1,0 +1,120 @@
+.heroesblok {
+    width: 50%;
+    flex-grow: 1;
+}
+
+.usermenu_blok_button {
+    width: 50%;
+}
+
+.townsblok {
+    flex-grow: 1;
+    width: 50%;
+    border-left-width: 2px;
+}
+
+.usermenu_blok {
+}
+
+.aside_wrapper {
+    flex-grow: 1;
+    flex-shrink: 1;
+    align-self: flex-end;
+    width: 20%;
+    height: 100%;
+}
+
+.aside_unitlist {
+    flex-shrink: 0;
+    height: 60%;
+    flex-grow: 0;
+    flex-direction: row;
+    min-height: auto;
+    border-left-width: 2px;
+    border-right-width: 2px;
+    border-top-width: 2px;
+    border-bottom-width: 2px;
+}
+
+.aside_menu_button {
+    min-width: 33%;
+    justify-content: center;
+}
+
+.aside_blok {
+    align-self: stretch;
+    justify-content: space-around;
+    align-items: stretch;
+    flex-grow: 0;
+    flex-shrink: 0;
+    white-space: nowrap;
+    padding-left: 4px;
+    padding-right: 4px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+.aside_actionbox {
+    flex-shrink: 0;
+    height: 40%;
+    flex-grow: 0;
+    flex-direction: row;
+    min-height: auto;
+    border-left-width: 2px;
+    border-right-width: 2px;
+    border-top-width: 0;
+    border-bottom-width: 0;
+}
+
+.aside_town_button {
+    height: 26%;
+}
+
+.aside_blok_list {
+    background-color: rgba(0, 0, 0, 0.91);
+    padding-left: 2px;
+    padding-right: 2px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+.aside_hero_button {
+    height: 20%;
+}
+
+.aside_menu_buttonimg {
+    background-image: none;
+    min-width: 30px;
+    min-height: 30px;
+}
+
+.aside_button {
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 1px;
+    padding-right: 1px;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    flex-grow: 0;
+    flex-direction: row;
+    flex-shrink: 1;
+    align-items: flex-end;
+    border-left-width: 2px;
+    border-right-width: 2px;
+    border-top-width: 2px;
+    border-bottom-width: 2px;
+    border-left-color: rgb(0, 0, 0);
+    border-right-color: rgb(0, 0, 0);
+    border-top-color: rgb(0, 0, 0);
+    border-bottom-color: rgb(0, 0, 0);
+}
+
+.aside_button:active {
+    border-left-color: rgb(252, 219, 118);
+    border-right-color: rgb(252, 219, 118);
+    border-top-color: rgb(252, 219, 118);
+    border-bottom-color: rgb(252, 219, 118);
+    translate: 1px 1px;
+}

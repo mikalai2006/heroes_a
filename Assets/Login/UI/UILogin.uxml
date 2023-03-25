@@ -1,15 +1,22 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
-    <Style src="project://database/Assets/UI/Base.uss?fileID=7433441132597879392&amp;guid=fa07b064290e7384d9ad2e26e79f5953&amp;type=3#Base" />
+    <Style src="project://database/Assets/UI/Toolkit/Base.uss?fileID=7433441132597879392&amp;guid=fa07b064290e7384d9ad2e26e79f5953&amp;type=3#Base" />
+    <Style src="project://database/Assets/UI/Toolkit/UnityBase.uss?fileID=7433441132597879392&amp;guid=c0905c354b5fb524e83bc41ae3debe10&amp;type=3#UnityBase" />
     <ui:VisualElement name="Box" style="flex-grow: 1; justify-content: center;">
-        <ui:VisualElement name="Form" style="width: 50%; margin-left: 25%; font-size: 25px; color: rgb(255, 255, 255);">
-            <ui:VisualElement name="FormField" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
-                <ui:TextField picking-mode="Ignore" label="#name" value="Name" name="Login" />
+        <ui:VisualElement name="Form" class="bg p-4 border-primary border-color border-2" style="width: 50%; margin-left: 25%; font-size: 25px; color: rgb(255, 255, 255);">
+            <ui:VisualElement name="FormRow" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
+                <ui:VisualElement name="FormField" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
+                    <ui:TextField picking-mode="Ignore" label="#name" value="Name" name="Login" />
+                </ui:VisualElement>
             </ui:VisualElement>
-            <ui:VisualElement name="FormField" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
-                <ui:TextField picking-mode="Ignore" label="#loginpassword" value="Password" name="Password" />
+            <ui:VisualElement name="FormRow" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
+                <ui:VisualElement name="FormField" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
+                    <ui:TextField picking-mode="Ignore" label="#loginpassword" value="Password" name="Password" />
+                </ui:VisualElement>
             </ui:VisualElement>
-            <ui:VisualElement name="FormField" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
-                <ui:Button text="Button" display-tooltip-when-elided="true" name="ButtonLogin" />
+            <ui:VisualElement name="FormRow" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
+                <ui:VisualElement name="FormField" style="align-items: flex-end;">
+                    <ui:Button text="Button" display-tooltip-when-elided="true" name="ButtonLogin" class="button button_bg" />
+                </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>

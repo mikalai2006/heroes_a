@@ -8,8 +8,6 @@ using System.Linq;
 
 public class CreateResourceOperation : ILoadingOperation
 {
-    public string Description => "Create resource ...";
-
     private readonly MapManager _root;
 
     public CreateResourceOperation(MapManager generator)
@@ -17,8 +15,10 @@ public class CreateResourceOperation : ILoadingOperation
         _root = generator;
     }
 
-    public async UniTask Load(Action<float> onProgress)
+    public async UniTask Load(Action<float> onProgress, Action<string> onSetNotify)
     {
+        onSetNotify("Create resource ...");
+
         for (int x = 0; x < LevelManager.Instance.Level.listArea.Count; x++)
         {
             Area area = LevelManager.Instance.Level.listArea[x];

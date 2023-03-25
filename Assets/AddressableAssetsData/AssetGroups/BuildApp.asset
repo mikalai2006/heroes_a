@@ -17,28 +17,13 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 205fe26251a552f4d9c6ee5cd6710d54
   m_SerializeEntries:
-  - m_GUID: a5bea38c3aa06bd4b9d6805ac538f14a
-    m_Address: UILoaderScreen
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: fa07b064290e7384d9ad2e26e79f5953
     m_Address: Assets/UI/Base.uss
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: d1f71b58e46a95a4a88bb05b8f3a051e
-    m_Address: Assets/Sprites/UI/ZPIC1005.bmp
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 6231c614a3209b54db9daa1e3c1c0cd5
     m_Address: Assets/UI/Panel Settings.asset
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 225e5a78eac714545becc15e59b21cf2
-    m_Address: Assets/Sprites/UI
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

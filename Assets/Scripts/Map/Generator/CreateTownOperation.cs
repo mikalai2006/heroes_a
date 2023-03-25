@@ -7,8 +7,6 @@ using Random = UnityEngine.Random;
 
 public class CreateTownOperation : ILoadingOperation
 {
-    public string Description => "Create towns ...";
-
     private readonly MapManager _root;
 
     public CreateTownOperation(MapManager generator)
@@ -16,8 +14,10 @@ public class CreateTownOperation : ILoadingOperation
         _root = generator;
     }
 
-    public async UniTask Load(Action<float> onProgress)
+    public async UniTask Load(Action<float> onProgress, Action<string> onSetNotify)
     {
+        onSetNotify("Create towns ...");
+
         for (int x = 0; x < LevelManager.Instance.Level.listArea.Count; x++)
         {
             Area area = LevelManager.Instance.Level.listArea[x];

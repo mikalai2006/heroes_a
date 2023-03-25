@@ -6,6 +6,7 @@ TagManager:
   tags:
   - MapManager
   - Map
+  - GameAside
   layers:
   - Default
   - TransparentFX

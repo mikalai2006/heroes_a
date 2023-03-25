@@ -1,0 +1,10 @@
+.button_town_img {
+    -unity-background-scale-mode: scale-and-crop;
+    flex-grow: 1;
+    flex-shrink: 1;
+    height: 100%;
+}
+
+.button_town {
+    height: 90px;
+}

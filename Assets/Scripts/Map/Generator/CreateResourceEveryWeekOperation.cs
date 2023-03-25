@@ -9,8 +9,6 @@ using Random = UnityEngine.Random;
 
 public class CreateResourceEveryWeekOperation : ILoadingOperation
 {
-    public string Description => "Create every week resource ...";
-
     private readonly MapManager _root;
 
     public CreateResourceEveryWeekOperation(MapManager generator)
@@ -18,8 +16,10 @@ public class CreateResourceEveryWeekOperation : ILoadingOperation
         _root = generator;
     }
 
-    public async UniTask Load(Action<float> onProgress)
+    public async UniTask Load(Action<float> onProgress, Action<string> onSetNotify)
     {
+        onSetNotify("Create every week resource ...");
+
         for (int x = 0; x < LevelManager.Instance.Level.listArea.Count; x++)
         {
             Area area = LevelManager.Instance.Level.listArea[x];

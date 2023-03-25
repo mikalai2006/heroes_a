@@ -6,10 +6,10 @@ namespace Loader
 {
     public class MenuAppOperation : ILoadingOperation
     {
-        public string Description => "Menu app loading...";
-
-        public async UniTask Load(Action<float> onProgress)
+        public async UniTask Load(Action<float> onProgress, Action<string> onSetNotify)
         {
+            onSetNotify?.Invoke("Menu app loading...");
+
             onProgress?.Invoke(0.9f);
 
             await ResourceSystem.Instance.LoadCollectionsAsset<ScriptableGameMode>(Constants.Labels.LABEL_GAMEMODE);

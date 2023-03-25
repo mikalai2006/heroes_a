@@ -13,7 +13,6 @@ using Random = UnityEngine.Random;
 
 public class CreateAreasOperation : ILoadingOperation
 {
-    public string Description => "Create areas";
 
     private readonly MapManager _root;
     private float _maxSizeOneWorld;
@@ -27,8 +26,10 @@ public class CreateAreasOperation : ILoadingOperation
         _root = generator;
     }
 
-    public async UniTask Load(Action<float> onProgress)
+    public async UniTask Load(Action<float> onProgress, Action<string> onSetNotify)
     {
+        onSetNotify?.Invoke("Create areas ...");
+
         List<TileLandscape> listTileData = _root._dataTypeGround.Values.Where(t => t.typeGround != TypeGround.None && t.typeGround != TypeGround.Sand).ToList();
 
         _maxSizeOneWorld = 1f / (float)_root.countArea;

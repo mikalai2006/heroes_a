@@ -1,0 +1,33 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/Toolkit/AsideMenu.uss?fileID=7433441132597879392&amp;guid=e55e2feb94a32ea4281de07ce70e415f&amp;type=3#AsideMenu" />
+    <Style src="project://database/Assets/UI/Toolkit/Base.uss?fileID=7433441132597879392&amp;guid=fa07b064290e7384d9ad2e26e79f5953&amp;type=3#Base" />
+    <Style src="project://database/Assets/UI/Toolkit/Dialog.uss?fileID=7433441132597879392&amp;guid=2438f8d68703dce4ab75f8d1eda15062&amp;type=3#Dialog" />
+    <ui:VisualElement name="SettingMenu" class="dialog_box" style="align-self: flex-start;">
+        <ui:VisualElement name="Panel" class="dialog_panel border-color">
+            <ui:VisualElement name="Header" class="dialog_header">
+                <ui:VisualElement name="HeaderText" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
+                    <ui:Label tabindex="-1" text="#HeaderSetting" display-tooltip-when-elided="true" />
+                </ui:VisualElement>
+                <ui:Button display-tooltip-when-elided="true" name="ButtonClose" class="button_close button">
+                    <ui:Label tabindex="-1" text="X" display-tooltip-when-elided="true" style="padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0;" />
+                </ui:Button>
+            </ui:VisualElement>
+            <ui:VisualElement name="Row" class="dialog_box_row">
+                <ui:VisualElement name="Col" class="dialog_box_col" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);" />
+                <ui:VisualElement name="Col" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
+                    <ui:Button display-tooltip-when-elided="true" name="ButtonSetting" class="aside_menu_button">
+                        <ui:VisualElement name="image" class="aside_menu_buttonimg" style="background-image: url(&apos;project://database/Assets/UI/Sprites/Buttons/Setting.png?fileID=2800000&amp;guid=9ff5c1c23971fdf49b78266b5e04b393&amp;type=3#Setting&apos;);" />
+                    </ui:Button>
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="Row" class="dialog_box_row">
+                <ui:Button display-tooltip-when-elided="true" name="ButtonSave" class="button button_text button_bordered">
+                    <ui:Label tabindex="-1" text="#Save" display-tooltip-when-elided="true" />
+                </ui:Button>
+                <ui:Button display-tooltip-when-elided="true" name="ButtonPause" class="button button_text button_bordered">
+                    <ui:Label tabindex="-1" text="#Pause" display-tooltip-when-elided="true" />
+                </ui:Button>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
