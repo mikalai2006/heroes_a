@@ -628,6 +628,10 @@ PrefabInstance:
       value: UI Game Aside
       objectReference: {fileID: 0}
     - target: {fileID: 2486847771448639122, guid: d43b48610a2f4c746b312160743b0ece, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2486847771448639122, guid: d43b48610a2f4c746b312160743b0ece, type: 3}
       propertyPath: m_TagString
       value: GameAside
       objectReference: {fileID: 0}

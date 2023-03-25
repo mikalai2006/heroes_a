@@ -96,16 +96,16 @@ public class UnitManager : MonoBehaviour
 
     public UnitBase SpawnResource(GridTileNode node, List<TypeWork> typeWork, int level = 0)
     {
-        List<ScriptableResource> listObject = ResourceSystem.Instance.GetUnitsByType<ScriptableResource>(TypeUnit.Resources).Where(t =>
+        List<ScriptableResource> listObject = ResourceSystem.Instance.GetUnitsByType<ScriptableResource>(TypeUnit.Resource).Where(t =>
             (t.typeGround == node.TypeGround
             || t.typeGround == TypeGround.None)
             && typeWork.Contains(t.TypeWork)
             ).ToList();
         ScriptableUnitBase unit = listObject[Random.Range(0, listObject.Count)];
-        if (unit.name == "MillWater")
-        {
-            GameManager.Instance.MapManager.CreateCreeks(node);
-        }
+        // if (unit.name == "MillWater")
+        // {
+        //     GameManager.Instance.MapManager.CreateCreeks(node);
+        // }
         UnitBase createdUnit = SpawnUnitToNode(unit, node);
         //node.OccupiedUnit = createdUnit;
         return createdUnit;
@@ -114,11 +114,14 @@ public class UnitManager : MonoBehaviour
     public UnitBase SpawnMapObjectToPosition(GridTileNode node, MapObjectType typeMapObject, int level = 0)
     {
         List<ScriptableMapObject> listMapObject = ResourceSystem.Instance.GetUnitsByType<ScriptableMapObject>(TypeUnit.MapObject).Where(t =>
-            t.typeGround == node.TypeGround
-            || t.typeGround == TypeGround.None
+            (
+                t.typeGround == node.TypeGround
+                || t.typeGround == TypeGround.None
+            )
+            && t.TypeMapObject == typeMapObject
             ).ToList();
         ScriptableUnitBase unit = listMapObject[Random.Range(0, listMapObject.Count)];
-        //Debug.Log($"MapObject {unit.name}");
+        Debug.Log($"MapObject {unit.name}");
         if (unit.name == "MillWater")
         {
             GameManager.Instance.MapManager.CreateCreeks(node);
@@ -142,7 +145,7 @@ public class UnitManager : MonoBehaviour
     }
     public UnitBase SpawnMine(GridTileNode node, TypeMine typeMine)
     {
-        List<ScriptableMine> listMine = ResourceSystem.Instance.GetUnitsByType<ScriptableMine>(TypeUnit.Mines);
+        List<ScriptableMine> listMine = ResourceSystem.Instance.GetUnitsByType<ScriptableMine>(TypeUnit.Mine);
         ScriptableUnitBase unit = listMine.Where(t =>
             t.typeMine == typeMine
             && (node.TypeGround == t.typeGround || t.typeGround == TypeGround.None)

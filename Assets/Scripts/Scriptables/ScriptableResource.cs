@@ -1,23 +1,14 @@
-using System;
-using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary>
-/// Create a scriptable map object 
-/// </summary>
-[CreateAssetMenu(fileName = "New Resource", menuName = "Units/New Resource")]
-public class ScriptableResource : ScriptableUnitBase {
+[CreateAssetMenu(fileName = "NewResource", menuName = "Game/Units/New Resource")]
+public class ScriptableResource : ScriptableUnitBase
+{
     public TypeWork TypeWork;
-    public List<ItemResource> ListResource;
+    public TypeResource TypeResource;
+    public int maxValue;
+    public int step;
     public AnimationCurve Curve;
 
-}
-
-[System.Serializable]
-public struct ItemResource
-{
-    public TypeResource TypeResource;
-    public int[] listValue;
 }
 
 [System.Serializable]
@@ -31,12 +22,3 @@ public enum TypeResource
     Gem = 60,
     Sulfur = 70
 }
-
-[System.Serializable]
-public enum TypeWork
-{
-    One = 1,
-    EveryDay = 2,
-    EveryWeek = 3,
-}
-

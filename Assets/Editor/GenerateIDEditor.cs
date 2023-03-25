@@ -127,11 +127,11 @@ class GenerateIDTileLandscapeEditor : GenerateIDEditor
 }
 
 
-[CustomEditor(typeof(ScriptableSkillSchool))]
-class GenerateIDScriptableSkillSchoolEditor : GenerateIDEditor
-{
+// [CustomEditor(typeof(ScriptableSkillSchool))]
+// class GenerateIDScriptableSkillSchoolEditor : GenerateIDEditor
+// {
 
-}
+// }
 
 [CustomEditor(typeof(ScriptableArtifact))]
 class GenerateIDScriptableArtifactEditor : GenerateIDEditor
@@ -144,6 +144,12 @@ class GenerateIDScriptableGameModeEditor : GenerateIDEditor
 {
 
 }
+
+// [CustomEditor(typeof(ScriptableCollectionResource))]
+// class GenerateIDScriptableCollectionResourceEditor : GenerateIDEditor
+// {
+
+// }
 //[CustomEditor(typeof(TileNature))]
 //[CanEditMultipleObjects]
 //public class GenerateUIDNature : Editor

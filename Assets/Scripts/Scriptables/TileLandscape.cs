@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -9,10 +10,10 @@ public struct DataNode
 
 }
 
-[CreateAssetMenu(fileName ="New Landscape",menuName ="Units/Landscape")]
+[CreateAssetMenu(fileName = "NewLandscape", menuName = "Game/Nature/New Landscape")]
 public class TileLandscape : ScriptableObject
 {
-    [SerializeField]  public string idObject;
+    [SerializeField] public string idObject;
 
     public string objectName;
 

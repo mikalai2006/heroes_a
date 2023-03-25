@@ -1,11 +1,9 @@
-using System;
 using UnityEngine;
 using System.Collections.Generic;
-/// <summary>
-/// Create a scriptable town 
-/// </summary>
-[CreateAssetMenu(fileName = "New Town", menuName = "Units/New Town")]
-public class ScriptableTown : ScriptableUnitBase {
+
+[CreateAssetMenu(fileName = "NewTown", menuName = "Game/Units/New Town")]
+public class ScriptableTown : ScriptableUnitBase
+{
 
     //public TownType TownType;
     //public TypeGround typeGround;

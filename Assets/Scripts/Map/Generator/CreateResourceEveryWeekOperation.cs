@@ -51,9 +51,9 @@ public class CreateResourceEveryWeekOperation : ILoadingOperation
 
                         BaseWarriors warrior = _root.UnitManager.SpawnWarrior(nodeWarrior);
 
-                        UnitBase unit = _root.UnitManager.SpawnResource(
+                        UnitBase unit = _root.UnitManager.SpawnMapObjectToPosition(
                             currentNode,
-                            new List<TypeWork>() { TypeWork.EveryDay, TypeWork.EveryWeek }
+                            MapObjectType.Resource
                         );
 
                         area.Stat.countEveryResource++;

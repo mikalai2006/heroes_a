@@ -1,0 +1,6 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements">
+    <ui:VisualElement>
+        <ui:VisualElement name="Sprite" style="width: 40px; height: 40px;" />
+        <ui:Label tabindex="-1" text="100" display-tooltip-when-elided="true" name="Value" class="text-primary text_xl font-bold" />
+    </ui:VisualElement>
+</ui:UXML>

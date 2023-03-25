@@ -25,9 +25,18 @@ namespace Loader
             onSetNotify?.Invoke("Load units configuration ...");
             await ResourceSystem.Instance.LoadCollectionsAsset<ScriptableUnitBase>(Constants.Labels.LABEL_UNIT);
             onProgress?.Invoke(.4f);
+            onSetNotify?.Invoke("Load skill configuration ...");
+            await ResourceSystem.Instance.LoadCollectionsAsset<ScriptableSkill>(Constants.Labels.LABEL_SKILL);
+            onProgress?.Invoke(.5f);
+            onSetNotify?.Invoke("Load two skill configuration ...");
+            await ResourceSystem.Instance.LoadCollectionsAsset<ScriptableTwoSkill>(Constants.Labels.LABEL_TWO_SKILL);
+            onProgress?.Invoke(.6f);
             onSetNotify?.Invoke("Load other configuration ...");
             await ResourceSystem.Instance.LoadCollectionsAsset<TileLandscape>(Constants.Labels.LABEL_ROAD);
-            onProgress?.Invoke(.5f);
+            onProgress?.Invoke(.7f);
+            onSetNotify?.Invoke("Load artifact configuration ...");
+            await ResourceSystem.Instance.LoadCollectionsAsset<ScriptableArtifact>(Constants.Labels.LABEL_ARTIFACT);
+            onProgress?.Invoke(.8f);
             // await UniTask.Delay(1);
         }
     }

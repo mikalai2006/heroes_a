@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e48d7b04eb11ecd4582db1e2d7a51955, type: 3}
+  m_Name: MagicValue_School 1
+  m_EditorClassIdentifier: 
+  idObject: 0329365e27024771a2c504821b3e691c
+  level: 1
+  typeGround: 1000
+  typeInput: 1
+  TypeUnit: 3
+  listTypeNoPath: 
+  Prefab: {fileID: -3379055544096256015, guid: 91e9f0d72265ba449bb11209dcf71e70, type: 3}
+  MenuSprite: {fileID: 21300000, guid: 320830ffc5128474082a6a2c5749ca8b, type: 3}
+  TypeMapObject: 30
+  TypeWork: 3
+  Resources: []
+  Skills:
+  - id: Magic value
+    ListVariant:
+    - Skill: {fileID: 11400000, guid: 8cef666aa4da6df448beb0f6da691d39, type: 2}
+      maxValue: 3
+      step: 1
+  TwoSkills: []
+  Artifacts: []

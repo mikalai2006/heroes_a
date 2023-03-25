@@ -401,7 +401,7 @@ public class MapManager : MonoBehaviour, IDataGame
                     && t.Enable
                     && !t.Protected
                     && t != townNode
-                    && gridTileHelper.GetDistanceBetweeenPoints(t.position, townNode.position) > 3
+                    && gridTileHelper.GetDistanceBetweeenPoints(t.position, townNode.position) > 4
                 ).ToList();
 
                 if (listPotentialAroundTownNodes.Count > 0)

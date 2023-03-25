@@ -21,9 +21,9 @@ MonoBehaviour:
   Prefab: {fileID: 728940992503601612, guid: d0c5658a5a5a355479770dd43961460e, type: 3}
   MenuSprite: {fileID: 21300000, guid: 17254fc755c7bf24286ea6bdfb004901, type: 3}
   TypeWork: 1
-  ListResource:
-  - TypeResource: 40
-    listValue: 0400000008000000
+  TypeResource: 40
+  maxValue: 10
+  step: 1
   Curve:
     serializedVersion: 2
     m_Curve:

@@ -1,13 +1,11 @@
-using System;
 using System.Collections.Generic;
+
 using UnityEngine;
 
-/// <summary>
-/// Create a scriptable map object 
-/// </summary>
-[CreateAssetMenu(fileName = "NewArtifact", menuName = "Units/New Artifact")]
-public class ScriptableArtifact : ScriptableMapObject {
-    public ItemSkillArtifact Skill;
+[CreateAssetMenu(fileName = "NewArtifact", menuName = "Game/Units/New Artifact")]
+public class ScriptableArtifact : ScriptableMapObject
+{
+    // public List<ItemSkillArtifact> Skills;
     public AnimationCurve Curve;
     public Sprite sprite;
     public Sprite spriteMap;
@@ -15,15 +13,9 @@ public class ScriptableArtifact : ScriptableMapObject {
 
 }
 
-[System.Serializable]
-public struct ItemSkillArtifact
-{
-    public List<SkillArtifact> listSkills;
-}
-
-[System.Serializable]
-public struct SkillArtifact
-{
-    public TypeSkillSchool typeSkill;
-    public int valueSkill;
-}
+// [System.Serializable]
+// public struct ItemSkillArtifact
+// {
+//     public ScriptableSkill Skill;
+//     public int Value;
+// }

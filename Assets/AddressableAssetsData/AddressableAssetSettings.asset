@@ -15,7 +15,7 @@ MonoBehaviour:
   m_DefaultGroup: 205fe26251a552f4d9c6ee5cd6710d54
   m_currentHash:
     serializedVersion: 2
-    Hash: 28b350936e72bb6ed6a8f9b539768fd5
+    Hash: e12f3d39ea5a529bce6e0f8fd2fd44ec
   m_OptimizeCatalogSize: 0
   m_BuildRemoteCatalog: 1
   m_BundleLocalCatalog: 0
@@ -113,6 +113,9 @@ MonoBehaviour:
     - units
     - hero
     - road
+    - skill
+    - twoskill
+    - artifact
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: d17b4f64a43f1ea4697eba1d03bab099, type: 2}

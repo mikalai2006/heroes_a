@@ -9,11 +9,16 @@ public class Constants
     public class UILabels
     {
         public const string UI_GAME_ASIDE = "UIGameAside";
+        public const string UI_DIALOG_MAP_OBJECTS = "UIDialogMapObject";
 
     }
 
     public class Labels
     {
+        public const string LABEL_SKILL = "skill";
+        public const string LABEL_MAP_OBJECT = "map_object";
+        public const string LABEL_ARTIFACT = "artifact";
+        public const string LABEL_TWO_SKILL = "twoskill";
         public const string LABEL_UNIT = "units";
         public const string LABEL_UNIT_PREFAB = "units_prefab";
         public const string LABEL_NATURE = "nature";

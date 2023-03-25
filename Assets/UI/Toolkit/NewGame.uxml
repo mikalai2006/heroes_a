@@ -1,10 +1,10 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
-    <ui:Template name="Col" src="project://database/Assets/UI/Col.uxml?fileID=9197481963319205126&amp;guid=aeb61825a88c3414e9945054eb442191&amp;type=3#Col" />
-    <Style src="project://database/Assets/UI/AsideMenu.uss?fileID=7433441132597879392&amp;guid=e55e2feb94a32ea4281de07ce70e415f&amp;type=3#AsideMenu" />
-    <Style src="project://database/Assets/UI/Base.uss?fileID=7433441132597879392&amp;guid=fa07b064290e7384d9ad2e26e79f5953&amp;type=3#Base" />
-    <Style src="project://database/Assets/UI/Dialog.uss?fileID=7433441132597879392&amp;guid=2438f8d68703dce4ab75f8d1eda15062&amp;type=3#Dialog" />
-    <Style src="project://database/Assets/UI/UnityBase.uss?fileID=7433441132597879392&amp;guid=c0905c354b5fb524e83bc41ae3debe10&amp;type=3#UnityBase" />
-    <ui:VisualElement name="NewGameBox" class="dialog_box" style="align-self: flex-start;">
+    <ui:Template name="Col" src="project://database/Assets/UI/Toolkit/Col.uxml?fileID=9197481963319205126&amp;guid=aeb61825a88c3414e9945054eb442191&amp;type=3#Col" />
+    <Style src="project://database/Assets/UI/Toolkit/AsideMenu.uss?fileID=7433441132597879392&amp;guid=e55e2feb94a32ea4281de07ce70e415f&amp;type=3#AsideMenu" />
+    <Style src="project://database/Assets/UI/Toolkit/Base.uss?fileID=7433441132597879392&amp;guid=fa07b064290e7384d9ad2e26e79f5953&amp;type=3#Base" />
+    <Style src="project://database/Assets/UI/Toolkit/Dialog.uss?fileID=7433441132597879392&amp;guid=2438f8d68703dce4ab75f8d1eda15062&amp;type=3#Dialog" />
+    <Style src="project://database/Assets/UI/Toolkit/UnityBase.uss?fileID=7433441132597879392&amp;guid=c0905c354b5fb524e83bc41ae3debe10&amp;type=3#UnityBase" />
+    <ui:VisualElement name="NewGameBox" class="dialog_box">
         <ui:VisualElement name="Panel" class="dialog_panel border-color bg" style="min-height: 100%;">
             <ui:VisualElement name="Header" class="dialog_header">
                 <ui:VisualElement name="HeaderText" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">

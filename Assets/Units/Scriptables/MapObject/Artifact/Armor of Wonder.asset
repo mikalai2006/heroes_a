@@ -12,17 +12,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f477348bdf402bb4c9471b44c9cd5d69, type: 3}
   m_Name: Armor of Wonder
   m_EditorClassIdentifier: 
-  idObject: bd7b13ffd6434f779b21a295611320b7
-  level: 7
+  idObject: 02bce72b7f2047b087da41f22a26bebc
+  level: 0
   typeGround: 1000
   typeInput: 1
   TypeUnit: 3
   listTypeNoPath: 
   Prefab: {fileID: -5768521629336218340, guid: 78bbccad427da0540bc178662a38e3a5, type: 3}
   MenuSprite: {fileID: -300453719, guid: 490ba0d6e3fee684782c8751fbe7a923, type: 3}
-  mapObjectType: 1
-  Skill:
-    listSkills: []
+  TypeMapObject: 1
+  TypeWork: 1
+  Resources: []
+  Skills:
+  - id: 
+    ListVariant:
+    - Skill: {fileID: 11400000, guid: 7d8b67de1ecbf7144a6bd49e61ab480b, type: 2}
+      Value: 1
+    - Skill: {fileID: 11400000, guid: 0d783bc570fdc894f8ad238d8e591e8f, type: 2}
+      Value: 1
+  TwoSkills: []
+  Artifacts: []
   Curve:
     serializedVersion: 2
     m_Curve: []

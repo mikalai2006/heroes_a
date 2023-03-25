@@ -1,9 +1,10 @@
 using System.Collections.Generic;
+
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
 
-[CreateAssetMenu(fileName ="New Nature",menuName ="Units/Create Nature")]
+[CreateAssetMenu(fileName = "NewNature", menuName = "Game/Nature/New Nature")]
 public class TileNature : RuleTile<TileNature.Neighbor>
 {
     public string idObject;

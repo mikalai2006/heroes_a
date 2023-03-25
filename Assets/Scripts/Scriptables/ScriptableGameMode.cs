@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewGameMode", menuName = "Game/New Game Mode")]
+[CreateAssetMenu(fileName = "NewGameMode", menuName = "Game/Instance/New GameMode")]
 public class ScriptableGameMode : ScriptableObject
 {
     public string idObject;

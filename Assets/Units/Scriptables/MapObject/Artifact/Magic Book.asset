@@ -20,11 +20,12 @@ MonoBehaviour:
   listTypeNoPath: 
   Prefab: {fileID: -5768521629336218340, guid: 78bbccad427da0540bc178662a38e3a5, type: 3}
   MenuSprite: {fileID: 933523507, guid: 490ba0d6e3fee684782c8751fbe7a923, type: 3}
-  mapObjectType: 1
-  Skill:
-    listSkills:
-    - typeSkill: 60
-      valueSkill: 0
+  TypeMapObject: 1
+  TypeWork: 1
+  Resources: []
+  Skills: []
+  TwoSkills: []
+  Artifacts: []
   Curve:
     serializedVersion: 2
     m_Curve:

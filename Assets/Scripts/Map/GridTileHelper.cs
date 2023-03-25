@@ -154,9 +154,10 @@ public class GridTileHelper
                         )
                     )
                     || (
-                    !endNode.Empty &&
+                    !endNode.Empty
+                    // && neighbourNode.Enable
                     // endNode.OccupiedUnit.typeInput == TypeInput.Down &&
-                    endNode.ProtectedUnit == neighbourNode.ProtectedUnit
+                    && endNode.ProtectedUnit == neighbourNode.ProtectedUnit
                     && endNode.OccupiedUnit == neighbourNode.OccupiedUnit // TODO
                     )
                     //|| (

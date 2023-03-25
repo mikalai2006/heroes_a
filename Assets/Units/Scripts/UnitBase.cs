@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -9,8 +10,9 @@ using UnityEngine.EventSystems;
 /// Things like taking damage, dying, animation triggers etc
 /// </summary>
 [System.Serializable]
-public abstract class UnitBase : MonoBehaviour, IPointerClickHandler {
-    
+public abstract class UnitBase : MonoBehaviour, IPointerClickHandler
+{
+
     [NonSerialized] public GridTileNode OccupiedNode = null;
     [NonSerialized] public GridTileNode ProtectedNode = null;
     //public bool IsProtected => OccupiedNode.ProtectedUnit != null;
@@ -25,8 +27,9 @@ public abstract class UnitBase : MonoBehaviour, IPointerClickHandler {
     //public Stats Stats { get; private set; }
     //public virtual void SetStats(Stats stats) => Stats = stats;
 
-    public virtual void TakeDamage(int dmg) {
-        
+    public virtual void TakeDamage(int dmg)
+    {
+
     }
     public virtual void InitUnit(ScriptableUnitBase data, Vector3Int pos)
     {
@@ -107,11 +110,12 @@ public abstract class UnitBase : MonoBehaviour, IPointerClickHandler {
     //    }
     //}
 
-    public virtual void OnGoHero(Player player)
+    public async virtual void OnGoHero(Player player)
     {
         //Debug.Log($"OnGoHero::: player[{player.DataPlayer.id}]");
+
     }
-    
+
     public virtual void OnNextDay()
     {
         // Debug.Log($"OnGoHero::: player[{player.DataPlayer.id}]");
@@ -130,7 +134,7 @@ public abstract class UnitBase : MonoBehaviour, IPointerClickHandler {
         SaveData.typeUnit = typeUnit;
         SaveData.idObject = idObject;
         SaveData.data = Data;
-        
+
         return SaveData;
     }
 
@@ -146,7 +150,8 @@ public abstract class UnitBase : MonoBehaviour, IPointerClickHandler {
         idObject = Data.idObject;
     }
 
-    protected virtual void Awake() {
+    protected virtual void Awake()
+    {
         GameManager.OnBeforeStateChanged += OnBeforeStateChanged;
         GameManager.OnAfterStateChanged += OnAfterStateChanged;
     }

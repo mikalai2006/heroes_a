@@ -15,9 +15,14 @@ MonoBehaviour:
   idObject: 5dc812f191754d1689e582146a21b640
   level: 5
   typeGround: 1000
-  typeInput: 0
+  typeInput: 1
   TypeUnit: 3
   listTypeNoPath: 
   Prefab: {fileID: 1554217859252374215, guid: 18d5767ea8e236340931912f373e4d6a, type: 3}
   MenuSprite: {fileID: 21300000, guid: ae64eae0f6c3fc740b347e5a14173335, type: 3}
-  mapObjectType: 20
+  TypeMapObject: 20
+  TypeWork: 1
+  Resources: []
+  Skills: []
+  TwoSkills: []
+  Artifacts: []

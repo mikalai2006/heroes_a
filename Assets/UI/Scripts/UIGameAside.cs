@@ -68,7 +68,9 @@ public class UIGameAside : MonoBehaviour
                 break;
             case GameState.CreatePathHero:
                 OnToogleEnableBtnGoHero();
-                OnResetFocusButton();
+                break;
+            case GameState.ChangeResources:
+                OnRedrawResource();
                 break;
         }
     }
@@ -101,7 +103,7 @@ public class UIGameAside : MonoBehaviour
             _footer = _aside.rootVisualElement.Q<VisualElement>(NameFooter);
 
             boxinfo = _aside.rootVisualElement.Q<VisualElement>(NameAsideBoxInfo);
-            boxinfo.style.display = DisplayStyle.None;
+            // boxinfo.style.display = DisplayStyle.None;
 
         }
         catch (Exception e)
@@ -133,6 +135,9 @@ public class UIGameAside : MonoBehaviour
         townbox.Clear();
 
 
+        OnResetFocusButton();
+        OnSetActiveHero(null, player.ActiveHero);
+
         //Debug.Log($"UI Player aside::: id{player.data.id} hero[{player.data.ListHero.Count}] town[{player.data.ListTown.Count}]");
 
         for (int i = 0; i < 5; i++)
@@ -153,14 +158,15 @@ public class UIGameAside : MonoBehaviour
                 // hit.style.height = new StyleLength(new Length(12, LengthUnit.Percent));
 
                 var mana = newButtonHero.Q<VisualElement>(NameMana); //.style.height = new StyleLength(new Length(37, LengthUnit.Percent));
-                                                                     // mana.UnbindAllProperties();
+                // mana.UnbindAllProperties();
                 mana.BindProperty(hero.mana);
 
                 newButtonHero.Q<VisualElement>("image").style.backgroundImage = new StyleBackground(hero.ScriptableData.MenuSprite);
 
                 newButtonHero.Q<Button>(NameAllAsideButton).RegisterCallback<ClickEvent>((ClickEvent evt) =>
                 {
-                    OnClickHeroButton(evt, hero);
+                    OnResetFocusButton();
+                    OnSetActiveHero(evt, hero);
 
                     newButtonHero.Q<Button>(NameAllAsideButton).AddToClassList(NameSelectedButton);
                 });
@@ -238,7 +244,7 @@ public class UIGameAside : MonoBehaviour
         }
 
         OnCalculateArrow();
-        OnToogleEnableBtnGoHero();
+        // OnToogleEnableBtnGoHero();
         OnRedrawResource();
 
         Color color = player.DataPlayer.color;
@@ -288,18 +294,19 @@ public class UIGameAside : MonoBehaviour
         }
     }
 
-    private void OnClickHeroButton(ClickEvent evt, Hero hero)
+    private void OnSetActiveHero(ClickEvent evt, Hero hero)
     {
 
         Hero activeHero = player.ActiveHero;
 
-        OnResetFocusButton();
+        // OnResetFocusButton();
+        ChangeHeroInfo();
 
         if (activeHero == hero)
         {
             if (boxinfo.style.display == DisplayStyle.None)
             {
-                ChangeHeroInfo();
+                // ChangeHeroInfo();
                 boxinfo.style.display = DisplayStyle.Flex;
             }
             else
@@ -317,7 +324,7 @@ public class UIGameAside : MonoBehaviour
         }
 
 
-        OnToogleEnableBtnGoHero();
+        // OnToogleEnableBtnGoHero();
     }
 
     private void ChangeHeroInfo()
@@ -388,7 +395,7 @@ public class UIGameAside : MonoBehaviour
         {
             overlay.RemoveFromClassList(NameSelectedButton);
         }
-        boxinfo.style.display = DisplayStyle.None;
+        // boxinfo.style.display = DisplayStyle.None;
     }
 
     public void OnRedrawResource()

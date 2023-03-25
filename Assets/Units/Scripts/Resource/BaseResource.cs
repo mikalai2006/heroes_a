@@ -1,31 +1,74 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
+
+using Cysharp.Threading.Tasks;
+
 using UnityEngine;
+
+using Random = UnityEngine.Random;
 
 [System.Serializable]
 public struct DataResource
 {
     public int idPlayer;
+    public List<DataResourceValue> Value;
+    public TypeWork TypeWork;
 }
 
-public abstract class BaseResource : BaseMapObject, IDataPlay
+[System.Serializable]
+public struct DataResourceValue
 {
-    private int _value = 0;
+    public TypeResource typeResource;
+    public int value;
+
+    public ScriptableResource Resource;
+
+}
+
+public abstract class BaseResource : BaseMapObject, IDataPlay //, IUnitTriggeredHero
+{
+    // private int _value = 0;
     public DataResource Data;
-    public override void OnGoHero(Player player)
+
+    public async UniTask<DataResultDialog> OnTriggeredHero()
+    {
+        var dialogData = new DataDialog()
+        {
+            Description = this.ScriptableData.name,
+            Header = this.name,
+            sprite = this.ScriptableData.MenuSprite,
+            value = Data.Value
+        };
+
+        var dialogWindow = new DialogMapObjectProvider(dialogData);
+        return await dialogWindow.ShowAndHide();
+    }
+
+    public async override void OnGoHero(Player player)
     {
         base.OnGoHero(player);
-        SetPlayer(player);
+        DataResultDialog result = await OnTriggeredHero();
+        if (result.isOk)
+        {
+            SetPlayer(player);
+        }
+        else
+        {
+            // Click cancel.
+        }
     }
     public void SetPlayer(Player player)
     {
-        ScriptableResource dataScriptable = ResourceSystem.Instance.GetUnit<ScriptableResource>(idObject);
+        // ScriptableResource dataScriptable = ResourceSystem.Instance.GetUnit<ScriptableResource>(idObject);
 
-        ItemResource dataResource = dataScriptable.ListResource[Random.Range(0, dataScriptable.ListResource.Count)];
-        int value = dataResource.listValue[Random.Range(0, dataResource.listValue.Length)];
-        player.ChangeResource(dataResource.TypeResource, value);
-
-        if (dataScriptable.TypeWork == TypeWork.One) Destroy(gameObject);
+        // ItemResource dataResource = dataScriptable.ListResource[Random.Range(0, dataScriptable.ListResource.Count)];
+        // int value = dataResource.listValue[Random.Range(0, dataResource.listValue.Length)];
+        // player.ChangeResource(dataResource.TypeResource, value);
+        for (int i = 0; i < Data.Value.Count; i++)
+        {
+            player.ChangeResource(Data.Value[i].typeResource, Data.Value[i].value);
+        }
+        if (Data.TypeWork == TypeWork.One) Destroy(gameObject);
     }
 
     public override void InitUnit(ScriptableUnitBase data, Vector3Int pos)
@@ -40,9 +83,20 @@ public abstract class BaseResource : BaseMapObject, IDataPlay
 
     private void SetData()
     {
-        var datax = ResourceSystem.Instance.GetUnit<ScriptableResource>(idObject);
-        var ListValue = datax.ListResource[Random.Range(0, datax.ListResource.Count)].listValue;
-        _value = ListValue[Random.Range(0, ListValue.Length)];
+        ScriptableResource scriptDataObject = ResourceSystem.Instance.GetUnit<ScriptableResource>(idObject);
+
+        Data.Value = new List<DataResourceValue>();
+        Data.TypeWork = scriptDataObject.TypeWork;
+
+        int stepValue = scriptDataObject.maxValue / scriptDataObject.step;
+        int randomIndexValue = Random.Range(1, stepValue);
+
+        Data.Value.Add(new()
+        {
+            typeResource = scriptDataObject.TypeResource,
+            value = stepValue * randomIndexValue,
+            Resource = scriptDataObject,
+        });
 
     }
 

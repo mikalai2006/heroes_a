@@ -24,6 +24,7 @@ namespace Loader
             var environment = await GameManager.Instance.AssetProvider.LoadSceneAdditive(Constants.Scenes.SCENE_GAME);
             var rootObjects = environment.Scene.GetRootGameObjects();
 
+
             onProgress?.Invoke(0.7f);
 
             MapManager MapManager = GameObject.FindGameObjectWithTag("MapManager")?.GetComponent<MapManager>();

@@ -6,7 +6,8 @@ using System.Collections.Generic;
 /// Keeping all relevant information about a unit on a scriptable means we can gather and show
 /// info on the menu screen, without instantiating the unit prefab.
 /// </summary>
-public abstract class ScriptableUnitBase : ScriptableObject {
+public abstract class ScriptableUnitBase : ScriptableObject
+{
 
     public string idObject;
     public int level;
@@ -20,7 +21,6 @@ public abstract class ScriptableUnitBase : ScriptableObject {
 
     // Used in game
     public UnitBase Prefab;
-    
     // Used in menus
     //public string Description;
     public Sprite MenuSprite;
@@ -41,14 +41,15 @@ public struct RulesDraw
 }
 
 [Serializable]
-public enum TypeUnit {
+public enum TypeUnit
+{
     Hero = 0,
     Town = 1,
     Portal = 2,
     MapObject = 3,
     Monolith = 4,
-    Resources = 5,
-    Mines = 6,
+    Resource = 5,
+    Mine = 6,
     Warrior = 7,
 }
 
@@ -64,7 +65,7 @@ public enum TypeNoPath
     Left2Top2 = 1,
     LeftTop2 = 2,
     Top2 = 3,
-    RightTop2  = 4,
+    RightTop2 = 4,
     Right2Top2 = 5,
     Left2Top = 6,
     LeftTop = 7,

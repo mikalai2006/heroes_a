@@ -109,9 +109,9 @@ public class GameManager : StaticInstance<GameManager>
         LevelManager.Instance.NewLevel();
         ChangeState(GameState.CreateMap);
     }
-    private async void HandleCreateMap()
+    private void HandleCreateMap()
     {
-        await MapManager.NewMap();
+        // await MapManager.NewMap();
     }
 
     private void HandleLoadGame()
