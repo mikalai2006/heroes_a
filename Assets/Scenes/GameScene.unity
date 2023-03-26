@@ -623,6 +623,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 884500699009012167, guid: d43b48610a2f4c746b312160743b0ece, type: 3}
+      propertyPath: m_SortingOrder
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2486847771448639122, guid: d43b48610a2f4c746b312160743b0ece, type: 3}
       propertyPath: m_Name
       value: UI Game Aside
@@ -1844,7 +1848,7 @@ GameObject:
   - component: {fileID: 1321082042}
   m_Layer: 0
   m_Name: Grid
-  m_TagString: Untagged
+  m_TagString: Map
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

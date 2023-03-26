@@ -5,17 +5,18 @@
         <ui:VisualElement name="Form" class="bg p-4 border-primary border-color border-2" style="width: 50%; margin-left: 25%; font-size: 25px; color: rgb(255, 255, 255);">
             <ui:VisualElement name="FormRow" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
                 <ui:VisualElement name="FormField" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
-                    <ui:TextField picking-mode="Ignore" label="#name" value="Name" name="Login" />
+                    <ui:TextField picking-mode="Ignore" label="#login" name="Login" value="mail@mail.ru" />
                 </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement name="FormRow" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
                 <ui:VisualElement name="FormField" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
-                    <ui:TextField picking-mode="Ignore" label="#loginpassword" value="Password" name="Password" />
+                    <ui:TextField picking-mode="Ignore" label="#password" value="12345" name="Password" password="true" />
                 </ui:VisualElement>
             </ui:VisualElement>
-            <ui:VisualElement name="FormRow" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
+            <ui:VisualElement name="FormRow" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); margin-top: 15px; flex-direction: row; justify-content: space-between;">
+                <ui:Button text="#dontwantlogin" display-tooltip-when-elided="true" name="ButtonNameDevice" class="button button_bg button_text button_bordered" />
                 <ui:VisualElement name="FormField" style="align-items: flex-end;">
-                    <ui:Button text="Button" display-tooltip-when-elided="true" name="ButtonLogin" class="button button_bg" />
+                    <ui:Button text="#login" display-tooltip-when-elided="true" name="ButtonLogin" class="button button_bg button_bordered button_text" />
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>

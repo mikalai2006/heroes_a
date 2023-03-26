@@ -3,6 +3,7 @@ using UnityEngine;
 using Login;
 using System.Collections.Generic;
 using Loader;
+using AppInfo;
 
 public class GameManager : StaticInstance<GameManager>
 {
@@ -14,6 +15,7 @@ public class GameManager : StaticInstance<GameManager>
     public LoginWindowProvider LoginWindowProvider { get; private set; }
     public AssetProvider AssetProvider { get; private set; }
     public GameState State { get; private set; }
+    public AppInfoContainer AppInfo;
 
     void Start()
     {
@@ -102,6 +104,7 @@ public class GameManager : StaticInstance<GameManager>
         await LoadingScreenProvider.LoadAndDestroy(operations);
 
         await MapManager.NewMap();
+
         ChangeState(GameState.StepNextPlayer);
     }
     private void HandleCreateLevel()

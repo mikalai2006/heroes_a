@@ -184,6 +184,7 @@ public class UIMenuApp : MonoBehaviour
             {
                 btn.AddToClassList("button_checked");
                 btn.RemoveFromClassList("button_bg");
+                btn.RemoveFromClassList("button_bordered");
             }
             else
             {
@@ -228,6 +229,7 @@ public class UIMenuApp : MonoBehaviour
             {
                 newBtn.AddToClassList("button_checked");
                 newBtn.RemoveFromClassList("button_bg");
+                newBtn.RemoveFromClassList("button_bordered");
             }
             else
             {
@@ -270,12 +272,12 @@ public class UIMenuApp : MonoBehaviour
             {
                 newBtn.AddToClassList("button_checked");
                 newBtn.RemoveFromClassList("button_bg");
+                newBtn.RemoveFromClassList("button_bordered");
             }
             else
             {
                 newBtn.clickable.clicked += () =>
                 {
-                    Debug.Log($"Click {j} bot button!");
                     LevelManager.Instance.countBot = j;
                     RefreshOptions();
                 };

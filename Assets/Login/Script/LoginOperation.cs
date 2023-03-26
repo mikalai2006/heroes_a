@@ -52,6 +52,8 @@ namespace Login
                 result = await GameManager.Instance.LoginWindowProvider.ShowAndHide();
             }
 
+            _appInfoContainer.UserInfo = result;
+
             PlayerPrefs.SetString(deviceId, JsonUtility.ToJson(result));
 
             return result;
