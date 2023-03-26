@@ -171,16 +171,10 @@ public class UILoginWindow : MonoBehaviour
         userInfo.UserInfoAuth.RefreshToken = resultObject.refresh_token;
         userInfo.UserInfoAuth.AccessToken = resultObject.access_token;
 
+        if (userInfo.UserInfoAuth.AccessToken == "") return;
+
         var infoUser = await GetUserInfo(resultObject.access_token);
         var infoUserObject = JsonUtility.FromJson<UserInfo>(infoUser);
-        _loginCompletionSource.SetResult(userInfo);
-        // Debug.Log(infoUser);
-        // if (_fieldName.text.Length < MIN_LENGTH_NAME)
-        //     return;
-        // _loginCompletionSource.SetResult(new UserInfoContainer()
-        // {
-        //     Name = _fieldName.text
-        // });
 
         loginAction?.Invoke();
     }
