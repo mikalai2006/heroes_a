@@ -19,7 +19,7 @@ public class AppStartup : MonoBehaviour
         loadingOperations.Enqueue(new LoginOperation(appInfo));
         loadingOperations.Enqueue(new ConfigOperation(appInfo));
         loadingOperations.Enqueue(new MenuAppOperation());
-
+        GameManager.Instance.AppInfo = appInfo;
         //GameManager.Instance.loadingScreenProvider.LoadAndDestroy(loadingOperations);
         await loadingProvider.LoadAndDestroy(loadingOperations);
 
