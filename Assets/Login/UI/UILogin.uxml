@@ -5,17 +5,17 @@
         <ui:VisualElement name="Form" class="bg p-4 border-primary border-color border-2" style="width: 50%; margin-left: 25%; font-size: 25px; color: rgb(255, 255, 255);">
             <ui:VisualElement name="FormRow" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
                 <ui:VisualElement name="FormField" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
-                    <ui:TextField picking-mode="Ignore" label="#name" value="Name" name="Login" />
+                    <ui:TextField picking-mode="Ignore" label="#name" name="Login" />
                 </ui:VisualElement>
             </ui:VisualElement>
-            <ui:VisualElement name="FormRow" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
+            <ui:VisualElement name="FormRow" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); display: none;">
                 <ui:VisualElement name="FormField" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
                     <ui:TextField picking-mode="Ignore" label="#loginpassword" value="Password" name="Password" />
                 </ui:VisualElement>
             </ui:VisualElement>
-            <ui:VisualElement name="FormRow" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
+            <ui:VisualElement name="FormRow" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); margin-top: 15px;">
                 <ui:VisualElement name="FormField" style="align-items: flex-end;">
-                    <ui:Button text="Button" display-tooltip-when-elided="true" name="ButtonLogin" class="button button_bg" />
+                    <ui:Button text="#input" display-tooltip-when-elided="true" name="ButtonLogin" class="button button_bg button_bordered button_text" />
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>

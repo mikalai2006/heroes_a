@@ -26,9 +26,28 @@ public class UILoginWindow : MonoBehaviour
     private void Awake()
     {
         _fieldName = MenuApp.rootVisualElement.Q<TextField>(_nameFieldLogin);
+        _fieldName.RegisterCallback<InputEvent>(e =>
+        {
+            OnValidFormField();
+        });
+
         _fieldPassword = MenuApp.rootVisualElement.Q<TextField>(_nameFieldPassword);
         _buttonLogin = MenuApp.rootVisualElement.Q<Button>(_nameButtonLogin);
         _buttonLogin.clickable.clicked += OnSimpleLoginClicked;
+
+        OnValidFormField();
+    }
+
+    private void OnValidFormField()
+    {
+        if (_fieldName.text.Length < MIN_LENGTH_NAME)
+        {
+            _buttonLogin.SetEnabled(false);
+        }
+        else
+        {
+            _buttonLogin.SetEnabled(true);
+        }
     }
 
     public async Task<UserInfoContainer> ProcessLogin()

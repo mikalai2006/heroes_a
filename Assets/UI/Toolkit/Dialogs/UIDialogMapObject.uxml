@@ -7,9 +7,6 @@
                 <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
                     <ui:Label tabindex="-1" text="#title" display-tooltip-when-elided="true" name="HeaderDialog" />
                 </ui:VisualElement>
-                <ui:Button display-tooltip-when-elided="true" name="ButtonClose" class="button button_bg">
-                    <ui:Label tabindex="-1" text="X" display-tooltip-when-elided="true" style="padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0;" />
-                </ui:Button>
             </ui:VisualElement>
             <ui:VisualElement name="Row" class="dialog_box_row">
                 <ui:VisualElement name="Col" class="text-secondary text-lg" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">

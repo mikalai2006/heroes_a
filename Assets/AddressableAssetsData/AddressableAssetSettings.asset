@@ -15,7 +15,7 @@ MonoBehaviour:
   m_DefaultGroup: e7ad2b323a665bd4c957501927e752f3
   m_currentHash:
     serializedVersion: 2
-    Hash: 00000000000000000000000000000000
+    Hash: 7715085e9464384dca6dd377452f6b39
   m_OptimizeCatalogSize: 0
   m_BuildRemoteCatalog: 1
   m_BundleLocalCatalog: 0
@@ -86,7 +86,21 @@ MonoBehaviour:
       - m_Id: 220f4dc7891c6064f8133f5a1c1ed537
         m_Value: ServerData/[BuildTarget]
       - m_Id: f6ea0c58221c7be4885de078c6ba4cf9
-        m_Value: https://unitytestadressables-composeropencart.b4a.run/unity-builds/[BuildTarget]
+        m_Value: https://addressables-composeropencart.b4a.run/builds/[BuildTarget]
+    - m_InheritedParent: 
+      m_Id: 592959631bfc09c4e987f17b6c20fa05
+      m_ProfileName: Back4App_Test
+      m_Values:
+      - m_Id: 7224e5cdd5c2a0c43b255a96eb2a5489
+        m_Value: '[UnityEditor.EditorUserBuildSettings.activeBuildTarget]/test'
+      - m_Id: 4eeda432040dd9948b6137d1295e08a4
+        m_Value: '[UnityEngine.AddressableAssets.Addressables.BuildPath]/[BuildTarget]'
+      - m_Id: 50500f2bdffb83249bd5da9982adc986
+        m_Value: '{UnityEngine.AddressableAssets.Addressables.RuntimePath}/[BuildTarget]'
+      - m_Id: 220f4dc7891c6064f8133f5a1c1ed537
+        m_Value: ServerData/[BuildTarget]
+      - m_Id: f6ea0c58221c7be4885de078c6ba4cf9
+        m_Value: https://addressables-composeropencart.b4a.run/builds/[BuildTarget]/test
     m_ProfileEntryNames:
     - m_Id: 7224e5cdd5c2a0c43b255a96eb2a5489
       m_Name: BuildTarget
@@ -146,7 +160,7 @@ MonoBehaviour:
           m_Key: HostingServiceUploadSpeed
         - m_AssemblyName: mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
           m_ClassName: System.String
-          m_Data: Library/com.unity.addressables/aa/Android/Android
+          m_Data: Library/com.unity.addressables/aa/Android/Android;ServerData/Android
           m_Key: ContentRoot
         - m_AssemblyName: mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
           m_ClassName: System.Boolean

@@ -1,6 +1,5 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
     <ui:Template name="Col" src="project://database/Assets/UI/Toolkit/Col.uxml?fileID=9197481963319205126&amp;guid=aeb61825a88c3414e9945054eb442191&amp;type=3#Col" />
-    <Style src="project://database/Assets/UI/Toolkit/AsideMenu.uss?fileID=7433441132597879392&amp;guid=e55e2feb94a32ea4281de07ce70e415f&amp;type=3#AsideMenu" />
     <Style src="project://database/Assets/UI/Toolkit/Base.uss?fileID=7433441132597879392&amp;guid=fa07b064290e7384d9ad2e26e79f5953&amp;type=3#Base" />
     <Style src="project://database/Assets/UI/Toolkit/Dialog.uss?fileID=7433441132597879392&amp;guid=2438f8d68703dce4ab75f8d1eda15062&amp;type=3#Dialog" />
     <Style src="project://database/Assets/UI/Toolkit/UnityBase.uss?fileID=7433441132597879392&amp;guid=c0905c354b5fb524e83bc41ae3debe10&amp;type=3#UnityBase" />
@@ -24,10 +23,10 @@
             </ui:VisualElement>
             <ui:VisualElement name="TabContentAdvance" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);" />
             <ui:VisualElement name="Footer" class="dialog_footer border-primary">
-                <ui:Button display-tooltip-when-elided="true" name="ButtonNewGame" class="button button_text button_bg p-2" style="margin-right: 15px;">
+                <ui:Button display-tooltip-when-elided="true" name="ButtonNewGame" class="button button_text button_bg button_bordered" style="margin-right: 15px;">
                     <ui:Label tabindex="-1" text="#newgame" display-tooltip-when-elided="true" name="Label" />
                 </ui:Button>
-                <ui:Button display-tooltip-when-elided="true" name="ButtonClose" class="button button_text button_bg p-2">
+                <ui:Button display-tooltip-when-elided="true" name="ButtonClose" class="button button_text button_bg button_bordered">
                     <ui:Label tabindex="-1" text="#close" display-tooltip-when-elided="true" />
                 </ui:Button>
             </ui:VisualElement>
