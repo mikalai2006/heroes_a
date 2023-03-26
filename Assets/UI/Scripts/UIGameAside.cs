@@ -99,6 +99,8 @@ public class UIGameAside : MonoBehaviour
         try
         {
             _scene = scene;
+            // GameObject GridMap = GameObject.FindGameObjectWithTag("Map")?.GetComponent<GameObject>();
+            // GridMap.SetActive(false);
 
             //GameManager.OnAfterStateChanged += OnChangeGameState;
             aside = _aside.rootVisualElement.Q<VisualElement>(NameWrapper);
@@ -148,6 +150,9 @@ public class UIGameAside : MonoBehaviour
     private void NextStep()
     {
         player = LevelManager.Instance.ActivePlayer;
+
+        aside.style.display = DisplayStyle.Flex;
+        _footer.style.display = DisplayStyle.Flex;
         //UQueryBuilder<VisualElement> builder = new UQueryBuilder<VisualElement>(_aside.rootVisualElement);
         //List<VisualElement> list = builder.Class("border-color").ToList();
         //foreach (var overlay in list)

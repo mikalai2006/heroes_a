@@ -6,9 +6,9 @@
     <Style src="project://database/Assets/UI/Toolkit/Base.uss?fileID=7433441132597879392&amp;guid=fa07b064290e7384d9ad2e26e79f5953&amp;type=3#Base" />
     <Style src="project://database/Assets/UI/Toolkit/Footer.uss?fileID=7433441132597879392&amp;guid=100acbaeadba496408baf44e6dfd4501&amp;type=3#Footer" />
     <ui:VisualElement name="AsideBoxInfo" style="background-color: rgba(0, 0, 0, 0); height: 35%; position: absolute; right: 20%; width: 18%;">
-        <ui:Instance template="HeroInfoBox" name="HeroInfoBox" style="flex-grow: 1;" />
+        <ui:Instance template="HeroInfoBox" name="HeroInfoBox" style="flex-grow: 1; display: none;" />
     </ui:VisualElement>
-    <ui:VisualElement name="wrapper" class="aside_wrapper">
+    <ui:VisualElement name="wrapper" class="aside_wrapper" style="display: none;">
         <ui:VisualElement name="unitlist" class="aside_unitlist border-color">
             <ui:VisualElement name="heroes" class="heroesblok aside_blok">
                 <ui:VisualElement name="Overlay" class="overlay" />
@@ -58,7 +58,7 @@
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
-    <ui:VisualElement name="Footer" class="footer border-color">
+    <ui:VisualElement name="Footer" class="footer border-color" style="display: none;">
         <ui:VisualElement name="Overlay" class="overlay" />
         <ui:VisualElement name="Resources" style="flex-direction: row; flex-grow: 1; padding-left: 3px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px;">
             <ui:VisualElement name="Gold" class="footer_box">

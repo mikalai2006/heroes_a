@@ -275,7 +275,7 @@ public class MapManager : MonoBehaviour, IDataGame
         // ResourceSystem.Instance.DestroyAssetsByLabel("landscape");
 
         setSizeTileMap();
-        await UniTask.Delay(1);
+        // await UniTask.Delay(1);
     }
 
     private void setSizeTileMap()

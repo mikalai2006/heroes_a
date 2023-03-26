@@ -102,6 +102,7 @@ public class GameManager : StaticInstance<GameManager>
         await LoadingScreenProvider.LoadAndDestroy(operations);
 
         await MapManager.NewMap();
+
         ChangeState(GameState.StepNextPlayer);
     }
     private void HandleCreateLevel()

@@ -24,17 +24,12 @@ namespace Loader
             var environment = await GameManager.Instance.AssetProvider.LoadSceneAdditive(Constants.Scenes.SCENE_GAME);
             var rootObjects = environment.Scene.GetRootGameObjects();
 
-
-            onProgress?.Invoke(0.7f);
-
             MapManager MapManager = GameObject.FindGameObjectWithTag("MapManager")?.GetComponent<MapManager>();
 
             if (MapManager != null)
             {
                 GameManager.Instance.MapManager = MapManager;
             }
-
-            onProgress?.Invoke(0.85f);
 
             UIGameAside UIGameAside = GameObject.FindGameObjectWithTag("GameAside")?.GetComponent<UIGameAside>();
 
@@ -45,7 +40,7 @@ namespace Loader
 
             // editorGame.Init(environment);
             // editorGame.BeginNewGame();
-            onProgress?.Invoke(1f);
+            onProgress?.Invoke(0.2f);
         }
     }
 }

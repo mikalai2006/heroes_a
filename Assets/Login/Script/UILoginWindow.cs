@@ -13,6 +13,9 @@ public class UILoginWindow : MonoBehaviour
     private readonly string _nameFieldPassword = "Password";
     private readonly string _nameButtonLogin = "ButtonLogin";
 
+    private readonly string _nameUseDevice = "ButtonNameDevice";
+
+    private Button _buttonUseDevice;
     private TextField _fieldName;
     private TextField _fieldPassword;
     private Button _buttonLogin;
@@ -31,6 +34,11 @@ public class UILoginWindow : MonoBehaviour
             OnValidFormField();
         });
 
+        _buttonUseDevice = MenuApp.rootVisualElement.Q<Button>(_nameUseDevice);
+        _buttonUseDevice.clickable.clicked += () =>
+        {
+            LoginAsDeviceId();
+        };
         _fieldPassword = MenuApp.rootVisualElement.Q<TextField>(_nameFieldPassword);
         _buttonLogin = MenuApp.rootVisualElement.Q<Button>(_nameButtonLogin);
         _buttonLogin.clickable.clicked += OnSimpleLoginClicked;
@@ -55,6 +63,17 @@ public class UILoginWindow : MonoBehaviour
 
         _loginCompletionSource = new TaskCompletionSource<UserInfoContainer>();
         return await _loginCompletionSource.Task;
+    }
+
+    private void LoginAsDeviceId()
+    {
+        string deviceId = DeviceInfo.GetDeviceId();
+        _loginCompletionSource.SetResult(new UserInfoContainer()
+        {
+            Name = deviceId
+        });
+
+        loginAction?.Invoke();
     }
 
     private void OnSimpleLoginClicked()

@@ -62,4 +62,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _uiDoc: {fileID: 8876771428378977911}
-  _barSpeed: 80
+  _barSpeed: 100
