@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5834b5087d578d24c926ce20cd31e6d6, type: 3}
   m_Name: Scenes_ContentUpdateGroupSchema
   m_EditorClassIdentifier: 
-  m_Group: {fileID: 11400000, guid: ab2f98a2f01efcb4c84d3b943322aa5b, type: 2}
+  m_Group: {fileID: 11400000, guid: e7254f6ee69dc1d4aab928e5588f6640, type: 2}
   m_StaticContent: 0

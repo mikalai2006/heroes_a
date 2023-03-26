@@ -1,19 +1,25 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+
+using Cysharp.Threading.Tasks;
+
+using Loader;
 
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.ResourceManagement.ResourceProviders;
 using UnityEngine.UIElements;
 
 
 public class UIGameAside : MonoBehaviour
 {
-    public UnityAction OnShowSetting;
-    public UnityAction OnClickMoveHero;
-    public UnityAction OnClickNextStep;
+    [SerializeField] public UnityAction OnShowSetting;
+    [SerializeField] public UnityAction OnClickMoveHero;
+    [SerializeField] public UnityAction OnClickNextStep;
     //public UnityAction OnClickButtonHero;
     //public UnityAction OnClickButtonTown;
-    public UnityAction OnShowTown;
+    [SerializeField] public UnityAction OnShowTown;
 
     [SerializeField] private UIDocument _aside;
 
@@ -32,7 +38,7 @@ public class UIGameAside : MonoBehaviour
     private string NameWrapper = "wrapper";
     private string NameAsideBoxInfo = "AsideBoxInfo";
     private string NameBtnGoHero = "ButtonGoHero";
-    private string NameBtnSetting = "ButtonSettingMenu";
+    private string NameBtnGameMenu = "ButtonSettingMenu";
     private string NameBtnNextStep = "ButtonNextStep";
     private string NameFooter = "Footer";
     private string NameHeroBox = "herobox";
@@ -46,6 +52,8 @@ public class UIGameAside : MonoBehaviour
     private string NameOverlay = "Overlay";
 
     const int countTown = 3;
+
+    private SceneInstance _scene;
 
     private void Start()
     {
@@ -75,20 +83,39 @@ public class UIGameAside : MonoBehaviour
         }
     }
 
-    private void ShowSettingMenu(ClickEvent evt)
+    private async UniTask<DataResultGameMenu> ShowGameMenu()
     {
         //UIManager.Instance.ShowSettingMenu();
+        Debug.Log("Show menu");
         OnShowSetting?.Invoke();
+
+        var dialogWindow = new GameMenuProvider();
+        return await dialogWindow.ShowAndHide();
+
     }
-    public void Init()
+
+    public void Init(SceneInstance scene)
     {
         try
         {
+            _scene = scene;
+
             //GameManager.OnAfterStateChanged += OnChangeGameState;
             aside = _aside.rootVisualElement.Q<VisualElement>(NameWrapper);
 
-            var btnSettingMenu = _aside.rootVisualElement.Q<VisualElement>(NameBtnSetting);
-            btnSettingMenu.RegisterCallback<ClickEvent>(ShowSettingMenu);
+            var btnGameMenu = _aside.rootVisualElement.Q<Button>(NameBtnGameMenu);
+            btnGameMenu.clickable.clicked += async () =>
+            {
+                DataResultGameMenu result = await ShowGameMenu();
+                if (result.isOk)
+                {
+
+                    var loadingOperations = new Queue<ILoadingOperation>();
+                    GameManager.Instance.AssetProvider.UnloadAdditiveScene(_scene);
+                    loadingOperations.Enqueue(new MenuAppOperation());
+                    await GameManager.Instance.LoadingScreenProvider.LoadAndDestroy(loadingOperations);
+                }
+            };
 
             var btnGoHero = _aside.rootVisualElement.Q<Button>(NameBtnGoHero);
             btnGoHero.RegisterCallback<ClickEvent>(OnMoveHero, TrickleDown.NoTrickleDown);

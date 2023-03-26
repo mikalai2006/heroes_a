@@ -10,30 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: MenuApp
+  m_Name: UIPrefab
   m_EditorClassIdentifier: 
-  m_GroupName: MenuApp
+  m_GroupName: UIPrefab
   m_Data:
     m_SerializedData: []
-  m_GUID: 3e086e58634d6874faebb1ee6bc2534a
+  m_GUID: 2a6408fb6855d0e459adb69bfeec6867
   m_SerializeEntries:
-  - m_GUID: 8225a7d7f44fbb1408cb0361777f6fb4
-    m_Address: UIMenuApp
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 93f69927866868b47976e83ca5cc9bc9
-    m_Address: UILogin
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: a5bea38c3aa06bd4b9d6805ac538f14a
-    m_Address: UILoaderScreen
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d43b48610a2f4c746b312160743b0ece
     m_Address: UIGameAside
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8225a7d7f44fbb1408cb0361777f6fb4
+    m_Address: UIMenuApp
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -42,9 +32,24 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a5bea38c3aa06bd4b9d6805ac538f14a
+    m_Address: UILoaderScreen
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 93f69927866868b47976e83ca5cc9bc9
+    m_Address: UILogin
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bb17b6ead85a51c4eba29394e0e58887
+    m_Address: UIGameMenu
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 9a6380555b06f9d46b9bf47dd32221de, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 913b78023adb3ba42bbbdbccc548c417, type: 2}
-    - {fileID: 11400000, guid: e1fc20b5ad8311d49a1281b682aa1221, type: 2}
+    - {fileID: 11400000, guid: 5e6a29cac21e2954289248f17f017468, type: 2}
+    - {fileID: 11400000, guid: c8011b9edb7e0de479edf8eba80044dd, type: 2}

@@ -121,7 +121,7 @@ public class UnitManager : MonoBehaviour
             && t.TypeMapObject == typeMapObject
             ).ToList();
         ScriptableUnitBase unit = listMapObject[Random.Range(0, listMapObject.Count)];
-        Debug.Log($"MapObject {unit.name}");
+        // Debug.Log($"MapObject {unit.name}");
         if (unit.name == "MillWater")
         {
             GameManager.Instance.MapManager.CreateCreeks(node);

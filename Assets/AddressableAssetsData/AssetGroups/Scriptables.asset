@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: GameData
+  m_Name: Scriptables
   m_EditorClassIdentifier: 
-  m_GroupName: GameData
+  m_GroupName: Scriptables
   m_Data:
     m_SerializedData: []
-  m_GUID: 72783b580e872b84d86ae37f61bcbd95
+  m_GUID: 001fb3a4204794042b95fbf8b0295a40
   m_SerializeEntries:
   - m_GUID: da9d4fd41af43ca49bf53c9cbf63231f
-    m_Address: GameMode
+    m_Address: gamemode
     m_ReadOnly: 0
     m_SerializedLabels:
     - gamemode
@@ -27,5 +27,5 @@ MonoBehaviour:
   m_Settings: {fileID: 11400000, guid: 9a6380555b06f9d46b9bf47dd32221de, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: ef4384c53804ffb46ba7018117d28025, type: 2}
-    - {fileID: 11400000, guid: f29a270bf5b07b04487394b2235781ea, type: 2}
+    - {fileID: 11400000, guid: e375723c022df2949ab1eed6879adaca, type: 2}
+    - {fileID: 11400000, guid: 2fb23651386d98349aa991345b2d5753, type: 2}

@@ -40,7 +40,7 @@ namespace Loader
 
             if (UIGameAside != null)
             {
-                UIGameAside.Init();
+                UIGameAside.Init(environment);
             }
 
             // editorGame.Init(environment);

@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: BuildApp
+  m_Name: Build
   m_EditorClassIdentifier: 
-  m_GroupName: BuildApp
+  m_GroupName: Build
   m_Data:
     m_SerializedData: []
-  m_GUID: 205fe26251a552f4d9c6ee5cd6710d54
+  m_GUID: e7ad2b323a665bd4c957501927e752f3
   m_SerializeEntries:
-  - m_GUID: fa07b064290e7384d9ad2e26e79f5953
-    m_Address: Assets/UI/Base.uss
+  - m_GUID: a97c105638bdf8b4a8650670310a4cd3
+    m_Address: Packages/com.unity.render-pipelines.universal/Runtime/Materials/Sprite-Lit-Default.mat
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -27,9 +27,19 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b85c2f53cd459cb49b54a33c77df55b3
+    m_Address: Assets/UI Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e260cfa7296ee7642b167f1eb5be5023
+    m_Address: Packages/com.unity.render-pipelines.universal/Shaders/2D/Sprite-Lit-Default.shader
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 9a6380555b06f9d46b9bf47dd32221de, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 2574a729f914a8e4da8569484b644895, type: 2}
-    - {fileID: 11400000, guid: 7889876d57847ae409145eeeac5169f3, type: 2}
+    - {fileID: 11400000, guid: 83076a9b674498340ba4454c44838cda, type: 2}
+    - {fileID: 11400000, guid: 6ff9770408557204a929b58309f4d762, type: 2}

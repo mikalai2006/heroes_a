@@ -15,13 +15,8 @@ MonoBehaviour:
   m_GroupName: Nature
   m_Data:
     m_SerializedData: []
-  m_GUID: 372666bb1f11c35448f5a98060ea3d51
+  m_GUID: 92bde9a94cbb18240829706f691404b7
   m_SerializeEntries:
-  - m_GUID: 8d6725fdc1035304ea90b6f8a2a8e211
-    m_Address: Assets/Landscape/Tile
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 26f1dfd2484faef40b7b5faa46b42d55
     m_Address: Assets/Landscape/Landscape
     m_ReadOnly: 0
@@ -32,25 +27,20 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 108267da7abda5c468633b4b49e6d2fd
-    m_Address: Assets/Landscape/Tile Rule
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 749fc370fd6720347b9296f9d80bf5d4
-    m_Address: Assets/Landscape/Scripts/Landscape
+    m_Address: Assets/Landscape/Scriptables/Landscape
     m_ReadOnly: 0
     m_SerializedLabels:
     - landscape
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 1e090dc013de8694bb0e07df4529dbfc
-    m_Address: Assets/Landscape/Scripts/Nature
+    m_Address: Assets/Landscape/Scriptables/Nature
     m_ReadOnly: 0
     m_SerializedLabels:
     - nature
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c99d168a5e7dcfa4894c9f501284cb19
-    m_Address: Assets/Landscape/Scripts/Road
+    m_Address: Assets/Landscape/Scriptables/Road
     m_ReadOnly: 0
     m_SerializedLabels:
     - road
@@ -59,5 +49,5 @@ MonoBehaviour:
   m_Settings: {fileID: 11400000, guid: 9a6380555b06f9d46b9bf47dd32221de, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 8d5581996f079464488ab4e3bc2ac0f8, type: 2}
-    - {fileID: 11400000, guid: 13c2628b193a86248a2972e70f975223, type: 2}
+    - {fileID: 11400000, guid: edc81022efffc94489ec623caf9e8953, type: 2}
+    - {fileID: 11400000, guid: 7114c5a13e81ec8409bb1c295233a35b, type: 2}

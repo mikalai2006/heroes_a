@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 468a46d0ae32c3544b7d98094e6448a9, type: 3}
   m_Name: AddressableAssetSettings
   m_EditorClassIdentifier: 
-  m_DefaultGroup: 205fe26251a552f4d9c6ee5cd6710d54
+  m_DefaultGroup: e7ad2b323a665bd4c957501927e752f3
   m_currentHash:
     serializedVersion: 2
-    Hash: e12f3d39ea5a529bce6e0f8fd2fd44ec
+    Hash: 00000000000000000000000000000000
   m_OptimizeCatalogSize: 0
   m_BuildRemoteCatalog: 1
   m_BundleLocalCatalog: 0
@@ -45,13 +45,13 @@ MonoBehaviour:
   m_overridePlayerVersion: '[UnityEditor.PlayerSettings.bundleVersion]'
   m_GroupAssets:
   - {fileID: 11400000, guid: 4eff87c805a8e674fb7cd8de6b4287e7, type: 2}
-  - {fileID: 11400000, guid: 8ca57efb958a1a24bb439b02a070062c, type: 2}
-  - {fileID: 11400000, guid: 3143b79c1312cd64d86a2000e64ccfb5, type: 2}
-  - {fileID: 11400000, guid: 7af9e2aeeb98a2444a2a284c4245a505, type: 2}
-  - {fileID: 11400000, guid: 69d8826cb4eb18b498e9617a3e46ccf2, type: 2}
-  - {fileID: 11400000, guid: ab2f98a2f01efcb4c84d3b943322aa5b, type: 2}
-  - {fileID: 11400000, guid: 2ca9ff22590a90f468786f756d1b24f3, type: 2}
-  - {fileID: 11400000, guid: d1452d890d0d99c478cf8cd5baa47216, type: 2}
+  - {fileID: 11400000, guid: db4c5264aa91b5245ab09e1e21450116, type: 2}
+  - {fileID: 11400000, guid: e7254f6ee69dc1d4aab928e5588f6640, type: 2}
+  - {fileID: 11400000, guid: cfb57110d41500443857824741c024d9, type: 2}
+  - {fileID: 11400000, guid: a3058e1ecb19cd04c848daa86bae0d07, type: 2}
+  - {fileID: 11400000, guid: ba4f3952d39547d42a6461b7672162ea, type: 2}
+  - {fileID: 11400000, guid: aa2700443a5bedd41b507943101d0470, type: 2}
+  - {fileID: 11400000, guid: 239a8108c00f1df42a1a6a2b00ba6521, type: 2}
   m_BuildSettings:
     m_CompileScriptsInVirtualMode: 0
     m_CleanupStreamingAssetsAfterBuilds: 1
@@ -146,7 +146,7 @@ MonoBehaviour:
           m_Key: HostingServiceUploadSpeed
         - m_AssemblyName: mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
           m_ClassName: System.String
-          m_Data: Library/com.unity.addressables/aa/Android/Android;ServerData/Android
+          m_Data: Library/com.unity.addressables/aa/Android/Android
           m_Key: ContentRoot
         - m_AssemblyName: mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
           m_ClassName: System.Boolean

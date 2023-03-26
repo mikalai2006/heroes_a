@@ -15,15 +15,20 @@ MonoBehaviour:
   m_GroupName: UI
   m_Data:
     m_SerializedData: []
-  m_GUID: cf60ddac94fdca748b798d07b94e856a
+  m_GUID: 5029e4a2e0f482445a13b1bf62c51f1c
   m_SerializeEntries:
+  - m_GUID: 97e0f912d5cd2294b8b9a715402f094e
+    m_Address: Assets/UI/Sprites
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9577aa2a82c3399439ab3d021f984a02
     m_Address: Assets/UI/Toolkit
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 97e0f912d5cd2294b8b9a715402f094e
-    m_Address: Assets/UI/Sprites
+  - m_GUID: 4a9318e20f728ab4f85d8a359fd19efb
+    m_Address: Assets/UI/Scripts
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -31,5 +36,5 @@ MonoBehaviour:
   m_Settings: {fileID: 11400000, guid: 9a6380555b06f9d46b9bf47dd32221de, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: db03b15ffe02c3a48a20944adb934622, type: 2}
-    - {fileID: 11400000, guid: d498818903800e347837ce9c60d9108d, type: 2}
+    - {fileID: 11400000, guid: ec5195941f4075544aac69cdd559cada, type: 2}
+    - {fileID: 11400000, guid: 860d5010a1647274096521569d98dc56, type: 2}

@@ -28,6 +28,9 @@ MonoBehaviour:
     - Resource: {fileID: 11400000, guid: 88388bc7df9ca2b4594e5d8830fcc54d, type: 2}
       maxValue: 10
       step: 1
+    - Resource: {fileID: 11400000, guid: c1bca1c330d8ff847b7e9e3584dabe06, type: 2}
+      maxValue: 10
+      step: 1
   - id: gem
     ListVariant:
     - Resource: {fileID: 11400000, guid: 92a707a7d2331ae4bbbbf15425739f9f, type: 2}

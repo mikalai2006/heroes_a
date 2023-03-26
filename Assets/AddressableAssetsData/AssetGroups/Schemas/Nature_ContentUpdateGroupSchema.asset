@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5834b5087d578d24c926ce20cd31e6d6, type: 3}
   m_Name: Nature_ContentUpdateGroupSchema
   m_EditorClassIdentifier: 
-  m_Group: {fileID: 11400000, guid: 69d8826cb4eb18b498e9617a3e46ccf2, type: 2}
+  m_Group: {fileID: 11400000, guid: 239a8108c00f1df42a1a6a2b00ba6521, type: 2}
   m_StaticContent: 0

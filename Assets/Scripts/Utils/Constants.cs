@@ -10,6 +10,8 @@ public class Constants
     {
         public const string UI_GAME_ASIDE = "UIGameAside";
         public const string UI_DIALOG_MAP_OBJECTS = "UIDialogMapObject";
+        public const string UI_LOGIN = "UILogin";
+        public const string UI_GAME_MENU = "UIGameMenu";
 
     }
 

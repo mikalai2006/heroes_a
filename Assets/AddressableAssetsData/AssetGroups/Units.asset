@@ -15,22 +15,16 @@ MonoBehaviour:
   m_GroupName: Units
   m_Data:
     m_SerializedData: []
-  m_GUID: dba3ade4cff1d8e4e94f85b156dbd6b4
+  m_GUID: 6b90a5fccf061294eb32031952a88fdb
   m_SerializeEntries:
-  - m_GUID: f02ea59bbc6f5ee458ad764dcd013057
-    m_Address: Assets/Units/Scriptables/Hero
+  - m_GUID: af4b0b55a6d074f469e14f3f760cfdcb
+    m_Address: Assets/Units/Scriptables/Skill
     m_ReadOnly: 0
     m_SerializedLabels:
-    - units
+    - skill
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: a9d38b3ae1ea52947b50671e0d12c80b
-    m_Address: Assets/Units/Scriptables/MapObject
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - units
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 6241c4a0005f81246beb8d977a06bd46
-    m_Address: Assets/Units/Scriptables/Mines
+  - m_GUID: c7c877dbb16008f4f970350d280dd344
+    m_Address: Assets/Units/Scriptables/Resource
     m_ReadOnly: 0
     m_SerializedLabels:
     - units
@@ -41,11 +35,33 @@ MonoBehaviour:
     m_SerializedLabels:
     - units
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: c7c877dbb16008f4f970350d280dd344
-    m_Address: Assets/Units/Scriptables/Resource
+  - m_GUID: 6241c4a0005f81246beb8d977a06bd46
+    m_Address: Assets/Units/Scriptables/Mines
     m_ReadOnly: 0
     m_SerializedLabels:
     - units
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a9d38b3ae1ea52947b50671e0d12c80b
+    m_Address: Assets/Units/Scriptables/MapObject
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - units
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f02ea59bbc6f5ee458ad764dcd013057
+    m_Address: Assets/Units/Scriptables/Hero
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - units
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3df620f410c5f564f981f36e5235c17c
+    m_Address: Assets/Units/Prefabs
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 233c46d876b9fbd4a87522609627f834
+    m_Address: Assets/Units/Sprites
+    m_ReadOnly: 0
+    m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: bae8f9413a7f8fd46bdf9e8f7a90362b
     m_Address: Assets/Units/Scriptables/Town
@@ -59,30 +75,9 @@ MonoBehaviour:
     m_SerializedLabels:
     - units
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 233c46d876b9fbd4a87522609627f834
-    m_Address: Assets/Units/Sprites
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 0148f01a3607c0643a9d021001ed970a
-    m_Address: Assets/Units/Scripts
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 3df620f410c5f564f981f36e5235c17c
-    m_Address: Assets/Units/Prefabs
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: af4b0b55a6d074f469e14f3f760cfdcb
-    m_Address: Assets/Units/Scriptables/Skill
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - skill
-    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 9a6380555b06f9d46b9bf47dd32221de, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: b216f7878e923a144ada61ef44d5d766, type: 2}
-    - {fileID: 11400000, guid: a440fbadbaeff7742beccfe14e230eba, type: 2}
+    - {fileID: 11400000, guid: f28a01af42e896b418855f4184036353, type: 2}
+    - {fileID: 11400000, guid: 19d787a5928f3604a989b9b9198c3ebb, type: 2}
