@@ -10,13 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d6892427306879841ae9bdf6a40176c7, type: 3}
-  m_Name: 4_Griffin
+  m_Name: 3_Griffin
   m_EditorClassIdentifier: 
   idObject: 5e4a8b77db734928b353ae0966e93683
+  level: 4
   typeGround: 20
   typeInput: 1
   TypeUnit: 7
   listTypeNoPath: 
   Prefab: {fileID: 4097283404208733427, guid: ae543261eecfe404184229c26ee018fd, type: 3}
   MenuSprite: {fileID: -1732154962, guid: ec6a9eb1927263d468c4134c8df8cc07, type: 3}
-  level: 4
+  DataUnitWarrior:
+    Health: 25
+    Attack: 8
+    Protection: 8
+    Damage: 3
+    MaxDamage: 6
+    Ammunition: 0
+    Speed: 6

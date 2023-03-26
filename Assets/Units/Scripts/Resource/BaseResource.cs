@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 
 using Cysharp.Threading.Tasks;
@@ -25,19 +24,30 @@ public struct DataResourceValue
 
 }
 
-public abstract class BaseResource : BaseMapObject, IDataPlay //, IUnitTriggeredHero
+public abstract class BaseResource : BaseMapObject, IDataPlay, IDialogMapObjectOperation
 {
     // private int _value = 0;
     public DataResource Data;
 
     public async UniTask<DataResultDialog> OnTriggeredHero()
     {
+
+        var listValue = new List<DataDialogItem>(Data.Value.Count);
+        for (int i = 0; i < Data.Value.Count; i++)
+        {
+            listValue.Add(new DataDialogItem()
+            {
+                Sprite = Data.Value[i].Resource.MenuSprite,
+                Value = Data.Value[i].value
+            });
+        }
+
         var dialogData = new DataDialog()
         {
             Description = this.ScriptableData.name,
             Header = this.name,
-            sprite = this.ScriptableData.MenuSprite,
-            value = Data.Value
+            Sprite = this.ScriptableData.MenuSprite,
+            Value = listValue
         };
 
         var dialogWindow = new DialogMapObjectProvider(dialogData);

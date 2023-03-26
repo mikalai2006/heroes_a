@@ -1,17 +1,39 @@
-using System.Collections;
 using System.Collections.Generic;
 
-using UnityEngine;
+using Cysharp.Threading.Tasks;
 
-public abstract class BaseExplore : BaseMapObject
+
+public abstract class BaseExplore : BaseMapObject, IDialogMapObjectOperation
 {
-    public override void OnGoHero(Player player)
+    public async override void OnGoHero(Player player)
     {
         base.OnGoHero(player);
 
-        List<GridTileNode> noskyNode = GameManager.Instance.MapManager.DrawSky(OccupiedNode, 10);
+        DataResultDialog result = await OnTriggeredHero();
 
-        player.SetNosky(noskyNode);
+        if (result.isOk)
+        {
+            List<GridTileNode> noskyNodes = GameManager.Instance.MapManager.DrawSky(OccupiedNode, 10);
 
+            player.SetNosky(noskyNodes);
+        }
+        else
+        {
+            // Click cancel.
+        }
     }
+
+    public async UniTask<DataResultDialog> OnTriggeredHero()
+    {
+        var dialogData = new DataDialog()
+        {
+            Description = this.ScriptableData.name,
+            Header = this.name,
+            Sprite = this.ScriptableData.MenuSprite,
+        };
+
+        var dialogWindow = new DialogMapObjectProvider(dialogData);
+        return await dialogWindow.ShowAndHide();
+    }
+
 }

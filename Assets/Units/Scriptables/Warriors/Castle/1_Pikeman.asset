@@ -13,10 +13,18 @@ MonoBehaviour:
   m_Name: 1_Pikeman
   m_EditorClassIdentifier: 
   idObject: 36cb8884bb04453d93a47d3799249daa
+  level: 1
   typeGround: 20
   typeInput: 1
   TypeUnit: 7
   listTypeNoPath: 
   Prefab: {fileID: 8195460152588547095, guid: 84c4be2db55a8d1409a0512e51efb96b, type: 3}
   MenuSprite: {fileID: 1553045870, guid: 211c3996d9c5ed94faa80c63928ab087, type: 3}
-  level: 1
+  DataUnitWarrior:
+    Health: 10
+    Attack: 6
+    Protection: 5
+    Damage: 1
+    MaxDamage: 2
+    Ammunition: 0
+    Speed: 5

@@ -6,12 +6,23 @@ using Cysharp.Threading.Tasks;
 
 using UnityEngine;
 
-public struct DataDialog
+public class DataDialog
 {
     public string Header;
     public string Description;
-    public Sprite sprite;
-    public List<DataResourceValue> value;
+    public Sprite Sprite;
+    public List<DataDialogItem> Value;
+
+    public DataDialog()
+    {
+        Value = new List<DataDialogItem>();
+    }
+}
+
+public struct DataDialogItem
+{
+    public Sprite Sprite;
+    public int Value;
 }
 
 public struct DataResultDialog

@@ -2,6 +2,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.Events;
+using System.Collections.Generic;
 
 public class UIDialogMapObjectWindow : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class UIDialogMapObjectWindow : MonoBehaviour
     private readonly string _nameHeaderLabel = "HeaderDialog";
     private readonly string _nameValueLabel = "Value";
     private readonly string _nameBoxVariants = "BoxVariants";
+    private readonly string _nameOverlay = "Overlay";
 
     private Button _buttonOk;
     private Button _buttonCancel;
@@ -50,19 +52,33 @@ public class UIDialogMapObjectWindow : MonoBehaviour
         _headerLabel.text = _dataDialog.Header;
         _descriptionLabel.text = _dataDialog.Description;
 
-        for (int i = 0; i < _dataDialog.value.Count; i++)
+        for (int i = 0; i < _dataDialog.Value.Count; i++)
         {
             VisualElement item = _templateItem.Instantiate();
             var _spriteElement = item.Q<VisualElement>(_nameSpriteElement);
             var _valueLabel = item.Q<Label>(_nameValueLabel);
-            var sprite = _dataDialog.value[i].Resource.MenuSprite;
+            var sprite = _dataDialog.Value[i].Sprite;
 
             _spriteElement.style.backgroundImage = new StyleBackground(sprite);
             _spriteElement.style.width = new StyleLength(new Length(sprite.bounds.size.x * sprite.pixelsPerUnit, LengthUnit.Pixel));
             _spriteElement.style.height = new StyleLength(new Length(sprite.bounds.size.y * sprite.pixelsPerUnit, LengthUnit.Pixel));
 
-            _valueLabel.text = _dataDialog.value[i].value.ToString();
+            var val = _dataDialog.Value[i].Value;
+            if (val != 0)
+            {
+                _valueLabel.text = _dataDialog.Value[i].Value.ToString();
+            }
+
             _boxVariantsElement.Add(item);
+        }
+
+        Player player = LevelManager.Instance.ActivePlayer;
+
+        UQueryBuilder<VisualElement> builder = new UQueryBuilder<VisualElement>(DialogApp.rootVisualElement);
+        List<VisualElement> list = builder.Name(_nameOverlay).ToList();
+        foreach (var overlay in list)
+        {
+            overlay.style.backgroundColor = player.DataPlayer.color;
         }
 
         _processCompletionSource = new TaskCompletionSource<DataResultDialog>();

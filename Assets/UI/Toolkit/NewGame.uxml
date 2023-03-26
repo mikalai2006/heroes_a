@@ -1,34 +1,38 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
     <ui:Template name="Col" src="project://database/Assets/UI/Toolkit/Col.uxml?fileID=9197481963319205126&amp;guid=aeb61825a88c3414e9945054eb442191&amp;type=3#Col" />
+    <ui:Template name="Button" src="project://database/Assets/UI/Toolkit/Button.uxml?fileID=9197481963319205126&amp;guid=db5e7d04a42304542a4356b1519364b2&amp;type=3#Button" />
     <Style src="project://database/Assets/UI/Toolkit/Base.uss?fileID=7433441132597879392&amp;guid=fa07b064290e7384d9ad2e26e79f5953&amp;type=3#Base" />
     <Style src="project://database/Assets/UI/Toolkit/Dialog.uss?fileID=7433441132597879392&amp;guid=2438f8d68703dce4ab75f8d1eda15062&amp;type=3#Dialog" />
     <Style src="project://database/Assets/UI/Toolkit/UnityBase.uss?fileID=7433441132597879392&amp;guid=c0905c354b5fb524e83bc41ae3debe10&amp;type=3#UnityBase" />
     <ui:VisualElement name="NewGameBox" class="dialog_box">
         <ui:VisualElement name="Panel" class="dialog_panel border-color bg" style="min-height: 100%;">
-            <ui:VisualElement name="Header" class="dialog_header">
-                <ui:VisualElement name="HeaderText" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
-                    <ui:Label tabindex="-1" text="#newgame" display-tooltip-when-elided="true" />
+            <ui:VisualElement name="Bg" class="dialog_bgframe" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);" />
+            <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); padding-left: 5px; padding-right: 5px; padding-top: 5px; padding-bottom: 5px;">
+                <ui:VisualElement name="Header" class="dialog_header">
+                    <ui:VisualElement name="HeaderText" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
+                        <ui:Label tabindex="-1" text="#newgame" display-tooltip-when-elided="true" />
+                    </ui:VisualElement>
                 </ui:VisualElement>
-            </ui:VisualElement>
-            <ui:VisualElement name="Tabs" class="tab_box px-2 mt-2">
-                <ui:Button text="#general" display-tooltip-when-elided="true" name="General" class="tab tab_active bg button text-lg p-4" />
-                <ui:Button text="#advance" display-tooltip-when-elided="true" name="Advance" class="tab button text-lg p-4 bg" />
-            </ui:VisualElement>
-            <ui:VisualElement name="TabContentGeneral" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
-                <ui:VisualElement name="Row" class="dialog_box_row text-lg">
-                    <ui:ScrollView scroll-deceleration-rate="0,135" elasticity="0,1" name="BoxOptions">
-                        <ui:Instance template="Col" name="Col" />
-                    </ui:ScrollView>
+                <ui:VisualElement name="Tabs" class="tab_box px-2 mt-2">
+                    <ui:Button text="#general" display-tooltip-when-elided="true" name="General" class="tab tab_active bg button text-lg p-4" />
+                    <ui:Button text="#advance" display-tooltip-when-elided="true" name="Advance" class="tab button text-lg p-4 bg" />
                 </ui:VisualElement>
-            </ui:VisualElement>
-            <ui:VisualElement name="TabContentAdvance" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);" />
-            <ui:VisualElement name="Footer" class="dialog_footer border-primary">
-                <ui:Button display-tooltip-when-elided="true" name="ButtonNewGame" class="button button_text button_bg button_bordered" style="margin-right: 15px;">
-                    <ui:Label tabindex="-1" text="#newgame" display-tooltip-when-elided="true" name="Label" />
-                </ui:Button>
-                <ui:Button display-tooltip-when-elided="true" name="ButtonClose" class="button button_text button_bg button_bordered">
-                    <ui:Label tabindex="-1" text="#close" display-tooltip-when-elided="true" />
-                </ui:Button>
+                <ui:VisualElement name="TabContentGeneral" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
+                    <ui:VisualElement name="Row" class="dialog_box_row text-lg">
+                        <ui:ScrollView scroll-deceleration-rate="0,135" elasticity="0,1" name="BoxOptions">
+                            <ui:Instance template="Col" name="Col" />
+                        </ui:ScrollView>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="TabContentAdvance" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);" />
+                <ui:VisualElement name="Footer" class="dialog_footer border-primary">
+                    <ui:Instance template="Button" name="ButtonNewGame">
+                        <AttributeOverrides element-name="Btn" text="#newgame" />
+                    </ui:Instance>
+                    <ui:Instance template="Button" name="ButtonClose">
+                        <AttributeOverrides element-name="Btn" text="#close" />
+                    </ui:Instance>
+                </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>

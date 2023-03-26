@@ -13,10 +13,18 @@ MonoBehaviour:
   m_Name: 2_Archer
   m_EditorClassIdentifier: 
   idObject: e891a59d385b454e88ab22e216493a02
+  level: 2
   typeGround: 20
   typeInput: 1
   TypeUnit: 7
   listTypeNoPath: 
   Prefab: {fileID: 1520226462251911402, guid: e273e3317d49f264d846a1ad913b6fc0, type: 3}
   MenuSprite: {fileID: -1022214124, guid: 719155769fbea244e995b42070c7889a, type: 3}
-  level: 2
+  DataUnitWarrior:
+    Health: 10
+    Attack: 6
+    Protection: 3
+    Damage: 2
+    MaxDamage: 3
+    Ammunition: 12
+    Speed: 4

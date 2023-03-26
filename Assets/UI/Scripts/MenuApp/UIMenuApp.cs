@@ -97,7 +97,7 @@ public class UIMenuApp : MonoBehaviour
             _btnTabAdvance.RemoveFromClassList(nameTabActive);
         };
 
-        _btnNewGame = _box.Q<Button>("ButtonNewGame");
+        _btnNewGame = _box.Q<VisualElement>("ButtonNewGame").Q<Button>("Btn");
         _btnNewGame.clickable.clicked += () =>
         {
             GameManager.Instance.ChangeState(GameState.NewGame);
@@ -106,7 +106,7 @@ public class UIMenuApp : MonoBehaviour
 
         };
 
-        var btnClose = _menuNewGameDoc.rootVisualElement.Q<Button>("ButtonClose");
+        var btnClose = _menuNewGameDoc.rootVisualElement.Q<VisualElement>("ButtonClose").Q<Button>("Btn");
         btnClose.clickable.clicked += () =>
         {
             HideNewGameWindow();

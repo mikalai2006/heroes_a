@@ -1,9 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 
 using UnityEngine;
 
-public class BaseArtifact : BaseMapObject
+public class BaseArtifact : BaseMapObject, IDialogMapObjectOperation
 {
     public Transform _model;
 
@@ -25,5 +24,32 @@ public class BaseArtifact : BaseMapObject
 
         }
 
+    }
+
+    public async UniTask<DataResultDialog> OnTriggeredHero()
+    {
+        var dialogData = new DataDialog()
+        {
+            Description = this.ScriptableData.name,
+            Header = this.name,
+            Sprite = this.ScriptableData.MenuSprite
+        };
+
+        var dialogWindow = new DialogMapObjectProvider(dialogData);
+        return await dialogWindow.ShowAndHide();
+    }
+
+    public override async void OnGoHero(Player player)
+    {
+        DataResultDialog result = await OnTriggeredHero();
+
+        if (result.isOk)
+        {
+            // Set artifact for hero.
+        }
+        else
+        {
+            // Click cancel.
+        }
     }
 }

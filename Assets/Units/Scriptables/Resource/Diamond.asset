@@ -19,7 +19,7 @@ MonoBehaviour:
   TypeUnit: 5
   listTypeNoPath: 
   Prefab: {fileID: -4473801658231751432, guid: 17e67550360993646b5a500b8079dbd3, type: 3}
-  MenuSprite: {fileID: 21300000, guid: dae8debaa2655bb47ad0c564c7ea7388, type: 3}
+  MenuSprite: {fileID: 621578223, guid: a4dbc25aa5c0cc543a2d01e118853fe1, type: 3}
   TypeWork: 1
   TypeResource: 50
   maxValue: 10
