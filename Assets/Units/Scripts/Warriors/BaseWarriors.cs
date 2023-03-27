@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 
 using UnityEngine;
+using UnityEngine.Localization.Settings;
 
 public class BaseWarriors : UnitBase, IDataPlay, IDialogMapObjectOperation
 {
@@ -30,7 +31,7 @@ public class BaseWarriors : UnitBase, IDataPlay, IDialogMapObjectOperation
 
             OccupiedNode.SetOcuppiedUnit(null);
 
-            Destroy(gameObject.gameObject);
+            Destroy(gameObject);
         }
         else
         {
@@ -46,10 +47,12 @@ public class BaseWarriors : UnitBase, IDataPlay, IDialogMapObjectOperation
             Sprite = ScriptableData.MenuSprite,
             Value = Data.quantity
         });
+
+        var t = HelperLanguage.GetLocaleText(this.ScriptableData);
         var dialogData = new DataDialog()
         {
-            Description = this.ScriptableData.name,
-            Header = this.name,
+            Description = t.Text.title,
+            Header = t.Text.description,
             Sprite = this.ScriptableData.MenuSprite,
             Value = listValue
         };

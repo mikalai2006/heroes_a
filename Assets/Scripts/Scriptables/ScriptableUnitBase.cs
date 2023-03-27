@@ -1,11 +1,9 @@
 using System;
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.Localization;
+using UnityEngine.Localization.Tables;
 
-/// <summary>
-/// Keeping all relevant information about a unit on a scriptable means we can gather and show
-/// info on the menu screen, without instantiating the unit prefab.
-/// </summary>
 public abstract class ScriptableUnitBase : ScriptableObject
 {
 
@@ -25,12 +23,26 @@ public abstract class ScriptableUnitBase : ScriptableObject
     //public string Description;
     public Sprite MenuSprite;
 
+    [SerializeField] public List<LangItem> Locale;
 }
 
-/// <summary>
-/// Keeping base stats as a struct on the scriptable keeps it flexible and easily editable.
-/// We can pass this struct to the spawned prefab unit and alter them depending on conditions.
-/// </summary>
+[System.Serializable]
+public struct LangItem
+{
+    public Locale Language;
+    public LocaleItem Text;
+}
+
+[System.Serializable]
+public struct LocaleItem
+{
+    public string title;
+    [TextArea] public string description;
+    [TextArea] public string visit_ok;
+    [TextArea] public string visit_no;
+    [TextArea] public string visit_noresource;
+}
+
 [Serializable]
 public struct RulesDraw
 {

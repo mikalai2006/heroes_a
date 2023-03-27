@@ -20,6 +20,21 @@ MonoBehaviour:
   listTypeNoPath: 
   Prefab: {fileID: 3903810489075703944, guid: 56ec6e7b7feb1064abab3fcf50848a46, type: 3}
   MenuSprite: {fileID: 36309692, guid: a4dbc25aa5c0cc543a2d01e118853fe1, type: 3}
+  Locale:
+  - Language: {fileID: 11400000, guid: 30b8a59646ec31e4fa7737b1c0d7cba9, type: 2}
+    Text:
+      title: "\u0417\u043E\u043B\u043E\u0442\u043E"
+      description: "\u0417\u043E\u043B\u043E\u0442\u043E\u0439 \u0440\u0435\u0441\u0443\u0440\u0441"
+      visit_ok: 
+      visit_no: 
+      visit_noresource: 
+  - Language: {fileID: 11400000, guid: 5ecc387139072f64d91ffa31ae4c4cb7, type: 2}
+    Text:
+      title: Gold
+      description: Gold as resource
+      visit_ok: 
+      visit_no: 
+      visit_noresource: 
   TypeWork: 1
   TypeResource: 10
   maxValue: 10

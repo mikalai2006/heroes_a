@@ -20,6 +20,24 @@ MonoBehaviour:
   listTypeNoPath: 
   Prefab: {fileID: 1520226462251911402, guid: e273e3317d49f264d846a1ad913b6fc0, type: 3}
   MenuSprite: {fileID: -1022214124, guid: 719155769fbea244e995b42070c7889a, type: 3}
+  Title:
+  - Language: {fileID: 11400000, guid: 30b8a59646ec31e4fa7737b1c0d7cba9, type: 2}
+    Text:
+      title: "\u041B\u0443\u0447\u043D\u0438\u043A"
+      description: "\u041B\u0443\u0447\u043D\u0438\u043A"
+  - Language: {fileID: 11400000, guid: 5ecc387139072f64d91ffa31ae4c4cb7, type: 2}
+    Text:
+      title: Archer
+      description: Archer
+  Locale:
+  - Language: {fileID: 11400000, guid: 30b8a59646ec31e4fa7737b1c0d7cba9, type: 2}
+    Text:
+      title: "\u0410\u0440\u0431\u0430\u043B\u0435\u0442\u0447\u0438\u043A"
+      description: "\u0410\u0440\u0431\u0430\u043B\u0435\u0442\u0447\u0438\u043A"
+  - Language: {fileID: 11400000, guid: 5ecc387139072f64d91ffa31ae4c4cb7, type: 2}
+    Text:
+      title: Archer
+      description: Archer
   DataUnitWarrior:
     Health: 10
     Attack: 6

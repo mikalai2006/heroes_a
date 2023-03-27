@@ -13,10 +13,28 @@ MonoBehaviour:
   m_Name: 5_Monk
   m_EditorClassIdentifier: 
   idObject: 9b084b183db448fdb543c66c900fe4aa
+  level: 5
   typeGround: 20
   typeInput: 1
   TypeUnit: 7
   listTypeNoPath: 
   Prefab: {fileID: -7015289266418665371, guid: 6c74cbf7e3f9e4740aa3f4f61995f75a, type: 3}
   MenuSprite: {fileID: -1979799487, guid: ff50895bd9aeb6049b0d44e0d0d105d4, type: 3}
-  level: 5
+  Title: []
+  Locale:
+  - Language: {fileID: 11400000, guid: 30b8a59646ec31e4fa7737b1c0d7cba9, type: 2}
+    Text:
+      title: "\u041C\u043E\u043D\u0430\u0445"
+      description: "\u041C\u043E\u043D\u0430\u0445"
+  - Language: {fileID: 11400000, guid: 5ecc387139072f64d91ffa31ae4c4cb7, type: 2}
+    Text:
+      title: Monk
+      description: Monk
+  DataUnitWarrior:
+    Health: 0
+    Attack: 0
+    Protection: 0
+    Damage: 0
+    MaxDamage: 0
+    Ammunition: 0
+    Speed: 0

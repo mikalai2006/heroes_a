@@ -51,6 +51,7 @@ public struct Cursors
 public class MapManager : MonoBehaviour, IDataGame
 {
     public UnitManager UnitManager;
+    public LocalizationManager LocalizationManager;
     [SerializeField] public DataGameMode gameModeData;
     private bool _isWater = false;
     public int countArea;

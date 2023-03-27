@@ -17,6 +17,7 @@ public class UIDialogMapObjectWindow : MonoBehaviour
     private readonly string _nameValueLabel = "Value";
     private readonly string _nameBoxVariants = "BoxVariants";
     private readonly string _nameOverlay = "Overlay";
+    private readonly string _nameSpriteObject = "SpriteObject";
 
     private Button _buttonOk;
     private Button _buttonCancel;
@@ -25,6 +26,7 @@ public class UIDialogMapObjectWindow : MonoBehaviour
     private Label _descriptionLabel;
     // private Label _valueLabel;
     private VisualElement _boxVariantsElement;
+    private VisualElement _boxSpriteObject;
 
     private TaskCompletionSource<DataResultDialog> _processCompletionSource;
 
@@ -42,6 +44,8 @@ public class UIDialogMapObjectWindow : MonoBehaviour
         _descriptionLabel = DialogApp.rootVisualElement.Q<Label>(_nameDescriptionLabel);
         _buttonCancel.clickable.clicked += OnClickCancel;
         _boxVariantsElement = DialogApp.rootVisualElement.Q<VisualElement>(_nameBoxVariants);
+        _boxSpriteObject = DialogApp.rootVisualElement.Q<VisualElement>(_nameSpriteObject);
+
     }
 
     public async Task<DataResultDialog> ProcessAction(DataDialog dataDialog)
@@ -51,6 +55,12 @@ public class UIDialogMapObjectWindow : MonoBehaviour
 
         _headerLabel.text = _dataDialog.Header;
         _descriptionLabel.text = _dataDialog.Description;
+        if (_dataDialog.Sprite != null)
+        {
+            _boxSpriteObject.style.backgroundImage = new StyleBackground(_dataDialog.Sprite);
+            _boxSpriteObject.style.width = new StyleLength(new Length(_dataDialog.Sprite.bounds.size.x * _dataDialog.Sprite.pixelsPerUnit, LengthUnit.Pixel));
+            _boxSpriteObject.style.height = new StyleLength(new Length(_dataDialog.Sprite.bounds.size.y * _dataDialog.Sprite.pixelsPerUnit, LengthUnit.Pixel));
+        }
 
         for (int i = 0; i < _dataDialog.Value.Count; i++)
         {

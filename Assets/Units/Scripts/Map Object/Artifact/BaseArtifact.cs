@@ -28,10 +28,15 @@ public class BaseArtifact : BaseMapObject, IDialogMapObjectOperation
 
     public async UniTask<DataResultDialog> OnTriggeredHero()
     {
+        // LocalizedString myLocalizedString = new LocalizedString("ADVENTUREVENT", "artifact_yes")
+        // {
+        //     { "name", new StringVariable { Value = this.ScriptableData.name } },
+        // };
+        var t = HelperLanguage.GetLocaleText(this.ScriptableData);
         var dialogData = new DataDialog()
         {
-            Description = this.ScriptableData.name,
-            Header = this.name,
+            Description = t.Text.visit_ok,
+            Header = t.Text.title,
             Sprite = this.ScriptableData.MenuSprite
         };
 
@@ -46,6 +51,7 @@ public class BaseArtifact : BaseMapObject, IDialogMapObjectOperation
         if (result.isOk)
         {
             // Set artifact for hero.
+            Destroy(gameObject);
         }
         else
         {

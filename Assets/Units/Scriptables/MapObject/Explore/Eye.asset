@@ -20,6 +20,58 @@ MonoBehaviour:
   listTypeNoPath: 
   Prefab: {fileID: 1554217859252374215, guid: 18d5767ea8e236340931912f373e4d6a, type: 3}
   MenuSprite: {fileID: 21300000, guid: ae64eae0f6c3fc740b347e5a14173335, type: 3}
+  Title:
+  - Language: {fileID: 0}
+    Text:
+      title: 
+      description: 
+      visit_ok: 
+      visit_no: 
+      visit_noresource: 
+  - Language: {fileID: 0}
+    Text:
+      title: 
+      description: 
+      visit_ok: 
+      visit_no: 
+      visit_noresource: 
+  - Language: {fileID: 0}
+    Text:
+      title: 
+      description: 
+      visit_ok: 
+      visit_no: 
+      visit_noresource: 
+  - Language: {fileID: 0}
+    Text:
+      title: 
+      description: 
+      visit_ok: 
+      visit_no: 
+      visit_noresource: 
+  - Language: {fileID: 0}
+    Text:
+      title: 
+      description: 
+      visit_ok: 
+      visit_no: 
+      visit_noresource: 
+  Locale:
+  - Language: {fileID: 11400000, guid: 30b8a59646ec31e4fa7737b1c0d7cba9, type: 2}
+    Text:
+      title: "\u041A\u0430\u0440\u0442\u043E\u0433\u0440\u0430\u0444"
+      description: 
+      visit_ok: "\u0412\u0430\u043C \u043F\u043E\u0432\u0441\u0442\u0440\u0435\u0447\u0430\u043B\u0441\u044F
+        \u043A\u0430\u0440\u0442\u043E\u0433\u0440\u0430\u0444, \u043A\u043E\u0442\u043E\u0440\u044B\u0439
+        \u043F\u0440\u043E\u0434\u0430\u0435\u0442 \u043A\u0430\u0440\u0442\u044B
+        \u0437\u0435\u043C\u0435\u043B\u044C \u0437\u0430 1000 \u0437\u043E\u043B\u043E\u0442\u044B\u0445.
+        \u0425\u043E\u0442\u0438\u0442\u0435 \u043B\u0438 \u0432\u044B \u043A\u0443\u043F\u0438\u0442\u044C
+        \u0441\u0435\u0431\u0435 \u043E\u0434\u043D\u0443?"
+      visit_no: 
+      visit_noresource: "\u041C\u043E\u0438 \u043A\u0430\u0440\u0442\u044B \u0441\u0442\u043E\u044F\u0442
+        1000 \u0437\u043E\u043B\u043E\u0442\u044B\u0445. \u0418\u0445 \u0443 \u0432\u0430\u0441
+        \u043D\u0435\u0442. \u0422\u0430\u043A \u0447\u0442\u043E \u043D\u0435 \u043C\u043E\u0440\u043E\u0447\u044C\u0442\u0435
+        \u043C\u043D\u0435 \u0433\u043E\u043B\u043E\u0432\u0443."
   TypeMapObject: 20
   TypeWork: 1
   Resources: []

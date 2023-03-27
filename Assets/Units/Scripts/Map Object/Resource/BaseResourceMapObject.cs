@@ -28,11 +28,12 @@ public abstract class BaseResourceMapObject : BaseMapObject, IDataPlay, IDialogM
             });
         }
 
+        var t = HelperLanguage.GetLocaleText(this.ScriptableData);
         var dialogData = new DataDialog()
         {
-            Description = this.ScriptableData.name,
-            Header = this.name,
-            Sprite = this.ScriptableData.MenuSprite,
+            Description = t.Text.visit_ok,
+            Header = t.Text.title,
+            // Sprite = this.ScriptableData.MenuSprite,
             Value = listValue
         };
 

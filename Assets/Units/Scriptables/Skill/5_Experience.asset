@@ -16,4 +16,4 @@ MonoBehaviour:
   TypeSkill: 50
   maxValue: 1
   step: 1
-  SpriteMenu: {fileID: 21300000, guid: ccb9472fcefcde54f9e085b802b1a483, type: 3}
+  SpriteMenu: {fileID: -2144967423, guid: e1af65ad3ff49484580e9cf541eddcc1, type: 3}

@@ -25,10 +25,11 @@ public abstract class BaseExplore : BaseMapObject, IDialogMapObjectOperation
 
     public async UniTask<DataResultDialog> OnTriggeredHero()
     {
+        var t = HelperLanguage.GetLocaleText(this.ScriptableData);
         var dialogData = new DataDialog()
         {
-            Description = this.ScriptableData.name,
-            Header = this.name,
+            Description = t.Text.visit_ok,
+            Header = t.Text.title,
             Sprite = this.ScriptableData.MenuSprite,
         };
 

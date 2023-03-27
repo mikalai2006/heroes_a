@@ -20,6 +20,34 @@ MonoBehaviour:
   listTypeNoPath: 
   Prefab: {fileID: -2729673563237440054, guid: 0a736c2ff87971845b53d01d41b40a5b, type: 3}
   MenuSprite: {fileID: 21300000, guid: 4ba5608e79eda0d4f890f26dfec883c9, type: 3}
+  Title:
+  - Language: {fileID: 0}
+    Text:
+      title: 
+      description: 
+      visit_ok: 
+      visit_no: 
+      visit_noresource: 
+  - Language: {fileID: 0}
+    Text:
+      title: 
+      description: 
+      visit_ok: 
+      visit_no: 
+      visit_noresource: 
+  Locale:
+  - Language: {fileID: 11400000, guid: 30b8a59646ec31e4fa7737b1c0d7cba9, type: 2}
+    Text:
+      title: "\u041E\u0431\u0441\u0435\u0440\u0432\u0430\u0442\u043E\u0440\u0438\u044F
+        \u0438\u0437 \u043A\u0440\u0430\u0441\u043D\u043E\u0433\u043E \u0434\u0435\u0440\u0435\u0432\u0430"
+      description: 
+      visit_ok: "\u0418\u0437 \u043E\u0431\u0441\u0435\u0440\u0432\u0430\u0442\u043E\u0440\u0438\u0438
+        \u0432\u044B \u0441\u043F\u043E\u0441\u043E\u0431\u043D\u044B \u0443\u0432\u0438\u0434\u0435\u0442\u044C
+        \u0434\u0430\u043B\u044C\u043D\u0438\u0435 \u0437\u0435\u043C\u043B\u0438."
+      visit_no: "\u0422\u044B \u0443\u0436\u0435 \u0432\u0438\u0434\u0435\u043B \u0432\u0441\u0435
+        \u043C\u043E\u0438 \u043A\u0430\u0440\u0442\u044B, \u043F\u0430\u0440\u0435\u043D\u044C,
+        \u0441\u0442\u0443\u043F\u0430\u0439."
+      visit_noresource: 
   TypeMapObject: 20
   TypeWork: 1
   Resources: []

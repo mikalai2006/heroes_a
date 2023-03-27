@@ -10,6 +10,7 @@ public class ScriptableArtifact : ScriptableMapObject
     public Sprite sprite;
     public Sprite spriteMap;
 
+    public int Cost;
 
 }
 

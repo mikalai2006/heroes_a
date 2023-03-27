@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+
 using UnityEngine;
+using UnityEngine.Localization.Settings;
 
 /// <summary>
 /// A static class for general helpful methods
@@ -28,7 +30,15 @@ public static class Helpers
     public static Vector3 ToIso(this Vector3 input) => _isoMatrix.MultiplyPoint3x4(input);
 
 }
+public static class HelperLanguage
+{
+    public static LangItem GetLocaleText(this ScriptableUnitBase unit)
+    {
+        var t = unit.Locale.Find(t => t.Language == LocalizationSettings.SelectedLocale);
+        return t;
+    }
 
+}
 
 public interface IProperty<T> : IProperty
 {

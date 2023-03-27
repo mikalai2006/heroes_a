@@ -13,10 +13,28 @@ MonoBehaviour:
   m_Name: 7_Angel
   m_EditorClassIdentifier: 
   idObject: 8a851ef4bf5048a1a08b7657f4ee9ea8
+  level: 7
   typeGround: 20
   typeInput: 1
   TypeUnit: 7
   listTypeNoPath: 
   Prefab: {fileID: -4025802116799321527, guid: 45e4c42286e2f2341874a5f11ccc31d7, type: 3}
   MenuSprite: {fileID: -755954864, guid: 0b06f6e8fb4da0a4199a20f62e88ba78, type: 3}
-  level: 7
+  Title: []
+  Locale:
+  - Language: {fileID: 11400000, guid: 30b8a59646ec31e4fa7737b1c0d7cba9, type: 2}
+    Text:
+      title: "\u0410\u043D\u0433\u0435\u043B"
+      description: 
+  - Language: {fileID: 11400000, guid: 5ecc387139072f64d91ffa31ae4c4cb7, type: 2}
+    Text:
+      title: Angel
+      description: 
+  DataUnitWarrior:
+    Health: 0
+    Attack: 0
+    Protection: 0
+    Damage: 0
+    MaxDamage: 0
+    Ammunition: 0
+    Speed: 0

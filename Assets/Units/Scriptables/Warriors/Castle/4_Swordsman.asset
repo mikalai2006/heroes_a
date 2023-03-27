@@ -20,6 +20,16 @@ MonoBehaviour:
   listTypeNoPath: 
   Prefab: {fileID: -1058635974254928675, guid: 983dff0dfeac50140962019489441a6e, type: 3}
   MenuSprite: {fileID: -478893321, guid: c93e3b65000c1b844818ef31f5cd260c, type: 3}
+  Title: []
+  Locale:
+  - Language: {fileID: 11400000, guid: 30b8a59646ec31e4fa7737b1c0d7cba9, type: 2}
+    Text:
+      title: "\u041C\u0435\u0447\u043D\u0438\u043A"
+      description: "\u041C\u0435\u0447\u043D\u0438\u043A"
+  - Language: {fileID: 11400000, guid: 5ecc387139072f64d91ffa31ae4c4cb7, type: 2}
+    Text:
+      title: Swordsman
+      description: Swordsman
   DataUnitWarrior:
     Health: 35
     Attack: 10

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 
 using UnityEngine;
+using UnityEngine.Localization.Settings;
 
 using Random = UnityEngine.Random;
 
@@ -42,11 +43,12 @@ public abstract class BaseResource : BaseMapObject, IDataPlay, IDialogMapObjectO
             });
         }
 
+        var t = HelperLanguage.GetLocaleText(this.ScriptableData);
         var dialogData = new DataDialog()
         {
-            Description = this.ScriptableData.name,
-            Header = this.name,
-            Sprite = this.ScriptableData.MenuSprite,
+            Header = t.Text.title,
+            Description = t.Text.visit_ok,
+            // Sprite = this.ScriptableData.MenuSprite,
             Value = listValue
         };
 

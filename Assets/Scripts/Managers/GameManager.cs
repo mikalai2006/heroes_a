@@ -4,6 +4,7 @@ using Login;
 using System.Collections.Generic;
 using Loader;
 using AppInfo;
+using UnityEngine.Localization;
 
 public class GameManager : StaticInstance<GameManager>
 {
