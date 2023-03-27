@@ -1,0 +1,1390 @@
+fileFormatVersion: 2
+guid: 962cf48dd1b898a41810af0c2c8e1064
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 50
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Archangel_idle_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1350
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9fc294aad474ec746ab371ef3f5e58b9
+      internalID: -712822811
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archangell_idle_1
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 1350
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef7705c80695abc4f82c077a9485dcb0
+      internalID: -785297788
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archangel_idle_2
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 1350
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f1d0955ce254c6643a9bc4ec83246425
+      internalID: -2130382134
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archangel_idle_3
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 1350
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85ef5e1ca61ecd840a2206a202c38010
+      internalID: 1894187746
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archangel_idle_4
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 1350
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 435919d4fad66454084fa50d8a578f52
+      internalID: -1880058005
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archangel_idle_mouse_over_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1200
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f991e88b70010d44aa2d43e120fcdb69
+      internalID: 1966316116
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archangel_idle_mouse_over_2
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 1200
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ba5e4c41a1036345b9e701ffe70d948
+      internalID: 74674237
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archangel_idle_mouse_over_3
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 1200
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d5317f9d719a9344c98c5426d5a143df
+      internalID: -1918988257
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archangel_idle_mouse_over_4
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 1200
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: caa7bc0b937e2bf4380ce5486e1cb96a
+      internalID: -997608388
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archangel_attack_straight_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1051
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05971eb77a1c59f4395ef861a6c71251
+      internalID: 454160914
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archangel_attack_straight_2
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 1050
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e8e4ca41f16ef347ab9e4d5860c63e0
+      internalID: -1588276384
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archangel_attack_straight_3
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 1050
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 714f6e53097635b46a80e1bb303609da
+      internalID: 1608156294
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archangel_attack_straight_4
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 1050
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc5f2e45da0560b4fb338bfca3ce43c7
+      internalID: -1851400133
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archangel_attack_straight_5
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 1050
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 912213989518ddd4ca866cf9221e1415
+      internalID: 1147453538
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archangel_attack_straight_6
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 1050
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4b0a6a58fd38434b9981b2eadae617b
+      internalID: -1652748013
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archangel_attack_up_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 900
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9499e6c356915e640b2fd9222681462c
+      internalID: -1677534910
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archangel_attack_up_2
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 900
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fd0259d04bb5850419321a2ac91782e8
+      internalID: -160791874
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archangel_attack_up_3
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 900
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ede47439646758647bc09a732237ae11
+      internalID: -605639447
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archangel_attack_up_4
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 900
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f255953b192fbe429c63a56a765558e
+      internalID: -774941090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archangel_attack_up_5
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 900
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65dafedc0ad9908469b9bc6ac25d5140
+      internalID: 667326876
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archangel_attack_up_6
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 900
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 652de3ea7622828418c540f92afb73bc
+      internalID: -1975278282
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archangel_attack_down_1
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 750
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92898f7bcad123846817799ce76c6512
+      internalID: -633443975
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archangel_attack_down_2
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 750
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a24589aed195a24ab1e14827db1bd9d
+      internalID: -788205445
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archangel_attack_down_3
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 750
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 322f0e6a72edb2845a0c9363722075c8
+      internalID: -939704538
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archangel_attack_down_4
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 750
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9aac313c24a2d63478169b632582ace5
+      internalID: -889406418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archangel_attack_down_5
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 750
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 597d8d0fdb08bc244a1c5f86be575289
+      internalID: 2049106899
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archangel_attack_down_6
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 750
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c0be45100170dd943983c3c8197b0916
+      internalID: 2139670354
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archangel_gretting_hit_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 600
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ca75e5b78d120d44a8dc4d4ce2b79ac
+      internalID: -895856929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archangel_gretting_hit_2
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 600
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c103d85afaf15ba4f96961e2afe34e82
+      internalID: -2063967646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archangel_gretting_hit_3
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 600
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44b787f972bbf324585e2aa835e88640
+      internalID: 1206925785
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archangel_gretting_hit_4
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 600
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91f48e62130095949a4e43f0ad6159f9
+      internalID: 1338260019
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archangel_gretting_hit_5
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 600
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ca37cc68ad0a1c4aada456d7cf4ffc9
+      internalID: 1008505822
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archangel_gretting_hit_6
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 600
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e09035c5a0c1cec45808922ee0e83050
+      internalID: 1040962811
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archangel_death_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 450
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e24416de63347e4ebd198ba8c9cad1c
+      internalID: 1548025989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archangel_death_2
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 450
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ac4941eee4acf248aa0042afa581fd1
+      internalID: -337887789
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archangel_death_3
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 450
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3dbc9249c5f3c6409c047cf49a30f2c
+      internalID: 1582706094
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archangel_death_4
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 450
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 062ebda8c6578db49a4f0742ec80ab8d
+      internalID: -2384769
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archangel_death_5
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 450
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aac9b866777fdc14a9930bc93268bf16
+      internalID: 2094912492
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archangel_death_6
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 450
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ff75891f110ea84d8efd22e4753fb6f
+      internalID: -2115615553
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archangel_defended_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 300
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 847add2f57a48d5418247082e4712a01
+      internalID: 1346792854
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archangel_defended_2
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 300
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5cf2d327b1c582a43bd0c1d27e8ea7de
+      internalID: -2108875382
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archangel_defended_3
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 300
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24459e90a83eba54596d50cbd076cc15
+      internalID: 942986188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archangel_defended_4
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 300
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31d57d0f3acbfe141896ae02215d5a5f
+      internalID: 2124384019
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archangel_turn_1
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 300
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d23195d525bf4c45be484da1e996eaf
+      internalID: -430667140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archangel_turn_2
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 300
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a9de33563c2aa14d8a25ee27ad9f8f3
+      internalID: 780391724
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archangel_moving_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 150
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 132b2f23445851042814067f78946e75
+      internalID: 123407164
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archangel_moving_2
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 150
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96a040a4860275e4c9de60cc87e132fc
+      internalID: -116593607
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archangel_moving_3
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 150
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 99fba478e0acf9743b83a1238f645c26
+      internalID: -558343628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archangel_moving_4
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 150
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 346d48035850aa04bbffa5241aa3374b
+      internalID: 2078430828
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archangel_moving_5
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 150
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c01d3f3456e8e1444b005de0ab33b2c0
+      internalID: 1379266663
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archangel_moving_6
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 150
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3eb3cd1557fd52e49b87a450a21d17b0
+      internalID: 1974209405
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archangel_moving_7
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 150
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8759a05954fd46946b419d9f8f9e1a69
+      internalID: 1409659963
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archangel_start_moving_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14a7cf083ffba38428c6c24a017cef5c
+      internalID: 1432257604
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archangel_start_moving_2
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 0
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cbe461c0eaf89e44a9df15f569da6fad
+      internalID: -1747207882
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archangel_stop_moving_1
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 0
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63ee4d0d75494bf45bbf8a6cdbb1515a
+      internalID: 1768610781
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archangel_stop_moving_2
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 0
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f58800692d4685343b13ddee904709cf
+      internalID: 66485423
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archangel_stop_moving_3
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 0
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b28ee5cf002e6434e9f03553d1072194
+      internalID: -1455034300
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Archangel_attack_down_1: -895856929
+      Archangel_attack_down_2: -633443975
+      Archangel_attack_down_3: -788205445
+      Archangel_attack_down_4: -939704538
+      Archangel_attack_down_5: -889406418
+      Archangel_attack_down_6: 2049106899
+      Archangel_attack_straight_1: -1588276384
+      Archangel_attack_straight_2: 1608156294
+      Archangel_attack_straight_3: -1851400133
+      Archangel_attack_straight_4: 1147453538
+      Archangel_attack_straight_5: -1652748013
+      Archangel_attack_straight_6: -1677534910
+      Archangel_attack_up_1: -160791874
+      Archangel_attack_up_2: -605639447
+      Archangel_attack_up_3: -774941090
+      Archangel_attack_up_4: 667326876
+      Archangel_attack_up_5: -1975278282
+      Archangel_attack_up_6: 2139670354
+      Archangel_death_1: 1346792854
+      Archangel_death_2: 1548025989
+      Archangel_death_3: -337887789
+      Archangel_death_4: 1582706094
+      Archangel_death_5: -2384769
+      Archangel_death_6: 2094912492
+      Archangel_defended_1: -2108875382
+      Archangel_defended_2: -2108875382
+      Archangel_defended_3: 942986188
+      Archangel_defended_4: 2124384019
+      Archangel_gretting_hit_1: -2063967646
+      Archangel_gretting_hit_2: 1206925785
+      Archangel_gretting_hit_3: 1338260019
+      Archangel_gretting_hit_4: 1008505822
+      Archangel_gretting_hit_5: 1040962811
+      Archangel_gretting_hit_6: -2115615553
+      Archangel_idle_0: -785297788
+      Archangel_idle_2: 1894187746
+      Archangel_idle_3: -1880058005
+      Archangel_idle_4: 1966316116
+      Archangel_idle_mouse_over_1: 74674237
+      Archangel_idle_mouse_over_2: -1918988257
+      Archangel_idle_mouse_over_3: -997608388
+      Archangel_idle_mouse_over_4: 454160914
+      Archangel_moving_1: 123407164
+      Archangel_moving_2: -116593607
+      Archangel_moving_3: -558343628
+      Archangel_moving_4: 2078430828
+      Archangel_moving_5: 1379266663
+      Archangel_moving_6: 1974209405
+      Archangel_moving_7: 1409659963
+      Archangel_start_moving_1: 1432257604
+      Archangel_start_moving_2: -1747207882
+      Archangel_stop_moving_1: 1768610781
+      Archangel_stop_moving_2: 66485423
+      Archangel_stop_moving_3: -1455034300
+      Archangel_turn_1: -430667140
+      Archangel_turn_2: 780391724
+      Archangell_idle_1: -2130382134
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
