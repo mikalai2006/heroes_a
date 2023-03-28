@@ -18,5 +18,14 @@ MonoBehaviour:
   typeInput: 1
   TypeUnit: 7
   listTypeNoPath: 
-  Prefab: {fileID: 7950163707778085134, guid: 6a2d6e1fef42f5f408165d503c5fcffc, type: 3}
+  Prefab: {fileID: 2416469185572028307, guid: 6a2d6e1fef42f5f408165d503c5fcffc, type: 3}
   MenuSprite: {fileID: -1259570168, guid: 202fccea72e24e04a970f84ce5921c80, type: 3}
+  Locale: []
+  DataUnitWarrior:
+    Health: 0
+    Attack: 0
+    Protection: 0
+    Damage: 0
+    MaxDamage: 0
+    Ammunition: 0
+    Speed: 0
