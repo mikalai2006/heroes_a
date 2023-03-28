@@ -18,18 +18,23 @@ MonoBehaviour:
   typeInput: 1
   TypeUnit: 7
   listTypeNoPath: 
-  Prefab: {fileID: -7015289266418665371, guid: 6c74cbf7e3f9e4740aa3f4f61995f75a, type: 3}
+  Prefab: {fileID: 3793159195594015386, guid: b2d52339c77fd364cbfddc2dafaadf72, type: 3}
   MenuSprite: {fileID: -1979799487, guid: ff50895bd9aeb6049b0d44e0d0d105d4, type: 3}
-  Title: []
   Locale:
   - Language: {fileID: 11400000, guid: 30b8a59646ec31e4fa7737b1c0d7cba9, type: 2}
     Text:
       title: "\u041C\u043E\u043D\u0430\u0445"
       description: "\u041C\u043E\u043D\u0430\u0445"
+      visit_ok: 
+      visit_no: 
+      visit_noresource: 
   - Language: {fileID: 11400000, guid: 5ecc387139072f64d91ffa31ae4c4cb7, type: 2}
     Text:
       title: Monk
       description: Monk
+      visit_ok: 
+      visit_no: 
+      visit_noresource: 
   DataUnitWarrior:
     Health: 0
     Attack: 0
