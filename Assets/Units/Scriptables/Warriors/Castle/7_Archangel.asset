@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6892427306879841ae9bdf6a40176c7, type: 3}
+  m_Name: 7_Archangel
+  m_EditorClassIdentifier: 
+  idObject: 4633809725c4420fa8c9fef307b94b9d
+  level: 7
+  typeGround: 20
+  typeInput: 1
+  TypeUnit: 7
+  listTypeNoPath: 
+  Prefab: {fileID: 2399053797994059981, guid: bfa2c889a185cce44a2321618c002a2b, type: 3}
+  MenuSprite: {fileID: -554795200, guid: 94b0388481a139c4b979582354aed69b, type: 3}

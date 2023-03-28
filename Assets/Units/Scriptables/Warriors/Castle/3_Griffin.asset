@@ -18,18 +18,23 @@ MonoBehaviour:
   typeInput: 1
   TypeUnit: 7
   listTypeNoPath: 
-  Prefab: {fileID: 4097283404208733427, guid: ae543261eecfe404184229c26ee018fd, type: 3}
+  Prefab: {fileID: 1830729087207960974, guid: 05ce74c5d57416b41b9309218eb89671, type: 3}
   MenuSprite: {fileID: -1732154962, guid: ec6a9eb1927263d468c4134c8df8cc07, type: 3}
-  Title: []
   Locale:
   - Language: {fileID: 11400000, guid: 30b8a59646ec31e4fa7737b1c0d7cba9, type: 2}
     Text:
       title: "\u0413\u0440\u0438\u0444\u043E\u043D"
       description: "\u0413\u0440\u0438\u0444\u043E\u043D"
+      visit_ok: 
+      visit_no: 
+      visit_noresource: 
   - Language: {fileID: 11400000, guid: 5ecc387139072f64d91ffa31ae4c4cb7, type: 2}
     Text:
       title: Griffin
       description: Griffin
+      visit_ok: 
+      visit_no: 
+      visit_noresource: 
   DataUnitWarrior:
     Health: 25
     Attack: 8

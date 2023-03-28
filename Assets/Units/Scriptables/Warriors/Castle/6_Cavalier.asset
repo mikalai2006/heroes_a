@@ -18,18 +18,23 @@ MonoBehaviour:
   typeInput: 1
   TypeUnit: 7
   listTypeNoPath: 
-  Prefab: {fileID: 6583251884411609870, guid: 906ce8626d0014e40ac9aeb8ef04056a, type: 3}
+  Prefab: {fileID: 3386624543117883334, guid: 11588db93a92c604bb575f3bf1228806, type: 3}
   MenuSprite: {fileID: 1760757411, guid: 27742d24928e1224185ed5b7cfd9f093, type: 3}
-  Title: []
   Locale:
   - Language: {fileID: 11400000, guid: 30b8a59646ec31e4fa7737b1c0d7cba9, type: 2}
     Text:
       title: "\u041A\u0430\u0432\u0430\u043B\u0435\u0440\u0438\u0441\u0442"
       description: "\u041A\u0430\u0432\u0430\u043B\u0435\u0440\u0438\u0441\u0442"
+      visit_ok: 
+      visit_no: 
+      visit_noresource: 
   - Language: {fileID: 11400000, guid: 5ecc387139072f64d91ffa31ae4c4cb7, type: 2}
     Text:
       title: Cavalier
       description: 
+      visit_ok: 
+      visit_no: 
+      visit_noresource: 
   DataUnitWarrior:
     Health: 0
     Attack: 0

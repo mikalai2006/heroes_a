@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: 6_Cyclop
   m_EditorClassIdentifier: 
   idObject: cf19c5af4dbf469a92b8e9eca1cf68c1
+  level: 6
   typeGround: 30
   typeInput: 1
   TypeUnit: 7
   listTypeNoPath: 
-  Prefab: {fileID: -6776450056793292880, guid: 4395ce7958b693f4a8718ed506d09058, type: 3}
+  Prefab: {fileID: 8238931907503407211, guid: 729d98b463b20d24cae735d0a6c5d48d, type: 3}
   MenuSprite: {fileID: 528489380, guid: b94adf996afa7914eac367e552a603fe, type: 3}
-  level: 6
