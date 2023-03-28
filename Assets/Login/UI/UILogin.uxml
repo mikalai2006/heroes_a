@@ -14,9 +14,9 @@
                 </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement name="FormRow" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); margin-top: 15px; flex-direction: row; justify-content: space-between;">
-                <ui:Button text="#dontwantlogin" display-tooltip-when-elided="true" name="ButtonNameDevice" class="button button_bg button_text button_bordered" />
+                <ui:Button text="#dontwant_sign" display-tooltip-when-elided="true" name="ButtonNameDevice" class="button button_bg button_text button_bordered" />
                 <ui:VisualElement name="FormField" style="align-items: flex-end;">
-                    <ui:Button text="#login" display-tooltip-when-elided="true" name="ButtonLogin" class="button button_bg button_bordered button_text" />
+                    <ui:Button text="#sign_in" display-tooltip-when-elided="true" name="ButtonLogin" class="button button_bg button_bordered button_text" />
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>

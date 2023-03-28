@@ -3,25 +3,28 @@
     <Style src="project://database/Assets/UI/Toolkit/Dialog.uss?fileID=7433441132597879392&amp;guid=2438f8d68703dce4ab75f8d1eda15062&amp;type=3#Dialog" />
     <ui:VisualElement name="GameMenu" class="dialog_box">
         <ui:VisualElement name="Panel" class="dialog_panel border-color bg">
-            <ui:VisualElement name="Header" class="dialog_header">
-                <ui:VisualElement name="HeaderText" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
-                    <ui:Label tabindex="-1" text="#HeaderSetting" display-tooltip-when-elided="true" />
+            <ui:VisualElement name="BgFrame" class="dialog_bgframe" />
+            <ui:VisualElement class="p-4" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
+                <ui:VisualElement name="Header" class="dialog_header">
+                    <ui:VisualElement name="HeaderText" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
+                        <ui:Label tabindex="-1" text="#HeaderSetting" display-tooltip-when-elided="true" />
+                    </ui:VisualElement>
+                    <ui:Button display-tooltip-when-elided="true" name="ButtonClose" class="button_close button button_bg">
+                        <ui:Label tabindex="-1" text="X" display-tooltip-when-elided="true" style="padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0;" />
+                    </ui:Button>
                 </ui:VisualElement>
-                <ui:Button display-tooltip-when-elided="true" name="ButtonClose" class="button_close button button_bg">
-                    <ui:Label tabindex="-1" text="X" display-tooltip-when-elided="true" style="padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0;" />
-                </ui:Button>
-            </ui:VisualElement>
-            <ui:VisualElement name="Row" class="dialog_box_row">
-                <ui:VisualElement name="Col" class="dialog_box_col" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);" />
-                <ui:VisualElement name="Col" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);" />
-            </ui:VisualElement>
-            <ui:VisualElement name="Row" class="dialog_box_row">
-                <ui:Button display-tooltip-when-elided="true" name="ButtonSave" class="button button_text button_bordered button_bg">
-                    <ui:Label tabindex="-1" text="#save" display-tooltip-when-elided="true" />
-                </ui:Button>
-                <ui:Button display-tooltip-when-elided="true" name="ButtonMenuApp" class="button button_bordered button_text button_bg">
-                    <ui:Label tabindex="-1" text="#menuapp" display-tooltip-when-elided="true" />
-                </ui:Button>
+                <ui:VisualElement name="Row" class="dialog_box_row">
+                    <ui:VisualElement name="Col" class="dialog_box_col" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);" />
+                    <ui:VisualElement name="Col" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);" />
+                </ui:VisualElement>
+                <ui:VisualElement name="Row" class="dialog_box_row">
+                    <ui:Button display-tooltip-when-elided="true" name="ButtonSave" class="button button_text button_bordered button_bg">
+                        <ui:Label tabindex="-1" text="#save" display-tooltip-when-elided="true" />
+                    </ui:Button>
+                    <ui:Button display-tooltip-when-elided="true" name="ButtonMenuApp" class="button button_bordered button_text button_bg">
+                        <ui:Label tabindex="-1" text="#menuapp" display-tooltip-when-elided="true" />
+                    </ui:Button>
+                </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>

@@ -18,5 +18,23 @@ MonoBehaviour:
   typeInput: 1
   TypeUnit: 7
   listTypeNoPath: 
-  Prefab: {fileID: 5243021790132133909, guid: 016c4e0d7dc05d74380640e04fb0d4cf, type: 3}
-  MenuSprite: {fileID: -1038840555, guid: 5205844a59c26684aac45e616bc7efab, type: 3}
+  Prefab: {fileID: 8195460152588547095, guid: 84c4be2db55a8d1409a0512e51efb96b, type: 3}
+  MenuSprite: {fileID: 1553045870, guid: 211c3996d9c5ed94faa80c63928ab087, type: 3}
+  Title: []
+  Locale:
+  - Language: {fileID: 11400000, guid: 30b8a59646ec31e4fa7737b1c0d7cba9, type: 2}
+    Text:
+      title: "\u041A\u043E\u043F\u0435\u0439\u0449\u0438\u043A"
+      description: "\u041A\u043E\u043F\u0435\u0439\u0449\u0438\u043A"
+  - Language: {fileID: 11400000, guid: 5ecc387139072f64d91ffa31ae4c4cb7, type: 2}
+    Text:
+      title: Pickman
+      description: Pickman
+  DataUnitWarrior:
+    Health: 10
+    Attack: 6
+    Protection: 5
+    Damage: 1
+    MaxDamage: 2
+    Ammunition: 0
+    Speed: 5

@@ -1,8 +1,11 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
-public class BaseWarriors : UnitBase, IDataPlay
+using Cysharp.Threading.Tasks;
+
+using UnityEngine;
+using UnityEngine.Localization.Settings;
+
+public class BaseWarriors : UnitBase, IDataPlay, IDialogMapObjectOperation
 {
     public DataWarrior Data;
 
@@ -10,22 +13,52 @@ public class BaseWarriors : UnitBase, IDataPlay
     {
         base.InitUnit(data, pos);
         Data = new DataWarrior();
+        Data.quantity = 10;
         //ScriptableWarriors dataWarrior = (ScriptableWarriors)data;
         //Data.quantity = dataWarrior.level * ;
         // OnChangeQuantityWarrior();
     }
 
-    public override void OnGoHero(Player player)
+    public async override void OnGoHero(Player player)
     {
         base.OnGoHero(player);
 
-        OccupiedNode.SetProtectedNeigbours(null);
+        DataResultDialog result = await OnTriggeredHero();
 
-        OccupiedNode.SetOcuppiedUnit(null);
+        if (result.isOk)
+        {
+            OccupiedNode.SetProtectedNeigbours(null);
 
-        Destroy(gameObject.gameObject);
+            OccupiedNode.SetOcuppiedUnit(null);
 
-        Debug.LogWarning("Show dialog war!");
+            Destroy(gameObject);
+        }
+        else
+        {
+            // Click cancel.
+        }
+    }
+
+    public async UniTask<DataResultDialog> OnTriggeredHero()
+    {
+        var listValue = new List<DataDialogItem>();
+        listValue.Add(new DataDialogItem()
+        {
+            Sprite = ScriptableData.MenuSprite,
+            Value = Data.quantity
+        });
+
+        var t = HelperLanguage.GetLocaleText(this.ScriptableData);
+        var dialogData = new DataDialog()
+        {
+            Description = t.Text.title,
+            Header = t.Text.description,
+            Sprite = this.ScriptableData.MenuSprite,
+            Value = listValue
+        };
+
+        var dialogWindow = new DialogMapObjectProvider(dialogData);
+        return await dialogWindow.ShowAndHide();
     }
 
     public void OnChangeQuantityWarrior()

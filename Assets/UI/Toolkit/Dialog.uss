@@ -33,14 +33,6 @@
 }
 
 .dialog_panel {
-    border-left-width: 2px;
-    border-right-width: 2px;
-    border-top-width: 2px;
-    border-bottom-width: 2px;
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
     width: 50%;
 }
 
@@ -50,9 +42,30 @@
     padding-top: 10px;
     padding-bottom: 10px;
     flex-direction: row;
-    background-color: rgba(0, 0, 0, 0.42);
-    justify-content: space-between;
     flex-shrink: 0;
     border-top-width: 2px;
-    align-items: flex-start;
+    justify-content: center;
+}
+
+.dialog_overlay {
+    -unity-slice-left: 50;
+    -unity-slice-top: 50;
+    -unity-slice-right: 50;
+    -unity-slice-bottom: 50;
+    flex-grow: 1;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+.dialog_bgframe {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-image: url('project://database/Assets/UI/Sprites/Frame.png?fileID=2800000&guid=81eaaceda174c9442b7581ccf4d2787d&type=3#Frame');
+    -unity-background-scale-mode: stretch-to-fill;
+    -unity-slice-left: 50;
+    -unity-slice-top: 50;
+    -unity-slice-right: 50;
+    -unity-slice-bottom: 50;
 }

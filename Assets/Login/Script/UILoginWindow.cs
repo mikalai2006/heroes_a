@@ -5,6 +5,10 @@ using AppInfo;
 using UnityEngine.Events;
 using UnityEngine.Networking;
 using System.Text;
+using UnityEngine.Localization;
+using UnityEngine.ResourceManagement.AsyncOperations;
+using UnityEngine.Localization.Tables;
+using System;
 
 public struct DataLogin
 {
@@ -22,6 +26,7 @@ public class UILoginWindow : MonoBehaviour
     [SerializeField] private UIDocument _uiDoc;
     public UIDocument MenuApp => _uiDoc;
 
+    [SerializeField] private LocalizedStringTable _localization;
     private readonly string _nameFieldLogin = "Login";
     private readonly string _nameFieldPassword = "Password";
     private readonly string _nameButtonLogin = "ButtonLogin";
@@ -63,7 +68,72 @@ public class UILoginWindow : MonoBehaviour
             _buttonLogin.SetEnabled(true);
         };
 
+        OnLocalization();
         OnValidFormField();
+    }
+
+    private void OnLocalization()
+    {
+        var op = _localization.GetTableAsync();
+        if (op.IsDone)
+        {
+            OnTableLoaded(op);
+        }
+        else
+        {
+            op.Completed -= OnTableLoaded;
+            op.Completed += OnTableLoaded;
+        }
+    }
+
+    private void OnTableLoaded(AsyncOperationHandle<StringTable> op)
+    {
+        StringTable table = op.Result;
+        LocalizeChildrenRecursively(_uiDoc.rootVisualElement, table);
+        // string key = _buttonLogin.text;
+        // key = key.TrimStart('#');
+        // StringTableEntry entry = table[key];
+        // if (entry != null)
+        //     _buttonLogin.text = entry.LocalizedValue;
+        // else
+        //     Debug.LogWarning($"No {table.LocaleIdentifier.Code} translation for key: '{key}'");
+    }
+
+    void LocalizeChildrenRecursively(VisualElement element, StringTable table)
+    {
+        VisualElement.Hierarchy elementHierarchy = element.hierarchy;
+        int numChildren = elementHierarchy.childCount;
+        for (int i = 0; i < numChildren; i++)
+        {
+            VisualElement child = elementHierarchy.ElementAt(i);
+            Localize(child, table);
+        }
+        for (int i = 0; i < numChildren; i++)
+        {
+            VisualElement child = elementHierarchy.ElementAt(i);
+            VisualElement.Hierarchy childHierarchy = child.hierarchy;
+            int numGrandChildren = childHierarchy.childCount;
+            if (numGrandChildren != 0)
+                LocalizeChildrenRecursively(child, table);
+        }
+    }
+
+    void Localize(VisualElement next, StringTable table)
+    {
+        if (typeof(TextElement).IsInstanceOfType(next))
+        {
+            TextElement textElement = (TextElement)next;
+            string key = textElement.text;
+            if (!string.IsNullOrEmpty(key) && key[0] == '#')
+            {
+                key = key.TrimStart('#');
+                StringTableEntry entry = table[key];
+                if (entry != null)
+                    textElement.text = entry.LocalizedValue;
+                else
+                    Debug.LogWarning($"No {table.LocaleIdentifier.Code} translation for key: '{key}'");
+            }
+        }
     }
 
     private void OnValidFormField()
@@ -171,17 +241,13 @@ public class UILoginWindow : MonoBehaviour
         userInfo.UserInfoAuth.RefreshToken = resultObject.refresh_token;
         userInfo.UserInfoAuth.AccessToken = resultObject.access_token;
 
+        if (userInfo.UserInfoAuth.AccessToken == "")
+            return;
+
         var infoUser = await GetUserInfo(resultObject.access_token);
         var infoUserObject = JsonUtility.FromJson<UserInfo>(infoUser);
-        _loginCompletionSource.SetResult(userInfo);
-        // Debug.Log(infoUser);
-        // if (_fieldName.text.Length < MIN_LENGTH_NAME)
-        //     return;
-        // _loginCompletionSource.SetResult(new UserInfoContainer()
-        // {
-        //     Name = _fieldName.text
-        // });
 
+        _loginCompletionSource.SetResult(userInfo);
         loginAction?.Invoke();
     }
 

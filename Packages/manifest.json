@@ -9,6 +9,7 @@
     "com.unity.collab-proxy": "2.0.0",
     "com.unity.feature.2d": "1.0.0",
     "com.unity.feature.development": "1.0.1",
+    "com.unity.localization": "1.4.3",
     "com.unity.memoryprofiler": "1.0.0",
     "com.unity.multiplayer.samples.coop": "https://github.com/Unity-Technologies/com.unity.multiplayer.samples.coop.git?path=/Packages/com.unity.multiplayer.samples.coop#main",
     "com.unity.netcode.gameobjects": "1.2.0",

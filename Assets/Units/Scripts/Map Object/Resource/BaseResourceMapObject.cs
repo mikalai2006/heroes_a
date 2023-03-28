@@ -11,19 +11,30 @@ public struct DataResourceMapObject
     public List<DataResourceValue> Value;
     public TypeWork TypeWork;
 }
-public abstract class BaseResourceMapObject : BaseMapObject, IDataPlay
+public abstract class BaseResourceMapObject : BaseMapObject, IDataPlay, IDialogMapObjectOperation
 {
-
     private DataResourceMapObject Data;
 
     public async UniTask<DataResultDialog> OnTriggeredHero()
     {
+
+        var listValue = new List<DataDialogItem>(Data.Value.Count);
+        for (int i = 0; i < Data.Value.Count; i++)
+        {
+            listValue.Add(new DataDialogItem()
+            {
+                Sprite = Data.Value[i].Resource.MenuSprite,
+                Value = Data.Value[i].value
+            });
+        }
+
+        var t = HelperLanguage.GetLocaleText(this.ScriptableData);
         var dialogData = new DataDialog()
         {
-            Description = this.ScriptableData.name,
-            Header = this.name,
-            sprite = this.ScriptableData.MenuSprite,
-            value = Data.Value
+            Description = t.Text.visit_ok,
+            Header = t.Text.title,
+            // Sprite = this.ScriptableData.MenuSprite,
+            Value = listValue
         };
 
         var dialogWindow = new DialogMapObjectProvider(dialogData);
