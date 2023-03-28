@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: 5_Roc
   m_EditorClassIdentifier: 
   idObject: 64b9fd57a19f4c4a9518ef9cc3379293
+  level: 5
   typeGround: 30
   typeInput: 1
   TypeUnit: 7
   listTypeNoPath: 
-  Prefab: {fileID: -5931924195318819508, guid: d5173f978e5dc504eb618f938b12d5b0, type: 3}
+  Prefab: {fileID: 1149259137699230917, guid: 28fb75da3516697439cd5adf175fa991, type: 3}
   MenuSprite: {fileID: 135391731, guid: cee6b22b090175144a6c1388e9d59776, type: 3}
-  level: 5

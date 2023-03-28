@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: 4_Griffin
   m_EditorClassIdentifier: 
   idObject: 5e4a8b77db734928b353ae0966e93683
+  level: 4
   typeGround: 20
   typeInput: 1
   TypeUnit: 7
   listTypeNoPath: 
-  Prefab: {fileID: 4097283404208733427, guid: ae543261eecfe404184229c26ee018fd, type: 3}
+  Prefab: {fileID: 1830729087207960974, guid: 05ce74c5d57416b41b9309218eb89671, type: 3}
   MenuSprite: {fileID: -1732154962, guid: ec6a9eb1927263d468c4134c8df8cc07, type: 3}
-  level: 4

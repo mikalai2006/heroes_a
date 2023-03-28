@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: 6_Cavalier
   m_EditorClassIdentifier: 
   idObject: 5dce2544167f4b39b049fdbfa6a2a84f
+  level: 6
   typeGround: 20
   typeInput: 1
   TypeUnit: 7
   listTypeNoPath: 
-  Prefab: {fileID: 6583251884411609870, guid: 906ce8626d0014e40ac9aeb8ef04056a, type: 3}
+  Prefab: {fileID: 3386624543117883334, guid: 11588db93a92c604bb575f3bf1228806, type: 3}
   MenuSprite: {fileID: 1760757411, guid: 27742d24928e1224185ed5b7cfd9f093, type: 3}
-  level: 6

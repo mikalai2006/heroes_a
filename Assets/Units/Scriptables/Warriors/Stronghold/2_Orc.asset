@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: 2_Orc
   m_EditorClassIdentifier: 
   idObject: 0c78771784be4b7d94d9e4ca134b2e6b
+  level: 2
   typeGround: 30
   typeInput: 1
   TypeUnit: 7
   listTypeNoPath: 
-  Prefab: {fileID: -1406138900028769053, guid: 4a2314aad58b89743bfb5462f109229e, type: 3}
+  Prefab: {fileID: 8052905428612089481, guid: d2fa2bbb96262464482c260de54bc809, type: 3}
   MenuSprite: {fileID: -453190589, guid: ea9fe5f348fb8fe4ea59418e81eb43dc, type: 3}
-  level: 2

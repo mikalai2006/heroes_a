@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: 7_Behemoth
   m_EditorClassIdentifier: 
   idObject: 3597b4a5c63b452bba399ccfb908dc38
+  level: 7
   typeGround: 30
   typeInput: 1
   TypeUnit: 7
   listTypeNoPath: 
-  Prefab: {fileID: -7293671114044300799, guid: db8d57534d3d69147884820076e2d016, type: 3}
+  Prefab: {fileID: 8706445534399345185, guid: 565159bf51661df4d8ece022f9caef77, type: 3}
   MenuSprite: {fileID: 1874438401, guid: 31aa98696bfc9fd43a184f08a486f6ad, type: 3}
-  level: 7

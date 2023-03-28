@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: 1_Goblin
   m_EditorClassIdentifier: 
   idObject: 75c1d0ece10049fe8ce7dcbc5fa66fb2
+  level: 1
   typeGround: 30
   typeInput: 1
   TypeUnit: 7
   listTypeNoPath: 
-  Prefab: {fileID: 6055919575576759866, guid: 66137301fd686b9478416c9f90b4c197, type: 3}
+  Prefab: {fileID: 7950163707778085134, guid: 6a2d6e1fef42f5f408165d503c5fcffc, type: 3}
   MenuSprite: {fileID: -1259570168, guid: 202fccea72e24e04a970f84ce5921c80, type: 3}
-  level: 1

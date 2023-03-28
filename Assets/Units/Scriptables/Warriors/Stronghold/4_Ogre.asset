@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: 4_Ogre
   m_EditorClassIdentifier: 
   idObject: 5b86a68f657f49599fe7502aae0cd581
+  level: 4
   typeGround: 30
   typeInput: 1
   TypeUnit: 7
   listTypeNoPath: 
-  Prefab: {fileID: 6642979307713432919, guid: 0bcaa1d0921bb1d46b115c3fa5ba4a57, type: 3}
+  Prefab: {fileID: 4249093480496061334, guid: c81da95f7bca7634e99d0c7491656a54, type: 3}
   MenuSprite: {fileID: 552049219, guid: 7435452d2d38b4a41b4dbad1eafd32fb, type: 3}
-  level: 4

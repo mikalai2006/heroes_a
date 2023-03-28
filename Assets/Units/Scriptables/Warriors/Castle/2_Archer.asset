@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: 2_Archer
   m_EditorClassIdentifier: 
   idObject: e891a59d385b454e88ab22e216493a02
+  level: 2
   typeGround: 20
   typeInput: 1
   TypeUnit: 7
   listTypeNoPath: 
-  Prefab: {fileID: 1520226462251911402, guid: e273e3317d49f264d846a1ad913b6fc0, type: 3}
+  Prefab: {fileID: 8617559586990622558, guid: 76c3e9366d2603c45b36de6573ad5924, type: 3}
   MenuSprite: {fileID: -1022214124, guid: 719155769fbea244e995b42070c7889a, type: 3}
-  level: 2

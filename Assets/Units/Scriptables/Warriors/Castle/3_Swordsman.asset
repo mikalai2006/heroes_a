@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: 3_Swordsman
   m_EditorClassIdentifier: 
   idObject: 1ce253cb36384dd38f911883af2b8d64
+  level: 3
   typeGround: 20
   typeInput: 1
   TypeUnit: 7
   listTypeNoPath: 
-  Prefab: {fileID: -1058635974254928675, guid: 983dff0dfeac50140962019489441a6e, type: 3}
+  Prefab: {fileID: 3855488552840056246, guid: 9fd056ea483861146bf73872db8dc9a2, type: 3}
   MenuSprite: {fileID: -478893321, guid: c93e3b65000c1b844818ef31f5cd260c, type: 3}
-  level: 3

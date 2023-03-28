@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: 3_Walf
   m_EditorClassIdentifier: 
   idObject: e206c715acdd4387bce6ee488c7ca76d
+  level: 3
   typeGround: 30
   typeInput: 1
   TypeUnit: 7
   listTypeNoPath: 
-  Prefab: {fileID: 7446350713360772316, guid: 7ce8b917644436b4893a4a0e5d5d77dc, type: 3}
+  Prefab: {fileID: 7558851767580122101, guid: 4236611ec08e31d4b83eff38c4fa5768, type: 3}
   MenuSprite: {fileID: 1892277944, guid: 432140726f3ec3d489d729c011fd81b2, type: 3}
-  level: 3
