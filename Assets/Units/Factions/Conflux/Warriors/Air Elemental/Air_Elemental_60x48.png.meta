@@ -133,7 +133,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9c0a1171349d53c44974faf46ba91236
+      spriteID: 922e768e114af8d4aa122281ace772be
       internalID: 275469396
       vertices: []
       indices: 
@@ -154,7 +154,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e032e4dc476c2be408b02406324cc664
+      spriteID: fbcdb6f772e403c4cbfe008f4769212c
       internalID: -64243535
       vertices: []
       indices: 
@@ -175,7 +175,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0fed4f2641eb96444afa7ea4d1e85c14
+      spriteID: d6467d78c114f2a4db01dbf77db6e9ff
       internalID: -935579731
       vertices: []
       indices: 
@@ -196,7 +196,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4972c10302cb5b044ab2fde64573c01b
+      spriteID: 2adfdea80cdfcf1458f71cdf711befa4
       internalID: -1125108124
       vertices: []
       indices: 
@@ -217,8 +217,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 32056851b7e890a488040ce6bf1bc0e2
+      spriteID: 6a98d00e4d9c531439f99d02ce9b8670
       internalID: 2078800975
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Air_Elemental_5
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 0
+        width: 60
+        height: 48
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 192a03c5119cd8f4992e4039a8ca181b
+      internalID: 1603652213
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Air_Elemental_6
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 0
+        width: 60
+        height: 48
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ddfddfc3752a964188376ee833c9c0e
+      internalID: -1916747299
       vertices: []
       indices: 
       edges: []
@@ -240,6 +282,7 @@ TextureImporter:
       Air_Elemental_3: -1125108124
       Air_Elemental_4: 2078800975
       Air_Elemental_5: 1603652213
+      Air_Elemental_6: -1916747299
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
