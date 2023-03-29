@@ -18,7 +18,7 @@ MonoBehaviour:
   typeInput: 1
   TypeUnit: 7
   listTypeNoPath: 
-  Prefab: {fileID: 3855488552840056246, guid: 9fd056ea483861146bf73872db8dc9a2, type: 3}
+  Prefab: {fileID: 8817151177058665259, guid: 9fd056ea483861146bf73872db8dc9a2, type: 3}
   MenuSprite: {fileID: -478893321, guid: c93e3b65000c1b844818ef31f5cd260c, type: 3}
   Locale:
   - Language: {fileID: 11400000, guid: 30b8a59646ec31e4fa7737b1c0d7cba9, type: 2}
