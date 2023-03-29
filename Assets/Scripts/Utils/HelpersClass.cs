@@ -29,6 +29,39 @@ public static class Helpers
     /// <returns>Vector3</returns>
     public static Vector3 ToIso(this Vector3 input) => _isoMatrix.MultiplyPoint3x4(input);
 
+    public static string GetStringNameCountWarrior(int n)
+    {
+        string name = "few";
+        switch (n)
+        {
+            case int i when n > 5 && n <= 9:
+                name = "several";
+                break;
+            case int i when n > 9 && n <= 19:
+                name = "pack";
+                break;
+            case int i when n > 19 && n <= 49:
+                name = "lots";
+                break;
+            case int i when n > 49 && n <= 99:
+                name = "horde";
+                break;
+            case int i when n > 99 && n <= 249:
+                name = "throng";
+                break;
+            case int i when n > 249 && n <= 499:
+                name = "swarm";
+                break;
+            case int i when n > 499 && n <= 999:
+                name = "cloud";
+                break;
+            case int i when n > 999:
+                name = "legion";
+                break;
+        }
+
+        return string.Format("army_{0}", name);
+    }
 }
 public static class HelperLanguage
 {

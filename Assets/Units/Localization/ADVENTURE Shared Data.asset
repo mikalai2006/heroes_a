@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
-  m_Name: ADVENTUREVENT Shared Data
+  m_Name: ADVENTURE Shared Data
   m_EditorClassIdentifier: 
-  m_TableCollectionName: ADVENTUREVENT
+  m_TableCollectionName: ADVENTURE
   m_TableCollectionNameGuidString: 8ed801dac82951d449557e1a63174ac8
   m_Entries:
   - m_Id: 12366020608
@@ -29,6 +29,54 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 2565350785024
     m_Key: mercury_mine_ok
+    m_Metadata:
+      m_Items: []
+  - m_Id: 705890501165056
+    m_Key: army_few
+    m_Metadata:
+      m_Items: []
+  - m_Id: 705981597253632
+    m_Key: army_several
+    m_Metadata:
+      m_Items: []
+  - m_Id: 706065210703872
+    m_Key: army_pack
+    m_Metadata:
+      m_Items: []
+  - m_Id: 706189731201024
+    m_Key: army_lots
+    m_Metadata:
+      m_Items: []
+  - m_Id: 706308446781440
+    m_Key: army_horde
+    m_Metadata:
+      m_Items: []
+  - m_Id: 706409244295168
+    m_Key: army_throng
+    m_Metadata:
+      m_Items: []
+  - m_Id: 706526282153984
+    m_Key: army_swarm
+    m_Metadata:
+      m_Items: []
+  - m_Id: 706665935699968
+    m_Key: army_cloud
+    m_Metadata:
+      m_Items: []
+  - m_Id: 707159051632640
+    m_Key: army_legion
+    m_Metadata:
+      m_Items: []
+  - m_Id: 711253053046784
+    m_Key: army_attack
+    m_Metadata:
+      m_Items: []
+  - m_Id: 713022944477184
+    m_Key: army_run
+    m_Metadata:
+      m_Items: []
+  - m_Id: 713853194371072
+    m_Key: army_join
     m_Metadata:
       m_Items: []
   m_Metadata:

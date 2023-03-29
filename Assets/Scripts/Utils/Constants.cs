@@ -34,4 +34,9 @@ public class Constants
         public const string LABEL_ROAD = "road";
         public const string LABEL_ROAD_PREFAB = "road_prefab";
     }
+
+    public class LanguageTable
+    {
+        public const string LANG_TABLE_ADVENTURE = "ADVENTURE";
+    }
 }
