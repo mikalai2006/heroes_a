@@ -201,11 +201,17 @@ public class UILoginWindow : MonoBehaviour
 
         byte[] rawBody = Encoding.UTF8.GetBytes(jsonBody);
 
-        UnityWebRequest request = new UnityWebRequest(_urlLogin + "/sign-in", "POST");
+        UnityWebRequest request = new UnityWebRequest();
+        request.url = _urlLogin + "/sign-in";
+        request.method = UnityWebRequest.kHttpVerbPOST;
+        request.useHttpContinue = false;
+
+        Debug.Log("Send POST to path: " + request.uri.OriginalString);
         request.uploadHandler = new UploadHandlerRaw(rawBody);
         request.downloadHandler = new DownloadHandlerBuffer();
         // request.SetRequestHeader("Authorization", "Basic " + GetAuthenticationKey());
         request.SetRequestHeader("Content-Type", "application/json");
+        request.SetRequestHeader("Accept", "*/*");
 
         request.SendWebRequest();
 
