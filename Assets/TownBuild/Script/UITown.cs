@@ -15,9 +15,26 @@ public class UITown : MonoBehaviour
     private SceneInstance _townScene;
 
     [SerializeField] private Canvas _bgCanvas;
+    private BaseTown _activeTown;
+    private Player _activePlayer;
 
-    public void Init(SceneInstance townScene)
+    public async void Init(SceneInstance townScene)
     {
+        await ResourceSystem.Instance.LoadCollectionsAsset<ScriptableBuildBase>(Constants.Towns.TOWN_CASTLE);
+
+        foreach (var t in ResourceSystem.Instance.GetCastleTown())
+        {
+            foreach (var b in t.Builds)
+            {
+                Debug.Log($"RequireBuilds= {b.RequiredBuilds}");
+                Debug.Log($"RequireBuilds= {System.Convert.ToString((byte)b.RequiredBuilds, 2)}");
+                Debug.Log($"TypeBuild= {b.TypeBuild.ToString()}");
+                Debug.Log($"TypeBuild= {System.Convert.ToString((byte)b.TypeBuild, 2)}");
+            }
+        }
+
+        Player activePlayer = LevelManager.Instance.ActivePlayer;
+        _activePlayer = activePlayer;
 
         _townScene = townScene;
 
@@ -30,11 +47,11 @@ public class UITown : MonoBehaviour
         Camera.main.transform.position = new Vector3(-20, 0, -10);
     }
 
-    private void OnClickClose()
+    private async void OnClickClose()
     {
-        GameManager.Instance.AssetProvider.UnloadAdditiveScene(_townScene);
-        Player activePlayer = LevelManager.Instance.ActivePlayer;
-        Camera.main.transform.position = activePlayer.ActiveTown.gameObject.transform.position - new Vector3(0, 0, 10);
+        await GameManager.Instance.AssetProvider.UnloadAdditiveScene(_townScene);
+        Camera.main.transform.position = _activePlayer.ActiveTown.gameObject.transform.position - new Vector3(0, 0, 10);
+
     }
 }
 
