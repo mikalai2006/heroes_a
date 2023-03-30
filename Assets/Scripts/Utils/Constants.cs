@@ -7,6 +7,11 @@ public class Constants
         public const string SCENE_TOWN = "TownScene";
     }
 
+    public class Towns
+    {
+        public const string TOWN_CASTLE = "town_castle";
+    }
+
     public class UILabels
     {
         public const string UI_GAME_ASIDE = "UIGameAside";

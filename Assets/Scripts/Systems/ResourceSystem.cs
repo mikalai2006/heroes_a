@@ -6,11 +6,6 @@ using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.ResourceLocations;
 
-/// <summary>
-/// One repository for all scriptable objects. Create your query methods here to keep your business logic clean.
-/// I make this a MonoBehaviour as sometimes I add some debug/development references in the editor.
-/// If you don't feel free to make this a standard class
-/// </summary>
 public class ResourceSystem : StaticInstance<ResourceSystem>
 {
 
@@ -102,6 +97,8 @@ public class ResourceSystem : StaticInstance<ResourceSystem>
     public List<TileLandscape> GetLandscape() => GetAllAssetsByLabel<TileLandscape>("landscape");
     public TileLandscape GetLandscape(TypeGround typeGround) => GetLandscape().Where(t => t.typeGround == typeGround).First();
     public List<ScriptableUnitBase> GetUnits() => GetAllAssetsByLabel<ScriptableUnitBase>("units");
+
+    public List<ScriptableBuildBase> GetCastleTown() => GetAllAssetsByLabel<ScriptableBuildBase>(Constants.Towns.TOWN_CASTLE);
     public List<T> GetUnitsByType<T>(TypeUnit typeUnit) where T : ScriptableUnitBase
     {
         var listUnits = GetUnits();

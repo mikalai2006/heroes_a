@@ -18,6 +18,8 @@ MonoBehaviour:
   Builds:
   - MenuSprite: {fileID: 0}
     Prefab: {fileID: 0}
+    TypeBuild: 4
+    RequiredBuilds: 1
     Locale:
     - Language: {fileID: 0}
       Text:

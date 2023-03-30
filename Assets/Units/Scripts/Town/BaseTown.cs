@@ -6,9 +6,11 @@ public struct DataTown
 {
     public int idPlayer;
     public string name;
+    public TypeBuild CurrentBuilds;
 }
 
-public abstract class BaseTown : UnitBase, IDataPlay {
+public abstract class BaseTown : UnitBase, IDataPlay
+{
 
     [SerializeField] protected DataTown Data;
 
@@ -16,7 +18,8 @@ public abstract class BaseTown : UnitBase, IDataPlay {
 
     //private void OnDestroy() => GameManager.OnBeforeStateChanged -= OnStateChanged;
 
-    public override void OnAfterStateChanged(GameState newState) {
+    public override void OnAfterStateChanged(GameState newState)
+    {
         //if (newState == GameState.HeroTurn) _canMove = true;
         base.OnAfterStateChanged(newState);
     }
@@ -37,7 +40,8 @@ public abstract class BaseTown : UnitBase, IDataPlay {
         flag.GetComponent<SpriteRenderer>().color = player.DataPlayer.color;
     }
 
-    public virtual void ExecuteMove() {
+    public virtual void ExecuteMove()
+    {
         // Override this to do some hero-specific logic, then call this base method to clean up the turn
 
         //_canMove = false;
