@@ -1,5 +1,3 @@
-using System.Threading.Tasks;
-
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.ResourceManagement.ResourceProviders;
@@ -34,8 +32,9 @@ public class UITown : MonoBehaviour
 
     private void OnClickClose()
     {
-        Debug.Log("Click close");
         GameManager.Instance.AssetProvider.UnloadAdditiveScene(_townScene);
+        Player activePlayer = LevelManager.Instance.ActivePlayer;
+        Camera.main.transform.position = activePlayer.ActiveTown.gameObject.transform.position - new Vector3(0, 0, 10);
     }
 }
 

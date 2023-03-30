@@ -261,7 +261,7 @@ public class UIGameAside : MonoBehaviour
                 newButtonTown.Q<Button>(NameAllAsideButton).clickable.clicked += async () =>
                 {
                     //Debug.Log($"Click button {town.TownData.position}");
-                    if (player.GetActiveTown() == town)
+                    if (player.ActiveTown == town)
                     {
                         //Debug.Log($"Go to town");
                         //UIManager.Instance.ShowTown();
@@ -269,7 +269,7 @@ public class UIGameAside : MonoBehaviour
                     }
                     else
                     {
-                        player.SetActiveTown(town);
+                        player.ActiveTown = town;
                     }
                     OnResetFocusButton();
                     newButtonTown.Q<Button>(NameAllAsideButton).AddToClassList(NameSelectedButton);
