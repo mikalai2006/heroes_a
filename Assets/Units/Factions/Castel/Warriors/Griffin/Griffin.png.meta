@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 50
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -124,9 +124,9 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 128
-        height: 128
-      alignment: 6
+        width: 60
+        height: 64
+      alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -143,11 +143,11 @@ TextureImporter:
       name: Griffin_1
       rect:
         serializedVersion: 2
-        x: 128
+        x: 60
         y: 0
-        width: 128
-        height: 128
-      alignment: 6
+        width: 60
+        height: 64
+      alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -164,11 +164,11 @@ TextureImporter:
       name: Griffin_2
       rect:
         serializedVersion: 2
-        x: 256
+        x: 120
         y: 0
-        width: 128
-        height: 128
-      alignment: 6
+        width: 60
+        height: 64
+      alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -185,11 +185,11 @@ TextureImporter:
       name: Griffin_3
       rect:
         serializedVersion: 2
-        x: 384
+        x: 180
         y: 0
-        width: 128
-        height: 128
-      alignment: 6
+        width: 60
+        height: 64
+      alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -198,27 +198,6 @@ TextureImporter:
       bones: []
       spriteID: fbd1c24041b640b4d87ce63d1ba0db1a
       internalID: 1513810127
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Griffin_4
-      rect:
-        serializedVersion: 2
-        x: 512
-        y: 0
-        width: 128
-        height: 128
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e4c0d8a2abedd9f4c850f3968a28f59e
-      internalID: 742786232
       vertices: []
       indices: 
       edges: []
@@ -238,7 +217,6 @@ TextureImporter:
       Griffin_1: 2128475102
       Griffin_2: 19917374
       Griffin_3: 1513810127
-      Griffin_4: 742786232
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
