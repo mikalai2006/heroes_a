@@ -1,18 +1,17 @@
 using UnityEngine;
-using System.Collections.Generic;
 
 [System.Serializable]
 public struct DataTown
 {
     public int idPlayer;
     public string name;
-    public TypeBuild CurrentBuilds;
+    public TypeBuild ProgressBuilds;
 }
 
 public abstract class BaseTown : UnitBase, IDataPlay
 {
 
-    [SerializeField] protected DataTown Data;
+    [SerializeField] public DataTown Data;
 
     //private void Awake() => GameManager.OnBeforeStateChanged += OnStateChanged;
 
@@ -28,6 +27,7 @@ public abstract class BaseTown : UnitBase, IDataPlay
 
         base.InitUnit(data, pos);
         Data.name = data.name;
+        Data.ProgressBuilds = TypeBuild.Tavern_1;
     }
 
     public void SetPlayer(PlayerData data)

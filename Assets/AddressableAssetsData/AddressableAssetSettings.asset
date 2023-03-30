@@ -144,6 +144,7 @@ MonoBehaviour:
     - Locale-ru
     - Preload
     - town_castle
+    - build_town
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: d17b4f64a43f1ea4697eba1d03bab099, type: 2}

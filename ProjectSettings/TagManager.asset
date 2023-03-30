@@ -8,6 +8,8 @@ TagManager:
   - Map
   - GameAside
   - Town
+  - CameraTown
+  - UITown
   layers:
   - Default
   - TransparentFX

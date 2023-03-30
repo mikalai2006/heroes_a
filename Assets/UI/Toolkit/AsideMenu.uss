@@ -34,6 +34,7 @@
     border-right-width: 2px;
     border-top-width: 2px;
     border-bottom-width: 2px;
+    background-color: rgb(0, 0, 0);
 }
 
 .aside_menu_button {
@@ -71,11 +72,11 @@
 }
 
 .aside_blok_list {
-    background-color: rgba(0, 0, 0, 0.91);
     padding-left: 2px;
     padding-right: 2px;
     padding-top: 2px;
     padding-bottom: 2px;
+    background-color: rgb(0, 0, 0);
 }
 
 .aside_hero_button {
@@ -86,35 +87,4 @@
     background-image: none;
     min-width: 30px;
     min-height: 30px;
-}
-
-.aside_button {
-    margin-left: 0;
-    margin-right: 0;
-    margin-top: 0;
-    margin-bottom: 0;
-    padding-left: 1px;
-    padding-right: 1px;
-    padding-top: 1px;
-    padding-bottom: 1px;
-    flex-grow: 0;
-    flex-direction: row;
-    flex-shrink: 1;
-    align-items: flex-end;
-    border-left-width: 2px;
-    border-right-width: 2px;
-    border-top-width: 2px;
-    border-bottom-width: 2px;
-    border-left-color: rgb(0, 0, 0);
-    border-right-color: rgb(0, 0, 0);
-    border-top-color: rgb(0, 0, 0);
-    border-bottom-color: rgb(0, 0, 0);
-}
-
-.aside_button:active {
-    border-left-color: rgb(252, 219, 118);
-    border-right-color: rgb(252, 219, 118);
-    border-top-color: rgb(252, 219, 118);
-    border-bottom-color: rgb(252, 219, 118);
-    translate: 1px 1px;
 }

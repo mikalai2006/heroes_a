@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d42093a1eaf0824c9a2bb9f171cc7f4, type: 3}
+  m_Name: Market
+  m_EditorClassIdentifier: 
+  idObject: 
+  TypeFaction: 0
+  Prefab: {fileID: -7943310686219343270, guid: ef11d506db95c24449f21cf1fd2eb30a, type: 3}
+  BuildLevels:
+  - MenuSprite: {fileID: 21300000, guid: 2fd16f7b2785daa4d912926703990b7c, type: 3}
+    TypeBuild: 1073743872
+    RequiredBuilds: 2
+    Locale:
+    - Language: {fileID: 11400000, guid: 30b8a59646ec31e4fa7737b1c0d7cba9, type: 2}
+      Text:
+        title: "\u0420\u044B\u043D\u043E\u043A"
+        description: 
+        visit_ok: 
+        visit_no: 
+        visit_noresource: 
+    CostResource: []

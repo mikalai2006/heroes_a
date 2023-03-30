@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-[CreateAssetMenu(fileName = "NewTown", menuName = "Game/Units/New Town")]
+[CreateAssetMenu(fileName = "NewMapTown", menuName = "Game/Units/New Map Town")]
 public class ScriptableTown : ScriptableUnitBase
 {
     public List<ScriptableHero> heroes;
