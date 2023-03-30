@@ -4,6 +4,7 @@ public class Constants
     {
         public const string SCENE_MAIN = "MainScene";
         public const string SCENE_GAME = "GameScene";
+        public const string SCENE_TOWN = "TownScene";
     }
 
     public class UILabels
@@ -12,6 +13,7 @@ public class Constants
         public const string UI_DIALOG_MAP_OBJECTS = "UIDialogMapObject";
         public const string UI_LOGIN = "UILogin";
         public const string UI_GAME_MENU = "UIGameMenu";
+        public const string UI_TOWN = "UITown";
 
     }
 
@@ -33,5 +35,10 @@ public class Constants
         public const string LABEL_GAMEMODE_PREFAB = "gamemode_prefab";
         public const string LABEL_ROAD = "road";
         public const string LABEL_ROAD_PREFAB = "road_prefab";
+    }
+
+    public class LanguageTable
+    {
+        public const string LANG_TABLE_ADVENTURE = "ADVENTURE";
     }
 }

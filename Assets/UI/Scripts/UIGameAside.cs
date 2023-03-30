@@ -86,11 +86,21 @@ public class UIGameAside : MonoBehaviour
     private async UniTask<DataResultGameMenu> ShowGameMenu()
     {
         //UIManager.Instance.ShowSettingMenu();
-        Debug.Log("Show menu");
         OnShowSetting?.Invoke();
 
         var dialogWindow = new GameMenuProvider();
         return await dialogWindow.ShowAndHide();
+
+    }
+
+    private async void ShowTown()
+    {
+        OnShowTown?.Invoke();
+        // aside.style.display = DisplayStyle.None;
+        var loadingOperations = new Queue<ILoadingOperation>();
+        // GameManager.Instance.AssetProvider.UnloadAdditiveScene(_scene);
+        loadingOperations.Enqueue(new TownLoadOperation());
+        await GameManager.Instance.LoadingScreenProvider.LoadAndDestroy(loadingOperations);
 
     }
 
@@ -248,18 +258,18 @@ public class UIGameAside : MonoBehaviour
 
                 newButtonTown.Q<VisualElement>("image").style.backgroundImage = new StyleBackground(town.ScriptableData.MenuSprite);
 
-                newButtonTown.Q<Button>(NameAllAsideButton).clickable.clicked += () =>
+                newButtonTown.Q<Button>(NameAllAsideButton).clickable.clicked += async () =>
                 {
                     //Debug.Log($"Click button {town.TownData.position}");
-                    if (player.GetActiveTown() == town)
+                    if (player.ActiveTown == town)
                     {
                         //Debug.Log($"Go to town");
                         //UIManager.Instance.ShowTown();
-                        OnShowTown?.Invoke();
+                        ShowTown();
                     }
                     else
                     {
-                        player.SetActiveTown(town);
+                        player.ActiveTown = town;
                     }
                     OnResetFocusButton();
                     newButtonTown.Q<Button>(NameAllAsideButton).AddToClassList(NameSelectedButton);
