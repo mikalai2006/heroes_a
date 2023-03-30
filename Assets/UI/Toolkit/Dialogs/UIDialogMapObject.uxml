@@ -9,14 +9,14 @@
             <ui:VisualElement name="Bg" class="dialog_overlay" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); background-image: url(&apos;project://database/Assets/UI/Sprites/Frame.png?fileID=2800000&amp;guid=81eaaceda174c9442b7581ccf4d2787d&amp;type=3#Frame&apos;);" />
             <ui:VisualElement class="p-4" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
                 <ui:VisualElement name="Header" class="dialog_header">
-                    <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
+                    <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); align-items: center;">
                         <ui:Label tabindex="-1" text="#title" display-tooltip-when-elided="true" name="HeaderDialog" />
                     </ui:VisualElement>
                 </ui:VisualElement>
                 <ui:VisualElement name="Row" class="dialog_box_row">
                     <ui:VisualElement name="Col" class="text-secondary text-lg" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); align-self: center;">
                         <ui:VisualElement name="SpriteObject" style="align-self: center;" />
-                        <ui:Label tabindex="-1" text="LabelLa belLabelLabelLa belLabelLabelLa belLabelLabelLa belLabelLabelLa belLabelLabelLa belLabelLabelLa belLabelLabelLa belLabelLabelLa belLabelLabelLa belLabel" display-tooltip-when-elided="true" name="DescriptionDialog" enable-rich-text="false" style="white-space: normal; -unity-text-align: upper-center;" />
+                        <ui:Label tabindex="-1" text="La belLabelLabelLa belLabelLabelLa belLabelLabelLa belLabelLabelLa belLabelLabelLa belLabelLabelLa belLabelLabelLa belLabelLabelLa belLabelLabelLa belLabel" display-tooltip-when-elided="true" name="DescriptionDialog" enable-rich-text="true" style="white-space: normal; -unity-text-align: upper-center;" />
                     </ui:VisualElement>
                     <ui:VisualElement name="BoxVariants" style="flex-direction: row; justify-content: center;" />
                 </ui:VisualElement>

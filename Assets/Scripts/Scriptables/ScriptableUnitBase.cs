@@ -18,7 +18,7 @@ public abstract class ScriptableUnitBase : ScriptableObject
     public List<TypeNoPath> RulesDraw => listTypeNoPath;
 
     // Used in game
-    public UnitBase Prefab;
+    [SerializeField] public UnitBase Prefab;
     // Used in menus
     //public string Description;
     public Sprite MenuSprite;

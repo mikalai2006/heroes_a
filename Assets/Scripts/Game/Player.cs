@@ -71,6 +71,20 @@ public class Player
         }
     }
 
+    public BaseTown ActiveTown
+    {
+        get { return _data.ActiveTown; }
+        set
+        {
+            GameManager.Instance.ChangeState(GameState.ChooseHero);
+
+            _data.ActiveTown = value;
+
+            LevelManager.Instance.SetPositionCamera(new Vector3(value.Position.x, value.Position.y, -10f));
+
+        }
+    }
+
     public Player(PlayerData data)
     {
         _data = new PlayerData();
@@ -139,19 +153,15 @@ public class Player
         return DataPlayer.ListHero[id];
     }
 
-    public void SetActiveTown(BaseTown town)
-    {
-        GameManager.Instance.ChangeState(GameState.ChooseHero);
+    // public void SetActiveTown(BaseTown town)
+    // {
+    //     GameManager.Instance.ChangeState(GameState.ChooseHero);
 
-        _data.ActiveTown = town;
+    //     _data.ActiveTown = town;
 
-        LevelManager.Instance.SetPositionCamera(new Vector3(town.Position.x, town.Position.y, -10f));
+    //     LevelManager.Instance.SetPositionCamera(new Vector3(town.Position.x, town.Position.y, -10f));
 
-    }
-    public BaseTown GetActiveTown()
-    {
-        return _data.ActiveTown;
-    }
+    // }
 
     public List<GridTileNode> FindPathForHero(Vector3Int endPoint, bool isTrigger, bool force)
     {

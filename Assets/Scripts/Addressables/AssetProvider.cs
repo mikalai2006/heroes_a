@@ -15,7 +15,7 @@ public class AssetProvider : ILoadingOperation
     public string Description => "Assets Initialization...";
     public async UniTask Load(Action<float> onProgress, Action<string> onSetNotify)
     {
-        Debug.LogWarning("Init addressables");
+        Debug.Log("Init addressables");
         var operation = Addressables.InitializeAsync();
         await operation.Task;
         _isReady = true;

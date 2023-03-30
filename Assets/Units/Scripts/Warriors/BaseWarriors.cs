@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 
 using UnityEngine;
+using UnityEngine.Localization;
 using UnityEngine.Localization.Settings;
+using UnityEngine.Localization.SmartFormat.PersistentVariables;
 
 public class BaseWarriors : UnitBase, IDataPlay, IDialogMapObjectOperation
 {
@@ -41,20 +43,26 @@ public class BaseWarriors : UnitBase, IDataPlay, IDialogMapObjectOperation
 
     public async UniTask<DataResultDialog> OnTriggeredHero()
     {
-        var listValue = new List<DataDialogItem>();
-        listValue.Add(new DataDialogItem()
-        {
-            Sprite = ScriptableData.MenuSprite,
-            Value = Data.quantity
-        });
+        // var listValue = new List<DataDialogItem>();
+        // listValue.Add(new DataDialogItem()
+        // {
+        //     Sprite = ScriptableData.MenuSprite,
+        //     Value = Data.quantity
+        // });
+        string nameText = Helpers.GetStringNameCountWarrior(Data.quantity);
+        LocalizedString stringCountWarriors = new LocalizedString(Constants.LanguageTable.LANG_TABLE_ADVENTURE, nameText);
 
         var t = HelperLanguage.GetLocaleText(this.ScriptableData);
+        LocalizedString message = new LocalizedString(Constants.LanguageTable.LANG_TABLE_ADVENTURE, "army_attack")
+        {
+            { "name", new StringVariable { Value = "<color=#FFFFAB>" + t.Text.title + "</color>" } },
+        };
+
         var dialogData = new DataDialog()
         {
-            Description = t.Text.title,
-            Header = t.Text.description,
+            Header = string.Format("{0} {1}", stringCountWarriors.GetLocalizedString(), t.Text.title),
+            Description = message.GetLocalizedString(),
             Sprite = this.ScriptableData.MenuSprite,
-            Value = listValue
         };
 
         var dialogWindow = new DialogMapObjectProvider(dialogData);

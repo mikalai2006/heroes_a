@@ -25,7 +25,7 @@ MonoBehaviour:
     - Preload
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9357671765134d64fa4412d51571b9af
-    m_Address: ADVENTUREVENT_ru
+    m_Address: ADVENTURE_ru
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-ru
