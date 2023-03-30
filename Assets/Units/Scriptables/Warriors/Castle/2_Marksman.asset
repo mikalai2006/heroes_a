@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6892427306879841ae9bdf6a40176c7, type: 3}
   m_Name: 2_Marksman
   m_EditorClassIdentifier: 
-  idObject: 
-  level: 0
-  typeGround: 0
-  typeInput: 0
-  TypeUnit: 0
+  idObject: bb9c35c5a9ec49ecb39ab368fa94c2cd
+  level: 2
+  typeGround: 20
+  typeInput: 1
+  TypeUnit: 7
   listTypeNoPath: 
-  Prefab: {fileID: 0}
-  MenuSprite: {fileID: 0}
+  Prefab: {fileID: 5934478665743741119, guid: 42cdbd3ae5a3d5741b61ec42d4e91521, type: 3}
+  MenuSprite: {fileID: 957723217, guid: afe59e8061c728245b978ffa4fa24aa2, type: 3}
   Locale: []
   DataUnitWarrior:
     Health: 0

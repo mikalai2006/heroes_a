@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: 4_Crusader
   m_EditorClassIdentifier: 
   idObject: 5d5080f8366f43b8b3920541f3f98c8a
-  level: 0
-  typeGround: 0
-  typeInput: 0
-  TypeUnit: 0
+  level: 4
+  typeGround: 20
+  typeInput: 1
+  TypeUnit: 7
   listTypeNoPath: 
-  Prefab: {fileID: 0}
-  MenuSprite: {fileID: 0}
+  Prefab: {fileID: 1718339588899311187, guid: 3332d2f242dc0a545bbf19ffe62ab593, type: 3}
+  MenuSprite: {fileID: 956675428, guid: c524b62ee3f5cb0418d7dbf8538c6904, type: 3}
   Locale: []
   DataUnitWarrior:
     Health: 0

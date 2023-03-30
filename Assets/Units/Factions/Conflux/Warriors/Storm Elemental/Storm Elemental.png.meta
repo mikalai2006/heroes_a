@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 7595c7e5e3b8e9243a2dbc9d59dd34a3
+guid: 0c23e561fec994a4e8200780021eaf1a
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -119,7 +119,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Water Elemental_0
+      name: Storm Elemental_0
       rect:
         serializedVersion: 2
         x: 0
@@ -133,14 +133,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 07bb319050f2f98488722b22d95470f1
-      internalID: 212522488
+      spriteID: 73f303910c8801145a9b6b78949a63f6
+      internalID: 371916395
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Water Elemental_1
+      name: Storm Elemental_1
       rect:
         serializedVersion: 2
         x: 60
@@ -154,14 +154,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 850bff89882501142b5d7155bbf7a970
-      internalID: 471846689
+      spriteID: 1523a675f2ce52e45b06a2909411e4fe
+      internalID: 1626029690
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Water Elemental_2
+      name: Storm Elemental_2
       rect:
         serializedVersion: 2
         x: 120
@@ -175,14 +175,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a1f37d77c84a9884d9200904de3987e7
-      internalID: -1205527694
+      spriteID: 584e258e09b4bad438349a4db787c708
+      internalID: 832946045
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Water Elemental_3
+      name: Storm Elemental_3
       rect:
         serializedVersion: 2
         x: 180
@@ -196,8 +196,92 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f872f625d6d82444891681a4b1675bc2
-      internalID: 602824173
+      spriteID: ea3477ea229e0524794a9e51e04bccd1
+      internalID: -2005510183
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Storm Elemental_4
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 0
+        width: 60
+        height: 64
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f9891fe5cf785742813a13f3e4f3581
+      internalID: 1144848397
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Storm Elemental_5
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 0
+        width: 60
+        height: 64
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f6b2194b864253a48b5b1ed3956346a4
+      internalID: 678829906
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Storm Elemental_6
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 0
+        width: 60
+        height: 64
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8501d4ba63ec500469c0d83f918b2584
+      internalID: -963682567
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Storm Elemental_7
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 0
+        width: 60
+        height: 64
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f0f3e80d9360d1f48abd16de7d069c0c
+      internalID: -1455773691
       vertices: []
       indices: 
       edges: []
@@ -213,10 +297,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Water Elemental_0: 212522488
-      Water Elemental_1: 471846689
-      Water Elemental_2: -1205527694
-      Water Elemental_3: 602824173
+      Storm Elemental_0: 371916395
+      Storm Elemental_1: 1626029690
+      Storm Elemental_2: 832946045
+      Storm Elemental_3: -2005510183
+      Storm Elemental_4: 1144848397
+      Storm Elemental_5: 678829906
+      Storm Elemental_6: -963682567
+      Storm Elemental_7: -1455773691
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

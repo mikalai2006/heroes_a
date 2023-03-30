@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6892427306879841ae9bdf6a40176c7, type: 3}
   m_Name: 1_Halberdier
   m_EditorClassIdentifier: 
-  idObject: 
-  level: 0
-  typeGround: 0
-  typeInput: 0
-  TypeUnit: 0
+  idObject: 0663b28f6e90400683a0e78e26086d7e
+  level: 1
+  typeGround: 20
+  typeInput: 1
+  TypeUnit: 7
   listTypeNoPath: 
-  Prefab: {fileID: 0}
-  MenuSprite: {fileID: 0}
+  Prefab: {fileID: 1620845114083273016, guid: 0ea752b7eda2afe4283598735d44b787, type: 3}
+  MenuSprite: {fileID: -1796241690, guid: dcfc016f47be4fa4c8d91f354f343113, type: 3}
   Locale: []
   DataUnitWarrior:
     Health: 0

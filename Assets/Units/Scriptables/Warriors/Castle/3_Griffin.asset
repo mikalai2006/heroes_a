@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 3_Griffin
   m_EditorClassIdentifier: 
   idObject: 5e4a8b77db734928b353ae0966e93683
-  level: 4
+  level: 3
   typeGround: 20
   typeInput: 1
   TypeUnit: 7

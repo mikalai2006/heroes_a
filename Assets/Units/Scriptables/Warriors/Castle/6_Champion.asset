@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: 6_Champion
   m_EditorClassIdentifier: 
   idObject: bb19f062d997464dad41cd6c3fd67b7c
-  level: 0
-  typeGround: 0
-  typeInput: 0
-  TypeUnit: 0
+  level: 6
+  typeGround: 20
+  typeInput: 1
+  TypeUnit: 7
   listTypeNoPath: 
-  Prefab: {fileID: 0}
-  MenuSprite: {fileID: 0}
+  Prefab: {fileID: 3633147228958495153, guid: 83f57c5de67a8c94eb618865b9d42283, type: 3}
+  MenuSprite: {fileID: 1090010709, guid: 9aaf1719f9e8bc2428467245ddd11596, type: 3}
   Locale: []
   DataUnitWarrior:
     Health: 0

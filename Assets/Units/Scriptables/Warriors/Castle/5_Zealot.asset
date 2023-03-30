@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6892427306879841ae9bdf6a40176c7, type: 3}
   m_Name: 5_Zealot
   m_EditorClassIdentifier: 
-  idObject: 
-  level: 0
-  typeGround: 0
+  idObject: c5b6cb5bdb8c45c3b5de7b47ff985830
+  level: 5
+  typeGround: 20
   typeInput: 0
-  TypeUnit: 0
+  TypeUnit: 7
   listTypeNoPath: 
-  Prefab: {fileID: 0}
-  MenuSprite: {fileID: 0}
+  Prefab: {fileID: 2535926890816899841, guid: 07dbc96017378a441afe318efc8200b6, type: 3}
+  MenuSprite: {fileID: -967956530, guid: 59ca26eb3e60e9e47bd346d682a70cb0, type: 3}
   Locale: []
   DataUnitWarrior:
     Health: 0
