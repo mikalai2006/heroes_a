@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 50
+  spritePixelsToUnits: 35
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -124,8 +124,8 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 128
-        height: 128
+        width: 60
+        height: 64
       alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -143,10 +143,10 @@ TextureImporter:
       name: Angel_1
       rect:
         serializedVersion: 2
-        x: 128
+        x: 60
         y: 0
-        width: 128
-        height: 128
+        width: 60
+        height: 64
       alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -164,10 +164,10 @@ TextureImporter:
       name: Angel_2
       rect:
         serializedVersion: 2
-        x: 256
+        x: 120
         y: 0
-        width: 128
-        height: 128
+        width: 60
+        height: 64
       alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -185,10 +185,10 @@ TextureImporter:
       name: Angel_3
       rect:
         serializedVersion: 2
-        x: 384
+        x: 180
         y: 0
-        width: 128
-        height: 128
+        width: 60
+        height: 64
       alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -206,10 +206,10 @@ TextureImporter:
       name: Angel_4
       rect:
         serializedVersion: 2
-        x: 512
+        x: 240
         y: 0
-        width: 128
-        height: 128
+        width: 60
+        height: 64
       alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -219,27 +219,6 @@ TextureImporter:
       bones: []
       spriteID: bf305a33d3d2edc4090d5b293d6aa295
       internalID: 112308433
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Angel_5
-      rect:
-        serializedVersion: 2
-        x: 640
-        y: 0
-        width: 128
-        height: 128
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 42d777227d6b6ff44b0547681c0b275d
-      internalID: 476735414
       vertices: []
       indices: 
       edges: []
@@ -260,7 +239,6 @@ TextureImporter:
       Angel_2: -284634823
       Angel_3: -1947204529
       Angel_4: 112308433
-      Angel_5: 476735414
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
