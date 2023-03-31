@@ -59,6 +59,22 @@ public class UITownListBuildWindow : MonoBehaviour
         foreach (var build in allBuildsActiveTown.Builds)
         {
             var item = _templateBuildItem.Instantiate();
+
+            // check ststus build.
+            var currentBuild = build.BuildLevels[0];
+            if ((uint)(town.Data.ProgressBuilds & currentBuild.TypeBuild) != 0)
+            {
+                if (build.BuildLevels.Count > 1)
+                {
+                    currentBuild = build.BuildLevels[1];
+                }
+                else
+                {
+                    item.AddToClassList("town_listbuild_builded");
+
+                }
+            }
+
             var img = item.Q<VisualElement>("Img");
             img.style.backgroundImage = new StyleBackground(build.BuildLevels[0].MenuSprite);
 
@@ -75,12 +91,15 @@ public class UITownListBuildWindow : MonoBehaviour
             {
                 OnClickToBuild(build);
             };
-            var allowBuild = (int)(town.Data.ProgressBuilds & build.BuildLevels[0].RequiredBuilds);
+            var allowBuild = town.Data.ProgressBuilds & build.BuildLevels[0].RequiredBuilds;
             Debug.Log($"{build.name} \n" +
             $"May be build {allowBuild}\n" +
+            $"May be build 2 {town.Data.ProgressBuilds & build.BuildLevels[0].RequiredBuilds}\n" +
             $"TypeBuild={System.Convert.ToString((uint)build.BuildLevels[0].TypeBuild, 2)}\n" +
             $"Town progress={System.Convert.ToString((uint)town.Data.ProgressBuilds, 2)}\n");
-            if (allowBuild != 0)
+
+
+            if (allowBuild == build.BuildLevels[0].RequiredBuilds)
             {
                 item.AddToClassList("town_listbuild_allow");
             }
