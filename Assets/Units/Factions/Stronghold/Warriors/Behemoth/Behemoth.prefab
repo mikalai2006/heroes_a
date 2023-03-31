@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &1245510277823964361
+--- !u!1001 &7535963779923114001
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -14,11 +14,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5267992745413332878, guid: 9df1fc771bddcd849aed5086893eb3a5, type: 3}
       propertyPath: m_Size.x
-      value: 2.56
+      value: 1.8285714
       objectReference: {fileID: 0}
     - target: {fileID: 5267992745413332878, guid: 9df1fc771bddcd849aed5086893eb3a5, type: 3}
       propertyPath: m_Size.y
-      value: 2.56
+      value: 1.8285714
       objectReference: {fileID: 0}
     - target: {fileID: 5267992745413332878, guid: 9df1fc771bddcd849aed5086893eb3a5, type: 3}
       propertyPath: m_Sprite
@@ -31,7 +31,7 @@ PrefabInstance:
     - target: {fileID: 6076011670535017962, guid: 9df1fc771bddcd849aed5086893eb3a5, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 6a5569e7368bd9e45a7a7962dfd880d6, type: 2}
+      objectReference: {fileID: 9100000, guid: ceeda6691267cf04cba6953b886234a2, type: 2}
     - target: {fileID: 6627406514020417079, guid: 9df1fc771bddcd849aed5086893eb3a5, type: 3}
       propertyPath: m_RootOrder
       value: 0
