@@ -31,5 +31,5 @@
 }
 
 .town_listbuild_builded {
-    background-color: rgba(137, 124, 0, 0.62);
+    background-color: rgba(236, 213, 0, 0.62);
 }

@@ -26,6 +26,9 @@ public class UITownListBuildWindow : MonoBehaviour
     private DataDialog _dataDialog;
     private DataResultDialog _dataResultDialog;
 
+    private BaseTown _activeTown;
+    private Player _activePlayer;
+
     private void Awake()
     {
         _buttonClose = DialogApp.rootVisualElement.Q<Button>(_nameButtonClose);
@@ -40,11 +43,12 @@ public class UITownListBuildWindow : MonoBehaviour
         _dataDialog = dataDialog;
         _dataResultDialog = new DataResultDialog();
 
-        Player player = LevelManager.Instance.ActivePlayer;
+        _activePlayer = LevelManager.Instance.ActivePlayer;
+        _activeTown = _activePlayer.ActiveTown;
 
         UQueryBuilder<VisualElement> builder = new UQueryBuilder<VisualElement>(DialogApp.rootVisualElement);
         List<VisualElement> list = builder.Name(_nameOverlay).ToList();
-        Color color = player.DataPlayer.color;
+        Color color = _activePlayer.DataPlayer.color;
         color.a = .6f;
         foreach (var overlay in list)
         {
@@ -52,54 +56,56 @@ public class UITownListBuildWindow : MonoBehaviour
         }
 
         _listBuild.Clear();
-        BaseTown town = player.ActiveTown;
-        ScriptableTown scriptDataTown = (ScriptableTown)town.ScriptableData;
+        ScriptableTown scriptDataTown = (ScriptableTown)_activeTown.ScriptableData;
         var allBuildsActiveTown = ResourceSystem.Instance.GetBuildTowns().Where(t => t.TypeFaction == scriptDataTown.TypeFaction).First();
 
         foreach (var build in allBuildsActiveTown.Builds)
         {
             var item = _templateBuildItem.Instantiate();
 
-            // check ststus build.
+            // check status build and choose actual build.
             var currentBuild = build.BuildLevels[0];
-            if ((uint)(town.Data.ProgressBuilds & currentBuild.TypeBuild) != 0)
+            for (int i = 0; i < build.BuildLevels.Count; i++)
             {
-                if (build.BuildLevels.Count > 1)
+                var levelBuild = build.BuildLevels[i];
+                currentBuild = levelBuild;
+                if ((_activeTown.Data.ProgressBuilds & levelBuild.TypeBuild) == levelBuild.TypeBuild)
                 {
-                    currentBuild = build.BuildLevels[1];
+                    if (i == build.BuildLevels.Count - 1)
+                    {
+                        item.AddToClassList("town_listbuild_builded");
+                    }
                 }
                 else
                 {
-                    item.AddToClassList("town_listbuild_builded");
-
+                    // currentBuild = levelBuild;
+                    break;
                 }
             }
 
             var img = item.Q<VisualElement>("Img");
-            img.style.backgroundImage = new StyleBackground(build.BuildLevels[0].MenuSprite);
+            img.style.backgroundImage = new StyleBackground(currentBuild.MenuSprite);
 
-            var t = HelperLanguage.GetLocaleText(build.BuildLevels[0].Locale);
+            var t = HelperLanguage.GetLocaleText(currentBuild.Locale);
             var label = item.Q<Label>("Title");
             label.text = t.Text.title;
 
-            // float w = (_listBuild.resolvedStyle.width - 30) / 3;
-            // float h = w / 2;
             item.style.width = new StyleLength(new Length(25, LengthUnit.Percent));
             item.style.height = new StyleLength(new Length(20, LengthUnit.Percent));
 
             item.Q<Button>("TownBuildItem").clickable.clicked += () =>
             {
-                OnClickToBuild(build);
+                OnClickToBuild(currentBuild);
             };
-            var allowBuild = town.Data.ProgressBuilds & build.BuildLevels[0].RequiredBuilds;
-            Debug.Log($"{build.name} \n" +
-            $"May be build {allowBuild}\n" +
-            $"May be build 2 {town.Data.ProgressBuilds & build.BuildLevels[0].RequiredBuilds}\n" +
-            $"TypeBuild={System.Convert.ToString((uint)build.BuildLevels[0].TypeBuild, 2)}\n" +
-            $"Town progress={System.Convert.ToString((uint)town.Data.ProgressBuilds, 2)}\n");
+            var allowBuild = _activeTown.Data.ProgressBuilds & currentBuild.RequiredBuilds;
+            // Debug.Log($"{build.name} \n" +
+            // $"May be build {allowBuild}\n" +
+            // $"May be build 2 {town.Data.ProgressBuilds & currentBuild.RequiredBuilds}\n" +
+            // $"TypeBuild={System.Convert.ToString((uint)currentBuild.TypeBuild, 2)}\n" +
+            // $"Town progress={System.Convert.ToString((uint)town.Data.ProgressBuilds, 2)}\n");
 
 
-            if (allowBuild == build.BuildLevels[0].RequiredBuilds)
+            if (allowBuild == currentBuild.RequiredBuilds)
             {
                 item.AddToClassList("town_listbuild_allow");
             }
@@ -123,9 +129,9 @@ public class UITownListBuildWindow : MonoBehaviour
         processAction?.Invoke();
     }
 
-    public async void OnClickToBuild(ScriptableBuildBase build)
+    public async void OnClickToBuild(Build build)
     {
-        var _build = build.BuildLevels[0];
+        var _build = build; //.BuildLevels[0];
         var t = HelperLanguage.GetLocaleText(_build.Locale);
 
         LocalizedString titlePrefix = new LocalizedString(Constants.LanguageTable.LANG_TABLE_UILANG, "build");
@@ -151,6 +157,8 @@ public class UITownListBuildWindow : MonoBehaviour
         if (result.isOk)
         {
             Debug.Log("Go build!");
+            _activeTown.Data.ProgressBuilds = _activeTown.Data.ProgressBuilds | build.TypeBuild;
+            OnClickClose();
         }
     }
 }
