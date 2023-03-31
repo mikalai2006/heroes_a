@@ -65,9 +65,9 @@ public static class Helpers
 }
 public static class HelperLanguage
 {
-    public static LangItem GetLocaleText(this ScriptableUnitBase unit)
+    public static LangItem GetLocaleText(this List<LangItem> locale)
     {
-        var t = unit.Locale.Find(t => t.Language == LocalizationSettings.SelectedLocale);
+        var t = locale.Find(t => t.Language == LocalizationSettings.SelectedLocale);
         return t;
     }
 

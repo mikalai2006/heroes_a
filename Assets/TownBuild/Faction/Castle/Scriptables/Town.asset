@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9d42093a1eaf0824c9a2bb9f171cc7f4, type: 3}
-  m_Name: Tower
+  m_Name: Town
   m_EditorClassIdentifier: 
   idObject: 
   TypeFaction: 0
-  Prefab: {fileID: 7332429680437039273, guid: b62b2fd009618fc47b0ab0147d88d6c8, type: 3}
+  Prefab: {fileID: 286446851186964532, guid: b62b2fd009618fc47b0ab0147d88d6c8, type: 3}
   BuildLevels:
   - MenuSprite: {fileID: 21300000, guid: 4d3e6b0c6a67af0428ffae1ffabaaf04, type: 3}
     TypeBuild: 8
@@ -23,11 +23,17 @@ MonoBehaviour:
     - Language: {fileID: 11400000, guid: 30b8a59646ec31e4fa7737b1c0d7cba9, type: 2}
       Text:
         title: "\u0421\u0435\u043B\u044C\u0441\u043A\u0430\u044F \u0443\u043F\u0440\u0430\u0432\u0430"
-        description: 
+        description: "\u0423\u043F\u0440\u0430\u0432\u0430 \u043F\u043E\u0437\u0432\u043E\u043B\u044F\u0435\u0442
+          \u043F\u043E\u043A\u0443\u043F\u0430\u0442\u044C \u0440\u0430\u0437\u043B\u0438\u0447\u043D\u044B\u0435
+          \u0441\u0442\u0440\u043E\u0435\u043D\u0438\u044F \u0438 \u043F\u0440\u0438\u043D\u043E\u0441\u0438\u0442
+          \u043A\u043E\u0440\u043E\u043B\u0435\u0432\u0441\u0442\u0432\u0443 \u043F\u043E
+          500 \u0437\u043E\u043B\u043E\u0442\u044B\u0445 \u0432 \u0434\u0435\u043D\u044C."
         visit_ok: 
         visit_no: 
         visit_noresource: 
-    CostResource: []
+    CostResource:
+    - Resource: {fileID: 11400000, guid: 2de32a5fb2189994a867c9e425391bf7, type: 2}
+      Count: 1000
   - MenuSprite: {fileID: 21300000, guid: 902ffc27e276f8d4780becebafe138d4, type: 3}
     TypeBuild: 16
     RequiredBuilds: 10

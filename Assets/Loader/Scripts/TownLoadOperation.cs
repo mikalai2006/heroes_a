@@ -36,8 +36,6 @@ namespace Loader
             // {
             //     GameManager.Instance.MapManager = MapManager;
             // }
-            await ResourceSystem.Instance.LoadCollectionsAsset<ScriptableBuildTown>(Constants.Labels.LABEL_BUILD_TOWN);
-
             UITown UITown = GameObject.FindGameObjectWithTag("UITown")?.GetComponent<UITown>();
 
             if (UITown != null)

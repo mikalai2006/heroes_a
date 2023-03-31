@@ -32,7 +32,7 @@ public class BaseArtifact : BaseMapObject, IDialogMapObjectOperation
         // {
         //     { "name", new StringVariable { Value = this.ScriptableData.name } },
         // };
-        var t = HelperLanguage.GetLocaleText(this.ScriptableData);
+        var t = HelperLanguage.GetLocaleText(this.ScriptableData.Locale);
         var dialogData = new DataDialog()
         {
             Description = t.Text.visit_ok,

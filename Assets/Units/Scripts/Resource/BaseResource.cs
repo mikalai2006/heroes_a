@@ -43,7 +43,7 @@ public abstract class BaseResource : BaseMapObject, IDataPlay, IDialogMapObjectO
             });
         }
 
-        var t = HelperLanguage.GetLocaleText(this.ScriptableData);
+        var t = HelperLanguage.GetLocaleText(this.ScriptableData.Locale);
         var dialogData = new DataDialog()
         {
             Header = t.Text.title,

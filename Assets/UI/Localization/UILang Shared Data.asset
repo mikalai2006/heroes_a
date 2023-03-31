@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
-  m_Name: UI Language Table Shared Data
+  m_Name: UILang Shared Data
   m_EditorClassIdentifier: 
-  m_TableCollectionName: UI Language Table
+  m_TableCollectionName: UILang
   m_TableCollectionNameGuidString: 9b6db77d8a0719a4490c3b7aad12567c
   m_Entries:
   - m_Id: 15599828992
@@ -37,6 +37,10 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 6765711360000
     m_Key: dontwant_sign
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1529857793228800
+    m_Key: build
     m_Metadata:
       m_Items: []
   m_Metadata:

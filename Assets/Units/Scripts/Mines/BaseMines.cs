@@ -73,7 +73,7 @@ public abstract class BaseMines : UnitBase, IDataPlay, IDialogMapObjectOperation
     public async UniTask<DataResultDialog> OnTriggeredHero()
     {
 
-        var t = HelperLanguage.GetLocaleText(this.ScriptableData);
+        var t = HelperLanguage.GetLocaleText(this.ScriptableData.Locale);
         var dialogData = new DataDialog()
         {
             Header = t.Text.title,

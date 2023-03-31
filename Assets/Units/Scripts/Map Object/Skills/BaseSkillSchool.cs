@@ -68,7 +68,7 @@ public class BaseSkillSchool : BaseMapObject, IDialogMapObjectOperation
             });
         }
 
-        var t = HelperLanguage.GetLocaleText(this.ScriptableData);
+        var t = HelperLanguage.GetLocaleText(this.ScriptableData.Locale);
         var dialogData = new DataDialog()
         {
             Description = t.Text.visit_ok,

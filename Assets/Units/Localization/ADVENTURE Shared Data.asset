@@ -79,6 +79,10 @@ MonoBehaviour:
     m_Key: army_join
     m_Metadata:
       m_Items: []
+  - m_Id: 1428592715268096
+    m_Key: build
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

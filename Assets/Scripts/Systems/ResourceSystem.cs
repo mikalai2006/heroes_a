@@ -91,6 +91,10 @@ public class ResourceSystem : StaticInstance<ResourceSystem>
             if (asset != null) Addressables.Release(asset);
         }
     }
+    public void DestroyAsset(Object asset)
+    {
+        if (asset != null) Addressables.Release(asset);
+    }
 
     public List<TileNature> GetNature() => GetAllAssetsByLabel<TileNature>("nature");
     public TileNature GetNature(string id) => GetNature().Where(t => t.idObject == id)?.First();

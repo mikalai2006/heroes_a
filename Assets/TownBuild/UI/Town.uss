@@ -21,3 +21,15 @@
     background-image: url('project://database/Assets/UI/Sprites/Bg.png?fileID=2800000&guid=0641c76439a64674aa800f9e3d79c6a4&type=3#Bg');
     -unity-background-scale-mode: scale-and-crop;
 }
+
+.town_listbuild_allow {
+    background-color: rgb(4, 154, 21);
+}
+
+.town_listbuild_disallow {
+    background-color: rgba(255, 0, 0, 0.62);
+}
+
+.town_listbuild_builded {
+    background-color: rgba(137, 124, 0, 0.62);
+}

@@ -34,6 +34,22 @@ MonoBehaviour:
     m_SerializedLabels:
     - build_town
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d6771147da1a9fc439021716d6c3a6c1
+    m_Address: Assets/TownBuild/Faction/Stronghold/Scriptables/Stronghold.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - build_town
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: eb42eff804e93674d8a6cfa1b7b78866
+    m_Address: UITownListBuild
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 752de691cdd7b614b942162f38b99d4d
+    m_Address: UITownBuildItemDialog
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 9a6380555b06f9d46b9bf47dd32221de, type: 2}
   m_SchemaSet:

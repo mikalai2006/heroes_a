@@ -23,7 +23,8 @@ MonoBehaviour:
     - Language: {fileID: 11400000, guid: 30b8a59646ec31e4fa7737b1c0d7cba9, type: 2}
       Text:
         title: "\u041A\u0443\u0437\u043D\u0438\u0446\u0430"
-        description: 
+        description: "\u041A\u0443\u0437\u043D\u0438\u0446\u0430 \u043E\u0431\u0435\u0441\u043F\u0435\u0447\u0438\u0432\u0430\u0435\u0442
+          \u0430\u0440\u043C\u0438\u044E {name}."
         visit_ok: 
         visit_no: 
         visit_noresource: 

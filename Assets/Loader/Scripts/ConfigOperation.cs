@@ -37,6 +37,7 @@ namespace Loader
             onSetNotify?.Invoke("Load artifact configuration ...");
             await ResourceSystem.Instance.LoadCollectionsAsset<ScriptableArtifact>(Constants.Labels.LABEL_ARTIFACT);
             onProgress?.Invoke(.8f);
+            await ResourceSystem.Instance.LoadCollectionsAsset<ScriptableBuildTown>(Constants.Labels.LABEL_BUILD_TOWN);
             // await UniTask.Delay(1);
         }
     }

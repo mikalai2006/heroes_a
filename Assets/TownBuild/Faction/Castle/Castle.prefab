@@ -86,8 +86,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1987635501587087528}
   m_Layer: 0
-  m_Name: Builds
-  m_TagString: Untagged
+  m_Name: Town
+  m_TagString: Town
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -175,7 +175,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1987635502521967582
 RectTransform:
   m_ObjectHideFlags: 0
@@ -381,10 +381,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: GuildMagic
       objectReference: {fileID: 0}
-    - target: {fileID: 5196511186960645867, guid: e64cd0e0ab6f53144935e712ebcb4edd, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -469,10 +465,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1987635501587087528}
     m_Modifications:
-    - target: {fileID: -4415156357833804522, guid: 304f7947443e0fa4f97b1fb86fc7a8b6, type: 3}
-      propertyPath: m_SortingOrder
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1415576222739580879, guid: 304f7947443e0fa4f97b1fb86fc7a8b6, type: 3}
       propertyPath: m_Name
       value: Tavern
@@ -590,28 +582,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1877150379409227566, guid: 40ebf93f7f533bb499c061103776655c, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1987635501657812081}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 40ebf93f7f533bb499c061103776655c, type: 3}
---- !u!1 &115270214054695760 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1877150379409227566, guid: 40ebf93f7f533bb499c061103776655c, type: 3}
-  m_PrefabInstance: {fileID: 1987635501657812094}
-  m_PrefabAsset: {fileID: 0}
---- !u!210 &1987635501657812081
-SortingGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 115270214054695760}
-  m_Enabled: 1
-  m_SortingLayerID: 784102457
-  m_SortingLayer: 2
-  m_SortingOrder: 1
-  m_SortAtRoot: 0
 --- !u!4 &9138530647057771438 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7298059838672783312, guid: 40ebf93f7f533bb499c061103776655c, type: 3}
@@ -1087,10 +1059,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1987635501587087528}
     m_Modifications:
-    - target: {fileID: 2374762022647587963, guid: 716f29a23373f944588214ae29092845, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3214067332684096956, guid: 716f29a23373f944588214ae29092845, type: 3}
       propertyPath: m_Name
       value: Hippodrom
@@ -1138,10 +1106,6 @@ PrefabInstance:
     - target: {fileID: 5978825646182179927, guid: 716f29a23373f944588214ae29092845, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7348931403315228711, guid: 716f29a23373f944588214ae29092845, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1205,21 +1169,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1173742467539772311, guid: b62b2fd009618fc47b0ab0147d88d6c8, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6161588185173694670, guid: b62b2fd009618fc47b0ab0147d88d6c8, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8294869568904825887, guid: b62b2fd009618fc47b0ab0147d88d6c8, type: 3}
       propertyPath: m_Name
       value: Tower
-      objectReference: {fileID: 0}
-    - target: {fileID: 8971080439997689484, guid: b62b2fd009618fc47b0ab0147d88d6c8, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1414,42 +1366,6 @@ PrefabInstance:
     - target: {fileID: 149281454911754179, guid: 0d95f7dc41371c04c8b5cb790365cd81, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 244860655880557687, guid: 0d95f7dc41371c04c8b5cb790365cd81, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1072772382773504242, guid: 0d95f7dc41371c04c8b5cb790365cd81, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.53
-      objectReference: {fileID: 0}
-    - target: {fileID: 1072772382773504242, guid: 0d95f7dc41371c04c8b5cb790365cd81, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.33
-      objectReference: {fileID: 0}
-    - target: {fileID: 2952316890036133618, guid: 0d95f7dc41371c04c8b5cb790365cd81, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6572288006604282900, guid: 0d95f7dc41371c04c8b5cb790365cd81, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6964995941964627245, guid: 0d95f7dc41371c04c8b5cb790365cd81, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.54
-      objectReference: {fileID: 0}
-    - target: {fileID: 6964995941964627245, guid: 0d95f7dc41371c04c8b5cb790365cd81, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.36
-      objectReference: {fileID: 0}
-    - target: {fileID: 8767997634300877053, guid: 0d95f7dc41371c04c8b5cb790365cd81, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 1.61
-      objectReference: {fileID: 0}
-    - target: {fileID: 8767997634300877053, guid: 0d95f7dc41371c04c8b5cb790365cd81, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.64
       objectReference: {fileID: 0}
     - target: {fileID: 8967227315187355176, guid: 0d95f7dc41371c04c8b5cb790365cd81, type: 3}
       propertyPath: m_Name

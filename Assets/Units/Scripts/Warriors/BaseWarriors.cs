@@ -52,7 +52,7 @@ public class BaseWarriors : UnitBase, IDataPlay, IDialogMapObjectOperation
         string nameText = Helpers.GetStringNameCountWarrior(Data.quantity);
         LocalizedString stringCountWarriors = new LocalizedString(Constants.LanguageTable.LANG_TABLE_ADVENTURE, nameText);
 
-        var t = HelperLanguage.GetLocaleText(this.ScriptableData);
+        var t = HelperLanguage.GetLocaleText(this.ScriptableData.Locale);
         LocalizedString message = new LocalizedString(Constants.LanguageTable.LANG_TABLE_ADVENTURE, "army_attack")
         {
             { "name", new StringVariable { Value = "<color=#FFFFAB>" + t.Text.title + "</color>" } },

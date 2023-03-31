@@ -1,0 +1,16 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:Template name="UITownBuildItem" src="project://database/Assets/TownBuild/UI/UITownBuildItem.uxml?fileID=9197481963319205126&amp;guid=f83fb9d1388253b4089c5cc6d1e491b3&amp;type=3#UITownBuildItem" />
+    <Style src="project://database/Assets/UI/Toolkit/Base.uss?fileID=7433441132597879392&amp;guid=fa07b064290e7384d9ad2e26e79f5953&amp;type=3#Base" />
+    <ui:VisualElement name="TownBuildList" class="border-color bg p-1" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); margin-bottom: 30px;">
+        <ui:VisualElement name="Overlay" class="overlay" style="background-color: rgba(255, 0, 0, 0.49);" />
+        <ui:VisualElement class="p-1" style="flex-grow: 1;">
+            <ui:Label tabindex="-1" text="#сouncil_hall" display-tooltip-when-elided="true" class="text-secondary text-lg font-bold" />
+            <ui:VisualElement name="ListBuild" class="text-secondary bg-black" style="flex-direction: row; flex-wrap: wrap; flex-grow: 1; width: 100%; height: 100%;">
+                <ui:Instance template="UITownBuildItem" name="UITownBuildItem" style="width: 25%;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="Footer">
+                <ui:Button text="Button" display-tooltip-when-elided="true" name="ButtonClose" class="button button_bg border-color p-2" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

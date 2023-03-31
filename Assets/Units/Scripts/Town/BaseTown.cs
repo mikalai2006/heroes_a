@@ -27,7 +27,7 @@ public abstract class BaseTown : UnitBase, IDataPlay
 
         base.InitUnit(data, pos);
         Data.name = data.name;
-        Data.ProgressBuilds = TypeBuild.Tavern_1;
+        Data.ProgressBuilds = TypeBuild.None; // TypeBuild.Tavern_1;
     }
 
     public void SetPlayer(PlayerData data)

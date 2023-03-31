@@ -1,0 +1,10 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/Toolkit/Base.uss?fileID=7433441132597879392&amp;guid=fa07b064290e7384d9ad2e26e79f5953&amp;type=3#Base" />
+    <Style src="project://database/Assets/TownBuild/UI/Town.uss?fileID=7433441132597879392&amp;guid=3f26a9c7e5fec58498f124f0fded2a87&amp;type=3#Town" />
+    <ui:Button display-tooltip-when-elided="true" name="TownBuildItem" class="button_unit bg-transparent" style="flex-grow: 1;">
+        <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); align-self: stretch;">
+            <ui:VisualElement name="Img" style="width: 100%; background-image: url(&apos;project://database/Assets/UI/Sprites/Bg.png?fileID=2800000&amp;guid=0641c76439a64674aa800f9e3d79c6a4&amp;type=3#Bg&apos;); height: 100%;" />
+            <ui:Label tabindex="-1" display-tooltip-when-elided="true" name="Title" text="Build name" class="text-secondary text_md p-0 m-0" style="white-space: normal;" />
+        </ui:VisualElement>
+    </ui:Button>
+</ui:UXML>

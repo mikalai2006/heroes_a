@@ -9,6 +9,7 @@ public class ScriptableBuildTown : ScriptableObject
     public TypeFaction TypeFaction;
     // public int level;
     public AssetReference Prefab;
+    public Sprite Bg;
     [SerializeField] public List<ScriptableBuildBase> Builds;
     [SerializeField] public AssetReferenceScriptableTown TownMap;
 }

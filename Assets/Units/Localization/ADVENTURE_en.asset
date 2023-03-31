@@ -54,6 +54,10 @@ MonoBehaviour:
     m_Localized: Legion
     m_Metadata:
       m_Items: []
+  - m_Id: 1428592715268096
+    m_Localized: 'Build:'
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

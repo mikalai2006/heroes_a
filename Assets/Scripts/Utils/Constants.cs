@@ -16,6 +16,8 @@ public class Constants
     {
         public const string UI_GAME_ASIDE = "UIGameAside";
         public const string UI_DIALOG_MAP_OBJECTS = "UIDialogMapObject";
+        public const string UI_TOWN_LIST_BUILD = "UITownListBuild";
+        public const string UI_TOWN_BUILD_ITEM = "UITownBuildItemDialog";
         public const string UI_LOGIN = "UILogin";
         public const string UI_GAME_MENU = "UIGameMenu";
         public const string UI_TOWN = "UITown";
@@ -46,5 +48,6 @@ public class Constants
     public class LanguageTable
     {
         public const string LANG_TABLE_ADVENTURE = "ADVENTURE";
+        public const string LANG_TABLE_UILANG = "UILang";
     }
 }

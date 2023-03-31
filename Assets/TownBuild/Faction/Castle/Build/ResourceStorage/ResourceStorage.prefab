@@ -141,7 +141,10 @@ PrefabInstance:
       value: ResourceStorage
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 6572288006604282900, guid: 062be60e01d9f4546b39591aaddde6b0, type: 3}
+    - {fileID: 244860655880557687, guid: 062be60e01d9f4546b39591aaddde6b0, type: 3}
+    - {fileID: 2952316890036133618, guid: 062be60e01d9f4546b39591aaddde6b0, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 869554064392596750, guid: 062be60e01d9f4546b39591aaddde6b0, type: 3}
       insertIndex: -1
@@ -173,3 +176,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec3f81eff5669b244ab5058324842647, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UITown: {fileID: 0}

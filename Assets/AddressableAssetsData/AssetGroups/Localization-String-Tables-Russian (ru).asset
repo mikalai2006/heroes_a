@@ -18,7 +18,7 @@ MonoBehaviour:
   m_GUID: ef0b83e3cbf67e94897e73afc2db3479
   m_SerializeEntries:
   - m_GUID: fbab366a340a007438dd790756718be4
-    m_Address: UI Language Table_ru
+    m_Address: UILang_ru
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-ru

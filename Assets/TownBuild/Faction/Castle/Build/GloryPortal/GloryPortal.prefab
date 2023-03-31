@@ -100,7 +100,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1600892628436171456
 Transform:
   m_ObjectHideFlags: 0
@@ -225,7 +225,10 @@ PrefabInstance:
       value: GloryPortal
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 6572288006604282900, guid: 062be60e01d9f4546b39591aaddde6b0, type: 3}
+    - {fileID: 244860655880557687, guid: 062be60e01d9f4546b39591aaddde6b0, type: 3}
+    - {fileID: 2952316890036133618, guid: 062be60e01d9f4546b39591aaddde6b0, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 869554064392596750, guid: 062be60e01d9f4546b39591aaddde6b0, type: 3}
       insertIndex: -1
