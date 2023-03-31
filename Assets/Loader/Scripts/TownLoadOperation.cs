@@ -9,6 +9,12 @@ namespace Loader
 {
     public class TownLoadOperation : ILoadingOperation
     {
+        private BaseTown _town;
+        public TownLoadOperation(BaseTown town)
+        {
+            _town = town;
+        }
+
         public async UniTask Load(Action<float> onProgress, Action<string> onSetNotify)
         {
             onProgress?.Invoke(0.1f);
@@ -30,12 +36,23 @@ namespace Loader
             // {
             //     GameManager.Instance.MapManager = MapManager;
             // }
+            await ResourceSystem.Instance.LoadCollectionsAsset<ScriptableBuildTown>(Constants.Labels.LABEL_BUILD_TOWN);
 
-            UITown UITown = GameObject.FindGameObjectWithTag("Town")?.GetComponent<UITown>();
+            UITown UITown = GameObject.FindGameObjectWithTag("UITown")?.GetComponent<UITown>();
 
             if (UITown != null)
             {
                 UITown.Init(environment);
+            }
+
+            GameObject Town = GameObject.FindGameObjectWithTag("Town");
+
+            if (Town != null)
+            {
+                foreach (BuildBase build in Town.transform.GetComponentsInChildren<BuildBase>())
+                {
+                    build.UITown = UITown;
+                }
             }
 
             // editorGame.Init(environment);

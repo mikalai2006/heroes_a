@@ -1,0 +1,23 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:Template name="HeroInfoForce" src="project://database/Assets/UI/Toolkit/HeroInfoForce.uxml?fileID=9197481963319205126&amp;guid=4f6a4d47381761f40ba034485fd3dcd4&amp;type=3#HeroInfoForce" />
+    <Style src="project://database/Assets/UI/Toolkit/Base.uss?fileID=7433441132597879392&amp;guid=fa07b064290e7384d9ad2e26e79f5953&amp;type=3#Base" />
+    <ui:VisualElement name="TownInfoBox" class="border-color border-2 bg-black" style="flex-grow: 1;">
+        <ui:VisualElement name="Overlay1" class="overlay" style="flex-grow: 1;" />
+        <ui:VisualElement class="p-1 bg text-secondary" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
+            <ui:VisualElement name="Box" style="height: 35%;">
+                <ui:VisualElement name="TownInfoHeader" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row;">
+                    <ui:VisualElement name="TownIcon" style="width: 30%; background-image: url(&apos;project://database/Assets/TownBuild/Faction/Castle/itptcas3.png?fileID=2800000&amp;guid=9c566a7b7811219428b08581043b2eac&amp;type=3#itptcas3&apos;);" />
+                    <ui:VisualElement name="TownInfo" class="px-1" style="width: 70%;">
+                        <ui:Label tabindex="-1" text="Minsk" display-tooltip-when-elided="true" name="TowName" class="font-bold" style="padding-bottom: 0; padding-top: 0;" />
+                        <ui:VisualElement name="HeroParams" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row;" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="TownForce" style="height: 65%;">
+                <ui:VisualElement name="TownForceList" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row; flex-wrap: wrap; height: 100%;">
+                    <ui:Instance template="HeroInfoForce" name="HeroInfoForce" class="heroinfo_force_el" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
