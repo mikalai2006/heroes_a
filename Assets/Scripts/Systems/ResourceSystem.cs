@@ -98,7 +98,7 @@ public class ResourceSystem : StaticInstance<ResourceSystem>
     public TileLandscape GetLandscape(TypeGround typeGround) => GetLandscape().Where(t => t.typeGround == typeGround).First();
     public List<ScriptableUnitBase> GetUnits() => GetAllAssetsByLabel<ScriptableUnitBase>("units");
 
-    public List<ScriptableBuildBase> GetCastleTown() => GetAllAssetsByLabel<ScriptableBuildBase>(Constants.Towns.TOWN_CASTLE);
+    public List<ScriptableBuildTown> GetBuildTowns() => GetAllAssetsByLabel<ScriptableBuildTown>(Constants.Labels.LABEL_BUILD_TOWN);
     public List<T> GetUnitsByType<T>(TypeUnit typeUnit) where T : ScriptableUnitBase
     {
         var listUnits = GetUnits();

@@ -1,14 +1,12 @@
-.town_bg {
+.town_panel {
     flex-grow: 1;
     flex-direction: row;
-    margin-bottom: 36px;
+    margin-bottom: 30px;
 }
 
 .town_side {
-    max-width: 20%;
+    max-width: 26%;
     border-left-width: 2px;
-    background-image: url('project://database/Assets/UI/Sprites/Bg.png?fileID=2800000&guid=0641c76439a64674aa800f9e3d79c6a4&type=3#Bg');
-    -unity-background-scale-mode: scale-and-crop;
 }
 
 .town_box {

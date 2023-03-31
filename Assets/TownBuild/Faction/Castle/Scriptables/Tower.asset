@@ -14,19 +14,53 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   idObject: 
   TypeFaction: 0
-  level: 0
-  Builds:
-  - MenuSprite: {fileID: 0}
-    Prefab: {fileID: 0}
-    TypeBuild: 4
-    RequiredBuilds: 1
+  Prefab: {fileID: 7332429680437039273, guid: b62b2fd009618fc47b0ab0147d88d6c8, type: 3}
+  BuildLevels:
+  - MenuSprite: {fileID: 21300000, guid: 4d3e6b0c6a67af0428ffae1ffabaaf04, type: 3}
+    TypeBuild: 8
+    RequiredBuilds: 2
     Locale:
-    - Language: {fileID: 0}
+    - Language: {fileID: 11400000, guid: 30b8a59646ec31e4fa7737b1c0d7cba9, type: 2}
       Text:
-        title: 
+        title: "\u0421\u0435\u043B\u044C\u0441\u043A\u0430\u044F \u0443\u043F\u0440\u0430\u0432\u0430"
         description: 
         visit_ok: 
         visit_no: 
         visit_noresource: 
-  RequireBuilds: []
-  RequireResource: []
+    CostResource: []
+  - MenuSprite: {fileID: 21300000, guid: 902ffc27e276f8d4780becebafe138d4, type: 3}
+    TypeBuild: 16
+    RequiredBuilds: 10
+    Locale:
+    - Language: {fileID: 11400000, guid: 30b8a59646ec31e4fa7737b1c0d7cba9, type: 2}
+      Text:
+        title: "\u041F\u0440\u0435\u0444\u0435\u043A\u0442\u0443\u0440\u0430"
+        description: 
+        visit_ok: 
+        visit_no: 
+        visit_noresource: 
+    CostResource: []
+  - MenuSprite: {fileID: 21300000, guid: c2c240480f6cd95479f194fcec515d24, type: 3}
+    TypeBuild: 32
+    RequiredBuilds: 26
+    Locale:
+    - Language: {fileID: 11400000, guid: 30b8a59646ec31e4fa7737b1c0d7cba9, type: 2}
+      Text:
+        title: "\u041C\u0443\u043D\u0438\u0446\u0438\u043F\u0430\u043B\u0438\u0442\u0435\u0442"
+        description: 
+        visit_ok: 
+        visit_no: 
+        visit_noresource: 
+    CostResource: []
+  - MenuSprite: {fileID: 21300000, guid: bdf32103a704f654ebab3fdcac4a5fc6, type: 3}
+    TypeBuild: 64
+    RequiredBuilds: 58
+    Locale:
+    - Language: {fileID: 11400000, guid: 30b8a59646ec31e4fa7737b1c0d7cba9, type: 2}
+      Text:
+        title: "\u041A\u0430\u043F\u0438\u0442\u043E\u043B\u0438\u0439"
+        description: 
+        visit_ok: 
+        visit_no: 
+        visit_noresource: 
+    CostResource: []

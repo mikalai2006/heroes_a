@@ -7,10 +7,10 @@ public class Constants
         public const string SCENE_TOWN = "TownScene";
     }
 
-    public class Towns
-    {
-        public const string TOWN_CASTLE = "town_castle";
-    }
+    // public class Towns
+    // {
+    //     public const string TOWN_CASTLE = "town_castle";
+    // }
 
     public class UILabels
     {
@@ -24,6 +24,7 @@ public class Constants
 
     public class Labels
     {
+        public const string LABEL_BUILD_TOWN = "build_town";
         public const string LABEL_SKILL = "skill";
         public const string LABEL_MAP_OBJECT = "map_object";
         public const string LABEL_ARTIFACT = "artifact";

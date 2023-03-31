@@ -98,8 +98,9 @@ public class UIGameAside : MonoBehaviour
         OnShowTown?.Invoke();
         // aside.style.display = DisplayStyle.None;
         var loadingOperations = new Queue<ILoadingOperation>();
+
         // GameManager.Instance.AssetProvider.UnloadAdditiveScene(_scene);
-        loadingOperations.Enqueue(new TownLoadOperation());
+        loadingOperations.Enqueue(new TownLoadOperation(player.ActiveTown));
         await GameManager.Instance.LoadingScreenProvider.LoadAndDestroy(loadingOperations);
 
     }
