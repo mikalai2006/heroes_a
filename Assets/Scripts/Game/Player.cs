@@ -3,19 +3,39 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public struct PlayerData
+public class PlayerData
 {
     public int id;
     public Color color;
     public PlayerType playerType;
     public int idArea;
+    public PlayerResource Resource;
+    public SerializableShortPosition nosky;
+    [System.NonSerialized] public PlayerDataReferences PlayerDataReferences;
+
+    // public Hero ActiveHero => PlayerDataReferences.ActiveHero;
+
+    public PlayerData()
+    {
+        PlayerDataReferences = new PlayerDataReferences();
+    }
+}
+
+[System.Serializable]
+public class PlayerDataReferences
+{
     [SerializeField] public List<Hero> ListHero;
     [SerializeField] public List<UnitBase> ListTown;
     [SerializeField] public List<UnitBase> ListMines;
-    public Hero ActiveHero;
-    public BaseTown ActiveTown;
-    public PlayerResource Resource;
-    public SerializableShortPosition nosky;
+    [SerializeField] public Hero ActiveHero;
+    [SerializeField] public BaseTown ActiveTown;
+
+    public PlayerDataReferences()
+    {
+        ListTown = new List<UnitBase>();
+        ListHero = new List<Hero>();
+        ListMines = new List<UnitBase>();
+    }
 }
 
 [System.Serializable]
@@ -54,18 +74,18 @@ public class Player
     }
     public Hero ActiveHero
     {
-        get { return _data.ActiveHero; }
+        get { return _data.PlayerDataReferences.ActiveHero; }
         set
         {
             GameManager.Instance.ChangeState(GameState.ChooseHero);
 
-            _data.ActiveHero = value;
+            _data.PlayerDataReferences.ActiveHero = value;
 
             LevelManager.Instance.SetPositionCamera(new Vector3(value.Position.x, value.Position.y, -10f));
 
             if (value.path != null)
             {
-                GameManager.Instance.MapManager.DrawCursor(value.path, DataPlayer.ActiveHero);
+                GameManager.Instance.MapManager.DrawCursor(value.path, DataPlayer.PlayerDataReferences.ActiveHero);
             }
 
         }
@@ -73,12 +93,12 @@ public class Player
 
     public BaseTown ActiveTown
     {
-        get { return _data.ActiveTown; }
+        get { return _data.PlayerDataReferences.ActiveTown; }
         set
         {
             GameManager.Instance.ChangeState(GameState.ChooseHero);
 
-            _data.ActiveTown = value;
+            _data.PlayerDataReferences.ActiveTown = value;
 
             LevelManager.Instance.SetPositionCamera(new Vector3(value.Position.x, value.Position.y, -10f));
 
@@ -89,9 +109,7 @@ public class Player
     {
         _data = new PlayerData();
         _data = data;
-        _data.ListTown = new List<UnitBase>();
-        _data.ListHero = new List<Hero>();
-        _data.ListMines = new List<UnitBase>();
+        _data.PlayerDataReferences = new PlayerDataReferences();
         _data.Resource = new PlayerResource();
         _data.nosky = new SerializableShortPosition();
     }
@@ -99,7 +117,7 @@ public class Player
     public void AddHero(Hero hero)
     {
         hero.SetPlayer(DataPlayer);
-        DataPlayer.ListHero.Add(hero);
+        DataPlayer.PlayerDataReferences.ListHero.Add(hero);
     }
 
     public void SetNosky(List<GridTileNode> listNode)
@@ -115,8 +133,8 @@ public class Player
 
     public void AddMines(BaseMines mine)
     {
-        mine.SetPlayer(DataPlayer);
-        DataPlayer.ListMines.Add(mine);
+        mine.SetPlayer(this);
+        DataPlayer.PlayerDataReferences.ListMines.Add(mine);
     }
     public void ChangeResource(TypeResource typeResource, int value = 0)
     {
@@ -150,7 +168,7 @@ public class Player
 
     public Hero GetHero(int id)
     {
-        return DataPlayer.ListHero[id];
+        return DataPlayer.PlayerDataReferences.ListHero[id];
     }
 
     // public void SetActiveTown(BaseTown town)
@@ -165,11 +183,11 @@ public class Player
 
     public List<GridTileNode> FindPathForHero(Vector3Int endPoint, bool isTrigger, bool force)
     {
-        Hero activeHero = DataPlayer.ActiveHero;
+        Hero activeHero = DataPlayer.PlayerDataReferences.ActiveHero;
         Vector3Int startPoint = new Vector3Int(activeHero.Position.x, activeHero.Position.y);
         List<GridTileNode> path = GameManager.Instance.MapManager.GridTileHelper().FindPath(startPoint, endPoint, isTrigger, force);
 
-        if (path != null && DataPlayer.ActiveHero != null)
+        if (path != null && DataPlayer.PlayerDataReferences.ActiveHero != null)
         {
             activeHero.SetPathHero(path);
             GameManager.Instance.MapManager.DrawCursor(path, activeHero);
@@ -184,12 +202,12 @@ public class Player
     {
         BaseTown _town = (BaseTown)town;
         _town.SetPlayer(DataPlayer);
-        DataPlayer.ListTown.Add(town);
+        DataPlayer.PlayerDataReferences.ListTown.Add(town);
 
     }
 
     public UnitBase GetTown(int id)
     {
-        return DataPlayer.ListTown[id];
+        return DataPlayer.PlayerDataReferences.ListTown[id];
     }
 }

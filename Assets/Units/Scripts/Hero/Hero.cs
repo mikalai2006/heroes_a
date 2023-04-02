@@ -100,7 +100,8 @@ public class Hero : UnitBase, IDataPlay
 
     private void OnChangeGameState(GameState newState)
     {
-        _canMove = newState == GameState.StartMoveHero && this == LevelManager.Instance.ActivePlayer.DataPlayer.ActiveHero;
+        _canMove = newState == GameState.StartMoveHero && this ==
+            LevelManager.Instance.ActivePlayer.DataPlayer.PlayerDataReferences.ActiveHero;
         if (_canMove && CanMove)
         {
             path.RemoveAt(0);
@@ -240,7 +241,7 @@ public class Hero : UnitBase, IDataPlay
 
         //Debug.Log("Unit clicked");
 
-        if (LevelManager.Instance.ActivePlayer.DataPlayer.ListHero.Contains(this))
+        if (LevelManager.Instance.ActivePlayer.DataPlayer.PlayerDataReferences.ListHero.Contains(this))
         {
             //LevelManager.Instance.GetActivePlayer().SetActiveHero(this);
             SetHeroAsActive();

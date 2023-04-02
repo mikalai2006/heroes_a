@@ -29,6 +29,7 @@ public class UITown : MonoBehaviour
 
     private Camera _cameraMain;
     private AsyncOperationHandle<GameObject> _townPrefabAsset;
+    private ScriptableBuildTown _activeBuildTown;
 
     public void Init(SceneInstance townScene)
     {
@@ -41,14 +42,27 @@ public class UITown : MonoBehaviour
 
         // Init town prefab.
         ScriptableTown scriptDataTown = (ScriptableTown)_activeTown.ScriptableData;
-        var activeBuildTown = ResourceSystem.Instance.GetBuildTowns().Where(t => t.TypeFaction == scriptDataTown.TypeFaction).First();
-        _townPrefabAsset = Addressables.InstantiateAsync(
-            activeBuildTown.Prefab,
-            _townGameObject.gameObject.transform.position,
-            Quaternion.identity,
-            _townGameObject.transform);
+        _activeBuildTown = ResourceSystem.Instance.GetBuildTowns().Where(t => t.TypeFaction == scriptDataTown.TypeFaction).First();
+        // _townPrefabAsset = Addressables.InstantiateAsync(
+        //     activeBuildTown.Prefab,
+        //     _townGameObject.gameObject.transform.position,
+        //     Quaternion.identity,
+        //     _townGameObject.transform);
 
-        _bgImage.sprite = activeBuildTown.Bg;
+        // await _townPrefabAsset.Task;
+
+        // _townGameObject = GameObject.FindGameObjectWithTag("Town");
+        DrawBuilds(TypeBuild.None);
+
+        // if (_townGameObject != null)
+        // {
+        //     foreach (BuildBase build in _townGameObject.transform.GetComponentsInChildren<BuildBase>())
+        //     {
+        //         build.Init(this);
+        //     }
+        // }
+
+        _bgImage.sprite = _activeBuildTown.Bg;
         _box = _uiDoc.rootVisualElement;
 
         _uiTownInfo.Init(_box);
@@ -101,5 +115,123 @@ public class UITown : MonoBehaviour
         await GameManager.Instance.AssetProvider.UnloadAdditiveScene(_townScene);
         // Camera.main.transform.position = _activePlayer.ActiveTown.gameObject.transform.position - new Vector3(0, 0, 10);
     }
+
+    public void DrawBuilds(TypeBuild TypeCreateBuild)
+    {
+        if (_townGameObject != null)
+        {
+            foreach (BuildBase build in _townGameObject.transform.GetComponentsInChildren<BuildBase>())
+            {
+                GameObject.Destroy(build.gameObject);
+            }
+        }
+        // ScriptableTown scriptDataTown = (ScriptableTown)_activeTown.ScriptableData;
+        // var activeBuildTown = ResourceSystem.Instance.GetBuildTowns().Where(t => t.TypeFaction == scriptDataTown.TypeFaction).First();
+
+        for (int i = 0; i < _activeBuildTown.Builds.Count; i++)
+        {
+            var bl = _activeBuildTown.Builds[i];
+            int activeLevel = -1;
+            for (int x = 0; x < bl.BuildLevels.Count; x++)
+            {
+                var buildLevel = bl.BuildLevels[x];
+                if ((_activePlayer.ActiveTown.Data.ProgressBuilds & buildLevel.TypeBuild) == buildLevel.TypeBuild)
+                {
+                    activeLevel = x;
+                }
+            }
+            if (activeLevel >= 0)
+            {
+                DrawBuildWithActiveLevel(bl, activeLevel, TypeCreateBuild);
+            }
+        }
+    }
+
+    private void DrawBuildWithActiveLevel(ScriptableBuildBase build, int i, TypeBuild TypeCreateBuild)
+    {
+        var boxTownGameObject = GameObject.FindGameObjectWithTag("Town");
+        var obj = Instantiate(
+            build.Prefab,
+            boxTownGameObject.gameObject.transform.position,
+            Quaternion.identity,
+            boxTownGameObject.transform
+            );
+
+        obj.Init(this);
+        if (TypeCreateBuild == build.BuildLevels[i].TypeBuild)
+        {
+            // Debug.Log($"Pulse {build.name}");
+            StartCoroutine(obj.Pulse());
+        }
+
+        if (i > 0 && build.BuildLevels[i].UpdatePrefab != null)
+        {
+            var objUpdate = Instantiate(
+            build.BuildLevels[i].UpdatePrefab,
+            boxTownGameObject.gameObject.transform.position,
+            Quaternion.identity,
+            boxTownGameObject.transform
+            );
+
+            objUpdate.Init(this);
+            if (TypeCreateBuild == build.BuildLevels[i].TypeBuild)
+            {
+                // Debug.Log($"Pulse {build.name}");
+                StartCoroutine(objUpdate.Pulse());
+            }
+        }
+        else
+        {
+            for (int y = 0; y < obj.transform.childCount; y++)
+            {
+                // obj.TypeBuild = build.BuildLevels[i].TypeBuild;
+
+                Transform child = obj.transform.GetChild(y);
+                if (null == child)
+                    continue;
+
+                // obj.LevelBuild = y;
+                if (i == y)
+                {
+                    child.gameObject.SetActive(true);
+                }
+                else
+                {
+                    child.gameObject.SetActive(false);
+                }
+            }
+        }
+    }
+
+    // public void RefreshLevelBuilds()
+    // {
+    //     foreach (BuildBase obj in _townGameObject.transform.GetComponentsInChildren<BuildBase>())
+    //     {
+    //         if (obj.LevelBuild ) {
+
+    //         }
+    //     }
+    //     ScriptableTown scriptDataTown = (ScriptableTown)_activeTown.ScriptableData;
+    //     var activeBuildTown = ResourceSystem.Instance.GetBuildTowns().Where(t => t.TypeFaction == scriptDataTown.TypeFaction).First();
+
+    //     for (int i = 0; i < activeBuildTown.Builds.Count; i++)
+    //     {
+    //         var bl = activeBuildTown.Builds[i];
+    //         int activeLevel = -1;
+    //         for (int x = 0; x < bl.BuildLevels.Count; x++)
+    //         {
+    //             var buildLevel = bl.BuildLevels[x];
+    //             if ((_activePlayer.ActiveTown.Data.ProgressBuilds & buildLevel.TypeBuild) == buildLevel.TypeBuild)
+    //             {
+    //                 activeLevel = x;
+    //             }
+    //         }
+
+    //         if (activeLevel >= 0)
+    //         {
+    //             DrawBuildWithActiveLevel(bl, activeLevel);
+    //         }
+    //     }
+    // }
 }
 

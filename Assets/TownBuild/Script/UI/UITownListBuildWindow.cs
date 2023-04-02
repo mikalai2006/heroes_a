@@ -4,8 +4,6 @@ using UnityEngine.UIElements;
 using UnityEngine.Events;
 using System.Collections.Generic;
 using System.Linq;
-using Cysharp.Threading.Tasks;
-using UnityEngine.Localization;
 
 public class UITownListBuildWindow : MonoBehaviour
 {
@@ -19,12 +17,12 @@ public class UITownListBuildWindow : MonoBehaviour
     private Button _buttonClose;
     private VisualElement _listBuild;
 
-    private TaskCompletionSource<DataResultDialog> _processCompletionSource;
+    private TaskCompletionSource<DataResultBuildDialog> _processCompletionSource;
 
     public UnityEvent processAction;
 
     private DataDialog _dataDialog;
-    private DataResultDialog _dataResultDialog;
+    private DataResultBuildDialog _dataResultDialog;
 
     private BaseTown _activeTown;
     private Player _activePlayer;
@@ -38,10 +36,10 @@ public class UITownListBuildWindow : MonoBehaviour
 
     }
 
-    public async Task<DataResultDialog> ProcessAction(DataDialog dataDialog)
+    public async Task<DataResultBuildDialog> ProcessAction(DataDialog dataDialog)
     {
         _dataDialog = dataDialog;
-        _dataResultDialog = new DataResultDialog();
+        _dataResultDialog = new DataResultBuildDialog();
 
         _activePlayer = LevelManager.Instance.ActivePlayer;
         _activeTown = _activePlayer.ActiveTown;
@@ -59,19 +57,19 @@ public class UITownListBuildWindow : MonoBehaviour
         ScriptableTown scriptDataTown = (ScriptableTown)_activeTown.ScriptableData;
         var allBuildsActiveTown = ResourceSystem.Instance.GetBuildTowns().Where(t => t.TypeFaction == scriptDataTown.TypeFaction).First();
 
-        foreach (var build in allBuildsActiveTown.Builds)
+        foreach (var parentBuild in allBuildsActiveTown.Builds)
         {
             var item = _templateBuildItem.Instantiate();
 
             // check status build and choose actual build.
-            var currentBuild = build.BuildLevels[0];
-            for (int i = 0; i < build.BuildLevels.Count; i++)
+            var currentBuild = parentBuild.BuildLevels[0];
+            for (int i = 0; i < parentBuild.BuildLevels.Count; i++)
             {
-                var levelBuild = build.BuildLevels[i];
+                var levelBuild = parentBuild.BuildLevels[i];
                 currentBuild = levelBuild;
                 if ((_activeTown.Data.ProgressBuilds & levelBuild.TypeBuild) == levelBuild.TypeBuild)
                 {
-                    if (i == build.BuildLevels.Count - 1)
+                    if (i == parentBuild.BuildLevels.Count - 1)
                     {
                         item.AddToClassList("town_listbuild_builded");
                     }
@@ -116,7 +114,7 @@ public class UITownListBuildWindow : MonoBehaviour
             _listBuild.Add(item);
         }
 
-        _processCompletionSource = new TaskCompletionSource<DataResultDialog>();
+        _processCompletionSource = new TaskCompletionSource<DataResultBuildDialog>();
 
         return await _processCompletionSource.Task;
     }
@@ -131,33 +129,28 @@ public class UITownListBuildWindow : MonoBehaviour
 
     public async void OnClickToBuild(Build build)
     {
-        var _build = build; //.BuildLevels[0];
-        var t = HelperLanguage.GetLocaleText(_build.Locale);
-
-        LocalizedString titlePrefix = new LocalizedString(Constants.LanguageTable.LANG_TABLE_UILANG, "build");
-
-        var requireResource = new List<DataDialogItem>();
-        foreach (var res in _build.CostResource)
-        {
-            requireResource.Add(new DataDialogItem()
-            {
-                Sprite = res.Resource.MenuSprite,
-                Value = res.Count
-            });
-        }
-
-        var dialog = new UITownBuildItemDialogOperation(new DataDialog()
-        {
-            Header = titlePrefix.GetLocalizedString() + t.Text.title,
-            Description = t.Text.description,
-            Sprite = _build.MenuSprite,
-            Value = requireResource
-        });
+        var dialog = new UITownBuildItemDialogOperation(build);
         var result = await dialog.ShowAndHide();
         if (result.isOk)
         {
-            Debug.Log("Go build!");
             _activeTown.Data.ProgressBuilds = _activeTown.Data.ProgressBuilds | build.TypeBuild;
+            _dataResultDialog.build = result.build;
+            _activeTown.Data.LevelsBuilds.Add(build.TypeBuild, 1);
+            // ScriptableTown scriptDataTown = (ScriptableTown)_activeTown.ScriptableData;
+            // var _scriptObjectBuildTown = ResourceSystem.Instance.GetBuildTowns().Where(t => t.TypeFaction == scriptDataTown.TypeFaction).First();
+
+            // List<string> buildedBuilds = new List<string>();
+            // foreach (var buld in _scriptObjectBuildTown.Builds)
+            // {
+            //     foreach (var buildLevel in buld.BuildLevels)
+            //     {
+            //         if ((_activeTown.Data.ProgressBuilds & buildLevel.TypeBuild) != buildLevel.TypeBuild)
+            //         {
+            //             // _scriptObjectBuildTown.Prefab.
+            //         }
+            //     }
+            // }
+
             OnClickClose();
         }
     }

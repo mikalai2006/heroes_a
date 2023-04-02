@@ -22,6 +22,7 @@ public abstract class UnitBase : MonoBehaviour, IPointerClickHandler
     [NonSerialized] public ScriptableUnitBase ScriptableData;
     protected string idUnit;
     protected string idObject;
+    protected string idWar;
 
     //public int keyArea;
     //public Stats Stats { get; private set; }

@@ -26,17 +26,27 @@ public class UITownBuildItemDialogWindow : MonoBehaviour
     private Label _headerLabel;
     private Label _descriptionLabel;
     private VisualElement _requireResourceBlok;
-    private VisualElement _requireBuildBlok;
+    private Label _requireBuildBlok;
     private VisualElement _boxSpriteObject;
-    private TaskCompletionSource<DataResultDialog> _processCompletionSource;
+    private TaskCompletionSource<DataResultBuildDialog> _processCompletionSource;
 
     public UnityEvent processAction;
 
-    private DataDialog _dataDialog;
-    private DataResultDialog _dataResultDialog;
+    private Build _buildDialog;
+    private DataResultBuildDialog _dataResultDialog;
+    private BaseTown _activeTown;
+    private Player _activePlayer;
+    private ScriptableTown _scriptObjectTown;
+    private ScriptableBuildTown _scriptObjectBuildTown;
 
     private void Awake()
     {
+        _activePlayer = LevelManager.Instance.ActivePlayer;
+        _activeTown = _activePlayer.ActiveTown;
+
+        _scriptObjectTown = (ScriptableTown)_activeTown.ScriptableData;
+        _scriptObjectBuildTown = ResourceSystem.Instance.GetBuildTowns().Where(t => t.TypeFaction == _scriptObjectTown.TypeFaction).First();
+
         _buttonCancel = DialogApp.rootVisualElement.Q<Button>(_nameButtonCancel);
         _buttonCancel.clickable.clicked += OnClickCancel;
         _buttonOk = DialogApp.rootVisualElement.Q<Button>(_nameButtonOk);
@@ -46,59 +56,95 @@ public class UITownBuildItemDialogWindow : MonoBehaviour
         _descriptionLabel = DialogApp.rootVisualElement.Q<Label>(_nameDescriptionLabel);
 
         _requireResourceBlok = DialogApp.rootVisualElement.Q<VisualElement>(_nameRequireResource);
-        _requireBuildBlok = DialogApp.rootVisualElement.Q<VisualElement>(_nameRequireBuild);
+        _requireBuildBlok = DialogApp.rootVisualElement.Q<Label>(_nameRequireBuild);
         _boxSpriteObject = DialogApp.rootVisualElement.Q<VisualElement>("SpriteObject");
 
     }
 
-    public async Task<DataResultDialog> ProcessAction(DataDialog dataDialog)
+    public async Task<DataResultBuildDialog> ProcessAction(Build build)
     {
-        _dataDialog = dataDialog;
-        _dataResultDialog = new DataResultDialog();
-
-        Player player = LevelManager.Instance.ActivePlayer;
-        BaseTown town = player.ActiveTown;
-        ScriptableTown scriptDataTown = (ScriptableTown)player.ActiveTown.ScriptableData;
-        var startDataActiveTown = ResourceSystem.Instance.GetBuildTowns().Where(t => t.TypeFaction == scriptDataTown.TypeFaction).First();
+        _buildDialog = build;
+        _dataResultDialog = new DataResultBuildDialog()
+        {
+            build = build
+        };
 
         UQueryBuilder<VisualElement> builder = new UQueryBuilder<VisualElement>(DialogApp.rootVisualElement);
         List<VisualElement> list = builder.Name(_nameOverlay).ToList();
-        Color color = player.DataPlayer.color;
+        Color color = _activePlayer.DataPlayer.color;
         color.a = .6f;
         foreach (var overlay in list)
         {
             overlay.style.backgroundColor = color;
         }
 
-        _headerLabel.text = _dataDialog.Header;
-        _descriptionLabel.text = _dataDialog.Description;
-        if (_dataDialog.Sprite != null)
+        List<string> requireBuilds = new List<string>();
+        foreach (var buld in _scriptObjectBuildTown.Builds)
         {
-            _boxSpriteObject.style.backgroundImage = new StyleBackground(_dataDialog.Sprite);
-            _boxSpriteObject.style.width = new StyleLength(new Length(_dataDialog.Sprite.bounds.size.x * _dataDialog.Sprite.pixelsPerUnit * 1.5f, LengthUnit.Pixel));
-            _boxSpriteObject.style.height = new StyleLength(new Length(_dataDialog.Sprite.bounds.size.y * _dataDialog.Sprite.pixelsPerUnit * 1.5f, LengthUnit.Pixel));
+            foreach (var buildLevel in buld.BuildLevels)
+            {
+                if (
+                    (_buildDialog.RequiredBuilds & buildLevel.TypeBuild) == buildLevel.TypeBuild
+                    && (_activeTown.Data.ProgressBuilds & buildLevel.TypeBuild) != buildLevel.TypeBuild
+                    )
+                {
+                    var textBuild = HelperLanguage.GetLocaleText(buildLevel.Locale);
+                    requireBuilds.Add(textBuild.Text.title);
+                }
+            }
         }
-        for (int i = 0; i < _dataDialog.Value.Count; i++)
+
+        if (requireBuilds.Count > 0)
+        {
+            LocalizedString require = new LocalizedString(Constants.LanguageTable.LANG_TABLE_UILANG, "build_require");
+            _requireBuildBlok.text = require.GetLocalizedString() + ": " + System.String.Join(", ", requireBuilds);
+        }
+        else
+        {
+            LocalizedString message = new LocalizedString(Constants.LanguageTable.LANG_TABLE_UILANG, "build_enable");
+            _requireBuildBlok.text = message.GetLocalizedString();
+        }
+
+
+        var t = HelperLanguage.GetLocaleText(_buildDialog.Locale);
+        LocalizedString titlePrefix = new LocalizedString(Constants.LanguageTable.LANG_TABLE_UILANG, "build");
+
+        _headerLabel.text = titlePrefix.GetLocalizedString() + ": " + t.Text.title;
+        _descriptionLabel.text = t.Text.description;
+
+        if (_buildDialog.MenuSprite != null)
+        {
+            _boxSpriteObject.style.backgroundImage = new StyleBackground(_buildDialog.MenuSprite);
+            _boxSpriteObject.style.width = new StyleLength(new Length(_buildDialog.MenuSprite.bounds.size.x * _buildDialog.MenuSprite.pixelsPerUnit * 1.5f, LengthUnit.Pixel));
+            _boxSpriteObject.style.height = new StyleLength(new Length(_buildDialog.MenuSprite.bounds.size.y * _buildDialog.MenuSprite.pixelsPerUnit * 1.5f, LengthUnit.Pixel));
+        }
+
+        for (int i = 0; i < _buildDialog.CostResource.Count; i++)
         {
             VisualElement item = _templateItem.Instantiate();
             var _spriteElement = item.Q<VisualElement>(_nameSpriteElement);
             var _valueLabel = item.Q<Label>(_nameValueLabel);
-            var sprite = _dataDialog.Value[i].Sprite;
+            var sprite = _buildDialog.CostResource[i].Resource.MenuSprite;
 
             _spriteElement.style.backgroundImage = new StyleBackground(sprite);
             _spriteElement.style.width = new StyleLength(new Length(sprite.bounds.size.x * sprite.pixelsPerUnit, LengthUnit.Pixel));
             _spriteElement.style.height = new StyleLength(new Length(sprite.bounds.size.y * sprite.pixelsPerUnit, LengthUnit.Pixel));
 
-            var val = _dataDialog.Value[i].Value;
+            var val = _buildDialog.CostResource[i].Count;
             if (val != 0)
             {
-                _valueLabel.text = _dataDialog.Value[i].Value.ToString();
+                _valueLabel.text = _buildDialog.CostResource[i].Count.ToString();
             }
 
             _requireResourceBlok.Add(item);
         }
 
-        _processCompletionSource = new TaskCompletionSource<DataResultDialog>();
+        if ((_activeTown.Data.ProgressBuilds & _buildDialog.TypeBuild) == _buildDialog.TypeBuild)
+        {
+            _buttonOk.SetEnabled(false);
+        }
+
+        _processCompletionSource = new TaskCompletionSource<DataResultBuildDialog>();
 
         return await _processCompletionSource.Task;
     }

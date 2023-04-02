@@ -3,7 +3,7 @@ using System.Linq;
 
 using UnityEngine;
 
-public class LevelManager : Singleton<LevelManager>, IDataPlay
+public class LevelManager : Singleton<LevelManager>, IDataPlay, IDataGame
 {
     [SerializeField] private Transform _camera;
     public DataLevel Level;
@@ -125,7 +125,7 @@ public class LevelManager : Singleton<LevelManager>, IDataPlay
         if (ActivePlayer.ActiveHero == null)
         {
             //GetActivePlayer().SetActiveHero(GetActivePlayer().GetActiveHero());
-            ActivePlayer.ActiveHero = ActivePlayer.DataPlayer.ListHero[0];
+            ActivePlayer.ActiveHero = ActivePlayer.DataPlayer.PlayerDataReferences.ListHero[0];
         }
 
         SetPositionCamera(new Vector3(ActivePlayer.ActiveHero.Position.x, ActivePlayer.ActiveHero.Position.y, -10f));
@@ -219,5 +219,15 @@ public class LevelManager : Singleton<LevelManager>, IDataPlay
     public void SaveDataPlay(ref DataPlay data)
     {
         data.Level = Level;
+    }
+
+    public void LoadDataGame(DataGame data)
+    {
+        GameModeData = data.dataMap.GameModeData;
+    }
+
+    public void SaveDataGame(ref DataGame data)
+    {
+        data.dataMap.GameModeData = GameModeData;
     }
 }

@@ -20,6 +20,8 @@ MonoBehaviour:
   listTypeNoPath: 080000000e0000000c000000090000000700000006000000030000000f0000000b000000
   Prefab: {fileID: 7611858330927151199, guid: a9109f9599358f84fa65b703f5f4dca4, type: 3}
   MenuSprite: {fileID: 21300000, guid: 89f0e95d08d1e874ca5e3dc10293026c, type: 3}
+  Locale: []
+  TypeFaction: 0
   heroes:
   - {fileID: 11400000, guid: 8dd5b6c87839b6a469fa98c213d4fc02, type: 2}
   - {fileID: 11400000, guid: 8268c8fea98a7e249a8fc20babf31991, type: 2}
@@ -28,3 +30,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0bf796cd05f1ed04a9b2b5c7d8a494fe, type: 2}
   warriors:
   - {fileID: 11400000, guid: 4f0e4cab83e761f41b24200683cb8d4b, type: 2}
+  BuildTown: {fileID: 11400000, guid: 1f1375cba941c9d42a773e14a600c09d, type: 2}

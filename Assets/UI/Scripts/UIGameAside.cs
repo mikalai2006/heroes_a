@@ -191,9 +191,9 @@ public class UIGameAside : MonoBehaviour
             newButtonHero.AddToClassList(NameHeroButton);
             //Debug.Log($"hero btn {i}");
 
-            if (i < player.DataPlayer.ListHero.Count)
+            if (i < player.DataPlayer.PlayerDataReferences.ListHero.Count)
             {
-                Hero hero = player.DataPlayer.ListHero[i];
+                Hero hero = player.DataPlayer.PlayerDataReferences.ListHero[i];
 
                 var hit = newButtonHero.Q<VisualElement>(NameHit);
                 // hit.UnbindAllProperties();
@@ -253,9 +253,9 @@ public class UIGameAside : MonoBehaviour
             newButtonTown.style.flexGrow = 1;
             newButtonTown.AddToClassList(NameTownButton);
 
-            if (i < player.DataPlayer.ListTown.Count)
+            if (i < player.DataPlayer.PlayerDataReferences.ListTown.Count)
             {
-                BaseTown town = (BaseTown)player.DataPlayer.ListTown[i];
+                BaseTown town = (BaseTown)player.DataPlayer.PlayerDataReferences.ListTown[i];
 
                 newButtonTown.Q<VisualElement>("image").style.backgroundImage = new StyleBackground(town.ScriptableData.MenuSprite);
 
@@ -422,7 +422,7 @@ public class UIGameAside : MonoBehaviour
     {
         var ArrowTopBtn = aside.Q<VisualElement>("arrowtop");
         var ArrowBottomBtn = aside.Q<VisualElement>("arrowbottom");
-        if (player.DataPlayer.ListTown.Count < countTown)
+        if (player.DataPlayer.PlayerDataReferences.ListTown.Count < countTown)
         {
             ArrowTopBtn.SetEnabled(false);
             ArrowBottomBtn.SetEnabled(false);

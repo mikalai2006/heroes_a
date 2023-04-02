@@ -118,9 +118,17 @@ public class GameManager : StaticInstance<GameManager>
         // await MapManager.NewMap();
     }
 
-    private void HandleLoadGame()
+    private async void HandleLoadGame()
     {
+
+        // LevelManager.Instance.NewLevel();
+
+        var operations = new Queue<ILoadingOperation>();
+        operations.Enqueue(new GameInitOperation());
+        await LoadingScreenProvider.LoadAndDestroy(operations);
         DataManager.Instance.Load();
+
+        // await MapManager.NewMap();
         ChangeState(GameState.StepNextPlayer);
     }
 

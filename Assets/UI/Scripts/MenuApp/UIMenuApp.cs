@@ -65,6 +65,8 @@ public class UIMenuApp : MonoBehaviour
         loadGameButton.clickable.clicked += () =>
         {
             GameManager.Instance.ChangeState(GameState.LoadGame);
+            HideNewGameWindow();
+            GameManager.Instance.AssetProvider.UnloadAsset(_environment);
         };
 
         var btnQuit = MenuApp.rootVisualElement.Q<Button>("ButtonQuit");

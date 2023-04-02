@@ -2,9 +2,15 @@ using Cysharp.Threading.Tasks;
 
 using UnityEngine;
 
-public class BaseArtifact : BaseMapObject, IDialogMapObjectOperation
+[System.Serializable]
+public struct DataArtifact
+{
+
+}
+public class BaseArtifact : BaseMapObject, IDataPlay, IDialogMapObjectOperation
 {
     public Transform _model;
+    public DataArtifact Data;
 
     protected override void Awake()
     {
@@ -57,5 +63,15 @@ public class BaseArtifact : BaseMapObject, IDialogMapObjectOperation
         {
             // Click cancel.
         }
+    }
+
+    public void LoadDataPlay(DataPlay data)
+    {
+    }
+
+    public void SaveDataPlay(ref DataPlay data)
+    {
+        var sdata = SaveUnit(Data);
+        data.Units.artifacts.Add(sdata);
     }
 }

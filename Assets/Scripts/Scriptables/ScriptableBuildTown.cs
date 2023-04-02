@@ -11,7 +11,9 @@ public class ScriptableBuildTown : ScriptableObject
     public AssetReference Prefab;
     public Sprite Bg;
     [SerializeField] public List<ScriptableBuildBase> Builds;
+    [SerializeField] public List<ScriptableBuildArmy> BuildsArmy;
     [SerializeField] public AssetReferenceScriptableTown TownMap;
+    public TypeBuild StartProgressBuilds;
 }
 
 [System.Serializable]

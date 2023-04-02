@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d42093a1eaf0824c9a2bb9f171cc7f4, type: 3}
+  m_Name: 14_OrcTower
+  m_EditorClassIdentifier: 
+  idObject: 2_9
+  TypeFaction: 1
+  Prefab: {fileID: -1714688031838287941, guid: 9443387e65318c949bd93edf6f1ef1dd, type: 3}
+  BuildLevels:
+  - MenuSprite: {fileID: 21300000, guid: fcc4bad460c0fdd439c71e0d4cb6ea2d, type: 3}
+    TypeBuild: 2097152
+    RequiredBuilds: 131142
+    RequiredSpecificBuilds: 0
+    UpdatePrefab: {fileID: 0}
+    Locale:
+    - Language: {fileID: 11400000, guid: 30b8a59646ec31e4fa7737b1c0d7cba9, type: 2}
+      Text:
+        title: "\u0411\u0430\u0448\u043D\u044F \u043E\u0440\u043A\u043E\u0432"
+        description: "\u0412 \u0431\u0430\u0448\u043D\u0435 \u043E\u0440\u043A\u043E\u0432
+          \u0432\u044B \u043C\u043E\u0436\u0435\u0442\u0435 \u043D\u0430\u043D\u044F\u0442\u044C
+          \u043E\u0440\u043A\u043E\u0432."
+        visit_ok: 
+        visit_no: 
+        visit_noresource: 
+    CostResource:
+    - Resource: {fileID: 11400000, guid: 2de32a5fb2189994a867c9e425391bf7, type: 2}
+      Count: 1000
+    - Resource: {fileID: 11400000, guid: 88388bc7df9ca2b4594e5d8830fcc54d, type: 2}
+      Count: 5
+    - Resource: {fileID: 11400000, guid: c1bca1c330d8ff847b7e9e3584dabe06, type: 2}
+      Count: 5
+  - MenuSprite: {fileID: 21300000, guid: 7f6ac5e3b729f604e914f84f1fccc12f, type: 3}
+    TypeBuild: 4194304
+    RequiredBuilds: 2236482
+    RequiredSpecificBuilds: 0
+    UpdatePrefab: {fileID: 0}
+    Locale:
+    - Language: {fileID: 11400000, guid: 30b8a59646ec31e4fa7737b1c0d7cba9, type: 2}
+      Text:
+        title: "\u0423\u043B. \u0431\u0430\u0448\u043D\u044F \u043E\u0440\u043A\u043E\u0432"
+        description: "\u0412 \u0443\u043B\u0443\u0447\u0448\u0435\u043D\u043D\u043E\u0439
+          \u0431\u0430\u0448\u043D\u0435 \u043E\u0440\u043A\u043E\u0432 \u0432\u044B
+          \u043C\u043E\u0436\u0435\u0442\u0435 \u043D\u0430\u043D\u044F\u0442\u044C
+          \u0432\u043E\u0436\u0434\u0435\u0439 \u043E\u0440\u043A\u043E\u0432."
+        visit_ok: 
+        visit_no: 
+        visit_noresource: 
+    CostResource:
+    - Resource: {fileID: 11400000, guid: 2de32a5fb2189994a867c9e425391bf7, type: 2}
+      Count: 1000
+    - Resource: {fileID: 11400000, guid: 88388bc7df9ca2b4594e5d8830fcc54d, type: 2}
+      Count: 2
+    - Resource: {fileID: 11400000, guid: c1bca1c330d8ff847b7e9e3584dabe06, type: 2}
+      Count: 2
+  BuildSpecifiers: []

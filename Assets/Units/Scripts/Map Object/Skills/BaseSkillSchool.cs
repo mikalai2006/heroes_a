@@ -10,7 +10,7 @@ public struct DataSkillSchool
     public List<ItemSkill> Skills;
     public TypeWork TypeWork;
 }
-public class BaseSkillSchool : BaseMapObject, IDialogMapObjectOperation
+public class BaseSkillSchool : BaseMapObject, IDataPlay, IDialogMapObjectOperation
 {
     public DataSkillSchool Data;
 
@@ -79,5 +79,17 @@ public class BaseSkillSchool : BaseMapObject, IDialogMapObjectOperation
 
         var dialogWindow = new DialogMapObjectProvider(dialogData);
         return await dialogWindow.ShowAndHide();
+    }
+
+    public void LoadDataPlay(DataPlay data)
+    {
+        //throw new System.NotImplementedException();
+    }
+
+
+    public void SaveDataPlay(ref DataPlay data)
+    {
+        var sdata = SaveUnit(Data);
+        data.Units.skillSchools.Add(sdata);
     }
 }

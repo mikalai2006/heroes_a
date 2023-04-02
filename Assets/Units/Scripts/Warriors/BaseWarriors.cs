@@ -71,6 +71,7 @@ public class BaseWarriors : UnitBase, IDataPlay, IDialogMapObjectOperation
 
     public void OnChangeQuantityWarrior()
     {
+        Data.protectedNode = ProtectedNode.position;
         //if (ProtectedNode != null)
         //{
         //    UnitBase protectedUnit = ProtectedNode.OccupiedUnit;

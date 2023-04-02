@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d42093a1eaf0824c9a2bb9f171cc7f4, type: 3}
   m_Name: Castle_MageGuild
   m_EditorClassIdentifier: 
-  idObject: 
+  idObject: 1_4
   TypeFaction: 0
   Prefab: {fileID: 8459653664363657320, guid: e64cd0e0ab6f53144935e712ebcb4edd, type: 3}
   BuildLevels:

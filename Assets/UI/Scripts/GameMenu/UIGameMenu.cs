@@ -40,6 +40,7 @@ public class UIGameMenu : MonoBehaviour
         btnSave.clickable.clicked += () =>
         {
             OnSave?.Invoke();
+            GameManager.Instance.ChangeState(GameState.SaveGame);
         };
 
         // Hide();

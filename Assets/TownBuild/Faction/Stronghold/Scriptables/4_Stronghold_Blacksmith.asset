@@ -10,29 +10,29 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9d42093a1eaf0824c9a2bb9f171cc7f4, type: 3}
-  m_Name: Stronghold_Tavern
+  m_Name: 4_Stronghold_Blacksmith
   m_EditorClassIdentifier: 
-  idObject: 
+  idObject: 2_6
   TypeFaction: 1
-  Prefab: {fileID: -6002587966155544095, guid: 0548cae46a51df945b7d87783a7d9f48, type: 3}
+  Prefab: {fileID: 8648885901818476254, guid: 455df1c9b737cec48a35b330366e907f, type: 3}
   BuildLevels:
-  - MenuSprite: {fileID: 21300000, guid: 4b6ed0d80ca62974c85a8e03583f598e, type: 3}
-    TypeBuild: 2
-    RequiredBuilds: 1
+  - MenuSprite: {fileID: 21300000, guid: 9860a0c4fdc2e0c49bbf5f047eefe14d, type: 3}
+    TypeBuild: 512
+    RequiredBuilds: 2
+    UpdatePrefab: {fileID: 0}
     Locale:
     - Language: {fileID: 11400000, guid: 30b8a59646ec31e4fa7737b1c0d7cba9, type: 2}
       Text:
-        title: "\u0422\u0430\u0432\u0435\u0440\u043D\u0430"
-        description: "\u0423\u043A\u0440\u0435\u043F\u043B\u044F\u0435\u0442 \u0431\u043E\u0435\u0432\u043E\u0439
-          \u0434\u0443\u0445 \u0441\u043E\u043B\u0434\u0430\u0442, \u0437\u0430\u0449\u0438\u0449\u0430\u044E\u0449\u0438\u0445
-          \u0433\u043E\u0440\u043E\u0434."
+        title: "\u041A\u0443\u0437\u043D\u0438\u0446\u0430"
+        description: "\u041A\u0443\u0437\u043D\u0438\u0446\u0430 \u043F\u043E\u0437\u0432\u043E\u043B\u044F\u0435\u0442
+          \u043F\u0440\u0438\u043E\u0431\u0440\u0435\u0441\u0442\u0438 \u043F\u043E\u0434\u0432\u043E\u0434\u0443
+          \u0441 \u0431\u043E\u0435\u043F\u0440\u0438\u043F\u0430\u0441\u0430\u043C\u0438"
         visit_ok: 
         visit_no: 
         visit_noresource: 
     CostResource:
     - Resource: {fileID: 11400000, guid: 2de32a5fb2189994a867c9e425391bf7, type: 2}
-      Count: 500
+      Count: 1000
     - Resource: {fileID: 11400000, guid: 88388bc7df9ca2b4594e5d8830fcc54d, type: 2}
-      Count: 1
-    - Resource: {fileID: 11400000, guid: c1bca1c330d8ff847b7e9e3584dabe06, type: 2}
-      Count: 1
+      Count: 5
+  BuildSpecifiers: []

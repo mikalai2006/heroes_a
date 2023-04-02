@@ -10,15 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9d42093a1eaf0824c9a2bb9f171cc7f4, type: 3}
-  m_Name: Stronghold_Castle
+  m_Name: 2_Stronghold_Castle
   m_EditorClassIdentifier: 
-  idObject: 
+  idObject: 2_5
   TypeFaction: 1
   Prefab: {fileID: -6975106752431221732, guid: b0b4262bdc8848e41a98fe2467d603f9, type: 3}
   BuildLevels:
   - MenuSprite: {fileID: 21300000, guid: 3ef0f206952cc2f4d8781e2cbe57ad4a, type: 3}
-    TypeBuild: 128
-    RequiredBuilds: 10
+    TypeBuild: 64
+    RequiredBuilds: 6
+    UpdatePrefab: {fileID: 0}
     Locale:
     - Language: {fileID: 11400000, guid: 30b8a59646ec31e4fa7737b1c0d7cba9, type: 2}
       Text:
@@ -30,14 +31,15 @@ MonoBehaviour:
         visit_noresource: 
     CostResource:
     - Resource: {fileID: 11400000, guid: 2de32a5fb2189994a867c9e425391bf7, type: 2}
-      Count: 2500
+      Count: 5000
     - Resource: {fileID: 11400000, guid: 88388bc7df9ca2b4594e5d8830fcc54d, type: 2}
-      Count: 10
+      Count: 20
     - Resource: {fileID: 11400000, guid: c1bca1c330d8ff847b7e9e3584dabe06, type: 2}
-      Count: 10
+      Count: 20
   - MenuSprite: {fileID: 21300000, guid: 96b6c32c50d5ce14e949897cfe48255a, type: 3}
-    TypeBuild: 256
-    RequiredBuilds: 138
+    TypeBuild: 128
+    RequiredBuilds: 70
+    UpdatePrefab: {fileID: 0}
     Locale:
     - Language: {fileID: 11400000, guid: 30b8a59646ec31e4fa7737b1c0d7cba9, type: 2}
       Text:
@@ -56,13 +58,12 @@ MonoBehaviour:
     CostResource:
     - Resource: {fileID: 11400000, guid: 2de32a5fb2189994a867c9e425391bf7, type: 2}
       Count: 2500
-    - Resource: {fileID: 11400000, guid: 88388bc7df9ca2b4594e5d8830fcc54d, type: 2}
-      Count: 10
     - Resource: {fileID: 11400000, guid: c1bca1c330d8ff847b7e9e3584dabe06, type: 2}
-      Count: 10
+      Count: 5
   - MenuSprite: {fileID: 21300000, guid: 032393052e4c9cb49b3f4ff69bb92c2b, type: 3}
-    TypeBuild: 512
-    RequiredBuilds: 394
+    TypeBuild: 256
+    RequiredBuilds: 198
+    UpdatePrefab: {fileID: 0}
     Locale:
     - Language: {fileID: 11400000, guid: 30b8a59646ec31e4fa7737b1c0d7cba9, type: 2}
       Text:
@@ -80,8 +81,9 @@ MonoBehaviour:
         visit_noresource: 
     CostResource:
     - Resource: {fileID: 11400000, guid: 2de32a5fb2189994a867c9e425391bf7, type: 2}
-      Count: 2500
+      Count: 5000
     - Resource: {fileID: 11400000, guid: 88388bc7df9ca2b4594e5d8830fcc54d, type: 2}
       Count: 10
     - Resource: {fileID: 11400000, guid: c1bca1c330d8ff847b7e9e3584dabe06, type: 2}
       Count: 10
+  BuildSpecifiers: []

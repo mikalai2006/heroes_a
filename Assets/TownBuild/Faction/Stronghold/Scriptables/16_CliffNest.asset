@@ -10,51 +10,51 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9d42093a1eaf0824c9a2bb9f171cc7f4, type: 3}
-  m_Name: GoblinBarracks
+  m_Name: 16_CliffNest
   m_EditorClassIdentifier: 
-  idObject: 
+  idObject: 2_11
   TypeFaction: 1
-  Prefab: {fileID: -6811262694497039515, guid: 7e42b69872cd94642be5df105d8e9956, type: 3}
+  Prefab: {fileID: -1817550952415552929, guid: 59f8be25d7c1f454193af8c51d3bdee7, type: 3}
   BuildLevels:
-  - MenuSprite: {fileID: 21300000, guid: d93b1d685a5d1c247946a08516cee1b3, type: 3}
-    TypeBuild: 262144
-    RequiredBuilds: 2186
+  - MenuSprite: {fileID: 21300000, guid: 404191ee892353a4bb9331cfecfcf34d, type: 3}
+    TypeBuild: 33554432
+    RequiredBuilds: 2228294
+    UpdatePrefab: {fileID: 0}
     Locale:
     - Language: {fileID: 11400000, guid: 30b8a59646ec31e4fa7737b1c0d7cba9, type: 2}
       Text:
-        title: "\u041A\u0430\u0437\u0430\u0440\u043C\u044B \u0433\u043E\u0431\u043B\u0438\u043D\u043E\u0432"
-        description: "\u0412 \u0443\u043B\u0443\u0447\u0448\u0435\u043D\u043D\u044B\u0445
-          \u043A\u0430\u0437\u0430\u0440\u043C\u0430\u0445 \u0433\u043E\u0431\u043B\u0438\u043D\u043E\u0432
+        title: "\u0413\u043D\u0435\u0437\u0434\u043E \u043D\u0430 \u0441\u043A\u0430\u043B\u0435"
+        description: "\u0412 \u0433\u043D\u0435\u0437\u0434\u0435 \u043D\u0430 \u0441\u043A\u0430\u043B\u0435
           \u0432\u044B \u043C\u043E\u0436\u0435\u0442\u0435 \u043D\u0430\u043D\u044F\u0442\u044C
-          \u0433\u043E\u0431\u043B\u0438\u043D\u043E\u0432."
+          \u043F\u0442\u0438\u0446 \u0440\u0443\u0445."
         visit_ok: 
         visit_no: 
         visit_noresource: 
     CostResource:
     - Resource: {fileID: 11400000, guid: 2de32a5fb2189994a867c9e425391bf7, type: 2}
-      Count: 5000
-    - Resource: {fileID: 11400000, guid: 88388bc7df9ca2b4594e5d8830fcc54d, type: 2}
-      Count: 10
+      Count: 2500
     - Resource: {fileID: 11400000, guid: c1bca1c330d8ff847b7e9e3584dabe06, type: 2}
       Count: 10
-  - MenuSprite: {fileID: 21300000, guid: 10b3a311457d4ab4f83282adc4e59251, type: 3}
-    TypeBuild: 524288
-    RequiredBuilds: 264330
+  - MenuSprite: {fileID: 21300000, guid: 78bcda6614197134bbcdaa69acdb03a0, type: 3}
+    TypeBuild: 67108864
+    RequiredBuilds: 34209858
+    UpdatePrefab: {fileID: 0}
     Locale:
     - Language: {fileID: 11400000, guid: 30b8a59646ec31e4fa7737b1c0d7cba9, type: 2}
       Text:
-        title: "\u0423\u043B. \u043A\u0430\u0437\u0430\u0440\u043C\u044B \u0433\u043E\u0431\u043B\u0438\u043D\u043E\u0432"
-        description: "\u0412 \u0443\u043B\u0443\u0447\u0448\u0435\u043D\u043D\u044B\u0445
-          \u043A\u0430\u0437\u0430\u0440\u043C\u0430\u0445 \u0433\u043E\u0431\u043B\u0438\u043D\u043E\u0432
+        title: "\u0423\u043B. \u0433\u043D\u0435\u0437\u0434\u043E \u043D\u0430 \u0441\u043A\u0430\u043B\u0435"
+        description: "\u0412 \u0443\u043B\u0443\u0447\u0448\u0435\u043D\u043D\u043E\u043C
+          \u0433\u043D\u0435\u0437\u0434\u0435 \u043D\u0430 \u0441\u043A\u0430\u043B\u0435
           \u0432\u044B \u043C\u043E\u0436\u0435\u0442\u0435 \u043D\u0430\u043D\u044F\u0442\u044C
-          \u0445\u043E\u0431\u0433\u043E\u0431\u043B\u0438\u043D\u043E\u0432."
+          \u043F\u0442\u0438\u0446 \u0433\u0440\u043E\u043C\u0430."
         visit_ok: 
         visit_no: 
         visit_noresource: 
     CostResource:
     - Resource: {fileID: 11400000, guid: 2de32a5fb2189994a867c9e425391bf7, type: 2}
-      Count: 5000
+      Count: 2000
     - Resource: {fileID: 11400000, guid: 88388bc7df9ca2b4594e5d8830fcc54d, type: 2}
-      Count: 10
+      Count: 5
     - Resource: {fileID: 11400000, guid: c1bca1c330d8ff847b7e9e3584dabe06, type: 2}
-      Count: 10
+      Count: 5
+  BuildSpecifiers: []

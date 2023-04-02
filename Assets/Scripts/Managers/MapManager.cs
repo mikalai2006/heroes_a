@@ -98,7 +98,7 @@ public class MapManager : MonoBehaviour, IDataGame
     {
         data.dataMap.mapNode = gridTileHelper?.GetAllGridNodes();
         data.dataMap.natureNode = _listNatureNode;
-        data.dataMap.GameModeData = gameModeData;
+        //data.dataMap.GameModeData = gameModeData;
         data.dataMap.isWater = _isWater;
         data.dataMap.countArea = countArea;
     }
@@ -106,6 +106,7 @@ public class MapManager : MonoBehaviour, IDataGame
     private void LoadMap(DataGame data)
     {
         gameModeData = data.dataMap.GameModeData;
+        _listNatureNode = data.dataMap.natureNode;
         _isWater = data.dataMap.isWater;
         countArea = data.dataMap.countArea;
 
@@ -123,7 +124,11 @@ public class MapManager : MonoBehaviour, IDataGame
             node.KeyArea = data.dataMap.mapNode[i].KeyArea;
             node.State = data.dataMap.mapNode[i].State;
 
-            if (data.dataMap.mapNode[i].Road) node.SetAsRoad();
+            if (data.dataMap.mapNode[i]._isRoad)
+            {
+                _tileMapRoad.SetTile(node.position, _tileRoad.tileRule);
+                node.SetAsRoad();
+            }
         }
 
         for (int x = 0; x < gameModeData.width; x++)
@@ -180,7 +185,10 @@ public class MapManager : MonoBehaviour, IDataGame
                 continue;
             }
             UnitBase Town = UnitManager.SpawnUnitToNode(scriptableData, tileNode);
-            LevelManager.Instance.GetPlayer(unitTown.data.idPlayer).AddTown(Town);
+            if (unitTown.data.idPlayer >= 0)
+            {
+                LevelManager.Instance.GetPlayer(unitTown.data.idPlayer).AddTown(Town);
+            }
         }
 
         foreach (SaveDataUnit<DataHero> unitHero in DataManager.Instance.DataPlay.Units.heroes)
@@ -198,9 +206,157 @@ public class MapManager : MonoBehaviour, IDataGame
             }
             UnitBase Hero = UnitManager.SpawnUnitToNode(scriptableData, tileNode);
             Hero.OnLoadUnit(unitHero);
-            LevelManager.Instance.GetPlayer(unitHero.data.idPlayer).AddHero((Hero)Hero);
+            if (unitHero.data.idPlayer >= 0)
+            {
+                LevelManager.Instance.GetPlayer(unitHero.data.idPlayer).AddHero((Hero)Hero);
+            }
+            // LevelManager.Instance.GetPlayer(unitHero.data.idPlayer).AddHero((Hero)Hero);
         }
 
+        foreach (SaveDataUnit<DataResource> item in DataManager.Instance.DataPlay.Units.resources)
+        {
+            GridTileNode tileNode = gridTileHelper.GridTile.GetGridObject(new Vector3Int(item.position.x, item.position.y));
+
+            if (item.idObject == "") continue;
+
+            ScriptableResource scriptableData = ResourceSystem.Instance.GetUnit<ScriptableResource>(item.idObject);
+
+            if (scriptableData == null)
+            {
+                Debug.Log($"None resource data for : [{item.idUnit}]");
+                continue;
+            }
+            UnitBase Res = UnitManager.SpawnUnitToNode(scriptableData, tileNode);
+            // Hero.OnLoadUnit(unitHero);
+            // LevelManager.Instance.GetPlayer(unitHero.data.idPlayer).AddHero((Hero)Hero);
+        }
+
+        foreach (SaveDataUnit<DataMine> item in DataManager.Instance.DataPlay.Units.mines)
+        {
+            GridTileNode tileNode = gridTileHelper.GridTile.GetGridObject(new Vector3Int(item.position.x, item.position.y));
+
+            if (item.idObject == "") continue;
+
+            ScriptableMine scriptableData = ResourceSystem.Instance.GetUnit<ScriptableMine>(item.idObject);
+
+            if (scriptableData == null)
+            {
+                Debug.Log($"None mine data for : [{item.idUnit}]");
+                continue;
+            }
+            BaseMines unit = (BaseMines)UnitManager.SpawnUnitToNode(scriptableData, tileNode);
+            if (item.data.idPlayer >= 0)
+            {
+                LevelManager.Instance.GetPlayer(item.data.idPlayer).AddMines(unit);
+                // Player player = LevelManager.Instance.GetPlayer(item.data.idPlayer);
+                // unit.SetPlayer(player);
+            }
+        }
+
+        foreach (SaveDataUnit<DataArtifact> item in DataManager.Instance.DataPlay.Units.artifacts)
+        {
+            GridTileNode tileNode = gridTileHelper.GridTile.GetGridObject(new Vector3Int(item.position.x, item.position.y));
+
+            if (item.idObject == "") continue;
+
+            ScriptableArtifact scriptableData = ResourceSystem.Instance.GetUnit<ScriptableArtifact>(item.idObject);
+
+            if (scriptableData == null)
+            {
+                Debug.Log($"None artifact data for : [{item.idUnit}]");
+                continue;
+            }
+            UnitManager.SpawnUnitToNode(scriptableData, tileNode);
+        }
+
+        foreach (SaveDataUnit<DataResourceMapObject> item in DataManager.Instance.DataPlay.Units.resourcesmap)
+        {
+            GridTileNode tileNode = gridTileHelper.GridTile.GetGridObject(new Vector3Int(item.position.x, item.position.y));
+
+            if (item.idObject == "") continue;
+
+            ScriptableMapObject scriptableData = ResourceSystem.Instance.GetUnit<ScriptableMapObject>(item.idObject);
+
+            if (scriptableData == null)
+            {
+                Debug.Log($"None resource map data for : [{item.idUnit}]");
+                continue;
+            }
+            BaseResourceMapObject unit = (BaseResourceMapObject)UnitManager.SpawnUnitToNode(scriptableData, tileNode);
+            // if (item.data.idPlayer >= 0)
+            // {
+            //     Player player = LevelManager.Instance.GetPlayer(item.data.idPlayer);
+            //     unit.SetPlayer(player);
+            // }
+        }
+
+        foreach (SaveDataUnit<DataExplore> item in DataManager.Instance.DataPlay.Units.explorers)
+        {
+            GridTileNode tileNode = gridTileHelper.GridTile.GetGridObject(new Vector3Int(item.position.x, item.position.y));
+
+            if (item.idObject == "") continue;
+
+            ScriptableMapObject scriptableData = ResourceSystem.Instance.GetUnit<ScriptableMapObject>(item.idObject);
+
+            if (scriptableData == null)
+            {
+                Debug.Log($"None explore map data for : [{item.idUnit}]");
+                continue;
+            }
+            UnitManager.SpawnUnitToNode(scriptableData, tileNode);
+        }
+
+        foreach (SaveDataUnit<DataSkillSchool> item in DataManager.Instance.DataPlay.Units.skillSchools)
+        {
+            GridTileNode tileNode = gridTileHelper.GridTile.GetGridObject(new Vector3Int(item.position.x, item.position.y));
+
+            if (item.idObject == "") continue;
+
+            ScriptableMapObject scriptableData = ResourceSystem.Instance.GetUnit<ScriptableMapObject>(item.idObject);
+
+            if (scriptableData == null)
+            {
+                Debug.Log($"None skillschool map data for : [{item.idUnit}]");
+                continue;
+            }
+            UnitManager.SpawnUnitToNode(scriptableData, tileNode);
+        }
+
+        foreach (SaveDataUnit<DataMonolith> item in DataManager.Instance.DataPlay.Units.monoliths)
+        {
+            GridTileNode tileNode = gridTileHelper.GridTile.GetGridObject(new Vector3Int(item.position.x, item.position.y));
+
+            if (item.idObject == "") continue;
+
+            ScriptableMapObject scriptableData = ResourceSystem.Instance.GetUnit<ScriptableMapObject>(item.idObject);
+
+            if (scriptableData == null)
+            {
+                Debug.Log($"None monolith map data for : [{item.idUnit}]");
+                continue;
+            }
+            UnitManager.SpawnUnitToNode(scriptableData, tileNode);
+        }
+
+        foreach (SaveDataUnit<DataWarrior> item in DataManager.Instance.DataPlay.Units.warriors)
+        {
+            GridTileNode tileNode = gridTileHelper.GridTile.GetGridObject(new Vector3Int(item.position.x, item.position.y));
+            GridTileNode protectedNode = gridTileHelper.GridTile.GetGridObject(new Vector3Int(item.data.protectedNode.x, item.data.protectedNode.y));
+
+            if (item.idObject == "") continue;
+
+            ScriptableWarriors scriptableData = ResourceSystem.Instance.GetUnit<ScriptableWarriors>(item.idObject);
+
+            if (scriptableData == null)
+            {
+                Debug.Log($"None warrior data for : [{item.idUnit}]");
+                continue;
+            }
+            BaseWarriors warrior = (BaseWarriors)UnitManager.SpawnUnitToNode(scriptableData, tileNode);
+            tileNode.SetProtectedNeigbours(warrior, protectedNode);
+            // Hero.OnLoadUnit(unitHero);
+            // LevelManager.Instance.GetPlayer(unitHero.data.idPlayer).AddHero((Hero)Hero);
+        }
     }
 
     private void InitSetting()
