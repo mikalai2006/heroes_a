@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b94adf996afa7914eac367e552a603fe
+guid: 5959f8723854b09439dd1c10dd12f954
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -72,7 +72,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 2
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -119,13 +119,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Cyclops_0
+      name: OgreMagi_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 60
-        height: 48
+        height: 68
       alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -133,20 +133,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6eb04ca1bf0582a4b9df853d666a99ac
-      internalID: 528489380
+      spriteID: eb2a072dc53231343842f58e99e27c92
+      internalID: -131633308
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cyclops_1
+      name: OgreMagi_1
       rect:
         serializedVersion: 2
         x: 60
         y: 0
         width: 60
-        height: 48
+        height: 68
       alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -154,20 +154,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0f7eb0da26895014984372b56ef59de5
-      internalID: 1925233953
+      spriteID: a07e6dcd88b9a5e43b4b38ce0b04bcd8
+      internalID: -1645591731
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cyclops_2
+      name: OgreMagi_2
       rect:
         serializedVersion: 2
         x: 120
         y: 0
         width: 60
-        height: 48
+        height: 68
       alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -175,20 +175,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 98982b67eb34a094b80ec9fdc64902b3
-      internalID: -37191400
+      spriteID: 1716cb1d53c01c64c9da9325318f0704
+      internalID: -1196470409
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cyclops_3
+      name: OgreMagi_3
       rect:
         serializedVersion: 2
         x: 180
         y: 0
         width: 60
-        height: 48
+        height: 68
       alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -196,8 +196,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3b148d0d0d078854999987e79860b88f
-      internalID: 54497299
+      spriteID: d749585a0ba75b744959f8ddc41d5a99
+      internalID: 1085601153
       vertices: []
       indices: 
       edges: []
@@ -213,10 +213,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Cyclops_0: 528489380
-      Cyclops_1: 1925233953
-      Cyclops_2: -37191400
-      Cyclops_3: 54497299
+      OgreMagi_0: -131633308
+      OgreMagi_1: -1645591731
+      OgreMagi_2: -1196470409
+      OgreMagi_3: 1085601153
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

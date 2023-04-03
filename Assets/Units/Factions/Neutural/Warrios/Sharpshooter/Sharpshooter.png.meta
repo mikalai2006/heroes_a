@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b94adf996afa7914eac367e552a603fe
+guid: b7239ca5fbbfe554eacd7aaec463f24e
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -72,7 +72,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 2
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -119,13 +119,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Cyclops_0
+      name: Sharpshooter_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 60
-        height: 48
+        height: 68
       alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -133,20 +133,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6eb04ca1bf0582a4b9df853d666a99ac
-      internalID: 528489380
+      spriteID: 26ac49ab864a71b41a146729605a9806
+      internalID: -957920823
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cyclops_1
+      name: Sharpshooter_1
       rect:
         serializedVersion: 2
         x: 60
         y: 0
         width: 60
-        height: 48
+        height: 68
       alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -154,20 +154,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0f7eb0da26895014984372b56ef59de5
-      internalID: 1925233953
+      spriteID: 48ddcf7194a6fa64294455bbe010b9a0
+      internalID: 1756716225
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cyclops_2
+      name: Sharpshooter_2
       rect:
         serializedVersion: 2
         x: 120
         y: 0
         width: 60
-        height: 48
+        height: 68
       alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -175,20 +175,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 98982b67eb34a094b80ec9fdc64902b3
-      internalID: -37191400
+      spriteID: 745d913154a2d80438aa165416dff2a9
+      internalID: -918344096
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cyclops_3
+      name: Sharpshooter_3
       rect:
         serializedVersion: 2
         x: 180
         y: 0
         width: 60
-        height: 48
+        height: 68
       alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -196,8 +196,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3b148d0d0d078854999987e79860b88f
-      internalID: 54497299
+      spriteID: b4f8dea7b13b8074abfc550857746194
+      internalID: 594733459
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sharpshooter_4
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 0
+        width: 60
+        height: 68
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cbd2efe7729337644b34444dbd1c8a17
+      internalID: -778996604
       vertices: []
       indices: 
       edges: []
@@ -213,10 +234,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Cyclops_0: 528489380
-      Cyclops_1: 1925233953
-      Cyclops_2: -37191400
-      Cyclops_3: 54497299
+      Sharpshooter_0: -957920823
+      Sharpshooter_1: 1756716225
+      Sharpshooter_2: -918344096
+      Sharpshooter_3: 594733459
+      Sharpshooter_4: -778996604
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

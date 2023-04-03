@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b94adf996afa7914eac367e552a603fe
+guid: ab3c451005bd9a447928b6c819b80c8e
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -119,13 +119,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Cyclops_0
+      name: AncientBehemoth_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 60
-        height: 48
+        height: 68
       alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -133,20 +133,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6eb04ca1bf0582a4b9df853d666a99ac
-      internalID: 528489380
+      spriteID: 9e8701d1b124abc46bd7ce57d4f9665e
+      internalID: -2031091187
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cyclops_1
+      name: AncientBehemoth_1
       rect:
         serializedVersion: 2
         x: 60
         y: 0
         width: 60
-        height: 48
+        height: 68
       alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -154,20 +154,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0f7eb0da26895014984372b56ef59de5
-      internalID: 1925233953
+      spriteID: d52055cd9a59112408286ea541346bde
+      internalID: -1972547196
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cyclops_2
+      name: AncientBehemoth_2
       rect:
         serializedVersion: 2
         x: 120
         y: 0
         width: 60
-        height: 48
+        height: 68
       alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -175,29 +175,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 98982b67eb34a094b80ec9fdc64902b3
-      internalID: -37191400
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Cyclops_3
-      rect:
-        serializedVersion: 2
-        x: 180
-        y: 0
-        width: 60
-        height: 48
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3b148d0d0d078854999987e79860b88f
-      internalID: 54497299
+      spriteID: 2d6ca982cd74db14f8883ca66e00d3ba
+      internalID: -885376549
       vertices: []
       indices: 
       edges: []
@@ -213,10 +192,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Cyclops_0: 528489380
-      Cyclops_1: 1925233953
-      Cyclops_2: -37191400
-      Cyclops_3: 54497299
+      AncientBehemoth_0: -2031091187
+      AncientBehemoth_1: -1972547196
+      AncientBehemoth_2: -885376549
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

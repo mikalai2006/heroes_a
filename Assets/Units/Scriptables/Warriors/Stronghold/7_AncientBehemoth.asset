@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6892427306879841ae9bdf6a40176c7, type: 3}
+  m_Name: 7_AncientBehemoth
+  m_EditorClassIdentifier: 
+  idObject: bcc505bf313a4823a8ad9fb418917381
+  level: 7
+  typeGround: 30
+  typeInput: 1
+  TypeUnit: 7
+  listTypeNoPath: 
+  Prefab: {fileID: 3613274136621834243, guid: 008be0c809514bd40898a948cb6043f4, type: 3}
+  MenuSprite: {fileID: -2031091187, guid: ab3c451005bd9a447928b6c819b80c8e, type: 3}
+  Locale: []
+  DataUnitWarrior:
+    Health: 0
+    Attack: 0
+    Protection: 0
+    Damage: 0
+    MaxDamage: 0
+    Ammunition: 0
+    Speed: 0

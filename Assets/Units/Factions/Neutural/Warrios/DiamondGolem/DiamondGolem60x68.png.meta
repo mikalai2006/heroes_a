@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b94adf996afa7914eac367e552a603fe
+guid: 05452302bb9fb8f40928ff714b481aab
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -119,13 +119,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Cyclops_0
+      name: DiamondGolem_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 60
-        height: 48
+        height: 68
       alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -133,20 +133,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6eb04ca1bf0582a4b9df853d666a99ac
-      internalID: 528489380
+      spriteID: 24fb6aee0c25f4e439a4901aaf07fb65
+      internalID: -1182064841
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cyclops_1
+      name: DiamondGolem_1
       rect:
         serializedVersion: 2
         x: 60
         y: 0
         width: 60
-        height: 48
+        height: 68
       alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -154,20 +154,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0f7eb0da26895014984372b56ef59de5
-      internalID: 1925233953
+      spriteID: 1fc31bd4b031321428101ce37f4dab88
+      internalID: 50049147
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cyclops_2
+      name: DiamondGolem_2
       rect:
         serializedVersion: 2
         x: 120
         y: 0
         width: 60
-        height: 48
+        height: 68
       alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -175,20 +175,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 98982b67eb34a094b80ec9fdc64902b3
-      internalID: -37191400
+      spriteID: 62b09776b32c94642a55c0dce5a9d8bc
+      internalID: -1602744695
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cyclops_3
+      name: DiamondGolem_3
       rect:
         serializedVersion: 2
         x: 180
         y: 0
         width: 60
-        height: 48
+        height: 68
       alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -196,8 +196,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3b148d0d0d078854999987e79860b88f
-      internalID: 54497299
+      spriteID: f33349b9737e30442a4bb3d7c3f2c985
+      internalID: 308592162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiamondGolem_4
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 0
+        width: 60
+        height: 68
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d6f79e470b49784185c4068863d3e57
+      internalID: -2019320378
       vertices: []
       indices: 
       edges: []
@@ -213,10 +234,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Cyclops_0: 528489380
-      Cyclops_1: 1925233953
-      Cyclops_2: -37191400
-      Cyclops_3: 54497299
+      DiamondGolem_0: -1182064841
+      DiamondGolem_1: 50049147
+      DiamondGolem_2: -1602744695
+      DiamondGolem_3: 308592162
+      DiamondGolem_4: -2019320378
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

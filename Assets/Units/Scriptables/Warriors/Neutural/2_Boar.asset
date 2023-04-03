@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6892427306879841ae9bdf6a40176c7, type: 3}
+  m_Name: 2_Boar
+  m_EditorClassIdentifier: 
+  idObject: 00a04efdd004456b97fa6c1bf6a54642
+  level: 2
+  typeGround: 20
+  typeInput: 1
+  TypeUnit: 7
+  listTypeNoPath: 
+  Prefab: {fileID: 6198139270623113224, guid: 7ed6b7bd3d4e26e4dae467b8113734e1, type: 3}
+  MenuSprite: {fileID: -167190289, guid: 2d3029e9b5d94d24aae6ea5b4e18127e, type: 3}
+  Locale: []
+  DataUnitWarrior:
+    Health: 0
+    Attack: 0
+    Protection: 0
+    Damage: 0
+    MaxDamage: 0
+    Ammunition: 0
+    Speed: 0
