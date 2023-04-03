@@ -449,24 +449,24 @@ public class UIGameAside : MonoBehaviour
         //_footer.style.unityBackgroundImageTintColor = player.DataPlayer.color;
 
         var gold = _footer.Q<Label>("GoldValue");
-        gold.text = player.DataPlayer.Resource.gold.ToString();
+        gold.text = player.DataPlayer.Resource[TypeResource.Gold].ToString();
 
         var wood = _footer.Q<Label>("WoodValue");
-        wood.text = player.DataPlayer.Resource.wood.ToString();
+        wood.text = player.DataPlayer.Resource[TypeResource.Wood].ToString();
 
         var iron = _footer.Q<Label>("IronValue");
-        iron.text = player.DataPlayer.Resource.iron.ToString();
+        iron.text = player.DataPlayer.Resource[TypeResource.Iron].ToString();
 
         var mercury = _footer.Q<Label>("MercuryValue");
-        mercury.text = player.DataPlayer.Resource.mercury.ToString();
+        mercury.text = player.DataPlayer.Resource[TypeResource.Mercury].ToString();
 
         var diamond = _footer.Q<Label>("DiamondValue");
-        diamond.text = player.DataPlayer.Resource.diamond.ToString();
+        diamond.text = player.DataPlayer.Resource[TypeResource.Diamond].ToString();
 
         var sulfur = _footer.Q<Label>("SulfurValue");
-        sulfur.text = player.DataPlayer.Resource.sulfur.ToString();
+        sulfur.text = player.DataPlayer.Resource[TypeResource.Sulfur].ToString();
 
         var gem = _footer.Q<Label>("GemValue");
-        gem.text = player.DataPlayer.Resource.gem.ToString();
+        gem.text = player.DataPlayer.Resource[TypeResource.Gem].ToString();
     }
 }

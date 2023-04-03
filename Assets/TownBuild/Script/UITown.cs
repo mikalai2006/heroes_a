@@ -52,7 +52,7 @@ public class UITown : MonoBehaviour
         // await _townPrefabAsset.Task;
 
         // _townGameObject = GameObject.FindGameObjectWithTag("Town");
-        DrawBuilds(TypeBuild.None);
+        DrawBuilds(new DataResultBuildDialog());
 
         // if (_townGameObject != null)
         // {
@@ -116,7 +116,7 @@ public class UITown : MonoBehaviour
         // Camera.main.transform.position = _activePlayer.ActiveTown.gameObject.transform.position - new Vector3(0, 0, 10);
     }
 
-    public void DrawBuilds(TypeBuild TypeCreateBuild)
+    public void DrawBuilds(DataResultBuildDialog result)
     {
         if (_townGameObject != null)
         {
@@ -125,8 +125,6 @@ public class UITown : MonoBehaviour
                 GameObject.Destroy(build.gameObject);
             }
         }
-        // ScriptableTown scriptDataTown = (ScriptableTown)_activeTown.ScriptableData;
-        // var activeBuildTown = ResourceSystem.Instance.GetBuildTowns().Where(t => t.TypeFaction == scriptDataTown.TypeFaction).First();
 
         for (int i = 0; i < _activeBuildTown.Builds.Count; i++)
         {
@@ -135,14 +133,14 @@ public class UITown : MonoBehaviour
             for (int x = 0; x < bl.BuildLevels.Count; x++)
             {
                 var buildLevel = bl.BuildLevels[x];
-                if ((_activePlayer.ActiveTown.Data.ProgressBuilds & buildLevel.TypeBuild) == buildLevel.TypeBuild)
+                if (_activePlayer.ActiveTown.Data.ProgressBuilds.Contains(buildLevel.TypeBuild))
                 {
                     activeLevel = x;
                 }
             }
             if (activeLevel >= 0)
             {
-                DrawBuildWithActiveLevel(bl, activeLevel, TypeCreateBuild);
+                DrawBuildWithActiveLevel(bl, activeLevel, result.build.TypeBuild);
             }
         }
     }
@@ -202,36 +200,5 @@ public class UITown : MonoBehaviour
             }
         }
     }
-
-    // public void RefreshLevelBuilds()
-    // {
-    //     foreach (BuildBase obj in _townGameObject.transform.GetComponentsInChildren<BuildBase>())
-    //     {
-    //         if (obj.LevelBuild ) {
-
-    //         }
-    //     }
-    //     ScriptableTown scriptDataTown = (ScriptableTown)_activeTown.ScriptableData;
-    //     var activeBuildTown = ResourceSystem.Instance.GetBuildTowns().Where(t => t.TypeFaction == scriptDataTown.TypeFaction).First();
-
-    //     for (int i = 0; i < activeBuildTown.Builds.Count; i++)
-    //     {
-    //         var bl = activeBuildTown.Builds[i];
-    //         int activeLevel = -1;
-    //         for (int x = 0; x < bl.BuildLevels.Count; x++)
-    //         {
-    //             var buildLevel = bl.BuildLevels[x];
-    //             if ((_activePlayer.ActiveTown.Data.ProgressBuilds & buildLevel.TypeBuild) == buildLevel.TypeBuild)
-    //             {
-    //                 activeLevel = x;
-    //             }
-    //         }
-
-    //         if (activeLevel >= 0)
-    //         {
-    //             DrawBuildWithActiveLevel(bl, activeLevel);
-    //         }
-    //     }
-    // }
 }
 

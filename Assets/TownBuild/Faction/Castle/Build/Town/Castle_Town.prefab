@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1173742467539772311}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -6.42, y: -2.27, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -435,7 +435,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5196982608163577837}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -6.42, y: -2.27, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -552,7 +552,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6161588185173694670}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -6.42, y: -2.27, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -795,7 +795,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8971080439997689484}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -6.42, y: -2.27, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -902,11 +902,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 869554064392596750, guid: 062be60e01d9f4546b39591aaddde6b0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.42
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 869554064392596750, guid: 062be60e01d9f4546b39591aaddde6b0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.27
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 869554064392596750, guid: 062be60e01d9f4546b39591aaddde6b0, type: 3}
       propertyPath: m_LocalPosition.z
@@ -918,15 +918,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 869554064392596750, guid: 062be60e01d9f4546b39591aaddde6b0, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 869554064392596750, guid: 062be60e01d9f4546b39591aaddde6b0, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 869554064392596750, guid: 062be60e01d9f4546b39591aaddde6b0, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 869554064392596750, guid: 062be60e01d9f4546b39591aaddde6b0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -942,23 +942,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4067135766813184861, guid: 062be60e01d9f4546b39591aaddde6b0, type: 3}
       propertyPath: m_Size.x
-      value: 2.3353019
+      value: 4.108062
       objectReference: {fileID: 0}
     - target: {fileID: 4067135766813184861, guid: 062be60e01d9f4546b39591aaddde6b0, type: 3}
       propertyPath: m_Size.y
-      value: 3.6836948
+      value: 3.8953676
       objectReference: {fileID: 0}
     - target: {fileID: 4067135766813184861, guid: 062be60e01d9f4546b39591aaddde6b0, type: 3}
       propertyPath: m_Offset.x
-      value: 0.37964463
+      value: -6.433581
       objectReference: {fileID: 0}
     - target: {fileID: 4067135766813184861, guid: 062be60e01d9f4546b39591aaddde6b0, type: 3}
       propertyPath: m_Offset.y
-      value: 1.7869487
+      value: -0.32978153
       objectReference: {fileID: 0}
     - target: {fileID: 8246902194882981093, guid: 062be60e01d9f4546b39591aaddde6b0, type: 3}
       propertyPath: m_Name
-      value: Town
+      value: Castle_Town
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -1006,7 +1006,7 @@ SortingGroup:
   m_Enabled: 1
   m_SortingLayerID: 784102457
   m_SortingLayer: 2
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_SortAtRoot: 0
 --- !u!114 &286446851186964532
 MonoBehaviour:

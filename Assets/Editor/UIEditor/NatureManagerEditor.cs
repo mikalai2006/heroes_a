@@ -135,7 +135,7 @@ public class NatureManagerEditor
     private void LoadAllItems()
     {
         m_NatureDB.Clear();
-        string[] allPaths = Directory.GetFiles("Assets/ScriptableObjects/Nature", "*.asset",
+        string[] allPaths = Directory.GetFiles("Assets/Landscape/Scriptables/Nature", "*.asset",
             SearchOption.AllDirectories);
         foreach (string path in allPaths)
         {

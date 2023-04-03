@@ -30,4 +30,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0bf796cd05f1ed04a9b2b5c7d8a494fe, type: 2}
   warriors:
   - {fileID: 11400000, guid: 4f0e4cab83e761f41b24200683cb8d4b, type: 2}
-  BuildTown: {fileID: 11400000, guid: 1f1375cba941c9d42a773e14a600c09d, type: 2}
+  BuildTown: {fileID: 11400000, guid: 39cffc0c06c34d14480207ab263ceb68, type: 2}

@@ -37,8 +37,8 @@ MonoBehaviour:
       visit_noresource: 
   TypeWork: 1
   TypeResource: 10
-  maxValue: 10
-  step: 1
+  maxValue: 2500
+  step: 250
   Curve:
     serializedVersion: 2
     m_Curve:

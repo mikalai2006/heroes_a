@@ -18,8 +18,8 @@ MonoBehaviour:
   BuildLevels:
   - MenuSprite: {fileID: 21300000, guid: 4b6ed0d80ca62974c85a8e03583f598e, type: 3}
     TypeBuild: 2
-    RequiredBuilds: 1
     UpdatePrefab: {fileID: 0}
+    RequiredBuilds: 
     Locale:
     - Language: {fileID: 11400000, guid: 30b8a59646ec31e4fa7737b1c0d7cba9, type: 2}
       Text:
@@ -34,9 +34,30 @@ MonoBehaviour:
         visit_ok: 
         visit_no: 
         visit_noresource: 
+    Text:
+      title:
+        m_TableReference:
+          m_TableCollectionName: GUID:eccb40f2ef0445e499300535baf5f930
+        m_TableEntryReference:
+          m_KeyId: 4530508038144
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      description:
+        m_TableReference:
+          m_TableCollectionName: GUID:eccb40f2ef0445e499300535baf5f930
+        m_TableEntryReference:
+          m_KeyId: 4557217366016
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
     CostResource:
     - Resource: {fileID: 11400000, guid: 2de32a5fb2189994a867c9e425391bf7, type: 2}
       Count: 500
     - Resource: {fileID: 11400000, guid: 88388bc7df9ca2b4594e5d8830fcc54d, type: 2}
       Count: 5
-  BuildSpecifiers: []
+  references:
+    version: 2
+    RefIds: []

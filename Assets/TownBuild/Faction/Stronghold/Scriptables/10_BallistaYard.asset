@@ -14,25 +14,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   idObject: 2_8
   TypeFaction: 1
-  Prefab: {fileID: 4182761918288791329, guid: fe5d1be3a67ea1242a63c0d87bdd5652, type: 3}
+  Prefab: {fileID: -8226271783139575397, guid: 4a095cf1ed997c74c9bb02a04ce7e639, type: 3}
   BuildLevels:
-  - MenuSprite: {fileID: 21300000, guid: 5658a68e045fd434caf38d8aa465f7ac, type: 3}
-    TypeBuild: -2147483648
-    RequiredBuilds: 518
+  - MenuSprite: {fileID: 21300000, guid: 4d1c532c030341d4ba3bdd7226081492, type: 3}
+    TypeBuild: 33
     UpdatePrefab: {fileID: 0}
-    Locale:
-    - Language: {fileID: 11400000, guid: 30b8a59646ec31e4fa7737b1c0d7cba9, type: 2}
-      Text:
-        title: "\u0414\u0432\u043E\u0440 \u0411\u0430\u043B\u043B\u0438\u0441\u0442"
-        description: "\u0423\u043B\u0443\u0447\u0448\u0435\u043D\u0438\u0435 \u0434\u043B\u044F
-          \u041A\u0443\u0437\u043D\u0438\u0446\u044B, \u043E\u0431\u0435\u0441\u043F\u0435\u0447\u0438\u0432\u0430\u044E\u0449\u0435\u0435
-          \u0430\u0440\u043C\u0438\u044E \u0431\u0430\u043B\u043B\u0438\u0441\u0442\u0430\u043C\u0438."
-        visit_ok: 
-        visit_no: 
-        visit_noresource: 
+    RequiredBuilds: 0b000000
+    Text:
+      title:
+        m_TableReference:
+          m_TableCollectionName: GUID:eccb40f2ef0445e499300535baf5f930
+        m_TableEntryReference:
+          m_KeyId: 16585696903168
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      description:
+        m_TableReference:
+          m_TableCollectionName: GUID:eccb40f2ef0445e499300535baf5f930
+        m_TableEntryReference:
+          m_KeyId: 16615866531840
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
     CostResource:
     - Resource: {fileID: 11400000, guid: 2de32a5fb2189994a867c9e425391bf7, type: 2}
       Count: 1000
     - Resource: {fileID: 11400000, guid: 88388bc7df9ca2b4594e5d8830fcc54d, type: 2}
       Count: 5
-  BuildSpecifiers: []
+  references:
+    version: 2
+    RefIds: []

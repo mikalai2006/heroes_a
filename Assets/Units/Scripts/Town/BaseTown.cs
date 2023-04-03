@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 
 using UnityEngine;
 
@@ -7,7 +8,8 @@ public struct DataTown
 {
     public int idPlayer;
     public string name;
-    public TypeBuild ProgressBuilds;
+    public List<TypeBuild> ProgressBuilds;
+    // public TypeBuildArmy ProgressBuildsArmy;
     public bool isBuild;
     public SerializableDictionary<TypeBuild, int> LevelsBuilds;
 }
@@ -33,7 +35,7 @@ public abstract class BaseTown : UnitBase, IDataPlay
         Data.idPlayer = -1;
         Data.name = data.name;
         var townData = (ScriptableTown)data;
-        Data.ProgressBuilds = townData.BuildTown.StartProgressBuilds; // TypeBuild.None | TypeBuild.Tavern_1;
+        Data.ProgressBuilds = townData.BuildTown.StartProgressBuilds.ToList(); // TypeBuild.None | TypeBuild.Tavern_1;
         Data.LevelsBuilds = new SerializableDictionary<TypeBuild, int>();
     }
 

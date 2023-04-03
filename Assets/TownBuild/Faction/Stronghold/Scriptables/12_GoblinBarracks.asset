@@ -17,9 +17,9 @@ MonoBehaviour:
   Prefab: {fileID: -6811262694497039515, guid: 7e42b69872cd94642be5df105d8e9956, type: 3}
   BuildLevels:
   - MenuSprite: {fileID: 21300000, guid: d93b1d685a5d1c247946a08516cee1b3, type: 3}
-    TypeBuild: 131072
-    RequiredBuilds: 70
+    TypeBuild: 19
     UpdatePrefab: {fileID: 0}
+    RequiredBuilds: 07000000
     Locale:
     - Language: {fileID: 11400000, guid: 30b8a59646ec31e4fa7737b1c0d7cba9, type: 2}
       Text:
@@ -31,6 +31,25 @@ MonoBehaviour:
         visit_ok: 
         visit_no: 
         visit_noresource: 
+    Text:
+      title:
+        m_TableReference:
+          m_TableCollectionName: GUID:eccb40f2ef0445e499300535baf5f930
+        m_TableEntryReference:
+          m_KeyId: 16941378076672
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      description:
+        m_TableReference:
+          m_TableCollectionName: GUID:eccb40f2ef0445e499300535baf5f930
+        m_TableEntryReference:
+          m_KeyId: 16997678219264
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
     CostResource:
     - Resource: {fileID: 11400000, guid: 2de32a5fb2189994a867c9e425391bf7, type: 2}
       Count: 200
@@ -39,9 +58,9 @@ MonoBehaviour:
     - Resource: {fileID: 11400000, guid: c1bca1c330d8ff847b7e9e3584dabe06, type: 2}
       Count: 5
   - MenuSprite: {fileID: 21300000, guid: 10b3a311457d4ab4f83282adc4e59251, type: 3}
-    TypeBuild: 262144
-    RequiredBuilds: 131138
+    TypeBuild: 20
     UpdatePrefab: {fileID: 0}
+    RequiredBuilds: 13000000
     Locale:
     - Language: {fileID: 11400000, guid: 30b8a59646ec31e4fa7737b1c0d7cba9, type: 2}
       Text:
@@ -53,6 +72,25 @@ MonoBehaviour:
         visit_ok: 
         visit_no: 
         visit_noresource: 
+    Text:
+      title:
+        m_TableReference:
+          m_TableCollectionName: GUID:eccb40f2ef0445e499300535baf5f930
+        m_TableEntryReference:
+          m_KeyId: 17054691393536
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      description:
+        m_TableReference:
+          m_TableCollectionName: GUID:eccb40f2ef0445e499300535baf5f930
+        m_TableEntryReference:
+          m_KeyId: 17070961098752
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
     CostResource:
     - Resource: {fileID: 11400000, guid: 2de32a5fb2189994a867c9e425391bf7, type: 2}
       Count: 1000
@@ -60,4 +98,6 @@ MonoBehaviour:
       Count: 5
     - Resource: {fileID: 11400000, guid: c1bca1c330d8ff847b7e9e3584dabe06, type: 2}
       Count: 5
-  BuildSpecifiers: []
+  references:
+    version: 2
+    RefIds: []

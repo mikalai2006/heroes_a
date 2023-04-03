@@ -19,7 +19,7 @@
                         <ui:Label tabindex="-1" text="La belLabelLabelLa belLabelLabelLa belLabelLabelLa belLabelLabelLa belLabelLabelLa belLabelLabelLa belLabelLabelLa belLabelLabelLa belLabelLabelLa belLabel" display-tooltip-when-elided="true" name="DescriptionDialog" enable-rich-text="true" style="white-space: normal; -unity-text-align: upper-center;" />
                     </ui:VisualElement>
                     <ui:VisualElement name="ListRequireBuild" style="flex-direction: row; justify-content: center;" />
-                    <ui:Label tabindex="-1" text="Label" display-tooltip-when-elided="true" name="ListRequireBuild" class="border-2 border-color text-primary text_md p-1" />
+                    <ui:Label tabindex="-1" text="Label" display-tooltip-when-elided="true" name="ListRequireBuild" class="border-2 border-color text-primary text_md p-1" style="white-space: normal;" />
                     <ui:VisualElement name="ListRequireResource" style="flex-direction: row; justify-content: center; flex-wrap: wrap;" />
                 </ui:VisualElement>
                 <ui:VisualElement name="Row" class="dialog_box_row" style="flex-direction: row; justify-content: center;">

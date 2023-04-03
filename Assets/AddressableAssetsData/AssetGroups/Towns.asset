@@ -17,18 +17,7 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: b070d21c6ed32b04da71f709ba8bda02
   m_SerializeEntries:
-  - m_GUID: acf512fb84371e647811ba2ecdd745bc
-    m_Address: Assets/TownBuild/Faction/Castle
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 8d16204b5868a1d47acd9373025248a1
-    m_Address: Assets/TownBuild/Faction/Castle/Scriptables
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - town_castle
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 1f1375cba941c9d42a773e14a600c09d
+  - m_GUID: 39cffc0c06c34d14480207ab263ceb68
     m_Address: Assets/TownBuild/Faction/Castle/Scriptables/Castle.asset
     m_ReadOnly: 0
     m_SerializedLabels:

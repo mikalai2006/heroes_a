@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 using Assets;
 
 using Cysharp.Threading.Tasks;
@@ -6,7 +8,7 @@ public struct DataResultBuildDialog
 {
     public bool isOk;
     public Build build;
-    public BuildBase BaseBuild;
+    public List<TypeBuild> PreProgressBuild;
 }
 
 public class UITownListBuildOperation : LocalAssetLoader

@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7425094983659415760}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 1.41, y: -0.07, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -136,6 +136,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4067135766813184861, guid: 062be60e01d9f4546b39591aaddde6b0, type: 3}
+      propertyPath: m_Size.x
+      value: 2.334008
+      objectReference: {fileID: 0}
+    - target: {fileID: 4067135766813184861, guid: 062be60e01d9f4546b39591aaddde6b0, type: 3}
+      propertyPath: m_Size.y
+      value: 1.3472075
+      objectReference: {fileID: 0}
+    - target: {fileID: 4067135766813184861, guid: 062be60e01d9f4546b39591aaddde6b0, type: 3}
+      propertyPath: m_Offset.x
+      value: -1.4162413
+      objectReference: {fileID: 0}
+    - target: {fileID: 4067135766813184861, guid: 062be60e01d9f4546b39591aaddde6b0, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.66700387
+      objectReference: {fileID: 0}
     - target: {fileID: 8246902194882981093, guid: 062be60e01d9f4546b39591aaddde6b0, type: 3}
       propertyPath: m_Name
       value: Stables
@@ -152,14 +168,14 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8246902194882981093, guid: 062be60e01d9f4546b39591aaddde6b0, type: 3}
       insertIndex: -1
-      addedObject: {fileID: -3040077695407661408}
+      addedObject: {fileID: 6002008429527828321}
   m_SourcePrefab: {fileID: 100100000, guid: 062be60e01d9f4546b39591aaddde6b0, type: 3}
 --- !u!1 &2136790950563379859 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8246902194882981093, guid: 062be60e01d9f4546b39591aaddde6b0, type: 3}
   m_PrefabInstance: {fileID: 8058498662360864374}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &-3040077695407661408
+--- !u!114 &6002008429527828321
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -168,7 +184,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2136790950563379859}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b003b39596bdceb438ca315aceff2dda, type: 3}
+  m_Script: {fileID: 11500000, guid: e056d0129cb338844854c1e71a8e2c72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   UITown: {fileID: 0}

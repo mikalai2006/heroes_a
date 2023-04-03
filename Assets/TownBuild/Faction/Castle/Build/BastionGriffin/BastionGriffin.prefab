@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3922312449289808474}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -6.51, y: 1.46, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -100,7 +100,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8172679810254195052
 Transform:
   m_ObjectHideFlags: 0
@@ -109,7 +109,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7893650369748188661}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -6.51, y: 1.46, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -220,6 +220,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4067135766813184861, guid: 062be60e01d9f4546b39591aaddde6b0, type: 3}
+      propertyPath: m_Size.x
+      value: 2.1061707
+      objectReference: {fileID: 0}
+    - target: {fileID: 4067135766813184861, guid: 062be60e01d9f4546b39591aaddde6b0, type: 3}
+      propertyPath: m_Size.y
+      value: 2.5833411
+      objectReference: {fileID: 0}
+    - target: {fileID: 4067135766813184861, guid: 062be60e01d9f4546b39591aaddde6b0, type: 3}
+      propertyPath: m_Offset.x
+      value: -6.582795
+      objectReference: {fileID: 0}
+    - target: {fileID: 4067135766813184861, guid: 062be60e01d9f4546b39591aaddde6b0, type: 3}
+      propertyPath: m_Offset.y
+      value: 3.0040104
+      objectReference: {fileID: 0}
     - target: {fileID: 8246902194882981093, guid: 062be60e01d9f4546b39591aaddde6b0, type: 3}
       propertyPath: m_Name
       value: BastionGriffin
@@ -240,6 +256,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8246902194882981093, guid: 062be60e01d9f4546b39591aaddde6b0, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8107865443382772063}
+    - targetCorrespondingSourceObject: {fileID: 8246902194882981093, guid: 062be60e01d9f4546b39591aaddde6b0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2389245102588695844}
   m_SourcePrefab: {fileID: 100100000, guid: 062be60e01d9f4546b39591aaddde6b0, type: 3}
 --- !u!4 &4598711584827426216 stripped
 Transform:
@@ -263,3 +282,16 @@ SortingGroup:
   m_SortingLayer: 2
   m_SortingOrder: 1
   m_SortAtRoot: 0
+--- !u!114 &2389245102588695844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4733917458675614787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e056d0129cb338844854c1e71a8e2c72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UITown: {fileID: 0}

@@ -50,7 +50,7 @@ public class LandscapeManagerEditor
     private void LoadAllItems()
     {
         m_ItemDatabase.Clear();
-        string[] allPaths = Directory.GetFiles("Assets/ScriptableObjects/Landscape", "*.asset",
+        string[] allPaths = Directory.GetFiles("Assets/Landscape/Scriptables", "*.asset",
             SearchOption.AllDirectories);
         foreach (string path in allPaths)
         {

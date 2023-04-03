@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 using UnityEngine;
@@ -9,7 +10,7 @@ public class PlayerData
     public Color color;
     public PlayerType playerType;
     public int idArea;
-    public PlayerResource Resource;
+    public SerializableDictionary<TypeResource, int> Resource;
     public SerializableShortPosition nosky;
     [System.NonSerialized] public PlayerDataReferences PlayerDataReferences;
 
@@ -36,18 +37,6 @@ public class PlayerDataReferences
         ListHero = new List<Hero>();
         ListMines = new List<UnitBase>();
     }
-}
-
-[System.Serializable]
-public struct PlayerResource
-{
-    public int gold;
-    public int wood;
-    public int iron;
-    public int mercury;
-    public int diamond;
-    public int gem;
-    public int sulfur;
 }
 
 public enum PlayerType
@@ -110,7 +99,11 @@ public class Player
         _data = new PlayerData();
         _data = data;
         _data.PlayerDataReferences = new PlayerDataReferences();
-        _data.Resource = new PlayerResource();
+        _data.Resource = new SerializableDictionary<TypeResource, int>();
+        foreach (TypeResource typeResource in (TypeResource[])Enum.GetValues(typeof(TypeResource)))
+        {
+            _data.Resource.Add(typeResource, typeResource == TypeResource.Gold ? 100000 : 200);
+        }
         _data.nosky = new SerializableShortPosition();
     }
 
@@ -138,32 +131,23 @@ public class Player
     }
     public void ChangeResource(TypeResource typeResource, int value = 0)
     {
-        switch (typeResource)
-        {
-            case TypeResource.Gold:
-                _data.Resource.gold += value;
-                break;
-            case TypeResource.Gem:
-                _data.Resource.gem += value;
-                break;
-            case TypeResource.Wood:
-                _data.Resource.wood += value;
-                break;
-            case TypeResource.Iron:
-                _data.Resource.iron += value;
-                break;
-            case TypeResource.Diamond:
-                _data.Resource.diamond += value;
-                break;
-            case TypeResource.Mercury:
-                _data.Resource.mercury += value;
-                break;
-            case TypeResource.Sulfur:
-                _data.Resource.sulfur += value;
-                break;
-        }
+        _data.Resource[typeResource] += value;
 
         GameManager.Instance.ChangeState(GameState.ChangeResources);
+    }
+
+    public bool IsExistsResource(List<BuildCostResource> resources)
+    {
+        bool result = true;
+        foreach (var res in resources)
+        {
+            if (_data.Resource[res.Resource.TypeResource] < res.Count)
+            {
+                result = false;
+                break;
+            }
+        }
+        return result;
     }
 
     public Hero GetHero(int id)

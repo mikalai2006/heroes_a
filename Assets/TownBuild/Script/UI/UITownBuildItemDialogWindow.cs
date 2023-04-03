@@ -32,7 +32,7 @@ public class UITownBuildItemDialogWindow : MonoBehaviour
 
     public UnityEvent processAction;
 
-    private Build _buildDialog;
+    private DataDialogBuild _buildDialog;
     private DataResultBuildDialog _dataResultDialog;
     private BaseTown _activeTown;
     private Player _activePlayer;
@@ -61,12 +61,12 @@ public class UITownBuildItemDialogWindow : MonoBehaviour
 
     }
 
-    public async Task<DataResultBuildDialog> ProcessAction(Build build)
+    public async Task<DataResultBuildDialog> ProcessAction(DataDialogBuild buildDialogData)
     {
-        _buildDialog = build;
+        _buildDialog = buildDialogData;
         _dataResultDialog = new DataResultBuildDialog()
         {
-            build = build
+            // build = build
         };
 
         UQueryBuilder<VisualElement> builder = new UQueryBuilder<VisualElement>(DialogApp.rootVisualElement);
@@ -78,39 +78,9 @@ public class UITownBuildItemDialogWindow : MonoBehaviour
             overlay.style.backgroundColor = color;
         }
 
-        List<string> requireBuilds = new List<string>();
-        foreach (var buld in _scriptObjectBuildTown.Builds)
-        {
-            foreach (var buildLevel in buld.BuildLevels)
-            {
-                if (
-                    (_buildDialog.RequiredBuilds & buildLevel.TypeBuild) == buildLevel.TypeBuild
-                    && (_activeTown.Data.ProgressBuilds & buildLevel.TypeBuild) != buildLevel.TypeBuild
-                    )
-                {
-                    var textBuild = HelperLanguage.GetLocaleText(buildLevel.Locale);
-                    requireBuilds.Add(textBuild.Text.title);
-                }
-            }
-        }
-
-        if (requireBuilds.Count > 0)
-        {
-            LocalizedString require = new LocalizedString(Constants.LanguageTable.LANG_TABLE_UILANG, "build_require");
-            _requireBuildBlok.text = require.GetLocalizedString() + ": " + System.String.Join(", ", requireBuilds);
-        }
-        else
-        {
-            LocalizedString message = new LocalizedString(Constants.LanguageTable.LANG_TABLE_UILANG, "build_enable");
-            _requireBuildBlok.text = message.GetLocalizedString();
-        }
-
-
-        var t = HelperLanguage.GetLocaleText(_buildDialog.Locale);
-        LocalizedString titlePrefix = new LocalizedString(Constants.LanguageTable.LANG_TABLE_UILANG, "build");
-
-        _headerLabel.text = titlePrefix.GetLocalizedString() + ": " + t.Text.title;
-        _descriptionLabel.text = t.Text.description;
+        _headerLabel.text = _buildDialog.title; // titlePrefix.GetLocalizedString() + ": " + t.Text.title;
+        _descriptionLabel.text = _buildDialog.description; // t.Text.description;
+        _requireBuildBlok.text = _buildDialog.textRequireBuild;
 
         if (_buildDialog.MenuSprite != null)
         {
@@ -139,7 +109,7 @@ public class UITownBuildItemDialogWindow : MonoBehaviour
             _requireResourceBlok.Add(item);
         }
 
-        if ((_activeTown.Data.ProgressBuilds & _buildDialog.TypeBuild) == _buildDialog.TypeBuild)
+        if (_buildDialog.isBuilded || !_activePlayer.IsExistsResource(_buildDialog.CostResource))
         {
             _buttonOk.SetEnabled(false);
         }

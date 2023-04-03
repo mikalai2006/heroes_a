@@ -15,7 +15,6 @@ public class Town : BuildBase, IPointerClickHandler, IClickeredBuild
     {
         Debug.Log($"Click council");
         var result = await OnClickToBuild();
-        UITown.DrawBuilds(result.build.TypeBuild);
-        // result.BaseBuild.Refresh();
+        UITown.DrawBuilds(result);
     }
 }

@@ -17,9 +17,9 @@ MonoBehaviour:
   Prefab: {fileID: -8907320122271335955, guid: de658b97ec5919b48bd5703b6896e85f, type: 3}
   BuildLevels:
   - MenuSprite: {fileID: 21300000, guid: 1fbe9aa784e5fbd4cbeaf379d83f94e3, type: 3}
-    TypeBuild: 1024
-    RequiredBuilds: 2
+    TypeBuild: 12
     UpdatePrefab: {fileID: 0}
+    RequiredBuilds: 
     Locale:
     - Language: {fileID: 11400000, guid: 30b8a59646ec31e4fa7737b1c0d7cba9, type: 2}
       Text:
@@ -36,15 +36,34 @@ MonoBehaviour:
         visit_ok: 
         visit_no: 
         visit_noresource: 
+    Text:
+      title:
+        m_TableReference:
+          m_TableCollectionName: GUID:eccb40f2ef0445e499300535baf5f930
+        m_TableEntryReference:
+          m_KeyId: 4928056754176
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      description:
+        m_TableReference:
+          m_TableCollectionName: GUID:eccb40f2ef0445e499300535baf5f930
+        m_TableEntryReference:
+          m_KeyId: 4949535784960
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
     CostResource:
     - Resource: {fileID: 11400000, guid: 2de32a5fb2189994a867c9e425391bf7, type: 2}
       Count: 500
     - Resource: {fileID: 11400000, guid: 88388bc7df9ca2b4594e5d8830fcc54d, type: 2}
       Count: 5
   - MenuSprite: {fileID: 21300000, guid: 5658a68e045fd434caf38d8aa465f7ac, type: 3}
-    TypeBuild: 2048
-    RequiredBuilds: 1024
+    TypeBuild: 13
     UpdatePrefab: {fileID: 3246537312355160112, guid: 2328938fe859d5341af6509385097a58, type: 3}
+    RequiredBuilds: 0c000000
     Locale:
     - Language: {fileID: 11400000, guid: 30b8a59646ec31e4fa7737b1c0d7cba9, type: 2}
       Text:
@@ -55,15 +74,30 @@ MonoBehaviour:
         visit_ok: 
         visit_no: 
         visit_noresource: 
+    Text:
+      title:
+        m_TableReference:
+          m_TableCollectionName: GUID:eccb40f2ef0445e499300535baf5f930
+        m_TableEntryReference:
+          m_KeyId: 5194416029696
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      description:
+        m_TableReference:
+          m_TableCollectionName: GUID:eccb40f2ef0445e499300535baf5f930
+        m_TableEntryReference:
+          m_KeyId: 5222429786112
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
     CostResource:
     - Resource: {fileID: 11400000, guid: 2de32a5fb2189994a867c9e425391bf7, type: 2}
       Count: 5000
     - Resource: {fileID: 11400000, guid: c1bca1c330d8ff847b7e9e3584dabe06, type: 2}
       Count: 5
-  BuildSpecifiers:
-  - MenuSprite: {fileID: 21300000, guid: 5658a68e045fd434caf38d8aa465f7ac, type: 3}
-    SpecificBuilds: 2
-    RequiredBuilds: 0
-    UpdatePrefab: {fileID: 3246537312355160112, guid: 2328938fe859d5341af6509385097a58, type: 3}
-    Locale: []
-    CostResource: []
+  references:
+    version: 2
+    RefIds: []

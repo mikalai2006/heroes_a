@@ -9,17 +9,98 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d61f02479836ae542b8b2a1526cba50e, type: 3}
+  m_Script: {fileID: 11500000, guid: 9d42093a1eaf0824c9a2bb9f171cc7f4, type: 3}
   m_Name: 18_BehemothLair
   m_EditorClassIdentifier: 
-  idObject: 
-  TypeFaction: 0
-  Prefab: {fileID: 0}
-  BuildArmys:
-  - MenuSprite: {fileID: 0}
-    TypeBuildArmy: 0
-    RequiredBuilds: 0
-    RequiredBuildsArmy: 0
+  idObject: 2_13
+  TypeFaction: 1
+  Prefab: {fileID: -8090597799309417108, guid: 57441c22a9afa194e805bfc5b292b065, type: 3}
+  BuildLevels:
+  - MenuSprite: {fileID: 21300000, guid: 20c2b1aaab43ac84396890bc389f624f, type: 3}
+    TypeBuild: 31
     UpdatePrefab: {fileID: 0}
-    Locale: []
-    CostResource: []
+    RequiredBuilds: 1b000000
+    Locale:
+    - Language: {fileID: 11400000, guid: 30b8a59646ec31e4fa7737b1c0d7cba9, type: 2}
+      Text:
+        title: "\u0423\u0442\u0435\u0441 \u0447\u0443\u0434\u0438\u0449"
+        description: "\u0412 \u043B\u043E\u0433\u043E\u0432\u0435 \u0447\u0443\u0434\u0438\u0449
+          \u0432\u044B \u043C\u043E\u0436\u0435\u0442\u0435 \u043D\u0430\u043D\u044F\u0442\u044C
+          \u0447\u0443\u0434\u0438\u0449."
+        visit_ok: 
+        visit_no: 
+        visit_noresource: 
+    Text:
+      title:
+        m_TableReference:
+          m_TableCollectionName: GUID:eccb40f2ef0445e499300535baf5f930
+        m_TableEntryReference:
+          m_KeyId: 18419115261952
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      description:
+        m_TableReference:
+          m_TableCollectionName: GUID:eccb40f2ef0445e499300535baf5f930
+        m_TableEntryReference:
+          m_KeyId: 18477265092608
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+    CostResource:
+    - Resource: {fileID: 11400000, guid: 2de32a5fb2189994a867c9e425391bf7, type: 2}
+      Count: 10000
+    - Resource: {fileID: 11400000, guid: c1bca1c330d8ff847b7e9e3584dabe06, type: 2}
+      Count: 10
+    - Resource: {fileID: 11400000, guid: 88388bc7df9ca2b4594e5d8830fcc54d, type: 2}
+      Count: 10
+    - Resource: {fileID: 11400000, guid: 54c499101e891794bbe1ebcd85ffbca2, type: 2}
+      Count: 10
+  - MenuSprite: {fileID: 21300000, guid: 421d105f62b468f4e984ab0f9f880686, type: 3}
+    TypeBuild: 32
+    UpdatePrefab: {fileID: 0}
+    RequiredBuilds: 1f000000
+    Locale:
+    - Language: {fileID: 11400000, guid: 30b8a59646ec31e4fa7737b1c0d7cba9, type: 2}
+      Text:
+        title: "\u0423\u043B. \u0443\u0442\u0435\u0441 \u0447\u0443\u0434\u0438\u0449"
+        description: "\u0412 \u0443\u043B\u0443\u0447\u0448\u0435\u043D\u043D\u043E\u043C
+          \u043B\u043E\u0433\u043E\u0432\u0435 \u0447\u0443\u0434\u0438\u0449 \u0432\u044B
+          \u043C\u043E\u0436\u0435\u0442\u0435 \u043D\u0430\u043D\u044F\u0442\u044C
+          \u0434\u0440\u0435\u0432\u043D\u0438\u0445 \u0447\u0443\u0434\u0438\u0449."
+        visit_ok: 
+        visit_no: 
+        visit_noresource: 
+    Text:
+      title:
+        m_TableReference:
+          m_TableCollectionName: GUID:eccb40f2ef0445e499300535baf5f930
+        m_TableEntryReference:
+          m_KeyId: 18489743147008
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      description:
+        m_TableReference:
+          m_TableCollectionName: GUID:eccb40f2ef0445e499300535baf5f930
+        m_TableEntryReference:
+          m_KeyId: 18502464471040
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+    CostResource:
+    - Resource: {fileID: 11400000, guid: 2de32a5fb2189994a867c9e425391bf7, type: 2}
+      Count: 15000
+    - Resource: {fileID: 11400000, guid: 88388bc7df9ca2b4594e5d8830fcc54d, type: 2}
+      Count: 10
+    - Resource: {fileID: 11400000, guid: c1bca1c330d8ff847b7e9e3584dabe06, type: 2}
+      Count: 10
+    - Resource: {fileID: 11400000, guid: 54c499101e891794bbe1ebcd85ffbca2, type: 2}
+      Count: 20
+  references:
+    version: 2
+    RefIds: []

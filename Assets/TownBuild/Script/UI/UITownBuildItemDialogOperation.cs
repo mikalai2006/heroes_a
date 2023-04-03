@@ -1,12 +1,26 @@
+using System.Collections.Generic;
+
 using Assets;
 
 using Cysharp.Threading.Tasks;
 
+using UnityEngine;
+
+public struct DataDialogBuild
+{
+    public Sprite MenuSprite;
+    public string title;
+    public string description;
+    public string textRequireBuild;
+    public List<BuildCostResource> CostResource;
+    public bool isBuilded;
+}
+
 public class UITownBuildItemDialogOperation : LocalAssetLoader
 {
-    private Build _buildTownData;
+    private DataDialogBuild _buildTownData;
 
-    public UITownBuildItemDialogOperation(Build data)
+    public UITownBuildItemDialogOperation(DataDialogBuild data)
     {
         _buildTownData = data;
     }
