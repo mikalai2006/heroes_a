@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b94adf996afa7914eac367e552a603fe
+guid: 3316fd38ca85dfb48a6d14a6b64a0564
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -72,7 +72,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 2
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -119,13 +119,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Cyclops_0
+      name: Thunderbird_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 60
-        height: 48
+        width: 68
+        height: 68
       alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -133,20 +133,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6eb04ca1bf0582a4b9df853d666a99ac
-      internalID: 528489380
+      spriteID: 7d257955bdc878345abe22cea4fbe1f0
+      internalID: 1447061659
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cyclops_1
+      name: Thunderbird_1
       rect:
         serializedVersion: 2
-        x: 60
+        x: 68
         y: 0
-        width: 60
-        height: 48
+        width: 68
+        height: 68
       alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -154,20 +154,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0f7eb0da26895014984372b56ef59de5
-      internalID: 1925233953
+      spriteID: 87a1fa2a903bf8242b8c393165d6b940
+      internalID: 1860230901
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cyclops_2
+      name: Thunderbird_2
       rect:
         serializedVersion: 2
-        x: 120
+        x: 136
         y: 0
-        width: 60
-        height: 48
+        width: 68
+        height: 68
       alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -175,29 +175,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 98982b67eb34a094b80ec9fdc64902b3
-      internalID: -37191400
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Cyclops_3
-      rect:
-        serializedVersion: 2
-        x: 180
-        y: 0
-        width: 60
-        height: 48
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3b148d0d0d078854999987e79860b88f
-      internalID: 54497299
+      spriteID: 460c4959221a4c84c98981960b6ff22c
+      internalID: -973710582
       vertices: []
       indices: 
       edges: []
@@ -213,10 +192,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Cyclops_0: 528489380
-      Cyclops_1: 1925233953
-      Cyclops_2: -37191400
-      Cyclops_3: 54497299
+      Thunderbird_0: 1447061659
+      Thunderbird_1: 1860230901
+      Thunderbird_2: -973710582
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

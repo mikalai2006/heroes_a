@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b94adf996afa7914eac367e552a603fe
+guid: 53702a9fc97615f48959820d7b1745d3
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -119,13 +119,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Cyclops_0
+      name: OrcChiftain_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 60
-        height: 48
+        height: 68
       alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -133,20 +133,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6eb04ca1bf0582a4b9df853d666a99ac
-      internalID: 528489380
+      spriteID: 94e48fd08eefcbe40b1a6f3d3920a0e3
+      internalID: -877855386
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cyclops_1
+      name: OrcChiftain_1
       rect:
         serializedVersion: 2
         x: 60
         y: 0
         width: 60
-        height: 48
+        height: 68
       alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -154,20 +154,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0f7eb0da26895014984372b56ef59de5
-      internalID: 1925233953
+      spriteID: 1ad365da00cd6024f929166191459e92
+      internalID: 133287879
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cyclops_2
+      name: OrcChiftain_2
       rect:
         serializedVersion: 2
         x: 120
         y: 0
         width: 60
-        height: 48
+        height: 68
       alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -175,20 +175,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 98982b67eb34a094b80ec9fdc64902b3
-      internalID: -37191400
+      spriteID: 4e8bad0ff5dc3dd47b4d0c27aec10647
+      internalID: 1642455282
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cyclops_3
+      name: OrcChiftain_3
       rect:
         serializedVersion: 2
         x: 180
         y: 0
         width: 60
-        height: 48
+        height: 68
       alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -196,8 +196,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3b148d0d0d078854999987e79860b88f
-      internalID: 54497299
+      spriteID: fc0f965a1e97a9740b2f1177ac033d16
+      internalID: -1447105144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OrcChiftain_4
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 0
+        width: 60
+        height: 68
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a3b8913e17fa1c14c8d3147e831f6c66
+      internalID: -859547369
       vertices: []
       indices: 
       edges: []
@@ -213,10 +234,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Cyclops_0: 528489380
-      Cyclops_1: 1925233953
-      Cyclops_2: -37191400
-      Cyclops_3: 54497299
+      OrcChiftain_0: -877855386
+      OrcChiftain_1: 133287879
+      OrcChiftain_2: 1642455282
+      OrcChiftain_3: -1447105144
+      OrcChiftain_4: -859547369
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

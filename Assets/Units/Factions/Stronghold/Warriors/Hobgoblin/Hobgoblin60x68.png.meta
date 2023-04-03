@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 432140726f3ec3d489d729c011fd81b2
+guid: 601d1880348749f4aaa04ccb3cc0b52d
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 70
+  spritePixelsToUnits: 35
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -72,7 +72,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -119,13 +119,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Walf_0
+      name: Hobgoblin_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 105
-        height: 128
+        width: 60
+        height: 68
       alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -133,20 +133,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6f15c079dc1bff94b9e35f5c42a956ed
-      internalID: 1892277944
+      spriteID: d3326c0036c440e488ae4a025fedb331
+      internalID: 473447687
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Walf_1
+      name: Hobgoblin_1
       rect:
         serializedVersion: 2
-        x: 129
+        x: 60
         y: 0
-        width: 105
-        height: 128
+        width: 60
+        height: 68
       alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -154,20 +154,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1f78c38fbf6330b4ea886dd7619e101e
-      internalID: -1089768778
+      spriteID: a06d1309c76ce5f4f8b3a98917b04835
+      internalID: -1759952220
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Walf_2
+      name: Hobgoblin_2
       rect:
         serializedVersion: 2
-        x: 258
+        x: 120
         y: 0
-        width: 105
-        height: 128
+        width: 60
+        height: 68
       alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -175,20 +175,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 29ae8b8c930d3694193aa2d7030af7cb
-      internalID: 313660894
+      spriteID: 8a9677c0b2c831c43aedf2cfd5023f59
+      internalID: -799329719
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Walf_3
+      name: Hobgoblin_3
       rect:
         serializedVersion: 2
-        x: 387
+        x: 180
         y: 0
-        width: 105
-        height: 128
+        width: 60
+        height: 68
       alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -196,20 +196,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5972dc3c492a4c6438a4f8d7f13bf3e1
-      internalID: 1021285317
+      spriteID: 66279e5aba192ea45af2aa607dd716f2
+      internalID: -1920733117
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Walf_4
+      name: Hobgoblin_4
       rect:
         serializedVersion: 2
-        x: 516
+        x: 240
         y: 0
-        width: 105
-        height: 128
+        width: 60
+        height: 68
       alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -217,8 +217,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fe74a9a5b0d01854a959b887f23aa6ab
-      internalID: -86189115
+      spriteID: cc84c1b8f7e4b8f49a7ce476bdadafe8
+      internalID: -1203282227
       vertices: []
       indices: 
       edges: []
@@ -234,11 +234,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Walf_0: 1892277944
-      Walf_1: -1089768778
-      Walf_2: 313660894
-      Walf_3: 1021285317
-      Walf_4: -86189115
+      Hobgoblin_0: 473447687
+      Hobgoblin_1: -1759952220
+      Hobgoblin_2: -799329719
+      Hobgoblin_3: -1920733117
+      Hobgoblin_4: -1203282227
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
