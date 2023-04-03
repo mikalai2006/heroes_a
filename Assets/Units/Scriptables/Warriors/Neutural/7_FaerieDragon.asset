@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6892427306879841ae9bdf6a40176c7, type: 3}
+  m_Name: 7_FaerieDragon
+  m_EditorClassIdentifier: 
+  idObject: 664d765e674147bebf007d0219ed0002
+  level: 7
+  typeGround: 20
+  typeInput: 1
+  TypeUnit: 7
+  listTypeNoPath: 
+  Prefab: {fileID: 7617590266518136259, guid: 42e3fbe95bb138048a9158d938b44db7, type: 3}
+  MenuSprite: {fileID: -1976630452, guid: 659bf6c0531a2754796767610d93bf5f, type: 3}
+  Locale: []
+  DataUnitWarrior:
+    Health: 0
+    Attack: 0
+    Protection: 0
+    Damage: 0
+    MaxDamage: 0
+    Ammunition: 0
+    Speed: 0

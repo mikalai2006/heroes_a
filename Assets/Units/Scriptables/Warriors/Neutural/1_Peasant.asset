@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6892427306879841ae9bdf6a40176c7, type: 3}
+  m_Name: 1_Peasant
+  m_EditorClassIdentifier: 
+  idObject: cb275b75426f468f997ac47843a1b334
+  level: 1
+  typeGround: 20
+  typeInput: 1
+  TypeUnit: 7
+  listTypeNoPath: 
+  Prefab: {fileID: 2347797568938671635, guid: 1ed20f3f8e1c1334ab8c03f055e65b5c, type: 3}
+  MenuSprite: {fileID: -1061215419, guid: c5e3da095ee1b6e4a9c6e5da5ac60d2d, type: 3}
+  Locale: []
+  DataUnitWarrior:
+    Health: 0
+    Attack: 0
+    Protection: 0
+    Damage: 0
+    MaxDamage: 0
+    Ammunition: 0
+    Speed: 0
