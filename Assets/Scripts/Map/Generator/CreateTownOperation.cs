@@ -46,7 +46,7 @@ public class CreateTownOperation : ILoadingOperation
             {
                 GridTileNode node = listGridNode[listGridNode.Count - 1];
                 //Create town.
-                ScriptableTown town = _root.UnitManager.SpawnTown(node, area.id);
+                ScriptableTown town = await _root.UnitManager.SpawnTownAsync(node, area.id);
                 // towns.Add(town);
                 area.startPosition = node.position;
 
@@ -67,7 +67,7 @@ public class CreateTownOperation : ILoadingOperation
 
                         if (nodeForSpawn != null)
                         {
-                            UnitBase createdMine = _root.UnitManager.SpawnUnitToNode(town.mines[i], nodeForSpawn);
+                            UnitBase createdMine = await _root.UnitManager.SpawnUnitToNode(town.mines[i], nodeForSpawn);
                         }
                     }
                 }

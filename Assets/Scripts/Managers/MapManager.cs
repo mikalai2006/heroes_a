@@ -4,6 +4,7 @@ using Loader;
 
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 using TMPro;
 
@@ -91,7 +92,7 @@ public class MapManager : MonoBehaviour, IDataGame
     [SerializeField] public Cursors _cursorSprites;
     public void LoadDataGame(DataGame data)
     {
-        LoadMap(data);
+        LoadMapAsync(data);
     }
 
     public void SaveDataGame(ref DataGame data)
@@ -103,7 +104,7 @@ public class MapManager : MonoBehaviour, IDataGame
         data.dataMap.countArea = countArea;
     }
 
-    private void LoadMap(DataGame data)
+    private async Task LoadMapAsync(DataGame data)
     {
         gameModeData = data.dataMap.GameModeData;
         _listNatureNode = data.dataMap.natureNode;
@@ -184,7 +185,7 @@ public class MapManager : MonoBehaviour, IDataGame
                 Debug.Log($"None town data for : [{unitTown.idUnit}-{unitTown.data.name}]");
                 continue;
             }
-            UnitBase Town = UnitManager.SpawnUnitToNode(scriptableData, tileNode);
+            UnitBase Town = await UnitManager.SpawnUnitToNode(scriptableData, tileNode);
             if (unitTown.data.idPlayer >= 0)
             {
                 LevelManager.Instance.GetPlayer(unitTown.data.idPlayer).AddTown(Town);
@@ -204,7 +205,7 @@ public class MapManager : MonoBehaviour, IDataGame
                 Debug.Log($"None hero data for : [{unitHero.idUnit}-{unitHero.data.name}]");
                 continue;
             }
-            UnitBase Hero = UnitManager.SpawnUnitToNode(scriptableData, tileNode);
+            UnitBase Hero = await UnitManager.SpawnUnitToNode(scriptableData, tileNode);
             Hero.OnLoadUnit(unitHero);
             if (unitHero.data.idPlayer >= 0)
             {
@@ -226,7 +227,7 @@ public class MapManager : MonoBehaviour, IDataGame
                 Debug.Log($"None resource data for : [{item.idUnit}]");
                 continue;
             }
-            UnitBase Res = UnitManager.SpawnUnitToNode(scriptableData, tileNode);
+            UnitBase Res = await UnitManager.SpawnUnitToNode(scriptableData, tileNode);
             // Hero.OnLoadUnit(unitHero);
             // LevelManager.Instance.GetPlayer(unitHero.data.idPlayer).AddHero((Hero)Hero);
         }
@@ -244,7 +245,7 @@ public class MapManager : MonoBehaviour, IDataGame
                 Debug.Log($"None mine data for : [{item.idUnit}]");
                 continue;
             }
-            BaseMines unit = (BaseMines)UnitManager.SpawnUnitToNode(scriptableData, tileNode);
+            BaseMines unit = (BaseMines)await UnitManager.SpawnUnitToNode(scriptableData, tileNode);
             if (item.data.idPlayer >= 0)
             {
                 LevelManager.Instance.GetPlayer(item.data.idPlayer).AddMines(unit);
@@ -282,7 +283,7 @@ public class MapManager : MonoBehaviour, IDataGame
                 Debug.Log($"None resource map data for : [{item.idUnit}]");
                 continue;
             }
-            BaseResourceMapObject unit = (BaseResourceMapObject)UnitManager.SpawnUnitToNode(scriptableData, tileNode);
+            BaseResourceMapObject unit = (BaseResourceMapObject)await UnitManager.SpawnUnitToNode(scriptableData, tileNode);
             // if (item.data.idPlayer >= 0)
             // {
             //     Player player = LevelManager.Instance.GetPlayer(item.data.idPlayer);
@@ -352,7 +353,7 @@ public class MapManager : MonoBehaviour, IDataGame
                 Debug.Log($"None warrior data for : [{item.idUnit}]");
                 continue;
             }
-            BaseWarriors warrior = (BaseWarriors)UnitManager.SpawnUnitToNode(scriptableData, tileNode);
+            BaseWarriors warrior = (BaseWarriors)await UnitManager.SpawnUnitToNode(scriptableData, tileNode);
             tileNode.SetProtectedNeigbours(warrior, protectedNode);
             // Hero.OnLoadUnit(unitHero);
             // LevelManager.Instance.GetPlayer(unitHero.data.idPlayer).AddHero((Hero)Hero);
@@ -522,7 +523,7 @@ public class MapManager : MonoBehaviour, IDataGame
         return nodeWarrior;
     }
 
-    public bool CreatePortal(GridTileNode node, List<GridTileNode> potentialNode)
+    public async Task<bool> CreatePortalAsync(GridTileNode node, List<GridTileNode> potentialNode)
     {
         List<GridTileNode> _potentialNode = potentialNode.Where(t =>
             t != node
@@ -569,10 +570,10 @@ public class MapManager : MonoBehaviour, IDataGame
                     GridTileNode nodeWarrior = GetNodeWarrior(nodeInputPortal);
                     if (nodeWarrior != null)
                     {
-                        monolith = (BaseMonolith)UnitManager.SpawnUnitByTypeUnit(nodeInputPortal, TypeUnit.Monolith);
+                        monolith = (BaseMonolith)await UnitManager.SpawnUnitByTypeUnitAsync(nodeInputPortal, TypeUnit.Monolith);
                         currentArea.portal = monolith;
 
-                        BaseWarriors warrior = (BaseWarriors)UnitManager.SpawnWarrior(nodeWarrior);
+                        BaseWarriors warrior = (BaseWarriors)await UnitManager.SpawnWarriorAsync(nodeWarrior);
 
                         nodeWarrior.SetProtectedNeigbours(warrior, nodeInputPortal);
                     }
@@ -585,12 +586,12 @@ public class MapManager : MonoBehaviour, IDataGame
 
             if (monolith != null)
             {
-                BaseMonolith monolithExit = (BaseMonolith)UnitManager.SpawnUnitByTypeUnit(nodeExitPortal, TypeUnit.Monolith);
+                BaseMonolith monolithExit = (BaseMonolith)await UnitManager.SpawnUnitByTypeUnitAsync(nodeExitPortal, TypeUnit.Monolith);
 
                 GridTileNode nodeWarrior = GetNodeWarrior(nodeExitPortal);
                 if (nodeWarrior != null)
                 {
-                    BaseWarriors warrior = (BaseWarriors)UnitManager.SpawnWarrior(nodeWarrior);
+                    BaseWarriors warrior = (BaseWarriors)await UnitManager.SpawnWarriorAsync(nodeWarrior);
 
                     nodeWarrior.SetProtectedNeigbours(warrior, nodeExitPortal);
                 }

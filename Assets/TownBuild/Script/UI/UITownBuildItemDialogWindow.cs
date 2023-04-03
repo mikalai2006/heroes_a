@@ -109,7 +109,7 @@ public class UITownBuildItemDialogWindow : MonoBehaviour
             _requireResourceBlok.Add(item);
         }
 
-        if (_buildDialog.isBuilded || !_activePlayer.IsExistsResource(_buildDialog.CostResource))
+        if (_buildDialog.isNotBuild)
         {
             _buttonOk.SetEnabled(false);
         }

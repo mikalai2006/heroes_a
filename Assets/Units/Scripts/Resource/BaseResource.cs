@@ -80,7 +80,11 @@ public abstract class BaseResource : BaseMapObject, IDataPlay, IDialogMapObjectO
         {
             player.ChangeResource(Data.Value[i].typeResource, Data.Value[i].value);
         }
-        if (Data.TypeWork == TypeWork.One) Destroy(gameObject);
+        if (Data.TypeWork == TypeWork.One)
+        {
+            ScriptableData.Prefab2.ReleaseInstance(gameObject);
+            Destroy(gameObject);
+        }
     }
 
     public override void InitUnit(ScriptableUnitBase data, Vector3Int pos)

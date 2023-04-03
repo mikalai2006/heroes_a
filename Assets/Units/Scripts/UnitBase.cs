@@ -1,18 +1,12 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-/// <summary>
-/// This will share logic for any unit on the field. Could be friend or foe, controlled or not.
-/// Things like taking damage, dying, animation triggers etc
-/// </summary>
 [System.Serializable]
 public abstract class UnitBase : MonoBehaviour, IPointerClickHandler
 {
-
+    [NonSerialized] private UnitBase _asset;
     [NonSerialized] public GridTileNode OccupiedNode = null;
     [NonSerialized] public GridTileNode ProtectedNode = null;
     //public bool IsProtected => OccupiedNode.ProtectedUnit != null;
@@ -22,11 +16,6 @@ public abstract class UnitBase : MonoBehaviour, IPointerClickHandler
     [NonSerialized] public ScriptableUnitBase ScriptableData;
     protected string idUnit;
     protected string idObject;
-    protected string idWar;
-
-    //public int keyArea;
-    //public Stats Stats { get; private set; }
-    //public virtual void SetStats(Stats stats) => Stats = stats;
 
     public virtual void TakeDamage(int dmg)
     {
@@ -111,7 +100,7 @@ public abstract class UnitBase : MonoBehaviour, IPointerClickHandler
     //    }
     //}
 
-    public async virtual void OnGoHero(Player player)
+    public virtual void OnGoHero(Player player)
     {
         //Debug.Log($"OnGoHero::: player[{player.DataPlayer.id}]");
 

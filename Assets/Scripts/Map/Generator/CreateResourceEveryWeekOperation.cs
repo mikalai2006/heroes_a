@@ -49,9 +49,9 @@ public class CreateResourceEveryWeekOperation : ILoadingOperation
                     if (nodeWarrior != null && currentNode != null && _root.gridTileHelper.CalculateNeighbours(currentNode) == 8)
                     {
 
-                        BaseWarriors warrior = _root.UnitManager.SpawnWarrior(nodeWarrior);
+                        BaseWarriors warrior = await _root.UnitManager.SpawnWarriorAsync(nodeWarrior);
 
-                        UnitBase unit = _root.UnitManager.SpawnMapObjectToPosition(
+                        UnitBase unit = await _root.UnitManager.SpawnMapObjectToPositionAsync(
                             currentNode,
                             MapObjectType.Resource
                         );
@@ -68,7 +68,7 @@ public class CreateResourceEveryWeekOperation : ILoadingOperation
 
                         if (listExistExitNode.Count > 1)
                         {
-                            _root.CreatePortal(currentNode, listExistExitNode);
+                            await _root.CreatePortalAsync(currentNode, listExistExitNode);
                         }
                         //else
                         //{

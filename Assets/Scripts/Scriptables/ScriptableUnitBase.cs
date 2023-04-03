@@ -3,6 +3,13 @@ using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.Localization;
 using UnityEngine.Localization.Tables;
+using UnityEngine.AddressableAssets;
+
+// [System.Serializable]
+// public class AssetReferenceUnitBase : AssetReferenceT<UnitBase>
+// {
+//     public AssetReferenceUnitBase(string guid) : base(guid) { }
+// }
 
 public abstract class ScriptableUnitBase : ScriptableObject
 {
@@ -18,6 +25,7 @@ public abstract class ScriptableUnitBase : ScriptableObject
     public List<TypeNoPath> RulesDraw => listTypeNoPath;
 
     // Used in game
+    [SerializeField] public AssetReference Prefab2;
     [SerializeField] public UnitBase Prefab;
     // Used in menus
     //public string Description;

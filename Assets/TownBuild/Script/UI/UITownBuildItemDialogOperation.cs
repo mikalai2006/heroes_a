@@ -13,7 +13,7 @@ public struct DataDialogBuild
     public string description;
     public string textRequireBuild;
     public List<BuildCostResource> CostResource;
-    public bool isBuilded;
+    public bool isNotBuild;
 }
 
 public class UITownBuildItemDialogOperation : LocalAssetLoader

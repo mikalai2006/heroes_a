@@ -44,7 +44,7 @@ public class CreateResourceOperation : ILoadingOperation
                 {
                     GridTileNode currentNode = nodes[Random.Range(0, nodes.Count)];
 
-                    UnitBase unit = _root.UnitManager.SpawnResource(currentNode, new List<TypeWork>() { TypeWork.One });
+                    UnitBase unit = await _root.UnitManager.SpawnResourceAsync(currentNode, new List<TypeWork>() { TypeWork.One });
 
                     nodes.Remove(currentNode);
 
@@ -56,7 +56,7 @@ public class CreateResourceOperation : ILoadingOperation
 
                     if (listExistExitNode.Count > 1)
                     {
-                        _root.CreatePortal(currentNode, listExistExitNode);
+                        await _root.CreatePortalAsync(currentNode, listExistExitNode);
                     }
                 }
 

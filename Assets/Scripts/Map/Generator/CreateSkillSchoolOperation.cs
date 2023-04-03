@@ -48,9 +48,9 @@ public class CreateSkillSchoolOperation : ILoadingOperation
 
                     if (nodeWarrior != null && currentNode != null && _root.gridTileHelper.CalculateNeighbours(currentNode) == 8)
                     {
-                        UnitBase unit = _root.UnitManager.SpawnMapObjectToPosition(currentNode, MapObjectType.SkillSchool);
+                        UnitBase unit = await _root.UnitManager.SpawnMapObjectToPositionAsync(currentNode, MapObjectType.SkillSchool);
 
-                        BaseWarriors warrior = (BaseWarriors)_root.UnitManager.SpawnWarrior(nodeWarrior);
+                        BaseWarriors warrior = (BaseWarriors)await _root.UnitManager.SpawnWarriorAsync(nodeWarrior);
 
                         nodeWarrior.SetProtectedNeigbours(warrior, currentNode);
 
@@ -63,7 +63,7 @@ public class CreateSkillSchoolOperation : ILoadingOperation
                         List<GridTileNode> listExistExitNode = _root.gridTileHelper.IsExistExit(currentNode);
                         if (listExistExitNode.Count > 1)
                         {
-                            _root.CreatePortal(currentNode, listExistExitNode);
+                            await _root.CreatePortalAsync(currentNode, listExistExitNode);
                         }
 
                     }

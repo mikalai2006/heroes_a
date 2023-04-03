@@ -18,6 +18,11 @@ MonoBehaviour:
   typeInput: 1
   TypeUnit: 5
   listTypeNoPath: 
+  Prefab2:
+    m_AssetGUID: 56ec6e7b7feb1064abab3fcf50848a46
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
   Prefab: {fileID: 3903810489075703944, guid: 56ec6e7b7feb1064abab3fcf50848a46, type: 3}
   MenuSprite: {fileID: 36309692, guid: a4dbc25aa5c0cc543a2d01e118853fe1, type: 3}
   Locale:
