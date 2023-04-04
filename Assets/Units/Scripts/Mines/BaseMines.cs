@@ -25,17 +25,22 @@ public abstract class BaseMines : UnitBase, IDataPlay, IDialogMapObjectOperation
         Data.idPlayer = -1;
 
     }
+    protected override void Awake()
+    {
+        base.Awake();
+        _flag = transform.Find("Flag")?.GetComponent<SpriteRenderer>();
+    }
     protected override void Start()
     {
         base.Start();
-        _flag = transform.Find("Flag")?.GetComponent<SpriteRenderer>();
     }
 
-    public void SetPlayer(PlayerData data)
+    public void SetPlayer(Player player)
     {
-        Data.idPlayer = data.id;
+        Data.idPlayer = player.DataPlayer.id;
 
-        Player player = LevelManager.Instance.GetPlayer(Data.idPlayer);
+        // Player player = LevelManager.Instance.GetPlayer(Data.idPlayer);
+        Debug.Log($"Flagg::: {_flag.name}");
         _flag.color = player.DataPlayer.color;
     }
 

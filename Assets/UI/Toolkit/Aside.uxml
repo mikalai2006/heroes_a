@@ -8,7 +8,7 @@
     <ui:VisualElement name="AsideBoxInfo" style="background-color: rgba(0, 0, 0, 0); height: 35%; position: absolute; right: 20%; width: 18%;">
         <ui:Instance template="HeroInfoBox" name="HeroInfoBox" style="flex-grow: 1; display: none;" />
     </ui:VisualElement>
-    <ui:VisualElement name="wrapper" class="aside_wrapper" style="display: flex;">
+    <ui:VisualElement name="wrapper" class="aside_wrapper" style="display: none;">
         <ui:VisualElement name="unitlist" class="aside_unitlist border-color">
             <ui:VisualElement name="heroes" class="heroesblok aside_blok">
                 <ui:VisualElement name="Overlay" class="overlay" />

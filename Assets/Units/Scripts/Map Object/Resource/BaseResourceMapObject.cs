@@ -120,7 +120,7 @@ public abstract class BaseResourceMapObject : BaseMapObject, IDataPlay, IDialogM
 
     public void SaveDataPlay(ref DataPlay data)
     {
-        // var sdata = SaveUnit(Data);
-        // data.Units.resources.Add(sdata);
+        var sdata = SaveUnit(Data);
+        data.Units.resourcesmap.Add(sdata);
     }
 }

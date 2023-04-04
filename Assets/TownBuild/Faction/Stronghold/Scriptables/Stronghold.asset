@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b683f785db006d44cb8e5ff14e6cded5, type: 3}
   m_Name: Stronghold
   m_EditorClassIdentifier: 
-  idObject: 
+  idObject: 2
   TypeFaction: 1
   Prefab:
     m_AssetGUID: 38439e2bbd9ed8146be8394887145ef1
@@ -27,9 +27,21 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c4009eba3617a6c44be95baf6ad16f01, type: 2}
   - {fileID: 11400000, guid: 99924d3dc371aee41982d617977d665e, type: 2}
   - {fileID: 11400000, guid: 67301e89dc06415468cdeed22400d7c7, type: 2}
+  - {fileID: 11400000, guid: a76991c88825d184ba73e39ed41d460b, type: 2}
+  - {fileID: 11400000, guid: 4da87f95fdd8f6e4cb4858cacb703bfb, type: 2}
+  - {fileID: 11400000, guid: 5d162aac6bb8f2643abc28187e55e35d, type: 2}
+  - {fileID: 11400000, guid: 0c9c1452862bc8941b2f13007c444a8d, type: 2}
+  - {fileID: 11400000, guid: 08d3caa47f196ec42b45f54efaf3ecd9, type: 2}
   - {fileID: 11400000, guid: 7f0991f7e084c5d44a118a7e1ece96f5, type: 2}
+  - {fileID: 11400000, guid: 8c414d4cf71f36a4cb7c3eef9d9bfb57, type: 2}
+  - {fileID: 11400000, guid: 95e103e71544c034c8023c97e8ca75e7, type: 2}
+  - {fileID: 11400000, guid: 2bbbd984b24b6db45b9a3133d4e95958, type: 2}
+  - {fileID: 11400000, guid: e415ac95d35ab1f458a85098f58bfb8b, type: 2}
+  - {fileID: 11400000, guid: 1dbe3da8bc400f643ba5668058b373a7, type: 2}
+  - {fileID: 11400000, guid: c742ca2ca7fd4da43a0a7b0898fe4fb8, type: 2}
   TownMap:
     m_AssetGUID: 0711f92d2a9e8694ca98c42f01e54d1e
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
+  StartProgressBuilds: 0200000003000000

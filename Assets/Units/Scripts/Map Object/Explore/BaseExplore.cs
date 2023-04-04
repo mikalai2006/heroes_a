@@ -2,9 +2,15 @@ using System.Collections.Generic;
 
 using Cysharp.Threading.Tasks;
 
-
-public abstract class BaseExplore : BaseMapObject, IDialogMapObjectOperation
+[System.Serializable]
+public struct DataExplore
 {
+
+}
+
+public abstract class BaseExplore : BaseMapObject, IDataPlay, IDialogMapObjectOperation
+{
+    public DataExplore Data;
     public async override void OnGoHero(Player player)
     {
         base.OnGoHero(player);
@@ -37,4 +43,13 @@ public abstract class BaseExplore : BaseMapObject, IDialogMapObjectOperation
         return await dialogWindow.ShowAndHide();
     }
 
+    public void LoadDataPlay(DataPlay data)
+    {
+    }
+
+    public void SaveDataPlay(ref DataPlay data)
+    {
+        var sdata = SaveUnit(Data);
+        data.Units.explorers.Add(sdata);
+    }
 }

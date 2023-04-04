@@ -1,33 +1,42 @@
+using System;
 using System.Collections.Generic;
 
 using UnityEngine;
 
 [System.Serializable]
-public struct PlayerData
+public class PlayerData
 {
     public int id;
     public Color color;
     public PlayerType playerType;
     public int idArea;
-    [SerializeField] public List<Hero> ListHero;
-    [SerializeField] public List<UnitBase> ListTown;
-    [SerializeField] public List<UnitBase> ListMines;
-    public Hero ActiveHero;
-    public BaseTown ActiveTown;
-    public PlayerResource Resource;
+    public SerializableDictionary<TypeResource, int> Resource;
     public SerializableShortPosition nosky;
+    [System.NonSerialized] public PlayerDataReferences PlayerDataReferences;
+
+    // public Hero ActiveHero => PlayerDataReferences.ActiveHero;
+
+    public PlayerData()
+    {
+        PlayerDataReferences = new PlayerDataReferences();
+    }
 }
 
 [System.Serializable]
-public struct PlayerResource
+public class PlayerDataReferences
 {
-    public int gold;
-    public int wood;
-    public int iron;
-    public int mercury;
-    public int diamond;
-    public int gem;
-    public int sulfur;
+    [SerializeField] public List<Hero> ListHero;
+    [SerializeField] public List<UnitBase> ListTown;
+    [SerializeField] public List<UnitBase> ListMines;
+    [SerializeField] public Hero ActiveHero;
+    [SerializeField] public BaseTown ActiveTown;
+
+    public PlayerDataReferences()
+    {
+        ListTown = new List<UnitBase>();
+        ListHero = new List<Hero>();
+        ListMines = new List<UnitBase>();
+    }
 }
 
 public enum PlayerType
@@ -54,18 +63,18 @@ public class Player
     }
     public Hero ActiveHero
     {
-        get { return _data.ActiveHero; }
+        get { return _data.PlayerDataReferences.ActiveHero; }
         set
         {
             GameManager.Instance.ChangeState(GameState.ChooseHero);
 
-            _data.ActiveHero = value;
+            _data.PlayerDataReferences.ActiveHero = value;
 
             LevelManager.Instance.SetPositionCamera(new Vector3(value.Position.x, value.Position.y, -10f));
 
             if (value.path != null)
             {
-                GameManager.Instance.MapManager.DrawCursor(value.path, DataPlayer.ActiveHero);
+                GameManager.Instance.MapManager.DrawCursor(value.path, DataPlayer.PlayerDataReferences.ActiveHero);
             }
 
         }
@@ -73,12 +82,12 @@ public class Player
 
     public BaseTown ActiveTown
     {
-        get { return _data.ActiveTown; }
+        get { return _data.PlayerDataReferences.ActiveTown; }
         set
         {
             GameManager.Instance.ChangeState(GameState.ChooseHero);
 
-            _data.ActiveTown = value;
+            _data.PlayerDataReferences.ActiveTown = value;
 
             LevelManager.Instance.SetPositionCamera(new Vector3(value.Position.x, value.Position.y, -10f));
 
@@ -89,17 +98,19 @@ public class Player
     {
         _data = new PlayerData();
         _data = data;
-        _data.ListTown = new List<UnitBase>();
-        _data.ListHero = new List<Hero>();
-        _data.ListMines = new List<UnitBase>();
-        _data.Resource = new PlayerResource();
+        _data.PlayerDataReferences = new PlayerDataReferences();
+        _data.Resource = new SerializableDictionary<TypeResource, int>();
+        foreach (TypeResource typeResource in (TypeResource[])Enum.GetValues(typeof(TypeResource)))
+        {
+            _data.Resource.Add(typeResource, typeResource == TypeResource.Gold ? 100000 : 200);
+        }
         _data.nosky = new SerializableShortPosition();
     }
 
     public void AddHero(Hero hero)
     {
         hero.SetPlayer(DataPlayer);
-        DataPlayer.ListHero.Add(hero);
+        DataPlayer.PlayerDataReferences.ListHero.Add(hero);
     }
 
     public void SetNosky(List<GridTileNode> listNode)
@@ -115,42 +126,33 @@ public class Player
 
     public void AddMines(BaseMines mine)
     {
-        mine.SetPlayer(DataPlayer);
-        DataPlayer.ListMines.Add(mine);
+        mine.SetPlayer(this);
+        DataPlayer.PlayerDataReferences.ListMines.Add(mine);
     }
     public void ChangeResource(TypeResource typeResource, int value = 0)
     {
-        switch (typeResource)
-        {
-            case TypeResource.Gold:
-                _data.Resource.gold += value;
-                break;
-            case TypeResource.Gem:
-                _data.Resource.gem += value;
-                break;
-            case TypeResource.Wood:
-                _data.Resource.wood += value;
-                break;
-            case TypeResource.Iron:
-                _data.Resource.iron += value;
-                break;
-            case TypeResource.Diamond:
-                _data.Resource.diamond += value;
-                break;
-            case TypeResource.Mercury:
-                _data.Resource.mercury += value;
-                break;
-            case TypeResource.Sulfur:
-                _data.Resource.sulfur += value;
-                break;
-        }
+        _data.Resource[typeResource] += value;
 
         GameManager.Instance.ChangeState(GameState.ChangeResources);
     }
 
+    public bool IsExistsResource(List<BuildCostResource> resources)
+    {
+        bool result = true;
+        foreach (var res in resources)
+        {
+            if (_data.Resource[res.Resource.TypeResource] < res.Count)
+            {
+                result = false;
+                break;
+            }
+        }
+        return result;
+    }
+
     public Hero GetHero(int id)
     {
-        return DataPlayer.ListHero[id];
+        return DataPlayer.PlayerDataReferences.ListHero[id];
     }
 
     // public void SetActiveTown(BaseTown town)
@@ -165,11 +167,11 @@ public class Player
 
     public List<GridTileNode> FindPathForHero(Vector3Int endPoint, bool isTrigger, bool force)
     {
-        Hero activeHero = DataPlayer.ActiveHero;
+        Hero activeHero = DataPlayer.PlayerDataReferences.ActiveHero;
         Vector3Int startPoint = new Vector3Int(activeHero.Position.x, activeHero.Position.y);
         List<GridTileNode> path = GameManager.Instance.MapManager.GridTileHelper().FindPath(startPoint, endPoint, isTrigger, force);
 
-        if (path != null && DataPlayer.ActiveHero != null)
+        if (path != null && DataPlayer.PlayerDataReferences.ActiveHero != null)
         {
             activeHero.SetPathHero(path);
             GameManager.Instance.MapManager.DrawCursor(path, activeHero);
@@ -184,12 +186,12 @@ public class Player
     {
         BaseTown _town = (BaseTown)town;
         _town.SetPlayer(DataPlayer);
-        DataPlayer.ListTown.Add(town);
+        DataPlayer.PlayerDataReferences.ListTown.Add(town);
 
     }
 
     public UnitBase GetTown(int id)
     {
-        return DataPlayer.ListTown[id];
+        return DataPlayer.PlayerDataReferences.ListTown[id];
     }
 }

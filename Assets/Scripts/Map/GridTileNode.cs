@@ -35,7 +35,7 @@ public class GridTileNode : IHeapItem<GridTileNode>
     public bool Disable => State == TypeStateNode.Disabled;
     public bool Enable => State == TypeStateNode.Enable;
 
-    [SerializeField] private bool _isRoad = false;
+    [SerializeField] public bool _isRoad = false;
     public bool Road => _isRoad;
 
     [NonSerialized] public int level;

@@ -30,6 +30,10 @@ public class DataUnit
     public List<SaveDataUnit<DataWarrior>> warriors;
     public List<SaveDataUnit<DataMonolith>> monoliths;
     public List<SaveDataUnit<DataMine>> mines;
+    public List<SaveDataUnit<DataArtifact>> artifacts;
+    public List<SaveDataUnit<DataExplore>> explorers;
+    public List<SaveDataUnit<DataSkillSchool>> skillSchools;
+    public List<SaveDataUnit<DataResourceMapObject>> resourcesmap;
 
     public DataUnit()
     {
@@ -39,6 +43,10 @@ public class DataUnit
         warriors = new List<SaveDataUnit<DataWarrior>>();
         mines = new List<SaveDataUnit<DataMine>>();
         resources = new List<SaveDataUnit<DataResource>>();
+        artifacts = new List<SaveDataUnit<DataArtifact>>();
+        explorers = new List<SaveDataUnit<DataExplore>>();
+        skillSchools = new List<SaveDataUnit<DataSkillSchool>>();
+        resourcesmap = new List<SaveDataUnit<DataResourceMapObject>>();
     }
 }
 

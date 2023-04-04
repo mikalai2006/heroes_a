@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d42093a1eaf0824c9a2bb9f171cc7f4, type: 3}
+  m_Name: 9_FreelancersGuild
+  m_EditorClassIdentifier: 
+  idObject: 2_8
+  TypeFaction: 1
+  Prefab: {fileID: 4182761918288791329, guid: fe5d1be3a67ea1242a63c0d87bdd5652, type: 3}
+  BuildLevels:
+  - MenuSprite: {fileID: 21300000, guid: 5658a68e045fd434caf38d8aa465f7ac, type: 3}
+    TypeBuild: 37
+    UpdatePrefab: {fileID: 0}
+    RequiredBuilds: 0c000000
+    Locale:
+    - Language: {fileID: 11400000, guid: 30b8a59646ec31e4fa7737b1c0d7cba9, type: 2}
+      Text:
+        title: "\u0413\u0438\u043B\u044C\u0434\u0438\u044F \u043D\u0430\u0435\u043C\u043D\u044B\u0445
+          \u0440\u0430\u0431\u043E\u0442\u043D\u0438\u043A\u043E\u0432"
+        description: "\u0417\u0434\u0435\u0441\u044C \u043C\u043E\u0436\u043D\u043E
+          \u043E\u0431\u043C\u0435\u043D\u044F\u0442\u044C \u0441\u0443\u0449\u0435\u0441\u0442\u0432\u043E
+          \u043D\u0430 \u0440\u0435\u0441\u0443\u0440\u0441\u044B"
+        visit_ok: 
+        visit_no: 
+        visit_noresource: 
+    Text:
+      title:
+        m_TableReference:
+          m_TableCollectionName: GUID:eccb40f2ef0445e499300535baf5f930
+        m_TableEntryReference:
+          m_KeyId: 16463697182720
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      description:
+        m_TableReference:
+          m_TableCollectionName: GUID:eccb40f2ef0445e499300535baf5f930
+        m_TableEntryReference:
+          m_KeyId: 16494965719040
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+    CostResource:
+    - Resource: {fileID: 11400000, guid: 2de32a5fb2189994a867c9e425391bf7, type: 2}
+      Count: 1000
+  references:
+    version: 2
+    RefIds: []

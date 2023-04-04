@@ -1,5 +1,5 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
-    <Style src="project://database/Assets/UIEditor/LandscapeManager.uss?fileID=7433441132597879392&amp;guid=74679e381844cfd43b837ecd1ca5cacd&amp;type=3#LandscapeManager" />
+    <Style src="project://database/Assets/Editor/UIEditor/LandscapeManager.uss?fileID=7433441132597879392&amp;guid=74679e381844cfd43b837ecd1ca5cacd&amp;type=3#LandscapeManager" />
     <ui:VisualElement name="container" style="flex-grow: 1; align-items: center; justify-content: center; flex-shrink: 0;">
         <ui:VisualElement name="caption" class="caption">
             <ui:Label tabindex="-1" text="Game Manager" display-tooltip-when-elided="true" name="Label" />
@@ -8,11 +8,13 @@
             <ui:Label tabindex="-1" text="Landscape" display-tooltip-when-elided="true" name="LandscapeTab" class="tab tab_active" />
             <ui:Label tabindex="-1" text="Nature" display-tooltip-when-elided="true" name="NatureTab" class="tab" />
             <ui:Label tabindex="-1" text="Unit" display-tooltip-when-elided="true" name="UnitTab" class="tab" />
+            <ui:Label tabindex="-1" text="Towns" display-tooltip-when-elided="true" name="TownTab" class="tab" />
         </ui:VisualElement>
         <ui:VisualElement name="tabContent" class="manager_row" style="flex-grow: 1; width: 100%; height: 100%; max-width: 100%; max-height: 100%; padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 10px;">
             <ui:VisualElement name="LandscapeContent" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row;" />
             <ui:VisualElement name="NatureContent" class="unselectedContent" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);" />
             <ui:VisualElement name="UnitContent" class="unselectedContent" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row;" />
+            <ui:VisualElement name="TownContent" class="unselectedContent" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row;" />
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

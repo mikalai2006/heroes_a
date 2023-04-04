@@ -1,5 +1,7 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 
 using UnityEngine;
 using UnityEngine.Localization.Settings;
@@ -28,6 +30,54 @@ public static class Helpers
     /// <param name="input">Vector3</param>
     /// <returns>Vector3</returns>
     public static Vector3 ToIso(this Vector3 input) => _isoMatrix.MultiplyPoint3x4(input);
+
+    public static List<Transform> GetChildren(this GameObject gameobject, bool recursive)
+    {
+        List<Transform> children = new List<Transform>();
+
+        foreach (Transform child in gameobject.transform)
+        {
+            children.Add(child);
+            if (recursive)
+            {
+                children.AddRange(GetChildren(child.gameObject, true));
+            }
+        }
+
+        return children;
+    }
+
+    public static List<Transform> GetDeepChildren<T>(this GameObject gameobject, bool recursive)
+    {
+        List<Transform> children = new List<Transform>();
+
+        foreach (Transform child in gameobject.transform)
+        {
+            var isChild = child.GetComponent<T>();
+            if (isChild != null)
+            {
+                children.Add(child);
+            }
+            if (recursive)
+            {
+                children.AddRange(GetChildren(child.gameObject, true));
+            }
+        }
+
+        return children;
+    }
+    public static Dictionary<Transform, dynamic> GetChildrenHierarchy(this GameObject gameobject)
+    {
+        Dictionary<Transform, dynamic> children = new Dictionary<Transform, dynamic>();
+
+        foreach (Transform child in gameobject.transform)
+        {
+            children.Add(child, GetChildrenHierarchy(child.gameObject));
+        }
+
+        return children;
+    }
+
 
     public static string GetStringNameCountWarrior(int n)
     {

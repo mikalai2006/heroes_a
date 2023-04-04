@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 
 public class Town : BuildBase, IPointerClickHandler, IClickeredBuild
 {
-    public async UniTask<DataResultDialog> OnClickToBuild()
+    public async UniTask<DataResultBuildDialog> OnClickToBuild()
     {
         var dialogWindow = new UITownListBuildOperation(new DataDialog());
         return await dialogWindow.ShowAndHide();
@@ -14,6 +14,7 @@ public class Town : BuildBase, IPointerClickHandler, IClickeredBuild
     public async void OnPointerClick(PointerEventData eventData)
     {
         Debug.Log($"Click council");
-        await OnClickToBuild();
+        var result = await OnClickToBuild();
+        UITown.DrawBuilds(result);
     }
 }

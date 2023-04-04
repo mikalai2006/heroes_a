@@ -21,7 +21,4 @@
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
-    <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
-        <ui:Label tabindex="-1" text="Label" display-tooltip-when-elided="true" name="Error" style="color: rgb(255, 0, 0);" />
-    </ui:VisualElement>
 </ui:UXML>

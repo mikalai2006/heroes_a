@@ -43,15 +43,15 @@ namespace Loader
                 UITown.Init(environment);
             }
 
-            GameObject Town = GameObject.FindGameObjectWithTag("Town");
+            // GameObject Town = GameObject.FindGameObjectWithTag("Town");
 
-            if (Town != null)
-            {
-                foreach (BuildBase build in Town.transform.GetComponentsInChildren<BuildBase>())
-                {
-                    build.UITown = UITown;
-                }
-            }
+            // if (Town != null)
+            // {
+            //     foreach (BuildBase build in Town.transform.GetComponentsInChildren<BuildBase>())
+            //     {
+            //         build.UITown = UITown;
+            //     }
+            // }
 
             // editorGame.Init(environment);
             // editorGame.BeginNewGame();

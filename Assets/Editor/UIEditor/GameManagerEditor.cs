@@ -7,7 +7,7 @@ public class GameManagerEditor : EditorWindow
 {
     private VisualElement _root;
 
-    [MenuItem("Game/Landscape Manager")]
+    [MenuItem("Game/GameManager")]
     public static void Init()
     {
         GameManagerEditor wnd = GetWindow<GameManagerEditor>();
@@ -43,5 +43,9 @@ public class GameManagerEditor : EditorWindow
         var tabUnit = unit.Init();
         //root.Q<VisualElement>("NatureContent").Clear();
         _root.Q<VisualElement>("UnitContent").Add(tabUnit);
+
+        var townManager = new TownManagerEditor();
+        var tabTownManager = townManager.Init();
+        _root.Q<VisualElement>("TownContent").Add(tabTownManager);
     }
 }

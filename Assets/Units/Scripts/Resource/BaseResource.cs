@@ -106,7 +106,7 @@ public abstract class BaseResource : BaseMapObject, IDataPlay, IDialogMapObjectO
         Data.Value.Add(new()
         {
             typeResource = scriptDataObject.TypeResource,
-            value = stepValue * randomIndexValue,
+            value = scriptDataObject.step * randomIndexValue,
             Resource = scriptDataObject,
         });
 

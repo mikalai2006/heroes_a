@@ -8,5 +8,6 @@ public class ScriptableTown : ScriptableUnitBase
     public List<ScriptableHero> heroes;
     public List<ScriptableMine> mines;
     public List<ScriptableWarriors> warriors;
+    public ScriptableBuildTown BuildTown;
 }
 

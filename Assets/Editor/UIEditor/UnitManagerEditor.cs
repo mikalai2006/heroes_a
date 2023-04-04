@@ -135,7 +135,7 @@ public class UnitManagerEditor
     private void LoadAllItems()
     {
         m_UnitDB.Clear();
-        string[] allPaths = Directory.GetFiles("Assets/ScriptableObjects/Units", "*.asset",
+        string[] allPaths = Directory.GetFiles("Assets/Units/Scriptables", "*.asset",
             SearchOption.AllDirectories);
         foreach (string path in allPaths)
         {

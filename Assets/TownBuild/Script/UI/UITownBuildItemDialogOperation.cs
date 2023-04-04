@@ -1,50 +1,34 @@
-// using System.Collections.Generic;
+using System.Collections.Generic;
 
 using Assets;
 
 using Cysharp.Threading.Tasks;
 
-// using UnityEngine;
+using UnityEngine;
 
-// public class DataDialog
-// {
-//     public string Header;
-//     public string Description;
-//     public Sprite Sprite;
-//     public List<DataDialogItem> Value;
-
-//     public DataDialog()
-//     {
-//         Value = new List<DataDialogItem>();
-//     }
-// }
-
-// public struct DataDialogItem
-// {
-//     public Sprite Sprite;
-//     public int Value;
-// }
-
-// public struct DataResultDialog
-// {
-//     public bool isOk;
-
-//     public int keyVariant;
-// }
+public struct DataDialogBuild
+{
+    public Sprite MenuSprite;
+    public string title;
+    public string description;
+    public string textRequireBuild;
+    public List<BuildCostResource> CostResource;
+    public bool isBuilded;
+}
 
 public class UITownBuildItemDialogOperation : LocalAssetLoader
 {
-    private DataDialog _dataDialog;
+    private DataDialogBuild _buildTownData;
 
-    public UITownBuildItemDialogOperation(DataDialog dataDialog)
+    public UITownBuildItemDialogOperation(DataDialogBuild data)
     {
-        _dataDialog = dataDialog;
+        _buildTownData = data;
     }
 
-    public async UniTask<DataResultDialog> ShowAndHide()
+    public async UniTask<DataResultBuildDialog> ShowAndHide()
     {
         var window = await Load();
-        var result = await window.ProcessAction(_dataDialog);
+        var result = await window.ProcessAction(_buildTownData);
         Unload();
         return result;
     }

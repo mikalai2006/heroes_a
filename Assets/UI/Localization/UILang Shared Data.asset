@@ -43,6 +43,18 @@ MonoBehaviour:
     m_Key: build
     m_Metadata:
       m_Items: []
+  - m_Id: 1659677638295552
+    m_Key: build_enable
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1660315206057984
+    m_Key: build_disable
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1661700538531840
+    m_Key: build_require
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
