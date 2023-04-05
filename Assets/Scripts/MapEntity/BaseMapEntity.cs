@@ -6,13 +6,13 @@ using UnityEngine.EventSystems;
 [System.Serializable]
 public abstract class BaseMapEntity : MonoBehaviour, IPointerClickHandler
 {
-    [NonSerialized] private BaseMapEntity _asset;
+    // [NonSerialized] private BaseMapEntity _asset;
     [NonSerialized] public GridTileNode OccupiedNode = null;
     [NonSerialized] public GridTileNode ProtectedNode = null;
     //public bool IsProtected => OccupiedNode.ProtectedUnit != null;
-    [NonSerialized] public TypeInput typeInput;
-    [NonSerialized] public TypeEntity typeEntity;
-    [NonSerialized] public TypeMapObject typeMapObject;
+    // [NonSerialized] public TypeInput typeInput;
+    // [NonSerialized] public TypeEntity typeEntity;
+    // [NonSerialized] public TypeMapObject typeMapObject;
     [NonSerialized] public Vector3Int Position;
     [NonSerialized] public ScriptableEntity ScriptableData;
     protected string idUnit;
@@ -27,9 +27,9 @@ public abstract class BaseMapEntity : MonoBehaviour, IPointerClickHandler
 
         ScriptableData = data;
 
-        typeEntity = data.TypeEntity;
+        // typeEntity = data.TypeEntity;
         // typeUnit = data.TypeUnit;
-        typeInput = data.typeInput;
+        // typeInput = data.typeInput;
         Position = pos;
         idUnit = System.Guid.NewGuid().ToString("N");
         idObject = data.idObject;
@@ -123,8 +123,8 @@ public abstract class BaseMapEntity : MonoBehaviour, IPointerClickHandler
 
         SaveData.idUnit = idUnit;
         SaveData.position = Position;
-        SaveData.typeEntity = typeEntity;
-        SaveData.typeMapObject = typeMapObject;
+        // SaveData.typeEntity = typeEntity;
+        // SaveData.typeMapObject = typeMapObject;
         SaveData.idObject = idObject;
         SaveData.data = Data;
 
@@ -139,8 +139,8 @@ public abstract class BaseMapEntity : MonoBehaviour, IPointerClickHandler
     {
         idUnit = Data.idUnit;
         Position = Data.position;
-        typeMapObject = Data.typeMapObject;
-        typeEntity = Data.typeEntity;
+        // typeMapObject = Data.typeMapObject;
+        // typeEntity = Data.typeEntity;
         idObject = Data.idObject;
     }
 
@@ -154,6 +154,7 @@ public abstract class BaseMapEntity : MonoBehaviour, IPointerClickHandler
     {
         GameManager.OnBeforeStateChanged -= OnBeforeStateChanged;
         GameManager.OnAfterStateChanged -= OnAfterStateChanged;
+        ScriptableData.MapPrefab.ReleaseInstance(gameObject);
     }
 
     protected virtual void Start()
@@ -182,7 +183,7 @@ public abstract class BaseMapEntity : MonoBehaviour, IPointerClickHandler
         Debug.Log($"" +
             $"UnitBase Click \n" +
             $"name-{this.name} \n" +
-            $"type-{this.typeEntity}\n" +
+            // $"type-{this.typeEntity}\n" +
             $"pos-[{transform.position}]\n" +
             $"ocup-[{OccupiedNode.ToString()}]\n"
             );
@@ -193,7 +194,7 @@ public abstract class BaseMapEntity : MonoBehaviour, IPointerClickHandler
             Debug.Log($"Exist warrior [{OccupiedNode.ProtectedUnit.name}]");
             //posObject = OccupiedNode.ProtectedUnit.Position;
         }
-        if (typeInput == TypeInput.None)
+        if (ScriptableData.typeInput == TypeInput.None)
         {
             //Debug.Log($"Click nopath [{OccupiedNode.Empty}]!");
             isTrigger = false;
@@ -209,7 +210,7 @@ public abstract class BaseMapEntity : MonoBehaviour, IPointerClickHandler
             //Vector3 posHero = UnitManager.Instance.activeHero.transform.position;
             //Vector3Int start = new Vector3Int((int)posHero.x, (int)posHero.y);
             Vector3Int end = new Vector3Int((int)posObject.x, (int)posObject.y);
-            //List<GridTileNode> path = 
+            //List<GridTileNode> path =
             LevelManager.Instance.ActivePlayer.FindPathForHero(end, isTrigger, true);
 
             //if (path != null)

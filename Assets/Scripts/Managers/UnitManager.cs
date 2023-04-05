@@ -287,7 +287,7 @@ public class UnitManager : MonoBehaviour
                 var r_asset = operationHandle.Result;
                 var _asset = r_asset.GetComponent<BaseMapEntity>();
                 _asset.InitUnit(entity, node.position);
-                Debug.Log($"Spawn Entity::: {entity.name}");
+                // Debug.Log($"Spawn Entity::: {entity.name}");
                 return _asset;
             }
             else
@@ -324,7 +324,7 @@ public class UnitManager : MonoBehaviour
         spawnedUnit.OccupiedNode = node;
         node.SetOcuppiedUnit(spawnedUnit);
 
-        Debug.Log($"Spawn UNIT2::: {spawnedUnit.OccupiedNode.position}- {node.OccupiedUnit.name}");
+        // Debug.Log($"Spawn UNIT2::: {spawnedUnit.OccupiedNode.position}- {node.OccupiedUnit.name}");
         if (entity.typeInput == TypeInput.None)
         {
             // GameManager.Instance.mapManager.SetNotPath(node);

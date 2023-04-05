@@ -139,7 +139,7 @@ public class MapEntityHero : BaseMapEntity, IDataPlay
         while (path.Count > 0 && _canMove && Data.hit >= 1)
         {
             //transform.position = HeroData.path[0];
-            Vector3 moveKoof = path[0].OccupiedUnit?.typeInput == TypeInput.Down ? new Vector3(.5f, .0f) : new Vector3(.5f, .5f);
+            Vector3 moveKoof = path[0].OccupiedUnit?.ScriptableData.typeInput == TypeInput.Down ? new Vector3(.5f, .0f) : new Vector3(.5f, .5f);
 
             UpdateAnimate(Position, path[0].position);
             _animator.SetBool("isWalking", true);
