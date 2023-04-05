@@ -36,6 +36,7 @@ public enum TypeFaction
     Stronghold = 1,
     Conflux = 20,
     Fortress = 30,
+    Dungeon = 40,
     Neutral = 100,
 }
 
