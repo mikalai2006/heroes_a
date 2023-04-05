@@ -61,6 +61,17 @@ MonoBehaviour:
     m_SerializedLabels:
     - entity
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bbe5fb22307dd5f45876373146172eb3
+    m_Address: Assets/Creature/Fortress
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: be82d1b76ce11004a993438b7160e0d4
+    m_Address: Assets/Creature/Fortress/Data
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - entity
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 9a6380555b06f9d46b9bf47dd32221de, type: 2}
   m_SchemaSet:

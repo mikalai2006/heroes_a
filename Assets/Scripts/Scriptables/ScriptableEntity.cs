@@ -11,7 +11,6 @@ public abstract class ScriptableEntity : ScriptableObject
     public TypeEntity TypeEntity;
     public Sprite MenuSprite;
     [SerializeField] public LangEntity Text;
-    [SerializeField] public DialogText DialogText;
 
     [Header("Map Options")]
     [SerializeField] public AssetReferenceGameObject MapPrefab;
@@ -20,6 +19,7 @@ public abstract class ScriptableEntity : ScriptableObject
     public TypeInput typeInput;
     public List<TypeNoPath> listTypeNoPath;
     public List<TypeNoPath> RulesDraw => listTypeNoPath;
+    [SerializeField] public DialogText DialogText;
 }
 
 [System.Serializable]
@@ -35,6 +35,7 @@ public enum TypeFaction
     Castle = 0,
     Stronghold = 1,
     Conflux = 20,
+    Fortress = 30,
     Neutral = 100,
 }
 
