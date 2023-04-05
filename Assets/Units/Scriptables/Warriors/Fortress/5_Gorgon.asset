@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6892427306879841ae9bdf6a40176c7, type: 3}
+  m_Name: 5_Gorgon
+  m_EditorClassIdentifier: 
+  idObject: 8b12bad0c99e422cb219213d9989a688
+  level: 5
+  typeGround: 20
+  typeInput: 1
+  TypeUnit: 7
+  listTypeNoPath: 
+  Prefab: {fileID: 6817578499884202945, guid: 06a0c7910ea00e749a4a3bf7239b5a07, type: 3}
+  MenuSprite: {fileID: -1341155111, guid: 9551ec0e9a32cdb4a894b16aba48592a, type: 3}
+  Locale: []
+  DataUnitWarrior:
+    Health: 0
+    Attack: 0
+    Protection: 0
+    Damage: 0
+    MaxDamage: 0
+    Ammunition: 0
+    Speed: 0
