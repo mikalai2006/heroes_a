@@ -17,18 +17,6 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 6b90a5fccf061294eb32031952a88fdb
   m_SerializeEntries:
-  - m_GUID: af4b0b55a6d074f469e14f3f760cfdcb
-    m_Address: Assets/Units/Scriptables/Skill
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - skill
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: c7c877dbb16008f4f970350d280dd344
-    m_Address: Assets/Units/Scriptables/Resource
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - units
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: dd9ce5901d84c504390d8350a2df2348
     m_Address: Assets/Units/Scriptables/Monolith
     m_ReadOnly: 0
@@ -47,12 +35,6 @@ MonoBehaviour:
     m_SerializedLabels:
     - units
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: f02ea59bbc6f5ee458ad764dcd013057
-    m_Address: Assets/Units/Scriptables/Hero
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - units
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 3df620f410c5f564f981f36e5235c17c
     m_Address: Assets/Units/Prefabs
     m_ReadOnly: 0
@@ -63,17 +45,16 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: bae8f9413a7f8fd46bdf9e8f7a90362b
-    m_Address: Assets/Units/Scriptables/Town
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - units
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 99cafa0d92df50d41b5f9cd2d43750a7
     m_Address: Assets/Units/Scriptables/Warriors
     m_ReadOnly: 0
     m_SerializedLabels:
     - units
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1acd0778752c1964fa89738ab041f6f6
+    m_Address: Assets/Units/Factions
+    m_ReadOnly: 0
+    m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 9a6380555b06f9d46b9bf47dd32221de, type: 2}

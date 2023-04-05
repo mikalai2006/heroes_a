@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 using UnityEngine;
 
-public abstract class BaseMapObject : UnitBase
+public abstract class BaseMapObject : BaseMapEntity
 {
     //public virtual void Init(object data)
     //{

@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 959f3edcb62d5d8459db6b793ea17bc7, type: 3}
+  m_Name: Mercury_Mine
+  m_EditorClassIdentifier: 
+  idObject: 9fc11fd460134879ac9da6b7896746c8
+  Entity: {fileID: 11400000, guid: 57f9424eb5504fb4c9bc9a6378ca43ad, type: 2}
+  typeGround: 1000
+  typeInput: 0
+  TypeMapObject: 21
+  TypeWorkMapObject: 2
+  listTypeNoPath: 
+  MapPrefab:
+    m_AssetGUID: 79657a2513f58724bba6f49d58cb2863
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  Prefab: {fileID: 0}
+  Locale: []

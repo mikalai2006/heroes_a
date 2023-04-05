@@ -8,9 +8,9 @@ public class Area
     public Vector3Int startPosition;
     public TypeGround typeGround;
     public bool isFraction;
-    public UnitBase town;
-    public UnitBase hero;
-    public UnitBase portal;
+    public BaseMapEntity town;
+    public BaseMapEntity hero;
+    public BaseMapEntity portal;
     public int countMine;
     public int countMountain;
     public AreaStat Stat;

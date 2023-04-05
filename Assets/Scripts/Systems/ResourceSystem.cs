@@ -11,21 +11,7 @@ public class ResourceSystem : StaticInstance<ResourceSystem>
 
     public Dictionary<string, List<Object>> ResourceAssets = new Dictionary<string, List<Object>>();
 
-    public List<T> GetAllAssetsByLabel<T>(string label)
-       where T : Object
-    {
-        var output = new List<T>();
-        ResourceAssets.TryGetValue(label, out List<Object> list);
-        for (int i = 0; i < list.Count; i++)
-        {
-            var item = list[i] as T;
-            output.Add(item);
-        }
-
-        //Debug.Log($"GetAllAssetsByLabel::: label={label}, values={ttt.Count}");
-        return output;
-    }
-
+    #region Asset load and destroy
     public async Task<List<T>> LoadCollectionsAsset<T>(string assetNameOrLabel)
        where T : Object
     {
@@ -53,6 +39,8 @@ public class ResourceSystem : StaticInstance<ResourceSystem>
         }
         return createdObjs;
     }
+
+
     private async Task CreateAssetsThenUpdateCollection<T>(IList<IResourceLocation> locations, List<T> createdObjs)
         where T : Object
     {
@@ -61,12 +49,6 @@ public class ResourceSystem : StaticInstance<ResourceSystem>
             var output = await Addressables.LoadAssetAsync<T>(location).Task as T;
             createdObjs.Add(output);
         }
-    }
-
-    public List<ScriptableGameMode> GetGameMode()
-    {
-        // ResourceAssets.Values.OfType<ScriptableGameMode>().ToList();
-        return GetAllAssetsByLabel<ScriptableGameMode>("gamemode");
     }
 
     public void DestroyAssets()
@@ -95,15 +77,55 @@ public class ResourceSystem : StaticInstance<ResourceSystem>
     {
         if (asset != null) Addressables.Release(asset);
     }
+    #endregion
+
+    public List<T> GetAllAssetsByLabel<T>(string label)
+       where T : Object
+    {
+        var output = new List<T>();
+        ResourceAssets.TryGetValue(label, out List<Object> list);
+        for (int i = 0; i < list.Count; i++)
+        {
+            var item = list[i] as T;
+            output.Add(item);
+        }
+
+        //Debug.Log($"GetAllAssetsByLabel::: label={label}, values={ttt.Count}");
+        return output;
+    }
+
+    #region managers entity
+    public List<ScriptableEntity> AllEntity() => GetAllAssetsByLabel<ScriptableEntity>(Constants.Labels.LABEL_ENTITY);
+    public List<T> GetEntityByType<T>(TypeEntity typeEntity) where T : ScriptableEntity
+    {
+        var listUnits = AllEntity();
+
+        List<T> items = new List<T>();
+
+        for (int i = 0; i < listUnits.Count; i++)
+        {
+            if (typeEntity == listUnits[i].TypeEntity) items.Add((T)listUnits[i]);
+        }
+
+        return items;
+    }
+
+    #endregion
+
+    public List<ScriptableGameMode> GetGameMode()
+    {
+        // ResourceAssets.Values.OfType<ScriptableGameMode>().ToList();
+        return GetAllAssetsByLabel<ScriptableGameMode>("gamemode");
+    }
 
     public List<TileNature> GetNature() => GetAllAssetsByLabel<TileNature>("nature");
     public TileNature GetNature(string id) => GetNature().Where(t => t.idObject == id)?.First();
     public List<TileLandscape> GetLandscape() => GetAllAssetsByLabel<TileLandscape>("landscape");
     public TileLandscape GetLandscape(TypeGround typeGround) => GetLandscape().Where(t => t.typeGround == typeGround).First();
-    public List<ScriptableUnitBase> GetUnits() => GetAllAssetsByLabel<ScriptableUnitBase>("units");
+    public List<ScriptableMapObjectBase> GetUnits() => GetAllAssetsByLabel<ScriptableMapObjectBase>("units");
 
     public List<ScriptableBuildTown> GetBuildTowns() => GetAllAssetsByLabel<ScriptableBuildTown>(Constants.Labels.LABEL_BUILD_TOWN);
-    public List<T> GetUnitsByType<T>(TypeUnit typeUnit) where T : ScriptableUnitBase
+    public List<T> GetUnitsByType<T>(TypeMapObject typeUnit) where T : ScriptableMapObjectBase
     {
         var listUnits = GetUnits();
 
@@ -111,36 +133,36 @@ public class ResourceSystem : StaticInstance<ResourceSystem>
 
         for (int i = 0; i < listUnits.Count; i++)
         {
-            if (typeUnit == listUnits[i].TypeUnit) units.Add((T)listUnits[i]);
+            if (typeUnit == listUnits[i].TypeMapObject) units.Add((T)listUnits[i]);
         }
 
         return units;
     }
 
-    public T GetUnit<T>(TypeUnit typeUnit) where T : ScriptableUnitBase
+    public T GetUnit<T>(TypeMapObject typeUnit) where T : ScriptableMapObjectBase
     {
         var listUnits = GetUnits();
 
         // Filter units by faction.
-        List<ScriptableUnitBase> units = new List<ScriptableUnitBase>();
+        List<ScriptableMapObjectBase> units = new List<ScriptableMapObjectBase>();
 
         for (int i = 0; i < listUnits.Count; i++)
         {
-            if (typeUnit == listUnits[i].TypeUnit) units.Add(listUnits[i]);
+            if (typeUnit == listUnits[i].TypeMapObject) units.Add(listUnits[i]);
         }
         var index = Random.Range(0, units.Count);
 
         return (T)units[index];
     }
-    public T GetUnit<T>(TypeUnit typeUnit, TypeGround typeGround) where T : ScriptableUnitBase
+    public T GetUnit<T>(TypeMapObject typeUnit, TypeGround typeGround) where T : ScriptableMapObjectBase
     {
         var listUnits = GetUnits();
 
-        List<ScriptableUnitBase> units = new List<ScriptableUnitBase>();
+        List<ScriptableMapObjectBase> units = new List<ScriptableMapObjectBase>();
 
         for (int i = 0; i < listUnits.Count; i++)
         {
-            if (typeUnit == listUnits[i].TypeUnit && typeGround == listUnits[i].typeGround)
+            if (typeUnit == listUnits[i].TypeMapObject && typeGround == listUnits[i].typeGround)
                 units.Add(listUnits[i]);
         }
 
@@ -148,11 +170,11 @@ public class ResourceSystem : StaticInstance<ResourceSystem>
 
         return (T)units[index];
     }
-    public T GetUnit<T>(string idObject) where T : ScriptableUnitBase
+    public T GetUnit<T>(string idObject) where T : ScriptableMapObjectBase
     {
         var listUnits = GetUnits();
 
-        ScriptableUnitBase unitById = null;
+        ScriptableMapObjectBase unitById = null;
 
         for (int i = 0; i < listUnits.Count; i++)
         {

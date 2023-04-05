@@ -9,7 +9,7 @@ public struct DataResourceMapObject
 {
     public int idPlayer;
     public List<DataResourceValue> Value;
-    public TypeWork TypeWork;
+    public TypeWorkPerk TypeWork;
 }
 public abstract class BaseResourceMapObject : BaseMapObject, IDataPlay, IDialogMapObjectOperation
 {
@@ -28,11 +28,11 @@ public abstract class BaseResourceMapObject : BaseMapObject, IDataPlay, IDialogM
             });
         }
 
-        var t = HelperLanguage.GetLocaleText(this.ScriptableData.Locale);
+        // var t = HelperLanguage.GetLocaleText(this.ScriptableData.Locale);
         var dialogData = new DataDialog()
         {
-            Description = t.Text.visit_ok,
-            Header = t.Text.title,
+            Header = this.ScriptableData.Text.title.GetLocalizedString(),
+            // Description = t.Text.visit_ok,
             // Sprite = this.ScriptableData.MenuSprite,
             Value = listValue
         };
@@ -65,25 +65,25 @@ public abstract class BaseResourceMapObject : BaseMapObject, IDataPlay, IDialogM
         {
             player.ChangeResource(Data.Value[i].typeResource, Data.Value[i].value);
         }
-        if (Data.TypeWork == TypeWork.One) Destroy(gameObject);
+        if (Data.TypeWork == TypeWorkPerk.One) Destroy(gameObject);
     }
 
-    public override void InitUnit(ScriptableUnitBase data, Vector3Int pos)
+    public override void InitUnit(ScriptableEntity data, Vector3Int pos)
     {
 
         base.InitUnit(data, pos);
 
         Data = new DataResourceMapObject();
-        var DataResource = (ScriptableMapObject)data;
+        var DataResource = (ScriptableEntityBuilding)data;
         SetData();
     }
 
     private void SetData()
     {
-        ScriptableMapObject scriptDataObject = ResourceSystem.Instance.GetUnit<ScriptableMapObject>(idObject);
+        ScriptableEntityBuilding scriptDataObject = (ScriptableEntityBuilding)ScriptableData;// ResourceSystem.Instance.GetUnit<ScriptableEntityMapObject>(idObject);
 
         Data.Value = new List<DataResourceValue>();
-        Data.TypeWork = scriptDataObject.TypeWork;
+        Data.TypeWork = scriptDataObject.TypeWork;//.TypeWorkMapObject;
 
         GroupResource groupResource = scriptDataObject
             .Resources[Random.Range(0, scriptDataObject.Resources.Count)];

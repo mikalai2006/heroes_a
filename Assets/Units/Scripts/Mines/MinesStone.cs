@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
 
 public class MinesStone : BaseMines
@@ -12,7 +13,7 @@ public class MinesStone : BaseMines
             Player player = LevelManager.Instance.ActivePlayer;
             if (Data.idPlayer == player.DataPlayer.id)
             {
-                player.ChangeResource(TypeResource.Iron, 4);
+                player.ChangeResource(TypeResource.Ore, 4);
             }
         }
     }

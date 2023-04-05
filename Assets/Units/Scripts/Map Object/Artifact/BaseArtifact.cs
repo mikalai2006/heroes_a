@@ -18,11 +18,11 @@ public class BaseArtifact : BaseMapObject, IDataPlay, IDialogMapObjectOperation
         _model = transform.Find("Model");
     }
 
-    public override void InitUnit(ScriptableUnitBase data, Vector3Int pos)
+    public override void InitUnit(ScriptableEntity data, Vector3Int pos)
     {
         base.InitUnit(data, pos);
 
-        ScriptableArtifact dataArtifact = (ScriptableArtifact)data;
+        ScriptableEntityArtifact dataArtifact = (ScriptableEntityArtifact)data;
 
         if (dataArtifact.sprite != null)
         {
@@ -38,11 +38,11 @@ public class BaseArtifact : BaseMapObject, IDataPlay, IDialogMapObjectOperation
         // {
         //     { "name", new StringVariable { Value = this.ScriptableData.name } },
         // };
-        var t = HelperLanguage.GetLocaleText(this.ScriptableData.Locale);
+        // var t = HelperLanguage.GetLocaleText(this.ScriptableData.Locale);
         var dialogData = new DataDialog()
         {
-            Description = t.Text.visit_ok,
-            Header = t.Text.title,
+            Header = this.ScriptableData.Text.title.GetLocalizedString(),
+            // Description = t.Text.visit_ok,
             Sprite = this.ScriptableData.MenuSprite
         };
 

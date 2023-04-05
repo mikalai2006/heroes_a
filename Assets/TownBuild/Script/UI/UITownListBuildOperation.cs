@@ -14,16 +14,18 @@ public struct DataResultBuildDialog
 public class UITownListBuildOperation : LocalAssetLoader
 {
     private DataDialog _dataDialog;
+    private ScriptableBuildTown _activeBuildTown;
 
-    public UITownListBuildOperation(DataDialog dataDialog)
+    public UITownListBuildOperation(DataDialog dataDialog, ScriptableBuildTown activeBuildTown)
     {
         _dataDialog = dataDialog;
+        _activeBuildTown = activeBuildTown;
     }
 
     public async UniTask<DataResultBuildDialog> ShowAndHide()
     {
         var window = await Load();
-        var result = await window.ProcessAction(_dataDialog);
+        var result = await window.ProcessAction(_dataDialog, _activeBuildTown);
         Unload();
         return result;
     }

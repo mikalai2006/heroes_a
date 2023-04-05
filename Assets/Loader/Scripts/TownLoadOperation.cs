@@ -42,7 +42,6 @@ namespace Loader
             {
                 UITown.Init(environment);
             }
-
             // GameObject Town = GameObject.FindGameObjectWithTag("Town");
 
             // if (Town != null)

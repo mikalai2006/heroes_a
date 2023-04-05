@@ -48,7 +48,7 @@ public class CreateSkillSchoolOperation : ILoadingOperation
 
                     if (nodeWarrior != null && currentNode != null && _root.gridTileHelper.CalculateNeighbours(currentNode) == 8)
                     {
-                        UnitBase unit = await _root.UnitManager.SpawnMapObjectToPositionAsync(currentNode, MapObjectType.SkillSchool);
+                        BaseMapEntity unit = await _root.UnitManager.SpawnMapObjectToPositionAsync(currentNode, TypeMapObject.SkillSchool);
 
                         BaseWarriors warrior = (BaseWarriors)await _root.UnitManager.SpawnWarriorAsync(nodeWarrior);
 

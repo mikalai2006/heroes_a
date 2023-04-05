@@ -26,20 +26,22 @@ public class UnitManager : MonoBehaviour
         Helpers.DestroyChildren(_tileMapUnits.transform);
     }
 
-    public async Task<ScriptableTown> SpawnTownAsync(GridTileNode gridNode, int keyArea)
+    public async Task<ScriptableEntityTown> SpawnTownAsync(GridTileNode gridNode, int keyArea)
     {
         Player player = LevelManager.Instance.GetPlayer(keyArea);
 
         Area area = LevelManager.Instance.GetArea(keyArea);
 
         // Spawn town.
-        UnitBase createdTown = null;
-        ScriptableTown town = ResourceSystem.Instance.GetUnitsByType<ScriptableTown>(TypeUnit.Town)
-            .Where(t => t.typeGround == gridNode.TypeGround).First();
+        BaseMapEntity createdTown = null;
+        ScriptableEntityTown town = ResourceSystem.Instance
+            .GetEntityByType<ScriptableEntityTown>(TypeEntity.Town)
+            .First();
+        // .Where(t => t.typeGround == gridNode.TypeGround).First();
 
         if (town != null)
         {
-            createdTown = await SpawnUnitToNode(town, gridNode);
+            createdTown = await SpawnEntityToNode(town, gridNode);
             area.town = createdTown;
             area.startPosition = createdTown.Position;
             if (player != null)
@@ -55,16 +57,14 @@ public class UnitManager : MonoBehaviour
         {
             for (int i = 0; i < 4; i++)
             {
-                ScriptableHero randomHero = town.heroes[Random.Range(0, town.heroes.Count)];
+                ScriptableEntityHero randomHero = town.heroes[Random.Range(0, town.heroes.Count)];
                 if (randomHero != null)
                 {
-                    Hero createdHero = (Hero)await SpawnUnitToNode(randomHero, gridNode);
-                    gridNode.SetOcuppiedUnit(createdHero); // .OccupiedUnit = createdHero;
+                    Hero createdHero = (Hero)await SpawnEntityToNode(randomHero, gridNode);
+                    gridNode.SetOcuppiedUnit(createdHero);
                     LevelManager.Instance.GetArea(keyArea).hero = createdHero;
 
                     player.AddHero(createdHero);
-                    // player.SetActiveHero((Hero)createdHero);
-                    // if (i == 0) createdHero.SetHeroAsActive();
                 }
             }
         }
@@ -90,48 +90,48 @@ public class UnitManager : MonoBehaviour
 
         return town;
     }
-    public async Task<UnitBase> SpawnUnitByTypeUnitAsync(GridTileNode node, TypeUnit typeUnit)
+    public async Task<BaseMapEntity> SpawnUnitByTypeUnitAsync(GridTileNode node, TypeMapObject typeUnit)
     {
-        List<ScriptableUnitBase> list = ResourceSystem.Instance.GetUnitsByType<ScriptableUnitBase>(typeUnit);
-        ScriptableUnitBase unit = list[Random.Range(0, list.Count)];
-        UnitBase createdUnit = await SpawnUnitToNode(unit, node);
+        List<ScriptableMapObjectBase> list = ResourceSystem.Instance.GetUnitsByType<ScriptableMapObjectBase>(typeUnit);
+        ScriptableMapObjectBase unit = list[Random.Range(0, list.Count)];
+        BaseMapEntity createdUnit = await SpawnUnitToNode(unit, node);
         //node.OccupiedUnit = createdUnit;
         return createdUnit;
     }
 
-    public async Task<UnitBase> SpawnResourceAsync(GridTileNode node, List<TypeWork> typeWork, int level = 0)
+    public async Task<BaseMapEntity> SpawnResourceAsync(GridTileNode node, List<TypeWorkPerk> typeWork, int level = 0)
     {
-        List<ScriptableResource> listObject = ResourceSystem.Instance.GetUnitsByType<ScriptableResource>(TypeUnit.Resource).Where(t =>
+        List<ScriptableMapResource> listObject = ResourceSystem.Instance.GetUnitsByType<ScriptableMapResource>(TypeMapObject.Resource).Where(t =>
             (t.typeGround == node.TypeGround
             || t.typeGround == TypeGround.None)
-            && typeWork.Contains(t.TypeWork)
+            && typeWork.Contains(t.TypeWorkMapObject)
             ).ToList();
-        ScriptableUnitBase unit = listObject[Random.Range(0, listObject.Count)];
+        ScriptableMapObjectBase unit = listObject[Random.Range(0, listObject.Count)];
         // if (unit.name == "MillWater")
         // {
         //     GameManager.Instance.MapManager.CreateCreeks(node);
         // }
-        UnitBase createdUnit = await SpawnUnitToNode(unit, node);
+        BaseMapEntity createdUnit = await SpawnUnitToNode(unit, node);
         //node.OccupiedUnit = createdUnit;
         return createdUnit;
     }
 
-    public async Task<UnitBase> SpawnMapObjectToPositionAsync(GridTileNode node, MapObjectType typeMapObject, int level = 0)
+    public async Task<BaseMapEntity> SpawnMapObjectToPositionAsync(GridTileNode node, TypeMapObject typeMapObject, int level = 0)
     {
-        List<ScriptableMapObject> listMapObject = ResourceSystem.Instance.GetUnitsByType<ScriptableMapObject>(TypeUnit.MapObject).Where(t =>
+        List<ScriptableMapObject> listMapObject = ResourceSystem.Instance.GetUnitsByType<ScriptableMapObject>(typeMapObject).Where(t =>
             (
                 t.typeGround == node.TypeGround
                 || t.typeGround == TypeGround.None
             )
             && t.TypeMapObject == typeMapObject
             ).ToList();
-        ScriptableUnitBase unit = listMapObject[Random.Range(0, listMapObject.Count)];
+        ScriptableMapObjectBase unit = listMapObject[Random.Range(0, listMapObject.Count)];
         // Debug.Log($"MapObject {unit.name}");
         if (unit.name == "MillWater")
         {
             GameManager.Instance.MapManager.CreateCreeks(node);
         }
-        UnitBase createdUnit = await SpawnUnitToNode(unit, node);
+        BaseMapEntity createdUnit = await SpawnUnitToNode(unit, node);
         //node._noPath = true;
         //node.OccupiedUnit = createdUnit;
         return createdUnit;
@@ -141,31 +141,31 @@ public class UnitManager : MonoBehaviour
     {
         //if (node == null) return null;
 
-        List<ScriptableWarriors> listWarriors = ResourceSystem.Instance.GetUnitsByType<ScriptableWarriors>(TypeUnit.Warrior);
-        ScriptableUnitBase unit = listWarriors[Random.Range(0, listWarriors.Count)];
-        BaseWarriors createdUnit = (BaseWarriors)await SpawnUnitToNode(unit, node);
+        List<ScriptableEntityCreature> listWarriors = ResourceSystem.Instance.GetEntityByType<ScriptableEntityCreature>(TypeEntity.Creature);
+        ScriptableEntityCreature unit = listWarriors[Random.Range(0, listWarriors.Count)];
+        BaseWarriors createdUnit = (BaseWarriors)await SpawnEntityToNode(unit, node);
 
         // node.OccupiedUnit = createdUnit;
         return createdUnit;
     }
-    public async Task<UnitBase> SpawnMineAsync(GridTileNode node, TypeMine typeMine)
+    public async Task<BaseMapEntity> SpawnMineAsync(GridTileNode node, TypeMine typeMine)
     {
-        List<ScriptableMine> listMine = ResourceSystem.Instance.GetUnitsByType<ScriptableMine>(TypeUnit.Mine);
-        ScriptableUnitBase unit = listMine.Where(t =>
-            t.typeMine == typeMine
-            && (node.TypeGround == t.typeGround || t.typeGround == TypeGround.None)
+        List<ScriptableEntityMapObject> listMine = ResourceSystem.Instance.GetEntityByType<ScriptableEntityMapObject>(TypeEntity.MapObject);
+        ScriptableEntityMapObject unit = listMine.Where(t =>
+            t.TypeMapObject == TypeMapObject.Mine
+        // && (node.TypeGround == t.typeGround || t.typeGround == TypeGround.None)
         ).OrderBy(t => Random.value).First();
-        UnitBase createdUnit = await SpawnUnitToNode(unit, node);
+        BaseMapEntity createdUnit = await SpawnEntityToNode(unit, node);
         //node.OccupiedUnit = createdUnit;
         return createdUnit;
     }
 
-    private async UniTask<UnitBase> CreateAsync(ScriptableUnitBase unit, GridTileNode node)
+    private async UniTask<BaseMapEntity> CreateAsync(ScriptableMapObjectBase unit, GridTileNode node)
     {
-        if (unit.Prefab2.RuntimeKeyIsValid())
+        if (unit.MapPrefab.RuntimeKeyIsValid())
         {
             AsyncOperationHandle<GameObject> operationHandle = Addressables.InstantiateAsync(
-                unit.Prefab2,
+                unit.MapPrefab,
                 node.position,
                 Quaternion.identity,
                 GameManager.Instance.MapManager.UnitManager._tileMapUnits.transform
@@ -175,9 +175,9 @@ public class UnitManager : MonoBehaviour
             if (operationHandle.Status == AsyncOperationStatus.Succeeded)
             {
                 var r_asset = operationHandle.Result;
-                var _asset = r_asset.GetComponent<UnitBase>();
-                _asset.InitUnit(unit, node.position);
-                Debug.Log($"Spawn UNIT1::: {unit.TypeUnit}");
+                var _asset = r_asset.GetComponent<BaseMapEntity>();
+                // _asset.InitUnit(unit, node.position);
+                Debug.Log($"Spawn UNIT1::: {unit.TypeMapObject}");
                 return _asset;
             }
             else
@@ -189,7 +189,7 @@ public class UnitManager : MonoBehaviour
         return null;
     }
 
-    public async UniTask<UnitBase> SpawnUnitToNode(ScriptableUnitBase unit, GridTileNode node)
+    public async UniTask<BaseMapEntity> SpawnUnitToNode(ScriptableMapObjectBase unit, GridTileNode node)
     {
         Vector3Int pos = node.position;
 
@@ -202,8 +202,8 @@ public class UnitManager : MonoBehaviour
             node.SetOcuppiedUnit(null); // OccupiedUnit = null;
         }
 
-        UnitBase spawnedUnit = null;
-        if (unit.Prefab2.RuntimeKeyIsValid())
+        BaseMapEntity spawnedUnit = null;
+        if (unit.MapPrefab.RuntimeKeyIsValid())
         {
             // var test = new BaseCharacter(unit, pos);
             spawnedUnit = await CreateAsync(unit, node);
@@ -211,7 +211,7 @@ public class UnitManager : MonoBehaviour
         else
         {
             spawnedUnit = Instantiate(unit.Prefab, pos, Quaternion.identity, _tileMapUnits.transform);
-            spawnedUnit.InitUnit(unit, pos);
+            // spawnedUnit.InitUnit(unit, pos);
         }
 
         spawnedUnit.OccupiedNode = node;
@@ -235,4 +235,78 @@ public class UnitManager : MonoBehaviour
         return spawnedUnit;
     }
 
+
+    #region Spawn entity
+    private async UniTask<BaseMapEntity> CreateEntityAsync(ScriptableEntity entity, GridTileNode node)
+    {
+        if (entity.MapPrefab.RuntimeKeyIsValid())
+        {
+            AsyncOperationHandle<GameObject> operationHandle = Addressables.InstantiateAsync(
+                entity.MapPrefab,
+                node.position,
+                Quaternion.identity,
+                GameManager.Instance.MapManager.UnitManager._tileMapUnits.transform
+                );
+
+            await operationHandle.Task;
+            if (operationHandle.Status == AsyncOperationStatus.Succeeded)
+            {
+                var r_asset = operationHandle.Result;
+                var _asset = r_asset.GetComponent<BaseMapEntity>();
+                _asset.InitUnit(entity, node.position);
+                Debug.Log($"Spawn Entity::: {entity.name}");
+                return _asset;
+            }
+            else
+            {
+                Debug.LogError($"Error Load prefab: {operationHandle.Status}");
+            }
+
+        }
+        return null;
+    }
+    public async UniTask<BaseMapEntity> SpawnEntityToNode(ScriptableEntity entity, GridTileNode node)
+    {
+        Vector3Int pos = node.position;
+
+        // if (unit.Prefab.OccupiedNode != null)
+        // {
+        //     unit.Prefab.OccupiedNode = null;
+        // }
+        // if (node.OccupiedUnit != null)
+        // {
+        //     node.SetOcuppiedUnit(null); // OccupiedUnit = null;
+        // }
+
+        BaseMapEntity spawnedUnit = null;
+        if (entity.MapPrefab.RuntimeKeyIsValid())
+        {
+            spawnedUnit = await CreateEntityAsync(entity, node);
+        }
+        else
+        {
+            Debug.LogError($"Error spawn entity: {entity.name}");
+        }
+
+        spawnedUnit.OccupiedNode = node;
+        node.SetOcuppiedUnit(spawnedUnit);
+
+        Debug.Log($"Spawn UNIT2::: {spawnedUnit.OccupiedNode.position}- {node.OccupiedUnit.name}");
+        if (entity.typeInput == TypeInput.None)
+        {
+            // GameManager.Instance.mapManager.SetNotPath(node);
+        }
+        else
+        {
+            if (entity.RulesDraw.Count > 0)
+            {
+                GameManager.Instance.MapManager.GridTileHelper().SetDisableNode(node, entity.RulesDraw, Color.red);
+            }
+
+            GameManager.Instance.MapManager.SetColorForTile(pos, Color.magenta);
+        }
+
+        return spawnedUnit;
+    }
+    #endregion
 }

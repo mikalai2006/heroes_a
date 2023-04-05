@@ -12,7 +12,7 @@ public struct DataResource
 {
     public int idPlayer;
     public List<DataResourceValue> Value;
-    public TypeWork TypeWork;
+    public TypeWorkPerk TypeWork;
 }
 
 [System.Serializable]
@@ -21,7 +21,7 @@ public struct DataResourceValue
     public TypeResource typeResource;
     public int value;
 
-    public ScriptableResource Resource;
+    public ScriptableEntityResource Resource;
 
 }
 
@@ -43,11 +43,11 @@ public abstract class BaseResource : BaseMapObject, IDataPlay, IDialogMapObjectO
             });
         }
 
-        var t = HelperLanguage.GetLocaleText(this.ScriptableData.Locale);
+        // var t = HelperLanguage.GetLocaleText(this.ScriptableData.Locale);
         var dialogData = new DataDialog()
         {
-            Header = t.Text.title,
-            Description = t.Text.visit_ok,
+            Header = this.ScriptableData.Text.title.GetLocalizedString(),
+            // Description = t.Text.visit_ok,
             // Sprite = this.ScriptableData.MenuSprite,
             Value = listValue
         };
@@ -80,39 +80,39 @@ public abstract class BaseResource : BaseMapObject, IDataPlay, IDialogMapObjectO
         {
             player.ChangeResource(Data.Value[i].typeResource, Data.Value[i].value);
         }
-        if (Data.TypeWork == TypeWork.One)
+        if (Data.TypeWork == TypeWorkPerk.One)
         {
-            ScriptableData.Prefab2.ReleaseInstance(gameObject);
+            //ScriptableData.MapPrefab.ReleaseInstance(gameObject);
             Destroy(gameObject);
         }
     }
 
-    public override void InitUnit(ScriptableUnitBase data, Vector3Int pos)
+    public override void InitUnit(ScriptableEntity data, Vector3Int pos)
     {
 
         base.InitUnit(data, pos);
 
         Data = new DataResource();
-        var DataResource = (ScriptableResource)data;
+        // var DataResource = (ScriptableMapResource)data;
         SetData();
     }
 
     private void SetData()
     {
-        ScriptableResource scriptDataObject = ResourceSystem.Instance.GetUnit<ScriptableResource>(idObject);
+        // ScriptableEntityResource scriptDataObject = ResourceSystem.Instance.GetUnit<ScriptableEntityResource>(idObject);
 
-        Data.Value = new List<DataResourceValue>();
-        Data.TypeWork = scriptDataObject.TypeWork;
+        // Data.Value = new List<DataResourceValue>();
+        // Data.TypeWork = scriptDataObject.TypeWork;
 
-        int stepValue = scriptDataObject.maxValue / scriptDataObject.step;
-        int randomIndexValue = Random.Range(1, stepValue);
+        // int stepValue = scriptDataObject.maxValue / scriptDataObject.step;
+        // int randomIndexValue = Random.Range(1, stepValue);
 
-        Data.Value.Add(new()
-        {
-            typeResource = scriptDataObject.TypeResource,
-            value = scriptDataObject.step * randomIndexValue,
-            Resource = scriptDataObject,
-        });
+        // Data.Value.Add(new()
+        // {
+        //     typeResource = scriptDataObject.TypeResource,
+        //     value = scriptDataObject.step * randomIndexValue,
+        //     Resource = scriptDataObject,
+        // });
 
     }
 

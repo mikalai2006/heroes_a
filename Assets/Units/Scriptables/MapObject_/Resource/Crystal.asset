@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8b37f45c729ee418999a23f24a7d53, type: 3}
+  m_Name: Crystal
+  m_EditorClassIdentifier: 
+  idObject: 840d558c28054c9b8db5fb0bcef41185
+  Entity: {fileID: 11400000, guid: 19d789934151d984caad385164b2cb4a, type: 2}
+  typeGround: 1000
+  typeInput: 1
+  TypeUnit: 5
+  TypeMapObject: 0
+  TypeWork: 1
+  listTypeNoPath: 
+  MapPrefab:
+    m_AssetGUID: 17e67550360993646b5a500b8079dbd3
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  Prefab: {fileID: -4473801658231751432, guid: 17e67550360993646b5a500b8079dbd3, type: 3}
+  Locale:
+  - Language: {fileID: 11400000, guid: 30b8a59646ec31e4fa7737b1c0d7cba9, type: 2}
+    Text:
+      title: "\u041A\u0440\u0438\u0441\u0442\u0430\u043B\u043B\u044B"
+      description: 
+      visit_ok: 
+      visit_no: 
+      visit_noresource: 
+  Resources: []
+  PrimarySkills: []
+  SecondarySkills: []
+  Artifacts: []
+  TypeResource: 50

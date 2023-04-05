@@ -28,10 +28,11 @@ public class UITown : MonoBehaviour
     private string NameOverlay = "Overlay";
 
     private Camera _cameraMain;
-    private AsyncOperationHandle<GameObject> _townPrefabAsset;
-    private ScriptableBuildTown _activeBuildTown;
+    // private AsyncOperationHandle<GameObject> _townPrefabAsset;
+    public ScriptableBuildTown _activeBuildTown;
+    private AsyncOperationHandle<ScriptableBuildTown> _asset;
 
-    public void Init(SceneInstance townScene)
+    public async void Init(SceneInstance townScene)
     {
         _cameraMain = Camera.main;
         _cameraMain.gameObject.SetActive(false);
@@ -41,8 +42,16 @@ public class UITown : MonoBehaviour
         _activeTown = _activePlayer.ActiveTown;
 
         // Init town prefab.
-        ScriptableTown scriptDataTown = (ScriptableTown)_activeTown.ScriptableData;
-        _activeBuildTown = ResourceSystem.Instance.GetBuildTowns().Where(t => t.TypeFaction == scriptDataTown.TypeFaction).First();
+        ScriptableEntityTown scriptDataTown = (ScriptableEntityTown)_activeTown.ScriptableData;
+        var operationHandle = Addressables.LoadAssetAsync<ScriptableBuildTown>(scriptDataTown.BuildTown);
+
+        await operationHandle.Task;
+        _asset = operationHandle;
+        if (operationHandle.Status == AsyncOperationStatus.Succeeded)
+        {
+            _activeBuildTown = operationHandle.Result;
+        }
+        // _activeBuildTown = ResourceSystem.Instance.GetBuildTowns().Where(t => t.TypeFaction == scriptDataTown.TypeFaction).First();
         // _townPrefabAsset = Addressables.InstantiateAsync(
         //     activeBuildTown.Prefab,
         //     _townGameObject.gameObject.transform.position,
@@ -104,15 +113,16 @@ public class UITown : MonoBehaviour
         _cameraMain.gameObject.SetActive(true);
 
         // Release asset prefab town.
-        if (_townPrefabAsset.IsValid())
+        await GameManager.Instance.AssetProvider.UnloadAdditiveScene(_townScene);
+        if (_asset.IsValid())
         {
-            Addressables.ReleaseInstance(_townPrefabAsset);
+            Addressables.ReleaseInstance(_asset);
+            // Addressables.ReleaseInstance(_townPrefabAsset);
         }
         // var activeBuildTown = ResourceSystem.Instance.GetBuildTowns().Where(t => t.TypeFaction == TypeFaction.Castle).First();
         // // ResourceSystem.Instance.DestroyAssetsByLabel(Constants.Labels.LABEL_BUILD_TOWN);
         // ResourceSystem.Instance.DestroyAsset(activeBuildTown);
 
-        await GameManager.Instance.AssetProvider.UnloadAdditiveScene(_townScene);
         // Camera.main.transform.position = _activePlayer.ActiveTown.gameObject.transform.position - new Vector3(0, 0, 10);
     }
 

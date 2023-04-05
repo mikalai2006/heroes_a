@@ -1,7 +1,7 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewWarrior", menuName = "Game/Units/New Warrior")]
-public class ScriptableWarriors : ScriptableUnitBase
+[CreateAssetMenu(fileName = "NewMapObjectWarrior", menuName = "Game/MapObject/New MapObject Warrior")]
+public class ScriptableWarriors : ScriptableMapObjectBase
 {
     public DataUnitWarrior DataUnitWarrior;
 }

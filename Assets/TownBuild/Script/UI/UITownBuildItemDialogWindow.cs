@@ -36,16 +36,16 @@ public class UITownBuildItemDialogWindow : MonoBehaviour
     private DataResultBuildDialog _dataResultDialog;
     private BaseTown _activeTown;
     private Player _activePlayer;
-    private ScriptableTown _scriptObjectTown;
-    private ScriptableBuildTown _scriptObjectBuildTown;
+    private ScriptableEntityTown _scriptObjectTown;
+    // private ScriptableBuildTown _scriptObjectBuildTown;
 
     private void Awake()
     {
         _activePlayer = LevelManager.Instance.ActivePlayer;
         _activeTown = _activePlayer.ActiveTown;
 
-        _scriptObjectTown = (ScriptableTown)_activeTown.ScriptableData;
-        _scriptObjectBuildTown = ResourceSystem.Instance.GetBuildTowns().Where(t => t.TypeFaction == _scriptObjectTown.TypeFaction).First();
+        _scriptObjectTown = (ScriptableEntityTown)_activeTown.ScriptableData;
+        // _scriptObjectBuildTown = ResourceSystem.Instance.GetBuildTowns().Where(t => t.TypeFaction == _scriptObjectTown.TypeFaction).First();
 
         _buttonCancel = DialogApp.rootVisualElement.Q<Button>(_nameButtonCancel);
         _buttonCancel.clickable.clicked += OnClickCancel;
@@ -94,7 +94,7 @@ public class UITownBuildItemDialogWindow : MonoBehaviour
             VisualElement item = _templateItem.Instantiate();
             var _spriteElement = item.Q<VisualElement>(_nameSpriteElement);
             var _valueLabel = item.Q<Label>(_nameValueLabel);
-            var sprite = _buildDialog.CostResource[i].Resource.MenuSprite;
+            var sprite = _buildDialog.CostResource[i].Resource.Entity.MenuSprite;
 
             _spriteElement.style.backgroundImage = new StyleBackground(sprite);
             _spriteElement.style.width = new StyleLength(new Length(sprite.bounds.size.x * sprite.pixelsPerUnit, LengthUnit.Pixel));

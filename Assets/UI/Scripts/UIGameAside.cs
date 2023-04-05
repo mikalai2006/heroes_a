@@ -455,18 +455,18 @@ public class UIGameAside : MonoBehaviour
         wood.text = player.DataPlayer.Resource[TypeResource.Wood].ToString();
 
         var iron = _footer.Q<Label>("IronValue");
-        iron.text = player.DataPlayer.Resource[TypeResource.Iron].ToString();
+        iron.text = player.DataPlayer.Resource[TypeResource.Ore].ToString();
 
         var mercury = _footer.Q<Label>("MercuryValue");
         mercury.text = player.DataPlayer.Resource[TypeResource.Mercury].ToString();
 
         var diamond = _footer.Q<Label>("DiamondValue");
-        diamond.text = player.DataPlayer.Resource[TypeResource.Diamond].ToString();
+        diamond.text = player.DataPlayer.Resource[TypeResource.Crystal].ToString();
 
         var sulfur = _footer.Q<Label>("SulfurValue");
         sulfur.text = player.DataPlayer.Resource[TypeResource.Sulfur].ToString();
 
         var gem = _footer.Q<Label>("GemValue");
-        gem.text = player.DataPlayer.Resource[TypeResource.Gem].ToString();
+        gem.text = player.DataPlayer.Resource[TypeResource.Gems].ToString();
     }
 }

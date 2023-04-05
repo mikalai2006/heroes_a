@@ -151,17 +151,9 @@ public struct LangBuild
 [System.Serializable]
 public struct BuildCostResource
 {
-    public ScriptableResource Resource;
+    public ScriptableMapResource Resource;
     public int Count;
 }
-
-[System.Serializable]
-public enum TypeFaction
-{
-    Castle = 0,
-    Stronghold = 1,
-}
-
 
 [System.Serializable]
 public struct TypeRequireBuild

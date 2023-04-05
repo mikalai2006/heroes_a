@@ -17,7 +17,7 @@ public class DataHero
 }
 
 //[System.Serializable]
-public class Hero : UnitBase, IDataPlay
+public class Hero : BaseMapEntity, IDataPlay
 {
 
     [SerializeField] public DataHero Data = new DataHero();
@@ -65,7 +65,7 @@ public class Hero : UnitBase, IDataPlay
 
     #endregion
 
-    public override void InitUnit(ScriptableUnitBase data, Vector3Int pos)
+    public override void InitUnit(ScriptableEntity data, Vector3Int pos)
     {
 
         base.InitUnit(data, pos);

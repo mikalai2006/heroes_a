@@ -13,11 +13,11 @@ public struct DataMine
 
 }
 
-public abstract class BaseMines : UnitBase, IDataPlay, IDialogMapObjectOperation
+public abstract class BaseMines : BaseMapEntity, IDataPlay, IDialogMapObjectOperation
 {
     public DataMine Data = new DataMine();
     private SpriteRenderer _flag;
-    public override void InitUnit(ScriptableUnitBase data, Vector3Int pos)
+    public override void InitUnit(ScriptableEntity data, Vector3Int pos)
     {
 
         base.InitUnit(data, pos);
@@ -78,11 +78,11 @@ public abstract class BaseMines : UnitBase, IDataPlay, IDialogMapObjectOperation
     public async UniTask<DataResultDialog> OnTriggeredHero()
     {
 
-        var t = HelperLanguage.GetLocaleText(this.ScriptableData.Locale);
+        // var t = HelperLanguage.GetLocaleText(this.ScriptableData.Locale);
         var dialogData = new DataDialog()
         {
-            Header = t.Text.title,
-            Description = t.Text.visit_ok,
+            Header = this.ScriptableData.Text.title.GetLocalizedString(), //t.Text.title,
+            // Description = t.Text.visit_ok,
             Sprite = this.ScriptableData.MenuSprite,
         };
 

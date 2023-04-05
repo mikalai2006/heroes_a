@@ -41,10 +41,10 @@ public class GridTileNode : IHeapItem<GridTileNode>
     [NonSerialized] public int level;
     [NonSerialized] public Vector3Int position;
 
-    [NonSerialized] private UnitBase _ocuppiedUnit = null;
-    public UnitBase OccupiedUnit => _ocuppiedUnit;
-    [NonSerialized] private UnitBase _protectedUnit = null;
-    public UnitBase ProtectedUnit => _protectedUnit;
+    [NonSerialized] private BaseMapEntity _ocuppiedUnit = null;
+    public BaseMapEntity OccupiedUnit => _ocuppiedUnit;
+    [NonSerialized] private BaseMapEntity _protectedUnit = null;
+    public BaseMapEntity ProtectedUnit => _protectedUnit;
     public bool Protected => _protectedUnit != null;
 
     private int heapIndex;
@@ -98,7 +98,7 @@ public class GridTileNode : IHeapItem<GridTileNode>
 
     }
 
-    public void SetProtectedUnit(UnitBase unit)
+    public void SetProtectedUnit(BaseMapEntity unit)
     {
         _protectedUnit = unit;
 
@@ -119,7 +119,7 @@ public class GridTileNode : IHeapItem<GridTileNode>
         );
     }
 
-    public void SetOcuppiedUnit(UnitBase unit)
+    public void SetOcuppiedUnit(BaseMapEntity unit)
     {
         _ocuppiedUnit = unit;
     }

@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12594eab4bbd2d540ade49ff5bcedba7, type: 3}
+  m_Name: Gold
+  m_EditorClassIdentifier: 
+  idObject: 8c7d6a061da441c8aedf8632714c4f83
+  level: 0
+  typeGround: 0
+  typeInput: 0
+  TypeUnit: 0
+  listTypeNoPath: 
+  MapModel:
+    m_AssetGUID: 
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  Prefab: {fileID: 0}
+  MenuSprite: {fileID: 0}
+  Locale: []
+  TypeWork: 0
+  TypeResource: 0
+  maxValue: 0
+  step: 0
+  Curve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4

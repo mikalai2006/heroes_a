@@ -1,7 +1,7 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewMine", menuName = "Game/Units/New Mine")]
-public class ScriptableMine : ScriptableUnitBase
+[CreateAssetMenu(fileName = "NewMapObjectMine", menuName = "Game/MapObject/New Mine")]
+public class ScriptableMine : ScriptableMapObjectBase
 {
     public TypeMine typeMine;
 }

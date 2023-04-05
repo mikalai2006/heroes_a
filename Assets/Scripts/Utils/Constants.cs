@@ -43,6 +43,7 @@ public class Constants
         public const string LABEL_GAMEMODE_PREFAB = "gamemode_prefab";
         public const string LABEL_ROAD = "road";
         public const string LABEL_ROAD_PREFAB = "road_prefab";
+        public const string LABEL_ENTITY = "entity";
     }
 
     public class LanguageTable

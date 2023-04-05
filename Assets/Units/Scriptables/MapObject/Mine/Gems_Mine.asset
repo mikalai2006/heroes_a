@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 959f3edcb62d5d8459db6b793ea17bc7, type: 3}
+  m_Name: Gems_Mine
+  m_EditorClassIdentifier: 
+  idObject: 9fc11fd460134879ac9da6b7896746c8
+  Entity: {fileID: 11400000, guid: 798593bc9729daf4192bd0d60fd8cf97, type: 2}
+  typeGround: 1000
+  typeInput: 0
+  TypeMapObject: 21
+  TypeWorkMapObject: 2
+  listTypeNoPath: 
+  MapPrefab:
+    m_AssetGUID: 58b88c38c5ad8f244a8194ba3088b8f2
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  Prefab: {fileID: 0}
+  Locale: []

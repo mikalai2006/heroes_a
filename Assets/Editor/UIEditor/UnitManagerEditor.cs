@@ -14,13 +14,13 @@ public class UnitManagerEditor
 
     private static VisualTreeAsset m_ItemRowTemplate, m_NoPathTemplate;
 
-    private static List<ScriptableUnitBase> m_UnitDB = new List<ScriptableUnitBase>();
+    private static List<ScriptableMapObjectBase> m_UnitDB = new List<ScriptableMapObjectBase>();
 
     private ListView m_ListUnit;
     private VisualElement m_Tabs, m_SectionNoPath;
     private readonly float m_ItemHeight = 50, m_NoPathsize = 30;
     private readonly int countNoPath = 2;
-    private ScriptableUnitBase m_activeItem;
+    private ScriptableMapObjectBase m_activeItem;
     private ScrollView m_SectionDetails;
 
     public VisualElement Init()
@@ -140,8 +140,8 @@ public class UnitManagerEditor
         foreach (string path in allPaths)
         {
             string cleanedPath = path.Replace("\\", "/");
-            m_UnitDB.Add((ScriptableUnitBase)AssetDatabase.LoadAssetAtPath(cleanedPath,
-                typeof(ScriptableUnitBase)));
+            m_UnitDB.Add((ScriptableMapObjectBase)AssetDatabase.LoadAssetAtPath(cleanedPath,
+                typeof(ScriptableMapObjectBase)));
         }
 
     }
@@ -152,16 +152,16 @@ public class UnitManagerEditor
 
         Action<VisualElement, int> bindItem = (e, i) =>
         {
-            if (m_UnitDB[i].MenuSprite != null)
-            {
-                e.Q<VisualElement>("icon").style.backgroundImage = new StyleBackground(m_UnitDB[i].MenuSprite);
+            // if (m_UnitDB[i].MenuSprite != null)
+            // {
+            //     e.Q<VisualElement>("icon").style.backgroundImage = new StyleBackground(m_UnitDB[i].MenuSprite);
 
-            }
-            else
-            {
-                SpriteRenderer[] sprites = m_UnitDB[i].Prefab.gameObject.GetComponentsInChildren<SpriteRenderer>();
-                e.Q<VisualElement>("icon").style.backgroundImage = new StyleBackground(sprites[0].sprite);
-            }
+            // }
+            // else
+            // {
+            //     // SpriteRenderer[] sprites = m_UnitDB[i].Prefab.gameObject.GetComponentsInChildren<SpriteRenderer>();
+            //     e.Q<VisualElement>("icon").style.backgroundImage = new StyleBackground(m_UnitDB[i].MenuSprite);
+            // }
             // new StyleBackground(m_UnitDB[i].MenuSprite);
             //m_ItemDatabase[i] == null ? m_DefaultItemIcon.texture :
             //m_ItemDatabase[i].MenuSprite.texture; //.Icon.texture;
@@ -185,20 +185,20 @@ public class UnitManagerEditor
 
         //Debug.Log($"Typeof selectedItem {selectedItems.First().GetType()}");
 
-        m_activeItem = (ScriptableUnitBase)selectedItems.First();
+        m_activeItem = (ScriptableMapObjectBase)selectedItems.First();
         SerializedObject so = new SerializedObject(m_activeItem);
         m_SectionDetails.Bind(so);
 
 
-        if (m_activeItem.MenuSprite != null)
-        {
-            m_SectionDetails.Q<VisualElement>("Sprite").style.backgroundImage = new StyleBackground(m_activeItem.MenuSprite);
-        }
-        else
-        {
-            SpriteRenderer[] sprites = m_activeItem.Prefab.gameObject.GetComponentsInChildren<SpriteRenderer>();
-            m_SectionDetails.Q<VisualElement>("Sprite").style.backgroundImage = new StyleBackground(sprites[0].sprite);
-        }
+        // if (m_activeItem.MenuSprite != null)
+        // {
+        //     m_SectionDetails.Q<VisualElement>("Sprite").style.backgroundImage = new StyleBackground(m_activeItem.MenuSprite);
+        // }
+        // else
+        // {
+        //     // SpriteRenderer[] sprites = m_activeItem.Prefab.gameObject.GetComponentsInChildren<SpriteRenderer>();
+        //     m_SectionDetails.Q<VisualElement>("Sprite").style.backgroundImage = new StyleBackground(m_activeItem.MenuSprite);
+        // }
 
         m_SectionDetails.style.visibility = Visibility.Visible;
 
@@ -207,7 +207,7 @@ public class UnitManagerEditor
     private void AddItem_OnClick()
     {
         //Create an instance of the scriptable object and set the default parameters
-        ScriptableUnitBase newItem = ScriptableObject.CreateInstance<ScriptableUnitBase>();
+        ScriptableMapObjectBase newItem = ScriptableObject.CreateInstance<ScriptableMapObjectBase>();
         string path = EditorUtility.SaveFilePanelInProject("Save nature", "NewNature", "Asset", "Save new nature", "Assets/Resources/Nature");
         if (path == "") return;
         //newItem.FriendlyName = $"New Item";

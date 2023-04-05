@@ -26,16 +26,16 @@ public class PlayerData
 public class PlayerDataReferences
 {
     [SerializeField] public List<Hero> ListHero;
-    [SerializeField] public List<UnitBase> ListTown;
-    [SerializeField] public List<UnitBase> ListMines;
+    [SerializeField] public List<BaseMapEntity> ListTown;
+    [SerializeField] public List<BaseMapEntity> ListMines;
     [SerializeField] public Hero ActiveHero;
     [SerializeField] public BaseTown ActiveTown;
 
     public PlayerDataReferences()
     {
-        ListTown = new List<UnitBase>();
+        ListTown = new List<BaseMapEntity>();
         ListHero = new List<Hero>();
-        ListMines = new List<UnitBase>();
+        ListMines = new List<BaseMapEntity>();
     }
 }
 
@@ -182,7 +182,7 @@ public class Player
         return path;
     }
 
-    public void AddTown(UnitBase town)
+    public void AddTown(BaseMapEntity town)
     {
         BaseTown _town = (BaseTown)town;
         _town.SetPlayer(DataPlayer);
@@ -190,7 +190,7 @@ public class Player
 
     }
 
-    public UnitBase GetTown(int id)
+    public BaseMapEntity GetTown(int id)
     {
         return DataPlayer.PlayerDataReferences.ListTown[id];
     }

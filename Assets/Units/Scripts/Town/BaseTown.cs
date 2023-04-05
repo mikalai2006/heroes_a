@@ -14,7 +14,7 @@ public struct DataTown
     public SerializableDictionary<TypeBuild, int> LevelsBuilds;
 }
 
-public abstract class BaseTown : UnitBase, IDataPlay
+public abstract class BaseTown : BaseMapEntity, IDataPlay
 {
 
     [SerializeField] public DataTown Data;
@@ -28,14 +28,14 @@ public abstract class BaseTown : UnitBase, IDataPlay
         //if (newState == GameState.HeroTurn) _canMove = true;
         base.OnAfterStateChanged(newState);
     }
-    public override void InitUnit(ScriptableUnitBase data, Vector3Int pos)
+    public override void InitUnit(ScriptableEntity data, Vector3Int pos)
     {
 
         base.InitUnit(data, pos);
         Data.idPlayer = -1;
         Data.name = data.name;
-        var townData = (ScriptableTown)data;
-        Data.ProgressBuilds = townData.BuildTown.StartProgressBuilds.ToList(); // TypeBuild.None | TypeBuild.Tavern_1;
+        var townData = (ScriptableEntityTown)data;
+        Data.ProgressBuilds = townData.StartProgressBuilds.ToList(); // TypeBuild.None | TypeBuild.Tavern_1;
         Data.LevelsBuilds = new SerializableDictionary<TypeBuild, int>();
     }
 

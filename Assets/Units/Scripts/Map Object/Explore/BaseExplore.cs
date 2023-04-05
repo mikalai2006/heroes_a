@@ -31,11 +31,11 @@ public abstract class BaseExplore : BaseMapObject, IDataPlay, IDialogMapObjectOp
 
     public async UniTask<DataResultDialog> OnTriggeredHero()
     {
-        var t = HelperLanguage.GetLocaleText(this.ScriptableData.Locale);
+        // var t = HelperLanguage.GetLocaleText(this.ScriptableData.Locale);
         var dialogData = new DataDialog()
         {
-            Description = t.Text.visit_ok,
-            Header = t.Text.title,
+            Header = this.ScriptableData.Text.title.GetLocalizedString(),
+            // Description = t.Text.visit_ok,
             Sprite = this.ScriptableData.MenuSprite,
         };
 

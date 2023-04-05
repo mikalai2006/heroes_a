@@ -51,9 +51,9 @@ public class CreateResourceEveryWeekOperation : ILoadingOperation
 
                         BaseWarriors warrior = await _root.UnitManager.SpawnWarriorAsync(nodeWarrior);
 
-                        UnitBase unit = await _root.UnitManager.SpawnMapObjectToPositionAsync(
+                        BaseMapEntity unit = await _root.UnitManager.SpawnMapObjectToPositionAsync(
                             currentNode,
-                            MapObjectType.Resource
+                            TypeMapObject.Resource
                         );
 
                         area.Stat.countEveryResource++;

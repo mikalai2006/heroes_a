@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0df2ee86ffe6ead4c959a7e6a479972f, type: 3}
+  m_Name: Castle_Crystal_Mine_
+  m_EditorClassIdentifier: 
+  idObject: 8db929a9fe174597b24297c937fc662e
+  Entity: {fileID: 11400000, guid: 1614d87a1bbad9c45bf71d838d924232, type: 2}
+  typeGround: 20
+  typeInput: 0
+  TypeMapObject: 21
+  TypeWorkMapObject: 2
+  listTypeNoPath: 0c000000
+  MapPrefab:
+    m_AssetGUID: 5dda9c80e3241e145ab499db21150cea
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  Prefab: {fileID: -8382628283114392520, guid: 5dda9c80e3241e145ab499db21150cea, type: 3}
+  Locale:
+  - Language: {fileID: 11400000, guid: 30b8a59646ec31e4fa7737b1c0d7cba9, type: 2}
+    Text:
+      title: "\u041F\u0435\u0449\u0435\u0440\u0430 \u043A\u0440\u0438\u0441\u0442\u0430\u043B\u043B\u043E\u0432"
+      description: 
+      visit_ok: "\u0412\u044B \u043F\u043E\u043B\u0443\u0447\u0438\u043B\u0438 \u043A\u043E\u043D\u0442\u0440\u043E\u043B\u044C
+        \u043D\u0430\u0434 \u043F\u0435\u0449\u0435\u0440\u043E\u0439 \u043A\u0440\u0438\u0441\u0442\u0430\u043B\u043B\u043E\u0432.
+        \u041E\u043D\u0430 \u0431\u0443\u0434\u0435\u0442 \u043F\u0440\u0438\u043D\u043E\u0441\u0438\u0442\u044C
+        \u0432\u0430\u043C \u043E\u0434\u0438\u043D \u043A\u0440\u0438\u0441\u0442\u0430\u043B\u043B
+        \u0432 \u0434\u0435\u043D\u044C."
+      visit_no: 
+      visit_noresource: 
+  typeMine: 2

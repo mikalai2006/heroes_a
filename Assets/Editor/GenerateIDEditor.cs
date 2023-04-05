@@ -42,7 +42,7 @@ public class GenerateIDEditor : Editor
 
 }
 
-[CustomEditor(typeof(ScriptableUnitBase))]
+[CustomEditor(typeof(ScriptableMapObjectBase))]
 //[CanEditMultipleObjects]
 class GenerateIDUnitBaseEditor : GenerateIDEditor
 {
@@ -90,7 +90,7 @@ class GenerateIDWarriorEditor : GenerateIDUnitBaseEditor
 
 }
 
-[CustomEditor(typeof(ScriptableResource))]
+[CustomEditor(typeof(ScriptableMapResource))]
 class GenerateIDResourceEditor : GenerateIDUnitBaseEditor
 {
 

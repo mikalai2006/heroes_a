@@ -12,8 +12,6 @@ namespace Loader
 
             onProgress?.Invoke(0.9f);
 
-            await ResourceSystem.Instance.LoadCollectionsAsset<ScriptableGameMode>(Constants.Labels.LABEL_GAMEMODE);
-
             var environment = await GameManager.Instance.AssetProvider.LoadAsset("UIMenuApp");
 
             if (environment.TryGetComponent(out UIMenuApp component) == false)

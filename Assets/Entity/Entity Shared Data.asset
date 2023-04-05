@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: Entity Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: Entity
+  m_TableCollectionNameGuidString: 99ee07ddc90ffba41a3d18974d364707
+  m_Entries:
+  - m_Id: 85510488064
+    m_Key: armorofwonder_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 185469140992
+    m_Key: armorofwonder_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 330323623936
+    m_Key: armorofwonder_ok
+    m_Metadata:
+      m_Items: []
+  - m_Id: 434245894144
+    m_Key: artifact_norun
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10623745425408
+    m_Key: celestial_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10655924125696
+    m_Key: celestial_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10667806588928
+    m_Key: celestial_ok
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 1339300925169205250
+  references:
+    version: 2
+    RefIds:
+    - rid: 1339300925169205250
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1680629424985

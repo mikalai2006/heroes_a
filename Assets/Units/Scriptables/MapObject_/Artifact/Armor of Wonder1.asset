@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 959f3edcb62d5d8459db6b793ea17bc7, type: 3}
+  m_Name: Armor of Wonder1
+  m_EditorClassIdentifier: 
+  idObject: eccdc143280f4d848d94f7e98d300f30
+  Entity: {fileID: 11400000, guid: ea7f631d107705449afba9ec64cbe472, type: 2}
+  typeGround: 1000
+  typeInput: 1
+  TypeMapObject: 1
+  TypeWorkMapObject: 1
+  listTypeNoPath: 
+  MapPrefab:
+    m_AssetGUID: 78bbccad427da0540bc178662a38e3a5
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  Prefab: {fileID: 0}
+  Locale: []
+  Resources: []
+  PrimarySkills: []
+  SecondarySkills: []
+  Artifacts:
+  - {fileID: 11400000, guid: ea7f631d107705449afba9ec64cbe472, type: 2}

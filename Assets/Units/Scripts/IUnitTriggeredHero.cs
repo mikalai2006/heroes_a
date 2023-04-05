@@ -4,5 +4,5 @@ using Cysharp.Threading.Tasks;
 
 public interface IUnitTriggeredHero
 {
-    UniTask OnTriggeredHero(Action<UnitBase> onTriggeredHero);
+    UniTask OnTriggeredHero(Action<BaseMapEntity> onTriggeredHero);
 }

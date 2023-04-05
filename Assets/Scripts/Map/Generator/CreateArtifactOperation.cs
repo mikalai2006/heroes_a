@@ -56,7 +56,7 @@ public class CreateArtifactOperation : ILoadingOperation
                         //&& gridTileHelper.CalculateNeighbours(currentNode) < 3
                         )
                     {
-                        UnitBase unit = await _root.UnitManager.SpawnMapObjectToPositionAsync(currentNode, MapObjectType.Artifact);
+                        // BaseMapEntity unit = await _root.UnitManager.SpawnMapObjectToPositionAsync(currentNode, TypeMapObject.Artifact);
 
                         BaseWarriors warrior = (BaseWarriors)await _root.UnitManager.SpawnWarriorAsync(nodeWarrior);
 

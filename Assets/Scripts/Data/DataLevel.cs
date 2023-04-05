@@ -55,7 +55,7 @@ public struct SaveDataUnit<T>
 {
     public string idUnit;
     public string idObject;
-    public TypeUnit typeUnit;
+    public TypeMapObject typeUnit;
     public Vector3Int position;
     public T data;
 }

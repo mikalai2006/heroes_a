@@ -8,13 +8,13 @@ using UnityEngine;
 public struct DataSkillSchool
 {
     public List<ItemSkill> Skills;
-    public TypeWork TypeWork;
+    public TypeWorkPerk TypeWork;
 }
 public class BaseSkillSchool : BaseMapObject, IDataPlay, IDialogMapObjectOperation
 {
     public DataSkillSchool Data;
 
-    public override void InitUnit(ScriptableUnitBase data, Vector3Int pos)
+    public override void InitUnit(ScriptableEntity data, Vector3Int pos)
     {
         base.InitUnit(data, pos);
         SetData();
@@ -22,15 +22,15 @@ public class BaseSkillSchool : BaseMapObject, IDataPlay, IDialogMapObjectOperati
 
     private void SetData()
     {
-        ScriptableMapObject scriptDataObject = ResourceSystem.Instance.GetUnit<ScriptableMapObject>(idObject);
-
+        // ScriptableMapObject scriptDataObject = ResourceSystem.Instance.GetUnit<ScriptableMapObject>(idObject);
+        ScriptableEntityBuilding scriptDataObject = (ScriptableEntityBuilding)ScriptableData;
         Data = new DataSkillSchool();
         Data.Skills = new List<ItemSkill>();
         Data.TypeWork = scriptDataObject.TypeWork;
 
-        for (int i = 0; i < scriptDataObject.Skills.Count; i++)
+        for (int i = 0; i < scriptDataObject.PrimarySkills.Count; i++)
         {
-            List<ItemSkill> ListVariant = scriptDataObject.Skills[i].ListVariant;
+            List<ItemSkill> ListVariant = scriptDataObject.PrimarySkills[i].ListVariant;
             for (int j = 0; j < ListVariant.Count; j++)
             {
                 Data.Skills.Add(ListVariant[j]);
@@ -63,16 +63,16 @@ public class BaseSkillSchool : BaseMapObject, IDataPlay, IDialogMapObjectOperati
         {
             listValue.Add(new DataDialogItem()
             {
-                Sprite = Data.Skills[i].Skill.SpriteMenu,
+                Sprite = Data.Skills[i].Skill.MenuSprite, //.SpriteMenu,
                 Value = Data.Skills[i].Value
             });
         }
 
-        var t = HelperLanguage.GetLocaleText(this.ScriptableData.Locale);
+        // var t = HelperLanguage.GetLocaleText(this.ScriptableData.Locale);
         var dialogData = new DataDialog()
         {
-            Description = t.Text.visit_ok,
-            Header = t.Text.title,
+            Header = this.ScriptableData.Text.title.GetLocalizedString(),
+            // Description = t.Text.visit_ok,
             Sprite = this.ScriptableData.MenuSprite,
             Value = listValue
         };

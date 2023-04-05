@@ -41,7 +41,7 @@ public class UITownListBuildWindow : MonoBehaviour
 
     }
 
-    public async Task<DataResultBuildDialog> ProcessAction(DataDialog dataDialog)
+    public async Task<DataResultBuildDialog> ProcessAction(DataDialog dataDialog, ScriptableBuildTown activeBuildTown)
     {
         _dataDialog = dataDialog;
         _dataResultDialog = new DataResultBuildDialog();
@@ -59,8 +59,8 @@ public class UITownListBuildWindow : MonoBehaviour
         }
 
         _listBuild.Clear();
-        ScriptableTown scriptDataTown = (ScriptableTown)_activeTown.ScriptableData;
-        _scriptObjectBuildTown = ResourceSystem.Instance.GetBuildTowns().Where(t => t.TypeFaction == scriptDataTown.TypeFaction).First();
+        ScriptableEntityTown scriptDataTown = (ScriptableEntityTown)_activeTown.ScriptableData;
+        _scriptObjectBuildTown = activeBuildTown; // ResourceSystem.Instance.GetBuildTowns().Where(t => t.TypeFaction == scriptDataTown.TypeFaction).First();
 
         foreach (var parentBuild in _scriptObjectBuildTown.Builds)
         {

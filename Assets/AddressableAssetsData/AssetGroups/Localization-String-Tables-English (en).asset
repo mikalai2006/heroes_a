@@ -22,21 +22,24 @@ MonoBehaviour:
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-en
-    - Preload
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 4f69514eac1446d4eb5d9a45130f5feb
     m_Address: ADVENTURE_en
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-en
-    - Preload
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 6b398f1b7c8268e4285d58903458b7e3
     m_Address: BuildText_en
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-en
-    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ee859fa018736704180ff00381d78fda
+    m_Address: Entity_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: 9a6380555b06f9d46b9bf47dd32221de, type: 2}

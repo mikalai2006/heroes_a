@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
 
 [System.Serializable]
@@ -9,16 +10,16 @@ public struct DataMonolith
     [SerializeField] public List<Vector3Int> portalPoints;
 }
 
-public abstract class BaseMonolith : UnitBase, IDataPlay
+public abstract class BaseMonolith : BaseMapEntity, IDataPlay
 {
     [SerializeField] public DataMonolith Data;
 
     public virtual void Init(DataMonolith data)
     {
-        
+
     }
 
-    public override void InitUnit(ScriptableUnitBase data, Vector3Int pos)
+    public override void InitUnit(ScriptableEntity data, Vector3Int pos)
     {
         base.InitUnit(data, pos);
         Data = new DataMonolith();

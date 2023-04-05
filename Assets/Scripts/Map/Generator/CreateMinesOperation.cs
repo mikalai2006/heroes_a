@@ -58,7 +58,7 @@ public class CreateMinesOperation : ILoadingOperation
                         && _root.gridTileHelper.CalculateNeighbours(currentNode) >= 5
                         )
                     {
-                        UnitBase unit = await _root.UnitManager.SpawnMineAsync(currentNode, TypeMine.Free);
+                        BaseMapEntity unit = await _root.UnitManager.SpawnMineAsync(currentNode, TypeMine.Free);
 
                         BaseWarriors warrior = (BaseWarriors)await _root.UnitManager.SpawnWarriorAsync(nodeWarrior);
 
@@ -74,8 +74,8 @@ public class CreateMinesOperation : ILoadingOperation
 
                         if (listExistExitNode.Count > 1)
                         {
-                            await _root.CreatePortalAsync(currentNode, listExistExitNode);
-                            // Debug.Log($"Need portal::: keyArea{currentNode.keyArea}[{currentNode._position}]- {listExistExitNode.Count}");
+                            // await _root.CreatePortalAsync(currentNode, listExistExitNode);
+                            // // Debug.Log($"Need portal::: keyArea{currentNode.keyArea}[{currentNode._position}]- {listExistExitNode.Count}");
 
                         }
                         //else
