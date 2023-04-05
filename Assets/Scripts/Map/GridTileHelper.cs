@@ -206,7 +206,7 @@ public class GridTileHelper
         HashSet<GridTileNode> removedSet = new HashSet<GridTileNode>();
         openSet.Add(node);
 
-        List<TypeEntity> exitTriggers = new List<TypeEntity> { TypeEntity.Town, TypeEntity.Hero };
+        List<TypeMapObject> exitTriggers = new List<TypeMapObject> { TypeMapObject.Monolith, TypeMapObject.Town, TypeMapObject.Hero };
         // new List<TypeMapObject> { TypeMapObject.Monolith, TypeMapObject.Town, TypeMapObject.Hero };
 
         while (openSet.Count > 0)
@@ -232,7 +232,7 @@ public class GridTileHelper
 
                 if (neighbourNode.OccupiedUnit != null && neighbourNode != node)
                 {
-                    if (exitTriggers.Contains(neighbourNode.OccupiedUnit.ScriptableData.TypeEntity)) // .typeUnit
+                    if (exitTriggers.Contains(neighbourNode.OccupiedUnit.ScriptableData.TypeMapObject))
                     {
                         //Debug.Log($"Exit OccupiedUnit::: {neighbourNode.OccupiedUnit.typeUnit}");
                         return new List<GridTileNode> { neighbourNode };

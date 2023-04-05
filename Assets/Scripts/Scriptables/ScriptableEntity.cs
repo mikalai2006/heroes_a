@@ -9,12 +9,14 @@ public abstract class ScriptableEntity : ScriptableObject
 {
     public string idObject;
     public TypeEntity TypeEntity;
-    [SerializeField] public AssetReferenceGameObject MapPrefab;
     public Sprite MenuSprite;
     [SerializeField] public LangEntity Text;
     [SerializeField] public DialogText DialogText;
 
     [Header("Map Options")]
+    [SerializeField] public AssetReferenceGameObject MapPrefab;
+    public TypeMapObject TypeMapObject;
+    public TypeGround typeGround;
     public TypeInput typeInput;
     public List<TypeNoPath> listTypeNoPath;
     public List<TypeNoPath> RulesDraw => listTypeNoPath;
@@ -32,6 +34,7 @@ public enum TypeFaction
 {
     Castle = 0,
     Stronghold = 1,
+    Conflux = 20,
     Neutral = 100,
 }
 

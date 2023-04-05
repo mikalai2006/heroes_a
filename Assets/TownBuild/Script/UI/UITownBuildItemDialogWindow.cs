@@ -94,7 +94,7 @@ public class UITownBuildItemDialogWindow : MonoBehaviour
             VisualElement item = _templateItem.Instantiate();
             var _spriteElement = item.Q<VisualElement>(_nameSpriteElement);
             var _valueLabel = item.Q<Label>(_nameValueLabel);
-            var sprite = _buildDialog.CostResource[i].Resource.Entity.MenuSprite;
+            var sprite = _buildDialog.CostResource[i].Resource.MenuSprite;
 
             _spriteElement.style.backgroundImage = new StyleBackground(sprite);
             _spriteElement.style.width = new StyleLength(new Length(sprite.bounds.size.x * sprite.pixelsPerUnit, LengthUnit.Pixel));

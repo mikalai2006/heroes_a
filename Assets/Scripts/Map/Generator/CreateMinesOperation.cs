@@ -58,7 +58,7 @@ public class CreateMinesOperation : ILoadingOperation
                         && _root.gridTileHelper.CalculateNeighbours(currentNode) >= 5
                         )
                     {
-                        BaseMapEntity unit = await _root.UnitManager.SpawnMineAsync(currentNode, TypeMine.Free);
+                        BaseMapEntity unit = await _root.UnitManager.SpawnMapObjectAsync(currentNode, TypeMapObject.Mine);
 
                         BaseWarriors warrior = (BaseWarriors)await _root.UnitManager.SpawnWarriorAsync(nodeWarrior);
 

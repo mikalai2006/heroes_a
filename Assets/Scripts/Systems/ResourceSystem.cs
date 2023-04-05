@@ -122,69 +122,69 @@ public class ResourceSystem : StaticInstance<ResourceSystem>
     public TileNature GetNature(string id) => GetNature().Where(t => t.idObject == id)?.First();
     public List<TileLandscape> GetLandscape() => GetAllAssetsByLabel<TileLandscape>("landscape");
     public TileLandscape GetLandscape(TypeGround typeGround) => GetLandscape().Where(t => t.typeGround == typeGround).First();
-    public List<ScriptableMapObjectBase> GetUnits() => GetAllAssetsByLabel<ScriptableMapObjectBase>("units");
 
     public List<ScriptableBuildTown> GetBuildTowns() => GetAllAssetsByLabel<ScriptableBuildTown>(Constants.Labels.LABEL_BUILD_TOWN);
-    public List<T> GetUnitsByType<T>(TypeMapObject typeUnit) where T : ScriptableMapObjectBase
-    {
-        var listUnits = GetUnits();
+    // public List<ScriptableMapObjectBase> GetUnits() => GetAllAssetsByLabel<ScriptableMapObjectBase>("units");
+    // public List<T> GetUnitsByType<T>(TypeMapObject typeUnit) where T : ScriptableMapObjectBase
+    // {
+    //     var listUnits = GetUnits();
 
-        List<T> units = new List<T>();
+    //     List<T> units = new List<T>();
 
-        for (int i = 0; i < listUnits.Count; i++)
-        {
-            if (typeUnit == listUnits[i].TypeMapObject) units.Add((T)listUnits[i]);
-        }
+    //     for (int i = 0; i < listUnits.Count; i++)
+    //     {
+    //         if (typeUnit == listUnits[i].TypeMapObject) units.Add((T)listUnits[i]);
+    //     }
 
-        return units;
-    }
+    //     return units;
+    // }
 
-    public T GetUnit<T>(TypeMapObject typeUnit) where T : ScriptableMapObjectBase
-    {
-        var listUnits = GetUnits();
+    // public T GetUnit<T>(TypeMapObject typeUnit) where T : ScriptableMapObjectBase
+    // {
+    //     var listUnits = GetUnits();
 
-        // Filter units by faction.
-        List<ScriptableMapObjectBase> units = new List<ScriptableMapObjectBase>();
+    //     // Filter units by faction.
+    //     List<ScriptableMapObjectBase> units = new List<ScriptableMapObjectBase>();
 
-        for (int i = 0; i < listUnits.Count; i++)
-        {
-            if (typeUnit == listUnits[i].TypeMapObject) units.Add(listUnits[i]);
-        }
-        var index = Random.Range(0, units.Count);
+    //     for (int i = 0; i < listUnits.Count; i++)
+    //     {
+    //         if (typeUnit == listUnits[i].TypeMapObject) units.Add(listUnits[i]);
+    //     }
+    //     var index = Random.Range(0, units.Count);
 
-        return (T)units[index];
-    }
-    public T GetUnit<T>(TypeMapObject typeUnit, TypeGround typeGround) where T : ScriptableMapObjectBase
-    {
-        var listUnits = GetUnits();
+    //     return (T)units[index];
+    // }
+    // public T GetUnit<T>(TypeMapObject typeUnit, TypeGround typeGround) where T : ScriptableMapObjectBase
+    // {
+    //     var listUnits = GetUnits();
 
-        List<ScriptableMapObjectBase> units = new List<ScriptableMapObjectBase>();
+    //     List<ScriptableMapObjectBase> units = new List<ScriptableMapObjectBase>();
 
-        for (int i = 0; i < listUnits.Count; i++)
-        {
-            if (typeUnit == listUnits[i].TypeMapObject && typeGround == listUnits[i].typeGround)
-                units.Add(listUnits[i]);
-        }
+    //     for (int i = 0; i < listUnits.Count; i++)
+    //     {
+    //         if (typeUnit == listUnits[i].TypeMapObject && typeGround == listUnits[i].typeGround)
+    //             units.Add(listUnits[i]);
+    //     }
 
-        var index = Random.Range(0, units.Count);
+    //     var index = Random.Range(0, units.Count);
 
-        return (T)units[index];
-    }
-    public T GetUnit<T>(string idObject) where T : ScriptableMapObjectBase
-    {
-        var listUnits = GetUnits();
+    //     return (T)units[index];
+    // }
+    // public T GetUnit<T>(string idObject) where T : ScriptableMapObjectBase
+    // {
+    //     var listUnits = GetUnits();
 
-        ScriptableMapObjectBase unitById = null;
+    //     ScriptableMapObjectBase unitById = null;
 
-        for (int i = 0; i < listUnits.Count; i++)
-        {
-            if (idObject == listUnits[i].idObject)
-            {
-                unitById = listUnits[i];
-                break;
-            }
-        }
+    //     for (int i = 0; i < listUnits.Count; i++)
+    //     {
+    //         if (idObject == listUnits[i].idObject)
+    //         {
+    //             unitById = listUnits[i];
+    //             break;
+    //         }
+    //     }
 
-        return (T)unitById;
-    }
+    //     return (T)unitById;
+    // }
 }

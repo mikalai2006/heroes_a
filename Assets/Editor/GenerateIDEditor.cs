@@ -42,7 +42,7 @@ public class GenerateIDEditor : Editor
 
 }
 
-[CustomEditor(typeof(ScriptableMapObjectBase))]
+[CustomEditor(typeof(ScriptableEntity))]
 //[CanEditMultipleObjects]
 class GenerateIDUnitBaseEditor : GenerateIDEditor
 {
@@ -78,41 +78,41 @@ class GenerateIDUnitBaseEditor : GenerateIDEditor
     //}
 }
 
-[CustomEditor(typeof(ScriptableTown))]
-class GenerateIDTownEditor : GenerateIDUnitBaseEditor
+[CustomEditor(typeof(ScriptableEntityArtifact))]
+class GenerateIDArtifactEditor : GenerateIDUnitBaseEditor
 {
 
 }
 
-[CustomEditor(typeof(ScriptableWarriors))]
-class GenerateIDWarriorEditor : GenerateIDUnitBaseEditor
+[CustomEditor(typeof(ScriptableEntityCreature))]
+class GenerateIDCreatureEditor : GenerateIDUnitBaseEditor
 {
 
 }
 
-[CustomEditor(typeof(ScriptableMapResource))]
-class GenerateIDResourceEditor : GenerateIDUnitBaseEditor
+[CustomEditor(typeof(ScriptableEntityDwelling))]
+class GenerateIDEntityDwellingEditor : GenerateIDUnitBaseEditor
 {
 
 }
 
-[CustomEditor(typeof(ScriptableHero))]
-class GenerateIDHeroEditor : GenerateIDUnitBaseEditor
+[CustomEditor(typeof(ScriptableEntityHero))]
+class GenerateIDEntityHeroEditor : GenerateIDUnitBaseEditor
 {
 
 }
 
-[CustomEditor(typeof(ScriptableMapObject))]
-class GenerateIDMapObjectEditor : GenerateIDUnitBaseEditor
+[CustomEditor(typeof(ScriptableEntityMapObject))]
+class GenerateIDEntityMapObjectEditor : GenerateIDUnitBaseEditor
 {
 
 }
 
-[CustomEditor(typeof(ScriptableMine))]
-class GenerateIDMineEditor : GenerateIDUnitBaseEditor
-{
+// [CustomEditor(typeof(ScriptableEnt))]
+// class GenerateIDMineEditor : GenerateIDUnitBaseEditor
+// {
 
-}
+// }
 
 [CustomEditor(typeof(TileNature))]
 class GenerateIDTileNatureEditor : GenerateIDEditor
@@ -133,11 +133,11 @@ class GenerateIDTileLandscapeEditor : GenerateIDEditor
 
 // }
 
-[CustomEditor(typeof(ScriptableArtifact))]
-class GenerateIDScriptableArtifactEditor : GenerateIDEditor
-{
+// [CustomEditor(typeof(ScriptableArtifact))]
+// class GenerateIDScriptableArtifactEditor : GenerateIDEditor
+// {
 
-}
+// }
 
 [CustomEditor(typeof(ScriptableGameMode))]
 class GenerateIDScriptableGameModeEditor : GenerateIDEditor

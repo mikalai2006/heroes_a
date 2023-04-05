@@ -113,15 +113,15 @@ public static class Helpers
         return string.Format("army_{0}", name);
     }
 }
-public static class HelperLanguage
-{
-    public static LangItem GetLocaleText(this List<LangItem> locale)
-    {
-        var t = locale.Find(t => t.Language == LocalizationSettings.SelectedLocale);
-        return t;
-    }
+// public static class HelperLanguage
+// {
+//     public static LangItem GetLocaleText(this List<LangItem> locale)
+//     {
+//         var t = locale.Find(t => t.Language == LocalizationSettings.SelectedLocale);
+//         return t;
+//     }
 
-}
+// }
 
 public interface IProperty<T> : IProperty
 {

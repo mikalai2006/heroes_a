@@ -44,7 +44,8 @@ public class CreateResourceOperation : ILoadingOperation
                 {
                     GridTileNode currentNode = nodes[Random.Range(0, nodes.Count)];
 
-                    BaseMapEntity unit = await _root.UnitManager.SpawnResourceAsync(currentNode, new List<TypeWorkPerk>() { TypeWorkPerk.One });
+                    BaseMapEntity unit = await _root.UnitManager
+                        .SpawnMapObjectAsync(currentNode, TypeMapObject.Resource, new List<TypeWorkPerk>() { TypeWorkPerk.One });
 
                     nodes.Remove(currentNode);
 

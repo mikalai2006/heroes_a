@@ -5,10 +5,10 @@ using UnityEngine.Localization;
 using UnityEngine.Localization.Tables;
 using UnityEngine.AddressableAssets;
 
-[CreateAssetMenu(fileName = "NewEntityBuilding", menuName = "Game/Entity/New Building")]
-public class ScriptableEntityBuilding : ScriptableEntityPerk
+[CreateAssetMenu(fileName = "NewEntityDwelling", menuName = "Game/Entity/New Dwelling")]
+public class ScriptableEntityDwelling : ScriptableEntityPerk
 {
-    [Header("Options building")]
+    [Header("Options Dwelling")]
     // [Space(3)]
     public TypeFaction TypeFaction;
     [SerializeField] public TypeBuild TypeBuild;

@@ -51,10 +51,15 @@ public class CreateResourceEveryWeekOperation : ILoadingOperation
 
                         BaseWarriors warrior = await _root.UnitManager.SpawnWarriorAsync(nodeWarrior);
 
-                        BaseMapEntity unit = await _root.UnitManager.SpawnMapObjectToPositionAsync(
+                        BaseMapEntity unit = await _root.UnitManager.SpawnMapObjectAsync(
                             currentNode,
-                            TypeMapObject.Resource
+                            TypeMapObject.Resource,
+                            new List<TypeWorkPerk>() { TypeWorkPerk.EveryDay, TypeWorkPerk.EveryWeek }
                         );
+                        if (unit.ScriptableData.name == "MillWater")
+                        {
+                            GameManager.Instance.MapManager.CreateCreeks(currentNode);
+                        }
 
                         area.Stat.countEveryResource++;
 

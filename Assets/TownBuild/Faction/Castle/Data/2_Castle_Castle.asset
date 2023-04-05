@@ -1,0 +1,109 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d42093a1eaf0824c9a2bb9f171cc7f4, type: 3}
+  m_Name: 2_Castle_Castle
+  m_EditorClassIdentifier: 
+  idObject: 1_2
+  TypeFaction: 0
+  Prefab: {fileID: -944693676003837266, guid: 3d9e8b4a1791c6d49a52cad1349b2db6, type: 3}
+  BuildLevels:
+  - MenuSprite: {fileID: 21300000, guid: d6be9b29f4544614794d2315dd52bf14, type: 3}
+    TypeBuild: 7
+    UpdatePrefab: {fileID: 0}
+    RequiredBuilds: 03000000
+    Text:
+      title:
+        m_TableReference:
+          m_TableCollectionName: GUID:eccb40f2ef0445e499300535baf5f930
+        m_TableEntryReference:
+          m_KeyId: 3664396845056
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      description:
+        m_TableReference:
+          m_TableCollectionName: GUID:eccb40f2ef0445e499300535baf5f930
+        m_TableEntryReference:
+          m_KeyId: 3703588421632
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+    CostResource:
+    - Resource: {fileID: 11400000, guid: ea04c2f186809b945ae03f53199a7876, type: 2}
+      Count: 5000
+    - Resource: {fileID: 11400000, guid: 30cdc368665f1154b904062d3111c160, type: 2}
+      Count: 20
+    - Resource: {fileID: 11400000, guid: 058309442a6416347b95e97a2efaa313, type: 2}
+      Count: 20
+  - MenuSprite: {fileID: 21300000, guid: 2e314c6b1b2cf654b9933a0da08b8548, type: 3}
+    TypeBuild: 8
+    UpdatePrefab: {fileID: 0}
+    RequiredBuilds: 07000000
+    Text:
+      title:
+        m_TableReference:
+          m_TableCollectionName: GUID:eccb40f2ef0445e499300535baf5f930
+        m_TableEntryReference:
+          m_KeyId: 3847536934912
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      description:
+        m_TableReference:
+          m_TableCollectionName: GUID:eccb40f2ef0445e499300535baf5f930
+        m_TableEntryReference:
+          m_KeyId: 3878646087680
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+    CostResource:
+    - Resource: {fileID: 11400000, guid: 2de32a5fb2189994a867c9e425391bf7, type: 2}
+      Count: 2500
+    - Resource: {fileID: 11400000, guid: c1bca1c330d8ff847b7e9e3584dabe06, type: 2}
+      Count: 5
+  - MenuSprite: {fileID: 21300000, guid: 8632173f16cc8fb4eb1027a8467ac1cb, type: 3}
+    TypeBuild: 9
+    UpdatePrefab: {fileID: 0}
+    RequiredBuilds: 08000000
+    Text:
+      title:
+        m_TableReference:
+          m_TableCollectionName: GUID:eccb40f2ef0445e499300535baf5f930
+        m_TableEntryReference:
+          m_KeyId: 4020447117312
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      description:
+        m_TableReference:
+          m_TableCollectionName: GUID:eccb40f2ef0445e499300535baf5f930
+        m_TableEntryReference:
+          m_KeyId: 4040479113216
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+    CostResource:
+    - Resource: {fileID: 11400000, guid: 2de32a5fb2189994a867c9e425391bf7, type: 2}
+      Count: 5000
+    - Resource: {fileID: 11400000, guid: 88388bc7df9ca2b4594e5d8830fcc54d, type: 2}
+      Count: 10
+    - Resource: {fileID: 11400000, guid: c1bca1c330d8ff847b7e9e3584dabe06, type: 2}
+      Count: 10
+  references:
+    version: 2
+    RefIds: []

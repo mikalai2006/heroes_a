@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.Localization;
 
-[CreateAssetMenu(fileName = "NewBuild", menuName = "Game/Build/New Build")]
+[CreateAssetMenu(fileName = "NewBuilding", menuName = "Game/Building/New Build")]
 public class ScriptableBuildBase : ScriptableObject
 {
     public string idObject;
@@ -151,7 +151,7 @@ public struct LangBuild
 [System.Serializable]
 public struct BuildCostResource
 {
-    public ScriptableMapResource Resource;
+    public ScriptableEntityResource Resource;
     public int Count;
 }
 

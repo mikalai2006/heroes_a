@@ -10,6 +10,6 @@ public class ScriptableEntityTown : ScriptableEntity
     public TypeBuild[] StartProgressBuilds;
     public List<ScriptableEntityHero> heroes;
     public List<ScriptableEntityMapObject> mines;
-    public List<ScriptableWarriors> warriors;
+    public List<ScriptableEntityCreature> creatures;
 }
 

@@ -7,7 +7,7 @@
         <ui:VisualElement name="Overlay" class="overlay" style="flex-grow: 1; background-image: url(&apos;project://database/Assets/UI/Sprites/Bg.png?fileID=2800000&amp;guid=0641c76439a64674aa800f9e3d79c6a4&amp;type=3#Bg&apos;);" />
         <ui:VisualElement name="Box" class="heroinfo_bg" style="height: 35%;">
             <ui:VisualElement name="HeroInfoHeader" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row;">
-                <ui:VisualElement name="HeroIcon" style="width: 30%; background-image: url(&apos;project://database/Assets/Units/Sprites/Town/Castle/Heroes/CastleHero1.png?fileID=2800000&amp;guid=109ee5c0f0a27fb45ba59e426bc389ea&amp;type=3#CastleHero1&apos;);" />
+                <ui:VisualElement name="HeroIcon" style="width: 30%;" />
                 <ui:VisualElement name="HeroInfo" style="width: 70%;">
                     <ui:Label tabindex="-1" text="Label" display-tooltip-when-elided="true" name="HeroName" style="padding-bottom: 0; padding-top: 0;" />
                     <ui:VisualElement name="HeroParams" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row;">

@@ -51,7 +51,8 @@ public class CreateExploreOperation : ILoadingOperation
                         && _root.gridTileHelper.CalculateNeighbours(currentNode) == 8
                         )
                     {
-                        BaseMapEntity unit = await _root.UnitManager.SpawnMapObjectToPositionAsync(currentNode, TypeMapObject.Explore);
+                        BaseMapEntity unit = await _root.UnitManager
+                            .SpawnMapObjectAsync(currentNode, TypeMapObject.Explore);
 
                         BaseWarriors warrior = (BaseWarriors)await _root.UnitManager.SpawnWarriorAsync(nodeWarrior);
 

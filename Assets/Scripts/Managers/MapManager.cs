@@ -150,214 +150,214 @@ public class MapManager : MonoBehaviour, IDataGame
 
         setSizeTileMap();
 
-        for (int i = 0; i < data.dataMap.natureNode.Count; i++)
-        {
-            GridTileNode tileNode = gridTileHelper.GridTile.GetGridObject(new Vector3Int(data.dataMap.natureNode[i].x, data.dataMap.natureNode[i].y));
+        // for (int i = 0; i < data.dataMap.natureNode.Count; i++)
+        // {
+        //     GridTileNode tileNode = gridTileHelper.GridTile.GetGridObject(new Vector3Int(data.dataMap.natureNode[i].x, data.dataMap.natureNode[i].y));
 
-            //Debug.Log($"GetNature: [{i}-{data.dataMap.natureNode[i].n}-{data.dataMap.natureNode[i].idNature}]");
-            if (data.dataMap.natureNode[i].idNature == "creek")
-            {
+        //     //Debug.Log($"GetNature: [{i}-{data.dataMap.natureNode[i].n}-{data.dataMap.natureNode[i].idNature}]");
+        //     if (data.dataMap.natureNode[i].idNature == "creek")
+        //     {
 
-                _tileMapWalkedNature.SetTile(tileNode.position, _tileCreek);
-                continue;
-            }
-            TileNature natureTile = ResourceSystem.Instance.GetNature(data.dataMap.natureNode[i].idNature);
-            if (natureTile == null)
-            {
-                Debug.Log($"None resource for tile nature: [{i}-{data.dataMap.natureNode[i].idNature}]");
-                continue;
-            }
-            _tileMapNature.SetTile(tileNode.position, natureTile);
-            //_tileMap.SetTile(tileNode._position, _tileBg.tileRule);
-        }
+        //         _tileMapWalkedNature.SetTile(tileNode.position, _tileCreek);
+        //         continue;
+        //     }
+        //     TileNature natureTile = ResourceSystem.Instance.GetNature(data.dataMap.natureNode[i].idNature);
+        //     if (natureTile == null)
+        //     {
+        //         Debug.Log($"None resource for tile nature: [{i}-{data.dataMap.natureNode[i].idNature}]");
+        //         continue;
+        //     }
+        //     _tileMapNature.SetTile(tileNode.position, natureTile);
+        //     //_tileMap.SetTile(tileNode._position, _tileBg.tileRule);
+        // }
 
-        // Spawn town.
-        foreach (SaveDataUnit<DataTown> unitTown in DataManager.Instance.DataPlay.Units.towns)
-        {
-            GridTileNode tileNode = gridTileHelper.GridTile.GetGridObject(new Vector3Int(unitTown.position.x, unitTown.position.y));
+        // // Spawn town.
+        // foreach (SaveDataUnit<DataTown> unitTown in DataManager.Instance.DataPlay.Units.towns)
+        // {
+        //     GridTileNode tileNode = gridTileHelper.GridTile.GetGridObject(new Vector3Int(unitTown.position.x, unitTown.position.y));
 
-            if (unitTown.idObject == "") continue;
+        //     if (unitTown.idObject == "") continue;
 
-            ScriptableTown scriptableData = ResourceSystem.Instance.GetUnit<ScriptableTown>(unitTown.idObject);
+        //     ScriptableTown scriptableData = ResourceSystem.Instance.GetUnit<ScriptableTown>(unitTown.idObject);
 
-            if (scriptableData == null)
-            {
-                Debug.Log($"None town data for : [{unitTown.idUnit}-{unitTown.data.name}]");
-                continue;
-            }
-            BaseMapEntity Town = await UnitManager.SpawnUnitToNode(scriptableData, tileNode);
-            if (unitTown.data.idPlayer >= 0)
-            {
-                LevelManager.Instance.GetPlayer(unitTown.data.idPlayer).AddTown(Town);
-            }
-        }
+        //     if (scriptableData == null)
+        //     {
+        //         Debug.Log($"None town data for : [{unitTown.idUnit}-{unitTown.data.name}]");
+        //         continue;
+        //     }
+        //     BaseMapEntity Town = await UnitManager.SpawnUnitToNode(scriptableData, tileNode);
+        //     if (unitTown.data.idPlayer >= 0)
+        //     {
+        //         LevelManager.Instance.GetPlayer(unitTown.data.idPlayer).AddTown(Town);
+        //     }
+        // }
 
-        foreach (SaveDataUnit<DataHero> unitHero in DataManager.Instance.DataPlay.Units.heroes)
-        {
-            GridTileNode tileNode = gridTileHelper.GridTile.GetGridObject(new Vector3Int(unitHero.position.x, unitHero.position.y));
+        // foreach (SaveDataUnit<DataHero> unitHero in DataManager.Instance.DataPlay.Units.heroes)
+        // {
+        //     GridTileNode tileNode = gridTileHelper.GridTile.GetGridObject(new Vector3Int(unitHero.position.x, unitHero.position.y));
 
-            if (unitHero.idObject == "") continue;
+        //     if (unitHero.idObject == "") continue;
 
-            ScriptableHero scriptableData = ResourceSystem.Instance.GetUnit<ScriptableHero>(unitHero.idObject);
+        //     ScriptableHero scriptableData = ResourceSystem.Instance.GetUnit<ScriptableHero>(unitHero.idObject);
 
-            if (scriptableData == null)
-            {
-                Debug.Log($"None hero data for : [{unitHero.idUnit}-{unitHero.data.name}]");
-                continue;
-            }
-            BaseMapEntity Hero = await UnitManager.SpawnUnitToNode(scriptableData, tileNode);
-            Hero.OnLoadUnit(unitHero);
-            if (unitHero.data.idPlayer >= 0)
-            {
-                LevelManager.Instance.GetPlayer(unitHero.data.idPlayer).AddHero((Hero)Hero);
-            }
-            // LevelManager.Instance.GetPlayer(unitHero.data.idPlayer).AddHero((Hero)Hero);
-        }
+        //     if (scriptableData == null)
+        //     {
+        //         Debug.Log($"None hero data for : [{unitHero.idUnit}-{unitHero.data.name}]");
+        //         continue;
+        //     }
+        //     BaseMapEntity Hero = await UnitManager.SpawnUnitToNode(scriptableData, tileNode);
+        //     Hero.OnLoadUnit(unitHero);
+        //     if (unitHero.data.idPlayer >= 0)
+        //     {
+        //         LevelManager.Instance.GetPlayer(unitHero.data.idPlayer).AddHero((Hero)Hero);
+        //     }
+        //     // LevelManager.Instance.GetPlayer(unitHero.data.idPlayer).AddHero((Hero)Hero);
+        // }
 
-        foreach (SaveDataUnit<DataResource> item in DataManager.Instance.DataPlay.Units.resources)
-        {
-            GridTileNode tileNode = gridTileHelper.GridTile.GetGridObject(new Vector3Int(item.position.x, item.position.y));
+        // foreach (SaveDataUnit<DataResource> item in DataManager.Instance.DataPlay.Units.resources)
+        // {
+        //     GridTileNode tileNode = gridTileHelper.GridTile.GetGridObject(new Vector3Int(item.position.x, item.position.y));
 
-            if (item.idObject == "") continue;
+        //     if (item.idObject == "") continue;
 
-            ScriptableMapResource scriptableData = ResourceSystem.Instance.GetUnit<ScriptableMapResource>(item.idObject);
+        //     ScriptableMapResource scriptableData = ResourceSystem.Instance.GetUnit<ScriptableMapResource>(item.idObject);
 
-            if (scriptableData == null)
-            {
-                Debug.Log($"None resource data for : [{item.idUnit}]");
-                continue;
-            }
-            BaseMapEntity Res = await UnitManager.SpawnUnitToNode(scriptableData, tileNode);
-            // Hero.OnLoadUnit(unitHero);
-            // LevelManager.Instance.GetPlayer(unitHero.data.idPlayer).AddHero((Hero)Hero);
-        }
+        //     if (scriptableData == null)
+        //     {
+        //         Debug.Log($"None resource data for : [{item.idUnit}]");
+        //         continue;
+        //     }
+        //     BaseMapEntity Res = await UnitManager.SpawnUnitToNode(scriptableData, tileNode);
+        //     // Hero.OnLoadUnit(unitHero);
+        //     // LevelManager.Instance.GetPlayer(unitHero.data.idPlayer).AddHero((Hero)Hero);
+        // }
 
-        foreach (SaveDataUnit<DataMine> item in DataManager.Instance.DataPlay.Units.mines)
-        {
-            GridTileNode tileNode = gridTileHelper.GridTile.GetGridObject(new Vector3Int(item.position.x, item.position.y));
+        // foreach (SaveDataUnit<DataMine> item in DataManager.Instance.DataPlay.Units.mines)
+        // {
+        //     GridTileNode tileNode = gridTileHelper.GridTile.GetGridObject(new Vector3Int(item.position.x, item.position.y));
 
-            if (item.idObject == "") continue;
+        //     if (item.idObject == "") continue;
 
-            ScriptableMine scriptableData = ResourceSystem.Instance.GetUnit<ScriptableMine>(item.idObject);
+        //     ScriptableMine scriptableData = ResourceSystem.Instance.GetUnit<ScriptableMine>(item.idObject);
 
-            if (scriptableData == null)
-            {
-                Debug.Log($"None mine data for : [{item.idUnit}]");
-                continue;
-            }
-            BaseMines unit = (BaseMines)await UnitManager.SpawnUnitToNode(scriptableData, tileNode);
-            if (item.data.idPlayer >= 0)
-            {
-                LevelManager.Instance.GetPlayer(item.data.idPlayer).AddMines(unit);
-                // Player player = LevelManager.Instance.GetPlayer(item.data.idPlayer);
-                // unit.SetPlayer(player);
-            }
-        }
+        //     if (scriptableData == null)
+        //     {
+        //         Debug.Log($"None mine data for : [{item.idUnit}]");
+        //         continue;
+        //     }
+        //     BaseMines unit = (BaseMines)await UnitManager.SpawnUnitToNode(scriptableData, tileNode);
+        //     if (item.data.idPlayer >= 0)
+        //     {
+        //         LevelManager.Instance.GetPlayer(item.data.idPlayer).AddMines(unit);
+        //         // Player player = LevelManager.Instance.GetPlayer(item.data.idPlayer);
+        //         // unit.SetPlayer(player);
+        //     }
+        // }
 
-        foreach (SaveDataUnit<DataArtifact> item in DataManager.Instance.DataPlay.Units.artifacts)
-        {
-            GridTileNode tileNode = gridTileHelper.GridTile.GetGridObject(new Vector3Int(item.position.x, item.position.y));
+        // foreach (SaveDataUnit<DataArtifact> item in DataManager.Instance.DataPlay.Units.artifacts)
+        // {
+        //     GridTileNode tileNode = gridTileHelper.GridTile.GetGridObject(new Vector3Int(item.position.x, item.position.y));
 
-            if (item.idObject == "") continue;
+        //     if (item.idObject == "") continue;
 
-            ScriptableArtifact scriptableData = ResourceSystem.Instance.GetUnit<ScriptableArtifact>(item.idObject);
+        //     ScriptableArtifact scriptableData = ResourceSystem.Instance.GetUnit<ScriptableArtifact>(item.idObject);
 
-            if (scriptableData == null)
-            {
-                Debug.Log($"None artifact data for : [{item.idUnit}]");
-                continue;
-            }
-            UnitManager.SpawnUnitToNode(scriptableData, tileNode);
-        }
+        //     if (scriptableData == null)
+        //     {
+        //         Debug.Log($"None artifact data for : [{item.idUnit}]");
+        //         continue;
+        //     }
+        //     UnitManager.SpawnUnitToNode(scriptableData, tileNode);
+        // }
 
-        foreach (SaveDataUnit<DataResourceMapObject> item in DataManager.Instance.DataPlay.Units.resourcesmap)
-        {
-            GridTileNode tileNode = gridTileHelper.GridTile.GetGridObject(new Vector3Int(item.position.x, item.position.y));
+        // foreach (SaveDataUnit<DataResourceMapObject> item in DataManager.Instance.DataPlay.Units.resourcesmap)
+        // {
+        //     GridTileNode tileNode = gridTileHelper.GridTile.GetGridObject(new Vector3Int(item.position.x, item.position.y));
 
-            if (item.idObject == "") continue;
+        //     if (item.idObject == "") continue;
 
-            ScriptableMapObject scriptableData = ResourceSystem.Instance.GetUnit<ScriptableMapObject>(item.idObject);
+        //     ScriptableMapObject scriptableData = ResourceSystem.Instance.GetUnit<ScriptableMapObject>(item.idObject);
 
-            if (scriptableData == null)
-            {
-                Debug.Log($"None resource map data for : [{item.idUnit}]");
-                continue;
-            }
-            BaseResourceMapObject unit = (BaseResourceMapObject)await UnitManager.SpawnUnitToNode(scriptableData, tileNode);
-            // if (item.data.idPlayer >= 0)
-            // {
-            //     Player player = LevelManager.Instance.GetPlayer(item.data.idPlayer);
-            //     unit.SetPlayer(player);
-            // }
-        }
+        //     if (scriptableData == null)
+        //     {
+        //         Debug.Log($"None resource map data for : [{item.idUnit}]");
+        //         continue;
+        //     }
+        //     BaseResourceMapObject unit = (BaseResourceMapObject)await UnitManager.SpawnUnitToNode(scriptableData, tileNode);
+        //     // if (item.data.idPlayer >= 0)
+        //     // {
+        //     //     Player player = LevelManager.Instance.GetPlayer(item.data.idPlayer);
+        //     //     unit.SetPlayer(player);
+        //     // }
+        // }
 
-        foreach (SaveDataUnit<DataExplore> item in DataManager.Instance.DataPlay.Units.explorers)
-        {
-            GridTileNode tileNode = gridTileHelper.GridTile.GetGridObject(new Vector3Int(item.position.x, item.position.y));
+        // foreach (SaveDataUnit<DataExplore> item in DataManager.Instance.DataPlay.Units.explorers)
+        // {
+        //     GridTileNode tileNode = gridTileHelper.GridTile.GetGridObject(new Vector3Int(item.position.x, item.position.y));
 
-            if (item.idObject == "") continue;
+        //     if (item.idObject == "") continue;
 
-            ScriptableMapObject scriptableData = ResourceSystem.Instance.GetUnit<ScriptableMapObject>(item.idObject);
+        //     ScriptableMapObject scriptableData = ResourceSystem.Instance.GetUnit<ScriptableMapObject>(item.idObject);
 
-            if (scriptableData == null)
-            {
-                Debug.Log($"None explore map data for : [{item.idUnit}]");
-                continue;
-            }
-            UnitManager.SpawnUnitToNode(scriptableData, tileNode);
-        }
+        //     if (scriptableData == null)
+        //     {
+        //         Debug.Log($"None explore map data for : [{item.idUnit}]");
+        //         continue;
+        //     }
+        //     UnitManager.SpawnUnitToNode(scriptableData, tileNode);
+        // }
 
-        foreach (SaveDataUnit<DataSkillSchool> item in DataManager.Instance.DataPlay.Units.skillSchools)
-        {
-            GridTileNode tileNode = gridTileHelper.GridTile.GetGridObject(new Vector3Int(item.position.x, item.position.y));
+        // foreach (SaveDataUnit<DataSkillSchool> item in DataManager.Instance.DataPlay.Units.skillSchools)
+        // {
+        //     GridTileNode tileNode = gridTileHelper.GridTile.GetGridObject(new Vector3Int(item.position.x, item.position.y));
 
-            if (item.idObject == "") continue;
+        //     if (item.idObject == "") continue;
 
-            ScriptableMapObject scriptableData = ResourceSystem.Instance.GetUnit<ScriptableMapObject>(item.idObject);
+        //     ScriptableMapObject scriptableData = ResourceSystem.Instance.GetUnit<ScriptableMapObject>(item.idObject);
 
-            if (scriptableData == null)
-            {
-                Debug.Log($"None skillschool map data for : [{item.idUnit}]");
-                continue;
-            }
-            UnitManager.SpawnUnitToNode(scriptableData, tileNode);
-        }
+        //     if (scriptableData == null)
+        //     {
+        //         Debug.Log($"None skillschool map data for : [{item.idUnit}]");
+        //         continue;
+        //     }
+        //     UnitManager.SpawnUnitToNode(scriptableData, tileNode);
+        // }
 
-        foreach (SaveDataUnit<DataMonolith> item in DataManager.Instance.DataPlay.Units.monoliths)
-        {
-            GridTileNode tileNode = gridTileHelper.GridTile.GetGridObject(new Vector3Int(item.position.x, item.position.y));
+        // foreach (SaveDataUnit<DataMonolith> item in DataManager.Instance.DataPlay.Units.monoliths)
+        // {
+        //     GridTileNode tileNode = gridTileHelper.GridTile.GetGridObject(new Vector3Int(item.position.x, item.position.y));
 
-            if (item.idObject == "") continue;
+        //     if (item.idObject == "") continue;
 
-            ScriptableMapObject scriptableData = ResourceSystem.Instance.GetUnit<ScriptableMapObject>(item.idObject);
+        //     ScriptableMapObject scriptableData = ResourceSystem.Instance.GetUnit<ScriptableMapObject>(item.idObject);
 
-            if (scriptableData == null)
-            {
-                Debug.Log($"None monolith map data for : [{item.idUnit}]");
-                continue;
-            }
-            UnitManager.SpawnUnitToNode(scriptableData, tileNode);
-        }
+        //     if (scriptableData == null)
+        //     {
+        //         Debug.Log($"None monolith map data for : [{item.idUnit}]");
+        //         continue;
+        //     }
+        //     UnitManager.SpawnUnitToNode(scriptableData, tileNode);
+        // }
 
-        foreach (SaveDataUnit<DataWarrior> item in DataManager.Instance.DataPlay.Units.warriors)
-        {
-            GridTileNode tileNode = gridTileHelper.GridTile.GetGridObject(new Vector3Int(item.position.x, item.position.y));
-            GridTileNode protectedNode = gridTileHelper.GridTile.GetGridObject(new Vector3Int(item.data.protectedNode.x, item.data.protectedNode.y));
+        // foreach (SaveDataUnit<DataWarrior> item in DataManager.Instance.DataPlay.Units.warriors)
+        // {
+        //     GridTileNode tileNode = gridTileHelper.GridTile.GetGridObject(new Vector3Int(item.position.x, item.position.y));
+        //     GridTileNode protectedNode = gridTileHelper.GridTile.GetGridObject(new Vector3Int(item.data.protectedNode.x, item.data.protectedNode.y));
 
-            if (item.idObject == "") continue;
+        //     if (item.idObject == "") continue;
 
-            ScriptableWarriors scriptableData = ResourceSystem.Instance.GetUnit<ScriptableWarriors>(item.idObject);
+        //     ScriptableWarriors scriptableData = ResourceSystem.Instance.GetUnit<ScriptableWarriors>(item.idObject);
 
-            if (scriptableData == null)
-            {
-                Debug.Log($"None warrior data for : [{item.idUnit}]");
-                continue;
-            }
-            BaseWarriors warrior = (BaseWarriors)await UnitManager.SpawnUnitToNode(scriptableData, tileNode);
-            tileNode.SetProtectedNeigbours(warrior, protectedNode);
-            // Hero.OnLoadUnit(unitHero);
-            // LevelManager.Instance.GetPlayer(unitHero.data.idPlayer).AddHero((Hero)Hero);
-        }
+        //     if (scriptableData == null)
+        //     {
+        //         Debug.Log($"None warrior data for : [{item.idUnit}]");
+        //         continue;
+        //     }
+        //     BaseWarriors warrior = (BaseWarriors)await UnitManager.SpawnUnitToNode(scriptableData, tileNode);
+        //     tileNode.SetProtectedNeigbours(warrior, protectedNode);
+        //     // Hero.OnLoadUnit(unitHero);
+        //     // LevelManager.Instance.GetPlayer(unitHero.data.idPlayer).AddHero((Hero)Hero);
+        // }
     }
 
     private void InitSetting()
@@ -413,12 +413,12 @@ public class MapManager : MonoBehaviour, IDataGame
         operations.Enqueue(new CreateRoadOperation(this));
 
         operations.Enqueue(new CreateMinesOperation(this));
-        // operations.Enqueue(new CreateExploreOperation(this));
-        // operations.Enqueue(new CreateSkillSchoolOperation(this));
+        operations.Enqueue(new CreateExploreOperation(this));
+        operations.Enqueue(new CreateSkillSchoolOperation(this));
 
-        // operations.Enqueue(new CreateResourceEveryWeekOperation(this));
-        // operations.Enqueue(new CreateResourceOperation(this));
-        // operations.Enqueue(new CreateArtifactOperation(this));
+        operations.Enqueue(new CreateResourceEveryWeekOperation(this));
+        operations.Enqueue(new CreateResourceOperation(this));
+        operations.Enqueue(new CreateArtifactOperation(this));
         await GameManager.Instance.LoadingScreenProvider.LoadAndDestroy(operations);
 
         Application.targetFrameRate = -1;
@@ -532,6 +532,7 @@ public class MapManager : MonoBehaviour, IDataGame
             && t.Empty
             && t.Enable
         ).ToList();
+        SetColorForTile(node.position, Color.red);
         if (_potentialNode.Count > 0)
         {
             GridTileNode nodeExitPortal = _potentialNode[Random.Range(0, _potentialNode.Count - 1)];
@@ -570,7 +571,7 @@ public class MapManager : MonoBehaviour, IDataGame
                     GridTileNode nodeWarrior = GetNodeWarrior(nodeInputPortal);
                     if (nodeWarrior != null)
                     {
-                        monolith = (BaseMonolith)await UnitManager.SpawnUnitByTypeUnitAsync(nodeInputPortal, TypeMapObject.Monolith);
+                        monolith = (BaseMonolith)await UnitManager.SpawnMapObjectAsync(nodeInputPortal, TypeMapObject.Monolith);
                         currentArea.portal = monolith;
 
                         BaseWarriors warrior = (BaseWarriors)await UnitManager.SpawnWarriorAsync(nodeWarrior);
@@ -586,7 +587,7 @@ public class MapManager : MonoBehaviour, IDataGame
 
             if (monolith != null)
             {
-                BaseMonolith monolithExit = (BaseMonolith)await UnitManager.SpawnUnitByTypeUnitAsync(nodeExitPortal, TypeMapObject.Monolith);
+                BaseMonolith monolithExit = (BaseMonolith)await UnitManager.SpawnMapObjectAsync(nodeExitPortal, TypeMapObject.Monolith);
 
                 GridTileNode nodeWarrior = GetNodeWarrior(nodeExitPortal);
                 if (nodeWarrior != null)

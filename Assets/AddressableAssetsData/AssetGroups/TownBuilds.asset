@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: TownBuilds
+  m_EditorClassIdentifier: 
+  m_GroupName: TownBuilds
+  m_Data:
+    m_SerializedData: []
+  m_GUID: b070d21c6ed32b04da71f709ba8bda02
+  m_SerializeEntries:
+  - m_GUID: 39cffc0c06c34d14480207ab263ceb68
+    m_Address: Assets/TownBuild/Faction/Castle/Scriptables/Castle.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - build_town
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d6771147da1a9fc439021716d6c3a6c1
+    m_Address: Assets/TownBuild/Faction/Stronghold/Scriptables/Stronghold.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - build_town
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: eb42eff804e93674d8a6cfa1b7b78866
+    m_Address: UITownListBuild
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 752de691cdd7b614b942162f38b99d4d
+    m_Address: UITownBuildItemDialog
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ff9f0e2662daa934c91ad64291e79e72
+    m_Address: Assets/TownBuild/Faction/Stronghold
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: acf512fb84371e647811ba2ecdd745bc
+    m_Address: Assets/TownBuild/Faction/Castle
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 057859fc3bcedfd4f96999d8c46f3221
+    m_Address: Assets/TownBuild/Faction/Castle/Scriptables/Castle_Town_Entity.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - entity
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: eb55ff1bda00c98489bfe686d6842599
+    m_Address: Assets/TownBuild/Faction/Stronghold/Scriptables/Stronghold_Town_Entity.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - entity
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 9a6380555b06f9d46b9bf47dd32221de, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 17f8ac487f525a44398f1d16f602344f, type: 2}
+    - {fileID: 11400000, guid: 7bc5993742f1d9a4fa8d22d23bc632b8, type: 2}

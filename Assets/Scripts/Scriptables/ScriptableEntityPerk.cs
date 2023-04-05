@@ -76,7 +76,7 @@ public struct GroupTwoSkill
 [System.Serializable]
 public struct ItemTwoSkill
 {
-    public ScriptableTwoSkill TwoSkill;
+    public ScriptableAttributeSecondarySkill SecondarySkill;
     public int maxValue;
     public int step;
 }

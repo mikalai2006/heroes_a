@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: New Table Shared Data
   m_EditorClassIdentifier: 
   m_TableCollectionName: New Table
-  m_TableCollectionNameGuidString: 00000000000000000000000000000000
+  m_TableCollectionNameGuidString: 1254141a7d603014ab09e079fca036a1
   m_Entries: []
   m_Metadata:
     m_Items: []
