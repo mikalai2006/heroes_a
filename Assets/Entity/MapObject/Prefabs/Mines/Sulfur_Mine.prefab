@@ -138,7 +138,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3681035251465187759, guid: 74e586b38813f5a4f89bfded10336241, type: 3}
       propertyPath: m_Name
-      value: Sulfur Mine
+      value: Sulfur_Mine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -146,33 +146,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 647730979686007804, guid: 74e586b38813f5a4f89bfded10336241, type: 3}
       insertIndex: -1
       addedObject: {fileID: 970535534043707236}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3681035251465187759, guid: 74e586b38813f5a4f89bfded10336241, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2387801664801252367}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 74e586b38813f5a4f89bfded10336241, type: 3}
 --- !u!4 &4652740532322335971 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 647730979686007804, guid: 74e586b38813f5a4f89bfded10336241, type: 3}
   m_PrefabInstance: {fileID: 5218802495195791135}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &8897216441918738096 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3681035251465187759, guid: 74e586b38813f5a4f89bfded10336241, type: 3}
-  m_PrefabInstance: {fileID: 5218802495195791135}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2387801664801252367
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8897216441918738096}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 001519ef8ab5a1148b6ea37f75a2dff5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Data:
-    idPlayer: 0
-    isMeet: 0

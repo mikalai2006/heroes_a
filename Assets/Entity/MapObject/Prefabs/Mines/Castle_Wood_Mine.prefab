@@ -158,7 +158,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3681035251465187759, guid: 74e586b38813f5a4f89bfded10336241, type: 3}
       propertyPath: m_Name
-      value: Grass_mine_wood
+      value: Castle_Wood_Mine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -166,31 +166,8 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 647730979686007804, guid: 74e586b38813f5a4f89bfded10336241, type: 3}
       insertIndex: 0
       addedObject: {fileID: 7187904574205482558}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3681035251465187759, guid: 74e586b38813f5a4f89bfded10336241, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: -2620595716238434994}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 74e586b38813f5a4f89bfded10336241, type: 3}
---- !u!1 &1193004980385400917 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3681035251465187759, guid: 74e586b38813f5a4f89bfded10336241, type: 3}
-  m_PrefabInstance: {fileID: 2565870618417379834}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &-2620595716238434994
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1193004980385400917}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33179dd4a3095a94d9d0c44ba916becf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Data:
-    idPlayer: 0
-    isMeet: 0
 --- !u!4 &3127466677182298630 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 647730979686007804, guid: 74e586b38813f5a4f89bfded10336241, type: 3}

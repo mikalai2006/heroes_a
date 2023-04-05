@@ -183,47 +183,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4801796740062103124, guid: d0ff865bb06701e4e8477be3ebaf015a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3745098355883587553}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4659698308293948353, guid: d0ff865bb06701e4e8477be3ebaf015a, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 4139595812038793402}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d0ff865bb06701e4e8477be3ebaf015a, type: 3}
 --- !u!4 &8730698805538984647 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4801796740062103124, guid: d0ff865bb06701e4e8477be3ebaf015a, type: 3}
   m_PrefabInstance: {fileID: 4290458198245364883}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &8872185907743729490 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4659698308293948353, guid: d0ff865bb06701e4e8477be3ebaf015a, type: 3}
-  m_PrefabInstance: {fileID: 4290458198245364883}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &4139595812038793402
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8872185907743729490}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6dc89089229cfe4c840eed34441a054, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OccupiedTile:
-    x: 0
-    y: 0
-    level: 0
-    keyArea: 0
-    countRelatedNeighbors: 0
-    typeGround: 0
-    dataNode:
-      speed: 0
-    _isWalkable: 0
-    _isRoad: 0
-    _noPath: 0
-    typeTile: 0
-    isCreated: 0
-  typeMapObject: 0
-  typeUnit: 0
-  Position: {x: 0, y: 0, z: 0}

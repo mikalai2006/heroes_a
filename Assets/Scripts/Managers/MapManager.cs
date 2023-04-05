@@ -547,7 +547,7 @@ public class MapManager : MonoBehaviour, IDataGame
 
             GridTileNode townNode = gridTileHelper.GetNode(currentArea.startPosition.x, currentArea.startPosition.y);
 
-            BaseMonolith monolith = (BaseMonolith)currentArea.portal;
+            MapEntityMonolith monolith = (MapEntityMonolith)currentArea.portal;
 
             if (monolith == null)
             {
@@ -571,10 +571,10 @@ public class MapManager : MonoBehaviour, IDataGame
                     GridTileNode nodeWarrior = GetNodeWarrior(nodeInputPortal);
                     if (nodeWarrior != null)
                     {
-                        monolith = (BaseMonolith)await UnitManager.SpawnMapObjectAsync(nodeInputPortal, TypeMapObject.Monolith);
+                        monolith = (MapEntityMonolith)await UnitManager.SpawnMapObjectAsync(nodeInputPortal, TypeMapObject.Monolith);
                         currentArea.portal = monolith;
 
-                        BaseWarriors warrior = (BaseWarriors)await UnitManager.SpawnWarriorAsync(nodeWarrior);
+                        MapEntityCreature warrior = (MapEntityCreature)await UnitManager.SpawnWarriorAsync(nodeWarrior);
 
                         nodeWarrior.SetProtectedNeigbours(warrior, nodeInputPortal);
                     }
@@ -587,12 +587,12 @@ public class MapManager : MonoBehaviour, IDataGame
 
             if (monolith != null)
             {
-                BaseMonolith monolithExit = (BaseMonolith)await UnitManager.SpawnMapObjectAsync(nodeExitPortal, TypeMapObject.Monolith);
+                MapEntityMonolith monolithExit = (MapEntityMonolith)await UnitManager.SpawnMapObjectAsync(nodeExitPortal, TypeMapObject.Monolith);
 
                 GridTileNode nodeWarrior = GetNodeWarrior(nodeExitPortal);
                 if (nodeWarrior != null)
                 {
-                    BaseWarriors warrior = (BaseWarriors)await UnitManager.SpawnWarriorAsync(nodeWarrior);
+                    MapEntityCreature warrior = (MapEntityCreature)await UnitManager.SpawnWarriorAsync(nodeWarrior);
 
                     nodeWarrior.SetProtectedNeigbours(warrior, nodeExitPortal);
                 }
@@ -665,7 +665,7 @@ public class MapManager : MonoBehaviour, IDataGame
     }
 
 
-    public void DrawCursor(List<GridTileNode> paths, Hero hero)
+    public void DrawCursor(List<GridTileNode> paths, MapEntityHero hero)
     {
         _tileMapCursor.ClearAllTiles();
 

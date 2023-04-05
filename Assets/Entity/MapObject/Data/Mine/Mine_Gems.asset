@@ -68,6 +68,7 @@ MonoBehaviour:
     m_SubObjectType: 
     m_EditorAssetChanged: 0
   TypeMapObject: 21
+  typeGround: 1000
   typeInput: 0
   listTypeNoPath: 0c000000
   TypeWorkPerk: 2

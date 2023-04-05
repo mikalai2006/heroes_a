@@ -124,7 +124,7 @@ public class GridTileNode : IHeapItem<GridTileNode>
         _ocuppiedUnit = unit;
     }
 
-    public void SetProtectedNeigbours(BaseWarriors warriorUnit, GridTileNode protectedNode = null)
+    public void SetProtectedNeigbours(MapEntityCreature warriorUnit, GridTileNode protectedNode = null)
     {
         // if (warriorUnit == null) return;
 

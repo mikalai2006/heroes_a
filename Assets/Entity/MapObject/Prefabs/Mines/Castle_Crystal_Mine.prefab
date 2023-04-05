@@ -183,7 +183,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3681035251465187759, guid: 74e586b38813f5a4f89bfded10336241, type: 3}
       propertyPath: m_Name
-      value: Diamond_grass_mine
+      value: Castle_Crystal_Mine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -191,33 +191,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 647730979686007804, guid: 74e586b38813f5a4f89bfded10336241, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1601486687501274441}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3681035251465187759, guid: 74e586b38813f5a4f89bfded10336241, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: -8382628283114392520}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 74e586b38813f5a4f89bfded10336241, type: 3}
 --- !u!4 &6718904378505439734 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 647730979686007804, guid: 74e586b38813f5a4f89bfded10336241, type: 3}
   m_PrefabInstance: {fileID: 6179893116159486474}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &7410336758221806501 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3681035251465187759, guid: 74e586b38813f5a4f89bfded10336241, type: 3}
-  m_PrefabInstance: {fileID: 6179893116159486474}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &-8382628283114392520
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7410336758221806501}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d2bb2602fdd2df40acf5dc92313cb3d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Data:
-    idPlayer: 0
-    isMeet: 0

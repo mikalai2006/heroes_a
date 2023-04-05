@@ -14,7 +14,7 @@ public class UITownInfo : MonoBehaviour
     private VisualElement _townInfoHero;
     private VisualElement _townInfoHeroVisit;
     private VisualElement _townInfo;
-    private BaseTown _activeTown;
+    private MapEntityTown _activeTown;
     private Player _activePlayer;
 
     public void Init(VisualElement parent)

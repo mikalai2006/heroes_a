@@ -183,7 +183,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3681035251465187759, guid: 74e586b38813f5a4f89bfded10336241, type: 3}
       propertyPath: m_Name
-      value: MercuryMine
+      value: Mercury_Mine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -191,31 +191,8 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 647730979686007804, guid: 74e586b38813f5a4f89bfded10336241, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3583683294684537919}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3681035251465187759, guid: 74e586b38813f5a4f89bfded10336241, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: -4922137832024158334}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 74e586b38813f5a4f89bfded10336241, type: 3}
---- !u!1 &5605011308523189560 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3681035251465187759, guid: 74e586b38813f5a4f89bfded10336241, type: 3}
-  m_PrefabInstance: {fileID: 9141368365050725527}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &-4922137832024158334
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5605011308523189560}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c613a290925faea49bffb65e63d01bca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Data:
-    idPlayer: 0
-    isMeet: 0
 --- !u!4 &8512254081100990315 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 647730979686007804, guid: 74e586b38813f5a4f89bfded10336241, type: 3}

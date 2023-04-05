@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 647730979686007804}
   - component: {fileID: 2833722278812260305}
+  - component: {fileID: 5788149983345288655}
   m_Layer: 0
   m_Name: Base Mines
   m_TagString: Untagged
@@ -79,6 +80,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.5, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &5788149983345288655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3681035251465187759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a38aa0ee9683ed44ca7a8b733ee63c78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Data:
+    idPlayer: 0
+    isMeet: 0
 --- !u!1 &5703710347643230175
 GameObject:
   m_ObjectHideFlags: 0

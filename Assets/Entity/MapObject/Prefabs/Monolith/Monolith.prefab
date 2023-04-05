@@ -154,46 +154,8 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6094394588579335982, guid: da403c6211b711f43b2612541bc50347, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6335224936055040865}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2270660611685636395, guid: da403c6211b711f43b2612541bc50347, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: -10606334323982055}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: da403c6211b711f43b2612541bc50347, type: 3}
---- !u!1 &347134899000516258 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2270660611685636395, guid: da403c6211b711f43b2612541bc50347, type: 3}
-  m_PrefabInstance: {fileID: 1968711382126774153}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &-10606334323982055
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 347134899000516258}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3826a49b6d1223e4fa096db29f7ca64f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OccupiedTile:
-    x: 0
-    y: 0
-    level: 0
-    keyArea: 0
-    countRelatedNeighbors: 0
-    typeGround: 0
-    dataNode:
-      speed: 0
-    _isWalkable: 0
-    _isRoad: 0
-    _noPath: 0
-    typeTile: 0
-    isCreated: 0
-  typeMapObject: 0
-  typeUnit: 0
-  Position: {x: 0, y: 0, z: 0}
-  keyArea: 0
 --- !u!4 &5747128608057116839 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6094394588579335982, guid: da403c6211b711f43b2612541bc50347, type: 3}

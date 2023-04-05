@@ -60,7 +60,7 @@ public class UnitManager : MonoBehaviour
                 ScriptableEntityHero randomHero = town.heroes[Random.Range(0, town.heroes.Count)];
                 if (randomHero != null)
                 {
-                    Hero createdHero = (Hero)await SpawnEntityToNode(randomHero, gridNode);
+                    MapEntityHero createdHero = (MapEntityHero)await SpawnEntityToNode(randomHero, gridNode);
                     gridNode.SetOcuppiedUnit(createdHero);
                     LevelManager.Instance.GetArea(keyArea).hero = createdHero;
 
@@ -137,13 +137,13 @@ public class UnitManager : MonoBehaviour
     //     return createdUnit;
     // }
 
-    public async Task<BaseWarriors> SpawnWarriorAsync(GridTileNode node, TypeGround typeGroud = TypeGround.None, int level = 1)
+    public async Task<MapEntityCreature> SpawnWarriorAsync(GridTileNode node, TypeGround typeGroud = TypeGround.None, int level = 1)
     {
         //if (node == null) return null;
 
         List<ScriptableEntityCreature> listWarriors = ResourceSystem.Instance.GetEntityByType<ScriptableEntityCreature>(TypeEntity.Creature);
         ScriptableEntityCreature unit = listWarriors[Random.Range(0, listWarriors.Count)];
-        BaseWarriors createdUnit = (BaseWarriors)await SpawnEntityToNode(unit, node);
+        MapEntityCreature createdUnit = (MapEntityCreature)await SpawnEntityToNode(unit, node);
 
         // node.OccupiedUnit = createdUnit;
         return createdUnit;

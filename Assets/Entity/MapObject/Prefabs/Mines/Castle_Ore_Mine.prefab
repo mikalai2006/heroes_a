@@ -162,7 +162,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3681035251465187759, guid: 74e586b38813f5a4f89bfded10336241, type: 3}
       propertyPath: m_Name
-      value: Grass_mine_stone
+      value: Castle_Ore_Mine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -170,42 +170,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 647730979686007804, guid: 74e586b38813f5a4f89bfded10336241, type: 3}
       insertIndex: 0
       addedObject: {fileID: 5666162441210800469}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3681035251465187759, guid: 74e586b38813f5a4f89bfded10336241, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: -6281530293542125046}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 74e586b38813f5a4f89bfded10336241, type: 3}
 --- !u!4 &95402348527744945 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 647730979686007804, guid: 74e586b38813f5a4f89bfded10336241, type: 3}
   m_PrefabInstance: {fileID: 698018406473446477}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &4231824560322594274 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3681035251465187759, guid: 74e586b38813f5a4f89bfded10336241, type: 3}
-  m_PrefabInstance: {fileID: 698018406473446477}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &-6281530293542125046
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4231824560322594274}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3808635edba6fcb4e92718fe3e4237bb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OccupiedTile:
-    x: 0
-    y: 0
-    keyArea: 0
-    typeGround: 0
-    _isWalkable: 0
-    _isRoad: 0
-    typeTile: 0
-  typeMapObject: 0
-  typeUnit: 0
-  Position: {x: 0, y: 0, z: 0}
-  ScriptableData: {fileID: 0}

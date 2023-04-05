@@ -25,16 +25,16 @@ public class PlayerData
 [System.Serializable]
 public class PlayerDataReferences
 {
-    [SerializeField] public List<Hero> ListHero;
+    [SerializeField] public List<MapEntityHero> ListHero;
     [SerializeField] public List<BaseMapEntity> ListTown;
     [SerializeField] public List<BaseMapEntity> ListMines;
-    [SerializeField] public Hero ActiveHero;
-    [SerializeField] public BaseTown ActiveTown;
+    [SerializeField] public MapEntityHero ActiveHero;
+    [SerializeField] public MapEntityTown ActiveTown;
 
     public PlayerDataReferences()
     {
         ListTown = new List<BaseMapEntity>();
-        ListHero = new List<Hero>();
+        ListHero = new List<MapEntityHero>();
         ListMines = new List<BaseMapEntity>();
     }
 }
@@ -61,7 +61,7 @@ public class Player
 
         }
     }
-    public Hero ActiveHero
+    public MapEntityHero ActiveHero
     {
         get { return _data.PlayerDataReferences.ActiveHero; }
         set
@@ -80,7 +80,7 @@ public class Player
         }
     }
 
-    public BaseTown ActiveTown
+    public MapEntityTown ActiveTown
     {
         get { return _data.PlayerDataReferences.ActiveTown; }
         set
@@ -107,7 +107,7 @@ public class Player
         _data.nosky = new SerializableShortPosition();
     }
 
-    public void AddHero(Hero hero)
+    public void AddHero(MapEntityHero hero)
     {
         hero.SetPlayer(DataPlayer);
         DataPlayer.PlayerDataReferences.ListHero.Add(hero);
@@ -124,7 +124,7 @@ public class Player
         }
     }
 
-    public void AddMines(BaseMines mine)
+    public void AddMines(MapEntityMine mine)
     {
         mine.SetPlayer(this);
         DataPlayer.PlayerDataReferences.ListMines.Add(mine);
@@ -150,7 +150,7 @@ public class Player
         return result;
     }
 
-    public Hero GetHero(int id)
+    public MapEntityHero GetHero(int id)
     {
         return DataPlayer.PlayerDataReferences.ListHero[id];
     }
@@ -167,7 +167,7 @@ public class Player
 
     public List<GridTileNode> FindPathForHero(Vector3Int endPoint, bool isTrigger, bool force)
     {
-        Hero activeHero = DataPlayer.PlayerDataReferences.ActiveHero;
+        MapEntityHero activeHero = DataPlayer.PlayerDataReferences.ActiveHero;
         Vector3Int startPoint = new Vector3Int(activeHero.Position.x, activeHero.Position.y);
         List<GridTileNode> path = GameManager.Instance.MapManager.GridTileHelper().FindPath(startPoint, endPoint, isTrigger, force);
 
@@ -184,7 +184,7 @@ public class Player
 
     public void AddTown(BaseMapEntity town)
     {
-        BaseTown _town = (BaseTown)town;
+        MapEntityTown _town = (MapEntityTown)town;
         _town.SetPlayer(DataPlayer);
         DataPlayer.PlayerDataReferences.ListTown.Add(town);
 

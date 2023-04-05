@@ -34,7 +34,7 @@ public class UITownBuildItemDialogWindow : MonoBehaviour
 
     private DataDialogBuild _buildDialog;
     private DataResultBuildDialog _dataResultDialog;
-    private BaseTown _activeTown;
+    private MapEntityTown _activeTown;
     private Player _activePlayer;
     private ScriptableEntityTown _scriptObjectTown;
     // private ScriptableBuildTown _scriptObjectBuildTown;

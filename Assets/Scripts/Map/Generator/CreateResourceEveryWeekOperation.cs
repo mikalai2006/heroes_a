@@ -49,7 +49,7 @@ public class CreateResourceEveryWeekOperation : ILoadingOperation
                     if (nodeWarrior != null && currentNode != null && _root.gridTileHelper.CalculateNeighbours(currentNode) == 8)
                     {
 
-                        BaseWarriors warrior = await _root.UnitManager.SpawnWarriorAsync(nodeWarrior);
+                        MapEntityCreature warrior = await _root.UnitManager.SpawnWarriorAsync(nodeWarrior);
 
                         BaseMapEntity unit = await _root.UnitManager.SpawnMapObjectAsync(
                             currentNode,

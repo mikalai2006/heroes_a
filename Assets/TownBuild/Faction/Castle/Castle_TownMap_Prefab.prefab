@@ -110,7 +110,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6756399688571568113, guid: d294c356a916e9641b254fe2cccf2330, type: 3}
       propertyPath: m_Name
-      value: Grass
+      value: Castle_TownMap_Prefab
       objectReference: {fileID: 0}
     - target: {fileID: 7540861752308981539, guid: d294c356a916e9641b254fe2cccf2330, type: 3}
       propertyPath: m_RootOrder
@@ -162,47 +162,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7540861752308981539, guid: d294c356a916e9641b254fe2cccf2330, type: 3}
       insertIndex: 0
       addedObject: {fileID: 270124842051018674}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6756399688571568113, guid: d294c356a916e9641b254fe2cccf2330, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 7611858330927151199}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d294c356a916e9641b254fe2cccf2330, type: 3}
 --- !u!4 &6502749194387252521 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7540861752308981539, guid: d294c356a916e9641b254fe2cccf2330, type: 3}
   m_PrefabInstance: {fileID: 3645912658774604298}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &8024129787935196667 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6756399688571568113, guid: d294c356a916e9641b254fe2cccf2330, type: 3}
-  m_PrefabInstance: {fileID: 3645912658774604298}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &7611858330927151199
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8024129787935196667}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7097a8c8da6c37409730c516d05e9fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OccupiedTile:
-    x: 0
-    y: 0
-    level: 0
-    keyArea: 0
-    countRelatedNeighbors: 0
-    typeGround: 0
-    dataNode:
-      speed: 0
-    _isWalkable: 0
-    _isRoad: 0
-    _noPath: 0
-    typeTile: 0
-    isCreated: 0
-  typeMapObject: 0
-  typeUnit: 0
-  Position: {x: 0, y: 0, z: 0}

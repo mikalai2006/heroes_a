@@ -193,7 +193,7 @@ public class UIGameAside : MonoBehaviour
 
             if (i < player.DataPlayer.PlayerDataReferences.ListHero.Count)
             {
-                Hero hero = player.DataPlayer.PlayerDataReferences.ListHero[i];
+                MapEntityHero hero = player.DataPlayer.PlayerDataReferences.ListHero[i];
 
                 var hit = newButtonHero.Q<VisualElement>(NameHit);
                 // hit.UnbindAllProperties();
@@ -255,7 +255,7 @@ public class UIGameAside : MonoBehaviour
 
             if (i < player.DataPlayer.PlayerDataReferences.ListTown.Count)
             {
-                BaseTown town = (BaseTown)player.DataPlayer.PlayerDataReferences.ListTown[i];
+                MapEntityTown town = (MapEntityTown)player.DataPlayer.PlayerDataReferences.ListTown[i];
 
                 newButtonTown.Q<VisualElement>("image").style.backgroundImage = new StyleBackground(town.ScriptableData.MenuSprite);
 
@@ -326,7 +326,7 @@ public class UIGameAside : MonoBehaviour
     private void OnToogleEnableBtnGoHero()
     {
         Button btn = _aside.rootVisualElement.Q<Button>(NameBtnGoHero);
-        Hero activeHero = player.ActiveHero;
+        MapEntityHero activeHero = player.ActiveHero;
         if (activeHero != null)
         {
             btn.SetEnabled(activeHero.CanMove);
@@ -337,10 +337,10 @@ public class UIGameAside : MonoBehaviour
         }
     }
 
-    private void OnSetActiveHero(ClickEvent evt, Hero hero)
+    private void OnSetActiveHero(ClickEvent evt, MapEntityHero hero)
     {
 
-        Hero activeHero = player.ActiveHero;
+        MapEntityHero activeHero = player.ActiveHero;
 
         // OnResetFocusButton();
         ChangeHeroInfo();
@@ -372,7 +372,7 @@ public class UIGameAside : MonoBehaviour
 
     private void ChangeHeroInfo()
     {
-        Hero activeHero = player.ActiveHero;
+        MapEntityHero activeHero = player.ActiveHero;
         if (activeHero == null) return;
 
         Debug.Log("Change info hero");

@@ -183,35 +183,8 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 9015841915795190966, guid: d63be860d7ebeef47a59c1605f048bf3, type: 3}
       insertIndex: -1
       addedObject: {fileID: 581200229581766189}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3419526075034768516, guid: d63be860d7ebeef47a59c1605f048bf3, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: -2965691298858039390}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d63be860d7ebeef47a59c1605f048bf3, type: 3}
---- !u!1 &2628570371518371340 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3419526075034768516, guid: d63be860d7ebeef47a59c1605f048bf3, type: 3}
-  m_PrefabInstance: {fileID: 796598418307416712}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &-2965691298858039390
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2628570371518371340}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef68e74c8317ee04fb9e10d67657aba6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Data:
-    idPlayer: 0
-    nextPosition: {x: 0, y: 0, z: 0}
-    speed: 0
-    hit: 0
-    mana: 0
-    name: 
 --- !u!4 &8507478358720165438 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9015841915795190966, guid: d63be860d7ebeef47a59c1605f048bf3, type: 3}
