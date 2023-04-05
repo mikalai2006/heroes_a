@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44402242, g: 0.49316543, b: 0.5722324, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -823,6 +823,7 @@ GameObject:
   - component: {fileID: 1729775339}
   - component: {fileID: 1729775340}
   - component: {fileID: 1729775341}
+  - component: {fileID: 1729775342}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -872,6 +873,45 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2842a4f58a310664099d60012603f767, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1729775342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1729775338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69beb381e244f92449b8c4cf954630e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TrackedObjects:
+  - rid: 1339300946213076994
+  references:
+    version: 2
+    RefIds:
+    - rid: 1339300946213076994
+      type: {class: TrackedMonoBehaviourObject, ns: UnityEngine.Localization.PropertyVariants.TrackedObjects, asm: Unity.Localization}
+      data:
+        m_Target: {fileID: 1729775341}
+        m_TrackedProperties:
+          items:
+          - rid: 1339300946213076995
+        m_UpdateType: 0
+        m_Changed:
+          m_PersistentCalls:
+            m_Calls: []
+    - rid: 1339300946213076995
+      type: {class: BoolTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
+      data:
+        m_PropertyPath: m_Enabled
+        m_VariantData:
+        - localeIdentifier:
+            m_Code: ru
+          value: 0
+        - localeIdentifier:
+            m_Code: en
+          value: 1
 --- !u!1 &1866570066
 GameObject:
   m_ObjectHideFlags: 0
