@@ -43,6 +43,76 @@ MonoBehaviour:
     m_SerializedLabels:
     - gamemode
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 657dada7c950f8d4ab4c8d7656a600d7
+    m_Address: Assets/Creature/Dungeon/Prefabs/Beholder/Beholder.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b947ce9a6b9bc4445ab9f7731ab3698f
+    m_Address: Assets/Creature/Dungeon/Prefabs/InfernalTroglodyte/InfernalTroglodyte.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b796b809e0a0750488db1b826e7b14c3
+    m_Address: Assets/Creature/Dungeon/Prefabs/Troglodyte/Troglodyte.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ddc9dee3438573f499cd444a4d9b5763
+    m_Address: Assets/Creature/Dungeon/Prefabs/Harpy/Harpy.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 17061c3c4355f164b926b10075b66cb6
+    m_Address: Assets/Creature/Dungeon/Prefabs/HarpyHag/HarpyHag.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9966e8b0097ed63449e84f6623f47abb
+    m_Address: Assets/Creature/Dungeon/Prefabs/EvilEye/EvilEye.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2e59d200de3103c489eb07c76222144f
+    m_Address: Assets/Creature/Dungeon/Prefabs/Medusa/Medusa.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cdf1c212b35f7254a88d5a6972c187de
+    m_Address: Assets/Creature/Dungeon/Prefabs/MedusaQueen/MedusaQueen.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 969a0b16b856b924d8a725141eee3a64
+    m_Address: Assets/Creature/Dungeon/Prefabs/Minotaur/Minotaur.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ae5b6e3f0ea772a499b09e9ff6646730
+    m_Address: Assets/Creature/Dungeon/Prefabs/MinotaurKing/MinotaurKing.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 34a83038fe39a1d4bbbccf5507f391c2
+    m_Address: Assets/Creature/Dungeon/Prefabs/Scorpicore/Scorpicore.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1a4c15535b0ffc5469480f15854c3a31
+    m_Address: Assets/Creature/Dungeon/Prefabs/BlackDragon/BlackDragon.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: be42f45b75dbeee4b8eee9cd333eebee
+    m_Address: Assets/Creature/Dungeon/Prefabs/RedDragon/RedDragon.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: dd56d97d1393d334095f9c746fc3e100
+    m_Address: Assets/Creature/Dungeon/Prefabs/Manticore/Manticore.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 9a6380555b06f9d46b9bf47dd32221de, type: 2}
   m_SchemaSet:
