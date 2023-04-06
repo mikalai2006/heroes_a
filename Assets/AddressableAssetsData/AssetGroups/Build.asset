@@ -113,6 +113,216 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 08bef408e9584df4699826355cba854f
+    m_Address: Assets/Creature/Inferno/Prefabs/Familiar/Familiar.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 47eee892b6f2d74418d1428fb6e192e6
+    m_Address: Assets/Creature/Inferno/Prefabs/Imp/Imp.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ba511fa8cf4908541bf8b2384eabb344
+    m_Address: Assets/Creature/Inferno/Prefabs/Gog/Gog.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b2b6bd863000dde4f876f5badda3a4d6
+    m_Address: Assets/Creature/Inferno/Prefabs/Magog/Magog.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8ee6b3567d4a61541bab8e0d0d3b0438
+    m_Address: Assets/Creature/Inferno/Prefabs/Cerberus/Cerberus.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b377d89a791b453448291f2c9de183e0
+    m_Address: Assets/Creature/Inferno/Prefabs/HellHound/HellHound.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d0a851a6fda729e48bd540f1d185ea3e
+    m_Address: Assets/Creature/Inferno/Prefabs/Demon/Demon.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 99bbe73fc3b2d774aa03c9d1de601848
+    m_Address: Assets/Creature/Inferno/Prefabs/HornedDemon/HornedDemon.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0c7894c66ec31864e8d5f7354533d0f8
+    m_Address: Assets/Creature/Inferno/Prefabs/PitFiend/PitFiend.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9f6c419e3e28a984e96accfb3dc9bbd9
+    m_Address: Assets/Creature/Inferno/Prefabs/PitLord/PitLord.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 668c895471f2d234286b7e8e6235e2e9
+    m_Address: Assets/Creature/Inferno/Prefabs/Efreeti/Efreeti.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: af995d3f99149914eb277e66318f459a
+    m_Address: Assets/Creature/Inferno/Prefabs/EfreetSultan/EfreetSultan.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4ac6a57aac40c444599e9dcbb56e1e2c
+    m_Address: Assets/Creature/Inferno/Prefabs/Archdevil/Archdevil.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2566a08066080d6479d9fef099ab0a0f
+    m_Address: Assets/Creature/Inferno/Prefabs/Devil/Devil.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ecab82c677fb0bd42a6b7e982b07646d
+    m_Address: Assets/Creature/Necropolis/Prefabs/Skeleton/Skeleton.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ebda8c4ec6e0b544fa47d7a443e07877
+    m_Address: Assets/Creature/Necropolis/Prefabs/SkeletonWarrior/SkeletonWarrior.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a1a6a210daf3b8247b5541463e378b17
+    m_Address: Assets/Creature/Necropolis/Prefabs/WalkingDead/WalkingDead.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4d4ec5cf2ff97ff42835c6f578d8ebb0
+    m_Address: Assets/Creature/Necropolis/Prefabs/Zombie/Zombie.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 031aa43f9f6d64d42b503d22042ef699
+    m_Address: Assets/Creature/Necropolis/Prefabs/Wight/Wight.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fcd5379d1f5fef94296be83f91c66685
+    m_Address: Assets/Creature/Necropolis/Prefabs/Wraith/Wraith.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f12aafbf61993f748ac11b998faf048a
+    m_Address: Assets/Creature/Necropolis/Prefabs/Vampire/Vampire.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 982763ff65f04c446b6ae91ffa9204bd
+    m_Address: Assets/Creature/Necropolis/Prefabs/VampireLord/VampireLord.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6f1e8bd30a44bc544bc1bfe8fe80aa22
+    m_Address: Assets/Creature/Necropolis/Prefabs/Lich/Lich.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 84ecdca97763294439f729fb50a59946
+    m_Address: Assets/Creature/Necropolis/Prefabs/PowerLich/PowerLich.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 94b08d1bbff9c4f4296b887699953111
+    m_Address: Assets/Creature/Necropolis/Prefabs/BlackKnight/BlackKnight.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 359c5bc40e05ccc4db484abec162ee83
+    m_Address: Assets/Creature/Necropolis/Prefabs/DreadKnight/DreadKnight.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1a8d2fdc72ed15b4eb6bae2650f73c28
+    m_Address: Assets/Creature/Necropolis/Prefabs/BoneDragon/BoneDragon.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e0964ae6c4cf78145a06b1bcd00febe9
+    m_Address: Assets/Creature/Necropolis/Prefabs/GhostDragon/GhostDragon.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 11d60cf20f8e6eb40913f2178ee0a201
+    m_Address: Assets/Creature/Rampart/Prefabs/Centaur/Centaur.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b82e98b34b3a92941aa8bdc3a3f20ff4
+    m_Address: Assets/Creature/Rampart/Prefabs/CentaurCaptain/CentaurCaptain.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 79580d90d5860d140bc26cd1886e7498
+    m_Address: Assets/Creature/Rampart/Prefabs/Dwarf/Dwarf.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b80e6712305998a4aa76f709fdcf0762
+    m_Address: Assets/Creature/Rampart/Prefabs/BattleDwarf/BattleDwarf.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9feb5381ef041d14eb8ac731bf0637ca
+    m_Address: Assets/Creature/Rampart/Prefabs/WoodElf/WoodElf.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cb65501fee7eec0409e5acb3f8dd125b
+    m_Address: Assets/Creature/Rampart/Prefabs/GrandElf/GrandElf.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6d32e2d42d6afe54bba3b0148d57a528
+    m_Address: Assets/Creature/Rampart/Prefabs/Pegasus/Pegasus.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1dc903236baa5a24d99b7f9091b9b6a3
+    m_Address: Assets/Creature/Rampart/Prefabs/SilverPegasus/SilverPegasus.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 706cbdbf06651064b9f0a8208fc7d8fa
+    m_Address: Assets/Creature/Rampart/Prefabs/DendroidGuard/DendroidGuard.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 34fee6e4337b4074a9790c67e2ca00ab
+    m_Address: Assets/Creature/Rampart/Prefabs/DendroidSoldier/DendroidSoldier.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4e01f52c3f3b6f54d95aa1dd1867458a
+    m_Address: Assets/Creature/Rampart/Prefabs/Unicorn/Unicorn.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 587097eea7cbf734d90a166dd5cf9dbe
+    m_Address: Assets/Creature/Rampart/Prefabs/WarUnicorn/WarUnicorn.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5be626d21fc127841b35fa785eb68460
+    m_Address: Assets/Creature/Rampart/Prefabs/GreenDragon/GreenDragon.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 32b4a8b3347aabe4caaa01176dd687cf
+    m_Address: Assets/Creature/Rampart/Prefabs/GoldDragon/GoldDragon.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 9a6380555b06f9d46b9bf47dd32221de, type: 2}
   m_SchemaSet:
