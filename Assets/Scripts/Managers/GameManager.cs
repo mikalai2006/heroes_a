@@ -75,7 +75,7 @@ public class GameManager : StaticInstance<GameManager>
             case GameState.ShowMenu:
                 break;
             case GameState.ChangeResources:
-                HandleSaveGame();
+                // HandleSaveGame();
                 break;
             case GameState.StartMoveHero:
                 HandleStartMoveHero();

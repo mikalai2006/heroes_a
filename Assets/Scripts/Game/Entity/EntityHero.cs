@@ -5,11 +5,11 @@ using System.Linq;
 using UnityEngine;
 
 [Serializable]
-public class EntityHero : BaseEntity, IDataPlay
+public class EntityHero : BaseEntity, ISaveDataPlay
 {
+    [SerializeField] public DataHero Data = new DataHero();
     public ScriptableEntityHero ConfigData => (ScriptableEntityHero)ScriptableData;
     private bool _canMove = false;
-    [SerializeField] public DataHero Data = new DataHero();
 
     public bool CanMove
     {
@@ -20,29 +20,31 @@ public class EntityHero : BaseEntity, IDataPlay
         private set { }
     }
 
-    public EntityHero(GridTileNode node)
+    public EntityHero(GridTileNode node, SaveDataUnit<DataHero> saveData = null)
     {
-        List<ScriptableEntityHero> list = ResourceSystem.Instance
-            .GetEntityByType<ScriptableEntityHero>(TypeEntity.Hero)
-            .ToList();
-        ScriptableData = list[UnityEngine.Random.Range(0, list.Count)];
-        Data.hit = 100f;
-        Data.speed = 100;
-        Data.name = ScriptableData.name;
+        if (saveData == null)
+        {
+            List<ScriptableEntityHero> list = ResourceSystem.Instance
+                .GetEntityByType<ScriptableEntityHero>(TypeEntity.Hero)
+                .ToList();
+            ScriptableData = list[UnityEngine.Random.Range(0, list.Count)];
 
-        Data.path = new List<GridTileNode>();
+            Data.hit = 100f;
+            Data.speed = 100;
+            Data.name = ScriptableData.name;
+
+            Data.path = new List<GridTileNode>();
+        }
+        else
+        {
+            ScriptableData = ResourceSystem.Instance
+                .GetEntityByType<ScriptableEntityHero>(TypeEntity.Hero)
+                .Where(t => t.idObject == saveData.idObject)
+                .First();
+            Data = saveData.data;
+            idUnit = saveData.idUnit;
+        }
         base.Init(ScriptableData, node);
-    }
-
-    public void LoadDataPlay(DataPlay data)
-    {
-        // throw new NotImplementedException();
-    }
-
-    public void SaveDataPlay(ref DataPlay data)
-    {
-        var sdata = SaveUnit(Data);
-        data.Units.heroes.Add(sdata);
     }
 
     public float CalculateHitByNode(GridTileNode node)
@@ -81,12 +83,26 @@ public class EntityHero : BaseEntity, IDataPlay
     public override void SetPlayer(Player player)
     {
         base.SetPlayer(player);
+        Data.idPlayer = player.DataPlayer.id;
         player.AddHero(this);
     }
+
+    #region SaveLoadData
+    // public void LoadDataPlay(DataPlay data)
+    // {
+    //     // throw new NotImplementedException();
+    // }
+
+    public void SaveDataPlay(ref DataPlay data)
+    {
+        var sdata = SaveUnit(Data);
+        data.entity.heroes.Add(sdata);
+    }
+    #endregion
 }
 
 [System.Serializable]
-public class DataHero
+public struct DataHero
 {
     public int idPlayer;
     public Vector3Int nextPosition;

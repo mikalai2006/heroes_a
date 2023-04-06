@@ -1,36 +1,79 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
 using UnityEngine;
 
-public class EntityMine : BaseEntity, IDataPlay
+[Serializable]
+public struct DataMine
 {
+    public int idPlayer;
+    public bool isMeet;
+
+}
+[Serializable]
+public class EntityMine : BaseEntity, ISaveDataPlay
+{
+    [SerializeField] public DataMine Data = new DataMine();
     public ScriptableEntityMine ConfigData => (ScriptableEntityMine)ScriptableData;
-    public EntityMine(GridTileNode node)
+    public EntityMine(GridTileNode node, SaveDataUnit<DataMine> saveData = null)
     {
-        List<ScriptableEntityMine> list = ResourceSystem.Instance
-            .GetEntityByType<ScriptableEntityMine>(TypeEntity.Mine)
-            .ToList();
-        ScriptableData = list[UnityEngine.Random.Range(0, list.Count)];
+        if (saveData == null)
+        {
+            List<ScriptableEntityMine> list = ResourceSystem.Instance
+                .GetEntityByType<ScriptableEntityMine>(TypeEntity.Mine)
+                .ToList();
+            ScriptableData = list[UnityEngine.Random.Range(0, list.Count)];
+            Data.idPlayer = -1;
+        }
+        else
+        {
+            ScriptableData = ResourceSystem.Instance
+                .GetEntityByType<ScriptableEntityMine>(TypeEntity.Mine)
+                .Where(t => t.idObject == saveData.idObject)
+                .First();
+            Data = saveData.data;
+            idUnit = saveData.idUnit;
+        }
         base.Init(ScriptableData, node);
     }
 
-    public void SetPlayer(PlayerData data)
+    public override void SetPlayer(Player player)
     {
-        //Debug.Log($"Town SetPlayer::: id{data.id}-idArea{data.idArea}");
-
+        base.SetPlayer(player);
+        Data.idPlayer = player.DataPlayer.id;
+        player.AddMines(this);
     }
 
-    public void LoadDataPlay(DataPlay data)
+    #region Change GameState
+    public override void OnAfterStateChanged(GameState newState)
     {
-        //throw new System.NotImplementedException();
+        base.OnAfterStateChanged(newState);
+        if (newState == GameState.StepNextPlayer)
+        {
+            Player player = LevelManager.Instance.ActivePlayer;
+            if (Data.idPlayer == player.DataPlayer.id)
+            {
+                if (ConfigData.Resources.Count > 0)
+                {
+                    var res = ConfigData.Resources[0].ListVariant[0].Resource;
+                    player.ChangeResource(res.TypeResource, res.maxValue);
+                }
+            }
+        }
     }
+    #endregion
+
+    #region SaveLoadData
+    // public void LoadDataPlay(DataPlay data)
+    // {
+    //     throw new System.NotImplementedException();
+    // }
 
     public void SaveDataPlay(ref DataPlay data)
     {
-        // var sdata = SaveUnit(Data);
-        // data.Units.warriors.Add(sdata);
+        var sdata = SaveUnit(Data);
+        data.entity.mines.Add(sdata);
     }
+    #endregion
 }

@@ -5,21 +5,36 @@ using System.Linq;
 
 using UnityEngine;
 
-public class EntityTown : BaseEntity, IDataPlay
+[Serializable]
+public class EntityTown : BaseEntity, ISaveDataPlay
 {
-    public ScriptableEntityTown ConfigData => (ScriptableEntityTown)ScriptableData;
     [SerializeField] public DataTown Data = new DataTown();
+    public ScriptableEntityTown ConfigData => (ScriptableEntityTown)ScriptableData;
 
-    public EntityTown(GridTileNode node)
+    public EntityTown(GridTileNode node, SaveDataUnit<DataTown> saveData = null)
     {
-        List<ScriptableEntityTown> list = ResourceSystem.Instance
-            .GetEntityByType<ScriptableEntityTown>(TypeEntity.Town)
-            .ToList();
-        ScriptableData = list[UnityEngine.Random.Range(0, list.Count)];
-        Data.idPlayer = -1;
-        Data.name = ConfigData.name;
-        Data.ProgressBuilds = ConfigData.StartProgressBuilds.ToList(); // TypeBuild.None | TypeBuild.Tavern_1;
-        Data.LevelsBuilds = new SerializableDictionary<TypeBuild, int>();
+        if (saveData == null)
+        {
+            List<ScriptableEntityTown> list = ResourceSystem.Instance
+                .GetEntityByType<ScriptableEntityTown>(TypeEntity.Town)
+                .ToList();
+            ScriptableData = list[UnityEngine.Random.Range(0, list.Count)];
+
+            Data.idPlayer = -1;
+            Data.name = ConfigData.name;
+            Data.ProgressBuilds = ConfigData.StartProgressBuilds.ToList(); // TypeBuild.None | TypeBuild.Tavern_1;
+            Data.LevelsBuilds = new SerializableDictionary<TypeBuild, int>();
+        }
+        else
+        {
+            ScriptableData = ResourceSystem.Instance
+                .GetEntityByType<ScriptableEntityTown>(TypeEntity.Town)
+                .Where(t => t.idObject == saveData.idObject)
+                .First();
+            Data = saveData.data;
+            idUnit = saveData.idUnit;
+        }
+
         base.Init(ScriptableData, node);
     }
 
@@ -34,16 +49,6 @@ public class EntityTown : BaseEntity, IDataPlay
     //     // TownGameObject.SetPlayer(player);
     // }
 
-    public void LoadDataPlay(DataPlay data)
-    {
-        //throw new System.NotImplementedException();
-    }
-
-    public void SaveDataPlay(ref DataPlay data)
-    {
-        // var sdata = SaveUnit(Data);
-        // data.Units.warriors.Add(sdata);
-    }
     public override void SetPlayer(Player player)
     {
         base.SetPlayer(player);
@@ -51,6 +56,19 @@ public class EntityTown : BaseEntity, IDataPlay
         Data.idPlayer = player.DataPlayer.id;
         player.AddTown(this);
     }
+
+    #region SaveLoadData
+    // public void LoadDataPlay(DataPlay data)
+    // {
+    //     throw new System.NotImplementedException();
+    // }
+
+    public void SaveDataPlay(ref DataPlay data)
+    {
+        var sdata = SaveUnit(Data);
+        data.entity.towns.Add(sdata);
+    }
+    #endregion
 }
 
 [System.Serializable]

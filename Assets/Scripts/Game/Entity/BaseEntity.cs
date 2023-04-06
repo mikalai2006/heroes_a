@@ -1,8 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-
-using Cysharp.Threading.Tasks;
 
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -21,9 +17,37 @@ public abstract class BaseEntity
     public string IdEntity => idUnit;
     protected string idObject;
 
+    #region Events GameState
+    public void AddEvents()
+    {
+        GameManager.OnBeforeStateChanged += OnBeforeStateChanged;
+        GameManager.OnAfterStateChanged += OnAfterStateChanged;
+    }
+    public void RemoveEvents()
+    {
+        GameManager.OnBeforeStateChanged -= OnBeforeStateChanged;
+        GameManager.OnAfterStateChanged -= OnAfterStateChanged;
+    }
+
+    public virtual void OnBeforeStateChanged(GameState newState)
+    {
+        // switch (newState)
+        // {
+        //     case GameState.SaveGame:
+        //         // OnSaveUnit();
+        //         break;
+        // }
+    }
+
+    public virtual void OnAfterStateChanged(GameState newState)
+    {
+    }
+    #endregion
+
+
     public void Init(ScriptableEntity data, GridTileNode node)
     {
-
+        AddEvents();
         // ScriptableData = data;
         // typeEntity = data.TypeEntity;
         // typeUnit = data.TypeUnit;
@@ -31,9 +55,36 @@ public abstract class BaseEntity
         Position = node.position;
         idUnit = System.Guid.NewGuid().ToString("N");
         idObject = data.idObject;
-        CreateEntityAsync(data, node);
-        //transform.position = pos + new Vector3(.5f,.5f);
 
+        // Init load gameObject.
+        CreateEntityAsync(data, node);
+
+    }
+
+    public void DestroyEntity()
+    {
+        Debug.Log($"Destroy entity::: {ScriptableData.name}");
+        RemoveEvents();
+    }
+
+
+    #region SaveLoadData
+    public virtual void OnSaveUnit()
+    {
+        // SaveUnit(new object());
+    }
+    protected SaveDataUnit<T> SaveUnit<T>(T Data)
+    {
+        var SaveData = new SaveDataUnit<T>();
+
+        SaveData.idUnit = idUnit;
+        SaveData.position = Position;
+        // SaveData.typeEntity = typeEntity;
+        // SaveData.typeMapObject = typeMapObject;
+        SaveData.idObject = idObject;
+        SaveData.data = Data;
+
+        return SaveData;
     }
     protected void LoadUnit<T>(SaveDataUnit<T> Data)
     {
@@ -43,6 +94,7 @@ public abstract class BaseEntity
         // typeEntity = Data.typeEntity;
         idObject = Data.idObject;
     }
+    #endregion
 
     private void CreateEntityAsync(ScriptableEntity entity, GridTileNode node)
     {
@@ -81,19 +133,6 @@ public abstract class BaseEntity
     //     Transform flag = transform.Find("Flag");
     //     flag.GetComponent<SpriteRenderer>().color = player.DataPlayer.color;
     // }
-    protected SaveDataUnit<T> SaveUnit<T>(T Data)
-    {
-        var SaveData = new SaveDataUnit<T>();
-
-        SaveData.idUnit = idUnit;
-        SaveData.position = Position;
-        // SaveData.typeEntity = typeEntity;
-        // SaveData.typeMapObject = typeMapObject;
-        SaveData.idObject = idObject;
-        SaveData.data = Data;
-
-        return SaveData;
-    }
 
     public virtual void SetPlayer(Player player)
     {

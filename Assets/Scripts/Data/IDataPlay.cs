@@ -1,5 +1,5 @@
-public interface IDataPlay
+public interface ISaveDataPlay
 {
-    void LoadDataPlay(DataPlay data);
+    // void LoadDataPlay(DataPlay data);
     void SaveDataPlay(ref DataPlay data);
 }

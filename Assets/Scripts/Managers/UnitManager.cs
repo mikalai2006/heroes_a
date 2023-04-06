@@ -150,7 +150,7 @@ public class UnitManager : MonoBehaviour
 
         List<ScriptableEntityCreature> listWarriors = ResourceSystem.Instance.GetEntityByType<ScriptableEntityCreature>(TypeEntity.Creature);
         ScriptableEntityCreature scriptbaleEntity = listWarriors[Random.Range(0, listWarriors.Count)];
-        EntityCreature newEntity = new EntityCreature(scriptbaleEntity, node);
+        EntityCreature newEntity = new EntityCreature(node);
         SpawnEntityToNode(node, newEntity);
 
         // node.OccupiedUnit = createdUnit;

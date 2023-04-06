@@ -1,29 +1,62 @@
 using System.Collections.Generic;
 using System.Linq;
-using System;
 
+using UnityEngine;
 
-public class EntityCreature : BaseEntity, IDataPlay
+[System.Serializable]
+public class EntityCreature : BaseEntity, ISaveDataPlay
 {
+    [SerializeField] public DataCreature Data = new DataCreature();
     public ScriptableEntityCreature ConfigData => (ScriptableEntityCreature)ScriptableData;
 
-    public EntityCreature(ScriptableEntityCreature data, GridTileNode node)
+    public EntityCreature(GridTileNode node, SaveDataUnit<DataCreature> saveData = null)
     {
-        List<ScriptableEntityCreature> list = ResourceSystem.Instance
-            .GetEntityByType<ScriptableEntityCreature>(TypeEntity.Creature)
-            .ToList();
-        ScriptableData = list[UnityEngine.Random.Range(0, list.Count)];
+        if (saveData == null)
+        {
+            List<ScriptableEntityCreature> list = ResourceSystem.Instance
+                .GetEntityByType<ScriptableEntityCreature>(TypeEntity.Creature)
+                .ToList();
+            ScriptableData = list[UnityEngine.Random.Range(0, list.Count)];
+
+            Data.quantity = 10;
+            // OnChangeQuantityWarrior();
+        }
+        else
+        {
+            ScriptableData = ResourceSystem.Instance
+                .GetEntityByType<ScriptableEntityCreature>(TypeEntity.Creature)
+                .Where(t => t.idObject == saveData.idObject)
+                .First();
+            Data = saveData.data;
+            idUnit = saveData.idUnit;
+        }
+
         base.Init(ScriptableData, node);
     }
 
-    public void LoadDataPlay(DataPlay data)
+    public void OnChangeQuantityWarrior()
     {
-        //throw new System.NotImplementedException();
+        Data.protectedNode = ProtectedNode.position;
+        //if (ProtectedNode != null)
+        //{
+        //    UnitBase protectedUnit = ProtectedNode.OccupiedUnit;
+        //    Data.quantity = protectedUnit.ScriptableData.level + (protectedUnit.ScriptableData.level * 2) - (this.ScriptableData.level * 2);
+
+        //    // Debug.Log($"Warrior {name} protectedNode as :::name[{protectedUnit.ScriptableData.name}]level[{protectedUnit.ScriptableData.level}]");
+
+        //}
     }
+
+    #region SaveLoadData
+    // public void LoadDataPlay(DataPlay data)
+    // {
+    //     throw new System.NotImplementedException();
+    // }
 
     public void SaveDataPlay(ref DataPlay data)
     {
-        // var sdata = SaveUnit(Data);
-        // data.Units.warriors.Add(sdata);
+        var sdata = SaveUnit(Data);
+        data.entity.creatures.Add(sdata);
     }
+    #endregion
 }

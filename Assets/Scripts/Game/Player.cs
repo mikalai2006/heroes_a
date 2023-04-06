@@ -27,7 +27,7 @@ public class PlayerDataReferences
 {
     [SerializeField] public List<EntityHero> ListHero;
     [SerializeField] public List<EntityTown> ListTown;
-    [SerializeField] public List<BaseMapEntity> ListMines;
+    [SerializeField] public List<EntityMine> ListMines;
     [SerializeField] public EntityHero ActiveHero;
     [SerializeField] public EntityTown ActiveTown;
 
@@ -35,7 +35,7 @@ public class PlayerDataReferences
     {
         ListTown = new List<EntityTown>();
         ListHero = new List<EntityHero>();
-        ListMines = new List<BaseMapEntity>();
+        ListMines = new List<EntityMine>();
     }
 }
 
@@ -99,6 +99,7 @@ public class Player
     public Player(PlayerData data)
     {
         _data = new PlayerData();
+        _data.nosky = new SerializableShortPosition();
         _data = data;
         _data.PlayerDataReferences = new PlayerDataReferences();
         _data.Resource = new SerializableDictionary<TypeResource, int>();
@@ -106,7 +107,6 @@ public class Player
         {
             _data.Resource.Add(typeResource, typeResource == TypeResource.Gold ? 100000 : 200);
         }
-        _data.nosky = new SerializableShortPosition();
     }
 
     public void AddHero(EntityHero hero)
@@ -126,9 +126,9 @@ public class Player
         }
     }
 
-    public void AddMines(MapEntityMine mine)
+    public void AddMines(EntityMine mine)
     {
-        mine.SetPlayer(this);
+        // mine.SetPlayer(this);
         DataPlayer.PlayerDataReferences.ListMines.Add(mine);
     }
     public void ChangeResource(TypeResource typeResource, int value = 0)

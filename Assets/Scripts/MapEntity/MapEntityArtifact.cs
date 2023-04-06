@@ -35,7 +35,7 @@ public class MapEntityArtifact : BaseMapEntity, IDialogMapObjectOperation
         // var t = HelperLanguage.GetLocaleText(this.ScriptableData.Locale);
         var dialogData = new DataDialog()
         {
-            Header = MapObjectClass.ScriptableData.Text.title.GetLocalizedString(),
+            // Header = MapObjectClass.ScriptableData.Text.title.GetLocalizedString(),
             // Description = t.Text.visit_ok,
             Sprite = MapObjectClass.ScriptableData.MenuSprite
         };
@@ -51,6 +51,7 @@ public class MapEntityArtifact : BaseMapEntity, IDialogMapObjectOperation
         if (result.isOk)
         {
             // Set artifact for hero.
+            MapObjectClass.SetPlayer(player);
             Destroy(gameObject);
         }
         else

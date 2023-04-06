@@ -3,7 +3,7 @@ using System.Linq;
 
 using UnityEngine;
 
-public class LevelManager : Singleton<LevelManager>, IDataPlay, IDataGame
+public class LevelManager : Singleton<LevelManager>, ISaveDataPlay, ISaveDataGame
 {
     [SerializeField] private Transform _camera;
     public DataLevel Level;
@@ -204,9 +204,23 @@ public class LevelManager : Singleton<LevelManager>, IDataPlay, IDataGame
         _camera.transform.position = pos;
     }
 
-    public void LoadDataPlay(DataPlay data)
+    public void LoadLevel(DataPlay dataPlay, DataGame dataGame)
     {
-        Level = data.Level;
+        GameModeData = dataGame.dataMap.GameModeData;
+
+        Level = new DataLevel();
+        Level = dataPlay.Level;
+        Level.countPlayer = dataPlay.Level.countPlayer;
+        // _countArea = Mathf.CeilToInt((GameModeData.width * GameModeData.height) / (((GameModeData.width * GameModeData.height) / countPlayer) * GameModeData.koofSizeArea));
+        // Level.activePlayer = -1;
+
+        for (int i = 0; i < dataPlay.Level.countPlayer; i++)
+        {
+            var data = dataPlay.Level.listPlayer[i];
+            var player = new Player(dataPlay.Level.listPlayer[i].DataPlayer);
+            Level.listPlayer.Add(player);
+        }
+
         //foreach (Player player in level.listPlayer)
         //{
         //    player.DataPlayer = new PlayerData()
@@ -224,10 +238,10 @@ public class LevelManager : Singleton<LevelManager>, IDataPlay, IDataGame
         data.Level = Level;
     }
 
-    public void LoadDataGame(DataGame data)
-    {
-        GameModeData = data.dataMap.GameModeData;
-    }
+    // public void LoadDataGame(DataGame data)
+    // {
+    //     GameModeData = data.dataMap.GameModeData;
+    // }
 
     public void SaveDataGame(ref DataGame data)
     {

@@ -56,7 +56,7 @@ public class CreateArtifactOperation : ILoadingOperation
                         //&& gridTileHelper.CalculateNeighbours(currentNode) < 3
                         )
                     {
-                        BaseEntity entity = new EntityArtifact(currentNode);
+                        BaseEntity entity = new EntityArtifact(currentNode, null);
                         _root.UnitManager.SpawnEntityToNode(currentNode, entity);
                         //_root.UnitManager.SpawnArtifactAsync(currentNode);
 

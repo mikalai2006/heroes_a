@@ -16,8 +16,10 @@ public class DataManager : Singleton<DataManager>
     private DataGame _dataGame;
     public DataPlay DataPlay { get { return _dataPlay; } }
 
-    private List<IDataPlay> _playDataObject;
-    private List<IDataGame> _gameDataObject;
+    private List<BaseMapEntity> _playCustomDataObject;
+    private List<ISaveDataGame> _gameDataObject;
+    private List<ISaveDataPlay> _playDataObject;
+    private List<ILoadGame> _loadPlayDataObject;
 
     private void Start()
     {
@@ -46,17 +48,13 @@ public class DataManager : Singleton<DataManager>
             New();
         }
 
-        _playDataObject = FindAllPlayDataObjects();
+        // _playDataObject = FindAllPlayDataObjects();
         _gameDataObject = FindAllGameDataObjects();
+        _loadPlayDataObject = FindAllILoadGameObjects();
 
-        foreach (IDataPlay obj in _playDataObject)
+        foreach (ILoadGame obj in _loadPlayDataObject)
         {
-            obj.LoadDataPlay(_dataPlay);
-        }
-
-        foreach (IDataGame obj in _gameDataObject)
-        {
-            obj.LoadDataGame(_dataGame);
+            obj.LoadGameData(_dataPlay, _dataGame);
         }
     }
 
@@ -66,6 +64,7 @@ public class DataManager : Singleton<DataManager>
 
         _playDataObject = FindAllPlayDataObjects();
         _gameDataObject = FindAllGameDataObjects();
+        _playCustomDataObject = FindAllPlayCustomDataObjects();
 
         SaveDataGame();
 
@@ -75,7 +74,7 @@ public class DataManager : Singleton<DataManager>
 
     public void SaveDataGame()
     {
-        foreach (IDataGame obj in _gameDataObject)
+        foreach (ISaveDataGame obj in _gameDataObject)
         {
             obj.SaveDataGame(ref _dataGame);
         }
@@ -86,26 +85,45 @@ public class DataManager : Singleton<DataManager>
     public void SaveDataPlay()
     {
 
-        foreach (IDataPlay obj in _playDataObject)
+        foreach (BaseMapEntity obj in _playCustomDataObject)
+        {
+            var intObj = (ISaveDataPlay)obj.GetMapObjectClass;
+            intObj.SaveDataPlay(ref _dataPlay);
+        }
+        foreach (ISaveDataPlay obj in _playDataObject)
         {
             obj.SaveDataPlay(ref _dataPlay);
         }
-
         _fileDataHandler.SaveDataPlay(_dataPlay);
     }
 
-    private List<IDataGame> FindAllGameDataObjects()
+    private List<ISaveDataGame> FindAllGameDataObjects()
     {
-        IEnumerable<IDataGame> unitsDataObject = FindObjectsOfType<MonoBehaviour>().OfType<IDataGame>();
+        IEnumerable<ISaveDataGame> unitsDataObject
+            = FindObjectsOfType<MonoBehaviour>().OfType<ISaveDataGame>();
 
-        return new List<IDataGame>(unitsDataObject);
+        return new List<ISaveDataGame>(unitsDataObject);
     }
 
-    private List<IDataPlay> FindAllPlayDataObjects()
+    private List<BaseMapEntity> FindAllPlayCustomDataObjects()
     {
-        IEnumerable<IDataPlay> unitsDataObject = FindObjectsOfType<MonoBehaviour>().OfType<IDataPlay>();
+        IEnumerable<BaseMapEntity> unitsDataObject
+            = FindObjectsOfType<MonoBehaviour>().OfType<BaseMapEntity>();
 
-        return new List<IDataPlay>(unitsDataObject);
+        return new List<BaseMapEntity>(unitsDataObject);
+    }
+    private List<ILoadGame> FindAllILoadGameObjects()
+    {
+        IEnumerable<ILoadGame> unitsDataObject
+            = FindObjectsOfType<MonoBehaviour>().OfType<ILoadGame>();
+
+        return new List<ILoadGame>(unitsDataObject);
+    }
+    private List<ISaveDataPlay> FindAllPlayDataObjects()
+    {
+        IEnumerable<ISaveDataPlay> unitsDataObject = FindObjectsOfType<MonoBehaviour>().OfType<ISaveDataPlay>();
+
+        return new List<ISaveDataPlay>(unitsDataObject);
     }
 
     protected override void OnApplicationQuit()

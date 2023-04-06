@@ -8,11 +8,6 @@ public abstract class BaseMapEntity : MonoBehaviour, IPointerClickHandler
 {
     [NonSerialized] protected BaseEntity MapObjectClass;
     public BaseEntity GetMapObjectClass => MapObjectClass;
-
-    // public virtual void TakeDamage(int dmg)
-    // {
-
-    // }
     public virtual void InitUnit(BaseEntity mapObject)
     {
         MapObjectClass = mapObject;
@@ -22,8 +17,6 @@ public abstract class BaseMapEntity : MonoBehaviour, IPointerClickHandler
 
     public virtual void OnGoHero(Player player)
     {
-        //Debug.Log($"OnGoHero::: player[{player.DataPlayer.id}]");
-
     }
 
     public virtual void OnNextDay()
@@ -72,6 +65,7 @@ public abstract class BaseMapEntity : MonoBehaviour, IPointerClickHandler
     {
         // Debug.LogWarning($"object [{MapObjectClass.ScriptableData.name}] - gameObject[{gameObject.name}]");
         MapObjectClass.ScriptableData.MapPrefab.ReleaseInstance(gameObject);
+        MapObjectClass.DestroyEntity();
         MapObjectClass = null;
 
         GameManager.OnBeforeStateChanged -= OnBeforeStateChanged;
@@ -81,6 +75,10 @@ public abstract class BaseMapEntity : MonoBehaviour, IPointerClickHandler
     protected virtual void Start()
     {
         //Debug.Log($"Start {name}");
+    }
+    public void DestroyGameObject()
+    {
+        Destroy(gameObject);
     }
 
     public virtual void OnBeforeStateChanged(GameState newState)

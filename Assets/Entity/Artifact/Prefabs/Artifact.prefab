@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5971064326533253975}
   - component: {fileID: 560855472331280629}
+  - component: {fileID: 3242944866822170211}
   m_Layer: 0
   m_Name: Model
   m_TagString: Untagged
@@ -84,6 +85,29 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
+--- !u!114 &3242944866822170211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4101013658566071589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69beb381e244f92449b8c4cf954630e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TrackedObjects:
+  - rid: 1339300970870603778
+  references:
+    version: 2
+    RefIds:
+    - rid: 1339300970870603778
+      type: {class: TrackedTransform, ns: UnityEngine.Localization.PropertyVariants.TrackedObjects, asm: Unity.Localization}
+      data:
+        m_Target: {fileID: 5971064326533253975}
+        m_TrackedProperties:
+          items: []
 --- !u!1001 &7840777117204846267
 PrefabInstance:
   m_ObjectHideFlags: 0

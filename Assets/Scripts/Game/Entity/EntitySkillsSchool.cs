@@ -1,54 +1,75 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
 using UnityEngine;
 
-public class EntitySkillSchool : BaseEntity, IDataPlay
+[Serializable]
+public class EntitySkillSchool : BaseEntity, ISaveDataPlay
 {
     public ScriptableEntitySkillSchool ConfigData => (ScriptableEntitySkillSchool)ScriptableData;
-    public DataSkillSchool Data;
+    [SerializeField] public DataSkillSchool Data = new DataSkillSchool();
 
-    public EntitySkillSchool(GridTileNode node)
+    public EntitySkillSchool(GridTileNode node, SaveDataUnit<DataSkillSchool> saveData = null)
     {
-        List<ScriptableEntitySkillSchool> list = ResourceSystem.Instance
-            .GetEntityByType<ScriptableEntitySkillSchool>(TypeEntity.SkillSchool)
-            .ToList();
-        ScriptableData = list[UnityEngine.Random.Range(0, list.Count)];
-
-        Data = new DataSkillSchool();
-        Data.Skills = new List<ItemSkill>();
-        Data.TypeWork = ConfigData.TypeWorkPerk;
-
-        for (int i = 0; i < ConfigData.PrimarySkills.Count; i++)
+        if (saveData == null)
         {
-            List<ItemSkill> ListVariant = ConfigData.PrimarySkills[i].ListVariant;
-            for (int j = 0; j < ListVariant.Count; j++)
-            {
-                Data.Skills.Add(ListVariant[j]);
-            }
+            List<ScriptableEntitySkillSchool> list = ResourceSystem.Instance
+                .GetEntityByType<ScriptableEntitySkillSchool>(TypeEntity.SkillSchool)
+                .ToList();
+            ScriptableData = list[UnityEngine.Random.Range(0, list.Count)];
 
+            Data.Skills = new List<ItemSkill>();
+            Data.TypeWork = ConfigData.TypeWorkPerk;
+
+            for (int i = 0; i < ConfigData.PrimarySkills.Count; i++)
+            {
+                List<ItemSkill> ListVariant = ConfigData.PrimarySkills[i].ListVariant;
+                for (int j = 0; j < ListVariant.Count; j++)
+                {
+                    Data.Skills.Add(ListVariant[j]);
+                }
+
+            }
+        }
+        else
+        {
+            ScriptableData = ResourceSystem.Instance
+                .GetEntityByType<ScriptableEntitySkillSchool>(TypeEntity.SkillSchool)
+                .Where(t => t.idObject == saveData.idObject)
+                .First();
+            Data = saveData.data;
+            idUnit = saveData.idUnit;
         }
         base.Init(ScriptableData, node);
     }
 
-    public void SetPlayer(PlayerData data)
+    public override void SetPlayer(Player player)
     {
-        //Debug.Log($"Town SetPlayer::: id{data.id}-idArea{data.idArea}");
-
+        for (int i = 0; i < Data.Skills.Count; i++)
+        {
+            // Change skill for hero.
+            // player.ChangeResource(Data.Skills[i].Skill.TypeSkill, Data.Skills[i].Value);
+        }
+        if (Data.TypeWork == TypeWorkPerk.One)
+        {
+            //ScriptableData.MapPrefab.ReleaseInstance(gameObject);
+            MapObjectGameObject.DestroyGameObject();
+        }
     }
 
-    public void LoadDataPlay(DataPlay data)
-    {
-        //throw new System.NotImplementedException();
-    }
+    #region SaveLoadData
+    // public void LoadDataPlay(DataPlay data)
+    // {
+    //     throw new System.NotImplementedException();
+    // }
 
     public void SaveDataPlay(ref DataPlay data)
     {
-        // var sdata = SaveUnit(Data);
-        // data.Units.warriors.Add(sdata);
+        var sdata = SaveUnit(Data);
+        data.entity.skillSchools.Add(sdata);
     }
+    #endregion
 }
 
 [System.Serializable]

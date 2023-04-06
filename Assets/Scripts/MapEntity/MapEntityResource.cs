@@ -2,9 +2,6 @@ using System.Collections.Generic;
 
 using Cysharp.Threading.Tasks;
 
-using UnityEngine;
-using UnityEngine.Localization.Settings;
-
 public class MapEntityResource : BaseMapEntity, IDialogMapObjectOperation
 {
 
@@ -30,11 +27,10 @@ public class MapEntityResource : BaseMapEntity, IDialogMapObjectOperation
             });
         }
 
-        // var t = HelperLanguage.GetLocaleText(this.ScriptableData.Locale);
         var dialogData = new DataDialog()
         {
-            Header = MapObjectClass.ScriptableData.Text.title.GetLocalizedString(),
-            Description = MapObjectClass.ScriptableData.DialogText.VisitOk.GetLocalizedString(),
+            // Header = MapObjectClass.ScriptableData.Text.title.GetLocalizedString(),
+            // Description = MapObjectClass.ScriptableData.DialogText.VisitOk.GetLocalizedString(),
             // Sprite = this.ScriptableData.MenuSprite,
             Value = listValue
         };
@@ -49,33 +45,14 @@ public class MapEntityResource : BaseMapEntity, IDialogMapObjectOperation
         DataResultDialog result = await OnTriggeredHero();
         if (result.isOk)
         {
-            SetPlayer(player);
+            MapObjectClass.SetPlayer(player);
+
         }
         else
         {
             // Click cancel.
         }
     }
-    public void SetPlayer(Player player)
-    {
-
-        // // ScriptableResource dataScriptable = ResourceSystem.Instance.GetUnit<ScriptableResource>(idObject);
-
-        // // ItemResource dataResource = dataScriptable.ListResource[Random.Range(0, dataScriptable.ListResource.Count)];
-        // // int value = dataResource.listValue[Random.Range(0, dataResource.listValue.Length)];
-        // // player.ChangeResource(dataResource.TypeResource, value);
-        // for (int i = 0; i < Data.Value.Count; i++)
-        // {
-        //     player.ChangeResource(Data.Value[i].typeResource, Data.Value[i].value);
-        // }
-        // if (Data.TypeWork == TypeWorkPerk.One)
-        // {
-        //     //ScriptableData.MapPrefab.ReleaseInstance(gameObject);
-        //     Destroy(gameObject);
-        // }
-    }
-
-
 
     public override void OnNextDay()
     {
@@ -84,20 +61,4 @@ public class MapEntityResource : BaseMapEntity, IDialogMapObjectOperation
         mapObjectClass.SetData();
     }
 
-    //public override void OnSaveUnit()
-    //{
-    //    SaveUnit(Data);
-    //}
-
-    // public void LoadDataPlay(DataPlay data)
-    // {
-    //     //throw new System.NotImplementedException();
-    // }
-
-
-    // public void SaveDataPlay(ref DataPlay data)
-    // {
-    //     var sdata = SaveUnit(Data);
-    //     data.Units.resources.Add(sdata);
-    // }
 }

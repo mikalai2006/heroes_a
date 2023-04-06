@@ -9,11 +9,6 @@ public class MapEntitySkills : BaseMapEntity, IDialogMapObjectOperation
     public override void InitUnit(BaseEntity mapObject)
     {
         base.InitUnit(mapObject);
-        SetData();
-    }
-
-    private void SetData()
-    {
     }
 
     public override async void OnGoHero(Player player)
@@ -49,7 +44,7 @@ public class MapEntitySkills : BaseMapEntity, IDialogMapObjectOperation
         // var t = HelperLanguage.GetLocaleText(this.ScriptableData.Locale);
         var dialogData = new DataDialog()
         {
-            Header = MapObjectClass.ScriptableData.Text.title.GetLocalizedString(),
+            // Header = MapObjectClass.ScriptableData.Text.title.GetLocalizedString(),
             // Description = t.Text.visit_ok,
             Sprite = MapObjectClass.ScriptableData.MenuSprite,
             Value = listValue
@@ -59,15 +54,4 @@ public class MapEntitySkills : BaseMapEntity, IDialogMapObjectOperation
         return await dialogWindow.ShowAndHide();
     }
 
-    // public void LoadDataPlay(DataPlay data)
-    // {
-    //     //throw new System.NotImplementedException();
-    // }
-
-
-    // public void SaveDataPlay(ref DataPlay data)
-    // {
-    //     var sdata = SaveUnit(Data);
-    //     data.Units.skillSchools.Add(sdata);
-    // }
 }

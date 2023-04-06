@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -7,39 +6,38 @@ using UnityEngine;
 
 using Random = UnityEngine.Random;
 
-public class EntityResource : BaseEntity, IDataPlay
+[Serializable]
+public class EntityResource : BaseEntity, ISaveDataPlay
 {
+    [SerializeField] public DataResourceMapObject Data = new DataResourceMapObject();
     public ScriptableEntityMapResource ConfigData => (ScriptableEntityMapResource)ScriptableData;
-    public DataResourceMapObject Data;
-    public EntityResource(GridTileNode node, List<TypeWorkPerk> listTypeWork)
+    public EntityResource(
+        GridTileNode node,
+        List<TypeWorkPerk> listTypeWork = null,
+        SaveDataUnit<DataResourceMapObject> saveData = null
+        )
     {
-        List<ScriptableEntityMapResource> list = ResourceSystem.Instance
-            .GetEntityByType<ScriptableEntityMapResource>(TypeEntity.MapResource)
-            .Where(t => listTypeWork.Contains(t.TypeWorkPerk))
-            .ToList();
-        ScriptableData = list[UnityEngine.Random.Range(0, list.Count)];
-        Data = new DataResourceMapObject();
-        SetData();
+        if (saveData == null)
+        {
+            List<ScriptableEntityMapResource> list = ResourceSystem.Instance
+                .GetEntityByType<ScriptableEntityMapResource>(TypeEntity.MapResource)
+                .Where(t => listTypeWork.Contains(t.TypeWorkPerk))
+                .ToList();
+            ScriptableData = list[UnityEngine.Random.Range(0, list.Count)];
+            SetData();
+        }
+        else
+        {
+            ScriptableData = ResourceSystem.Instance
+                .GetEntityByType<ScriptableEntityMapResource>(TypeEntity.MapResource)
+                .Where(t => t.idObject == saveData.idObject)
+                .First();
+            Data = saveData.data;
+            idUnit = saveData.idUnit;
+        }
 
         base.Init(ScriptableData, node);
     }
-
-    // #region  Release BaseEntityFactory
-    // public BaseEntity CreateEntity(TypeEntity typeEntity, GridTileNode node)
-    // {
-    //     throw new NotImplementedException();
-    // }
-    // public EntityConfig GetEntityConfig(TypeEntity typeEntity)
-    // {
-    //     List<ScriptableEntityArtifact> list = ResourceSystem.Instance
-    //         .GetEntityByType<ScriptableEntityArtifact>(TypeEntity.Resource)
-    //         .ToList();
-    //     if (list.Count == 0) return null;
-    //     var config = new EntityConfig();
-    //     config.ScriptableData = list[Random.Range(0, list.Count)];
-    //     return config;
-    // }
-    // #endregion
 
     public void SetData()
     {
@@ -65,23 +63,36 @@ public class EntityResource : BaseEntity, IDataPlay
 
     }
 
-    public void SetPlayer(PlayerData data)
+    public override void SetPlayer(Player player)
     {
-        //Debug.Log($"Town SetPlayer::: id{data.id}-idArea{data.idArea}");
+        // ScriptableResource dataScriptable = ResourceSystem.Instance.GetUnit<ScriptableResource>(idObject);
 
+        // ItemResource dataResource = dataScriptable.ListResource[Random.Range(0, dataScriptable.ListResource.Count)];
+        // int value = dataResource.listValue[Random.Range(0, dataResource.listValue.Length)];
+        // player.ChangeResource(dataResource.TypeResource, value);
+        for (int i = 0; i < Data.Value.Count; i++)
+        {
+            player.ChangeResource(Data.Value[i].typeResource, Data.Value[i].value);
+        }
+        if (Data.TypeWork == TypeWorkPerk.One)
+        {
+            //ScriptableData.MapPrefab.ReleaseInstance(gameObject);
+            MapObjectGameObject.DestroyGameObject();
+        }
     }
 
-    public void LoadDataPlay(DataPlay data)
-    {
-        //throw new System.NotImplementedException();
-    }
+    #region SaveLoadData
+    // public void LoadDataPlay(DataPlay data)
+    // {
+    //     throw new System.NotImplementedException();
+    // }
 
     public void SaveDataPlay(ref DataPlay data)
     {
-        // var sdata = SaveUnit(Data);
-        // data.Units.warriors.Add(sdata);
+        var sdata = SaveUnit(Data);
+        data.entity.resources.Add(sdata);
     }
-
+    #endregion
 }
 
 [System.Serializable]

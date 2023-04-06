@@ -2,10 +2,10 @@
 public class DataPlay
 {
     public DataLevel Level;
-    public DataUnit Units;
+    public DataUnit entity;
 
     public DataPlay()
     {
-        Units = new DataUnit();
+        entity = new DataUnit();
     }
 }

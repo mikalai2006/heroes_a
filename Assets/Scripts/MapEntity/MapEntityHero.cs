@@ -129,13 +129,13 @@ public class MapEntityHero : BaseMapEntity
             GameManager.Instance.MapManager.SetColorForTile(heroEntity.Data.path[0].position, Color.cyan);
             if (heroEntity.Data.path[0].Protected && heroEntity.Data.path[0].ProtectedUnit != null)
             {
-                heroEntity.Data.path[0].ProtectedUnit.MapObjectGameObject.OnGoHero(LevelManager.Instance.GetPlayer(heroEntity.Data.idPlayer));
+                heroEntity.Data.path[0].ProtectedUnit.MapObjectGameObject.OnGoHero(MapObjectClass.Player); // LevelManager.Instance.GetPlayer(heroEntity.Data.idPlayer)
                 // path[0].SetProtectedNeigbours(null);
                 GameManager.Instance.ChangeState(GameState.StopMoveHero);
             }
             if (heroEntity.Data.path[0].OccupiedUnit != null)
             {
-                heroEntity.Data.path[0].OccupiedUnit.MapObjectGameObject.OnGoHero(LevelManager.Instance.GetPlayer(heroEntity.Data.idPlayer));
+                heroEntity.Data.path[0].OccupiedUnit.MapObjectGameObject.OnGoHero(MapObjectClass.Player);
             }
 
             onChangeParamsActiveHero?.Invoke(heroEntity);
