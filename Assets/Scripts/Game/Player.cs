@@ -11,7 +11,7 @@ public class PlayerData
     public PlayerType playerType;
     public int idArea;
     public SerializableDictionary<TypeResource, int> Resource;
-    public SerializableShortPosition nosky;
+    public SerializableShortPosition nosky = new SerializableShortPosition();
     [System.NonSerialized] public PlayerDataReferences PlayerDataReferences;
 
     // public Hero ActiveHero => PlayerDataReferences.ActiveHero;
@@ -99,7 +99,6 @@ public class Player
     public Player(PlayerData data)
     {
         _data = new PlayerData();
-        _data.nosky = new SerializableShortPosition();
         _data = data;
         _data.PlayerDataReferences = new PlayerDataReferences();
         _data.Resource = new SerializableDictionary<TypeResource, int>();
