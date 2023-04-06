@@ -113,6 +113,76 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 08bef408e9584df4699826355cba854f
+    m_Address: Assets/Creature/Inferno/Prefabs/Familiar/Familiar.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 47eee892b6f2d74418d1428fb6e192e6
+    m_Address: Assets/Creature/Inferno/Prefabs/Imp/Imp.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ba511fa8cf4908541bf8b2384eabb344
+    m_Address: Assets/Creature/Inferno/Prefabs/Gog/Gog.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b2b6bd863000dde4f876f5badda3a4d6
+    m_Address: Assets/Creature/Inferno/Prefabs/Magog/Magog.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8ee6b3567d4a61541bab8e0d0d3b0438
+    m_Address: Assets/Creature/Inferno/Prefabs/Cerberus/Cerberus.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b377d89a791b453448291f2c9de183e0
+    m_Address: Assets/Creature/Inferno/Prefabs/HellHound/HellHound.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d0a851a6fda729e48bd540f1d185ea3e
+    m_Address: Assets/Creature/Inferno/Prefabs/Demon/Demon.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 99bbe73fc3b2d774aa03c9d1de601848
+    m_Address: Assets/Creature/Inferno/Prefabs/HornedDemon/HornedDemon.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0c7894c66ec31864e8d5f7354533d0f8
+    m_Address: Assets/Creature/Inferno/Prefabs/PitFiend/PitFiend.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9f6c419e3e28a984e96accfb3dc9bbd9
+    m_Address: Assets/Creature/Inferno/Prefabs/PitLord/PitLord.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 668c895471f2d234286b7e8e6235e2e9
+    m_Address: Assets/Creature/Inferno/Prefabs/Efreeti/Efreeti.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: af995d3f99149914eb277e66318f459a
+    m_Address: Assets/Creature/Inferno/Prefabs/EfreetSultan/EfreetSultan.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4ac6a57aac40c444599e9dcbb56e1e2c
+    m_Address: Assets/Creature/Inferno/Prefabs/Archdevil/Archdevil.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2566a08066080d6479d9fef099ab0a0f
+    m_Address: Assets/Creature/Inferno/Prefabs/Devil/Devil.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 9a6380555b06f9d46b9bf47dd32221de, type: 2}
   m_SchemaSet:
