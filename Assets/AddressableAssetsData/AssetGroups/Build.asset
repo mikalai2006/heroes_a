@@ -253,6 +253,76 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 11d60cf20f8e6eb40913f2178ee0a201
+    m_Address: Assets/Creature/Rampart/Prefabs/Centaur/Centaur.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b82e98b34b3a92941aa8bdc3a3f20ff4
+    m_Address: Assets/Creature/Rampart/Prefabs/CentaurCaptain/CentaurCaptain.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 79580d90d5860d140bc26cd1886e7498
+    m_Address: Assets/Creature/Rampart/Prefabs/Dwarf/Dwarf.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b80e6712305998a4aa76f709fdcf0762
+    m_Address: Assets/Creature/Rampart/Prefabs/BattleDwarf/BattleDwarf.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9feb5381ef041d14eb8ac731bf0637ca
+    m_Address: Assets/Creature/Rampart/Prefabs/WoodElf/WoodElf.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cb65501fee7eec0409e5acb3f8dd125b
+    m_Address: Assets/Creature/Rampart/Prefabs/GrandElf/GrandElf.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6d32e2d42d6afe54bba3b0148d57a528
+    m_Address: Assets/Creature/Rampart/Prefabs/Pegasus/Pegasus.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1dc903236baa5a24d99b7f9091b9b6a3
+    m_Address: Assets/Creature/Rampart/Prefabs/SilverPegasus/SilverPegasus.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 706cbdbf06651064b9f0a8208fc7d8fa
+    m_Address: Assets/Creature/Rampart/Prefabs/DendroidGuard/DendroidGuard.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 34fee6e4337b4074a9790c67e2ca00ab
+    m_Address: Assets/Creature/Rampart/Prefabs/DendroidSoldier/DendroidSoldier.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4e01f52c3f3b6f54d95aa1dd1867458a
+    m_Address: Assets/Creature/Rampart/Prefabs/Unicorn/Unicorn.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 587097eea7cbf734d90a166dd5cf9dbe
+    m_Address: Assets/Creature/Rampart/Prefabs/WarUnicorn/WarUnicorn.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5be626d21fc127841b35fa785eb68460
+    m_Address: Assets/Creature/Rampart/Prefabs/GreenDragon/GreenDragon.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 32b4a8b3347aabe4caaa01176dd687cf
+    m_Address: Assets/Creature/Rampart/Prefabs/GoldDragon/GoldDragon.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 9a6380555b06f9d46b9bf47dd32221de, type: 2}
   m_SchemaSet:

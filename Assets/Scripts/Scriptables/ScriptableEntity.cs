@@ -39,6 +39,7 @@ public enum TypeFaction
     Dungeon = 40,
 	Inferno = 50,
     Necropolis = 60,
+    Rampart = 70,
     Neutral = 100,
 }
 
