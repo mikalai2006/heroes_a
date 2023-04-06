@@ -26,7 +26,7 @@ public class UITownListBuildWindow : MonoBehaviour
     private DataDialog _dataDialog;
     private DataResultBuildDialog _dataResultDialog;
 
-    private MapEntityTown _activeTown;
+    private EntityTown _activeTown;
     private Player _activePlayer;
     private ScriptableBuildTown _scriptObjectBuildTown;
 

@@ -9,7 +9,7 @@ public class ScriptableEntityTown : ScriptableEntity
     public AssetReferenceT<ScriptableBuildTown> BuildTown; // ScriptableBuildTown
     public TypeBuild[] StartProgressBuilds;
     public List<ScriptableEntityHero> heroes;
-    public List<ScriptableEntityMapObject> mines;
+    public List<ScriptableEntityMine> mines;
     public List<ScriptableEntityCreature> creatures;
 }
 

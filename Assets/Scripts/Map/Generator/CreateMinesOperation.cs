@@ -36,7 +36,8 @@ public class CreateMinesOperation : ILoadingOperation
 
             if (nodes.Count > 0)
             {
-                int countLandscape = Mathf.CeilToInt(LevelManager.Instance.GameModeData.koofMines * .1f * area.countNode);
+                int countLandscape = Mathf.CeilToInt(
+                    LevelManager.Instance.GameModeData.koofMines * .1f * area.countNode);
                 area.Stat.countMineN = countLandscape;
                 int countCreated = 0;
 
@@ -58,9 +59,12 @@ public class CreateMinesOperation : ILoadingOperation
                         && _root.gridTileHelper.CalculateNeighbours(currentNode) >= 5
                         )
                     {
-                        BaseMapEntity unit = await _root.UnitManager.SpawnMapObjectAsync(currentNode, TypeMapObject.Mine);
 
-                        MapEntityCreature warrior = (MapEntityCreature)await _root.UnitManager.SpawnWarriorAsync(nodeWarrior);
+                        BaseEntity entity = new EntityMine(currentNode);
+                        _root.UnitManager.SpawnEntityToNode(currentNode, entity);
+                        // _root.UnitManager.SpawnMapObjectAsync(currentNode, TypeMapObject.Mine);
+
+                        BaseEntity warrior = _root.UnitManager.SpawnWarriorAsync(nodeWarrior);
 
                         nodeWarrior.SetProtectedNeigbours(warrior, currentNode);
 
@@ -74,7 +78,7 @@ public class CreateMinesOperation : ILoadingOperation
 
                         if (listExistExitNode.Count > 1)
                         {
-                            // await _root.CreatePortalAsync(currentNode, listExistExitNode);
+                            _root.CreatePortal(currentNode, listExistExitNode);
                             // // Debug.Log($"Need portal::: keyArea{currentNode.keyArea}[{currentNode._position}]- {listExistExitNode.Count}");
 
                         }

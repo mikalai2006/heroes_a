@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 110738c119746b94d8ea902f3c039e9f, type: 3}
+  m_Script: {fileID: 11500000, guid: b503cd952d2dab8428453d0020d24401, type: 3}
   m_Name: Mine_Mercury
   m_EditorClassIdentifier: 
-  idObject: 9470d44bcca5495c9b5e4cb446769d07
-  TypeEntity: 30
+  idObject: 5ca728862e1d4eb1a44baa28daa01d5e
+  TypeEntity: 32
   MenuSprite: {fileID: 0}
   Text:
     title:
@@ -34,6 +34,14 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
+  MapPrefab:
+    m_AssetGUID: 79657a2513f58724bba6f49d58cb2863
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  typeGround: 1000
+  typeInput: 0
+  listTypeNoPath: 
   DialogText:
     VisitOk:
       m_TableReference:
@@ -62,25 +70,17 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
-  MapPrefab:
-    m_AssetGUID: 79657a2513f58724bba6f49d58cb2863
-    m_SubObjectName: 
-    m_SubObjectType: 
-    m_EditorAssetChanged: 0
-  TypeMapObject: 21
-  typeGround: 1000
-  typeInput: 0
-  listTypeNoPath: 0c000000
   TypeWorkPerk: 2
   Resources:
   - id: 
     ListVariant:
-    - Resource: {fileID: 11400000, guid: 104e3cffa5962f64d9487c5253418ec6, type: 2}
+    - Resource: {fileID: 11400000, guid: 19d789934151d984caad385164b2cb4a, type: 2}
       maxValue: 1
       step: 1
   PrimarySkills: []
   SecondarySkills: []
   Artifacts: []
+  TypeMine: 0
   references:
     version: 2
     RefIds: []

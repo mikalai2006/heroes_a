@@ -7,13 +7,14 @@ using UnityEngine.Localization;
 using UnityEngine.Localization.Settings;
 using UnityEngine.Localization.SmartFormat.PersistentVariables;
 
-public class MapEntityCreature : BaseMapEntity, IDataPlay, IDialogMapObjectOperation
+public class MapEntityCreature : BaseMapEntity, IDialogMapObjectOperation
 {
     public DataCreature Data;
 
-    public override void InitUnit(ScriptableEntity data, Vector3Int pos)
+    public override void InitUnit(BaseEntity mapObject)
     {
-        base.InitUnit(data, pos);
+        base.InitUnit(mapObject);
+
         Data = new DataCreature();
         Data.quantity = 10;
         //ScriptableWarriors dataWarrior = (ScriptableWarriors)data;
@@ -29,9 +30,9 @@ public class MapEntityCreature : BaseMapEntity, IDataPlay, IDialogMapObjectOpera
 
         if (result.isOk)
         {
-            OccupiedNode.SetProtectedNeigbours(null);
+            MapObjectClass.OccupiedNode.SetProtectedNeigbours(null);
 
-            OccupiedNode.SetOcuppiedUnit(null);
+            MapObjectClass.OccupiedNode.SetOcuppiedUnit(null);
 
             Destroy(gameObject);
         }
@@ -53,7 +54,7 @@ public class MapEntityCreature : BaseMapEntity, IDataPlay, IDialogMapObjectOpera
         LocalizedString stringCountWarriors = new LocalizedString(Constants.LanguageTable.LANG_TABLE_ADVENTURE, nameText);
 
         // var t = HelperLanguage.GetLocaleText(this.ScriptableData.Locale);
-        var title = this.ScriptableData.Text.title.GetLocalizedString();
+        var title = MapObjectClass.ScriptableData.Text.title.GetLocalizedString();
         LocalizedString message = new LocalizedString(Constants.LanguageTable.LANG_TABLE_ADVENTURE, "army_attack")
         {
             { "name", new StringVariable { Value = "<color=#FFFFAB>" + title + "</color>" } },
@@ -63,7 +64,7 @@ public class MapEntityCreature : BaseMapEntity, IDataPlay, IDialogMapObjectOpera
         {
             Header = string.Format("{0} {1}", stringCountWarriors.GetLocalizedString(), title),
             Description = message.GetLocalizedString(),
-            Sprite = this.ScriptableData.MenuSprite,
+            Sprite = MapObjectClass.ScriptableData.MenuSprite,
         };
 
         var dialogWindow = new DialogMapObjectProvider(dialogData);
@@ -72,7 +73,7 @@ public class MapEntityCreature : BaseMapEntity, IDataPlay, IDialogMapObjectOpera
 
     public void OnChangeQuantityWarrior()
     {
-        Data.protectedNode = ProtectedNode.position;
+        Data.protectedNode = MapObjectClass.ProtectedNode.position;
         //if (ProtectedNode != null)
         //{
         //    UnitBase protectedUnit = ProtectedNode.OccupiedUnit;
@@ -83,15 +84,4 @@ public class MapEntityCreature : BaseMapEntity, IDataPlay, IDialogMapObjectOpera
         //}
     }
 
-    public void LoadDataPlay(DataPlay data)
-    {
-        //throw new System.NotImplementedException();
-    }
-
-    public void SaveDataPlay(ref DataPlay data)
-    {
-        //Debug.Log($"Save Warrior {name}");
-        var sdata = SaveUnit(Data);
-        data.Units.warriors.Add(sdata);
-    }
 }

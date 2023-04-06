@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 110738c119746b94d8ea902f3c039e9f, type: 3}
+  m_Script: {fileID: 11500000, guid: b503cd952d2dab8428453d0020d24401, type: 3}
   m_Name: Mine_Crystal
   m_EditorClassIdentifier: 
   idObject: 31d04a3c475c42b8ad4fe2b6f80f4838
-  TypeEntity: 30
+  TypeEntity: 32
   MenuSprite: {fileID: 0}
   Text:
     title:
@@ -34,6 +34,14 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
+  MapPrefab:
+    m_AssetGUID: 5dda9c80e3241e145ab499db21150cea
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  typeGround: 1000
+  typeInput: 0
+  listTypeNoPath: 0c000000
   DialogText:
     VisitOk:
       m_TableReference:
@@ -62,15 +70,6 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
-  MapPrefab:
-    m_AssetGUID: 5dda9c80e3241e145ab499db21150cea
-    m_SubObjectName: 
-    m_SubObjectType: 
-    m_EditorAssetChanged: 0
-  TypeMapObject: 21
-  typeGround: 1000
-  typeInput: 0
-  listTypeNoPath: 0c000000
   TypeWorkPerk: 2
   Resources:
   - id: 
@@ -81,6 +80,7 @@ MonoBehaviour:
   PrimarySkills: []
   SecondarySkills: []
   Artifacts: []
+  TypeMine: 0
   references:
     version: 2
     RefIds: []

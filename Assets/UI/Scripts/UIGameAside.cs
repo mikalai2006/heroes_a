@@ -51,6 +51,8 @@ public class UIGameAside : MonoBehaviour
     private string NameMana = "mana";
     private string NameOverlay = "Overlay";
 
+    private VisualElement _herobox;
+
     const int countTown = 3;
 
     private SceneInstance _scene;
@@ -58,8 +60,13 @@ public class UIGameAside : MonoBehaviour
     private void Start()
     {
         GameManager.OnAfterStateChanged += OnAfterStateChanged;
+        MapEntityHero.onChangeParamsActiveHero += ChangeParamsActiveHero;
     }
-    private void OnDestroy() => GameManager.OnAfterStateChanged -= OnAfterStateChanged;
+    private void OnDestroy()
+    {
+        MapEntityHero.onChangeParamsActiveHero -= ChangeParamsActiveHero;
+        GameManager.OnAfterStateChanged -= OnAfterStateChanged;
+    }
 
     private void OnAfterStateChanged(GameState state)
     {
@@ -80,6 +87,18 @@ public class UIGameAside : MonoBehaviour
             case GameState.ChangeResources:
                 OnRedrawResource();
                 break;
+            case GameState.ChangeHeroParams:
+                NextStep();
+                break;
+        }
+    }
+
+    private void ChangeParamsActiveHero(EntityHero hero)
+    {
+        VisualElement heroHit = _herobox.Q<VisualElement>(hero.IdEntity);
+        if (heroHit != null)
+        {
+            heroHit.style.height = new StyleLength(new Length(hero.Data.hit, LengthUnit.Percent));
         }
     }
 
@@ -171,8 +190,8 @@ public class UIGameAside : MonoBehaviour
         //    overlay.style.borderTopColor= color; // .RemoveFromClassList("border-color");
         //}
 
-        var herobox = aside.Q<VisualElement>(NameHeroBox);
-        herobox.Clear();
+        _herobox = aside.Q<VisualElement>(NameHeroBox);
+        _herobox.Clear();
 
         var townbox = aside.Q<VisualElement>(NameTownBox);
         townbox.Clear();
@@ -193,18 +212,22 @@ public class UIGameAside : MonoBehaviour
 
             if (i < player.DataPlayer.PlayerDataReferences.ListHero.Count)
             {
-                MapEntityHero hero = player.DataPlayer.PlayerDataReferences.ListHero[i];
-
+                EntityHero hero = player.DataPlayer.PlayerDataReferences.ListHero[i];
+                MapEntityHero heroGameObject = (MapEntityHero)hero.MapObjectGameObject;
                 var hit = newButtonHero.Q<VisualElement>(NameHit);
-                // hit.UnbindAllProperties();
-                hit.BindProperty(hero.hit);
-                // hit.style.height = new StyleLength(new Length(12, LengthUnit.Percent));
+                hit.name = hero.IdEntity;
+                // // hit.UnbindAllProperties();
+                // hit.BindProperty(heroGameObject.hit);
+                hit.style.height = new StyleLength(new Length(hero.Data.hit, LengthUnit.Percent));
+
 
                 var mana = newButtonHero.Q<VisualElement>(NameMana); //.style.height = new StyleLength(new Length(37, LengthUnit.Percent));
                 // mana.UnbindAllProperties();
-                mana.BindProperty(hero.mana);
+                // mana.BindProperty(heroGameObject.mana);
+                mana.style.height = new StyleLength(new Length(hero.Data.mana, LengthUnit.Percent));
 
-                newButtonHero.Q<VisualElement>("image").style.backgroundImage = new StyleBackground(hero.ScriptableData.MenuSprite);
+                newButtonHero.Q<VisualElement>("image").style.backgroundImage =
+                    new StyleBackground(hero.ScriptableData.MenuSprite);
 
                 newButtonHero.Q<Button>(NameAllAsideButton).RegisterCallback<ClickEvent>((ClickEvent evt) =>
                 {
@@ -242,7 +265,7 @@ public class UIGameAside : MonoBehaviour
                 newButtonHero.SetEnabled(false);
             }
 
-            herobox.Add(newButtonHero);
+            _herobox.Add(newButtonHero);
         }
 
 
@@ -255,9 +278,10 @@ public class UIGameAside : MonoBehaviour
 
             if (i < player.DataPlayer.PlayerDataReferences.ListTown.Count)
             {
-                MapEntityTown town = (MapEntityTown)player.DataPlayer.PlayerDataReferences.ListTown[i];
+                EntityTown town = (EntityTown)player.DataPlayer.PlayerDataReferences.ListTown[i];
 
-                newButtonTown.Q<VisualElement>("image").style.backgroundImage = new StyleBackground(town.ScriptableData.MenuSprite);
+                newButtonTown.Q<VisualElement>("image").style.backgroundImage =
+                    new StyleBackground(town.ScriptableData.MenuSprite);
 
                 newButtonTown.Q<Button>(NameAllAsideButton).clickable.clicked += async () =>
                 {
@@ -326,7 +350,7 @@ public class UIGameAside : MonoBehaviour
     private void OnToogleEnableBtnGoHero()
     {
         Button btn = _aside.rootVisualElement.Q<Button>(NameBtnGoHero);
-        MapEntityHero activeHero = player.ActiveHero;
+        EntityHero activeHero = player.ActiveHero;
         if (activeHero != null)
         {
             btn.SetEnabled(activeHero.CanMove);
@@ -337,10 +361,10 @@ public class UIGameAside : MonoBehaviour
         }
     }
 
-    private void OnSetActiveHero(ClickEvent evt, MapEntityHero hero)
+    private void OnSetActiveHero(ClickEvent evt, EntityHero hero)
     {
 
-        MapEntityHero activeHero = player.ActiveHero;
+        EntityHero activeHero = player.ActiveHero;
 
         // OnResetFocusButton();
         ChangeHeroInfo();
@@ -372,7 +396,7 @@ public class UIGameAside : MonoBehaviour
 
     private void ChangeHeroInfo()
     {
-        MapEntityHero activeHero = player.ActiveHero;
+        EntityHero activeHero = player.ActiveHero;
         if (activeHero == null) return;
 
         Debug.Log("Change info hero");

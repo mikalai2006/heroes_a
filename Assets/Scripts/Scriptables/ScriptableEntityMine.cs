@@ -2,10 +2,11 @@ using System.Collections.Generic;
 
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewEntityMapObject", menuName = "Game/Entity/New MapObject")]
-public class ScriptableEntityMapObject : ScriptableEntityPerk
+[CreateAssetMenu(fileName = "NewEntityMine", menuName = "Game/Entity/MapObject/New Mine")]
+public class ScriptableEntityMine : ScriptableEntityPerk
 {
-    // [Header("Options MapObject")]
+    [Header("Options Mine")]
+    public TypeMine TypeMine;
     // public TypeMapObject TypeMapObject;
     // public MapObjectType TypeMapObject;
     // public TypeWorkMapObject TypeWork;
@@ -18,17 +19,8 @@ public class ScriptableEntityMapObject : ScriptableEntityPerk
 }
 
 [System.Serializable]
-public enum TypeMapObject
+public enum TypeMine
 {
-    // Enemy = 0,
-    Artifact = 1,
-    Monolith = 4,
-    Hero = 5,
-    Town = 6,
-    Explore = 20,
-    Mine = 21,
-    Creature = 22,
-
-    SkillSchool = 30,
-    Resource = 40,
+    Free = 0,
+    Town = 1,
 }

@@ -13,14 +13,14 @@ public struct DataMine
 
 }
 
-public class MapEntityMine : BaseMapEntity, IDataPlay, IDialogMapObjectOperation
+public class MapEntityMine : BaseMapEntity, IDialogMapObjectOperation
 {
     public DataMine Data = new DataMine();
     private SpriteRenderer _flag;
-    public override void InitUnit(ScriptableEntity data, Vector3Int pos)
+    public override void InitUnit(BaseEntity mapObject)
     {
 
-        base.InitUnit(data, pos);
+        base.InitUnit(mapObject);
 
         Data.idPlayer = -1;
 
@@ -33,7 +33,7 @@ public class MapEntityMine : BaseMapEntity, IDataPlay, IDialogMapObjectOperation
             Player player = LevelManager.Instance.ActivePlayer;
             if (Data.idPlayer == player.DataPlayer.id)
             {
-                var data = (ScriptableEntityMapObject)ScriptableData;
+                var data = (ScriptableEntityMine)MapObjectClass.ScriptableData;
                 if (data.Resources.Count > 0)
                 {
                     var res = data.Resources[0].ListVariant[0].Resource;
@@ -66,15 +66,15 @@ public class MapEntityMine : BaseMapEntity, IDataPlay, IDialogMapObjectOperation
     //    SaveUnit(Data);
     //}
 
-    public void LoadDataPlay(DataPlay data)
-    {
-        //throw new System.NotImplementedException();
-    }
-    public void SaveDataPlay(ref DataPlay data)
-    {
-        var sdata = SaveUnit(Data);
-        data.Units.mines.Add(sdata);
-    }
+    // public void LoadDataPlay(DataPlay data)
+    // {
+    //     //throw new System.NotImplementedException();
+    // }
+    // public void SaveDataPlay(ref DataPlay data)
+    // {
+    //     var sdata = SaveUnit(Data);
+    //     data.Units.mines.Add(sdata);
+    // }
 
     public async override void OnGoHero(Player player)
     {
@@ -98,9 +98,9 @@ public class MapEntityMine : BaseMapEntity, IDataPlay, IDialogMapObjectOperation
         // var t = HelperLanguage.GetLocaleText(this.ScriptableData.Locale);
         var dialogData = new DataDialog()
         {
-            Header = this.ScriptableData.Text.title.GetLocalizedString(), //t.Text.title,
+            Header = MapObjectClass.ScriptableData.Text.title.GetLocalizedString(), //t.Text.title,
             // Description = t.Text.visit_ok,
-            Sprite = this.ScriptableData.MenuSprite,
+            Sprite = MapObjectClass.ScriptableData.MenuSprite,
         };
 
         var dialogWindow = new DialogMapObjectProvider(dialogData);

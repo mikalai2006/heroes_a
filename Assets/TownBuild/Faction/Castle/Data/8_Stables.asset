@@ -20,17 +20,6 @@ MonoBehaviour:
     TypeBuild: 37
     UpdatePrefab: {fileID: 0}
     RequiredBuilds: 070000000b000000
-    Locale:
-    - Language: {fileID: 11400000, guid: 30b8a59646ec31e4fa7737b1c0d7cba9, type: 2}
-      Text:
-        title: "\u041A\u043E\u043D\u044E\u0448\u043D\u0438"
-        description: "\u041A\u043E\u043D\u044E\u0448\u043D\u0438 \u0443\u0432\u0435\u043B\u0438\u0447\u0438\u0432\u0430\u044E\u0442
-          \u0441\u043A\u043E\u0440\u043E\u0441\u0442\u044C \u043F\u0435\u0440\u0435\u0434\u0432\u0438\u0436\u0435\u043D\u0438\u044F
-          \u043B\u044E\u0431\u043E\u0433\u043E \u0433\u0435\u0440\u043E\u044F-\u0433\u043E\u0441\u0442\u044F
-          \u043F\u043E \u0441\u0443\u0448\u0435."
-        visit_ok: 
-        visit_no: 
-        visit_noresource: 
     Text:
       title:
         m_TableReference:
@@ -51,9 +40,9 @@ MonoBehaviour:
         m_WaitForCompletion: 0
         m_LocalVariables: []
     CostResource:
-    - Resource: {fileID: 11400000, guid: 2de32a5fb2189994a867c9e425391bf7, type: 2}
+    - Resource: {fileID: 11400000, guid: ea04c2f186809b945ae03f53199a7876, type: 2}
       Count: 2000
-    - Resource: {fileID: 11400000, guid: 88388bc7df9ca2b4594e5d8830fcc54d, type: 2}
+    - Resource: {fileID: 11400000, guid: 30cdc368665f1154b904062d3111c160, type: 2}
       Count: 10
   references:
     version: 2

@@ -4,35 +4,18 @@ using System.Collections.Generic;
 
 using UnityEngine;
 
-[System.Serializable]
-public class DataHero
-{
-    public int idPlayer;
-    public Vector3Int nextPosition;
-    public float speed;
-    public float hit;
-    public float mana;
-    public string name;
-
-}
-
 //[System.Serializable]
-public class MapEntityHero : BaseMapEntity, IDataPlay
+public class MapEntityHero : BaseMapEntity
 {
-
-    [SerializeField] public DataHero Data = new DataHero();
-
     private bool _canMove = false;
-    private Player _player;
+    public static event Action<EntityHero> onChangeParamsActiveHero;
 
     [NonSerialized] public Property<float> hit;
     [NonSerialized] public Property<float> mana;
 
     [NonSerialized] private Animator _animator;
     [NonSerialized] private Transform _model;
-    [NonSerialized] public List<GridTileNode> path;
 
-    public bool CanMove { get { return path.Count > 0 && Data.hit > 0; } private set { } }
 
     #region Unity methods
     protected override void Awake()
@@ -65,29 +48,30 @@ public class MapEntityHero : BaseMapEntity, IDataPlay
 
     #endregion
 
-    public override void InitUnit(ScriptableEntity data, Vector3Int pos)
+    public override void InitUnit(BaseEntity mapObject)
     {
 
-        base.InitUnit(data, pos);
-        path = new List<GridTileNode>();
+        base.InitUnit(mapObject);
+        MapObjectClass = (EntityHero)mapObject;
 
         hit = new Property<float>(100f);
         mana = new Property<float>(100f);
         hit.Value = 100f;
-        Data.hit = 100f;
-        Data.speed = 100;
-        Data.name = data.name;
+        // Data.hit = 100f;
+        // Data.speed = 100;
+        // Data.name = MapObjectClass.ScriptableData.name;
+
+        if (mapObject.Player != null)
+        {
+            SetPlayer(mapObject.Player);
+        }
     }
 
 
-    public void SetPlayer(PlayerData playerData)
+    public void SetPlayer(Player player)
     {
-        //Debug.Log($"SetPlayer::: id{playerData.id}-idArea{playerData.idArea}");
-        Data.idPlayer = playerData.id;
-
-        _player = LevelManager.Instance.GetPlayer(Data.idPlayer);
         Transform flag = transform.Find("Flag");
-        flag.GetComponent<SpriteRenderer>().color = _player.DataPlayer.color;
+        flag.GetComponent<SpriteRenderer>().color = player.DataPlayer.color;
     }
 
 
@@ -100,73 +84,63 @@ public class MapEntityHero : BaseMapEntity, IDataPlay
 
     private void OnChangeGameState(GameState newState)
     {
-        _canMove = newState == GameState.StartMoveHero && this ==
+        var entityHero = (EntityHero)MapObjectClass;
+        _canMove = newState == GameState.StartMoveHero && this.MapObjectClass ==
             LevelManager.Instance.ActivePlayer.DataPlayer.PlayerDataReferences.ActiveHero;
-        if (_canMove && CanMove)
+        if (_canMove && entityHero.CanMove)
         {
-            path.RemoveAt(0);
+            entityHero.Data.path.RemoveAt(0);
             StartCoroutine(MoveHero());
         }
 
         switch (newState)
         {
             case GameState.StepNextPlayer:
-                Data.hit = 100f;
+                entityHero.Data.hit = 100f;
                 hit.Value = 100f;
                 mana.Value = UnityEngine.Random.value * 100f;
                 break;
         }
     }
 
-    public void SetPathHero(List<GridTileNode> _path)
-    {
-        path = _path;
-        //for (int i = 1; i < path.Count; i++)
-        //{
-        //    HeroData.path.Add(path[i]._position);
-
-        //}
-        Data.nextPosition = path[path.Count - 1].position;
-    }
-
-    public void SetHeroAsActive()
-    {
-        LevelManager.Instance.ActivePlayer.ActiveHero = this;
-    }
-
     IEnumerator MoveHero()
     {
-        while (path.Count > 0 && _canMove && Data.hit >= 1)
+        var heroEntity = (EntityHero)MapObjectClass;
+        while (heroEntity.Data.path.Count > 0 && _canMove && heroEntity.Data.hit >= 1)
         {
             //transform.position = HeroData.path[0];
-            Vector3 moveKoof = path[0].OccupiedUnit?.typeInput == TypeInput.Down ? new Vector3(.5f, .0f) : new Vector3(.5f, .5f);
+            Vector3 moveKoof = heroEntity.Data.path[0].OccupiedUnit?.ScriptableData.typeInput == TypeInput.Down ? new Vector3(.5f, .0f) : new Vector3(.5f, .5f);
 
-            UpdateAnimate(Position, path[0].position);
+            UpdateAnimate(MapObjectClass.Position, heroEntity.Data.path[0].position);
             _animator.SetBool("isWalking", true);
 
-            yield return StartCoroutine(SmoothLerp((Vector3)Position + moveKoof, (Vector3)path[0].position + moveKoof));
+            yield return StartCoroutine(
+                SmoothLerp((Vector3)MapObjectClass.Position + moveKoof, (Vector3)heroEntity.Data.path[0].position + moveKoof));
             //ChangeHit(HeroData.path[0], - 1);
-            Data.hit -= CalculateHitByNode(path[0]);
-            hit.Value -= CalculateHitByNode(path[0]);
-            Position = path[0].position;
+            heroEntity.Data.hit -= heroEntity.CalculateHitByNode(heroEntity.Data.path[0]);
+            hit.Value -= heroEntity.CalculateHitByNode(heroEntity.Data.path[0]);
+            MapObjectClass.Position = heroEntity.Data.path[0].position;
             //Position = path[0]._position;
-            GameManager.Instance.MapManager.DrawCursor(path, this);
+            GameManager.Instance.MapManager.DrawCursor(heroEntity.Data.path, heroEntity);
 
-            List<GridTileNode> noskyNode = GameManager.Instance.MapManager.DrawSky(path[0], 4);
-            _player.SetNosky(noskyNode);
+            List<GridTileNode> noskyNode = GameManager.Instance.MapManager.DrawSky(heroEntity.Data.path[0], 4);
+            heroEntity.Player.SetNosky(noskyNode);
 
-            GameManager.Instance.MapManager.SetColorForTile(path[0].position, Color.cyan);
-            if (path[0].Protected)
+            GameManager.Instance.MapManager.SetColorForTile(heroEntity.Data.path[0].position, Color.cyan);
+            if (heroEntity.Data.path[0].Protected && heroEntity.Data.path[0].ProtectedUnit != null)
             {
-                path[0].ProtectedUnit.OnGoHero(LevelManager.Instance.GetPlayer(Data.idPlayer));
+                heroEntity.Data.path[0].ProtectedUnit.MapObjectGameObject.OnGoHero(LevelManager.Instance.GetPlayer(heroEntity.Data.idPlayer));
                 // path[0].SetProtectedNeigbours(null);
                 GameManager.Instance.ChangeState(GameState.StopMoveHero);
             }
-            if (path[0].OccupiedUnit)
+            if (heroEntity.Data.path[0].OccupiedUnit != null)
             {
-                path[0].OccupiedUnit.OnGoHero(LevelManager.Instance.GetPlayer(Data.idPlayer));
+                heroEntity.Data.path[0].OccupiedUnit.MapObjectGameObject.OnGoHero(LevelManager.Instance.GetPlayer(heroEntity.Data.idPlayer));
             }
-            path.RemoveAt(0);
+
+            onChangeParamsActiveHero?.Invoke(heroEntity);
+            // GameManager.Instance.ChangeState(GameState.ChangeHeroParams);
+            heroEntity.Data.path.RemoveAt(0);
 
 
             //yield return new WaitForSeconds(.1f);
@@ -192,7 +166,7 @@ public class MapEntityHero : BaseMapEntity, IDataPlay
         }
     }
 
-    public override void UpdateAnimate(Vector3Int startPosition, Vector3Int endPosition)
+    public void UpdateAnimate(Vector3Int startPosition, Vector3Int endPosition)
     {
         if (_animator != null && startPosition != Vector3Int.zero && endPosition != Vector3Int.zero)
         {
@@ -216,15 +190,9 @@ public class MapEntityHero : BaseMapEntity, IDataPlay
 
     public void ChangeHit(GridTileNode node, float _hit)
     {
-        Data.hit += _hit * Data.speed;
-        hit.Value += Data.hit;
-    }
-    public float CalculateHitByNode(GridTileNode node)
-    {
-        var dataNode = ResourceSystem.Instance.GetLandscape(node.TypeGround);
-        float val = (100 - dataNode.dataNode.speed + (100 - Data.speed + 10));
-        //Debug.Log($"CalculateHitByNode::: {val}");
-        return val;
+        var data = (EntityHero)MapObjectClass;
+        data.Data.hit += _hit * data.Data.speed;
+        hit.Value += data.Data.hit;
     }
     private void OnMouseDown()
     {
@@ -241,10 +209,11 @@ public class MapEntityHero : BaseMapEntity, IDataPlay
 
         //Debug.Log("Unit clicked");
 
-        if (LevelManager.Instance.ActivePlayer.DataPlayer.PlayerDataReferences.ListHero.Contains(this))
+        if (LevelManager.Instance.ActivePlayer.DataPlayer.PlayerDataReferences.ListHero.Contains((EntityHero)this.GetMapObjectClass))
         {
             //LevelManager.Instance.GetActivePlayer().SetActiveHero(this);
-            SetHeroAsActive();
+            EntityHero entityHero = (EntityHero)MapObjectClass;
+            entityHero.SetHeroAsActive();
             Debug.Log($"Check My hero {name}");
         }
         else
@@ -269,22 +238,22 @@ public class MapEntityHero : BaseMapEntity, IDataPlay
     //    LoadUnit(saveData);
     //}
 
-    public void LoadDataPlay(DataPlay data)
-    {
-        //throw new System.NotImplementedException();
-    }
+    // public void LoadDataPlay(DataPlay data)
+    // {
+    //     //throw new System.NotImplementedException();
+    // }
 
-    public void SaveDataPlay(ref DataPlay data)
-    {
-        var sdata = SaveUnit(Data);
-        data.Units.heroes.Add(sdata);
-    }
+    // public void SaveDataPlay(ref DataPlay data)
+    // {
+    //     var sdata = SaveUnit(Data);
+    //     data.Units.heroes.Add(sdata);
+    // }
 
-    public override void OnLoadUnit<T>(SaveDataUnit<T> Data)
-    {
-        base.OnLoadUnit(Data);
-        DataHero dh = Data.data as DataHero;
-        this.Data = dh;
-    }
+    // public override void OnLoadUnit<T>(SaveDataUnit<T> Data)
+    // {
+    //     base.OnLoadUnit(Data);
+    //     DataHero dh = Data.data as DataHero;
+    //     this.Data = dh;
+    // }
 
 }

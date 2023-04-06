@@ -36,7 +36,8 @@ public class CreateResourceEveryWeekOperation : ILoadingOperation
 
             if (nodes.Count > 0)
             {
-                int maxCountResource = Mathf.CeilToInt(LevelManager.Instance.GameModeData.koofResource * area.countNode);
+                int maxCountResource = Mathf.CeilToInt(
+                    LevelManager.Instance.GameModeData.koofResource * area.countNode);
                 area.Stat.countEveryResourceN = maxCountResource;
                 int countCreated = 0;
 
@@ -49,14 +50,18 @@ public class CreateResourceEveryWeekOperation : ILoadingOperation
                     if (nodeWarrior != null && currentNode != null && _root.gridTileHelper.CalculateNeighbours(currentNode) == 8)
                     {
 
-                        MapEntityCreature warrior = await _root.UnitManager.SpawnWarriorAsync(nodeWarrior);
+                        BaseEntity warrior = _root.UnitManager.SpawnWarriorAsync(nodeWarrior);
 
-                        BaseMapEntity unit = await _root.UnitManager.SpawnMapObjectAsync(
-                            currentNode,
-                            TypeMapObject.Resource,
+                        BaseEntity entity = new EntityResource(currentNode,
                             new List<TypeWorkPerk>() { TypeWorkPerk.EveryDay, TypeWorkPerk.EveryWeek }
-                        );
-                        if (unit.ScriptableData.name == "MillWater")
+                            );
+                        _root.UnitManager.SpawnEntityToNode(currentNode, entity);
+                        // _root.UnitManager.SpawnMapObjectAsync(
+                        //     currentNode,
+                        //     TypeMapObject.Resource,
+                        //     new List<TypeWorkPerk>() { TypeWorkPerk.EveryDay, TypeWorkPerk.EveryWeek }
+                        // );
+                        if (entity.ScriptableData.name == "MillWater")
                         {
                             GameManager.Instance.MapManager.CreateCreeks(currentNode);
                         }
@@ -73,7 +78,7 @@ public class CreateResourceEveryWeekOperation : ILoadingOperation
 
                         if (listExistExitNode.Count > 1)
                         {
-                            await _root.CreatePortalAsync(currentNode, listExistExitNode);
+                            _root.CreatePortal(currentNode, listExistExitNode);
                         }
                         //else
                         //{

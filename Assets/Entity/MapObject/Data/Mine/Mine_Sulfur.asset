@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 110738c119746b94d8ea902f3c039e9f, type: 3}
+  m_Script: {fileID: 11500000, guid: b503cd952d2dab8428453d0020d24401, type: 3}
   m_Name: Mine_Sulfur
   m_EditorClassIdentifier: 
-  idObject: 04b96971418d4ae9a8d7bd2ba585bb0b
-  TypeEntity: 30
+  idObject: 6f89438d98114b97bd6c817c56df3429
+  TypeEntity: 0
   MenuSprite: {fileID: 0}
   Text:
     title:
@@ -34,6 +34,14 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
+  MapPrefab:
+    m_AssetGUID: 
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  typeGround: 1000
+  typeInput: 0
+  listTypeNoPath: 
   DialogText:
     VisitOk:
       m_TableReference:
@@ -62,25 +70,17 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
-  MapPrefab:
-    m_AssetGUID: 830fbc11516254a4a833003c015ea3e9
-    m_SubObjectName: 
-    m_SubObjectType: 
-    m_EditorAssetChanged: 0
-  TypeMapObject: 21
-  typeGround: 1000
-  typeInput: 0
-  listTypeNoPath: 0c000000
   TypeWorkPerk: 2
   Resources:
   - id: 
     ListVariant:
-    - Resource: {fileID: 11400000, guid: b332b028a29cd0a4a8333b9c59d0343b, type: 2}
+    - Resource: {fileID: 11400000, guid: 19d789934151d984caad385164b2cb4a, type: 2}
       maxValue: 1
       step: 1
   PrimarySkills: []
   SecondarySkills: []
   Artifacts: []
+  TypeMine: 0
   references:
     version: 2
     RefIds: []

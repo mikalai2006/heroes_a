@@ -9,8 +9,8 @@ namespace Loader
 {
     public class TownLoadOperation : ILoadingOperation
     {
-        private MapEntityTown _town;
-        public TownLoadOperation(MapEntityTown town)
+        private EntityTown _town;
+        public TownLoadOperation(EntityTown town)
         {
             _town = town;
         }

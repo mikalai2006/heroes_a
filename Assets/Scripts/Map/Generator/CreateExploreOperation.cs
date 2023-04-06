@@ -36,7 +36,8 @@ public class CreateExploreOperation : ILoadingOperation
 
             if (nodes.Count > 0)
             {
-                int maxCountExplore = Mathf.CeilToInt(LevelManager.Instance.GameModeData.koofExplore * area.countNode);
+                int maxCountExplore = Mathf.CeilToInt(
+                    LevelManager.Instance.GameModeData.koofExplore * area.countNode);
                 area.Stat.countExploreN = maxCountExplore;
                 int countCreated = 0;
 
@@ -51,10 +52,12 @@ public class CreateExploreOperation : ILoadingOperation
                         && _root.gridTileHelper.CalculateNeighbours(currentNode) == 8
                         )
                     {
-                        BaseMapEntity unit = await _root.UnitManager
-                            .SpawnMapObjectAsync(currentNode, TypeMapObject.Explore);
+                        BaseEntity entity = new EntityExpore(currentNode);
+                        _root.UnitManager.SpawnEntityToNode(currentNode, entity);
+                        // _root.UnitManager
+                        //     .SpawnMapObjectAsync(currentNode, TypeMapObject.Explore);
 
-                        MapEntityCreature warrior = (MapEntityCreature)await _root.UnitManager.SpawnWarriorAsync(nodeWarrior);
+                        BaseEntity warrior = _root.UnitManager.SpawnWarriorAsync(nodeWarrior);
 
                         nodeWarrior.SetProtectedNeigbours(warrior, currentNode);
 
@@ -67,7 +70,7 @@ public class CreateExploreOperation : ILoadingOperation
                         List<GridTileNode> listExistExitNode = _root.gridTileHelper.IsExistExit(currentNode);
                         if (listExistExitNode.Count > 1)
                         {
-                            await _root.CreatePortalAsync(currentNode, listExistExitNode);
+                            _root.CreatePortal(currentNode, listExistExitNode);
                         }
                     }
                     else

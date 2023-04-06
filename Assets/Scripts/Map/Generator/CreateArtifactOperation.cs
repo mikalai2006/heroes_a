@@ -56,9 +56,11 @@ public class CreateArtifactOperation : ILoadingOperation
                         //&& gridTileHelper.CalculateNeighbours(currentNode) < 3
                         )
                     {
-                        BaseMapEntity unit = await _root.UnitManager.SpawnArtifactAsync(currentNode);
+                        BaseEntity entity = new EntityArtifact(currentNode);
+                        _root.UnitManager.SpawnEntityToNode(currentNode, entity);
+                        //_root.UnitManager.SpawnArtifactAsync(currentNode);
 
-                        MapEntityCreature warrior = (MapEntityCreature)await _root.UnitManager.SpawnWarriorAsync(nodeWarrior);
+                        BaseEntity warrior = _root.UnitManager.SpawnWarriorAsync(nodeWarrior);
 
                         nodeWarrior.SetProtectedNeigbours(warrior, currentNode);
 
@@ -71,7 +73,7 @@ public class CreateArtifactOperation : ILoadingOperation
                         List<GridTileNode> listExistExitNode = _root.gridTileHelper.IsExistExit(currentNode);
                         if (listExistExitNode.Count > 1)
                         {
-                            await _root.CreatePortalAsync(currentNode, listExistExitNode);
+                            _root.CreatePortal(currentNode, listExistExitNode);
                         }
                         //onProgress?.Invoke((float)countCreated / (float)maxCount);
                     }

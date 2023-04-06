@@ -83,6 +83,9 @@ public class GameManager : StaticInstance<GameManager>
             case GameState.StopMoveHero:
                 HandleStopMoveHero();
                 break;
+            case GameState.ChangeHeroParams:
+                // HandleStopMoveHero();
+                break;
             case GameState.CreatePathHero:
 
                 break;
@@ -179,7 +182,7 @@ public enum GameState
     ChooseTown = 8,
     CreateLevel = 9,
     ChooseHero = 10,
-
+    ChangeHeroParams = 11,
     ChangeResources = 100,
 
     StartMoveHero = 200,

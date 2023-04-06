@@ -34,7 +34,8 @@ public class CreateResourceOperation : ILoadingOperation
 
             if (nodes.Count > 0)
             {
-                int maxCountResource = Mathf.CeilToInt(LevelManager.Instance.GameModeData.koofFreeResource * area.countNode);
+                int maxCountResource = Mathf.CeilToInt(
+                    LevelManager.Instance.GameModeData.koofFreeResource * area.countNode);
 
                 area.Stat.countFreeResourceN = maxCountResource;
 
@@ -44,8 +45,12 @@ public class CreateResourceOperation : ILoadingOperation
                 {
                     GridTileNode currentNode = nodes[Random.Range(0, nodes.Count)];
 
-                    BaseMapEntity unit = await _root.UnitManager
-                        .SpawnMapObjectAsync(currentNode, TypeMapObject.Resource, new List<TypeWorkPerk>() { TypeWorkPerk.One });
+                    BaseEntity entity = new EntityResource(currentNode, new List<TypeWorkPerk>(){
+                        TypeWorkPerk.One
+                    });
+                    _root.UnitManager.SpawnEntityToNode(currentNode, entity);
+                    // _root.UnitManager
+                    //     .SpawnMapObjectAsync(currentNode, TypeMapObject.Resource, new List<TypeWorkPerk>() { TypeWorkPerk.One });
 
                     nodes.Remove(currentNode);
 
@@ -57,7 +62,7 @@ public class CreateResourceOperation : ILoadingOperation
 
                     if (listExistExitNode.Count > 1)
                     {
-                        await _root.CreatePortalAsync(currentNode, listExistExitNode);
+                        _root.CreatePortal(currentNode, listExistExitNode);
                     }
                 }
 

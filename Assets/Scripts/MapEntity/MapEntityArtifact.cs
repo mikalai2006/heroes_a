@@ -2,15 +2,9 @@ using Cysharp.Threading.Tasks;
 
 using UnityEngine;
 
-[System.Serializable]
-public struct DataArtifact
-{
-
-}
-public class MapEntityArtifact : BaseMapEntity, IDataPlay, IDialogMapObjectOperation
+public class MapEntityArtifact : BaseMapEntity, IDialogMapObjectOperation
 {
     public Transform _model;
-    public DataArtifact Data;
 
     protected override void Awake()
     {
@@ -18,11 +12,11 @@ public class MapEntityArtifact : BaseMapEntity, IDataPlay, IDialogMapObjectOpera
         _model = transform.Find("Model");
     }
 
-    public override void InitUnit(ScriptableEntity data, Vector3Int pos)
+    public override void InitUnit(BaseEntity mapObject)
     {
-        base.InitUnit(data, pos);
+        base.InitUnit(mapObject);
 
-        ScriptableEntityArtifact dataArtifact = (ScriptableEntityArtifact)data;
+        ScriptableEntityArtifact dataArtifact = (ScriptableEntityArtifact)MapObjectClass.ScriptableData;
 
         if (dataArtifact.spriteMap != null)
         {
@@ -41,9 +35,9 @@ public class MapEntityArtifact : BaseMapEntity, IDataPlay, IDialogMapObjectOpera
         // var t = HelperLanguage.GetLocaleText(this.ScriptableData.Locale);
         var dialogData = new DataDialog()
         {
-            Header = this.ScriptableData.Text.title.GetLocalizedString(),
+            Header = MapObjectClass.ScriptableData.Text.title.GetLocalizedString(),
             // Description = t.Text.visit_ok,
-            Sprite = this.ScriptableData.MenuSprite
+            Sprite = MapObjectClass.ScriptableData.MenuSprite
         };
 
         var dialogWindow = new DialogMapObjectProvider(dialogData);
@@ -65,13 +59,4 @@ public class MapEntityArtifact : BaseMapEntity, IDataPlay, IDialogMapObjectOpera
         }
     }
 
-    public void LoadDataPlay(DataPlay data)
-    {
-    }
-
-    public void SaveDataPlay(ref DataPlay data)
-    {
-        var sdata = SaveUnit(Data);
-        data.Units.artifacts.Add(sdata);
-    }
 }

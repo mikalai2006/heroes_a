@@ -46,12 +46,13 @@ public class CreateTownOperation : ILoadingOperation
             {
                 GridTileNode node = listGridNode[listGridNode.Count - 1];
                 //Create town.
-                ScriptableEntityTown town = await _root.UnitManager.SpawnTownAsync(node, area.id);
+                EntityTown entityTown = _root.UnitManager.SpawnTownAsync(node, area.id);
                 // towns.Add(town);
                 area.startPosition = node.position;
 
                 // Spawn mines.
-                for (int i = 0; i < town.mines.Count; i++)
+                ScriptableEntityTown configTown = (ScriptableEntityTown)entityTown.ScriptableData;
+                for (int i = 0; i < configTown.mines.Count; i++)
                 {
                     var listNodes = _root.gridTileHelper.GetAllGridNodes().Where(t =>
                     t.KeyArea == area.id
@@ -67,7 +68,8 @@ public class CreateTownOperation : ILoadingOperation
 
                         if (nodeForSpawn != null)
                         {
-                            BaseMapEntity createdMine = await _root.UnitManager.SpawnEntityToNode(town.mines[i], nodeForSpawn);
+                            EntityMine newmine = new EntityMine(nodeForSpawn);
+                            BaseEntity createdMine = _root.UnitManager.SpawnEntityToNode(nodeForSpawn, newmine);
                         }
                     }
                 }
