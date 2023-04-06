@@ -77,6 +77,12 @@ public class EntityHero : BaseEntity, IDataPlay
     {
         LevelManager.Instance.ActivePlayer.ActiveHero = this;
     }
+
+    public override void SetPlayer(Player player)
+    {
+        base.SetPlayer(player);
+        player.AddHero(this);
+    }
 }
 
 [System.Serializable]

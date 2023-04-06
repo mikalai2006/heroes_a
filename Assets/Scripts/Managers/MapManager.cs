@@ -92,7 +92,7 @@ public class MapManager : MonoBehaviour, IDataGame
     [SerializeField] public Cursors _cursorSprites;
     public void LoadDataGame(DataGame data)
     {
-        LoadMapAsync(data);
+        LoadMap(data);
     }
 
     public void SaveDataGame(ref DataGame data)
@@ -104,7 +104,7 @@ public class MapManager : MonoBehaviour, IDataGame
         data.dataMap.countArea = countArea;
     }
 
-    private async Task LoadMapAsync(DataGame data)
+    private void LoadMap(DataGame data)
     {
         gameModeData = data.dataMap.GameModeData;
         _listNatureNode = data.dataMap.natureNode;
@@ -547,7 +547,7 @@ public class MapManager : MonoBehaviour, IDataGame
 
             GridTileNode townNode = gridTileHelper.GetNode(currentArea.startPosition.x, currentArea.startPosition.y);
 
-            BaseEntity monolith = currentArea.portal;
+            EntityMonolith monolith = currentArea.portal;
 
             if (monolith == null)
             {
@@ -572,8 +572,8 @@ public class MapManager : MonoBehaviour, IDataGame
                     if (nodeWarrior != null)
                     {
                         monolith = new EntityMonolith(nodeInputPortal);
-                        // UnitManager.SpawnMapObjectAsync(nodeInputPortal, TypeMapObject.Monolith);
-                        currentArea.portal = monolith;
+                        UnitManager.SpawnEntityToNode(nodeInputPortal, monolith);
+                        currentArea.portal = (EntityMonolith)monolith;
 
                         BaseEntity warrior = UnitManager.SpawnWarriorAsync(nodeWarrior);
 
@@ -589,6 +589,7 @@ public class MapManager : MonoBehaviour, IDataGame
             if (monolith != null)
             {
                 BaseEntity monolithExit = new EntityMonolith(nodeExitPortal);
+                UnitManager.SpawnEntityToNode(nodeExitPortal, monolithExit);
                 // UnitManager.SpawnMapObjectAsync(nodeExitPortal, TypeMapObject.Monolith);
 
                 GridTileNode nodeWarrior = GetNodeWarrior(nodeExitPortal);

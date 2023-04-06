@@ -5,11 +5,15 @@ using UnityEngine;
 
 public class MapEntityTown : BaseMapEntity
 {
-    public override void InitUnit(BaseEntity mapObjects)
+    public override void InitUnit(BaseEntity mapObject)
     {
 
-        base.InitUnit(mapObjects);
+        base.InitUnit(mapObject);
 
+        if (mapObject.Player != null)
+        {
+            SetPlayer(mapObject.Player);
+        }
     }
     //private void Awake() => GameManager.OnBeforeStateChanged += OnStateChanged;
 
@@ -21,7 +25,7 @@ public class MapEntityTown : BaseMapEntity
         base.OnAfterStateChanged(newState);
     }
 
-    public void SetPlayer(Player player)
+    private void SetPlayer(Player player)
     {
         Transform flag = transform.Find("Flag");
         flag.GetComponent<SpriteRenderer>().color = player.DataPlayer.color;

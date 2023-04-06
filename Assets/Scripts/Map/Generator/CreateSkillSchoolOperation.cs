@@ -36,7 +36,8 @@ public class CreateSkillSchoolOperation : ILoadingOperation
 
             if (nodes.Count > 0)
             {
-                int maxCountSchool = Mathf.CeilToInt(LevelManager.Instance.GameModeData.koofSchoolSkills * area.countNode);
+                int maxCountSchool = Mathf.CeilToInt(
+                    LevelManager.Instance.GameModeData.koofSchoolSkills * area.countNode);
                 area.Stat.countSkillSchoolN = maxCountSchool;
                 int countCreated = 0;
 
@@ -48,7 +49,8 @@ public class CreateSkillSchoolOperation : ILoadingOperation
 
                     if (nodeWarrior != null && currentNode != null && _root.gridTileHelper.CalculateNeighbours(currentNode) == 8)
                     {
-                        BaseEntity unit = new EntitySkillSchool(currentNode);
+                        BaseEntity entity = new EntitySkillSchool(currentNode);
+                        _root.UnitManager.SpawnEntityToNode(currentNode, entity);
                         // _root.UnitManager
                         //     .SpawnMapObjectAsync(currentNode, TypeMapObject.SkillSchool);
 
@@ -65,6 +67,7 @@ public class CreateSkillSchoolOperation : ILoadingOperation
                         List<GridTileNode> listExistExitNode = _root.gridTileHelper.IsExistExit(currentNode);
                         if (listExistExitNode.Count > 1)
                         {
+                            Debug.Log($"SkillSchool: Need portal {currentNode.position}");
                             _root.CreatePortal(currentNode, listExistExitNode);
                         }
 

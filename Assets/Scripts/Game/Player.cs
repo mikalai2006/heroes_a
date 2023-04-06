@@ -111,7 +111,7 @@ public class Player
 
     public void AddHero(EntityHero hero)
     {
-        hero.SetPlayer(DataPlayer);
+        // hero.SetPlayer(DataPlayer);
         DataPlayer.PlayerDataReferences.ListHero.Add(hero);
     }
 
@@ -186,9 +186,9 @@ public class Player
 
     public void AddTown(BaseEntity town)
     {
-        EntityTown _town = (EntityTown)town;
-        _town.SetPlayer(DataPlayer);
-        DataPlayer.PlayerDataReferences.ListTown.Add(_town);
+        // EntityTown _town = (EntityTown)town;
+        // _town.SetPlayer(DataPlayer);
+        DataPlayer.PlayerDataReferences.ListTown.Add((EntityTown)town);
 
     }
 

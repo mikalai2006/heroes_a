@@ -36,7 +36,8 @@ public class CreateResourceEveryWeekOperation : ILoadingOperation
 
             if (nodes.Count > 0)
             {
-                int maxCountResource = Mathf.CeilToInt(LevelManager.Instance.GameModeData.koofResource * area.countNode);
+                int maxCountResource = Mathf.CeilToInt(
+                    LevelManager.Instance.GameModeData.koofResource * area.countNode);
                 area.Stat.countEveryResourceN = maxCountResource;
                 int countCreated = 0;
 
@@ -51,15 +52,16 @@ public class CreateResourceEveryWeekOperation : ILoadingOperation
 
                         BaseEntity warrior = _root.UnitManager.SpawnWarriorAsync(nodeWarrior);
 
-                        BaseEntity unit = new EntityResource(currentNode,
+                        BaseEntity entity = new EntityResource(currentNode,
                             new List<TypeWorkPerk>() { TypeWorkPerk.EveryDay, TypeWorkPerk.EveryWeek }
                             );
+                        _root.UnitManager.SpawnEntityToNode(currentNode, entity);
                         // _root.UnitManager.SpawnMapObjectAsync(
                         //     currentNode,
                         //     TypeMapObject.Resource,
                         //     new List<TypeWorkPerk>() { TypeWorkPerk.EveryDay, TypeWorkPerk.EveryWeek }
                         // );
-                        if (unit.ScriptableData.name == "MillWater")
+                        if (entity.ScriptableData.name == "MillWater")
                         {
                             GameManager.Instance.MapManager.CreateCreeks(currentNode);
                         }

@@ -10,13 +10,15 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 
 public abstract class BaseEntity
 {
-    [NonSerialized] private BaseMapEntity _asset;
     [NonSerialized] public GridTileNode OccupiedNode = null;
     [NonSerialized] public GridTileNode ProtectedNode = null;
     [NonSerialized] public ScriptableEntity ScriptableData;
     [NonSerialized] public Vector3Int Position;
     [NonSerialized] public BaseMapEntity MapObjectGameObject;
+    protected Player _player;
+    public Player Player => _player;
     protected string idUnit;
+    public string IdEntity => idUnit;
     protected string idObject;
 
     public void Init(ScriptableEntity data, GridTileNode node)
@@ -60,8 +62,8 @@ public abstract class BaseEntity
         if (handle.Status == AsyncOperationStatus.Succeeded)
         {
             var r_asset = handle.Result;
-            _asset = r_asset.GetComponent<BaseMapEntity>();
-            _asset.InitUnit(this);
+            MapObjectGameObject = r_asset.GetComponent<BaseMapEntity>();
+            MapObjectGameObject.InitUnit(this);
             // Debug.Log($"Spawn Entity::: {entity.name}");
         }
         else
@@ -91,5 +93,10 @@ public abstract class BaseEntity
         SaveData.data = Data;
 
         return SaveData;
+    }
+
+    public virtual void SetPlayer(Player player)
+    {
+        _player = player;
     }
 }

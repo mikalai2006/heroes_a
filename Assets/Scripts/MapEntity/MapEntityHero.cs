@@ -8,7 +8,7 @@ using UnityEngine;
 public class MapEntityHero : BaseMapEntity
 {
     private bool _canMove = false;
-    private Player _player;
+    public static event Action<EntityHero> onChangeParamsActiveHero;
 
     [NonSerialized] public Property<float> hit;
     [NonSerialized] public Property<float> mana;
@@ -60,6 +60,11 @@ public class MapEntityHero : BaseMapEntity
         // Data.hit = 100f;
         // Data.speed = 100;
         // Data.name = MapObjectClass.ScriptableData.name;
+
+        if (mapObject.Player != null)
+        {
+            SetPlayer(mapObject.Player);
+        }
     }
 
 
@@ -119,19 +124,22 @@ public class MapEntityHero : BaseMapEntity
             GameManager.Instance.MapManager.DrawCursor(heroEntity.Data.path, heroEntity);
 
             List<GridTileNode> noskyNode = GameManager.Instance.MapManager.DrawSky(heroEntity.Data.path[0], 4);
-            _player.SetNosky(noskyNode);
+            heroEntity.Player.SetNosky(noskyNode);
 
             GameManager.Instance.MapManager.SetColorForTile(heroEntity.Data.path[0].position, Color.cyan);
-            if (heroEntity.Data.path[0].Protected)
+            if (heroEntity.Data.path[0].Protected && heroEntity.Data.path[0].ProtectedUnit != null)
             {
                 heroEntity.Data.path[0].ProtectedUnit.MapObjectGameObject.OnGoHero(LevelManager.Instance.GetPlayer(heroEntity.Data.idPlayer));
                 // path[0].SetProtectedNeigbours(null);
                 GameManager.Instance.ChangeState(GameState.StopMoveHero);
             }
-            if (heroEntity.Data.path[0].OccupiedUnit.MapObjectGameObject)
+            if (heroEntity.Data.path[0].OccupiedUnit != null)
             {
                 heroEntity.Data.path[0].OccupiedUnit.MapObjectGameObject.OnGoHero(LevelManager.Instance.GetPlayer(heroEntity.Data.idPlayer));
             }
+
+            onChangeParamsActiveHero?.Invoke(heroEntity);
+            // GameManager.Instance.ChangeState(GameState.ChangeHeroParams);
             heroEntity.Data.path.RemoveAt(0);
 
 

@@ -23,16 +23,16 @@ public class EntityTown : BaseEntity, IDataPlay
         base.Init(ScriptableData, node);
     }
 
-    public void SetPlayer(PlayerData data)
-    {
-        //Debug.Log($"Town SetPlayer::: id{data.id}-idArea{data.idArea}");
-        Data.idPlayer = data.id;
+    // public void SetPlayer(PlayerData data)
+    // {
+    //     //Debug.Log($"Town SetPlayer::: id{data.id}-idArea{data.idArea}");
+    //     Data.idPlayer = data.id;
 
-        Player player = LevelManager.Instance.GetPlayer(Data.idPlayer);
+    //     Player player = LevelManager.Instance.GetPlayer(Data.idPlayer);
 
-        MapEntityTown TownGameObject = (MapEntityTown)MapObjectGameObject;
-        // TownGameObject.SetPlayer(player);
-    }
+    //     MapEntityTown TownGameObject = (MapEntityTown)MapObjectGameObject;
+    //     // TownGameObject.SetPlayer(player);
+    // }
 
     public void LoadDataPlay(DataPlay data)
     {
@@ -43,6 +43,13 @@ public class EntityTown : BaseEntity, IDataPlay
     {
         // var sdata = SaveUnit(Data);
         // data.Units.warriors.Add(sdata);
+    }
+    public override void SetPlayer(Player player)
+    {
+        base.SetPlayer(player);
+
+        Data.idPlayer = player.DataPlayer.id;
+        player.AddTown(this);
     }
 }
 

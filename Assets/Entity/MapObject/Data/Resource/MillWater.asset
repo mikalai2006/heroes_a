@@ -71,7 +71,12 @@ MonoBehaviour:
       m_WaitForCompletion: 0
       m_LocalVariables: []
   TypeWorkPerk: 3
-  Resources: []
+  Resources:
+  - id: 
+    ListVariant:
+    - Resource: {fileID: 11400000, guid: 19d789934151d984caad385164b2cb4a, type: 2}
+      maxValue: 1
+      step: 1
   PrimarySkills: []
   SecondarySkills: []
   Artifacts: []

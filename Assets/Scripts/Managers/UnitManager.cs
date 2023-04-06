@@ -47,7 +47,8 @@ public class UnitManager : MonoBehaviour
         area.startPosition = createdTown.Position;
         if (player != null)
         {
-            player.AddTown(createdTown);
+            // player.AddTown(createdTown);
+            createdTown.SetPlayer(player);
         }
         //_townsList.Add(createdTown);
         //gridNode.OccupiedUnit = createdTown;
@@ -69,7 +70,8 @@ public class UnitManager : MonoBehaviour
                     // gridNode.SetOcuppiedUnit(createdHero);
                     LevelManager.Instance.GetArea(keyArea).hero = newEntity;
 
-                    player.AddHero(newEntity);
+                    newEntity.SetPlayer(player);
+                    // player.AddHero(newEntity);
                 }
             }
         }

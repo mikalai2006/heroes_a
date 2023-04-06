@@ -10,7 +10,7 @@ public class Area
     public bool isFraction;
     public BaseEntity town;
     public BaseEntity hero;
-    public BaseEntity portal;
+    public EntityMonolith portal;
     public int countMine;
     public int countMountain;
     public AreaStat Stat;

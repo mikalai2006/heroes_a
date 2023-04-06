@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0d8212908477464180378f8b97b7d0c, type: 3}
   m_Name: Eye
   m_EditorClassIdentifier: 
-  idObject: 
+  idObject: 28794a663f8d46c49918baa960ff939b
   TypeEntity: 31
   MenuSprite: {fileID: 0}
   Text:

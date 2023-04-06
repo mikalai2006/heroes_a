@@ -36,7 +36,8 @@ public class CreateExploreOperation : ILoadingOperation
 
             if (nodes.Count > 0)
             {
-                int maxCountExplore = Mathf.CeilToInt(LevelManager.Instance.GameModeData.koofExplore * area.countNode);
+                int maxCountExplore = Mathf.CeilToInt(
+                    LevelManager.Instance.GameModeData.koofExplore * area.countNode);
                 area.Stat.countExploreN = maxCountExplore;
                 int countCreated = 0;
 
@@ -51,7 +52,8 @@ public class CreateExploreOperation : ILoadingOperation
                         && _root.gridTileHelper.CalculateNeighbours(currentNode) == 8
                         )
                     {
-                        BaseEntity unit = new EntityExpore(currentNode);
+                        BaseEntity entity = new EntityExpore(currentNode);
+                        _root.UnitManager.SpawnEntityToNode(currentNode, entity);
                         // _root.UnitManager
                         //     .SpawnMapObjectAsync(currentNode, TypeMapObject.Explore);
 

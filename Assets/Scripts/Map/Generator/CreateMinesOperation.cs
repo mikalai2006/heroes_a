@@ -36,7 +36,8 @@ public class CreateMinesOperation : ILoadingOperation
 
             if (nodes.Count > 0)
             {
-                int countLandscape = Mathf.CeilToInt(LevelManager.Instance.GameModeData.koofMines * .1f * area.countNode);
+                int countLandscape = Mathf.CeilToInt(
+                    LevelManager.Instance.GameModeData.koofMines * .1f * area.countNode);
                 area.Stat.countMineN = countLandscape;
                 int countCreated = 0;
 
@@ -59,7 +60,8 @@ public class CreateMinesOperation : ILoadingOperation
                         )
                     {
 
-                        BaseEntity unit = new EntityMine(currentNode);
+                        BaseEntity entity = new EntityMine(currentNode);
+                        _root.UnitManager.SpawnEntityToNode(currentNode, entity);
                         // _root.UnitManager.SpawnMapObjectAsync(currentNode, TypeMapObject.Mine);
 
                         BaseEntity warrior = _root.UnitManager.SpawnWarriorAsync(nodeWarrior);
