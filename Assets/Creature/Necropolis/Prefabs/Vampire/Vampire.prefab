@@ -10,8 +10,28 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1851675910483808918, guid: 9df1fc771bddcd849aed5086893eb3a5, type: 3}
       propertyPath: m_Name
-      value: Base_Creature
+      value: Vampire
       objectReference: {fileID: 0}
+    - target: {fileID: 5267992745413332878, guid: 9df1fc771bddcd849aed5086893eb3a5, type: 3}
+      propertyPath: m_Size.x
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5267992745413332878, guid: 9df1fc771bddcd849aed5086893eb3a5, type: 3}
+      propertyPath: m_Size.y
+      value: 0.68
+      objectReference: {fileID: 0}
+    - target: {fileID: 5267992745413332878, guid: 9df1fc771bddcd849aed5086893eb3a5, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 2140999407, guid: 35d4fbb7ccc37024689d595aa277f2a6, type: 3}
+    - target: {fileID: 5267992745413332878, guid: 9df1fc771bddcd849aed5086893eb3a5, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6076011670535017962, guid: 9df1fc771bddcd849aed5086893eb3a5, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 76b2fd9af5c0fa24f98deb04bbbfdbce, type: 2}
     - target: {fileID: 6627406514020417079, guid: 9df1fc771bddcd849aed5086893eb3a5, type: 3}
       propertyPath: m_RootOrder
       value: 0

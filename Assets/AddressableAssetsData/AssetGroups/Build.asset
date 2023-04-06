@@ -183,6 +183,76 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ecab82c677fb0bd42a6b7e982b07646d
+    m_Address: Assets/Creature/Necropolis/Prefabs/Skeleton/Skeleton.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ebda8c4ec6e0b544fa47d7a443e07877
+    m_Address: Assets/Creature/Necropolis/Prefabs/SkeletonWarrior/SkeletonWarrior.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a1a6a210daf3b8247b5541463e378b17
+    m_Address: Assets/Creature/Necropolis/Prefabs/WalkingDead/WalkingDead.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4d4ec5cf2ff97ff42835c6f578d8ebb0
+    m_Address: Assets/Creature/Necropolis/Prefabs/Zombie/Zombie.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 031aa43f9f6d64d42b503d22042ef699
+    m_Address: Assets/Creature/Necropolis/Prefabs/Wight/Wight.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fcd5379d1f5fef94296be83f91c66685
+    m_Address: Assets/Creature/Necropolis/Prefabs/Wraith/Wraith.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f12aafbf61993f748ac11b998faf048a
+    m_Address: Assets/Creature/Necropolis/Prefabs/Vampire/Vampire.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 982763ff65f04c446b6ae91ffa9204bd
+    m_Address: Assets/Creature/Necropolis/Prefabs/VampireLord/VampireLord.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6f1e8bd30a44bc544bc1bfe8fe80aa22
+    m_Address: Assets/Creature/Necropolis/Prefabs/Lich/Lich.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 84ecdca97763294439f729fb50a59946
+    m_Address: Assets/Creature/Necropolis/Prefabs/PowerLich/PowerLich.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 94b08d1bbff9c4f4296b887699953111
+    m_Address: Assets/Creature/Necropolis/Prefabs/BlackKnight/BlackKnight.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 359c5bc40e05ccc4db484abec162ee83
+    m_Address: Assets/Creature/Necropolis/Prefabs/DreadKnight/DreadKnight.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1a8d2fdc72ed15b4eb6bae2650f73c28
+    m_Address: Assets/Creature/Necropolis/Prefabs/BoneDragon/BoneDragon.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e0964ae6c4cf78145a06b1bcd00febe9
+    m_Address: Assets/Creature/Necropolis/Prefabs/GhostDragon/GhostDragon.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 9a6380555b06f9d46b9bf47dd32221de, type: 2}
   m_SchemaSet:

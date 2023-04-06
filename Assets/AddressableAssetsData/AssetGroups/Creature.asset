@@ -83,6 +83,28 @@ MonoBehaviour:
     m_SerializedLabels:
     - entity
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8fb4e2e3cee98cc4882873a53728673f
+    m_Address: Assets/Creature/Inferno
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9c05cafa8c12d3c4291a2a8e6a157aa6
+    m_Address: Assets/Creature/Inferno/Data
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - entity
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7c1305e68d9abe54795a88272e125146
+    m_Address: Assets/Creature/Necropolis
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4d10ab97b6dbcc64d9dafd32b2271e33
+    m_Address: Assets/Creature/Necropolis/Data
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - entity
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 9a6380555b06f9d46b9bf47dd32221de, type: 2}
   m_SchemaSet:

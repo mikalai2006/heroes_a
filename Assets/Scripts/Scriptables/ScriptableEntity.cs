@@ -38,6 +38,7 @@ public enum TypeFaction
     Fortress = 30,
     Dungeon = 40,
 	Inferno = 50,
+    Necropolis = 60,
     Neutral = 100,
 }
 

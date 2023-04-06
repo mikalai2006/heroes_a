@@ -10,8 +10,28 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1851675910483808918, guid: 9df1fc771bddcd849aed5086893eb3a5, type: 3}
       propertyPath: m_Name
-      value: Base_Creature
+      value: Wight
       objectReference: {fileID: 0}
+    - target: {fileID: 5267992745413332878, guid: 9df1fc771bddcd849aed5086893eb3a5, type: 3}
+      propertyPath: m_Size.x
+      value: 1.7142857
+      objectReference: {fileID: 0}
+    - target: {fileID: 5267992745413332878, guid: 9df1fc771bddcd849aed5086893eb3a5, type: 3}
+      propertyPath: m_Size.y
+      value: 1.9428571
+      objectReference: {fileID: 0}
+    - target: {fileID: 5267992745413332878, guid: 9df1fc771bddcd849aed5086893eb3a5, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 2042760420, guid: 502b623323c979a44b588755a009f75c, type: 3}
+    - target: {fileID: 5267992745413332878, guid: 9df1fc771bddcd849aed5086893eb3a5, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6076011670535017962, guid: 9df1fc771bddcd849aed5086893eb3a5, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: db6a13a50dffa1441b595677735f8229, type: 2}
     - target: {fileID: 6627406514020417079, guid: 9df1fc771bddcd849aed5086893eb3a5, type: 3}
       propertyPath: m_RootOrder
       value: 0

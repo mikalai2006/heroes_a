@@ -10,8 +10,28 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1851675910483808918, guid: 9df1fc771bddcd849aed5086893eb3a5, type: 3}
       propertyPath: m_Name
-      value: Base_Creature
+      value: Zombie
       objectReference: {fileID: 0}
+    - target: {fileID: 5267992745413332878, guid: 9df1fc771bddcd849aed5086893eb3a5, type: 3}
+      propertyPath: m_Size.x
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5267992745413332878, guid: 9df1fc771bddcd849aed5086893eb3a5, type: 3}
+      propertyPath: m_Size.y
+      value: 0.68
+      objectReference: {fileID: 0}
+    - target: {fileID: 5267992745413332878, guid: 9df1fc771bddcd849aed5086893eb3a5, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -859807477, guid: c8aa32ce62f148743926e32b86d6eb34, type: 3}
+    - target: {fileID: 5267992745413332878, guid: 9df1fc771bddcd849aed5086893eb3a5, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6076011670535017962, guid: 9df1fc771bddcd849aed5086893eb3a5, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: e2b368f9803ad3346b80b5ec787adfcf, type: 2}
     - target: {fileID: 6627406514020417079, guid: 9df1fc771bddcd849aed5086893eb3a5, type: 3}
       propertyPath: m_RootOrder
       value: 0
