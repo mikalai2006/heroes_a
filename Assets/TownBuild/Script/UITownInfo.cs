@@ -14,7 +14,7 @@ public class UITownInfo : MonoBehaviour
     private VisualElement _townInfoHero;
     private VisualElement _townInfoHeroVisit;
     private VisualElement _townInfo;
-    private MapEntityTown _activeTown;
+    private EntityTown _activeTown;
     private Player _activePlayer;
 
     public void Init(VisualElement parent)
@@ -40,7 +40,8 @@ public class UITownInfo : MonoBehaviour
             itemHeroForce.AddToClassList("h-33");
             if (i < 4)
             {
-                itemHeroForce.Q<VisualElement>("img").style.backgroundImage = new StyleBackground(_activePlayer.ActiveHero.ScriptableData.MenuSprite);
+                itemHeroForce.Q<VisualElement>("img").style.backgroundImage =
+                    new StyleBackground(_activePlayer.ActiveHero.ScriptableData.MenuSprite);
                 itemHeroForce.Q<Label>("ForceValue").text = Random.Range(0, 100).ToString();
             }
             _townInfoHero.Add(itemHeroForce);
@@ -55,7 +56,8 @@ public class UITownInfo : MonoBehaviour
             itemHeroForce.AddToClassList("h-full");
             if (i < 4)
             {
-                itemHeroForce.Q<VisualElement>("img").style.backgroundImage = new StyleBackground(_activePlayer.ActiveHero.ScriptableData.MenuSprite);
+                itemHeroForce.Q<VisualElement>("img").style.backgroundImage =
+                    new StyleBackground(_activePlayer.ActiveHero.ScriptableData.MenuSprite);
                 itemHeroForce.Q<Label>("ForceValue").text = Random.Range(0, 100).ToString();
             }
             _townInfoHeroVisit.Add(itemHeroForce);

@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 110738c119746b94d8ea902f3c039e9f, type: 3}
+  m_Script: {fileID: 11500000, guid: 80a01338db6730e488737b2639917ece, type: 3}
   m_Name: MillWater
   m_EditorClassIdentifier: 
-  idObject: 
-  TypeEntity: 30
+  idObject: c6c3537a0ccd40a7ba93ff75e22c5b84
+  TypeEntity: 34
   MenuSprite: {fileID: 0}
   Text:
     title:
@@ -34,6 +34,14 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
+  MapPrefab:
+    m_AssetGUID: d9eaeeca5a0823341a84e4c824942659
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  typeGround: 1000
+  typeInput: 0
+  listTypeNoPath: 
   DialogText:
     VisitOk:
       m_TableReference:
@@ -62,21 +70,8 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
-  MapPrefab:
-    m_AssetGUID: d9eaeeca5a0823341a84e4c824942659
-    m_SubObjectName: 
-    m_SubObjectType: 
-    m_EditorAssetChanged: 0
-  TypeMapObject: 40
-  typeInput: 0
-  listTypeNoPath: 
   TypeWorkPerk: 3
-  Resources:
-  - id: 
-    ListVariant:
-    - Resource: {fileID: 11400000, guid: ea04c2f186809b945ae03f53199a7876, type: 2}
-      maxValue: 2500
-      step: 500
+  Resources: []
   PrimarySkills: []
   SecondarySkills: []
   Artifacts: []

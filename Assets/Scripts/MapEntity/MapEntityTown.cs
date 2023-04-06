@@ -3,22 +3,14 @@ using System.Linq;
 
 using UnityEngine;
 
-[System.Serializable]
-public struct DataTown
+public class MapEntityTown : BaseMapEntity
 {
-    public int idPlayer;
-    public string name;
-    public List<TypeBuild> ProgressBuilds;
-    // public TypeBuildArmy ProgressBuildsArmy;
-    public bool isBuild;
-    public SerializableDictionary<TypeBuild, int> LevelsBuilds;
-}
+    public override void InitUnit(BaseEntity mapObjects)
+    {
 
-public class MapEntityTown : BaseMapEntity, IDataPlay
-{
+        base.InitUnit(mapObjects);
 
-    [SerializeField] public DataTown Data;
-
+    }
     //private void Awake() => GameManager.OnBeforeStateChanged += OnStateChanged;
 
     //private void OnDestroy() => GameManager.OnBeforeStateChanged -= OnStateChanged;
@@ -28,23 +20,9 @@ public class MapEntityTown : BaseMapEntity, IDataPlay
         //if (newState == GameState.HeroTurn) _canMove = true;
         base.OnAfterStateChanged(newState);
     }
-    public override void InitUnit(ScriptableEntity data, Vector3Int pos)
+
+    public void SetPlayer(Player player)
     {
-
-        base.InitUnit(data, pos);
-        Data.idPlayer = -1;
-        Data.name = data.name;
-        var townData = (ScriptableEntityTown)data;
-        Data.ProgressBuilds = townData.StartProgressBuilds.ToList(); // TypeBuild.None | TypeBuild.Tavern_1;
-        Data.LevelsBuilds = new SerializableDictionary<TypeBuild, int>();
-    }
-
-    public void SetPlayer(PlayerData data)
-    {
-        //Debug.Log($"Town SetPlayer::: id{data.id}-idArea{data.idArea}");
-        Data.idPlayer = data.id;
-
-        Player player = LevelManager.Instance.GetPlayer(Data.idPlayer);
         Transform flag = transform.Find("Flag");
         flag.GetComponent<SpriteRenderer>().color = player.DataPlayer.color;
     }
@@ -61,13 +39,13 @@ public class MapEntityTown : BaseMapEntity, IDataPlay
     //    // SaveUnit(Data);
     //}
 
-    public void LoadDataPlay(DataPlay data)
-    {
-        //throw new System.NotImplementedException();
-    }
-    public void SaveDataPlay(ref DataPlay data)
-    {
-        var sdata = SaveUnit(Data);
-        data.Units.towns.Add(sdata);
-    }
+    // public void LoadDataPlay(DataPlay data)
+    // {
+    //     //throw new System.NotImplementedException();
+    // }
+    // public void SaveDataPlay(ref DataPlay data)
+    // {
+    //     var sdata = SaveUnit(Data);
+    //     data.Units.towns.Add(sdata);
+    // }
 }

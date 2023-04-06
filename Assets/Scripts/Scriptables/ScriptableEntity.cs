@@ -14,7 +14,7 @@ public abstract class ScriptableEntity : ScriptableObject
 
     [Header("Map Options")]
     [SerializeField] public AssetReferenceGameObject MapPrefab;
-    public TypeMapObject TypeMapObject;
+    // public TypeMapObject TypeMapObject;
     public TypeGround typeGround;
     public TypeInput typeInput;
     public List<TypeNoPath> listTypeNoPath;
@@ -46,11 +46,16 @@ public enum TypeEntity
     // Faction = 0,
     Creature = 10,
     Artifact = 20,
-    MapObject = 30,
+    // MapObject = 30,
+    Portal = 30,
     Resource = 50,
     Building = 70,
     Town = 80,
     Hero = 90,
+    Explore = 31,
+    Mine = 32,
+    SkillSchool = 33,
+    MapResource = 34
 }
 
 [System.Serializable]

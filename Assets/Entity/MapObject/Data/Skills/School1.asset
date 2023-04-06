@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 110738c119746b94d8ea902f3c039e9f, type: 3}
+  m_Script: {fileID: 11500000, guid: fb38a82d6b35f8e4b830f7ec441a7308, type: 3}
   m_Name: School1
   m_EditorClassIdentifier: 
-  idObject: 8958815fdbd1422ead16baeb4139715e
-  TypeEntity: 30
+  idObject: ecc2485499ab4b6ab3ea8543f3bb1bbe
+  TypeEntity: 33
   MenuSprite: {fileID: 0}
   Text:
     title:
@@ -34,6 +34,14 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
+  MapPrefab:
+    m_AssetGUID: 24a77e22d1554d0418232c4c038a234a
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  typeGround: 1000
+  typeInput: 0
+  listTypeNoPath: 
   DialogText:
     VisitOk:
       m_TableReference:
@@ -62,16 +70,7 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
-  MapPrefab:
-    m_AssetGUID: 24a77e22d1554d0418232c4c038a234a
-    m_SubObjectName: 
-    m_SubObjectType: 
-    m_EditorAssetChanged: 0
-  TypeMapObject: 30
-  typeGround: 0
-  typeInput: 0
-  listTypeNoPath: 
-  TypeWorkPerk: 1
+  TypeWorkPerk: 3
   Resources: []
   PrimarySkills: []
   SecondarySkills: []

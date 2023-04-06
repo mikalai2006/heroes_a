@@ -58,9 +58,11 @@ public class CreateMinesOperation : ILoadingOperation
                         && _root.gridTileHelper.CalculateNeighbours(currentNode) >= 5
                         )
                     {
-                        BaseMapEntity unit = await _root.UnitManager.SpawnMapObjectAsync(currentNode, TypeMapObject.Mine);
 
-                        MapEntityCreature warrior = (MapEntityCreature)await _root.UnitManager.SpawnWarriorAsync(nodeWarrior);
+                        BaseEntity unit = new EntityMine(currentNode);
+                        // _root.UnitManager.SpawnMapObjectAsync(currentNode, TypeMapObject.Mine);
+
+                        BaseEntity warrior = _root.UnitManager.SpawnWarriorAsync(nodeWarrior);
 
                         nodeWarrior.SetProtectedNeigbours(warrior, currentNode);
 
@@ -74,7 +76,7 @@ public class CreateMinesOperation : ILoadingOperation
 
                         if (listExistExitNode.Count > 1)
                         {
-                            // await _root.CreatePortalAsync(currentNode, listExistExitNode);
+                            _root.CreatePortal(currentNode, listExistExitNode);
                             // // Debug.Log($"Need portal::: keyArea{currentNode.keyArea}[{currentNode._position}]- {listExistExitNode.Count}");
 
                         }

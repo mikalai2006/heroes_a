@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 110738c119746b94d8ea902f3c039e9f, type: 3}
+  m_Script: {fileID: 11500000, guid: b503cd952d2dab8428453d0020d24401, type: 3}
   m_Name: Mine_Wood
   m_EditorClassIdentifier: 
-  idObject: 80a55d490b804cab8446a749d3d5c94f
-  TypeEntity: 30
+  idObject: ca89f5996a8343c29affb64af14d62dd
+  TypeEntity: 32
   MenuSprite: {fileID: 0}
   Text:
     title:
@@ -34,6 +34,14 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
+  MapPrefab:
+    m_AssetGUID: 706a9549b29708e449bbdf588bec7138
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  typeGround: 1000
+  typeInput: 0
+  listTypeNoPath: 
   DialogText:
     VisitOk:
       m_TableReference:
@@ -62,25 +70,12 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
-  MapPrefab:
-    m_AssetGUID: 706a9549b29708e449bbdf588bec7138
-    m_SubObjectName: 
-    m_SubObjectType: 
-    m_EditorAssetChanged: 0
-  TypeMapObject: 21
-  typeGround: 1000
-  typeInput: 0
-  listTypeNoPath: 0c0000000e000000
   TypeWorkPerk: 2
-  Resources:
-  - id: 
-    ListVariant:
-    - Resource: {fileID: 11400000, guid: 30cdc368665f1154b904062d3111c160, type: 2}
-      maxValue: 2
-      step: 2
+  Resources: []
   PrimarySkills: []
   SecondarySkills: []
   Artifacts: []
+  TypeMine: 1
   references:
     version: 2
     RefIds: []

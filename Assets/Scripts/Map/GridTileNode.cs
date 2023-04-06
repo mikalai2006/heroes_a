@@ -41,10 +41,10 @@ public class GridTileNode : IHeapItem<GridTileNode>
     [NonSerialized] public int level;
     [NonSerialized] public Vector3Int position;
 
-    [NonSerialized] private BaseMapEntity _ocuppiedUnit = null;
-    public BaseMapEntity OccupiedUnit => _ocuppiedUnit;
-    [NonSerialized] private BaseMapEntity _protectedUnit = null;
-    public BaseMapEntity ProtectedUnit => _protectedUnit;
+    [NonSerialized] private BaseEntity _ocuppiedUnit = null;
+    public BaseEntity OccupiedUnit => _ocuppiedUnit;
+    [NonSerialized] private BaseEntity _protectedUnit = null;
+    public BaseEntity ProtectedUnit => _protectedUnit;
     public bool Protected => _protectedUnit != null;
 
     private int heapIndex;
@@ -98,7 +98,7 @@ public class GridTileNode : IHeapItem<GridTileNode>
 
     }
 
-    public void SetProtectedUnit(BaseMapEntity unit)
+    public void SetProtectedUnit(BaseEntity unit)
     {
         _protectedUnit = unit;
 
@@ -119,12 +119,12 @@ public class GridTileNode : IHeapItem<GridTileNode>
         );
     }
 
-    public void SetOcuppiedUnit(BaseMapEntity unit)
+    public void SetOcuppiedUnit(BaseEntity unit)
     {
         _ocuppiedUnit = unit;
     }
 
-    public void SetProtectedNeigbours(MapEntityCreature warriorUnit, GridTileNode protectedNode = null)
+    public void SetProtectedNeigbours(BaseEntity warriorUnit, GridTileNode protectedNode = null)
     {
         // if (warriorUnit == null) return;
 
@@ -153,7 +153,7 @@ public class GridTileNode : IHeapItem<GridTileNode>
         if (warriorUnit != null)
         {
             warriorUnit.ProtectedNode = protectedNode;
-            warriorUnit.OnChangeQuantityWarrior();
+            // warriorUnit.OnChangeQuantityWarrior();
         }
     }
 

@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 110738c119746b94d8ea902f3c039e9f, type: 3}
+  m_Script: {fileID: 11500000, guid: b503cd952d2dab8428453d0020d24401, type: 3}
   m_Name: Mine_Gems
   m_EditorClassIdentifier: 
-  idObject: facd5a61d9e8486792b397c5453f95c5
-  TypeEntity: 30
+  idObject: 175ceaccea7942f1a17b8c98d6d54bf7
+  TypeEntity: 32
   MenuSprite: {fileID: 0}
   Text:
     title:
@@ -34,6 +34,14 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
+  MapPrefab:
+    m_AssetGUID: 58b88c38c5ad8f244a8194ba3088b8f2
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  typeGround: 1000
+  typeInput: 0
+  listTypeNoPath: 
   DialogText:
     VisitOk:
       m_TableReference:
@@ -62,25 +70,12 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
-  MapPrefab:
-    m_AssetGUID: 58b88c38c5ad8f244a8194ba3088b8f2
-    m_SubObjectName: 
-    m_SubObjectType: 
-    m_EditorAssetChanged: 0
-  TypeMapObject: 21
-  typeGround: 1000
-  typeInput: 0
-  listTypeNoPath: 0c000000
   TypeWorkPerk: 2
-  Resources:
-  - id: 
-    ListVariant:
-    - Resource: {fileID: 11400000, guid: 8df33975c1281ac44b70e00eb693d99d, type: 2}
-      maxValue: 1
-      step: 1
+  Resources: []
   PrimarySkills: []
   SecondarySkills: []
   Artifacts: []
+  TypeMine: 0
   references:
     version: 2
     RefIds: []

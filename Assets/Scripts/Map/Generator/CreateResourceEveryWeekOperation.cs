@@ -49,13 +49,16 @@ public class CreateResourceEveryWeekOperation : ILoadingOperation
                     if (nodeWarrior != null && currentNode != null && _root.gridTileHelper.CalculateNeighbours(currentNode) == 8)
                     {
 
-                        MapEntityCreature warrior = await _root.UnitManager.SpawnWarriorAsync(nodeWarrior);
+                        BaseEntity warrior = _root.UnitManager.SpawnWarriorAsync(nodeWarrior);
 
-                        BaseMapEntity unit = await _root.UnitManager.SpawnMapObjectAsync(
-                            currentNode,
-                            TypeMapObject.Resource,
+                        BaseEntity unit = new EntityResource(currentNode,
                             new List<TypeWorkPerk>() { TypeWorkPerk.EveryDay, TypeWorkPerk.EveryWeek }
-                        );
+                            );
+                        // _root.UnitManager.SpawnMapObjectAsync(
+                        //     currentNode,
+                        //     TypeMapObject.Resource,
+                        //     new List<TypeWorkPerk>() { TypeWorkPerk.EveryDay, TypeWorkPerk.EveryWeek }
+                        // );
                         if (unit.ScriptableData.name == "MillWater")
                         {
                             GameManager.Instance.MapManager.CreateCreeks(currentNode);
@@ -73,7 +76,7 @@ public class CreateResourceEveryWeekOperation : ILoadingOperation
 
                         if (listExistExitNode.Count > 1)
                         {
-                            await _root.CreatePortalAsync(currentNode, listExistExitNode);
+                            _root.CreatePortal(currentNode, listExistExitNode);
                         }
                         //else
                         //{

@@ -193,18 +193,19 @@ public class UIGameAside : MonoBehaviour
 
             if (i < player.DataPlayer.PlayerDataReferences.ListHero.Count)
             {
-                MapEntityHero hero = player.DataPlayer.PlayerDataReferences.ListHero[i];
-
+                EntityHero hero = player.DataPlayer.PlayerDataReferences.ListHero[i];
+                MapEntityHero herpGameObject = (MapEntityHero)hero.MapObjectGameObject;
                 var hit = newButtonHero.Q<VisualElement>(NameHit);
                 // hit.UnbindAllProperties();
-                hit.BindProperty(hero.hit);
+                hit.BindProperty(herpGameObject.hit);
                 // hit.style.height = new StyleLength(new Length(12, LengthUnit.Percent));
 
                 var mana = newButtonHero.Q<VisualElement>(NameMana); //.style.height = new StyleLength(new Length(37, LengthUnit.Percent));
                 // mana.UnbindAllProperties();
-                mana.BindProperty(hero.mana);
+                mana.BindProperty(herpGameObject.mana);
 
-                newButtonHero.Q<VisualElement>("image").style.backgroundImage = new StyleBackground(hero.ScriptableData.MenuSprite);
+                newButtonHero.Q<VisualElement>("image").style.backgroundImage =
+                    new StyleBackground(hero.ScriptableData.MenuSprite);
 
                 newButtonHero.Q<Button>(NameAllAsideButton).RegisterCallback<ClickEvent>((ClickEvent evt) =>
                 {
@@ -255,9 +256,10 @@ public class UIGameAside : MonoBehaviour
 
             if (i < player.DataPlayer.PlayerDataReferences.ListTown.Count)
             {
-                MapEntityTown town = (MapEntityTown)player.DataPlayer.PlayerDataReferences.ListTown[i];
+                EntityTown town = (EntityTown)player.DataPlayer.PlayerDataReferences.ListTown[i];
 
-                newButtonTown.Q<VisualElement>("image").style.backgroundImage = new StyleBackground(town.ScriptableData.MenuSprite);
+                newButtonTown.Q<VisualElement>("image").style.backgroundImage =
+                    new StyleBackground(town.ScriptableData.MenuSprite);
 
                 newButtonTown.Q<Button>(NameAllAsideButton).clickable.clicked += async () =>
                 {
@@ -326,7 +328,7 @@ public class UIGameAside : MonoBehaviour
     private void OnToogleEnableBtnGoHero()
     {
         Button btn = _aside.rootVisualElement.Q<Button>(NameBtnGoHero);
-        MapEntityHero activeHero = player.ActiveHero;
+        EntityHero activeHero = player.ActiveHero;
         if (activeHero != null)
         {
             btn.SetEnabled(activeHero.CanMove);
@@ -337,10 +339,10 @@ public class UIGameAside : MonoBehaviour
         }
     }
 
-    private void OnSetActiveHero(ClickEvent evt, MapEntityHero hero)
+    private void OnSetActiveHero(ClickEvent evt, EntityHero hero)
     {
 
-        MapEntityHero activeHero = player.ActiveHero;
+        EntityHero activeHero = player.ActiveHero;
 
         // OnResetFocusButton();
         ChangeHeroInfo();
@@ -372,7 +374,7 @@ public class UIGameAside : MonoBehaviour
 
     private void ChangeHeroInfo()
     {
-        MapEntityHero activeHero = player.ActiveHero;
+        EntityHero activeHero = player.ActiveHero;
         if (activeHero == null) return;
 
         Debug.Log("Change info hero");

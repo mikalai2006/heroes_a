@@ -10,7 +10,7 @@ public struct DataMonolith
     [SerializeField] public List<Vector3Int> portalPoints;
 }
 
-public class MapEntityMonolith : BaseMapEntity, IDataPlay
+public class MapEntityMonolith : BaseMapEntity
 {
     [SerializeField] public DataMonolith Data;
 
@@ -19,26 +19,26 @@ public class MapEntityMonolith : BaseMapEntity, IDataPlay
 
     }
 
-    public override void InitUnit(ScriptableEntity data, Vector3Int pos)
+    public override void InitUnit(BaseEntity mapObject)
     {
-        base.InitUnit(data, pos);
+        base.InitUnit(mapObject);
         Data = new DataMonolith();
         Data.portalPoints = new List<Vector3Int>();
     }
 
-    //public override void OnSaveUnit()
-    //{
-    //    SaveUnit(Data);
-    //}
+    // //public override void OnSaveUnit()
+    // //{
+    // //    SaveUnit(Data);
+    // //}
 
-    public void LoadDataPlay(DataPlay data)
-    {
-        //throw new System.NotImplementedException();
-    }
+    // public void LoadDataPlay(DataPlay data)
+    // {
+    //     //throw new System.NotImplementedException();
+    // }
 
-    public void SaveDataPlay(ref DataPlay data)
-    {
-        var sdata = SaveUnit(Data);
-        data.Units.monoliths.Add(sdata);
-    }
+    // public void SaveDataPlay(ref DataPlay data)
+    // {
+    //     var sdata = SaveUnit(Data);
+    //     data.Units.monoliths.Add(sdata);
+    // }
 }

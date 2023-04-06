@@ -102,12 +102,32 @@ class GenerateIDEntityHeroEditor : GenerateIDUnitBaseEditor
 
 }
 
-[CustomEditor(typeof(ScriptableEntityMapObject))]
-class GenerateIDEntityMapObjectEditor : GenerateIDUnitBaseEditor
+[CustomEditor(typeof(ScriptableEntityMine))]
+class GenerateIDEntityMineEditor : GenerateIDUnitBaseEditor
 {
 
 }
 
+[CustomEditor(typeof(ScriptableEntityExplore))]
+class GenerateIDEntityExploreEditor : GenerateIDUnitBaseEditor
+{
+
+}
+[CustomEditor(typeof(ScriptableEntitySkillSchool))]
+class GenerateIDEntitySkillSchoolEditor : GenerateIDUnitBaseEditor
+{
+
+}
+[CustomEditor(typeof(ScriptableEntityPortal))]
+class GenerateIDEntityPortalEditor : GenerateIDUnitBaseEditor
+{
+
+}
+[CustomEditor(typeof(ScriptableEntityMapResource))]
+class GenerateIDEntityMapResourceEditor : GenerateIDUnitBaseEditor
+{
+
+}
 // [CustomEditor(typeof(ScriptableEnt))]
 // class GenerateIDMineEditor : GenerateIDUnitBaseEditor
 // {

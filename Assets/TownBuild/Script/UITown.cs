@@ -23,7 +23,7 @@ public class UITown : MonoBehaviour
     private const string _nameButtonClose = "ButtonClose";
     private SceneInstance _townScene;
 
-    private MapEntityTown _activeTown;
+    private EntityTown _activeTown;
     private Player _activePlayer;
     private string NameOverlay = "Overlay";
 

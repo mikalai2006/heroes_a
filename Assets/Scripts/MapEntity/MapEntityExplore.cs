@@ -8,9 +8,14 @@ public struct DataExplore
 
 }
 
-public class MapEntityExplore : BaseMapEntity, IDataPlay, IDialogMapObjectOperation
+public class MapEntityExplore : BaseMapEntity, IDialogMapObjectOperation
 {
     public DataExplore Data;
+    public override void InitUnit(BaseEntity mapObject)
+    {
+        base.InitUnit(mapObject);
+    }
+
     public async override void OnGoHero(Player player)
     {
         base.OnGoHero(player);
@@ -19,7 +24,7 @@ public class MapEntityExplore : BaseMapEntity, IDataPlay, IDialogMapObjectOperat
 
         if (result.isOk)
         {
-            List<GridTileNode> noskyNodes = GameManager.Instance.MapManager.DrawSky(OccupiedNode, 10);
+            List<GridTileNode> noskyNodes = GameManager.Instance.MapManager.DrawSky(MapObjectClass.OccupiedNode, 10);
 
             player.SetNosky(noskyNodes);
         }
@@ -34,22 +39,13 @@ public class MapEntityExplore : BaseMapEntity, IDataPlay, IDialogMapObjectOperat
         // var t = HelperLanguage.GetLocaleText(this.ScriptableData.Locale);
         var dialogData = new DataDialog()
         {
-            Header = this.ScriptableData.Text.title.GetLocalizedString(),
+            Header = MapObjectClass.ScriptableData.Text.title.GetLocalizedString(),
             // Description = t.Text.visit_ok,
-            Sprite = this.ScriptableData.MenuSprite,
+            Sprite = MapObjectClass.ScriptableData.MenuSprite,
         };
 
         var dialogWindow = new DialogMapObjectProvider(dialogData);
         return await dialogWindow.ShowAndHide();
     }
 
-    public void LoadDataPlay(DataPlay data)
-    {
-    }
-
-    public void SaveDataPlay(ref DataPlay data)
-    {
-        var sdata = SaveUnit(Data);
-        data.Units.explorers.Add(sdata);
-    }
 }

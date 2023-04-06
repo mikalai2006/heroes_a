@@ -523,7 +523,7 @@ public class MapManager : MonoBehaviour, IDataGame
         return nodeWarrior;
     }
 
-    public async Task<bool> CreatePortalAsync(GridTileNode node, List<GridTileNode> potentialNode)
+    public bool CreatePortal(GridTileNode node, List<GridTileNode> potentialNode)
     {
         List<GridTileNode> _potentialNode = potentialNode.Where(t =>
             t != node
@@ -547,7 +547,7 @@ public class MapManager : MonoBehaviour, IDataGame
 
             GridTileNode townNode = gridTileHelper.GetNode(currentArea.startPosition.x, currentArea.startPosition.y);
 
-            MapEntityMonolith monolith = (MapEntityMonolith)currentArea.portal;
+            BaseEntity monolith = currentArea.portal;
 
             if (monolith == null)
             {
@@ -571,10 +571,11 @@ public class MapManager : MonoBehaviour, IDataGame
                     GridTileNode nodeWarrior = GetNodeWarrior(nodeInputPortal);
                     if (nodeWarrior != null)
                     {
-                        monolith = (MapEntityMonolith)await UnitManager.SpawnMapObjectAsync(nodeInputPortal, TypeMapObject.Monolith);
+                        monolith = new EntityMonolith(nodeInputPortal);
+                        // UnitManager.SpawnMapObjectAsync(nodeInputPortal, TypeMapObject.Monolith);
                         currentArea.portal = monolith;
 
-                        MapEntityCreature warrior = (MapEntityCreature)await UnitManager.SpawnWarriorAsync(nodeWarrior);
+                        BaseEntity warrior = UnitManager.SpawnWarriorAsync(nodeWarrior);
 
                         nodeWarrior.SetProtectedNeigbours(warrior, nodeInputPortal);
                     }
@@ -587,20 +588,21 @@ public class MapManager : MonoBehaviour, IDataGame
 
             if (monolith != null)
             {
-                MapEntityMonolith monolithExit = (MapEntityMonolith)await UnitManager.SpawnMapObjectAsync(nodeExitPortal, TypeMapObject.Monolith);
+                BaseEntity monolithExit = new EntityMonolith(nodeExitPortal);
+                // UnitManager.SpawnMapObjectAsync(nodeExitPortal, TypeMapObject.Monolith);
 
                 GridTileNode nodeWarrior = GetNodeWarrior(nodeExitPortal);
                 if (nodeWarrior != null)
                 {
-                    MapEntityCreature warrior = (MapEntityCreature)await UnitManager.SpawnWarriorAsync(nodeWarrior);
+                    BaseEntity warrior = UnitManager.SpawnWarriorAsync(nodeWarrior);
 
                     nodeWarrior.SetProtectedNeigbours(warrior, nodeExitPortal);
                 }
-                //MonolithData monolithExitData = new MonolithData();
-                //monolithExitData.position = monolithExit.Position;
-                //monolithExit.Init(monolithExitData);
+                // //MonolithData monolithExitData = new MonolithData();
+                // //monolithExitData.position = monolithExit.Position;
+                // //monolithExit.Init(monolithExitData);
 
-                monolith.Data.portalPoints.Add(monolithExit.Position);
+                // monolith.MapObjectGameObject.portalPoints.Add(monolithExit.Position);
                 return true;
             }
         }
@@ -654,7 +656,7 @@ public class MapManager : MonoBehaviour, IDataGame
 
         if (clickedTile != null && !node.Disable)
         {
-            if (!node.OccupiedUnit || node.Protected)
+            if (node.OccupiedUnit == null || node.Protected)
             {
                 LevelManager.Instance.ActivePlayer.FindPathForHero(tilePos, false, true);
             }
@@ -665,7 +667,7 @@ public class MapManager : MonoBehaviour, IDataGame
     }
 
 
-    public void DrawCursor(List<GridTileNode> paths, MapEntityHero hero)
+    public void DrawCursor(List<GridTileNode> paths, EntityHero hero)
     {
         _tileMapCursor.ClearAllTiles();
 
@@ -798,12 +800,12 @@ public class MapManager : MonoBehaviour, IDataGame
             if (i == paths.Count - 2)
             {
                 //newTile = _cursorSprites.center;
-                if (nodeNext.ProtectedUnit)
+                if (nodeNext.ProtectedUnit != null)
                 {
                     _tileMapCursor.SetTile(nodeNext.position, _cursorSprites.Attack);
 
                 }
-                else if (nodeNext.OccupiedUnit)
+                else if (nodeNext.OccupiedUnit != null)
                 {
                     _tileMapCursor.SetTile(nodeNext.position, _cursorSprites.GoMapObject);
 

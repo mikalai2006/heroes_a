@@ -48,10 +48,11 @@ public class CreateSkillSchoolOperation : ILoadingOperation
 
                     if (nodeWarrior != null && currentNode != null && _root.gridTileHelper.CalculateNeighbours(currentNode) == 8)
                     {
-                        BaseMapEntity unit = await _root.UnitManager
-                            .SpawnMapObjectAsync(currentNode, TypeMapObject.SkillSchool);
+                        BaseEntity unit = new EntitySkillSchool(currentNode);
+                        // _root.UnitManager
+                        //     .SpawnMapObjectAsync(currentNode, TypeMapObject.SkillSchool);
 
-                        MapEntityCreature warrior = (MapEntityCreature)await _root.UnitManager.SpawnWarriorAsync(nodeWarrior);
+                        BaseEntity warrior = _root.UnitManager.SpawnWarriorAsync(nodeWarrior);
 
                         nodeWarrior.SetProtectedNeigbours(warrior, currentNode);
 
@@ -64,7 +65,7 @@ public class CreateSkillSchoolOperation : ILoadingOperation
                         List<GridTileNode> listExistExitNode = _root.gridTileHelper.IsExistExit(currentNode);
                         if (listExistExitNode.Count > 1)
                         {
-                            await _root.CreatePortalAsync(currentNode, listExistExitNode);
+                            _root.CreatePortal(currentNode, listExistExitNode);
                         }
 
                     }
