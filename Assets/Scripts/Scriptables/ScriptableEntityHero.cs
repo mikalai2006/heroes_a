@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewEntityHero", menuName = "Game/Entity/New Hero")]
+[CreateAssetMenu(fileName = "NewEntityHero", menuName = "Game/Entity/Hero")]
 public class ScriptableEntityHero : ScriptableEntity
 {
     [Header("Options Hero")]

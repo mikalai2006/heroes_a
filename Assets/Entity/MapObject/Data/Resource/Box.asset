@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80a01338db6730e488737b2639917ece, type: 3}
+  m_Script: {fileID: 11500000, guid: b2451909c045bc84c9d0712caca4b269, type: 3}
   m_Name: Box
   m_EditorClassIdentifier: 
   idObject: 76e6926ac8b84fc7a0c97abb48311e7e
@@ -39,8 +39,8 @@ MonoBehaviour:
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
-  typeGround: 1000
-  typeInput: 0
+  typeGround: 1
+  typeInput: 1
   listTypeNoPath: 
   DialogText:
     VisitOk:
@@ -74,9 +74,9 @@ MonoBehaviour:
   Resources:
   - id: 
     ListVariant:
-    - Resource: {fileID: 11400000, guid: 19d789934151d984caad385164b2cb4a, type: 2}
-      maxValue: 1
-      step: 1
+    - Resource: {fileID: 11400000, guid: b236475010c90f44293bb378424ddfdd, type: 2}
+      maxValue: 2500
+      step: 500
   PrimarySkills: []
   SecondarySkills: []
   Artifacts: []

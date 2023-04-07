@@ -21,7 +21,7 @@ MonoBehaviour:
     m_Address: Assets/Entity/Resource/Data
     m_ReadOnly: 0
     m_SerializedLabels:
-    - entity
+    - resource
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7232213044ea6a84885f558dec76aefe
     m_Address: Assets/Entity/MapObject/Data
@@ -71,6 +71,12 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - entity
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 839676ea1ce8b174cb64706923c84b49
+    m_Address: Assets/Entity/Attribute/Data
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - attribute
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 9a6380555b06f9d46b9bf47dd32221de, type: 2}

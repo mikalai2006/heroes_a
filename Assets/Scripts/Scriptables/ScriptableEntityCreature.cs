@@ -5,7 +5,7 @@ using UnityEngine.Localization;
 using UnityEngine.Localization.Tables;
 using UnityEngine.AddressableAssets;
 
-[CreateAssetMenu(fileName = "NewEntityCreature", menuName = "Game/Entity/New Creature")]
+[CreateAssetMenu(fileName = "NewEntityCreature", menuName = "Game/Entity/Creature")]
 public class ScriptableEntityCreature : ScriptableEntity
 {
     [Header("Options Creature")]

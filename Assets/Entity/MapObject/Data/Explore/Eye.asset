@@ -39,8 +39,8 @@ MonoBehaviour:
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
-  typeGround: 1000
-  typeInput: 0
+  typeGround: 1
+  typeInput: 1
   listTypeNoPath: 
   DialogText:
     VisitOk:

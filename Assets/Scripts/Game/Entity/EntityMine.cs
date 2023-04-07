@@ -57,8 +57,8 @@ public class EntityMine : BaseEntity, ISaveDataPlay
             {
                 if (ConfigData.Resources.Count > 0)
                 {
-                    var res = ConfigData.Resources[0].ListVariant[0].Resource;
-                    player.ChangeResource(res.TypeResource, res.maxValue);
+                    var res = ConfigData.Resources[0].ListVariant[0];
+                    player.ChangeResource(res.Resource.TypeResource, res.maxValue);//res.maxValue
                 }
             }
         }

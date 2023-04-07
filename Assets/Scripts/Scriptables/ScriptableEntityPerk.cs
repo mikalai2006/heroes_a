@@ -61,7 +61,7 @@ public struct GroupResource
 public struct ItemResource
 {
     // public TypeResource TypeResource;
-    public ScriptableEntityResource Resource;
+    public ScriptableResource Resource;
     public int maxValue;
     public int step;
 }

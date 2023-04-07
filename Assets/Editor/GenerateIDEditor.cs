@@ -123,8 +123,8 @@ class GenerateIDEntityPortalEditor : GenerateIDUnitBaseEditor
 {
 
 }
-[CustomEditor(typeof(ScriptableEntityMapResource))]
-class GenerateIDEntityMapResourceEditor : GenerateIDUnitBaseEditor
+[CustomEditor(typeof(ScriptableEntityResource))]
+class GenerateIDEntityResourceEditor : GenerateIDUnitBaseEditor
 {
 
 }

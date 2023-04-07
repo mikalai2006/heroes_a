@@ -37,7 +37,7 @@ public enum TypeFaction
     Conflux = 20,
     Fortress = 30,
     Dungeon = 40,
-	Inferno = 50,
+    Inferno = 50,
     Necropolis = 60,
     Rampart = 70,
     Neutral = 100,
@@ -58,7 +58,7 @@ public enum TypeEntity
     Explore = 31,
     Mine = 32,
     SkillSchool = 33,
-    MapResource = 34
+    GroupResource = 34
 }
 
 [System.Serializable]

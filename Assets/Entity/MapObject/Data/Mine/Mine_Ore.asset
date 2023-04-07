@@ -39,7 +39,7 @@ MonoBehaviour:
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
-  typeGround: 1000
+  typeGround: 1
   typeInput: 0
   listTypeNoPath: 080000000c00000009000000070000000e000000
   DialogText:
@@ -74,9 +74,9 @@ MonoBehaviour:
   Resources:
   - id: 
     ListVariant:
-    - Resource: {fileID: 11400000, guid: 058309442a6416347b95e97a2efaa313, type: 2}
-      maxValue: 1
-      step: 1
+    - Resource: {fileID: 11400000, guid: 3596def342d5eae4c83486eaef4ad875, type: 2}
+      maxValue: 2
+      step: 2
   PrimarySkills: []
   SecondarySkills: []
   Artifacts: []

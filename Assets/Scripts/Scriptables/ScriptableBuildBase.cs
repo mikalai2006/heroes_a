@@ -151,7 +151,7 @@ public struct LangBuild
 [System.Serializable]
 public struct BuildCostResource
 {
-    public ScriptableEntityResource Resource;
+    public ScriptableResource Resource;
     public int Count;
 }
 

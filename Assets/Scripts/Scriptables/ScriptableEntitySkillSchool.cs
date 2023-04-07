@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewEntityMapSkillSchool", menuName = "Game/Entity/MapObject/New SkillSchool")]
+[CreateAssetMenu(fileName = "NewEntitySkillSchool", menuName = "Game/Entity/SkillSchool")]
 public class ScriptableEntitySkillSchool : ScriptableEntityPerk
 {
     // [Header("Options Map Skill")]

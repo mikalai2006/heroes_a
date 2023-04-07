@@ -38,7 +38,7 @@ MonoBehaviour:
     - {x: 1, y: -1, z: 0}
     m_RuleTransform: 0
   idObject: 7b78cb9060c942099b88dffbb330dff8
-  typeGround: 20
+  typeGround: 4
   tile: {fileID: 0}
   dataNode:
     speed: 0

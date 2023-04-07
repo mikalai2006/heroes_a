@@ -15,7 +15,7 @@ MonoBehaviour:
   m_DefaultGroup: e7ad2b323a665bd4c957501927e752f3
   m_currentHash:
     serializedVersion: 2
-    Hash: 0524869af5c917667a3797570d40abc5
+    Hash: 50be38a37d8d2d7394f56ce97d12bdfa
   m_OptimizeCatalogSize: 0
   m_BuildRemoteCatalog: 1
   m_BundleLocalCatalog: 0
@@ -146,6 +146,8 @@ MonoBehaviour:
     - town_castle
     - build_town
     - entity
+    - resource
+    - attribute
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: d17b4f64a43f1ea4697eba1d03bab099, type: 2}

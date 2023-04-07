@@ -46,11 +46,19 @@ public class CornerTiles : Object
 
 }
 
+[System.Flags]
 public enum TypeGround
 {
-    Water = 10,
-    Grass = 20,
-    Rough = 30,
-    Sand = 40,
-    None = 1000,
+    None = 1 << 0,
+    Dirt = 1 << 1,
+    Grass = 1 << 2,
+    Highlands = 1 << 3,
+    Rough = 1 << 4,
+    Lava = 1 << 5,
+    Rock = 1 << 6,
+    Sand = 1 << 7,
+    Snow = 1 << 8,
+    Swamp = 1 << 9,
+    Subterranean = 1 << 10,
+    Water = 1 << 11,
 }

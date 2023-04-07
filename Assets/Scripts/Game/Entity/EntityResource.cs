@@ -10,7 +10,7 @@ using Random = UnityEngine.Random;
 public class EntityResource : BaseEntity, ISaveDataPlay
 {
     [SerializeField] public DataResourceMapObject Data = new DataResourceMapObject();
-    public ScriptableEntityMapResource ConfigData => (ScriptableEntityMapResource)ScriptableData;
+    public ScriptableEntityResource ConfigData => (ScriptableEntityResource)ScriptableData;
     public EntityResource(
         GridTileNode node,
         List<TypeWorkPerk> listTypeWork = null,
@@ -19,8 +19,8 @@ public class EntityResource : BaseEntity, ISaveDataPlay
     {
         if (saveData == null)
         {
-            List<ScriptableEntityMapResource> list = ResourceSystem.Instance
-                .GetEntityByType<ScriptableEntityMapResource>(TypeEntity.MapResource)
+            List<ScriptableEntityResource> list = ResourceSystem.Instance
+                .GetEntityByType<ScriptableEntityResource>(TypeEntity.GroupResource)
                 .Where(t => listTypeWork.Contains(t.TypeWorkPerk))
                 .ToList();
             ScriptableData = list[UnityEngine.Random.Range(0, list.Count)];
@@ -29,7 +29,7 @@ public class EntityResource : BaseEntity, ISaveDataPlay
         else
         {
             ScriptableData = ResourceSystem.Instance
-                .GetEntityByType<ScriptableEntityMapResource>(TypeEntity.MapResource)
+                .GetEntityByType<ScriptableEntityResource>(TypeEntity.GroupResource)
                 .Where(t => t.idObject == saveData.idObject)
                 .First();
             Data = saveData.data;
@@ -41,7 +41,7 @@ public class EntityResource : BaseEntity, ISaveDataPlay
 
     public void SetData()
     {
-        ScriptableEntityMapResource scriptData = (ScriptableEntityMapResource)ScriptableData;
+        ScriptableEntityResource scriptData = (ScriptableEntityResource)ScriptableData;
 
         Data.Value = new List<DataResourceValue>();
         Data.TypeWork = scriptData.TypeWorkPerk;//.TypeWorkMapObject;
@@ -109,6 +109,6 @@ public struct DataResourceValue
     public TypeResource typeResource;
     public int value;
 
-    public ScriptableEntityResource Resource;
+    public ScriptableResource Resource;
 
 }

@@ -20,4 +20,4 @@ MonoBehaviour:
   speed: 100
   isWalkable: 1
   isFraction: 1
-  typeGround: 30
+  typeGround: 16

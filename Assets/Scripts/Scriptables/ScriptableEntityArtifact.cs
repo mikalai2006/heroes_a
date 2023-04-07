@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewEntityArtifact", menuName = "Game/Entity/New Artifact")]
+[CreateAssetMenu(fileName = "NewEntityArtifact", menuName = "Game/Entity/Artifact")]
 public class ScriptableEntityArtifact : ScriptableEntityPerk
 {
     [Header("Options Artifact")]

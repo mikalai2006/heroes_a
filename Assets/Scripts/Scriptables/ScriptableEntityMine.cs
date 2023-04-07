@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewEntityMine", menuName = "Game/Entity/MapObject/New Mine")]
+[CreateAssetMenu(fileName = "NewEntityMine", menuName = "Game/Entity/Mine")]
 public class ScriptableEntityMine : ScriptableEntityPerk
 {
     [Header("Options Mine")]

@@ -81,7 +81,7 @@ public class CreateTerrainOperation : ILoadingOperation
                 _root._tileMap.SetTile(node.position, _root._dataTypeGround[node.TypeGround].tileRule);
 
                 List<TileNature> listTileForDraw = ResourceSystem.Instance.GetNature().Where(t =>
-                    t.typeGround == node.TypeGround
+                    ((t.typeGround & node.TypeGround) == node.TypeGround)
                     && !t.isWalkable
                 ).ToList();
 

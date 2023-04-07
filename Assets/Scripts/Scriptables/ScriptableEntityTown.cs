@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.AddressableAssets;
 
-[CreateAssetMenu(fileName = "NewEntityTown", menuName = "Game/Entity/New Town")]
+[CreateAssetMenu(fileName = "NewEntityTown", menuName = "Game/Entity/Town")]
 public class ScriptableEntityTown : ScriptableEntity
 {
     [Header("Options Town")]

@@ -39,7 +39,7 @@ MonoBehaviour:
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
-  typeGround: 1000
+  typeGround: 1
   typeInput: 0
   listTypeNoPath: 08000000070000000200000003000000
   DialogText:

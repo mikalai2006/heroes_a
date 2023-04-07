@@ -17,7 +17,7 @@ MonoBehaviour:
   m_DefaultColliderType: 1
   m_TilingRules: []
   idObject: 0fdb32189bb6410bb30752dd9e7426e8
-  typeGround: 30
+  typeGround: 16
   tile: {fileID: 0}
   dataNode:
     speed: 0
