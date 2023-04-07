@@ -39,8 +39,7 @@ MonoBehaviour:
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
-  TypeMapObject: 22
-  typeGround: 30
+  typeGround: 16
   typeInput: 1
   listTypeNoPath: 
   DialogText:

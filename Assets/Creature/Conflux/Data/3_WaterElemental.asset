@@ -34,6 +34,14 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
+  MapPrefab:
+    m_AssetGUID: 5e7d4cfa133a04041911d35e55a4c9f0
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  typeGround: 8
+  typeInput: 1
+  listTypeNoPath: 
   DialogText:
     VisitOk:
       m_TableReference:
@@ -62,15 +70,6 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
-  MapPrefab:
-    m_AssetGUID: 5e7d4cfa133a04041911d35e55a4c9f0
-    m_SubObjectName: 
-    m_SubObjectType: 
-    m_EditorAssetChanged: 0
-  TypeMapObject: 22
-  typeGround: 20
-  typeInput: 1
-  listTypeNoPath: 
   TypeFaction: 20
   ArenaModel:
     m_AssetGUID: 

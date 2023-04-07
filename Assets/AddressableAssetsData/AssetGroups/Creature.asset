@@ -116,6 +116,17 @@ MonoBehaviour:
     m_SerializedLabels:
     - entity
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e636309e4d4fafe48a2b9da8c43e6b29
+    m_Address: Assets/Creature/Tower
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b6bad78539448c6458056efabb150ddb
+    m_Address: Assets/Creature/Tower/Data
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - entity
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 9a6380555b06f9d46b9bf47dd32221de, type: 2}
   m_SchemaSet:
