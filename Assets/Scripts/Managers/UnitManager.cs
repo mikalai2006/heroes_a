@@ -41,7 +41,7 @@ public class UnitManager : MonoBehaviour
 
         // if (scriptbaleEntityTown != null)
         // {
-        createdTown = new EntityTown(gridNode);
+        createdTown = new EntityTown(gridNode, TypeGround.None);
         SpawnEntityToNode(gridNode, createdTown);
         area.town = createdTown;
         area.startPosition = createdTown.Position;
@@ -65,7 +65,7 @@ public class UnitManager : MonoBehaviour
                 var hero = scriptbaleEntity.heroes[Random.Range(0, scriptbaleEntity.heroes.Count)];
                 if (scriptbaleEntity != null)
                 {
-                    EntityHero newEntity = new EntityHero(gridNode);
+                    EntityHero newEntity = new EntityHero(gridNode, TypeFaction.Neutral);
                     SpawnEntityToNode(gridNode, newEntity);
                     // gridNode.SetOcuppiedUnit(createdHero);
                     LevelManager.Instance.GetArea(keyArea).hero = newEntity;

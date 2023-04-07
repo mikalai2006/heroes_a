@@ -20,12 +20,13 @@ public class EntityHero : BaseEntity, ISaveDataPlay
         private set { }
     }
 
-    public EntityHero(GridTileNode node, SaveDataUnit<DataHero> saveData = null)
+    public EntityHero(GridTileNode node, TypeFaction typeFaction, SaveDataUnit<DataHero> saveData = null)
     {
         if (saveData == null)
         {
             List<ScriptableEntityHero> list = ResourceSystem.Instance
                 .GetEntityByType<ScriptableEntityHero>(TypeEntity.Hero)
+                .Where(t => t.TypeFaction == typeFaction)
                 .ToList();
             ScriptableData = list[UnityEngine.Random.Range(0, list.Count)];
 

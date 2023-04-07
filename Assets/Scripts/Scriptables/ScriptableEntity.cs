@@ -15,13 +15,23 @@ public abstract class ScriptableEntity : ScriptableObject
     [Header("Map Options")]
     [SerializeField] public AssetReferenceGameObject MapPrefab;
     // public TypeMapObject TypeMapObject;
-    public TypeGround typeGround;
+    public TypeGround TypeGround;
     public TypeInput typeInput;
     public List<TypeNoPath> listTypeNoPath;
     public List<TypeNoPath> RulesDraw => listTypeNoPath;
     [SerializeField] public DialogText DialogText;
+    public TypeWorkPerk TypeWorkPerk;
 }
 
+[System.Serializable]
+public enum TypeWorkPerk
+{
+    One = 1,
+    EveryDay = 2,
+    EveryWeek = 3,
+    EveryMonth = 4,
+    FirstVisit = 5,
+}
 [System.Serializable]
 public enum TypeInput
 {

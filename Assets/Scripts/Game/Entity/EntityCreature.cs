@@ -19,7 +19,7 @@ public class EntityCreature : BaseEntity, ISaveDataPlay
             ScriptableData = list[UnityEngine.Random.Range(0, list.Count)];
 
             Data.quantity = 10;
-            // OnChangeQuantityWarrior();
+            OnChangeQuantityWarrior();
         }
         else
         {
@@ -36,7 +36,7 @@ public class EntityCreature : BaseEntity, ISaveDataPlay
 
     public void OnChangeQuantityWarrior()
     {
-        Data.protectedNode = ProtectedNode.position;
+        //Data.protectedNode = ProtectedNode.position;
         //if (ProtectedNode != null)
         //{
         //    UnitBase protectedUnit = ProtectedNode.OccupiedUnit;

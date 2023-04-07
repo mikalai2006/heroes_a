@@ -32,7 +32,8 @@ public class EntityArtifact : BaseEntity, ISaveDataPlay
 
     public override void SetPlayer(Player player)
     {
-        Debug.Log($"Hero take artifact::: {ScriptableData.name}!");
+        ScriptableEntityArtifact configData = (ScriptableEntityArtifact)ScriptableData;
+        configData.OnDoHero(ref player, this);
     }
 
     #region SaveLoadData

@@ -39,7 +39,7 @@ MonoBehaviour:
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
-  typeGround: 1
+  TypeGround: 1
   typeInput: 0
   listTypeNoPath: 0c0000000800000007000000
   DialogText:
@@ -71,16 +71,11 @@ MonoBehaviour:
       m_WaitForCompletion: 0
       m_LocalVariables: []
   TypeWorkPerk: 2
+  TypeMine: 0
   Resources:
   - id: 
-    ListVariant:
-    - Resource: {fileID: 11400000, guid: c87e6334d373fe0479e4d31ca69580a9, type: 2}
-      maxValue: 1
-      step: 1
-  PrimarySkills: []
-  SecondarySkills: []
-  Artifacts: []
-  TypeMine: 0
+    Resource: {fileID: 11400000, guid: c87e6334d373fe0479e4d31ca69580a9, type: 2}
+    value: 1
   references:
     version: 2
     RefIds: []

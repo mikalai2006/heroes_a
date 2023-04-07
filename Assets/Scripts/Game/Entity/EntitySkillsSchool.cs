@@ -19,18 +19,18 @@ public class EntitySkillSchool : BaseEntity, ISaveDataPlay
                 .ToList();
             ScriptableData = list[UnityEngine.Random.Range(0, list.Count)];
 
-            Data.Skills = new List<ItemSkill>();
+            // Data.Skills = new List<ItemSkill>();
             Data.TypeWork = ConfigData.TypeWorkPerk;
 
-            for (int i = 0; i < ConfigData.PrimarySkills.Count; i++)
-            {
-                List<ItemSkill> ListVariant = ConfigData.PrimarySkills[i].ListVariant;
-                for (int j = 0; j < ListVariant.Count; j++)
-                {
-                    Data.Skills.Add(ListVariant[j]);
-                }
+            // for (int i = 0; i < ConfigData.PrimarySkills.Count; i++)
+            // {
+            //     List<ItemSkill> ListVariant = ConfigData.PrimarySkills[i].ListVariant;
+            //     for (int j = 0; j < ListVariant.Count; j++)
+            //     {
+            //         Data.Skills.Add(ListVariant[j]);
+            //     }
 
-            }
+            // }
         }
         else
         {
@@ -46,11 +46,13 @@ public class EntitySkillSchool : BaseEntity, ISaveDataPlay
 
     public override void SetPlayer(Player player)
     {
-        for (int i = 0; i < Data.Skills.Count; i++)
-        {
-            // Change skill for hero.
-            // player.ChangeResource(Data.Skills[i].Skill.TypeSkill, Data.Skills[i].Value);
-        }
+        ScriptableEntitySkillSchool configData = (ScriptableEntitySkillSchool)ScriptableData;
+        configData.OnDoHero(ref player, this);
+        // for (int i = 0; i < Data.Skills.Count; i++)
+        // {
+        //     // Change skill for hero.
+        //     // player.ChangeResource(Data.Skills[i].Skill.TypeSkill, Data.Skills[i].Value);
+        // }
         if (Data.TypeWork == TypeWorkPerk.One)
         {
             //ScriptableData.MapPrefab.ReleaseInstance(gameObject);
@@ -75,6 +77,6 @@ public class EntitySkillSchool : BaseEntity, ISaveDataPlay
 [System.Serializable]
 public struct DataSkillSchool
 {
-    public List<ItemSkill> Skills;
+    // public List<ItemSkill> Skills;
     public TypeWorkPerk TypeWork;
 }

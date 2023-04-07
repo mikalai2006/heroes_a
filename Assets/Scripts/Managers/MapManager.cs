@@ -179,7 +179,7 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
 
             if (unitTown.idObject == "") continue;
 
-            EntityTown town = new EntityTown(tileNode, unitTown);
+            EntityTown town = new EntityTown(tileNode, TypeGround.None, unitTown);
             UnitManager.SpawnEntityToNode(tileNode, town);
             if (unitTown.data.idPlayer >= 0)
             {
@@ -193,7 +193,7 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
 
             if (unitHero.idObject == "") continue;
 
-            EntityHero hero = new EntityHero(tileNode, unitHero);
+            EntityHero hero = new EntityHero(tileNode, TypeFaction.Neutral, unitHero);
             UnitManager.SpawnEntityToNode(tileNode, hero);
             if (unitHero.data.idPlayer >= 0)
             {
@@ -217,7 +217,7 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
 
             if (item.idObject == "") continue;
 
-            EntityMine entity = new EntityMine(tileNode, TypeMine.Free, item);
+            EntityMine entity = new EntityMine(tileNode, TypeGround.None, TypeMine.Free, null, item);
             UnitManager.SpawnEntityToNode(tileNode, entity);
             if (item.data.idPlayer >= 0)
             {

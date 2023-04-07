@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b503cd952d2dab8428453d0020d24401, type: 3}
-  m_Name: Mine_Crystal
+  m_Name: Sand_Mine_Crystal
   m_EditorClassIdentifier: 
-  idObject: 31d04a3c475c42b8ad4fe2b6f80f4838
+  idObject: baf2d77c1e2c4ee89b5096d1cf07ef66
   TypeEntity: 32
   MenuSprite: {fileID: 0}
   Text:
@@ -35,11 +35,11 @@ MonoBehaviour:
       m_WaitForCompletion: 0
       m_LocalVariables: []
   MapPrefab:
-    m_AssetGUID: 5dda9c80e3241e145ab499db21150cea
+    m_AssetGUID: b8b4279f05cb4894282f12dc224b9d75
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
-  typeGround: 1
+  TypeGround: 128
   typeInput: 0
   listTypeNoPath: 0c00000008000000
   DialogText:
@@ -71,16 +71,11 @@ MonoBehaviour:
       m_WaitForCompletion: 0
       m_LocalVariables: []
   TypeWorkPerk: 2
+  TypeMine: 0
   Resources:
   - id: 
-    ListVariant:
-    - Resource: {fileID: 11400000, guid: f1db7101f3859f24a8fde6a24c6b724d, type: 2}
-      maxValue: 1
-      step: 1
-  PrimarySkills: []
-  SecondarySkills: []
-  Artifacts: []
-  TypeMine: 0
+    Resource: {fileID: 11400000, guid: f1db7101f3859f24a8fde6a24c6b724d, type: 2}
+    value: 1
   references:
     version: 2
     RefIds: []

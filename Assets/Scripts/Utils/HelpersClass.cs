@@ -23,6 +23,28 @@ public static class Helpers
         foreach (Transform child in t) UnityEngine.Object.Destroy(child.gameObject);
     }
 
+    /// <summary>
+    ///  Get the probability of getting an item
+    /// </summary>
+    /// <param name="item">Items for search</param>
+    /// <returns>result item or first item<T></returns>
+	public static T GetProbabilityItem<T>(List<ItemProbabiliti<T>> items)
+    {
+        double p = new System.Random().NextDouble();
+        double accumulator = 0.0;
+        var result = items[0].Item;
+        foreach (ItemProbabiliti<T> item in items)
+        {
+            accumulator += item.probability;
+            if (p <= accumulator)
+            {
+                result = item.Item;
+                break;
+            }
+        }
+        return result;
+    }
+
     private static Matrix4x4 _isoMatrix = Matrix4x4.Rotate(Quaternion.Euler(0, 45, 0));
     /// <summary>
     /// Vector 3 to Matrix4x4
@@ -175,4 +197,11 @@ public class Property<T> : IProperty<T>
 
     public static explicit operator Property<T>(T value) => new Property<T>(value);
     public static implicit operator T(Property<T> binding) => binding.value;
+}
+
+[System.Serializable]
+public struct ItemProbabiliti<T>
+{
+    public T Item;
+    [Range(0, 1)] public double probability;
 }

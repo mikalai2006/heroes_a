@@ -39,7 +39,7 @@ MonoBehaviour:
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
-  typeGround: 20
+  TypeGround: 4
   typeInput: 0
   listTypeNoPath: 080000000e0000000c000000090000000700000006000000030000000f0000000b000000
   DialogText:
@@ -70,6 +70,7 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
+  TypeFaction: 0
   BuildTown:
     m_AssetGUID: 39cffc0c06c34d14480207ab263ceb68
     m_SubObjectName: 
@@ -80,7 +81,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 45022673c37ef984499a388cee6e2f04, type: 2}
   mines:
   - {fileID: 11400000, guid: df6eafa76c581dd47b86b25596e785fa, type: 2}
-  - {fileID: 11400000, guid: 603069702d850bf44a7bca3427472a52, type: 2}
+  - {fileID: 11400000, guid: 494605714c851d1469b9c8850a4f8c56, type: 2}
   creatures: []
   references:
     version: 2

@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0d8212908477464180378f8b97b7d0c, type: 3}
-  m_Name: Eye
+  m_Script: {fileID: 11500000, guid: b2451909c045bc84c9d0712caca4b269, type: 3}
+  m_Name: Wood
   m_EditorClassIdentifier: 
-  idObject: 28794a663f8d46c49918baa960ff939b
-  TypeEntity: 31
+  idObject: 59177c8ade184d508f21b79efd8210ab
+  TypeEntity: 34
   MenuSprite: {fileID: 0}
   Text:
     title:
@@ -35,11 +35,11 @@ MonoBehaviour:
       m_WaitForCompletion: 0
       m_LocalVariables: []
   MapPrefab:
-    m_AssetGUID: 18d5767ea8e236340931912f373e4d6a
+    m_AssetGUID: 731dfe41d328d7741a52118896311d7c
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
-  typeGround: 1
+  TypeGround: 1
   typeInput: 1
   listTypeNoPath: 
   DialogText:
@@ -71,10 +71,17 @@ MonoBehaviour:
       m_WaitForCompletion: 0
       m_LocalVariables: []
   TypeWorkPerk: 1
-  Resources: []
-  PrimarySkills: []
-  SecondarySkills: []
-  Artifacts: []
+  Resources:
+  - Item:
+      id: 
+      Resource: {fileID: 11400000, guid: 0ffa581b737859344b48fea1a3568956, type: 2}
+      value: 10
+    probability: 0.5
+  - Item:
+      id: 
+      Resource: {fileID: 11400000, guid: 0ffa581b737859344b48fea1a3568956, type: 2}
+      value: 5
+    probability: 0.25
   references:
     version: 2
     RefIds: []

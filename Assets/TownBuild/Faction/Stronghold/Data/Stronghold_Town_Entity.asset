@@ -39,7 +39,7 @@ MonoBehaviour:
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
-  typeGround: 30
+  TypeGround: 16
   typeInput: 0
   listTypeNoPath: 080000000e0000000c000000090000000700000006000000030000000f0000000b000000
   DialogText:
@@ -70,6 +70,7 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
+  TypeFaction: 1
   BuildTown:
     m_AssetGUID: d6771147da1a9fc439021716d6c3a6c1
     m_SubObjectName: 
@@ -79,8 +80,8 @@ MonoBehaviour:
   heroes:
   - {fileID: 11400000, guid: 21735f6df6e648440bbd95115e142041, type: 2}
   mines:
-  - {fileID: 11400000, guid: df6eafa76c581dd47b86b25596e785fa, type: 2}
-  - {fileID: 11400000, guid: 603069702d850bf44a7bca3427472a52, type: 2}
+  - {fileID: 11400000, guid: eb2794684cfb9bc4eb3e342e33ed9b2f, type: 2}
+  - {fileID: 11400000, guid: 67823b77ad812a94398ac2979a01ebc7, type: 2}
   creatures: []
   references:
     version: 2

@@ -1,0 +1,88 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb38a82d6b35f8e4b830f7ec441a7308, type: 3}
+  m_Name: SchoolofMagic
+  m_EditorClassIdentifier: 
+  idObject: ecc2485499ab4b6ab3ea8543f3bb1bbe
+  TypeEntity: 33
+  MenuSprite: {fileID: 0}
+  Text:
+    title:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    description:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+  MapPrefab:
+    m_AssetGUID: df65abde3ba8ba34988963855e060b27
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  TypeGround: 0
+  typeInput: 0
+  listTypeNoPath: 08000000070000000200000003000000
+  DialogText:
+    VisitOk:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    VisitNo:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    VisitNoResource:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+  TypeWorkPerk: 4
+  Resources: []
+  PrimarySkills:
+  - id: 
+    ListVariant:
+    - Skill: {fileID: 11400000, guid: c421eccad76028043ba7ead38940457f, type: 2}
+      Value: 1
+  - id: 
+    ListVariant:
+    - Skill: {fileID: 11400000, guid: 5638aca8fa9ac574f84b59d9f4ee07dc, type: 2}
+      Value: 1
+  SecondarySkills: []
+  Artifacts: []
+  references:
+    version: 2
+    RefIds: []

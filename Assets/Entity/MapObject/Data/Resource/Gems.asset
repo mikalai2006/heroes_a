@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb38a82d6b35f8e4b830f7ec441a7308, type: 3}
-  m_Name: School1
+  m_Script: {fileID: 11500000, guid: b2451909c045bc84c9d0712caca4b269, type: 3}
+  m_Name: Gems
   m_EditorClassIdentifier: 
-  idObject: ecc2485499ab4b6ab3ea8543f3bb1bbe
-  TypeEntity: 33
+  idObject: 4d062c65e437463d91811d6f66c8773e
+  TypeEntity: 34
   MenuSprite: {fileID: 0}
   Text:
     title:
@@ -35,13 +35,13 @@ MonoBehaviour:
       m_WaitForCompletion: 0
       m_LocalVariables: []
   MapPrefab:
-    m_AssetGUID: 24a77e22d1554d0418232c4c038a234a
+    m_AssetGUID: 7426fbd30bbef56408a82f0e8b6da7c0
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
-  typeGround: 1
-  typeInput: 0
-  listTypeNoPath: 08000000070000000200000003000000
+  TypeGround: 1
+  typeInput: 1
+  listTypeNoPath: 
   DialogText:
     VisitOk:
       m_TableReference:
@@ -70,8 +70,13 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
-  TypeWorkPerk: 3
-  Resources: []
+  TypeWorkPerk: 1
+  Resources:
+  - id: 
+    ListVariant:
+    - Resource: {fileID: 11400000, guid: cbf4ac863ce15ff47bdc805f8fc8d650, type: 2}
+      maxValue: 5
+      step: 1
   PrimarySkills: []
   SecondarySkills: []
   Artifacts: []

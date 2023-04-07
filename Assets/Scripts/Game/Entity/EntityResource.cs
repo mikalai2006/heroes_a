@@ -42,38 +42,39 @@ public class EntityResource : BaseEntity, ISaveDataPlay
     public void SetData()
     {
         ScriptableEntityResource scriptData = (ScriptableEntityResource)ScriptableData;
-
         Data.Value = new List<DataResourceValue>();
         Data.TypeWork = scriptData.TypeWorkPerk;//.TypeWorkMapObject;
 
-        GroupResource groupResource = scriptData
-            .Resources[Random.Range(0, scriptData.Resources.Count)];
-        for (int i = 0; i < groupResource.ListVariant.Count; i++)
-        {
-            int stepsValue = groupResource.ListVariant[i].maxValue / groupResource.ListVariant[i].step;
-            int randomIndexValue = Random.Range(1, stepsValue);
-            Data.Value.Add(new DataResourceValue()
-            {
-                typeResource = groupResource.ListVariant[i].Resource.TypeResource,
-                value = groupResource.ListVariant[i].step * randomIndexValue,
-                Resource = groupResource.ListVariant[i].Resource
-            });
+        // GroupResource groupResource = scriptData
+        //     .Resources[Random.Range(0, scriptData.Resources.Count)];
+        // for (int i = 0; i < groupResource.ListVariant.Count; i++)
+        // {
+        //     int stepsValue = groupResource.ListVariant[i].maxValue / groupResource.ListVariant[i].step;
+        //     int randomIndexValue = Random.Range(1, stepsValue);
+        //     Data.Value.Add(new DataResourceValue()
+        //     {
+        //         typeResource = groupResource.ListVariant[i].Resource.TypeResource,
+        //         value = groupResource.ListVariant[i].step * randomIndexValue,
+        //         Resource = groupResource.ListVariant[i].Resource
+        //     });
 
-        }
+        // }
 
     }
 
     public override void SetPlayer(Player player)
     {
+        ScriptableEntityResource configData = (ScriptableEntityResource)ScriptableData;
+        configData.OnDoHero(ref player, this);
         // ScriptableResource dataScriptable = ResourceSystem.Instance.GetUnit<ScriptableResource>(idObject);
 
         // ItemResource dataResource = dataScriptable.ListResource[Random.Range(0, dataScriptable.ListResource.Count)];
         // int value = dataResource.listValue[Random.Range(0, dataResource.listValue.Length)];
         // player.ChangeResource(dataResource.TypeResource, value);
-        for (int i = 0; i < Data.Value.Count; i++)
-        {
-            player.ChangeResource(Data.Value[i].typeResource, Data.Value[i].value);
-        }
+        // for (int i = 0; i < Data.Value.Count; i++)
+        // {
+        //     player.ChangeResource(Data.Value[i].typeResource, Data.Value[i].value);
+        // }
         if (Data.TypeWork == TypeWorkPerk.One)
         {
             //ScriptableData.MapPrefab.ReleaseInstance(gameObject);

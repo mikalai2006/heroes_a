@@ -6,13 +6,13 @@ using UnityEngine.Localization.Tables;
 using UnityEngine.AddressableAssets;
 
 [CreateAssetMenu(fileName = "NewEntityDwelling", menuName = "Game/Entity/Dwelling")]
-public class ScriptableEntityDwelling : ScriptableEntityPerk
+public class ScriptableEntityDwelling : ScriptableEntity
 {
     [Header("Options Dwelling")]
     // [Space(3)]
     public TypeFaction TypeFaction;
     [SerializeField] public TypeBuild TypeBuild;
-    public TypeWorkPerk TypeWork;
+    // public TypeWorkPerk TypeWork;
     // public AssetReferenceGameObject UpdatePrefab;
     [SerializeField] public TypeBuild[] RequiredBuilds;
     // [SerializeField] public LangBuild Text;

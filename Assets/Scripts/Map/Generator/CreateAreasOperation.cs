@@ -30,7 +30,8 @@ public class CreateAreasOperation : ILoadingOperation
     {
         onSetNotify?.Invoke("Create areas ...");
 
-        List<TileLandscape> listTileData = _root._dataTypeGround.Values.Where(t => t.typeGround != TypeGround.None && t.typeGround != TypeGround.Sand).ToList();
+        List<TileLandscape> listTileData = _root._dataTypeGround.Values
+        .Where(t => t.typeGround != TypeGround.None && t.typeGround != TypeGround.Sand).ToList();
 
         _maxSizeOneWorld = 1f / (float)_root.countArea;
 

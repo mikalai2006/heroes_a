@@ -31,15 +31,15 @@ public class MapEntitySkills : BaseMapEntity, IDialogMapObjectOperation
     public async UniTask<DataResultDialog> OnTriggeredHero()
     {
         EntitySkillSchool entity = (EntitySkillSchool)MapObjectClass;
-        var listValue = new List<DataDialogItem>(entity.Data.Skills.Count);
-        for (int i = 0; i < entity.Data.Skills.Count; i++)
-        {
-            listValue.Add(new DataDialogItem()
-            {
-                Sprite = entity.Data.Skills[i].Skill.MenuSprite, //.SpriteMenu,
-                Value = entity.Data.Skills[i].Value
-            });
-        }
+        var listValue = new List<DataDialogItem>(); // entity.Data.Skills.Count
+        // for (int i = 0; i < entity.Data.Skills.Count; i++)
+        // {
+        //     listValue.Add(new DataDialogItem()
+        //     {
+        //         Sprite = entity.Data.Skills[i].Skill.MenuSprite, //.SpriteMenu,
+        //         Value = entity.Data.Skills[i].Value
+        //     });
+        // }
 
         // var t = HelperLanguage.GetLocaleText(this.ScriptableData.Locale);
         var dialogData = new DataDialog()

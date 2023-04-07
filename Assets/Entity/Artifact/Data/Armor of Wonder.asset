@@ -34,6 +34,14 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
+  MapPrefab:
+    m_AssetGUID: 78bbccad427da0540bc178662a38e3a5
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  TypeGround: 0
+  typeInput: 0
+  listTypeNoPath: 
   DialogText:
     VisitOk:
       m_TableReference:
@@ -62,28 +70,12 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
-  MapPrefab:
-    m_AssetGUID: 78bbccad427da0540bc178662a38e3a5
-    m_SubObjectName: 
-    m_SubObjectType: 
-    m_EditorAssetChanged: 0
-  TypeMapObject: 1
-  typeInput: 0
-  listTypeNoPath: 
-  TypeWorkPerk: 1
-  Resources: []
-  PrimarySkills: []
-  SecondarySkills: []
-  Artifacts: []
-  Curve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  sprite: {fileID: 0}
   spriteMap: {fileID: -1579801575, guid: c12233e7f9e1938489974c1fb7749211, type: 3}
   Cost: 4000
+  Skills:
+  - id: 
+    PrimarySkill: {fileID: 11400000, guid: 642756d81958c7d4e8cf4a4f01d6f919, type: 2}
+    value: 1
   references:
     version: 2
     RefIds: []

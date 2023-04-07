@@ -3,11 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "NewEntityMine", menuName = "Game/Entity/Mine")]
-public class ScriptableEntityMine : ScriptableEntityPerk
+public class ScriptableEntityMine : ScriptableEntity, IPerked
 {
     [Header("Options Mine")]
     public TypeMine TypeMine;
-    // public TypeMapObject TypeMapObject;
+    [Space(10)]
+    [Header("Options Perk")]
+    public List<EntityMinePerk> Resources;
+
+    public void OnDoHero(ref Player player, BaseEntity entity)
+    {
+
+    }
     // public MapObjectType TypeMapObject;
     // public TypeWorkMapObject TypeWork;
     // public List<GroupResource> Resources;
@@ -16,6 +23,14 @@ public class ScriptableEntityMine : ScriptableEntityPerk
     // public List<GroupArtifact> Artifacts;
     // public MapObjectType TypeMapObject;
     // public TypeWorkPerk TypeWorkMapObject;
+}
+
+[System.Serializable]
+public struct EntityMinePerk
+{
+    public string id;
+    public ScriptableResource Resource;
+    public int value;
 }
 
 [System.Serializable]

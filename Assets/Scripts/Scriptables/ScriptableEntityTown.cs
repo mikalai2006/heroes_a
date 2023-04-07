@@ -6,6 +6,7 @@ using UnityEngine.AddressableAssets;
 public class ScriptableEntityTown : ScriptableEntity
 {
     [Header("Options Town")]
+    public TypeFaction TypeFaction;
     public AssetReferenceT<ScriptableBuildTown> BuildTown; // ScriptableBuildTown
     public TypeBuild[] StartProgressBuilds;
     public List<ScriptableEntityHero> heroes;

@@ -153,7 +153,8 @@ public class GridTileNode : IHeapItem<GridTileNode>
         if (warriorUnit != null)
         {
             warriorUnit.ProtectedNode = protectedNode;
-            // warriorUnit.OnChangeQuantityWarrior();
+            var warrior = (EntityCreature)warriorUnit;
+            warrior.OnChangeQuantityWarrior();
         }
     }
 

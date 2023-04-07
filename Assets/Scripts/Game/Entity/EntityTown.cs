@@ -11,12 +11,13 @@ public class EntityTown : BaseEntity, ISaveDataPlay
     [SerializeField] public DataTown Data = new DataTown();
     public ScriptableEntityTown ConfigData => (ScriptableEntityTown)ScriptableData;
 
-    public EntityTown(GridTileNode node, SaveDataUnit<DataTown> saveData = null)
+    public EntityTown(GridTileNode node, TypeGround typeGround, SaveDataUnit<DataTown> saveData = null)
     {
         if (saveData == null)
         {
             List<ScriptableEntityTown> list = ResourceSystem.Instance
                 .GetEntityByType<ScriptableEntityTown>(TypeEntity.Town)
+                .Where(t => t.TypeGround == typeGround)
                 .ToList();
             ScriptableData = list[UnityEngine.Random.Range(0, list.Count)];
 

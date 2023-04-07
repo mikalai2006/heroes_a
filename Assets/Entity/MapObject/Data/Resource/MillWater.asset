@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2451909c045bc84c9d0712caca4b269, type: 3}
   m_Name: MillWater
   m_EditorClassIdentifier: 
-  idObject: c6c3537a0ccd40a7ba93ff75e22c5b84
+  idObject: 0efe21bb29da4a2188621576a4203706
   TypeEntity: 34
   MenuSprite: {fileID: 0}
   Text:
@@ -39,7 +39,7 @@ MonoBehaviour:
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
-  typeGround: 1
+  TypeGround: 4
   typeInput: 1
   listTypeNoPath: 080000000c000000
   DialogText:

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2451909c045bc84c9d0712caca4b269, type: 3}
   m_Name: Box
   m_EditorClassIdentifier: 
-  idObject: 76e6926ac8b84fc7a0c97abb48311e7e
+  idObject: 03ab03ce40eb4007bf23b492c6b2adba
   TypeEntity: 34
   MenuSprite: {fileID: 0}
   Text:
@@ -39,7 +39,7 @@ MonoBehaviour:
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
-  typeGround: 1
+  TypeGround: 1
   typeInput: 1
   listTypeNoPath: 
   DialogText:
@@ -71,15 +71,10 @@ MonoBehaviour:
       m_WaitForCompletion: 0
       m_LocalVariables: []
   TypeWorkPerk: 1
-  Resources:
+  Perks:
   - id: 
-    ListVariant:
-    - Resource: {fileID: 11400000, guid: b236475010c90f44293bb378424ddfdd, type: 2}
-      maxValue: 2500
-      step: 500
-  PrimarySkills: []
-  SecondarySkills: []
-  Artifacts: []
+    Resource: {fileID: 11400000, guid: cbf4ac863ce15ff47bdc805f8fc8d650, type: 2}
+    value: 10
   references:
     version: 2
     RefIds: []

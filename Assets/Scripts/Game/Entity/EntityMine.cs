@@ -16,15 +16,29 @@ public class EntityMine : BaseEntity, ISaveDataPlay
 {
     [SerializeField] public DataMine Data = new DataMine();
     public ScriptableEntityMine ConfigData => (ScriptableEntityMine)ScriptableData;
-    public EntityMine(GridTileNode node, TypeMine typeMine, SaveDataUnit<DataMine> saveData = null)
+    public EntityMine(
+        GridTileNode node,
+        TypeGround typeGround,
+        TypeMine typeMine,
+        ScriptableEntityMine mineConfig,
+        SaveDataUnit<DataMine> saveData = null
+        )
     {
         if (saveData == null)
         {
-            List<ScriptableEntityMine> list = ResourceSystem.Instance
-                .GetEntityByType<ScriptableEntityMine>(TypeEntity.Mine)
-                .Where(t => t.TypeMine == typeMine)
-                .ToList();
-            ScriptableData = list[UnityEngine.Random.Range(0, list.Count)];
+            if (mineConfig == null)
+            {
+                List<ScriptableEntityMine> list = ResourceSystem.Instance
+                    .GetEntityByType<ScriptableEntityMine>(TypeEntity.Mine)
+                    .Where(t => t.TypeMine == typeMine
+                        && (t.TypeGround == typeGround))
+                    .ToList();
+                ScriptableData = list[UnityEngine.Random.Range(0, list.Count)];
+            }
+            else
+            {
+                ScriptableData = mineConfig;
+            }
             Data.idPlayer = -1;
         }
         else
@@ -52,15 +66,17 @@ public class EntityMine : BaseEntity, ISaveDataPlay
         base.OnAfterStateChanged(newState);
         if (newState == GameState.StepNextPlayer)
         {
+            ScriptableEntityMine configData = (ScriptableEntityMine)ScriptableData;
             Player player = LevelManager.Instance.ActivePlayer;
-            if (Data.idPlayer == player.DataPlayer.id)
-            {
-                if (ConfigData.Resources.Count > 0)
-                {
-                    var res = ConfigData.Resources[0].ListVariant[0];
-                    player.ChangeResource(res.Resource.TypeResource, res.maxValue);//res.maxValue
-                }
-            }
+            configData.OnDoHero(ref player, this);
+            // if (Data.idPlayer == player.DataPlayer.id)
+            // {
+            //     if (ConfigData.Resources.Count > 0)
+            //     {
+            //         var res = ConfigData.Resources[0].ListVariant[0];
+            //         player.ChangeResource(res.Resource.TypeResource, res.maxValue);//res.maxValue
+            //     }
+            // }
         }
     }
     #endregion

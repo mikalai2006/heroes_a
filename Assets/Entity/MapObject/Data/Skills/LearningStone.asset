@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b503cd952d2dab8428453d0020d24401, type: 3}
-  m_Name: Mine_Ore
+  m_Script: {fileID: 11500000, guid: fb38a82d6b35f8e4b830f7ec441a7308, type: 3}
+  m_Name: LearningStone
   m_EditorClassIdentifier: 
-  idObject: 0527f8b7cba041f8a6ea863f25ad156a
-  TypeEntity: 32
+  idObject: ecc2485499ab4b6ab3ea8543f3bb1bbe
+  TypeEntity: 33
   MenuSprite: {fileID: 0}
   Text:
     title:
@@ -35,13 +35,13 @@ MonoBehaviour:
       m_WaitForCompletion: 0
       m_LocalVariables: []
   MapPrefab:
-    m_AssetGUID: d62aa878e76a3aa4ba2de5c1f44d4212
+    m_AssetGUID: 866ba363f2e6cc8469fb06dc5ca45e4d
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
-  typeGround: 1
+  TypeGround: 0
   typeInput: 0
-  listTypeNoPath: 080000000c00000009000000070000000e000000
+  listTypeNoPath: 08000000070000000200000003000000
   DialogText:
     VisitOk:
       m_TableReference:
@@ -70,17 +70,15 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
-  TypeWorkPerk: 2
-  Resources:
+  TypeWorkPerk: 5
+  Resources: []
+  PrimarySkills:
   - id: 
     ListVariant:
-    - Resource: {fileID: 11400000, guid: 3596def342d5eae4c83486eaef4ad875, type: 2}
-      maxValue: 2
-      step: 2
-  PrimarySkills: []
+    - Skill: {fileID: 11400000, guid: 59f8140e6c3547348b0623ced1853e18, type: 2}
+      Value: 1
   SecondarySkills: []
   Artifacts: []
-  TypeMine: 1
   references:
     version: 2
     RefIds: []

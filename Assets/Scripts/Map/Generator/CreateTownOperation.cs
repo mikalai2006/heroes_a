@@ -46,12 +46,38 @@ public class CreateTownOperation : ILoadingOperation
             {
                 GridTileNode node = listGridNode[listGridNode.Count - 1];
                 //Create town.
-                EntityTown entityTown = _root.UnitManager.SpawnTownAsync(node, area.id);
-                // towns.Add(town);
+                Player player = LevelManager.Instance.GetPlayer(area.id);
+
+                var entityTown = new EntityTown(node, node.TypeGround);
+                _root.UnitManager.SpawnEntityToNode(node, entityTown);
+                area.town = entityTown;
+                // area.startPosition = entityTown.Position;
+                if (player != null)
+                {
+                    entityTown.SetPlayer(player);
+                }
+
+                ScriptableEntityTown configTown = (ScriptableEntityTown)entityTown.ScriptableData;
+                //_townsList.Add(createdTown);
+                //gridNode.OccupiedUnit = createdTown;
+                // }
+
+                // Spawn hero.
+                if (player != null)
+                {
+                    for (int i = 0; i < 4; i++)
+                    {
+                        EntityHero newEntity = new EntityHero(node, configTown.TypeFaction);
+                        _root.UnitManager.SpawnEntityToNode(node, newEntity);
+                        // gridNode.SetOcuppiedUnit(createdHero);
+                        LevelManager.Instance.GetArea(area.id).hero = newEntity;
+
+                        newEntity.SetPlayer(player);
+                    }
+                }
                 area.startPosition = node.position;
 
                 // Spawn mines.
-                ScriptableEntityTown configTown = (ScriptableEntityTown)entityTown.ScriptableData;
                 for (int i = 0; i < configTown.mines.Count; i++)
                 {
                     var listNodes = _root.gridTileHelper.GetAllGridNodes().Where(t =>
@@ -68,8 +94,12 @@ public class CreateTownOperation : ILoadingOperation
 
                         if (nodeForSpawn != null)
                         {
-                            EntityMine newmine = new EntityMine(nodeForSpawn, TypeMine.Town);
-                            BaseEntity createdMine = _root.UnitManager.SpawnEntityToNode(nodeForSpawn, newmine);
+                            EntityMine newmine = new EntityMine(
+                                nodeForSpawn,
+                                configTown.TypeGround,
+                                TypeMine.Town,
+                                configTown.mines[i]);
+                            _root.UnitManager.SpawnEntityToNode(nodeForSpawn, newmine);
                         }
                     }
                 }

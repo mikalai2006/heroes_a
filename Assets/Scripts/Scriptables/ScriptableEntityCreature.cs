@@ -1,8 +1,4 @@
-using System;
 using UnityEngine;
-using System.Collections.Generic;
-using UnityEngine.Localization;
-using UnityEngine.Localization.Tables;
 using UnityEngine.AddressableAssets;
 
 [CreateAssetMenu(fileName = "NewEntityCreature", menuName = "Game/Entity/Creature")]
@@ -16,6 +12,7 @@ public class ScriptableEntityCreature : ScriptableEntity
 [System.Serializable]
 public struct DataCreatureParams
 {
+    public int Level;
     public int Health;
     public int Attack;
     public int Protection;

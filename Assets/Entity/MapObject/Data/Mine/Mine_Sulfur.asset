@@ -35,11 +35,11 @@ MonoBehaviour:
       m_WaitForCompletion: 0
       m_LocalVariables: []
   MapPrefab:
-    m_AssetGUID: 
+    m_AssetGUID: 830fbc11516254a4a833003c015ea3e9
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
-  typeGround: 1
+  TypeGround: 1
   typeInput: 0
   listTypeNoPath: 00000000
   DialogText:
@@ -71,16 +71,11 @@ MonoBehaviour:
       m_WaitForCompletion: 0
       m_LocalVariables: []
   TypeWorkPerk: 2
+  TypeMine: 0
   Resources:
   - id: 
-    ListVariant:
-    - Resource: {fileID: 11400000, guid: 6d96986eec3b3754c86cf52c9265ed2e, type: 2}
-      maxValue: 1
-      step: 1
-  PrimarySkills: []
-  SecondarySkills: []
-  Artifacts: []
-  TypeMine: 0
+    Resource: {fileID: 11400000, guid: 6d96986eec3b3754c86cf52c9265ed2e, type: 2}
+    value: 0
   references:
     version: 2
     RefIds: []
