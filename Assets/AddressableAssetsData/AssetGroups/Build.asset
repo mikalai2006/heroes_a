@@ -323,6 +323,71 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bad4e9f06c2fd624e9f0466fd00d109e
+    m_Address: Assets/Creature/Tower/Prefabs/Gremlin/Gremlin.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 16c25911a8824514a99619c02359680e
+    m_Address: Assets/Creature/Tower/Prefabs/MasterGremlin/MasterGremlin.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7620c8a6d27750b449a1eb80cd0113c3
+    m_Address: Assets/Creature/Tower/Prefabs/ObsidianGargoyle/ObsidianGargoyle.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7f2e18e3ff9798e4887322a234e6e533
+    m_Address: Assets/Creature/Tower/Prefabs/StoneGargoyle/StoneGargoyle.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5608d3505303c1242afa36701b0b273d
+    m_Address: Assets/Creature/Tower/Prefabs/IronGolem/IronGolem.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8c9c6f711ca542345919e17eae8ac7d4
+    m_Address: Assets/Creature/Tower/Prefabs/ArchMage/ArchMage.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: eaedf0cd689fc7345b00a1714b1040ae
+    m_Address: Assets/Creature/Tower/Prefabs/Mage/Mage.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3ac7008c3c789414085418b90e19d0bd
+    m_Address: Assets/Creature/Tower/Prefabs/Genie/Genie.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 22584e569c385034c9e93c83f1b5b6e4
+    m_Address: Assets/Creature/Tower/Prefabs/MasterGenie/MasterGenie.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4df7f28644849884a9b928058171bf77
+    m_Address: Assets/Creature/Tower/Prefabs/Naga/Naga.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fe8c343c43fef4642bd372f248abf515
+    m_Address: Assets/Creature/Tower/Prefabs/NagaQueen/NagaQueen.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b8ddd2a8682d8b34a9e23612fd4d7b12
+    m_Address: Assets/Creature/Tower/Prefabs/Giant/Giant.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 68b87301512ae014da8f5f93940f09bc
+    m_Address: Assets/Creature/Tower/Prefabs/Titan/Titan.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 9a6380555b06f9d46b9bf47dd32221de, type: 2}
   m_SchemaSet:
