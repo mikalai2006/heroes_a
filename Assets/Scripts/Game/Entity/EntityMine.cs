@@ -16,12 +16,13 @@ public class EntityMine : BaseEntity, ISaveDataPlay
 {
     [SerializeField] public DataMine Data = new DataMine();
     public ScriptableEntityMine ConfigData => (ScriptableEntityMine)ScriptableData;
-    public EntityMine(GridTileNode node, SaveDataUnit<DataMine> saveData = null)
+    public EntityMine(GridTileNode node, TypeMine typeMine, SaveDataUnit<DataMine> saveData = null)
     {
         if (saveData == null)
         {
             List<ScriptableEntityMine> list = ResourceSystem.Instance
                 .GetEntityByType<ScriptableEntityMine>(TypeEntity.Mine)
+                .Where(t => t.TypeMine == typeMine)
                 .ToList();
             ScriptableData = list[UnityEngine.Random.Range(0, list.Count)];
             Data.idPlayer = -1;

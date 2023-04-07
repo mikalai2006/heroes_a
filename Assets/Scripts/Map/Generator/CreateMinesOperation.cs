@@ -60,7 +60,7 @@ public class CreateMinesOperation : ILoadingOperation
                         )
                     {
 
-                        BaseEntity entity = new EntityMine(currentNode);
+                        BaseEntity entity = new EntityMine(currentNode, TypeMine.Free);
                         _root.UnitManager.SpawnEntityToNode(currentNode, entity);
                         // _root.UnitManager.SpawnMapObjectAsync(currentNode, TypeMapObject.Mine);
 

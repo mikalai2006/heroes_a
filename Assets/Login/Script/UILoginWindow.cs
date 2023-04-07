@@ -34,7 +34,7 @@ public class UILoginWindow : MonoBehaviour
     private readonly string _nameUseDevice = "ButtonNameDevice";
 
     private const int MIN_LENGTH_NAME = 3;
-    private readonly string _urlLogin = "https://storydata.ru/api/v1/auth";
+    [SerializeField] private string _urlLogin = "https://storydata.ru/api/v1/auth";
 
     private Button _buttonUseDevice;
     private TextField _fieldName;

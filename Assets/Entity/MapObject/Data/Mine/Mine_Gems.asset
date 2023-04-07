@@ -41,7 +41,7 @@ MonoBehaviour:
     m_EditorAssetChanged: 0
   typeGround: 1000
   typeInput: 0
-  listTypeNoPath: 
+  listTypeNoPath: 0c0000000800000007000000
   DialogText:
     VisitOk:
       m_TableReference:
@@ -74,7 +74,7 @@ MonoBehaviour:
   Resources:
   - id: 
     ListVariant:
-    - Resource: {fileID: 11400000, guid: 19d789934151d984caad385164b2cb4a, type: 2}
+    - Resource: {fileID: 11400000, guid: 8df33975c1281ac44b70e00eb693d99d, type: 2}
       maxValue: 1
       step: 1
   PrimarySkills: []

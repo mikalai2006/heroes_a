@@ -63,6 +63,10 @@ MonoBehaviour:
     m_Localized: "\u0422\u0440\u0435\u0431\u0443\u0435\u0442\u0441\u044F"
     m_Metadata:
       m_Items: []
+  - m_Id: 3989255820050432
+    m_Localized: https://storydata.ru/api/v1/auth
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

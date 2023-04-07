@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3182381881307154168}
   - component: {fileID: 3182381881307154169}
   - component: {fileID: 2542629637086808871}
+  - component: {fileID: 8718195908494486673}
   m_Layer: 5
   m_Name: UI Login
   m_TagString: Untagged
@@ -65,6 +66,48 @@ MonoBehaviour:
   _localization:
     m_TableReference:
       m_TableCollectionName: GUID:9b6db77d8a0719a4490c3b7aad12567c
+  _urlLogin: https://storydata.ru/api/v1/auth
   loginAction:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &8718195908494486673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3182381881307154170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69beb381e244f92449b8c4cf954630e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TrackedObjects:
+  - rid: 1339300984047009794
+  references:
+    version: 2
+    RefIds:
+    - rid: 1339300984047009794
+      type: {class: TrackedMonoBehaviourObject, ns: UnityEngine.Localization.PropertyVariants.TrackedObjects, asm: Unity.Localization}
+      data:
+        m_Target: {fileID: 2542629637086808871}
+        m_TrackedProperties:
+          items:
+          - rid: 1339300984047009795
+        m_UpdateType: 0
+        m_Changed:
+          m_PersistentCalls:
+            m_Calls: []
+    - rid: 1339300984047009795
+      type: {class: LocalizedStringProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
+      data:
+        m_Localized:
+          m_TableReference:
+            m_TableCollectionName: GUID:9b6db77d8a0719a4490c3b7aad12567c
+          m_TableEntryReference:
+            m_KeyId: 3989255820050432
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
+        m_PropertyPath: _urlLogin

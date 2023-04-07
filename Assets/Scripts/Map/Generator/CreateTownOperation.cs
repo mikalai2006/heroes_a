@@ -68,7 +68,7 @@ public class CreateTownOperation : ILoadingOperation
 
                         if (nodeForSpawn != null)
                         {
-                            EntityMine newmine = new EntityMine(nodeForSpawn);
+                            EntityMine newmine = new EntityMine(nodeForSpawn, TypeMine.Town);
                             BaseEntity createdMine = _root.UnitManager.SpawnEntityToNode(nodeForSpawn, newmine);
                         }
                     }

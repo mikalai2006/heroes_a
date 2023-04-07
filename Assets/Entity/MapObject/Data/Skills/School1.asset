@@ -41,7 +41,7 @@ MonoBehaviour:
     m_EditorAssetChanged: 0
   typeGround: 1000
   typeInput: 0
-  listTypeNoPath: 
+  listTypeNoPath: 08000000070000000200000003000000
   DialogText:
     VisitOk:
       m_TableReference:

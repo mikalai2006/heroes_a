@@ -217,7 +217,7 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
 
             if (item.idObject == "") continue;
 
-            EntityMine entity = new EntityMine(tileNode, item);
+            EntityMine entity = new EntityMine(tileNode, TypeMine.Free, item);
             UnitManager.SpawnEntityToNode(tileNode, entity);
             if (item.data.idPlayer >= 0)
             {
@@ -797,21 +797,21 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
 
     public void ResetSky(SerializableShortPosition positions)
     {
-        for (int x = 0; x < gameModeData.width; x++)
-        {
-            for (int y = 0; y < gameModeData.height; y++)
-            {
-                Vector3Int position = new Vector3Int(x, y);
-                if (positions.ContainsKey(position))
-                {
-                    _tileMapSky.SetTile(position, null);
-                }
-                else
-                {
-                    _tileMapSky.SetTile(position, _tileSky);
-                }
-            }
-        }
+        // for (int x = 0; x < gameModeData.width; x++)
+        // {
+        //     for (int y = 0; y < gameModeData.height; y++)
+        //     {
+        //         Vector3Int position = new Vector3Int(x, y);
+        //         if (positions.ContainsKey(position))
+        //         {
+        //             _tileMapSky.SetTile(position, null);
+        //         }
+        //         else
+        //         {
+        //             _tileMapSky.SetTile(position, _tileSky);
+        //         }
+        //     }
+        // }
     }
 
     public void SetTextMeshNode(GridTileNode tileNode, string textString = "")
