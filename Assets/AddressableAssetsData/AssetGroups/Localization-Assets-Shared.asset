@@ -42,6 +42,13 @@ MonoBehaviour:
     m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a24b4c164d4a3ed48b8a846bd9e93d8e
+    m_Address: DialogButtonCheckItem
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Locale-ru
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: 9a6380555b06f9d46b9bf47dd32221de, type: 2}
   m_SchemaSet:

@@ -39,6 +39,11 @@ public class EntityTown : BaseEntity, ISaveDataPlay
         base.Init(ScriptableData, node);
     }
 
+    public void SetTownAsActive()
+    {
+        SetPositionCamera(this.Position);
+        Player.SetActiveTown(this);
+    }
     // public void SetPlayer(PlayerData data)
     // {
     //     //Debug.Log($"Town SetPlayer::: id{data.id}-idArea{data.idArea}");

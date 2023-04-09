@@ -14,26 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   idObject: 3fcb8a8e36394906b839e7b21433a4fc
   TypeEntity: 32
-  MenuSprite: {fileID: 0}
-  Text:
-    title:
-      m_TableReference:
-        m_TableCollectionName: 
-      m_TableEntryReference:
-        m_KeyId: 0
-        m_Key: 
-      m_FallbackState: 0
-      m_WaitForCompletion: 0
-      m_LocalVariables: []
-    description:
-      m_TableReference:
-        m_TableCollectionName: 
-      m_TableEntryReference:
-        m_KeyId: 0
-        m_Key: 
-      m_FallbackState: 0
-      m_WaitForCompletion: 0
-      m_LocalVariables: []
+  MenuSprite: {fileID: 21300000, guid: 3aae64056a797a343be5149dc7c2aea5, type: 3}
+  title:
+    m_TableReference:
+      m_TableCollectionName: GUID:8ed801dac82951d449557e1a63174ac8
+    m_TableEntryReference:
+      m_KeyId: 4485877486223360
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   MapPrefab:
     m_AssetGUID: d62aa878e76a3aa4ba2de5c1f44d4212
     m_SubObjectName: 

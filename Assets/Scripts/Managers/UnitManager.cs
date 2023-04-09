@@ -381,7 +381,8 @@ public class UnitManager : MonoBehaviour
         {
             if (entity.ScriptableData.RulesDraw.Count > 0)
             {
-                GameManager.Instance.MapManager.GridTileHelper().SetDisableNode(node, entity.ScriptableData.RulesDraw, Color.red);
+                GameManager.Instance.MapManager
+                    .GridTileHelper().SetDisableNode(node, entity.ScriptableData.RulesDraw, Color.red);
             }
 
             GameManager.Instance.MapManager.SetColorForTile(pos, Color.magenta);

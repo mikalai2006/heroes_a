@@ -11,6 +11,29 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
+// [System.Serializable]
+// public class ResourceMap
+// {
+//     public List<ResourceMapItem> Resourcemap;
+// }
+// [System.Serializable]
+// public struct ResourceMapItem
+// {
+//     public string id;
+//     public List<ResourceMapItemVariantList> variants;
+// }
+// [System.Serializable]
+// public struct ResourceMapItemVariantList
+// {
+//     public List<ResourceMapItemVariantItem> list;
+//     public float probability;
+// }
+// [System.Serializable]
+// public struct ResourceMapItemVariantItem
+// {
+//     public string idso;
+//     public int value;
+// }
 [System.Serializable]
 public struct Cursors
 {
@@ -201,13 +224,13 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
             }
         }
 
-        foreach (SaveDataUnit<DataResourceMapObject> item in dataPlay.entity.resources)
+        foreach (SaveDataUnit<DataEntityMapObject> item in dataPlay.entity.mapObjects)
         {
             GridTileNode tileNode = gridTileHelper.GridTile.GetGridObject(new Vector3Int(item.position.x, item.position.y));
 
             if (item.idObject == "") continue;
 
-            EntityResource entity = new EntityResource(tileNode, null, item);
+            EntityMapObject entity = new EntityMapObject(tileNode, null, TypeEntity.Resource, item);
             UnitManager.SpawnEntityToNode(tileNode, entity);
         }
 
@@ -264,15 +287,15 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
             UnitManager.SpawnEntityToNode(tileNode, entity);
         }
 
-        foreach (SaveDataUnit<DataSkillSchool> item in dataPlay.entity.skillSchools)
-        {
-            GridTileNode tileNode = gridTileHelper.GridTile.GetGridObject(new Vector3Int(item.position.x, item.position.y));
+        // foreach (SaveDataUnit<DataSkillSchool> item in dataPlay.entity.skillSchools)
+        // {
+        //     GridTileNode tileNode = gridTileHelper.GridTile.GetGridObject(new Vector3Int(item.position.x, item.position.y));
 
-            if (item.idObject == "") continue;
-            EntitySkillSchool entity = new EntitySkillSchool(tileNode, item);
-            UnitManager.SpawnEntityToNode(tileNode, entity);
+        //     if (item.idObject == "") continue;
+        //     EntitySkillSchool entity = new EntitySkillSchool(tileNode, item);
+        //     UnitManager.SpawnEntityToNode(tileNode, entity);
 
-        }
+        // }
 
         foreach (SaveDataUnit<DataMonolith> item in dataPlay.entity.monoliths)
         {
@@ -302,6 +325,45 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
 
     private void InitSetting()
     {
+
+        // string fullPath = System.IO.Path.Combine(Application.persistentDataPath, "resourcemap.json");
+
+        // ResourceMap loadedData = new();
+
+        // if (System.IO.File.Exists(fullPath))
+        // {
+        //     try
+        //     {
+        //         string dataToLoad = "";
+
+        //         using (System.IO.FileStream stream = new System.IO.FileStream(fullPath, System.IO.FileMode.Open))
+        //         {
+        //             using (System.IO.StreamReader reader = new System.IO.StreamReader(stream))
+        //             {
+        //                 dataToLoad = reader.ReadToEnd();
+        //             }
+        //         }
+
+        //         loadedData = JsonUtility.FromJson<ResourceMap>(dataToLoad);
+        //         Debug.Log($"{dataToLoad}");
+
+        //     }
+        //     catch (System.Exception e)
+        //     {
+        //         Debug.LogError("Error Load file::: " + fullPath + "\n" + e);
+        //     }
+
+        //     if (loadedData != null)
+        //     {
+
+        //         Debug.Log($"{loadedData.ToString()}");
+        //         foreach (var it in loadedData.Resourcemap)
+        //         {
+        //             Debug.Log($"{it.id}");
+
+        //         }
+        //     }
+        // }
 
         _tileMap.ClearAllTiles();
         _tileMapSky.ClearAllTiles();
@@ -471,6 +533,7 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
             && t.KeyArea == node.KeyArea
             && t.Empty
             && t.Enable
+            && gridTileHelper.GetDisableNeighbours(t).bottom.Count == 0
         ).ToList();
         SetColorForTile(node.position, Color.red);
         if (_potentialNode.Count > 0)
@@ -482,10 +545,13 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
             // If town is not exists for area, get random town.
             if (currentArea.town == null)
             {
-                currentArea = LevelManager.Instance.Level.listArea.Where(t => t.town != null).OrderBy(t => Random.value).First();
+                currentArea = LevelManager.Instance.Level
+                    .listArea.Where(t => t.town != null).OrderBy(t => Random.value).First();
             }
 
-            GridTileNode townNode = gridTileHelper.GetNode(currentArea.startPosition.x, currentArea.startPosition.y);
+            GridTileNode townNode = gridTileHelper.GetNode(
+                currentArea.startPosition.x, currentArea.startPosition.y
+            );
 
             EntityMonolith monolith = currentArea.portal;
 
@@ -506,7 +572,8 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
                 if (listPotentialAroundTownNodes.Count > 0)
                 {
 
-                    GridTileNode nodeInputPortal = listPotentialAroundTownNodes[Random.Range(0, listPotentialAroundTownNodes.Count - 1)];
+                    GridTileNode nodeInputPortal
+                        = listPotentialAroundTownNodes[Random.Range(0, listPotentialAroundTownNodes.Count - 1)];
 
                     GridTileNode nodeWarrior = GetNodeWarrior(nodeInputPortal);
                     if (nodeWarrior != null)
@@ -528,8 +595,9 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
 
             if (monolith != null)
             {
-                BaseEntity monolithExit = new EntityMonolith(nodeExitPortal);
-                UnitManager.SpawnEntityToNode(nodeExitPortal, monolithExit);
+                BaseEntity configMonolithExit = new EntityMonolith(nodeExitPortal);
+                EntityMonolith monolithExit
+                    = (EntityMonolith)UnitManager.SpawnEntityToNode(nodeExitPortal, configMonolithExit);
                 // UnitManager.SpawnMapObjectAsync(nodeExitPortal, TypeMapObject.Monolith);
 
                 GridTileNode nodeWarrior = GetNodeWarrior(nodeExitPortal);
@@ -544,6 +612,7 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
                 // //monolithExit.Init(monolithExitData);
 
                 monolith.Data.portalPoints.Add(monolithExit.Position);
+                monolithExit.Data.portalPoints.Add(monolith.Position);
                 return true;
             }
         }
@@ -604,7 +673,7 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
 
         }
 
-        // Debug.Log($"Click {clickedTile.ToString()} \n {node.ToString()}");
+        Debug.Log($"Click {clickedTile.ToString()} \n {node.ToString()}");
     }
 
 
@@ -785,9 +854,11 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
         tileMap.SetColor(pos, color);
         tileMap.SetTileFlags(pos, TileFlags.LockColor);
     }
-    public List<GridTileNode> DrawSky(GridTileNode node, int distance)
+    public List<GridTileNode> DrawSky(Vector3Int startPosition, int distance)
     {
-        List<GridTileNode> listNode = gridTileHelper.GetNeighboursAtDistance(node, distance);
+        GridTileNode startNode
+            = gridTileHelper.GridTile.GetGridObject(startPosition);
+        List<GridTileNode> listNode = gridTileHelper.GetNeighboursAtDistance(startNode, distance);
         for (int i = 0; i < listNode.Count; i++)
         {
             _tileMapSky.SetTile(listNode[i].position, null);
@@ -797,21 +868,21 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
 
     public void ResetSky(SerializableShortPosition positions)
     {
-        // for (int x = 0; x < gameModeData.width; x++)
-        // {
-        //     for (int y = 0; y < gameModeData.height; y++)
-        //     {
-        //         Vector3Int position = new Vector3Int(x, y);
-        //         if (positions.ContainsKey(position))
-        //         {
-        //             _tileMapSky.SetTile(position, null);
-        //         }
-        //         else
-        //         {
-        //             _tileMapSky.SetTile(position, _tileSky);
-        //         }
-        //     }
-        // }
+        for (int x = 0; x < gameModeData.width; x++)
+        {
+            for (int y = 0; y < gameModeData.height; y++)
+            {
+                Vector3Int position = new Vector3Int(x, y);
+                if (positions.ContainsKey(position))
+                {
+                    _tileMapSky.SetTile(position, null);
+                }
+                else
+                {
+                    _tileMapSky.SetTile(position, _tileSky);
+                }
+            }
+        }
     }
 
     public void SetTextMeshNode(GridTileNode tileNode, string textString = "")

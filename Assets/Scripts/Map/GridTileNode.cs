@@ -102,7 +102,6 @@ public class GridTileNode : IHeapItem<GridTileNode>
     {
         _protectedUnit = unit;
 
-
         //if (!Disable)
         //{
         //    if (unit == null)

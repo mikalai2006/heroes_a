@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewAttributeSecondarySkill", menuName = "Game/Attribute/New Secondary Skill")]
+[CreateAssetMenu(fileName = "AttributeSecondarySkill", menuName = "Game/Attribute/Secondary Skill")]
 public class ScriptableAttributeSecondarySkill : ScriptableAttribute
 {
     public TypeSecondarySkill TypeTwoSkill;

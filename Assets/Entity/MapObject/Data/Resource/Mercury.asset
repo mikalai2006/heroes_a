@@ -9,37 +9,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2451909c045bc84c9d0712caca4b269, type: 3}
+  m_Script: {fileID: 11500000, guid: 28f893db958f10a46a0e59d54d9b29d0, type: 3}
   m_Name: Mercury
   m_EditorClassIdentifier: 
-  idObject: 3d3eb316c1584d61a566f11b84ab9656
+  idObject: map.resource.mercury
   TypeEntity: 34
   MenuSprite: {fileID: 0}
-  Text:
-    title:
-      m_TableReference:
-        m_TableCollectionName: 
-      m_TableEntryReference:
-        m_KeyId: 0
-        m_Key: 
-      m_FallbackState: 0
-      m_WaitForCompletion: 0
-      m_LocalVariables: []
-    description:
-      m_TableReference:
-        m_TableCollectionName: 
-      m_TableEntryReference:
-        m_KeyId: 0
-        m_Key: 
-      m_FallbackState: 0
-      m_WaitForCompletion: 0
-      m_LocalVariables: []
+  title:
+    m_TableReference:
+      m_TableCollectionName: GUID:99ee07ddc90ffba41a3d18974d364707
+    m_TableEntryReference:
+      m_KeyId: 1500417767931904
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   MapPrefab:
     m_AssetGUID: d0c5658a5a5a355479770dd43961460e
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
-  TypeGround: 1
+  TypeGround: -1
   typeInput: 1
   listTypeNoPath: 
   DialogText:
@@ -71,15 +61,31 @@ MonoBehaviour:
       m_WaitForCompletion: 0
       m_LocalVariables: []
   TypeWorkPerk: 1
-  Resources:
-  - id: 
-    ListVariant:
-    - Resource: {fileID: 11400000, guid: c87e6334d373fe0479e4d31ca69580a9, type: 2}
-      maxValue: 5
-      step: 1
-  PrimarySkills: []
-  SecondarySkills: []
-  Artifacts: []
+  TypeWorkAttribute: 0
+  Attributes:
+  - Item:
+      description:
+        m_TableReference:
+          m_TableCollectionName: 
+        m_TableEntryReference:
+          m_KeyId: 0
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      Resources:
+      - Resource: {fileID: 11400000, guid: 61799bb2485b4684485b146b76ea01d6, type: 2}
+        value: 3
+        minValue: 3
+        maxValue: 6
+        step: 1
+      PrimarySkills: []
+      SecondarySkills: []
+      Artifacts:
+        Artifact: []
+        isOne: 0
+    probability: 0.5
+  Effects: []
   references:
     version: 2
     RefIds: []

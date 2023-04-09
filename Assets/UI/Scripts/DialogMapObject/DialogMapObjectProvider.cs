@@ -6,25 +6,44 @@ using Cysharp.Threading.Tasks;
 
 using UnityEngine;
 
-public class DataDialog
+public class DataDialogMapObject
 {
     public string Header;
     public string Description;
     public Sprite Sprite;
-    public List<DataDialogItem> Value;
-
-    public DataDialog()
+    public List<DataDialogMapObjectGroup> Groups;
+    public TypeCheck TypeCheck;
+    public TypeWorkAttribute TypeWorkAttribute;
+    public DataDialogMapObject()
     {
-        Value = new List<DataDialogItem>();
+        Groups = new List<DataDialogMapObjectGroup>();
     }
 }
 
-public struct DataDialogItem
+public enum TypeCheck
+{
+    OnlyOk = 0,
+    Choose = 1,
+    Cost = 2,
+}
+
+public struct DataDialogMapObjectGroup
+{
+    public List<DataDialogMapObjectGroupItem> Values;
+    public TypeEntity TypeEntity;
+    // public List<DataDialogMapObjectGroupItemArtifact> Artifacts;
+}
+
+public struct DataDialogMapObjectGroupItem
 {
     public Sprite Sprite;
     public int Value;
 }
-
+// public struct DataDialogMapObjectGroupItemArtifact
+// {
+//     public Sprite Sprite;
+//     public string idObject;
+// }
 public struct DataResultDialog
 {
     public bool isOk;
@@ -36,9 +55,9 @@ public class DialogMapObjectProvider : LocalAssetLoader
 {
     // private UnitBase _unit;
 
-    private DataDialog _dataDialog;
+    private DataDialogMapObject _dataDialog;
 
-    public DialogMapObjectProvider(DataDialog dataDialog)
+    public DialogMapObjectProvider(DataDialogMapObject dataDialog)
     {
         // _unit = unit;
         _dataDialog = dataDialog;

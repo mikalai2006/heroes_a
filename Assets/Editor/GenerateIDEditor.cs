@@ -113,21 +113,21 @@ class GenerateIDEntityExploreEditor : GenerateIDUnitBaseEditor
 {
 
 }
-[CustomEditor(typeof(ScriptableEntitySkillSchool))]
-class GenerateIDEntitySkillSchoolEditor : GenerateIDUnitBaseEditor
-{
+// [CustomEditor(typeof(ScriptableEntitySkillSchool))]
+// class GenerateIDEntitySkillSchoolEditor : GenerateIDUnitBaseEditor
+// {
 
-}
+// }
 [CustomEditor(typeof(ScriptableEntityPortal))]
 class GenerateIDEntityPortalEditor : GenerateIDUnitBaseEditor
 {
 
 }
-[CustomEditor(typeof(ScriptableEntityResource))]
-class GenerateIDEntityResourceEditor : GenerateIDUnitBaseEditor
-{
+// [CustomEditor(typeof(ScriptableEntityResource))]
+// class GenerateIDEntityResourceEditor : GenerateIDUnitBaseEditor
+// {
 
-}
+// }
 // [CustomEditor(typeof(ScriptableEnt))]
 // class GenerateIDMineEditor : GenerateIDUnitBaseEditor
 // {

@@ -7,7 +7,7 @@ public class Town : BuildBase, IPointerClickHandler, IClickeredBuild
 {
     public async UniTask<DataResultBuildDialog> OnClickToBuild()
     {
-        var dialogWindow = new UITownListBuildOperation(new DataDialog(), UITown._activeBuildTown);
+        var dialogWindow = new UITownListBuildOperation(new DataDialogMapObject(), UITown._activeBuildTown);
         return await dialogWindow.ShowAndHide();
     }
 

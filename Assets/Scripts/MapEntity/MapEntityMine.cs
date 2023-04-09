@@ -47,7 +47,7 @@ public class MapEntityMine : BaseMapEntity, IDialogMapObjectOperation
 
     public async UniTask<DataResultDialog> OnTriggeredHero()
     {
-        var dialogData = new DataDialog()
+        var dialogData = new DataDialogMapObject()
         {
             // Header = MapObjectClass.ScriptableData.Text.title.GetLocalizedString(),
             // Description = t.Text.visit_ok,

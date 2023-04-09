@@ -43,7 +43,7 @@ public class MapEntityCreature : BaseMapEntity, IDialogMapObjectOperation
         //     { "name", new StringVariable { Value = "<color=#FFFFAB>" + title + "</color>" } },
         // };
 
-        var dialogData = new DataDialog()
+        var dialogData = new DataDialogMapObject()
         {
             // Header = string.Format("{0} {1}", stringCountWarriors.GetLocalizedString(), title),
             // Description = message.GetLocalizedString(),

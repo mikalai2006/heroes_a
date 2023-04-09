@@ -56,6 +56,35 @@ public class EntityHero : BaseEntity, ISaveDataPlay
         return val;
     }
 
+    public void SetHeroAsActive()
+    {
+        Player.SetActiveHero(this);
+        SetPositionCamera(this.Position);
+        SetClearSky(Position);
+
+        if (Data.path != null)
+        {
+            GameManager.Instance.MapManager.DrawCursor(Data.path, this);
+        }
+        // LevelManager.Instance.ActivePlayer.ActiveHero = this;
+    }
+
+    public void SetPositionHero(Vector3Int newPosition)
+    {
+        MapObjectGameObject.transform.position = newPosition;
+        Position = newPosition;
+        SetPositionCamera(newPosition);
+        GameManager.Instance.MapManager.SetColorForTile(newPosition, Color.cyan);
+        SetClearSky(newPosition);
+    }
+
+    public void SetClearSky(Vector3Int startPosition)
+    {
+        List<GridTileNode> noskyNode
+            = GameManager.Instance.MapManager.DrawSky(startPosition, 4);
+        Player.SetNosky(noskyNode);
+    }
+
     public void SetPlayer(PlayerData playerData)
     {
         Data.idPlayer = playerData.id;
@@ -76,11 +105,6 @@ public class EntityHero : BaseEntity, ISaveDataPlay
         Data.nextPosition = Data.path[Data.path.Count - 1].position;
     }
 
-    public void SetHeroAsActive()
-    {
-        LevelManager.Instance.ActivePlayer.ActiveHero = this;
-    }
-
     public override void SetPlayer(Player player)
     {
         base.SetPlayer(player);
@@ -99,6 +123,7 @@ public class EntityHero : BaseEntity, ISaveDataPlay
         var sdata = SaveUnit(Data);
         data.entity.heroes.Add(sdata);
     }
+
     #endregion
 }
 

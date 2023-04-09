@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ed2483ae6e2bd246b12027f387a0cba, type: 3}
   m_Name: Knowledge
   m_EditorClassIdentifier: 
-  idObject: 
+  idObject: attribute.skill.knowledge
   TypeAttribute: 30
   MenuSprite: {fileID: 0}
   Text:

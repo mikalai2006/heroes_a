@@ -40,7 +40,9 @@ public class EntityMonolith : BaseEntity, ISaveDataPlay
 
     public override void SetPlayer(Player player)
     {
-        Debug.Log($"Teleport to position::: {Data.portalPoints[0]}");
+        ScriptableEntityPortal configData = (ScriptableEntityPortal)ScriptableData;
+        configData.OnDoHero(ref player, this);
+        // Debug.Log($"Teleport to position::: {Data.portalPoints[0]}");
     }
 
     #region SaveLoadData

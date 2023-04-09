@@ -23,7 +23,7 @@ public class UITownListBuildWindow : MonoBehaviour
 
     public UnityEvent processAction;
 
-    private DataDialog _dataDialog;
+    private DataDialogMapObject _dataDialog;
     private DataResultBuildDialog _dataResultDialog;
 
     private EntityTown _activeTown;
@@ -41,7 +41,7 @@ public class UITownListBuildWindow : MonoBehaviour
 
     }
 
-    public async Task<DataResultBuildDialog> ProcessAction(DataDialog dataDialog, ScriptableBuildTown activeBuildTown)
+    public async Task<DataResultBuildDialog> ProcessAction(DataDialogMapObject dataDialog, ScriptableBuildTown activeBuildTown)
     {
         _dataDialog = dataDialog;
         _dataResultDialog = new DataResultBuildDialog();

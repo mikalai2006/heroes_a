@@ -10,9 +10,6 @@ public class MapEntityHero : BaseMapEntity
     private bool _canMove = false;
     public static event Action<EntityHero> onChangeParamsActiveHero;
 
-    [NonSerialized] public Property<float> hit;
-    [NonSerialized] public Property<float> mana;
-
     [NonSerialized] private Animator _animator;
     [NonSerialized] private Transform _model;
 
@@ -53,10 +50,6 @@ public class MapEntityHero : BaseMapEntity
 
         base.InitUnit(mapObject);
         MapObjectClass = (EntityHero)mapObject;
-
-        hit = new Property<float>(100f);
-        mana = new Property<float>(100f);
-        hit.Value = 100f;
         // Data.hit = 100f;
         // Data.speed = 100;
         // Data.name = MapObjectClass.ScriptableData.name;
@@ -97,8 +90,9 @@ public class MapEntityHero : BaseMapEntity
         {
             case GameState.StepNextPlayer:
                 entityHero.Data.hit = 100f;
-                hit.Value = 100f;
-                mana.Value = UnityEngine.Random.value * 100f;
+                var data = (EntityHero)MapObjectClass;
+                data.Data.hit = 100f;
+                data.Data.mana = 100f;
                 break;
         }
     }
@@ -108,7 +102,7 @@ public class MapEntityHero : BaseMapEntity
         var heroEntity = (EntityHero)MapObjectClass;
         while (heroEntity.Data.path.Count > 0 && _canMove && heroEntity.Data.hit >= 1)
         {
-            //transform.position = HeroData.path[0];
+
             Vector3 moveKoof = heroEntity.Data.path[0].OccupiedUnit?.ScriptableData.typeInput == TypeInput.Down ? new Vector3(.5f, .0f) : new Vector3(.5f, .5f);
 
             UpdateAnimate(MapObjectClass.Position, heroEntity.Data.path[0].position);
@@ -116,21 +110,16 @@ public class MapEntityHero : BaseMapEntity
 
             yield return StartCoroutine(
                 SmoothLerp((Vector3)MapObjectClass.Position + moveKoof, (Vector3)heroEntity.Data.path[0].position + moveKoof));
-            //ChangeHit(HeroData.path[0], - 1);
+
             heroEntity.Data.hit -= heroEntity.CalculateHitByNode(heroEntity.Data.path[0]);
-            hit.Value -= heroEntity.CalculateHitByNode(heroEntity.Data.path[0]);
-            MapObjectClass.Position = heroEntity.Data.path[0].position;
-            //Position = path[0]._position;
+            heroEntity.SetPositionHero(heroEntity.Data.path[0].position);
+
             GameManager.Instance.MapManager.DrawCursor(heroEntity.Data.path, heroEntity);
 
-            List<GridTileNode> noskyNode = GameManager.Instance.MapManager.DrawSky(heroEntity.Data.path[0], 4);
-            heroEntity.Player.SetNosky(noskyNode);
-
-            GameManager.Instance.MapManager.SetColorForTile(heroEntity.Data.path[0].position, Color.cyan);
             if (heroEntity.Data.path[0].Protected && heroEntity.Data.path[0].ProtectedUnit != null)
             {
                 heroEntity.Data.path[0].ProtectedUnit.MapObjectGameObject.OnGoHero(MapObjectClass.Player); // LevelManager.Instance.GetPlayer(heroEntity.Data.idPlayer)
-                // path[0].SetProtectedNeigbours(null);
+
                 GameManager.Instance.ChangeState(GameState.StopMoveHero);
             }
             if (heroEntity.Data.path[0].OccupiedUnit != null)
@@ -139,12 +128,10 @@ public class MapEntityHero : BaseMapEntity
             }
 
             onChangeParamsActiveHero?.Invoke(heroEntity);
-            // GameManager.Instance.ChangeState(GameState.ChangeHeroParams);
+
             heroEntity.Data.path.RemoveAt(0);
-
-
-            //yield return new WaitForSeconds(.1f);
         }
+
         GameManager.Instance.ChangeState(GameState.StopMoveHero);
         _animator.SetBool("isWalking", false);
     }
@@ -192,7 +179,6 @@ public class MapEntityHero : BaseMapEntity
     {
         var data = (EntityHero)MapObjectClass;
         data.Data.hit += _hit * data.Data.speed;
-        hit.Value += data.Data.hit;
     }
     private void OnMouseDown()
     {

@@ -28,21 +28,34 @@ public static class Helpers
     /// </summary>
     /// <param name="item">Items for search</param>
     /// <returns>result item or first item<T></returns>
-	public static T GetProbabilityItem<T>(List<ItemProbabiliti<T>> items)
+	public static ResultProbabiliti<T> GetProbabilityItem<T>(List<ItemProbabiliti<T>> items)
     {
         double p = new System.Random().NextDouble();
         double accumulator = 0.0;
-        var result = items[0].Item;
-        foreach (ItemProbabiliti<T> item in items)
+        var result = new ResultProbabiliti<T>()
         {
+            Item = items[0].Item,
+            index = 0
+        };
+        for (int i = 0; i < items.Count; i++)
+        {
+            ItemProbabiliti<T> item = items[i];
             accumulator += item.probability;
             if (p <= accumulator)
             {
-                result = item.Item;
+                result.Item = item.Item;
+                result.index = i;
                 break;
             }
         }
         return result;
+    }
+
+    public static int GenerateValueByRangeAndStep(int min, int max, int step)
+    {
+        System.Random rand = new System.Random();
+        int f = rand.Next((max - min) / step) * step + min;
+        return f;
     }
 
     private static Matrix4x4 _isoMatrix = Matrix4x4.Rotate(Quaternion.Euler(0, 45, 0));
@@ -145,63 +158,70 @@ public static class Helpers
 
 // }
 
-public interface IProperty<T> : IProperty
-{
-    new event Action<T> ValueChanged;
-    new T Value { get; }
-}
+// public interface IProperty<T> : IProperty
+// {
+//     new event Action<T> ValueChanged;
+//     new T Value { get; }
+// }
 
-public interface IProperty
-{
-    event Action<object> ValueChanged;
-    object Value { get; }
-}
+// public interface IProperty
+// {
+//     event Action<object> ValueChanged;
+//     object Value { get; }
+// }
 
-[Serializable]
-public class Property<T> : IProperty<T>
-{
-    public event Action<T> ValueChanged;
+// [Serializable]
+// public class Property<T> : IProperty<T>
+// {
+//     public event Action<T> ValueChanged;
 
-    event Action<object> IProperty.ValueChanged
-    {
-        add => valueChanged += value;
-        remove => valueChanged -= value;
-    }
+//     event Action<object> IProperty.ValueChanged
+//     {
+//         add => valueChanged += value;
+//         remove => valueChanged -= value;
+//     }
 
-    [SerializeField]
-    private T value;
+//     [SerializeField]
+//     private T value;
 
-    public T Value
-    {
-        get => value;
+//     public T Value
+//     {
+//         get => value;
 
-        set
-        {
-            if (EqualityComparer<T>.Default.Equals(this.value, value))
-            {
-                return;
-            }
+//         set
+//         {
+//             if (EqualityComparer<T>.Default.Equals(this.value, value))
+//             {
+//                 return;
+//             }
 
-            this.value = value;
+//             this.value = value;
 
-            ValueChanged?.Invoke(value);
-            valueChanged?.Invoke(value);
-        }
-    }
+//             ValueChanged?.Invoke(value);
+//             valueChanged?.Invoke(value);
+//         }
+//     }
 
-    object IProperty.Value => value;
+//     object IProperty.Value => value;
 
-    private Action<object> valueChanged;
+//     private Action<object> valueChanged;
 
-    public Property(T value) => this.value = value;
+//     public Property(T value) => this.value = value;
 
-    public static explicit operator Property<T>(T value) => new Property<T>(value);
-    public static implicit operator T(Property<T> binding) => binding.value;
-}
+//     public static explicit operator Property<T>(T value) => new Property<T>(value);
+//     public static implicit operator T(Property<T> binding) => binding.value;
+// }
 
 [System.Serializable]
 public struct ItemProbabiliti<T>
 {
     public T Item;
     [Range(0, 1)] public double probability;
+}
+
+[System.Serializable]
+public struct ResultProbabiliti<T>
+{
+    public T Item;
+    public int index;
 }

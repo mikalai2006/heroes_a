@@ -198,7 +198,7 @@ public class UIGameAside : MonoBehaviour
 
 
         OnResetFocusButton();
-        OnSetActiveHero(null, player.ActiveHero);
+        // OnSetActiveHero(null, player.ActiveHero);
 
         //Debug.Log($"UI Player aside::: id{player.data.id} hero[{player.data.ListHero.Count}] town[{player.data.ListTown.Count}]");
 
@@ -294,7 +294,7 @@ public class UIGameAside : MonoBehaviour
                     }
                     else
                     {
-                        player.ActiveTown = town;
+                        town.SetTownAsActive();
                     }
                     OnResetFocusButton();
                     newButtonTown.Q<Button>(NameAllAsideButton).AddToClassList(NameSelectedButton);

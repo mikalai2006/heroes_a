@@ -45,24 +45,40 @@ public class CreateResourceOperation : ILoadingOperation
                 {
                     GridTileNode currentNode = nodes[Random.Range(0, nodes.Count)];
 
-                    BaseEntity entity = new EntityResource(currentNode, new List<TypeWorkPerk>(){
-                        TypeWorkPerk.One
-                    });
-                    _root.UnitManager.SpawnEntityToNode(currentNode, entity);
-                    // _root.UnitManager
-                    //     .SpawnMapObjectAsync(currentNode, TypeMapObject.Resource, new List<TypeWorkPerk>() { TypeWorkPerk.One });
-
-                    nodes.Remove(currentNode);
-
-                    countCreated++;
-
-                    area.Stat.countFreeResource++;
-
-                    List<GridTileNode> listExistExitNode = _root.gridTileHelper.IsExistExit(currentNode);
-
-                    if (listExistExitNode.Count > 1)
+                    List<TypeWorkPerk> typeWork = new List<TypeWorkPerk>() {
+                            TypeWorkPerk.One
+                        };
+                    List<ScriptableEntityMapObject> list = ResourceSystem.Instance
+                        .GetEntityByType<ScriptableEntityMapObject>(TypeEntity.GroupResource)
+                        .Where(t => (
+                            t.TypeGround & currentNode.TypeGround) == currentNode.TypeGround
+                            && typeWork.Contains(t.TypeWorkPerk)
+                            )
+                        .ToList();
+                    var configData = list[UnityEngine.Random.Range(0, list.Count)];
+                    if (configData != null)
                     {
-                        _root.CreatePortal(currentNode, listExistExitNode);
+                        BaseEntity entity = new EntityMapObject(
+                            currentNode,
+                            configData,
+                            TypeEntity.GroupResource
+                        );
+                        _root.UnitManager.SpawnEntityToNode(currentNode, entity);
+                        // _root.UnitManager
+                        //     .SpawnMapObjectAsync(currentNode, TypeMapObject.Resource, new List<TypeWorkPerk>() { TypeWorkPerk.One });
+
+                        nodes.Remove(currentNode);
+
+                        countCreated++;
+
+                        area.Stat.countFreeResource++;
+
+                        List<GridTileNode> listExistExitNode = _root.gridTileHelper.IsExistExit(currentNode);
+
+                        if (listExistExitNode.Count > 1)
+                        {
+                            _root.CreatePortal(currentNode, listExistExitNode);
+                        }
                     }
                 }
 

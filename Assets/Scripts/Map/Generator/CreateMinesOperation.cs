@@ -45,11 +45,10 @@ public class CreateMinesOperation : ILoadingOperation
                 {
                     GridTileNode currentNode = nodes[Random.Range(0, nodes.Count)];
 
-                    NeighboursNature disableNeighbours = _root.gridTileHelper.GetDisableNeighbours(currentNode);
+                    NeighboursNature disableNeighbours
+                        = _root.gridTileHelper.GetDisableNeighbours(currentNode);
 
                     GridTileNode nodeWarrior = _root.GetNodeWarrior(currentNode);
-
-                    //Debug.Log($"Count mine area[{area.id}]max[{countLandscape}]create[{countCreated}][{natureNode.bottom.Count}][{natureNode.top.Count}]");
 
                     if (
                         currentNode != null
@@ -60,9 +59,9 @@ public class CreateMinesOperation : ILoadingOperation
                         )
                     {
 
-                        BaseEntity entity = new EntityMine(currentNode, TypeGround.None, TypeMine.Free, null);
+                        EntityMine entity
+                            = new EntityMine(currentNode, TypeGround.None, TypeMine.Free, null);
                         _root.UnitManager.SpawnEntityToNode(currentNode, entity);
-                        // _root.UnitManager.SpawnMapObjectAsync(currentNode, TypeMapObject.Mine);
 
                         BaseEntity warrior = _root.UnitManager.SpawnWarriorAsync(nodeWarrior);
 
@@ -74,19 +73,13 @@ public class CreateMinesOperation : ILoadingOperation
 
                         area.Stat.countMine++;
 
-                        List<GridTileNode> listExistExitNode = _root.gridTileHelper.IsExistExit(currentNode);
+                        List<GridTileNode> listExistExitNode
+                            = _root.gridTileHelper.IsExistExit(currentNode);
 
                         if (listExistExitNode.Count > 1)
                         {
                             _root.CreatePortal(currentNode, listExistExitNode);
-                            // // Debug.Log($"Need portal::: keyArea{currentNode.keyArea}[{currentNode._position}]- {listExistExitNode.Count}");
-
                         }
-                        //else
-                        //{
-                        //    Debug.Log($"NoExit::: keyArea{currentNode.keyArea}[{currentNode._position}]- Null");
-
-                        //}
 
                     }
                     else

@@ -24,7 +24,7 @@ public class DataLevel
 [System.Serializable]
 public class DataUnit
 {
-    public List<SaveDataUnit<DataResourceMapObject>> resources;
+    public List<SaveDataUnit<DataEntityMapObject>> mapObjects;
     public List<SaveDataUnit<DataTown>> towns;
     public List<SaveDataUnit<DataHero>> heroes;
     public List<SaveDataUnit<DataCreature>> creatures;
@@ -32,8 +32,8 @@ public class DataUnit
     public List<SaveDataUnit<DataMine>> mines;
     public List<SaveDataUnit<DataArtifact>> artifacts;
     public List<SaveDataUnit<DataExplore>> explorers;
-    public List<SaveDataUnit<DataSkillSchool>> skillSchools;
-    public List<SaveDataUnit<DataResourceMapObject>> resourcesmap;
+    // public List<SaveDataUnit<DataSkillSchool>> skillSchools;
+    public List<SaveDataUnit<DataEntityMapObject>> resourcesmap;
 
     public DataUnit()
     {
@@ -42,11 +42,11 @@ public class DataUnit
         monoliths = new List<SaveDataUnit<DataMonolith>>();
         creatures = new List<SaveDataUnit<DataCreature>>();
         mines = new List<SaveDataUnit<DataMine>>();
-        resources = new List<SaveDataUnit<DataResourceMapObject>>();
+        mapObjects = new List<SaveDataUnit<DataEntityMapObject>>();
         artifacts = new List<SaveDataUnit<DataArtifact>>();
         explorers = new List<SaveDataUnit<DataExplore>>();
-        skillSchools = new List<SaveDataUnit<DataSkillSchool>>();
-        resourcesmap = new List<SaveDataUnit<DataResourceMapObject>>();
+        // skillSchools = new List<SaveDataUnit<DataSkillSchool>>();
+        resourcesmap = new List<SaveDataUnit<DataEntityMapObject>>();
     }
 }
 

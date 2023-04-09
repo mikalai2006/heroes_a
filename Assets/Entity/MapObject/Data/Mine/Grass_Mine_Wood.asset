@@ -14,26 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   idObject: 9d420172d41d4377a5c3dd79f9f57e07
   TypeEntity: 32
-  MenuSprite: {fileID: 0}
-  Text:
-    title:
-      m_TableReference:
-        m_TableCollectionName: GUID:8ed801dac82951d449557e1a63174ac8
-      m_TableEntryReference:
-        m_KeyId: 12366020608
-        m_Key: 
-      m_FallbackState: 0
-      m_WaitForCompletion: 0
-      m_LocalVariables: []
-    description:
-      m_TableReference:
-        m_TableCollectionName: GUID:8ed801dac82951d449557e1a63174ac8
-      m_TableEntryReference:
-        m_KeyId: 12366020608
-        m_Key: 
-      m_FallbackState: 0
-      m_WaitForCompletion: 0
-      m_LocalVariables: []
+  MenuSprite: {fileID: 21300000, guid: 17cb9c399bfd42f44b60cf0789123c37, type: 3}
+  title:
+    m_TableReference:
+      m_TableCollectionName: GUID:8ed801dac82951d449557e1a63174ac8
+    m_TableEntryReference:
+      m_KeyId: 4485538418688000
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   MapPrefab:
     m_AssetGUID: 706a9549b29708e449bbdf588bec7138
     m_SubObjectName: 
@@ -41,7 +31,7 @@ MonoBehaviour:
     m_EditorAssetChanged: 0
   TypeGround: 4
   typeInput: 0
-  listTypeNoPath: 0c0000000e000000
+  listTypeNoPath: 0c0000000e00000009000000
   DialogText:
     VisitOk:
       m_TableReference:

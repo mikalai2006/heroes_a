@@ -9,6 +9,7 @@ public class UIDialogMapObjectWindow : MonoBehaviour
     [SerializeField] private UIDocument _uiDoc;
     public UIDocument DialogApp => _uiDoc;
     [SerializeField] private VisualTreeAsset _templateItem;
+    [SerializeField] private VisualTreeAsset _templateButtonCheckItem;
     private readonly string _nameButtonOk = "ButtonOk";
     private readonly string _nameButtonCancel = "ButtonCancel";
     private readonly string _nameSpriteElement = "Sprite";
@@ -32,7 +33,7 @@ public class UIDialogMapObjectWindow : MonoBehaviour
 
     public UnityEvent processAction;
 
-    private DataDialog _dataDialog;
+    private DataDialogMapObject _dataDialog;
     private DataResultDialog _dataResultDialog;
 
     private void Awake()
@@ -48,43 +49,63 @@ public class UIDialogMapObjectWindow : MonoBehaviour
 
     }
 
-    public async Task<DataResultDialog> ProcessAction(DataDialog dataDialog)
+    public async Task<DataResultDialog> ProcessAction(DataDialogMapObject dataDialog)
     {
         _dataDialog = dataDialog;
         _dataResultDialog = new DataResultDialog();
+
+        if (_dataDialog.TypeCheck == TypeCheck.OnlyOk)
+        {
+            _buttonCancel.style.display = DisplayStyle.None;
+        }
 
         _headerLabel.text = _dataDialog.Header;
         _descriptionLabel.text = _dataDialog.Description;
         if (_dataDialog.Sprite != null)
         {
             _boxSpriteObject.style.backgroundImage = new StyleBackground(_dataDialog.Sprite);
-            _boxSpriteObject.style.width = new StyleLength(new Length(_dataDialog.Sprite.bounds.size.x * _dataDialog.Sprite.pixelsPerUnit, LengthUnit.Pixel));
-            _boxSpriteObject.style.height = new StyleLength(new Length(_dataDialog.Sprite.bounds.size.y * _dataDialog.Sprite.pixelsPerUnit, LengthUnit.Pixel));
+            _boxSpriteObject.style.width = new StyleLength(new Length(
+                _dataDialog.Sprite.bounds.size.x * _dataDialog.Sprite.pixelsPerUnit,
+                LengthUnit.Pixel
+            ));
+            _boxSpriteObject.style.height = new StyleLength(new Length(
+                _dataDialog.Sprite.bounds.size.y * _dataDialog.Sprite.pixelsPerUnit,
+                LengthUnit.Pixel
+            ));
         }
 
-        for (int i = 0; i < _dataDialog.Value.Count; i++)
+        for (int i = 0; i < _dataDialog.Groups.Count; i++)
         {
-            VisualElement item = _templateItem.Instantiate();
-            var _spriteElement = item.Q<VisualElement>(_nameSpriteElement);
-            var _valueLabel = item.Q<Label>(_nameValueLabel);
-            var sprite = _dataDialog.Value[i].Sprite;
-
-            _spriteElement.style.backgroundImage = new StyleBackground(sprite);
-            _spriteElement.style.width = new StyleLength(new Length(sprite.bounds.size.x * sprite.pixelsPerUnit, LengthUnit.Pixel));
-            _spriteElement.style.height = new StyleLength(new Length(sprite.bounds.size.y * sprite.pixelsPerUnit, LengthUnit.Pixel));
-
-            var val = _dataDialog.Value[i].Value;
-            if (val != 0)
+            for (int j = 0; j < _dataDialog.Groups[i].Values.Count; j++)
             {
-                _valueLabel.text = _dataDialog.Value[i].Value.ToString();
-            }
+                VisualElement item = _templateItem.Instantiate();
+                if (_dataDialog.TypeWorkAttribute == TypeWorkAttribute.One)
+                {
+                    item = _templateButtonCheckItem.Instantiate();
+                }
+                var _spriteElement = item.Q<VisualElement>(_nameSpriteElement);
+                var _valueLabel = item.Q<Label>(_nameValueLabel);
+                var sprite = _dataDialog.Groups[i].Values[j].Sprite;
 
-            _boxVariantsElement.Add(item);
+                _spriteElement.style.backgroundImage = new StyleBackground(sprite);
+                _spriteElement.style.width = new StyleLength(
+                    new Length(sprite.bounds.size.x * sprite.pixelsPerUnit, LengthUnit.Pixel)
+                );
+                _spriteElement.style.height = new StyleLength(
+                    new Length(sprite.bounds.size.y * sprite.pixelsPerUnit, LengthUnit.Pixel)
+                );
+
+                var val = _dataDialog.Groups[i].Values[j].Value;
+                _valueLabel.text = val != 0 ? val.ToString() : "";
+
+                _boxVariantsElement.Add(item);
+            }
         }
 
         Player player = LevelManager.Instance.ActivePlayer;
 
-        UQueryBuilder<VisualElement> builder = new UQueryBuilder<VisualElement>(DialogApp.rootVisualElement);
+        UQueryBuilder<VisualElement> builder
+            = new UQueryBuilder<VisualElement>(DialogApp.rootVisualElement);
         List<VisualElement> list = builder.Name(_nameOverlay).ToList();
         foreach (var overlay in list)
         {

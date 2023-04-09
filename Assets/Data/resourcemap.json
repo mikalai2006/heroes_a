@@ -1,0 +1,22 @@
+{
+  "resourcemap": [
+    {
+      "id": "entity.map.resource.box",
+      "variants": [
+        {
+          "list": [
+            {
+              "idso": "entity.resource.gold",
+              "value": 1000
+            },
+            {
+              "idso": "entity.resource.gems",
+              "value": 1000
+            }
+          ],
+          "probability": 0.23
+        }
+      ]
+    }
+  ]
+}

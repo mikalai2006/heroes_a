@@ -13,6 +13,8 @@ public class ScriptableAttribute : ScriptableObject
 [Serializable]
 public enum TypeAttribute
 {
+    Resource = 0,
+    Artifact = 10,
     PrimarySkill = 30,
     SecondarySkill = 40,
     Spell = 60,

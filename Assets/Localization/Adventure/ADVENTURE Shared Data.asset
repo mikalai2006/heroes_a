@@ -23,14 +23,6 @@ MonoBehaviour:
     m_Key: artifact_yes
     m_Metadata:
       m_Items: []
-  - m_Id: 2477471727616
-    m_Key: wood_mine_ok
-    m_Metadata:
-      m_Items: []
-  - m_Id: 2565350785024
-    m_Key: mercury_mine_ok
-    m_Metadata:
-      m_Items: []
   - m_Id: 705890501165056
     m_Key: army_few
     m_Metadata:
@@ -81,6 +73,170 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 1428592715268096
     m_Key: build
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4463474357993472
+    m_Key: treasurechest_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4463545761824768
+    m_Key: treasurechest_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4463993914818560
+    m_Key: treasurechest_d2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4464230775554048
+    m_Key: campfire_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4464285402169344
+    m_Key: campfire_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4479943145848832
+    m_Key: corpse_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4480149874704384
+    m_Key: corpse_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4480182154067968
+    m_Key: corpse_empty
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4480743356137472
+    m_Key: waterwheel_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4480779792056320
+    m_Key: waterwheel_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4480789757722624
+    m_Key: waterwheel_empty
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4481235830341632
+    m_Key: wagon_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4481280055083008
+    m_Key: wagon_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4481303446716416
+    m_Key: wagon_empty
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4485417656287232
+    m_Key: mine_mercury_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4485478352060416
+    m_Key: mine_mercury_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4485538418688000
+    m_Key: mine_wood_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4485682161680384
+    m_Key: mine_wood_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4485725212016640
+    m_Key: mine_sulfur_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4485814366142464
+    m_Key: mine_sulfur_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4485877486223360
+    m_Key: mine_ore_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4485931106205696
+    m_Key: mine_ore_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4485944624447488
+    m_Key: mine_crystal_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4485987775447040
+    m_Key: mine_crystal_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4486018247065600
+    m_Key: mine_gems_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4486047707856896
+    m_Key: mine_gems_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4486086362562560
+    m_Key: mine_gold_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4486125382172672
+    m_Key: mine_gold_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4488335784574976
+    m_Key: school_war_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4488374674161664
+    m_Key: school_war_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4488489962995712
+    m_Key: school_war_empty
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4488656866934784
+    m_Key: school_war_nores
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4598162233917440
+    m_Key: mysticalgarden_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4598291884048384
+    m_Key: mysticalgarden_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4598317049872384
+    m_Key: mysticalgarden_empty
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4599330729263104
+    m_Key: windmill_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4599347003162624
+    m_Key: windmill_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4599369115533312
+    m_Key: windmill_empty
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4603785281437696
+    m_Key: waterqheel_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4603832022761472
+    m_Key: waterqheel_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4603844773445632
+    m_Key: waterqheel_empty
     m_Metadata:
       m_Items: []
   m_Metadata:

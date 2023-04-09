@@ -33,7 +33,7 @@ public class MapEntityArtifact : BaseMapEntity, IDialogMapObjectOperation
         //     { "name", new StringVariable { Value = this.ScriptableData.name } },
         // };
         // var t = HelperLanguage.GetLocaleText(this.ScriptableData.Locale);
-        var dialogData = new DataDialog()
+        var dialogData = new DataDialogMapObject()
         {
             // Header = MapObjectClass.ScriptableData.Text.title.GetLocalizedString(),
             // Description = t.Text.visit_ok,

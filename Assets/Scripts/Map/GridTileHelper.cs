@@ -679,6 +679,7 @@ public class GridTileHelper
         color = color == null ? Color.black : color;
 
         node.SetState(TypeStateNode.Disabled);
+        GameManager.Instance.MapManager.SetColorForTile(node.position, color);
         // SetColorForTile(node._position, color);
         if (listNoPath == null) return;
 

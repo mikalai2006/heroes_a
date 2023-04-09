@@ -121,25 +121,26 @@ public class LevelManager : Singleton<LevelManager>, ISaveDataPlay, ISaveDataGam
         }
 
         //level.activePlayer = level.activePlayer < (countPlayer + countEnemies + 1) ? level.activePlayer++ : 0;
+        GameManager.Instance.MapManager.ResetSky(ActivePlayer.DataPlayer.nosky);
 
         if (ActivePlayer.ActiveHero == null)
         {
             //GetActivePlayer().SetActiveHero(GetActivePlayer().GetActiveHero());
-            ActivePlayer.ActiveHero = ActivePlayer.DataPlayer.PlayerDataReferences.ListHero[0];
+            // ActivePlayer.ActiveHero = ActivePlayer.DataPlayer.PlayerDataReferences.ListHero[0];
+            ActivePlayer.DataPlayer.PlayerDataReferences.ListHero[0].SetHeroAsActive();
         }
-
-        SetPositionCamera(
-            new Vector3(ActivePlayer.ActiveHero.Position.x, ActivePlayer.ActiveHero.Position.y, -10f)
-            );
-
-        GameManager.Instance.MapManager.ResetSky(ActivePlayer.DataPlayer.nosky);
-
-        if (ActivePlayer.DataPlayer.nosky.Count == 0)
+        else
         {
-            List<GridTileNode> listNoskyNode = GameManager.Instance
-                .MapManager.DrawSky(ActivePlayer.ActiveHero.OccupiedNode, 5);
-            ActivePlayer.SetNosky(listNoskyNode);
+            ActivePlayer.ActiveHero.SetHeroAsActive();
         }
+
+
+        // if (ActivePlayer.DataPlayer.nosky.Count == 0)
+        // {
+        //     List<GridTileNode> listNoskyNode = GameManager.Instance
+        //         .MapManager.DrawSky(ActivePlayer.ActiveHero.OccupiedNode, 5);
+        //     ActivePlayer.SetNosky(listNoskyNode);
+        // }
 
         //Debug.Log($" Active Hero {level.activePlayer}");
     }
@@ -197,11 +198,6 @@ public class LevelManager : Singleton<LevelManager>, ISaveDataPlay, ISaveDataGam
                 );
         }
         return text;
-    }
-
-    public void SetPositionCamera(Vector3 pos)
-    {
-        _camera.transform.position = pos;
     }
 
     public void LoadLevel(DataPlay dataPlay, DataGame dataGame)

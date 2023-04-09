@@ -19,14 +19,29 @@ MonoBehaviour:
     m_Key: Country Flag
     m_Metadata:
       m_Items: []
+  - m_Id: 4453100795625472
+    m_Key: UIDialogMapObject
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items:
     - rid: 5790064033013694467
+    - rid: 1339301005619625989
   m_KeyGenerator:
     rid: 5790064033013694466
   references:
     version: 2
     RefIds:
+    - rid: 1339301005619625989
+      type: {class: AssetTypeMetadata, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries:
+        - m_KeyId: 4453100795625472
+          m_TableCodes:
+          - en
+          - ru
+        m_TypeString: UnityEngine.UIElements.VisualTreeAsset, UnityEngine.UIElementsModule,
+          Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
     - rid: 5790064033013694466
       type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
       data:

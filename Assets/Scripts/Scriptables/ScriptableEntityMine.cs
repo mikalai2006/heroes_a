@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "NewEntityMine", menuName = "Game/Entity/Mine")]
-public class ScriptableEntityMine : ScriptableEntity, IPerked
+public class ScriptableEntityMine : ScriptableEntity, IEffected
 {
     [Header("Options Mine")]
     public TypeMine TypeMine;

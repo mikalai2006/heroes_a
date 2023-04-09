@@ -64,9 +64,14 @@ public abstract class BaseEntity
     public void DestroyEntity()
     {
         Debug.Log($"Destroy entity::: {ScriptableData.name}");
+        OccupiedNode.SetOcuppiedUnit(null);
         RemoveEvents();
     }
 
+    protected void SetPositionCamera(Vector3 pos)
+    {
+        Camera.main.transform.position = pos + new Vector3(0, 0, -10);
+    }
 
     #region SaveLoadData
     public virtual void OnSaveUnit()

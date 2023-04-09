@@ -34,6 +34,17 @@ public class EntityExpore : BaseEntity, ISaveDataPlay
         base.Init(ScriptableData, node);
     }
 
+    public override void SetPlayer(Player player)
+    {
+        base.SetPlayer(player);
+
+        // TODO PERK
+        List<GridTileNode> noskyNodes
+            = GameManager.Instance.MapManager.DrawSky(OccupiedNode.position, 10);
+
+        player.SetNosky(noskyNodes);
+    }
+
     #region SaveLoadData
     // public void LoadDataPlay(DataPlay data)
     // {

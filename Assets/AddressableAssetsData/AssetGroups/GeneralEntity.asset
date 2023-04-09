@@ -17,12 +17,6 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 60bf832947fe6e84a9bf15c28d719e82
   m_SerializeEntries:
-  - m_GUID: 030dd40589fce9b45967e24d75bb3bdc
-    m_Address: Assets/Entity/Resource/Data
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - resource
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7232213044ea6a84885f558dec76aefe
     m_Address: Assets/Entity/MapObject/Data
     m_ReadOnly: 0
@@ -58,7 +52,8 @@ MonoBehaviour:
   - m_GUID: 7d6461ac2a9b7b74b9e112e6c2894e33
     m_Address: Assets/Entity/Resource
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - resource
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: bffe1f3893b9d8b46a3ff35dc041bc20
     m_Address: Assets/Entity/Hero/Stronghold/Data

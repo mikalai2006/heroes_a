@@ -1,0 +1,211 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28f893db958f10a46a0e59d54d9b29d0, type: 3}
+  m_Name: Wagon
+  m_EditorClassIdentifier: 
+  idObject: map.resource.wagon
+  TypeEntity: 34
+  MenuSprite: {fileID: 0}
+  title:
+    m_TableReference:
+      m_TableCollectionName: GUID:8ed801dac82951d449557e1a63174ac8
+    m_TableEntryReference:
+      m_KeyId: 4481235830341632
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  MapPrefab:
+    m_AssetGUID: af8a658f676116346a07682b19795032
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  TypeGround: 16
+  typeInput: 0
+  listTypeNoPath: 
+  DialogText:
+    VisitOk:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    VisitNo:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    VisitNoResource:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+  TypeWorkPerk: 5
+  TypeWorkAttribute: 0
+  Attributes:
+  - Item:
+      description:
+        m_TableReference:
+          m_TableCollectionName: GUID:8ed801dac82951d449557e1a63174ac8
+        m_TableEntryReference:
+          m_KeyId: 4481303446716416
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      Resources: []
+      PrimarySkills: []
+      SecondarySkills: []
+      Artifacts:
+        Artifact: []
+        isOne: 0
+    probability: 0.10000000149011612
+  - Item:
+      description:
+        m_TableReference:
+          m_TableCollectionName: GUID:8ed801dac82951d449557e1a63174ac8
+        m_TableEntryReference:
+          m_KeyId: 4481280055083008
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      Resources: []
+      PrimarySkills: []
+      SecondarySkills: []
+      Artifacts:
+        Artifact:
+        - {fileID: 11400000, guid: 170f6a18e7757ad4c9aaed11393ac632, type: 2}
+        isOne: 1
+    probability: 0.20000000298023224
+  - Item:
+      description:
+        m_TableReference:
+          m_TableCollectionName: GUID:8ed801dac82951d449557e1a63174ac8
+        m_TableEntryReference:
+          m_KeyId: 4481280055083008
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      Resources: []
+      PrimarySkills: []
+      SecondarySkills: []
+      Artifacts:
+        Artifact:
+        - {fileID: 11400000, guid: 170f6a18e7757ad4c9aaed11393ac632, type: 2}
+        - {fileID: 11400000, guid: 170f6a18e7757ad4c9aaed11393ac632, type: 2}
+        isOne: 1
+    probability: 0.20000000298023224
+  - Item:
+      description:
+        m_TableReference:
+          m_TableCollectionName: GUID:8ed801dac82951d449557e1a63174ac8
+        m_TableEntryReference:
+          m_KeyId: 4481280055083008
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      Resources:
+      - Resource: {fileID: 11400000, guid: 6b8ad83da675426418c328236190e67c, type: 2}
+        value: 0
+        minValue: 2
+        maxValue: 5
+        step: 1
+      PrimarySkills: []
+      SecondarySkills: []
+      Artifacts:
+        Artifact: []
+        isOne: 1
+    probability: 0.5
+  - Item:
+      description:
+        m_TableReference:
+          m_TableCollectionName: GUID:8ed801dac82951d449557e1a63174ac8
+        m_TableEntryReference:
+          m_KeyId: 4481280055083008
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      Resources:
+      - Resource: {fileID: 11400000, guid: f02d0b566815eaa47b30b219422c87e5, type: 2}
+        value: 0
+        minValue: 2
+        maxValue: 5
+        step: 1
+      PrimarySkills: []
+      SecondarySkills: []
+      Artifacts:
+        Artifact: []
+        isOne: 1
+    probability: 0.5
+  - Item:
+      description:
+        m_TableReference:
+          m_TableCollectionName: GUID:8ed801dac82951d449557e1a63174ac8
+        m_TableEntryReference:
+          m_KeyId: 4481280055083008
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      Resources:
+      - Resource: {fileID: 11400000, guid: 61799bb2485b4684485b146b76ea01d6, type: 2}
+        value: 0
+        minValue: 2
+        maxValue: 5
+        step: 1
+      PrimarySkills: []
+      SecondarySkills: []
+      Artifacts:
+        Artifact: []
+        isOne: 1
+    probability: 0.5
+  - Item:
+      description:
+        m_TableReference:
+          m_TableCollectionName: GUID:8ed801dac82951d449557e1a63174ac8
+        m_TableEntryReference:
+          m_KeyId: 4481280055083008
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      Resources:
+      - Resource: {fileID: 11400000, guid: 379c734399110d34f9159a31f3e18074, type: 2}
+        value: 0
+        minValue: 2
+        maxValue: 5
+        step: 1
+      PrimarySkills: []
+      SecondarySkills: []
+      Artifacts:
+        Artifact: []
+        isOne: 1
+    probability: 0.5
+  Effects: []
+  references:
+    version: 2
+    RefIds: []

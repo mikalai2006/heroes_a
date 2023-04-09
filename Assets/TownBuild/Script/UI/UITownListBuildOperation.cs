@@ -13,10 +13,10 @@ public struct DataResultBuildDialog
 
 public class UITownListBuildOperation : LocalAssetLoader
 {
-    private DataDialog _dataDialog;
+    private DataDialogMapObject _dataDialog;
     private ScriptableBuildTown _activeBuildTown;
 
-    public UITownListBuildOperation(DataDialog dataDialog, ScriptableBuildTown activeBuildTown)
+    public UITownListBuildOperation(DataDialogMapObject dataDialog, ScriptableBuildTown activeBuildTown)
     {
         _dataDialog = dataDialog;
         _activeBuildTown = activeBuildTown;

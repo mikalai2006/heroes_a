@@ -52,33 +52,50 @@ public class CreateResourceEveryWeekOperation : ILoadingOperation
 
                         BaseEntity warrior = _root.UnitManager.SpawnWarriorAsync(nodeWarrior);
 
-                        BaseEntity entity = new EntityResource(currentNode,
-                            new List<TypeWorkPerk>() { TypeWorkPerk.EveryDay, TypeWorkPerk.EveryWeek }
-                            );
-                        _root.UnitManager.SpawnEntityToNode(currentNode, entity);
-                        // _root.UnitManager.SpawnMapObjectAsync(
-                        //     currentNode,
-                        //     TypeMapObject.Resource,
-                        //     new List<TypeWorkPerk>() { TypeWorkPerk.EveryDay, TypeWorkPerk.EveryWeek }
-                        // );
-                        if (entity.ScriptableData.name == "MillWater")
+                        List<TypeWorkPerk> typeWork = new List<TypeWorkPerk>() {
+                            TypeWorkPerk.EveryDay, TypeWorkPerk.EveryWeek
+                        };
+                        List<ScriptableEntityMapObject> list = ResourceSystem.Instance
+                            .GetEntityByType<ScriptableEntityMapObject>(TypeEntity.GroupResource)
+                            // .Where(t => listTypeWork.Contains(t.TypeWorkPerk))
+                            .Where(t => (
+                                t.TypeGround & currentNode.TypeGround) == currentNode.TypeGround
+                                && typeWork.Contains(t.TypeWorkPerk)
+                                )
+                            .ToList();
+                        var configData = list[UnityEngine.Random.Range(0, list.Count)];
+                        if (configData != null)
                         {
-                            GameManager.Instance.MapManager.CreateCreeks(currentNode);
-                        }
+                            BaseEntity entity = new EntityMapObject(currentNode,
+                                configData,
+                                TypeEntity.GroupResource
+                                // new List<TypeWorkPerk>() { TypeWorkPerk.EveryDay, TypeWorkPerk.EveryWeek }
+                                );
+                            _root.UnitManager.SpawnEntityToNode(currentNode, entity);
+                            // _root.UnitManager.SpawnMapObjectAsync(
+                            //     currentNode,
+                            //     TypeMapObject.Resource,
+                            //     new List<TypeWorkPerk>() { TypeWorkPerk.EveryDay, TypeWorkPerk.EveryWeek }
+                            // );
+                            if (entity.ScriptableData.name == "WaterWheel")
+                            {
+                                GameManager.Instance.MapManager.CreateCreeks(currentNode);
+                            }
 
-                        area.Stat.countEveryResource++;
+                            area.Stat.countEveryResource++;
 
-                        nodeWarrior.SetProtectedNeigbours(warrior, currentNode);
+                            nodeWarrior.SetProtectedNeigbours(warrior, currentNode);
 
-                        nodes.Remove(currentNode);
+                            nodes.Remove(currentNode);
 
-                        countCreated++;
+                            countCreated++;
 
-                        List<GridTileNode> listExistExitNode = _root.gridTileHelper.IsExistExit(currentNode);
+                            List<GridTileNode> listExistExitNode = _root.gridTileHelper.IsExistExit(currentNode);
 
-                        if (listExistExitNode.Count > 1)
-                        {
-                            _root.CreatePortal(currentNode, listExistExitNode);
+                            if (listExistExitNode.Count > 1)
+                            {
+                                _root.CreatePortal(currentNode, listExistExitNode);
+                            }
                         }
                         //else
                         //{

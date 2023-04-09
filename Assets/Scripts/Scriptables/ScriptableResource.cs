@@ -1,12 +1,12 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewResource", menuName = "Game/New Resource")]
+[CreateAssetMenu(fileName = "Resource", menuName = "Game/Resource")]
 public class ScriptableResource : ScriptableObject
 {
     public string idObject;
+    public TypeResource TypeResource;
     public Sprite MenuSprite;
     [SerializeField] public LangEntity Text;
-    public TypeResource TypeResource;
     // public int maxValue;
     // public int step;
     // public AnimationCurve Curve;

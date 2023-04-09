@@ -22,6 +22,10 @@ MonoBehaviour:
     m_Localized: e47314ff43521a548b94b4a9aa80d056[Russia]
     m_Metadata:
       m_Items: []
+  - m_Id: 4453100795625472
+    m_Localized: a24b4c164d4a3ed48b8a846bd9e93d8e
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

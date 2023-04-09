@@ -10,7 +10,7 @@ public abstract class ScriptableEntity : ScriptableObject
     public string idObject;
     public TypeEntity TypeEntity;
     public Sprite MenuSprite;
-    [SerializeField] public LangEntity Text;
+    public LocalizedString title;
 
     [Header("Map Options")]
     [SerializeField] public AssetReferenceGameObject MapPrefab;
@@ -50,7 +50,7 @@ public enum TypeFaction
     Inferno = 50,
     Necropolis = 60,
     Rampart = 70,
-	Tower = 80,
+    Tower = 80,
     Neutral = 100,
 }
 
@@ -60,7 +60,6 @@ public enum TypeEntity
     // Faction = 0,
     Creature = 10,
     Artifact = 20,
-    // MapObject = 30,
     Portal = 30,
     Resource = 50,
     Building = 70,
@@ -69,7 +68,8 @@ public enum TypeEntity
     Explore = 31,
     Mine = 32,
     SkillSchool = 33,
-    GroupResource = 34
+    GroupResource = 34,
+    Random = 35,
 }
 
 [System.Serializable]

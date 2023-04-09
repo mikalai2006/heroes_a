@@ -43,6 +43,34 @@ MonoBehaviour:
     m_Key: celestial_ok
     m_Metadata:
       m_Items: []
+  - m_Id: 1500021049688064
+    m_Key: crystal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1500201509617664
+    m_Key: wood
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1500248452268032
+    m_Key: ore
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1500293008359424
+    m_Key: gems
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1500372637220864
+    m_Key: sulfur
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1500417767931904
+    m_Key: mercury
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1500759150723072
+    m_Key: gold
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

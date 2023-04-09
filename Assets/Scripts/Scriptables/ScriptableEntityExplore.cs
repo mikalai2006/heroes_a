@@ -3,19 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "NewEntityExplore", menuName = "Game/Entity/Explore")]
-public class ScriptableEntityExplore : ScriptableEntity, IPerked
+public class ScriptableEntityExplore : ScriptableEntity, IEffected
 {
-    // [Space(10)]
-    // [Header("Options Explore")]
-
     [Space(10)]
     [Header("Options Perk")]
-    public int countNosky;
+    public List<BaseEffect> Perks;
+
     public void OnDoHero(ref Player player, BaseEntity entity)
     {
-        List<GridTileNode> noskyNodes = GameManager.Instance
-            .MapManager.DrawSky(entity.OccupiedNode, countNosky);
-
-        player.SetNosky(noskyNodes);
+        foreach (var perk in Perks)
+        {
+            perk.OnDoHero(ref player, entity);
+        }
     }
 }

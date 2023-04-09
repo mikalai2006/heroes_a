@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "NewEntityArtifact", menuName = "Game/Entity/Artifact")]
-public class ScriptableEntityArtifact : ScriptableEntity, IPerked
+public class ScriptableEntityArtifact : ScriptableEntity, IEffected
 {
     [Header("Options Artifact")]
     public Sprite spriteMap;

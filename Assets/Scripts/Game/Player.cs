@@ -61,40 +61,8 @@ public class Player
 
         }
     }
-    public EntityHero ActiveHero
-    {
-        get { return _data.PlayerDataReferences.ActiveHero; }
-        set
-        {
-            GameManager.Instance.ChangeState(GameState.ChooseHero);
-
-            _data.PlayerDataReferences.ActiveHero = value;
-
-            LevelManager.Instance.SetPositionCamera(
-                new Vector3(value.Position.x, value.Position.y, -10f)
-                );
-
-            if (value.Data.path != null)
-            {
-                GameManager.Instance.MapManager.DrawCursor(value.Data.path, DataPlayer.PlayerDataReferences.ActiveHero);
-            }
-
-        }
-    }
-
-    public EntityTown ActiveTown
-    {
-        get { return _data.PlayerDataReferences.ActiveTown; }
-        set
-        {
-            GameManager.Instance.ChangeState(GameState.ChooseHero);
-
-            _data.PlayerDataReferences.ActiveTown = value;
-
-            LevelManager.Instance.SetPositionCamera(new Vector3(value.Position.x, value.Position.y, -10f));
-
-        }
-    }
+    public EntityHero ActiveHero => _data.PlayerDataReferences.ActiveHero;
+    public EntityTown ActiveTown => _data.PlayerDataReferences.ActiveTown;
 
     public Player(PlayerData data)
     {
@@ -106,6 +74,21 @@ public class Player
         {
             _data.Resource.Add(typeResource, typeResource == TypeResource.Gold ? 100000 : 200);
         }
+    }
+
+    public void SetActiveHero(EntityHero entityHero)
+    {
+        // GameManager.Instance.ChangeState(GameState.ChooseHero);
+
+        _data.PlayerDataReferences.ActiveHero = entityHero;
+    }
+
+    public void SetActiveTown(EntityTown entityTown)
+    {
+        // GameManager.Instance.ChangeState(GameState.ChooseHero);
+
+        _data.PlayerDataReferences.ActiveTown = entityTown;
+
     }
 
     public void AddHero(EntityHero hero)
@@ -195,4 +178,5 @@ public class Player
     {
         return DataPlayer.PlayerDataReferences.ListTown[id];
     }
+
 }

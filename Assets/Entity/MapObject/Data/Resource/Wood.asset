@@ -9,37 +9,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2451909c045bc84c9d0712caca4b269, type: 3}
+  m_Script: {fileID: 11500000, guid: 28f893db958f10a46a0e59d54d9b29d0, type: 3}
   m_Name: Wood
   m_EditorClassIdentifier: 
-  idObject: 59177c8ade184d508f21b79efd8210ab
+  idObject: map.resource.wood
   TypeEntity: 34
   MenuSprite: {fileID: 0}
-  Text:
-    title:
-      m_TableReference:
-        m_TableCollectionName: 
-      m_TableEntryReference:
-        m_KeyId: 0
-        m_Key: 
-      m_FallbackState: 0
-      m_WaitForCompletion: 0
-      m_LocalVariables: []
-    description:
-      m_TableReference:
-        m_TableCollectionName: 
-      m_TableEntryReference:
-        m_KeyId: 0
-        m_Key: 
-      m_FallbackState: 0
-      m_WaitForCompletion: 0
-      m_LocalVariables: []
+  title:
+    m_TableReference:
+      m_TableCollectionName: GUID:99ee07ddc90ffba41a3d18974d364707
+    m_TableEntryReference:
+      m_KeyId: 1500201509617664
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   MapPrefab:
     m_AssetGUID: 731dfe41d328d7741a52118896311d7c
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
-  TypeGround: 1
+  TypeGround: -1
   typeInput: 1
   listTypeNoPath: 
   DialogText:
@@ -71,17 +61,31 @@ MonoBehaviour:
       m_WaitForCompletion: 0
       m_LocalVariables: []
   TypeWorkPerk: 1
-  Resources:
+  TypeWorkAttribute: 0
+  Attributes:
   - Item:
-      id: 
-      Resource: {fileID: 11400000, guid: 0ffa581b737859344b48fea1a3568956, type: 2}
-      value: 10
+      description:
+        m_TableReference:
+          m_TableCollectionName: 
+        m_TableEntryReference:
+          m_KeyId: 0
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      Resources:
+      - Resource: {fileID: 11400000, guid: af6fb8015ba018540960794f09d24eea, type: 2}
+        value: 6
+        minValue: 5
+        maxValue: 10
+        step: 1
+      PrimarySkills: []
+      SecondarySkills: []
+      Artifacts:
+        Artifact: []
+        isOne: 0
     probability: 0.5
-  - Item:
-      id: 
-      Resource: {fileID: 11400000, guid: 0ffa581b737859344b48fea1a3568956, type: 2}
-      value: 5
-    probability: 0.25
+  Effects: []
   references:
     version: 2
     RefIds: []

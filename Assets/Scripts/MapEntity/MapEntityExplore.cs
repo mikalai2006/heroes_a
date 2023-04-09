@@ -18,9 +18,7 @@ public class MapEntityExplore : BaseMapEntity, IDialogMapObjectOperation
 
         if (result.isOk)
         {
-            List<GridTileNode> noskyNodes = GameManager.Instance.MapManager.DrawSky(MapObjectClass.OccupiedNode, 10);
-
-            player.SetNosky(noskyNodes);
+            MapObjectClass.SetPlayer(player);
         }
         else
         {
@@ -31,7 +29,7 @@ public class MapEntityExplore : BaseMapEntity, IDialogMapObjectOperation
     public async UniTask<DataResultDialog> OnTriggeredHero()
     {
         // var t = HelperLanguage.GetLocaleText(this.ScriptableData.Locale);
-        var dialogData = new DataDialog()
+        var dialogData = new DataDialogMapObject()
         {
             // Header = MapObjectClass.ScriptableData.Text.title.GetLocalizedString(),
             // Description = t.Text.visit_ok,

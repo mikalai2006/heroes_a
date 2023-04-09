@@ -49,28 +49,43 @@ public class CreateSkillSchoolOperation : ILoadingOperation
 
                     if (nodeWarrior != null && currentNode != null && _root.gridTileHelper.CalculateNeighbours(currentNode) == 8)
                     {
-                        BaseEntity entity = new EntitySkillSchool(currentNode);
-                        _root.UnitManager.SpawnEntityToNode(currentNode, entity);
-                        // _root.UnitManager
-                        //     .SpawnMapObjectAsync(currentNode, TypeMapObject.SkillSchool);
-
-                        BaseEntity warrior = _root.UnitManager.SpawnWarriorAsync(nodeWarrior);
-
-                        nodeWarrior.SetProtectedNeigbours(warrior, currentNode);
-
-                        nodes.Remove(currentNode);
-
-                        countCreated++;
-
-                        area.Stat.countSkillSchool++;
-
-                        List<GridTileNode> listExistExitNode = _root.gridTileHelper.IsExistExit(currentNode);
-                        if (listExistExitNode.Count > 1)
+                        List<TypeWorkPerk> typeWork = new List<TypeWorkPerk>() {
+                            TypeWorkPerk.One
+                        };
+                        List<ScriptableEntityMapObject> list = ResourceSystem.Instance
+                            .GetEntityByType<ScriptableEntityMapObject>(TypeEntity.SkillSchool)
+                            .Where(t => (
+                                t.TypeGround & currentNode.TypeGround) == currentNode.TypeGround
+                                )
+                            .ToList();
+                        var configData = list[UnityEngine.Random.Range(0, list.Count)];
+                        if (configData != null)
                         {
-                            Debug.Log($"SkillSchool: Need portal {currentNode.position}");
-                            _root.CreatePortal(currentNode, listExistExitNode);
-                        }
+                            BaseEntity entity = new EntityMapObject(
+                                currentNode,
+                                configData,
+                                TypeEntity.SkillSchool
+                                );
+                            _root.UnitManager.SpawnEntityToNode(currentNode, entity);
+                            // _root.UnitManager
+                            //     .SpawnMapObjectAsync(currentNode, TypeMapObject.SkillSchool);
 
+                            BaseEntity warrior = _root.UnitManager.SpawnWarriorAsync(nodeWarrior);
+
+                            nodeWarrior.SetProtectedNeigbours(warrior, currentNode);
+
+                            nodes.Remove(currentNode);
+
+                            countCreated++;
+
+                            area.Stat.countSkillSchool++;
+
+                            List<GridTileNode> listExistExitNode = _root.gridTileHelper.IsExistExit(currentNode);
+                            if (listExistExitNode.Count > 1)
+                            {
+                                _root.CreatePortal(currentNode, listExistExitNode);
+                            }
+                        }
                     }
                     else
                     {
