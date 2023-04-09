@@ -15,14 +15,15 @@ public class EntityMonolith : BaseEntity, ISaveDataPlay
 {
     [SerializeField] public DataMonolith Data = new DataMonolith();
     public ScriptableEntityPortal ConfigData => (ScriptableEntityPortal)ScriptableData;
-    public EntityMonolith(GridTileNode node, SaveDataUnit<DataMonolith> saveData = null)
+    public EntityMonolith(GridTileNode node, ScriptableEntityPortal configData, SaveDataUnit<DataMonolith> saveData = null)
     {
         if (saveData == null)
         {
-            List<ScriptableEntityPortal> list = ResourceSystem.Instance
-                .GetEntityByType<ScriptableEntityPortal>(TypeEntity.Portal)
-                .ToList();
-            ScriptableData = list[UnityEngine.Random.Range(0, list.Count)];
+            // List<ScriptableEntityPortal> list = ResourceSystem.Instance
+            //     .GetEntityByType<ScriptableEntityPortal>(TypeEntity.Portal)
+            //     .ToList();
+            // ScriptableData = list[UnityEngine.Random.Range(0, list.Count)];
+            ScriptableData = configData;
             Data.portalPoints = new List<Vector3Int>();
         }
         else

@@ -19,6 +19,7 @@ public class CreateMinesOperation : ILoadingOperation
     public async UniTask Load(Action<float> onProgress, Action<string> onSetNotify)
     {
         onSetNotify("Create mines ...");
+        var factory = new EntityMapObjectFactory();
 
         for (int keyArea = 0; keyArea < LevelManager.Instance.Level.listArea.Count; keyArea++)
         {
@@ -59,11 +60,28 @@ public class CreateMinesOperation : ILoadingOperation
                         )
                     {
 
-                        EntityMine entity
-                            = new EntityMine(currentNode, TypeGround.None, TypeMine.Free, null);
-                        _root.UnitManager.SpawnEntityToNode(currentNode, entity);
+                        List<ScriptableEntityMapObject> list = ResourceSystem.Instance
+                            .GetEntityByType<ScriptableEntityMapObject>(TypeEntity.MapObject)
+                            .Where(t =>
+                                t.TypeMapObject == TypeMapObject.Mine
+                                && ((ScriptableEntityMine)t).TypeMine == TypeMine.Free
+                                && (
+                                    (t.TypeGround & currentNode.TypeGround) == currentNode.TypeGround
+                                    ||
+                                    (t.TypeGround & TypeGround.None) == TypeGround.None
+                                    )
+                                )
+                            .ToList();
+                        ScriptableEntityMapObject configData
+                            = list[UnityEngine.Random.Range(0, list.Count)];
+                        EntityMine entity = (EntityMine)factory.CreateMapObject(
+                            TypeMapObject.Mine,
+                            currentNode,
+                            configData
+                        );
+                        UnitManager.SpawnEntityToNode(currentNode, entity);
 
-                        BaseEntity warrior = _root.UnitManager.SpawnWarriorAsync(nodeWarrior);
+                        BaseEntity warrior = UnitManager.SpawnWarrior(nodeWarrior);
 
                         nodeWarrior.SetProtectedNeigbours(warrior, currentNode);
 

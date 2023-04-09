@@ -23,10 +23,193 @@ MonoBehaviour:
     m_Key: UIDialogMapObject
     m_Metadata:
       m_Items: []
+  - m_Id: 4784333073317888
+    m_Key: GameScene/Map Manager
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4786821302222848
+    m_Key: GameScene/Map Manager 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4787435272830976
+    m_Key: GameScene/Map Manager 2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4788978910920704
+    m_Key: GameScene/Map Manager 3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4790689452949504
+    m_Key: GameScene/Map Manager 4
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4790705433247744
+    m_Key: GameScene/Map Manager 5
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4791709985832960
+    m_Key: GameScene/Map Manager 6
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4791891775356928
+    m_Key: GameScene/Map Manager 7
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4792054975725568
+    m_Key: GameScene/Map Manager 8
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4792100811079680
+    m_Key: GameScene/Map Manager 9
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4792424695234560
+    m_Key: GameScene/Map Manager 10
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4793479164231680
+    m_Key: GameScene/Map Manager 11
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4793925983436800
+    m_Key: GameScene/Map Manager 12
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4794848453492736
+    m_Key: GameScene/Map Manager 13
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4797177592446976
+    m_Key: Game/MapManager
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4797177709887488
+    m_Key: Game/MapManager 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4797177730859008
+    m_Key: Game/MapManager 2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4797177747636224
+    m_Key: Game/MapManager 3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4797177760219136
+    m_Key: Game/MapManager 4
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4797177776996352
+    m_Key: Game/MapManager 5
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4797177802162176
+    m_Key: Game/MapManager 6
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4797177818939392
+    m_Key: Game/MapManager 7
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4797177839910912
+    m_Key: Game/MapManager 8
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4797177865076736
+    m_Key: Game/MapManager 9
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4797177881853952
+    m_Key: Game/MapManager 10
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4797177902825472
+    m_Key: Game/MapManager 11
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4797177923796992
+    m_Key: Game/MapManager 12
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4797177948962816
+    m_Key: Game/MapManager 13
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4797177969934336
+    m_Key: Game/MapManager 14
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4797177995100160
+    m_Key: Game/MapManager 15
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4797178016071680
+    m_Key: Game/MapManager 16
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4797178037043200
+    m_Key: Game/MapManager 17
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4797178062209024
+    m_Key: Game/MapManager 18
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4797178087374848
+    m_Key: Game/MapManager 19
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4797178112540672
+    m_Key: Game/MapManager 20
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4797178133512192
+    m_Key: Game/MapManager 21
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4797178162872320
+    m_Key: Game/MapManager 22
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4797178188038144
+    m_Key: Game/MapManager 23
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4797178213203968
+    m_Key: Game/MapManager 24
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4797178242564096
+    m_Key: Game/MapManager 25
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4797178267729920
+    m_Key: Game/MapManager 26
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4797178297090048
+    m_Key: Game/MapManager 27
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4797178326450176
+    m_Key: Game/MapManager 28
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4797178355810304
+    m_Key: Game/MapManager 29
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4797451983814656
+    m_Key: Game/MapManager 30
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items:
     - rid: 5790064033013694467
     - rid: 1339301005619625989
+    - rid: 1339301034197516325
+    - rid: 1339301034197516328
+    - rid: 1339301034197516333
   m_KeyGenerator:
     rid: 5790064033013694466
   references:
@@ -42,6 +225,114 @@ MonoBehaviour:
           - ru
         m_TypeString: UnityEngine.UIElements.VisualTreeAsset, UnityEngine.UIElementsModule,
           Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    - rid: 1339301034197516325
+      type: {class: AssetTypeMetadata, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries:
+        - m_KeyId: 4797177592446976
+          m_TableCodes:
+          - en
+        - m_KeyId: 4797177730859008
+          m_TableCodes:
+          - en
+        m_TypeString: UnityEngine.RuleTile, Unity.2D.Tilemap.Extras, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+    - rid: 1339301034197516328
+      type: {class: AssetTypeMetadata, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries:
+        - m_KeyId: 4797177709887488
+          m_TableCodes:
+          - en
+        m_TypeString: TileLandscape, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+          PublicKeyToken=null
+    - rid: 1339301034197516333
+      type: {class: AssetTypeMetadata, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries:
+        - m_KeyId: 4797177747636224
+          m_TableCodes:
+          - en
+        - m_KeyId: 4797177760219136
+          m_TableCodes:
+          - en
+        - m_KeyId: 4797177776996352
+          m_TableCodes:
+          - en
+        - m_KeyId: 4797177802162176
+          m_TableCodes:
+          - en
+        - m_KeyId: 4797177818939392
+          m_TableCodes:
+          - en
+        - m_KeyId: 4797177839910912
+          m_TableCodes:
+          - en
+        - m_KeyId: 4797177865076736
+          m_TableCodes:
+          - en
+        - m_KeyId: 4797177881853952
+          m_TableCodes:
+          - en
+        - m_KeyId: 4797177902825472
+          m_TableCodes:
+          - en
+        - m_KeyId: 4797177923796992
+          m_TableCodes:
+          - en
+        - m_KeyId: 4797177948962816
+          m_TableCodes:
+          - en
+        - m_KeyId: 4797177969934336
+          m_TableCodes:
+          - en
+        - m_KeyId: 4797177995100160
+          m_TableCodes:
+          - en
+        - m_KeyId: 4797178016071680
+          m_TableCodes:
+          - en
+        - m_KeyId: 4797178037043200
+          m_TableCodes:
+          - en
+        - m_KeyId: 4797178062209024
+          m_TableCodes:
+          - en
+        - m_KeyId: 4797178087374848
+          m_TableCodes:
+          - en
+        - m_KeyId: 4797178112540672
+          m_TableCodes:
+          - en
+        - m_KeyId: 4797178133512192
+          m_TableCodes:
+          - en
+        - m_KeyId: 4797178162872320
+          m_TableCodes:
+          - en
+        - m_KeyId: 4797178188038144
+          m_TableCodes:
+          - en
+        - m_KeyId: 4797178213203968
+          m_TableCodes:
+          - en
+        - m_KeyId: 4797178242564096
+          m_TableCodes:
+          - en
+        - m_KeyId: 4797178267729920
+          m_TableCodes:
+          - en
+        - m_KeyId: 4797178297090048
+          m_TableCodes:
+          - en
+        - m_KeyId: 4797178326450176
+          m_TableCodes:
+          - en
+        - m_KeyId: 4797178355810304
+          m_TableCodes:
+          - en
+        m_TypeString: UnityEngine.Tilemaps.Tile, UnityEngine.TilemapModule, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
     - rid: 5790064033013694466
       type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
       data:

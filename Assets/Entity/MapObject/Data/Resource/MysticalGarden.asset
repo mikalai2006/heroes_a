@@ -31,36 +31,6 @@ MonoBehaviour:
     m_EditorAssetChanged: 0
   TypeGround: 12
   typeInput: 0
-  listTypeNoPath: 
-  DialogText:
-    VisitOk:
-      m_TableReference:
-        m_TableCollectionName: 
-      m_TableEntryReference:
-        m_KeyId: 0
-        m_Key: 
-      m_FallbackState: 0
-      m_WaitForCompletion: 0
-      m_LocalVariables: []
-    VisitNo:
-      m_TableReference:
-        m_TableCollectionName: 
-      m_TableEntryReference:
-        m_KeyId: 0
-        m_Key: 
-      m_FallbackState: 0
-      m_WaitForCompletion: 0
-      m_LocalVariables: []
-    VisitNoResource:
-      m_TableReference:
-        m_TableCollectionName: 
-      m_TableEntryReference:
-        m_KeyId: 0
-        m_Key: 
-      m_FallbackState: 0
-      m_WaitForCompletion: 0
-      m_LocalVariables: []
-  TypeWorkPerk: 3
   TypeWorkAttribute: 1
   Attributes:
   - Item:
@@ -107,6 +77,9 @@ MonoBehaviour:
         Artifact: []
         isOne: 0
     probability: 0.5
+  listTypeNoPath: 0c0000000e000000
+  TypeWorkObject: 3
+  TypeMapObject: 2
   Effects: []
   references:
     version: 2

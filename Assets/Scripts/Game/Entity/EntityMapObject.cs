@@ -14,26 +14,24 @@ public class EntityMapObject : BaseEntity, ISaveDataPlay
     public EntityMapObject(
         GridTileNode node,
         ScriptableEntityMapObject configData,
-        TypeEntity TypeEntity,
-        // List<TypeWorkPerk> listTypeWork = null,
         SaveDataUnit<DataEntityMapObject> saveData = null
         )
     {
         if (saveData == null)
         {
-            // List<ScriptableEntityMapObject> list = ResourceSystem.Instance
-            //     .GetEntityByType<ScriptableEntityMapObject>(TypeEntity)
-            //     // .Where(t => listTypeWork.Contains(t.TypeWorkPerk))
-            //     .Where(t => (t.TypeGround & node.TypeGround) == node.TypeGround)
-            //     .ToList();
-            // ScriptableData = list[UnityEngine.Random.Range(0, list.Count)];
-            ScriptableData = configData;
+            if (configData != null)
+            {
+                ScriptableData = configData;
+            }
+            // else
+            // {
+            // }
             SetData();
         }
         else
         {
             ScriptableData = ResourceSystem.Instance
-                .GetEntityByType<ScriptableEntityMapObject>(TypeEntity)
+                .GetEntityByType<ScriptableEntityMapObject>(TypeEntity.MapObject)
                 .Where(t => t.idObject == saveData.idObject)
                 .First();
             Data = saveData.data;
@@ -141,7 +139,7 @@ public class EntityMapObject : BaseEntity, ISaveDataPlay
         // {
         //     player.ChangeResource(Data.Value[i].typeResource, Data.Value[i].value);
         // }
-        if (ScriptableData.TypeWorkPerk == TypeWorkPerk.One)
+        if (configData.TypeWorkObject == TypeWorkObject.One)
         {
             //ScriptableData.MapPrefab.ReleaseInstance(gameObject);
             MapObjectGameObject.DestroyGameObject();

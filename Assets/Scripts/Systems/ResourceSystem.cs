@@ -10,6 +10,7 @@ public class ResourceSystem : StaticInstance<ResourceSystem>
 {
 
     public Dictionary<string, List<Object>> ResourceAssets = new Dictionary<string, List<Object>>();
+    // private Dictionary<string, ScriptableAttribute> Attributes = new Dictionary<string, ScriptableAttribute>();
 
     #region Asset load and destroy
     public async Task<List<T>> LoadCollectionsAsset<T>(string assetNameOrLabel)
@@ -109,7 +110,23 @@ public class ResourceSystem : StaticInstance<ResourceSystem>
 
         return items;
     }
+    #endregion
 
+    #region managers attribute
+    public List<ScriptableAttribute> AllAttributes() => GetAllAssetsByLabel<ScriptableAttribute>(Constants.Labels.LABEL_ATTRIBUTE);
+    public List<T> GetAttributesByType<T>(TypeAttribute typeAttribute) where T : ScriptableAttribute
+    {
+        var listUnits = AllAttributes();
+
+        List<T> items = new List<T>();
+
+        for (int i = 0; i < listUnits.Count; i++)
+        {
+            if (typeAttribute == listUnits[i].TypeAttribute) items.Add((T)listUnits[i]);
+        }
+
+        return items;
+    }
     #endregion
 
     public List<ScriptableGameMode> GetGameMode()

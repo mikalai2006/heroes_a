@@ -17,21 +17,8 @@ public abstract class ScriptableEntity : ScriptableObject
     // public TypeMapObject TypeMapObject;
     public TypeGround TypeGround;
     public TypeInput typeInput;
-    public List<TypeNoPath> listTypeNoPath;
-    public List<TypeNoPath> RulesDraw => listTypeNoPath;
-    [SerializeField] public DialogText DialogText;
-    public TypeWorkPerk TypeWorkPerk;
 }
 
-[System.Serializable]
-public enum TypeWorkPerk
-{
-    One = 1,
-    EveryDay = 2,
-    EveryWeek = 3,
-    EveryMonth = 4,
-    FirstVisit = 5,
-}
 [System.Serializable]
 public enum TypeInput
 {
@@ -57,7 +44,6 @@ public enum TypeFaction
 [Serializable]
 public enum TypeEntity
 {
-    // Faction = 0,
     Creature = 10,
     Artifact = 20,
     Portal = 30,
@@ -68,8 +54,8 @@ public enum TypeEntity
     Explore = 31,
     Mine = 32,
     SkillSchool = 33,
-    GroupResource = 34,
-    Random = 35,
+    MapObject = 34,
+    Dwelling = 35,
 }
 
 [System.Serializable]

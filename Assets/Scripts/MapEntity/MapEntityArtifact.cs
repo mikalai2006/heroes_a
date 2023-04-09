@@ -18,10 +18,9 @@ public class MapEntityArtifact : BaseMapEntity, IDialogMapObjectOperation
 
         ScriptableEntityArtifact dataArtifact = (ScriptableEntityArtifact)MapObjectClass.ScriptableData;
 
-        if (dataArtifact.spriteMap != null)
+        if (dataArtifact.Artifact != null)
         {
-            _model.GetComponent<SpriteRenderer>().sprite = dataArtifact.spriteMap;
-
+            _model.GetComponent<SpriteRenderer>().sprite = dataArtifact.Artifact.spriteMap;
         }
 
     }

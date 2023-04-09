@@ -74,8 +74,7 @@ public struct Cursors
 }
 public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
 {
-    public UnitManager UnitManager;
-    public LocalizationManager LocalizationManager;
+    // public LocalizationManager LocalizationManager;
     [SerializeField] public DataGameMode gameModeData;
     private bool _isWater = false;
     public int countArea;
@@ -83,7 +82,7 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
     [SerializeField] public GameObject _textMesh;
     [SerializeField] public Tilemap _tileMapText;
     [SerializeField] public Dictionary<Vector3, GameObject> listTextMesh = new Dictionary<Vector3, GameObject>();
-
+    [SerializeField] public Tilemap BlokUnits;
     [Header("Cursor")]
     [Space(10)]
     [SerializeField] private Tilemap _tileMapCursor;
@@ -224,38 +223,42 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
             }
         }
 
-        foreach (SaveDataUnit<DataEntityMapObject> item in dataPlay.entity.mapObjects)
-        {
-            GridTileNode tileNode = gridTileHelper.GridTile.GetGridObject(new Vector3Int(item.position.x, item.position.y));
+        // foreach (SaveDataUnit<DataEntityMapObject> item in dataPlay.entity.mapObjects)
+        // {
+        //     GridTileNode tileNode = gridTileHelper.GridTile.GetGridObject(new Vector3Int(item.position.x, item.position.y));
 
-            if (item.idObject == "") continue;
+        //     if (item.idObject == "") continue;
 
-            EntityMapObject entity = new EntityMapObject(tileNode, null, TypeEntity.Resource, item);
-            UnitManager.SpawnEntityToNode(tileNode, entity);
-        }
+        //     EntityMapObject entity = new EntityMapObject(
+        //         tileNode,
+        //         null,
+        //         item
+        //     );
+        //     UnitManager.SpawnEntityToNode(tileNode, entity);
+        // }
 
-        foreach (SaveDataUnit<DataMine> item in dataPlay.entity.mines)
-        {
-            GridTileNode tileNode = gridTileHelper.GridTile.GetGridObject(new Vector3Int(item.position.x, item.position.y));
+        // foreach (SaveDataUnit<DataMine> item in dataPlay.entity.mines)
+        // {
+        //     GridTileNode tileNode = gridTileHelper.GridTile.GetGridObject(new Vector3Int(item.position.x, item.position.y));
 
-            if (item.idObject == "") continue;
+        //     if (item.idObject == "") continue;
 
-            EntityMine entity = new EntityMine(tileNode, TypeGround.None, TypeMine.Free, null, item);
-            UnitManager.SpawnEntityToNode(tileNode, entity);
-            if (item.data.idPlayer >= 0)
-            {
-                entity.SetPlayer(LevelManager.Instance.GetPlayer(item.data.idPlayer));
-            }
-        }
+        //     EntityMine entity = new EntityMine(tileNode, TypeGround.None, TypeMine.Free, null, item);
+        //     UnitManager.SpawnEntityToNode(tileNode, entity);
+        //     if (item.data.idPlayer >= 0)
+        //     {
+        //         entity.SetPlayer(LevelManager.Instance.GetPlayer(item.data.idPlayer));
+        //     }
+        // }
 
-        foreach (SaveDataUnit<DataArtifact> item in dataPlay.entity.artifacts)
-        {
-            GridTileNode tileNode = gridTileHelper.GridTile.GetGridObject(new Vector3Int(item.position.x, item.position.y));
+        // foreach (SaveDataUnit<DataArtifact> item in dataPlay.entity.artifacts)
+        // {
+        //     GridTileNode tileNode = gridTileHelper.GridTile.GetGridObject(new Vector3Int(item.position.x, item.position.y));
 
-            if (item.idObject == "") continue;
-            EntityArtifact entity = new EntityArtifact(tileNode, item);
-            UnitManager.SpawnEntityToNode(tileNode, entity);
-        }
+        //     if (item.idObject == "") continue;
+        //     EntityArtifact entity = new EntityArtifact(tileNode, item);
+        //     UnitManager.SpawnEntityToNode(tileNode, entity);
+        // }
 
         // foreach (SaveDataUnit<DataResourceMapObject> item in DataManager.Instance.DataPlay.Units.resourcesmap)
         // {
@@ -278,34 +281,34 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
         //     // }
         // }
 
-        foreach (SaveDataUnit<DataExplore> item in dataPlay.entity.explorers)
-        {
-            GridTileNode tileNode = gridTileHelper.GridTile.GetGridObject(new Vector3Int(item.position.x, item.position.y));
-
-            if (item.idObject == "") continue;
-            EntityExpore entity = new EntityExpore(tileNode, item);
-            UnitManager.SpawnEntityToNode(tileNode, entity);
-        }
-
-        // foreach (SaveDataUnit<DataSkillSchool> item in dataPlay.entity.skillSchools)
+        // foreach (SaveDataUnit<DataExplore> item in dataPlay.entity.explorers)
         // {
         //     GridTileNode tileNode = gridTileHelper.GridTile.GetGridObject(new Vector3Int(item.position.x, item.position.y));
 
         //     if (item.idObject == "") continue;
-        //     EntitySkillSchool entity = new EntitySkillSchool(tileNode, item);
+        //     EntityExpore entity = new EntityExpore(tileNode, item);
+        //     UnitManager.SpawnEntityToNode(tileNode, entity);
+        // }
+
+        // // foreach (SaveDataUnit<DataSkillSchool> item in dataPlay.entity.skillSchools)
+        // // {
+        // //     GridTileNode tileNode = gridTileHelper.GridTile.GetGridObject(new Vector3Int(item.position.x, item.position.y));
+
+        // //     if (item.idObject == "") continue;
+        // //     EntitySkillSchool entity = new EntitySkillSchool(tileNode, item);
+        // //     UnitManager.SpawnEntityToNode(tileNode, entity);
+
+        // // }
+
+        // foreach (SaveDataUnit<DataMonolith> item in dataPlay.entity.monoliths)
+        // {
+        //     GridTileNode tileNode = gridTileHelper.GridTile.GetGridObject(new Vector3Int(item.position.x, item.position.y));
+
+        //     if (item.idObject == "") continue;
+        //     EntityMonolith entity = new EntityMonolith(tileNode, item);
         //     UnitManager.SpawnEntityToNode(tileNode, entity);
 
         // }
-
-        foreach (SaveDataUnit<DataMonolith> item in dataPlay.entity.monoliths)
-        {
-            GridTileNode tileNode = gridTileHelper.GridTile.GetGridObject(new Vector3Int(item.position.x, item.position.y));
-
-            if (item.idObject == "") continue;
-            EntityMonolith entity = new EntityMonolith(tileNode, item);
-            UnitManager.SpawnEntityToNode(tileNode, entity);
-
-        }
 
         foreach (SaveDataUnit<DataCreature> item in dataPlay.entity.creatures)
         {
@@ -377,7 +380,7 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
             .ToDictionary(t => t.typeGround, t => t);
 
         // Reset unitManager.
-        UnitManager.ResetUnitManager();
+        ResetUnitManager();
     }
 
     public async UniTask NewMap()
@@ -534,6 +537,7 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
             && t.Empty
             && t.Enable
             && gridTileHelper.GetDisableNeighbours(t).bottom.Count == 0
+            && gridTileHelper.GetDisableNeighbours(t).top.Count == 0
         ).ToList();
         SetColorForTile(node.position, Color.red);
         if (_potentialNode.Count > 0)
@@ -554,6 +558,11 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
             );
 
             EntityMonolith monolith = currentArea.portal;
+
+
+            List<ScriptableEntityMapObject> listConfigPortals = ResourceSystem.Instance
+                        .GetEntityByType<ScriptableEntityMapObject>(TypeEntity.Portal)
+                        .ToList();
 
             if (monolith == null)
             {
@@ -578,11 +587,20 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
                     GridTileNode nodeWarrior = GetNodeWarrior(nodeInputPortal);
                     if (nodeWarrior != null)
                     {
-                        monolith = new EntityMonolith(nodeInputPortal);
+                        var configData
+                            = listConfigPortals[UnityEngine.Random.Range(0, listConfigPortals.Count)];
+
+                        var factory = new EntityMapObjectFactory();
+                        monolith = (EntityMonolith)factory.CreateMapObject(
+                            TypeMapObject.Portal,
+                            nodeInputPortal,
+                            configData
+                            );
+                        // monolith = new EntityMonolith(nodeInputPortal, configData);
                         UnitManager.SpawnEntityToNode(nodeInputPortal, monolith);
                         currentArea.portal = (EntityMonolith)monolith;
 
-                        BaseEntity warrior = UnitManager.SpawnWarriorAsync(nodeWarrior);
+                        BaseEntity warrior = UnitManager.SpawnWarrior(nodeWarrior);
 
                         nodeWarrior.SetProtectedNeigbours(warrior, nodeInputPortal);
                     }
@@ -595,15 +613,23 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
 
             if (monolith != null)
             {
-                BaseEntity configMonolithExit = new EntityMonolith(nodeExitPortal);
-                EntityMonolith monolithExit
-                    = (EntityMonolith)UnitManager.SpawnEntityToNode(nodeExitPortal, configMonolithExit);
+                var configData
+                    = listConfigPortals[UnityEngine.Random.Range(0, listConfigPortals.Count)];
+
+                var factory = new EntityMapObjectFactory();
+                EntityMonolith configMonolithExit = (EntityMonolith)factory.CreateMapObject(
+                    TypeMapObject.Portal,
+                    nodeExitPortal,
+                    configData
+                    );
+                // BaseEntity configMonolithExit = new EntityMonolith(nodeExitPortal);
+                UnitManager.SpawnEntityToNode(nodeExitPortal, configMonolithExit);
                 // UnitManager.SpawnMapObjectAsync(nodeExitPortal, TypeMapObject.Monolith);
 
                 GridTileNode nodeWarrior = GetNodeWarrior(nodeExitPortal);
                 if (nodeWarrior != null)
                 {
-                    BaseEntity warrior = UnitManager.SpawnWarriorAsync(nodeWarrior);
+                    BaseEntity warrior = UnitManager.SpawnWarrior(nodeWarrior);
 
                     nodeWarrior.SetProtectedNeigbours(warrior, nodeExitPortal);
                 }
@@ -611,8 +637,8 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
                 // //monolithExitData.position = monolithExit.Position;
                 // //monolithExit.Init(monolithExitData);
 
-                monolith.Data.portalPoints.Add(monolithExit.Position);
-                monolithExit.Data.portalPoints.Add(monolith.Position);
+                monolith.Data.portalPoints.Add(configMonolithExit.Position);
+                configMonolithExit.Data.portalPoints.Add(monolith.Position);
                 return true;
             }
         }
@@ -903,4 +929,8 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
             );
     }
 
+    public void ResetUnitManager()
+    {
+        Helpers.DestroyChildren(BlokUnits.transform);
+    }
 }

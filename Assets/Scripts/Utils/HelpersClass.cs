@@ -54,7 +54,8 @@ public static class Helpers
     public static int GenerateValueByRangeAndStep(int min, int max, int step)
     {
         System.Random rand = new System.Random();
-        int f = rand.Next((max - min) / step) * step + min;
+        int fr = rand.Next((max - min) / step);
+        int f = fr == 0 ? step : fr * step + min;
         return f;
     }
 

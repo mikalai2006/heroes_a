@@ -17,11 +17,6 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 36f0299eb708c504fa654d4365a42bd6
   m_SerializeEntries:
-  - m_GUID: 0be1719316ee5da4cb35aeeeba9d062c
-    m_Address: GameScene
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9fc0d4010bbf28b4594072e72b8655ab
     m_Address: MainScene
     m_ReadOnly: 0
@@ -29,6 +24,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 2b4124ebcc5b12542911e1d0506b4786
     m_Address: TownScene
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0be1719316ee5da4cb35aeeeba9d062c
+    m_Address: GameScene
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

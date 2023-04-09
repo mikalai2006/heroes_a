@@ -6,7 +6,7 @@ using UnityEngine.Localization.Tables;
 using UnityEngine.AddressableAssets;
 
 [CreateAssetMenu(fileName = "NewEntityDwelling", menuName = "Game/Entity/Dwelling")]
-public class ScriptableEntityDwelling : ScriptableEntity
+public class ScriptableEntityDwelling : ScriptableEntityMapObject
 {
     [Header("Options Dwelling")]
     // [Space(3)]

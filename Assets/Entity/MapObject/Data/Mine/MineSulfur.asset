@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b503cd952d2dab8428453d0020d24401, type: 3}
+  m_Name: MineSulfur
+  m_EditorClassIdentifier: 
+  idObject: 6f89438d98114b97bd6c817c56df3429
+  TypeEntity: 34
+  MenuSprite: {fileID: 21300000, guid: b009d7ac766cf644c806ab56a3db2d7f, type: 3}
+  title:
+    m_TableReference:
+      m_TableCollectionName: GUID:8ed801dac82951d449557e1a63174ac8
+    m_TableEntryReference:
+      m_KeyId: 4485725212016640
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  MapPrefab:
+    m_AssetGUID: 830fbc11516254a4a833003c015ea3e9
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  TypeGround: -2050
+  typeInput: 0
+  TypeWorkAttribute: 0
+  Attributes:
+  - Item:
+      description:
+        m_TableReference:
+          m_TableCollectionName: GUID:8ed801dac82951d449557e1a63174ac8
+        m_TableEntryReference:
+          m_KeyId: 4485814366142464
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      Resources:
+      - Resource: {fileID: 11400000, guid: 379c734399110d34f9159a31f3e18074, type: 2}
+        value: 0
+        minValue: 1
+        maxValue: 1
+        step: 1
+      PrimarySkills: []
+      SecondarySkills: []
+      Artifacts:
+        Artifact: []
+        isOne: 0
+    probability: 1
+  listTypeNoPath: 00000000
+  TypeWorkObject: 2
+  TypeMapObject: 5
+  Effects: []
+  TypeMine: 0
+  references:
+    version: 2
+    RefIds: []

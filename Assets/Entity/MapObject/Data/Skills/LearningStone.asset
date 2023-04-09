@@ -17,9 +17,9 @@ MonoBehaviour:
   MenuSprite: {fileID: 0}
   title:
     m_TableReference:
-      m_TableCollectionName: 
+      m_TableCollectionName: GUID:8ed801dac82951d449557e1a63174ac8
     m_TableEntryReference:
-      m_KeyId: 0
+      m_KeyId: 4632390157893632
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
@@ -31,38 +31,30 @@ MonoBehaviour:
     m_EditorAssetChanged: 0
   TypeGround: -1
   typeInput: 0
-  listTypeNoPath: 08000000070000000200000003000000
-  DialogText:
-    VisitOk:
-      m_TableReference:
-        m_TableCollectionName: 
-      m_TableEntryReference:
-        m_KeyId: 0
-        m_Key: 
-      m_FallbackState: 0
-      m_WaitForCompletion: 0
-      m_LocalVariables: []
-    VisitNo:
-      m_TableReference:
-        m_TableCollectionName: 
-      m_TableEntryReference:
-        m_KeyId: 0
-        m_Key: 
-      m_FallbackState: 0
-      m_WaitForCompletion: 0
-      m_LocalVariables: []
-    VisitNoResource:
-      m_TableReference:
-        m_TableCollectionName: 
-      m_TableEntryReference:
-        m_KeyId: 0
-        m_Key: 
-      m_FallbackState: 0
-      m_WaitForCompletion: 0
-      m_LocalVariables: []
-  TypeWorkPerk: 5
   TypeWorkAttribute: 0
-  Attributes: []
+  Attributes:
+  - Item:
+      description:
+        m_TableReference:
+          m_TableCollectionName: GUID:8ed801dac82951d449557e1a63174ac8
+        m_TableEntryReference:
+          m_KeyId: 4632460961939456
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      Resources: []
+      PrimarySkills:
+      - Skill: {fileID: 11400000, guid: 71fd48291a2040e4b92224f9677707ba, type: 2}
+        Value: 1000
+      SecondarySkills: []
+      Artifacts:
+        Artifact: []
+        isOne: 0
+    probability: 1
+  listTypeNoPath: 
+  TypeWorkObject: 4
+  TypeMapObject: 4
   Effects: []
   references:
     version: 2

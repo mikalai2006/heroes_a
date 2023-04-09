@@ -23,6 +23,15 @@ public class CreateArtifactOperation : ILoadingOperation
     public async UniTask Load(Action<float> onProgress, Action<string> onSetNotify)
     {
         onSetNotify?.Invoke("Create artifacts ...");
+        var factory = new EntityMapObjectFactory();
+
+        //Get all attributes artifacts.
+
+        List<ScriptableAttributeArtifact> listArtifacts
+            = ResourceSystem.Instance
+            .GetAttributesByType<ScriptableAttributeArtifact>(TypeAttribute.Artifact)
+            // .Where(t => t.TypeMapObject == TypeMapObject.Artifact)
+            .ToList();
 
         for (int x = 0; x < LevelManager.Instance.Level.listArea.Count; x++)
         {
@@ -33,7 +42,8 @@ public class CreateArtifactOperation : ILoadingOperation
                 && t.Enable
                 && !t.Protected
                 && t.KeyArea == area.id
-                && _root.gridTileHelper.CalculateNeighbours(t) < 2
+                && _root.gridTileHelper.CalculateNeighbours(t) <= 3
+                && _root.gridTileHelper.GetDisableNeighbours(t).count == 2
                 && _root.gridTileHelper.GetDistanceBetweeenPoints(t.position, area.startPosition) > 10
             ).OrderBy(t => Random.value).ToList();
 
@@ -56,13 +66,30 @@ public class CreateArtifactOperation : ILoadingOperation
                         //&& gridTileHelper.CalculateNeighbours(currentNode) < 3
                         )
                     {
-                        BaseEntity entity = new EntityArtifact(currentNode, null);
-                        _root.UnitManager.SpawnEntityToNode(currentNode, entity);
-                        //_root.UnitManager.SpawnArtifactAsync(currentNode);
+                        ScriptableEntityMapObject configData
+                            = ResourceSystem.Instance
+                            .GetEntityByType<ScriptableEntityMapObject>(TypeEntity.MapObject)
+                            .Where(t => t.TypeMapObject == TypeMapObject.Artifact)
+                            .First();
 
-                        BaseEntity warrior = _root.UnitManager.SpawnWarriorAsync(nodeWarrior);
+                        EntityArtifact entity = (EntityArtifact)factory.CreateMapObject(
+                            TypeMapObject.Artifact,
+                            currentNode,
+                            configData);
+                        var entityArtifact = (ScriptableEntityArtifact)entity.ScriptableData;
+
+                        // Generate artefact attribute.
+                        ScriptableAttributeArtifact artifact
+                            = listArtifacts[Random.Range(0, listArtifacts.Count)];
+                        entityArtifact.Artifact = artifact;
+
+                        // Generate protection creature.
+                        UnitManager.SpawnEntityToNode(currentNode, entity);
+
+                        BaseEntity warrior = UnitManager.SpawnWarrior(nodeWarrior);
 
                         nodeWarrior.SetProtectedNeigbours(warrior, currentNode);
+                        _root.SetColorForTile(nodeWarrior.position, Color.blue);
 
                         nodes.Remove(currentNode);
 

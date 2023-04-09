@@ -19,6 +19,7 @@ public class CreateResourceEveryWeekOperation : ILoadingOperation
     public async UniTask Load(Action<float> onProgress, Action<string> onSetNotify)
     {
         onSetNotify("Create every week resource ...");
+        var factory = new EntityMapObjectFactory();
 
         for (int x = 0; x < LevelManager.Instance.Level.listArea.Count; x++)
         {
@@ -50,28 +51,28 @@ public class CreateResourceEveryWeekOperation : ILoadingOperation
                     if (nodeWarrior != null && currentNode != null && _root.gridTileHelper.CalculateNeighbours(currentNode) == 8)
                     {
 
-                        BaseEntity warrior = _root.UnitManager.SpawnWarriorAsync(nodeWarrior);
-
-                        List<TypeWorkPerk> typeWork = new List<TypeWorkPerk>() {
-                            TypeWorkPerk.EveryDay, TypeWorkPerk.EveryWeek
+                        List<TypeWorkObject> typeWork = new List<TypeWorkObject>() {
+                            TypeWorkObject.EveryDay, TypeWorkObject.EveryWeek
                         };
                         List<ScriptableEntityMapObject> list = ResourceSystem.Instance
-                            .GetEntityByType<ScriptableEntityMapObject>(TypeEntity.GroupResource)
-                            // .Where(t => listTypeWork.Contains(t.TypeWorkPerk))
+                            .GetEntityByType<ScriptableEntityMapObject>(TypeEntity.MapObject)
                             .Where(t => (
                                 t.TypeGround & currentNode.TypeGround) == currentNode.TypeGround
-                                && typeWork.Contains(t.TypeWorkPerk)
+                                && typeWork.Contains(t.TypeWorkObject)
                                 )
                             .ToList();
                         var configData = list[UnityEngine.Random.Range(0, list.Count)];
                         if (configData != null)
                         {
-                            BaseEntity entity = new EntityMapObject(currentNode,
-                                configData,
-                                TypeEntity.GroupResource
-                                // new List<TypeWorkPerk>() { TypeWorkPerk.EveryDay, TypeWorkPerk.EveryWeek }
+                            BaseEntity entity = factory.CreateMapObject(
+                                TypeMapObject.Resources,
+                                currentNode,
+                                configData
                                 );
-                            _root.UnitManager.SpawnEntityToNode(currentNode, entity);
+
+                            BaseEntity warrior = UnitManager.SpawnWarrior(nodeWarrior);
+
+                            UnitManager.SpawnEntityToNode(currentNode, entity);
                             // _root.UnitManager.SpawnMapObjectAsync(
                             //     currentNode,
                             //     TypeMapObject.Resource,

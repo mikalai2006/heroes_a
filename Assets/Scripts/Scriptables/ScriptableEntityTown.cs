@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.AddressableAssets;
 
 [CreateAssetMenu(fileName = "NewEntityTown", menuName = "Game/Entity/Town")]
-public class ScriptableEntityTown : ScriptableEntity
+public class ScriptableEntityTown : ScriptableEntityMapObject
 {
     [Header("Options Town")]
     public TypeFaction TypeFaction;

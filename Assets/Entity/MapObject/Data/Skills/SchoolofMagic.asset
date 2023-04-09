@@ -17,9 +17,9 @@ MonoBehaviour:
   MenuSprite: {fileID: 0}
   title:
     m_TableReference:
-      m_TableCollectionName: 
+      m_TableCollectionName: GUID:8ed801dac82951d449557e1a63174ac8
     m_TableEntryReference:
-      m_KeyId: 0
+      m_KeyId: 4633816724570112
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
@@ -31,38 +31,32 @@ MonoBehaviour:
     m_EditorAssetChanged: 0
   TypeGround: -1
   typeInput: 0
+  TypeWorkAttribute: 1
+  Attributes:
+  - Item:
+      description:
+        m_TableReference:
+          m_TableCollectionName: GUID:8ed801dac82951d449557e1a63174ac8
+        m_TableEntryReference:
+          m_KeyId: 4633867660197888
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      Resources: []
+      PrimarySkills:
+      - Skill: {fileID: 11400000, guid: c421eccad76028043ba7ead38940457f, type: 2}
+        Value: 1
+      - Skill: {fileID: 11400000, guid: 5638aca8fa9ac574f84b59d9f4ee07dc, type: 2}
+        Value: 1
+      SecondarySkills: []
+      Artifacts:
+        Artifact: []
+        isOne: 0
+    probability: 1
   listTypeNoPath: 
-  DialogText:
-    VisitOk:
-      m_TableReference:
-        m_TableCollectionName: 
-      m_TableEntryReference:
-        m_KeyId: 0
-        m_Key: 
-      m_FallbackState: 0
-      m_WaitForCompletion: 0
-      m_LocalVariables: []
-    VisitNo:
-      m_TableReference:
-        m_TableCollectionName: 
-      m_TableEntryReference:
-        m_KeyId: 0
-        m_Key: 
-      m_FallbackState: 0
-      m_WaitForCompletion: 0
-      m_LocalVariables: []
-    VisitNoResource:
-      m_TableReference:
-        m_TableCollectionName: 
-      m_TableEntryReference:
-        m_KeyId: 0
-        m_Key: 
-      m_FallbackState: 0
-      m_WaitForCompletion: 0
-      m_LocalVariables: []
-  TypeWorkPerk: 4
-  TypeWorkAttribute: 0
-  Attributes: []
+  TypeWorkObject: 4
+  TypeMapObject: 4
   Effects: []
   references:
     version: 2

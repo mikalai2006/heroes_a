@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   idObject: attribute.skill.power
   TypeAttribute: 30
-  MenuSprite: {fileID: 0}
+  MenuSprite: {fileID: -281471967, guid: e1af65ad3ff49484580e9cf541eddcc1, type: 3}
   Text:
     title:
       m_TableReference:

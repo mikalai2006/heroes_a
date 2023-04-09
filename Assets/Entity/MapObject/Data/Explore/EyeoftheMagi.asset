@@ -13,27 +13,17 @@ MonoBehaviour:
   m_Name: EyeoftheMagi
   m_EditorClassIdentifier: 
   idObject: cd047d9b57824d4082fed2e19a752030
-  TypeEntity: 31
+  TypeEntity: 34
   MenuSprite: {fileID: 0}
-  Text:
-    title:
-      m_TableReference:
-        m_TableCollectionName: 
-      m_TableEntryReference:
-        m_KeyId: 0
-        m_Key: 
-      m_FallbackState: 0
-      m_WaitForCompletion: 0
-      m_LocalVariables: []
-    description:
-      m_TableReference:
-        m_TableCollectionName: 
-      m_TableEntryReference:
-        m_KeyId: 0
-        m_Key: 
-      m_FallbackState: 0
-      m_WaitForCompletion: 0
-      m_LocalVariables: []
+  title:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   MapPrefab:
     m_AssetGUID: 18d5767ea8e236340931912f373e4d6a
     m_SubObjectName: 
@@ -41,37 +31,13 @@ MonoBehaviour:
     m_EditorAssetChanged: 0
   TypeGround: 1
   typeInput: 1
+  TypeWorkAttribute: 0
+  Attributes: []
   listTypeNoPath: 
-  DialogText:
-    VisitOk:
-      m_TableReference:
-        m_TableCollectionName: 
-      m_TableEntryReference:
-        m_KeyId: 0
-        m_Key: 
-      m_FallbackState: 0
-      m_WaitForCompletion: 0
-      m_LocalVariables: []
-    VisitNo:
-      m_TableReference:
-        m_TableCollectionName: 
-      m_TableEntryReference:
-        m_KeyId: 0
-        m_Key: 
-      m_FallbackState: 0
-      m_WaitForCompletion: 0
-      m_LocalVariables: []
-    VisitNoResource:
-      m_TableReference:
-        m_TableCollectionName: 
-      m_TableEntryReference:
-        m_KeyId: 0
-        m_Key: 
-      m_FallbackState: 0
-      m_WaitForCompletion: 0
-      m_LocalVariables: []
-  TypeWorkPerk: 5
-  countNosky: 10
+  TypeWorkObject: 5
+  TypeMapObject: 1
+  Effects: []
+  Perks: []
   references:
     version: 2
     RefIds: []

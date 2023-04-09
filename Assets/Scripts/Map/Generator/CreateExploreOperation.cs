@@ -19,6 +19,7 @@ public class CreateExploreOperation : ILoadingOperation
     public async UniTask Load(Action<float> onProgress, Action<string> onSetNotify)
     {
         onSetNotify("Create explore ...");
+        var factory = new EntityMapObjectFactory();
 
         for (int x = 0; x < LevelManager.Instance.Level.listArea.Count; x++)
         {
@@ -52,12 +53,17 @@ public class CreateExploreOperation : ILoadingOperation
                         && _root.gridTileHelper.CalculateNeighbours(currentNode) == 8
                         )
                     {
-                        BaseEntity entity = new EntityExpore(currentNode);
-                        _root.UnitManager.SpawnEntityToNode(currentNode, entity);
-                        // _root.UnitManager
-                        //     .SpawnMapObjectAsync(currentNode, TypeMapObject.Explore);
+                        List<ScriptableEntityMapObject> list = ResourceSystem.Instance
+                            .GetEntityByType<ScriptableEntityMapObject>(TypeEntity.MapObject)
+                            .Where(t => t.TypeMapObject == TypeMapObject.Explore)
+                            .ToList();
+                        ScriptableEntityMapObject configData
+                            = list[UnityEngine.Random.Range(0, list.Count)];
+                        EntityExpore entity
+                            = (EntityExpore)factory.CreateMapObject(TypeMapObject.Explore, currentNode, configData);
+                        UnitManager.SpawnEntityToNode(currentNode, entity);
 
-                        BaseEntity warrior = _root.UnitManager.SpawnWarriorAsync(nodeWarrior);
+                        BaseEntity warrior = UnitManager.SpawnWarrior(nodeWarrior);
 
                         nodeWarrior.SetProtectedNeigbours(warrior, currentNode);
 

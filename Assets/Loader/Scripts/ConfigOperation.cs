@@ -15,12 +15,18 @@ namespace Loader
         public async UniTask Load(Action<float> onProgress, Action<string> onSetNotify)
         {
             onSetNotify?.Invoke("Load gamemode configuration ...");
+            onProgress?.Invoke(.3f);
             await ResourceSystem.Instance.LoadCollectionsAsset<ScriptableGameMode>(Constants.Labels.LABEL_GAMEMODE);
             onSetNotify?.Invoke("Load entity configuration ...");
+            onProgress?.Invoke(.6f);
             await ResourceSystem.Instance.LoadCollectionsAsset<ScriptableEntity>(Constants.Labels.LABEL_ENTITY);
+            onProgress?.Invoke(.7f);
+            onSetNotify?.Invoke("Load attributes configuration ...");
+            await ResourceSystem.Instance.LoadCollectionsAsset<ScriptableAttribute>(Constants.Labels.LABEL_ATTRIBUTE);
             onSetNotify?.Invoke("Load nature configuration ...");
+            onProgress?.Invoke(.8f);
             await ResourceSystem.Instance.LoadCollectionsAsset<TileLandscape>(Constants.Labels.LABEL_LANDSCAPE);
-            onProgress?.Invoke(.1f);
+            onProgress?.Invoke(.9f);
             await ResourceSystem.Instance.LoadCollectionsAsset<TileNature>(Constants.Labels.LABEL_NATURE);
             // onProgress?.Invoke(.2f);
             // onSetNotify?.Invoke("Load hero configuration ...");

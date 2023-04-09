@@ -18,26 +18,27 @@ public class EntityMine : BaseEntity, ISaveDataPlay
     public ScriptableEntityMine ConfigData => (ScriptableEntityMine)ScriptableData;
     public EntityMine(
         GridTileNode node,
-        TypeGround typeGround,
-        TypeMine typeMine,
-        ScriptableEntityMine mineConfig,
+        // TypeGround typeGround,
+        // TypeMine typeMine,
+        ScriptableEntityMine configData,
         SaveDataUnit<DataMine> saveData = null
         )
     {
         if (saveData == null)
         {
-            if (mineConfig == null)
+            if (configData == null)
             {
-                List<ScriptableEntityMine> list = ResourceSystem.Instance
-                    .GetEntityByType<ScriptableEntityMine>(TypeEntity.Mine)
-                    .Where(t => t.TypeMine == typeMine
-                        && (t.TypeGround == typeGround))
-                    .ToList();
-                ScriptableData = list[UnityEngine.Random.Range(0, list.Count)];
+                // List<ScriptableEntityMine> list = ResourceSystem.Instance
+                //     .GetEntityByType<ScriptableEntityMine>(TypeEntity.Mine)
+                //     // .Where(t => t.TypeMine == typeMine
+                //     //     && (t.TypeGround == typeGround))
+                //     .ToList();
+                // ScriptableData = list[UnityEngine.Random.Range(0, list.Count)];
+                ScriptableData = configData;
             }
             else
             {
-                ScriptableData = mineConfig;
+                ScriptableData = configData;
             }
             Data.idPlayer = -1;
         }

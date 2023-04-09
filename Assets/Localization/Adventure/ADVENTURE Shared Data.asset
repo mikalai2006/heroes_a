@@ -227,16 +227,92 @@ MonoBehaviour:
     m_Key: windmill_empty
     m_Metadata:
       m_Items: []
-  - m_Id: 4603785281437696
-    m_Key: waterqheel_t
+  - m_Id: 4631769623199744
+    m_Key: gardenofrevelation_t
     m_Metadata:
       m_Items: []
-  - m_Id: 4603832022761472
-    m_Key: waterqheel_d
+  - m_Id: 4631957641265152
+    m_Key: gardenofrevelation_d
     m_Metadata:
       m_Items: []
-  - m_Id: 4603844773445632
-    m_Key: waterqheel_empty
+  - m_Id: 4631995624882176
+    m_Key: gardenofrevelation_empty
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4632390157893632
+    m_Key: learningstone_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4632460961939456
+    m_Key: learningstone_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4632532965556224
+    m_Key: learningstone_empty
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4632946188386304
+    m_Key: marletotower_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4632981823193088
+    m_Key: marletotower_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4633018531741696
+    m_Key: marletotower_empty
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4633486179860480
+    m_Key: mercenarycamp_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4633528760434688
+    m_Key: mercenarycamp_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4633567280922624
+    m_Key: mercenarycamp_empty
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4633816724570112
+    m_Key: schoolmagic_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4633867660197888
+    m_Key: schoolmagic_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4633876489207808
+    m_Key: schoolmagic_empty
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4634391914643456
+    m_Key: staraxis_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4634439863926784
+    m_Key: staraxis_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4634449930256384
+    m_Key: staraxis_empty
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4634953448062976
+    m_Key: witchhut_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4634989988839424
+    m_Key: witchhut_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4635011526590464
+    m_Key: witchhut_empty
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4635276577243136
+    m_Key: witchhut_exist
     m_Metadata:
       m_Items: []
   m_Metadata:

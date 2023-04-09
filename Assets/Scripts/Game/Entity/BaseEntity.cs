@@ -73,6 +73,14 @@ public abstract class BaseEntity
         Camera.main.transform.position = pos + new Vector3(0, 0, -10);
     }
 
+    // #region InitData
+    // public virtual void InitData<T>(SaveDataUnit<T> data)
+    // {
+
+    // }
+    // #endregion
+
+
     #region SaveLoadData
     public virtual void OnSaveUnit()
     {
@@ -109,7 +117,7 @@ public abstract class BaseEntity
                 entity.MapPrefab,
                 node.position,
                 Quaternion.identity,
-                GameManager.Instance.MapManager.UnitManager._tileMapUnits.transform
+                GameManager.Instance.MapManager.BlokUnits.transform
                 ).Completed += LoadedAsset;
         }
     }

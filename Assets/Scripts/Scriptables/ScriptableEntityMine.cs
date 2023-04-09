@@ -2,18 +2,18 @@ using System.Collections.Generic;
 
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewEntityMine", menuName = "Game/Entity/Mine")]
-public class ScriptableEntityMine : ScriptableEntity, IEffected
+[CreateAssetMenu(fileName = "NewEntityMine", menuName = "Game/Entity/MapObject/Mine")]
+public class ScriptableEntityMine : ScriptableEntityMapObject, IEffected
 {
     [Header("Options Mine")]
     public TypeMine TypeMine;
-    [Space(10)]
-    [Header("Options Perk")]
-    public List<EntityMinePerk> Resources;
+    // [Space(10)]
+    // [Header("Options Perk")]
+    // public List<EntityMinePerk> Resources;
 
-    public void OnDoHero(ref Player player, BaseEntity entity)
+    public override void OnDoHero(ref Player player, BaseEntity entity)
     {
-
+        base.OnDoHero(ref player, entity);
     }
     // public MapObjectType TypeMapObject;
     // public TypeWorkMapObject TypeWork;
@@ -29,7 +29,7 @@ public class ScriptableEntityMine : ScriptableEntity, IEffected
 public struct EntityMinePerk
 {
     public string id;
-    public ScriptableResource Resource;
+    public ScriptableAttributeResource Resource;
     public int value;
 }
 

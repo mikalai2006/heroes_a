@@ -28,17 +28,6 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 2bd7a27ba808eb34ea30d18a93f21d5d
-    m_Address: Assets/Entity/Artifact/Data
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - entity
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: d7e9b495ca33c984da97f46f3c0b2ad0
-    m_Address: Assets/Entity/Artifact
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 05256a15a2beca04bb1d2f92d9c566ff
     m_Address: Assets/Entity/Attribute
     m_ReadOnly: 0
@@ -48,12 +37,6 @@ MonoBehaviour:
     m_Address: Assets/Entity/MapObject
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 7d6461ac2a9b7b74b9e112e6c2894e33
-    m_Address: Assets/Entity/Resource
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - resource
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: bffe1f3893b9d8b46a3ff35dc041bc20
     m_Address: Assets/Entity/Hero/Stronghold/Data

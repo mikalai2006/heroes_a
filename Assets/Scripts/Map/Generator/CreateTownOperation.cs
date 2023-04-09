@@ -45,11 +45,11 @@ public class CreateTownOperation : ILoadingOperation
             if (listGridNode.Count() > 0)
             {
                 GridTileNode node = listGridNode[listGridNode.Count - 1];
-                //Create town.
                 Player player = LevelManager.Instance.GetPlayer(area.id);
 
+                //Create town.
                 var entityTown = new EntityTown(node, node.TypeGround);
-                _root.UnitManager.SpawnEntityToNode(node, entityTown);
+                UnitManager.SpawnEntityToNode(node, entityTown);
                 area.town = entityTown;
                 // area.startPosition = entityTown.Position;
                 if (player != null)
@@ -58,20 +58,21 @@ public class CreateTownOperation : ILoadingOperation
                 }
 
                 ScriptableEntityTown configTown = (ScriptableEntityTown)entityTown.ScriptableData;
-                //_townsList.Add(createdTown);
-                //gridNode.OccupiedUnit = createdTown;
-                // }
 
                 // Spawn hero.
                 if (player != null)
                 {
-                    for (int i = 0; i < 4; i++)
+                    int randomCountHero = Helpers.GenerateValueByRangeAndStep(1, 2, 1);
+                    for (int i = 0; i < randomCountHero; i++)
                     {
+                        if (node.OccupiedUnit != null)
+                        {
+                            node = _root.gridTileHelper.GetNode(node.position.x, node.position.y - 1);
+                        }
                         EntityHero newEntity = new EntityHero(node, configTown.TypeFaction);
-                        _root.UnitManager.SpawnEntityToNode(node, newEntity);
-                        // gridNode.SetOcuppiedUnit(createdHero);
+                        UnitManager.SpawnEntityToNode(node, newEntity);
+                        node.SetOcuppiedUnit(newEntity);
                         LevelManager.Instance.GetArea(area.id).hero = newEntity;
-
                         newEntity.SetPlayer(player);
                     }
                 }
@@ -90,16 +91,17 @@ public class CreateTownOperation : ILoadingOperation
                    ).ToList();
                     if (listNodes.Count > 0)
                     {
+                        var factory = new EntityMapObjectFactory();
                         GridTileNode nodeForSpawn = listNodes.OrderBy(t => Random.value).First();
 
                         if (nodeForSpawn != null)
                         {
-                            EntityMine newmine = new EntityMine(
+                            EntityMine newmine = (EntityMine)factory.CreateMapObject(
+                                TypeMapObject.Mine,
                                 nodeForSpawn,
-                                configTown.TypeGround,
-                                TypeMine.Town,
-                                configTown.mines[i]);
-                            _root.UnitManager.SpawnEntityToNode(nodeForSpawn, newmine);
+                                configTown.mines[i]
+                                );
+                            UnitManager.SpawnEntityToNode(nodeForSpawn, newmine);
                         }
                     }
                 }
@@ -110,5 +112,4 @@ public class CreateTownOperation : ILoadingOperation
 
         await UniTask.Delay(1);
     }
-
 }

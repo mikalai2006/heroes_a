@@ -100,36 +100,36 @@ public class UnitManagerEditor
 
     private bool IsExistsRuleNoPath(TypeNoPath typeNoPath)
     {
-        return m_activeItem.listTypeNoPath.Contains(typeNoPath);
+        return false; // m_activeItem.listTypeNoPath.Contains(typeNoPath);
     }
 
     private void NoPathOnClick(ClickEvent evt)
     {
-        VisualElement clickedTab = evt.currentTarget as VisualElement;
+        // VisualElement clickedTab = evt.currentTarget as VisualElement;
 
-        Label valueEl = clickedTab.Q<Label>("NodeValue");
-        int index = Int32.Parse(valueEl.text);
-        TypeNoPath val = (TypeNoPath)index;
-        //Undo.RecordObject(m_activeItem, "Changed NoPath");
-        if (IsExistsRuleNoPath((TypeNoPath)index))
-        {
-            m_activeItem.listTypeNoPath.Remove((TypeNoPath)index);
-            clickedTab.Q<VisualElement>("NodeCheck").AddToClassList("node_check_hidden");
-        }
-        else
-        {
-            m_activeItem.listTypeNoPath.Add((TypeNoPath)index);
-            clickedTab.Q<VisualElement>("NodeCheck").RemoveFromClassList("node_check_hidden");
-        }
-        EditorUtility.SetDirty(m_activeItem);
+        // Label valueEl = clickedTab.Q<Label>("NodeValue");
+        // int index = Int32.Parse(valueEl.text);
+        // TypeNoPath val = (TypeNoPath)index;
+        // //Undo.RecordObject(m_activeItem, "Changed NoPath");
+        // if (IsExistsRuleNoPath((TypeNoPath)index))
+        // {
+        //     m_activeItem.listTypeNoPath.Remove((TypeNoPath)index);
+        //     clickedTab.Q<VisualElement>("NodeCheck").AddToClassList("node_check_hidden");
+        // }
+        // else
+        // {
+        //     m_activeItem.listTypeNoPath.Add((TypeNoPath)index);
+        //     clickedTab.Q<VisualElement>("NodeCheck").RemoveFromClassList("node_check_hidden");
+        // }
+        // EditorUtility.SetDirty(m_activeItem);
 
-        //if (!TabIsCurrentlySelected(clickedTab))
-        //{
-        //    GetAllTabs().Where(
-        //        (tab) => tab != clickedTab && TabIsCurrentlySelected(tab)
-        //    ).ForEach(UnselectTab);
-        //    SelectTab(clickedTab);
-        //}
+        // //if (!TabIsCurrentlySelected(clickedTab))
+        // //{
+        // //    GetAllTabs().Where(
+        // //        (tab) => tab != clickedTab && TabIsCurrentlySelected(tab)
+        // //    ).ForEach(UnselectTab);
+        // //    SelectTab(clickedTab);
+        // //}
     }
 
     private void LoadAllItems()

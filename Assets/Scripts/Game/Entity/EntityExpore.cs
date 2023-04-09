@@ -13,14 +13,17 @@ public class EntityExpore : BaseEntity, ISaveDataPlay
 {
     [SerializeField] public DataExplore Data = new DataExplore();
     public ScriptableEntityExplore ConfigData => (ScriptableEntityExplore)ScriptableData;
-    public EntityExpore(GridTileNode node, SaveDataUnit<DataExplore> saveData = null)
+    public EntityExpore(
+        GridTileNode node,
+        ScriptableEntityExplore configData,
+        SaveDataUnit<DataExplore> saveData = null)
     {
         if (saveData == null)
         {
-            List<ScriptableEntityExplore> list = ResourceSystem.Instance
-                .GetEntityByType<ScriptableEntityExplore>(TypeEntity.Explore)
-                .ToList();
-            ScriptableData = list[UnityEngine.Random.Range(0, list.Count)];
+            // List<ScriptableEntityExplore> list = ResourceSystem.Instance
+            //     .GetEntityByType<ScriptableEntityExplore>(TypeEntity.Explore)
+            //     .ToList();
+            ScriptableData = configData; // list[UnityEngine.Random.Range(0, list.Count)];
         }
         else
         {

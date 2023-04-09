@@ -45,25 +45,26 @@ public class CreateResourceOperation : ILoadingOperation
                 {
                     GridTileNode currentNode = nodes[Random.Range(0, nodes.Count)];
 
-                    List<TypeWorkPerk> typeWork = new List<TypeWorkPerk>() {
-                            TypeWorkPerk.One
+                    List<TypeWorkObject> typeWork = new List<TypeWorkObject>() {
+                            TypeWorkObject.One
                         };
                     List<ScriptableEntityMapObject> list = ResourceSystem.Instance
-                        .GetEntityByType<ScriptableEntityMapObject>(TypeEntity.GroupResource)
+                        .GetEntityByType<ScriptableEntityMapObject>(TypeEntity.MapObject)
                         .Where(t => (
                             t.TypeGround & currentNode.TypeGround) == currentNode.TypeGround
-                            && typeWork.Contains(t.TypeWorkPerk)
+                            && typeWork.Contains(t.TypeWorkObject)
                             )
                         .ToList();
                     var configData = list[UnityEngine.Random.Range(0, list.Count)];
                     if (configData != null)
                     {
-                        BaseEntity entity = new EntityMapObject(
+                        var factory = new EntityMapObjectFactory();
+                        BaseEntity entity = factory.CreateMapObject(
+                            TypeMapObject.Resources,
                             currentNode,
-                            configData,
-                            TypeEntity.GroupResource
+                            configData
                         );
-                        _root.UnitManager.SpawnEntityToNode(currentNode, entity);
+                        UnitManager.SpawnEntityToNode(currentNode, entity);
                         // _root.UnitManager
                         //     .SpawnMapObjectAsync(currentNode, TypeMapObject.Resource, new List<TypeWorkPerk>() { TypeWorkPerk.One });
 

@@ -577,6 +577,8 @@ public class GridTileHelper
             GridTileNode up = GetNode(currentNode.X, currentNode.Y + 1);
             if (up.Disable && up.Empty) neighbours.top.Add(up);
         }
+        neighbours.count = neighbours.bottom.Count + neighbours.top.Count
+            + neighbours.left.Count + neighbours.right.Count;
         return neighbours;
     }
 
@@ -801,4 +803,5 @@ public struct NeighboursNature
 
     public List<GridTileNode> top;
     public List<GridTileNode> bottom;
+    public int count;
 }

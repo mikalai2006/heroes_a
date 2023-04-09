@@ -49,8 +49,8 @@ public class CreateSkillSchoolOperation : ILoadingOperation
 
                     if (nodeWarrior != null && currentNode != null && _root.gridTileHelper.CalculateNeighbours(currentNode) == 8)
                     {
-                        List<TypeWorkPerk> typeWork = new List<TypeWorkPerk>() {
-                            TypeWorkPerk.One
+                        List<TypeWorkObject> typeWork = new List<TypeWorkObject>() {
+                            TypeWorkObject.One
                         };
                         List<ScriptableEntityMapObject> list = ResourceSystem.Instance
                             .GetEntityByType<ScriptableEntityMapObject>(TypeEntity.SkillSchool)
@@ -61,16 +61,17 @@ public class CreateSkillSchoolOperation : ILoadingOperation
                         var configData = list[UnityEngine.Random.Range(0, list.Count)];
                         if (configData != null)
                         {
-                            BaseEntity entity = new EntityMapObject(
+                            var factory = new EntityMapObjectFactory();
+                            BaseEntity entity = factory.CreateMapObject(
+                                TypeMapObject.Skills,
                                 currentNode,
-                                configData,
-                                TypeEntity.SkillSchool
+                                configData
                                 );
-                            _root.UnitManager.SpawnEntityToNode(currentNode, entity);
+                            UnitManager.SpawnEntityToNode(currentNode, entity);
                             // _root.UnitManager
                             //     .SpawnMapObjectAsync(currentNode, TypeMapObject.SkillSchool);
 
-                            BaseEntity warrior = _root.UnitManager.SpawnWarriorAsync(nodeWarrior);
+                            BaseEntity warrior = UnitManager.SpawnWarrior(nodeWarrior);
 
                             nodeWarrior.SetProtectedNeigbours(warrior, currentNode);
 

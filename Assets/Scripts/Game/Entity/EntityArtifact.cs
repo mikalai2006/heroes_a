@@ -9,14 +9,14 @@ public class EntityArtifact : BaseEntity, ISaveDataPlay
     private ScriptableEntityArtifact ConfigData => (ScriptableEntityArtifact)ScriptableData;
     [SerializeField] public DataArtifact Data = new DataArtifact();
 
-    public EntityArtifact(GridTileNode node, SaveDataUnit<DataArtifact> saveData = null)
+    public EntityArtifact(
+        GridTileNode node,
+        ScriptableEntityArtifact configData,
+        SaveDataUnit<DataArtifact> saveData = null)
     {
         if (saveData == null)
         {
-            List<ScriptableEntityArtifact> list = ResourceSystem.Instance
-                .GetEntityByType<ScriptableEntityArtifact>(TypeEntity.Artifact)
-                .ToList();
-            ScriptableData = list[UnityEngine.Random.Range(0, list.Count)];
+            ScriptableData = configData;
         }
         else
         {
@@ -36,6 +36,13 @@ public class EntityArtifact : BaseEntity, ISaveDataPlay
         configData.OnDoHero(ref player, this);
     }
 
+    #region InitData
+    public void InitData(SaveDataUnit<DataArtifact> data)
+    {
+        Data = data.data;
+    }
+    #endregion
+
     #region SaveLoadData
     // public void LoadDataPlay(DataPlay data)
     // {
@@ -53,5 +60,5 @@ public class EntityArtifact : BaseEntity, ISaveDataPlay
 [System.Serializable]
 public struct DataArtifact
 {
-
+    public string ida;
 }

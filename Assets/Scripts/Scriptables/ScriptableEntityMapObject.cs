@@ -5,18 +5,14 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewEntityMapObject", menuName = "Game/Entity/MapObject")]
 public class ScriptableEntityMapObject : ScriptableEntityEffect, IEffected
 {
-    [Header("Options Effect")]
-
-    // public List<ItemProbabiliti<EntityResoureItem>> Resourcess;
-    // public void OnDoHero(ref Player player, BaseEntity entity)
-    // {
-    //     var result = Helpers.GetProbabilityItem<EntityResoureItem>(Resourcess);
-    //     // player.ChangeResource(result.Resource.TypeResource, result.value);
-    //     // Debug.Log($"PERK: {this.name}::: result[{result.Resource.name}-{result.value}] for {player.DataPlayer.id}");
-    // }
+    [Header("Options Map Object")]
+    public List<TypeNoPath> listTypeNoPath;
+    public List<TypeNoPath> RulesDraw => listTypeNoPath;
+    public TypeWorkObject TypeWorkObject;
+    public TypeMapObject TypeMapObject;
     public List<BaseEffect> Effects;
 
-    public void OnDoHero(ref Player player, BaseEntity entity)
+    public virtual void OnDoHero(ref Player player, BaseEntity entity)
     {
         foreach (var perk in Effects)
         {
@@ -24,15 +20,22 @@ public class ScriptableEntityMapObject : ScriptableEntityEffect, IEffected
         }
     }
 }
-
-// [System.Serializable]
-// public struct EntityResoureItem
-// {
-//     public string id;
-//     public List<ScriptableResource> Resource;
-//     public List<ScriptableAttributeArtifact> Artifact;
-//     public int value;
-//     // public int maxValue;
-//     // public int step;
-//     // public AnimationCurve Curve;
-// }
+[System.Serializable]
+public enum TypeMapObject
+{
+    Explore = 1,
+    Resources = 2,
+    Portal = 3,
+    Skills = 4,
+    Mine = 5,
+    Artifact = 6,
+}
+[System.Serializable]
+public enum TypeWorkObject
+{
+    One = 1,
+    EveryDay = 2,
+    EveryWeek = 3,
+    EveryMonth = 4,
+    FirstVisit = 5,
+}

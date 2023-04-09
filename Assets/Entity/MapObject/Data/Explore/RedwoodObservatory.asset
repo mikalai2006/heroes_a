@@ -13,27 +13,17 @@ MonoBehaviour:
   m_Name: RedwoodObservatory
   m_EditorClassIdentifier: 
   idObject: a1f86d53f66f4ec09f068000893d092a
-  TypeEntity: 31
+  TypeEntity: 34
   MenuSprite: {fileID: 0}
-  Text:
-    title:
-      m_TableReference:
-        m_TableCollectionName: 
-      m_TableEntryReference:
-        m_KeyId: 0
-        m_Key: 
-      m_FallbackState: 0
-      m_WaitForCompletion: 0
-      m_LocalVariables: []
-    description:
-      m_TableReference:
-        m_TableCollectionName: 
-      m_TableEntryReference:
-        m_KeyId: 0
-        m_Key: 
-      m_FallbackState: 0
-      m_WaitForCompletion: 0
-      m_LocalVariables: []
+  title:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   MapPrefab:
     m_AssetGUID: 0a736c2ff87971845b53d01d41b40a5b
     m_SubObjectName: 
@@ -41,36 +31,12 @@ MonoBehaviour:
     m_EditorAssetChanged: 0
   TypeGround: 1
   typeInput: 1
+  TypeWorkAttribute: 0
+  Attributes: []
   listTypeNoPath: 
-  DialogText:
-    VisitOk:
-      m_TableReference:
-        m_TableCollectionName: 
-      m_TableEntryReference:
-        m_KeyId: 0
-        m_Key: 
-      m_FallbackState: 0
-      m_WaitForCompletion: 0
-      m_LocalVariables: []
-    VisitNo:
-      m_TableReference:
-        m_TableCollectionName: 
-      m_TableEntryReference:
-        m_KeyId: 0
-        m_Key: 
-      m_FallbackState: 0
-      m_WaitForCompletion: 0
-      m_LocalVariables: []
-    VisitNoResource:
-      m_TableReference:
-        m_TableCollectionName: 
-      m_TableEntryReference:
-        m_KeyId: 0
-        m_Key: 
-      m_FallbackState: 0
-      m_WaitForCompletion: 0
-      m_LocalVariables: []
-  TypeWorkPerk: 5
+  TypeWorkObject: 5
+  TypeMapObject: 1
+  Effects: []
   Perks:
   - {fileID: 11400000, guid: dd5c83d6e505beb4dbd8092db3ca46dd, type: 2}
   references:

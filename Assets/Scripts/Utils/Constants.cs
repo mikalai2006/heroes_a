@@ -44,6 +44,7 @@ public class Constants
         public const string LABEL_ROAD = "road";
         public const string LABEL_ROAD_PREFAB = "road_prefab";
         public const string LABEL_ENTITY = "entity";
+        public const string LABEL_ATTRIBUTE = "attribute";
     }
 
     public class LanguageTable

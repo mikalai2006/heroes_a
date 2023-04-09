@@ -17,52 +17,44 @@ MonoBehaviour:
   MenuSprite: {fileID: 0}
   title:
     m_TableReference:
-      m_TableCollectionName: 
+      m_TableCollectionName: GUID:8ed801dac82951d449557e1a63174ac8
     m_TableEntryReference:
-      m_KeyId: 0
+      m_KeyId: 4633486179860480
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []
   MapPrefab:
-    m_AssetGUID: df65abde3ba8ba34988963855e060b27
+    m_AssetGUID: d22697a163916654f9e94c86a2718906
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
   TypeGround: -1
   typeInput: 0
-  listTypeNoPath: 08000000070000000200000003000000
-  DialogText:
-    VisitOk:
-      m_TableReference:
-        m_TableCollectionName: 
-      m_TableEntryReference:
-        m_KeyId: 0
-        m_Key: 
-      m_FallbackState: 0
-      m_WaitForCompletion: 0
-      m_LocalVariables: []
-    VisitNo:
-      m_TableReference:
-        m_TableCollectionName: 
-      m_TableEntryReference:
-        m_KeyId: 0
-        m_Key: 
-      m_FallbackState: 0
-      m_WaitForCompletion: 0
-      m_LocalVariables: []
-    VisitNoResource:
-      m_TableReference:
-        m_TableCollectionName: 
-      m_TableEntryReference:
-        m_KeyId: 0
-        m_Key: 
-      m_FallbackState: 0
-      m_WaitForCompletion: 0
-      m_LocalVariables: []
-  TypeWorkPerk: 5
   TypeWorkAttribute: 0
-  Attributes: []
+  Attributes:
+  - Item:
+      description:
+        m_TableReference:
+          m_TableCollectionName: GUID:8ed801dac82951d449557e1a63174ac8
+        m_TableEntryReference:
+          m_KeyId: 4633528760434688
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      Resources: []
+      PrimarySkills:
+      - Skill: {fileID: 11400000, guid: 642756d81958c7d4e8cf4a4f01d6f919, type: 2}
+        Value: 1
+      SecondarySkills: []
+      Artifacts:
+        Artifact: []
+        isOne: 0
+    probability: 1
+  listTypeNoPath: 0e000000
+  TypeWorkObject: 4
+  TypeMapObject: 4
   Effects: []
   references:
     version: 2
