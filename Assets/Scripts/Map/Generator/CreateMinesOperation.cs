@@ -31,6 +31,8 @@ public class CreateMinesOperation : ILoadingOperation
                 && !node.Road
                 && !node.Protected
                 && node.KeyArea == area.id
+                && _root.gridTileHelper.GetDisableNeighbours(node).bottom.Count == 0
+                && _root.gridTileHelper.GetDisableNeighbours(node).top.Count >= 2
                 && _root.gridTileHelper.GetDistanceBetweeenPoints(node.position, area.startPosition) > 10
                 && _root.gridTileHelper.GetNeighbourList(node).Count >= 4
             ).OrderBy(t => Random.value).ToList();
@@ -46,16 +48,14 @@ public class CreateMinesOperation : ILoadingOperation
                 {
                     GridTileNode currentNode = nodes[Random.Range(0, nodes.Count)];
 
-                    NeighboursNature disableNeighbours
-                        = _root.gridTileHelper.GetDisableNeighbours(currentNode);
+                    // NeighboursNature disableNeighbours
+                    //     = _root.gridTileHelper.GetDisableNeighbours(currentNode);
 
                     GridTileNode nodeWarrior = _root.GetNodeWarrior(currentNode);
 
                     if (
                         currentNode != null
                         && nodeWarrior != null
-                        && disableNeighbours.bottom.Count == 0
-                        && disableNeighbours.top.Count >= 2
                         && _root.gridTileHelper.CalculateNeighbours(currentNode) >= 5
                         )
                     {
@@ -81,9 +81,9 @@ public class CreateMinesOperation : ILoadingOperation
                         );
                         UnitManager.SpawnEntityToNode(currentNode, entity);
 
-                        BaseEntity warrior = UnitManager.SpawnWarrior(nodeWarrior);
+                        // BaseEntity warrior = UnitManager.SpawnWarrior(nodeWarrior);
 
-                        nodeWarrior.SetProtectedNeigbours(warrior, currentNode);
+                        // nodeWarrior.SetProtectedNeigbours(warrior, currentNode);
 
                         nodes.Remove(currentNode);
 

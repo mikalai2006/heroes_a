@@ -159,7 +159,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1878255860918156870, guid: 74e586b38813f5a4f89bfded10336241, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.45000002
       objectReference: {fileID: 0}
     - target: {fileID: 1878255860918156870, guid: 74e586b38813f5a4f89bfded10336241, type: 3}
       propertyPath: m_LocalPosition.y
@@ -175,7 +175,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3331042861540648621, guid: 74e586b38813f5a4f89bfded10336241, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.1
+      value: 0.55
       objectReference: {fileID: 0}
     - target: {fileID: 3331042861540648621, guid: 74e586b38813f5a4f89bfded10336241, type: 3}
       propertyPath: m_LocalPosition.y
@@ -183,7 +183,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3681035251465187759, guid: 74e586b38813f5a4f89bfded10336241, type: 3}
       propertyPath: m_Name
-      value: Mercury_Mine
+      value: MercuryMine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

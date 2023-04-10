@@ -64,15 +64,15 @@ public class CreateDwellingOperation : ILoadingOperation
                         {
                             GridTileNode currentNode = nodes[Random.Range(0, nodes.Count)];
 
-                            // NeighboursNature disableNeighbours
-                            //     = _root.gridTileHelper.GetDisableNeighbours(currentNode);
+                            NeighboursNature disableNeighbours
+                                = _root.gridTileHelper.GetDisableNeighbours(currentNode);
 
                             GridTileNode nodeWarrior = _root.GetNodeWarrior(currentNode);
 
                             if (
                                 currentNode != null
                                 && nodeWarrior != null
-                                // && disableNeighbours.bottom.Count == 0
+                                && disableNeighbours.bottom.Count == 0
                                 // && disableNeighbours.top.Count >= 2
                                 && _root.gridTileHelper.CalculateNeighbours(currentNode) >= 5
                                 )

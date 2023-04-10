@@ -55,7 +55,7 @@ MonoBehaviour:
         Artifact: []
         isOne: 0
     probability: 1
-  listTypeNoPath: 00000000
+  listTypeNoPath: 0c0000000e000000
   TypeWorkObject: 2
   TypeMapObject: 5
   Effects: []
