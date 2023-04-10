@@ -18,8 +18,8 @@ MonoBehaviour:
     width: 50
     height: 50
     koofSizeArea: 1
-    noiseScaleMontain: 0.1
-    koofMountains: 0.2
+    noiseScaleMontain: 0.121
+    koofMountains: 0.27
     koofNature: 0.01
     koofMines: 0.08
     koofMinTown: 0.07
@@ -28,3 +28,4 @@ MonoBehaviour:
     koofExplore: 0.003
     koofSchoolSkills: 0.007
     koofArtifacts: 0.03
+    koofDwelling: 0.011

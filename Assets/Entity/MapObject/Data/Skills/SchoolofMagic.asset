@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SchoolofMagic
   m_EditorClassIdentifier: 
   idObject: ecc2485499ab4b6ab3ea8543f3bb1bbe
-  TypeEntity: 33
+  TypeEntity: 34
   MenuSprite: {fileID: 0}
   title:
     m_TableReference:

@@ -29,8 +29,8 @@ public class EntityMonolith : BaseEntity, ISaveDataPlay
         else
         {
             ScriptableData = ResourceSystem.Instance
-                .GetEntityByType<ScriptableEntityPortal>(TypeEntity.Portal)
-                .Where(t => t.idObject == saveData.idObject)
+                .GetEntityByType<ScriptableEntityMapObject>(TypeEntity.MapObject)
+                .Where(t => t.idObject == saveData.idObject && t.TypeMapObject == TypeMapObject.Portal)
                 .First();
             Data = saveData.data;
             idUnit = saveData.idUnit;

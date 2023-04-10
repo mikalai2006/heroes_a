@@ -29,6 +29,7 @@ public enum TypeMapObject
     Skills = 4,
     Mine = 5,
     Artifact = 6,
+    Dwelling = 7,
 }
 [System.Serializable]
 public enum TypeWorkObject

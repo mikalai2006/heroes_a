@@ -53,9 +53,10 @@ public class CreateSkillSchoolOperation : ILoadingOperation
                             TypeWorkObject.One
                         };
                         List<ScriptableEntityMapObject> list = ResourceSystem.Instance
-                            .GetEntityByType<ScriptableEntityMapObject>(TypeEntity.SkillSchool)
+                            .GetEntityByType<ScriptableEntityMapObject>(TypeEntity.MapObject)
                             .Where(t => (
                                 t.TypeGround & currentNode.TypeGround) == currentNode.TypeGround
+                                && t.TypeMapObject == TypeMapObject.Skills
                                 )
                             .ToList();
                         var configData = list[UnityEngine.Random.Range(0, list.Count)];

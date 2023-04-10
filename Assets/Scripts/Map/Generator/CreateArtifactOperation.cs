@@ -72,10 +72,7 @@ public class CreateArtifactOperation : ILoadingOperation
                             .Where(t => t.TypeMapObject == TypeMapObject.Artifact)
                             .First();
 
-                        EntityArtifact entity = (EntityArtifact)factory.CreateMapObject(
-                            TypeMapObject.Artifact,
-                            currentNode,
-                            configData);
+                        EntityArtifact entity = new EntityArtifact(currentNode, (ScriptableEntityArtifact)configData);
                         var entityArtifact = (ScriptableEntityArtifact)entity.ScriptableData;
 
                         // Generate artefact attribute.

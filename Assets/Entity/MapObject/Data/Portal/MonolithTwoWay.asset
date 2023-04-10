@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8167c35e0198ff948a95421ea435095b, type: 3}
   m_Name: MonolithTwoWay
   m_EditorClassIdentifier: 
-  idObject: 16c3c5fb7edf44f187c15c03664f72d1
-  TypeEntity: 30
+  idObject: 35152684533246c18e93818f072940dd
+  TypeEntity: 34
   MenuSprite: {fileID: 0}
   title:
     m_TableReference:

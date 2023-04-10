@@ -21,8 +21,8 @@ public class EntityArtifact : BaseEntity, ISaveDataPlay
         else
         {
             ScriptableData = ResourceSystem.Instance
-                .GetEntityByType<ScriptableEntityArtifact>(TypeEntity.Artifact)
-                .Where(t => t.idObject == saveData.idObject)
+                .GetEntityByType<ScriptableEntityArtifact>(TypeEntity.MapObject)
+                .Where(t => t.idObject == saveData.idObject && t.TypeMapObject == TypeMapObject.Artifact)
                 .First();
             Data = saveData.data;
             idUnit = saveData.idUnit;

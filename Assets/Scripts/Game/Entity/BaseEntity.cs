@@ -63,7 +63,7 @@ public abstract class BaseEntity
 
     public void DestroyEntity()
     {
-        Debug.Log($"Destroy entity::: {ScriptableData.name}");
+        // Debug.Log($"Destroy entity::: {ScriptableData.name}");
         OccupiedNode.SetOcuppiedUnit(null);
         RemoveEvents();
     }
@@ -128,8 +128,8 @@ public abstract class BaseEntity
         {
             var r_asset = handle.Result;
             MapObjectGameObject = r_asset.GetComponent<BaseMapEntity>();
+            // Debug.Log($"Spawn Entity::: {r_asset.name}");
             MapObjectGameObject.InitUnit(this);
-            // Debug.Log($"Spawn Entity::: {entity.name}");
         }
         else
         {

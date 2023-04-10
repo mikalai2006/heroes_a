@@ -45,17 +45,17 @@ public enum TypeFaction
 public enum TypeEntity
 {
     Creature = 10,
-    Artifact = 20,
-    Portal = 30,
-    Resource = 50,
-    Building = 70,
+    // Artifact = 20,
+    // Portal = 30,
+    // Resource = 50,
+    // Building = 70,
     Town = 80,
     Hero = 90,
-    Explore = 31,
-    Mine = 32,
-    SkillSchool = 33,
+    // Explore = 31,
+    // Mine = 32,
+    // SkillSchool = 33,
     MapObject = 34,
-    Dwelling = 35,
+    // Dwelling = 35,
 }
 
 [System.Serializable]

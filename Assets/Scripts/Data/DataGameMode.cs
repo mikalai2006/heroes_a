@@ -20,4 +20,5 @@ public struct DataGameMode
     [Range(0f, 0.01f)] public float koofExplore;
     [Range(0f, 0.1f)] public float koofSchoolSkills;
     [Range(0f, 0.1f)] public float koofArtifacts;
+    [Range(0f, 0.1f)] public float koofDwelling;
 }

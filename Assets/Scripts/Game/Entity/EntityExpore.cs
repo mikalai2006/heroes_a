@@ -28,8 +28,8 @@ public class EntityExpore : BaseEntity, ISaveDataPlay
         else
         {
             ScriptableData = ResourceSystem.Instance
-                .GetEntityByType<ScriptableEntityExplore>(TypeEntity.Explore)
-                .Where(t => t.idObject == saveData.idObject)
+                .GetEntityByType<ScriptableEntityMapObject>(TypeEntity.MapObject)
+                .Where(t => t.idObject == saveData.idObject && t.TypeMapObject == TypeMapObject.Explore)
                 .First();
             Data = saveData.data;
             idUnit = saveData.idUnit;

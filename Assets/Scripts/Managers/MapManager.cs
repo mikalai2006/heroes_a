@@ -424,6 +424,7 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
         operations.Enqueue(new CreateResourceEveryWeekOperation(this));
         operations.Enqueue(new CreateResourceOperation(this));
         operations.Enqueue(new CreateArtifactOperation(this));
+        operations.Enqueue(new CreateDwellingOperation(this));
         await GameManager.Instance.LoadingScreenProvider.LoadAndDestroy(operations);
 
         Application.targetFrameRate = -1;
@@ -536,10 +537,10 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
             && t.KeyArea == node.KeyArea
             && t.Empty
             && t.Enable
-            && gridTileHelper.GetDisableNeighbours(t).bottom.Count == 0
-            && gridTileHelper.GetDisableNeighbours(t).top.Count == 0
+        // && gridTileHelper.GetDisableNeighbours(t).bottom.Count == 0
+        // && gridTileHelper.GetDisableNeighbours(t).top.Count < 2
         ).ToList();
-        SetColorForTile(node.position, Color.red);
+        SetColorForTile(node.position, Color.yellow);
         if (_potentialNode.Count > 0)
         {
             GridTileNode nodeExitPortal = _potentialNode[Random.Range(0, _potentialNode.Count - 1)];
@@ -561,8 +562,9 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
 
 
             List<ScriptableEntityMapObject> listConfigPortals = ResourceSystem.Instance
-                        .GetEntityByType<ScriptableEntityMapObject>(TypeEntity.Portal)
-                        .ToList();
+                .GetEntityByType<ScriptableEntityMapObject>(TypeEntity.MapObject)
+                .Where(t => t.TypeMapObject == TypeMapObject.Portal)
+                .ToList();
 
             if (monolith == null)
             {
@@ -580,7 +582,6 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
 
                 if (listPotentialAroundTownNodes.Count > 0)
                 {
-
                     GridTileNode nodeInputPortal
                         = listPotentialAroundTownNodes[Random.Range(0, listPotentialAroundTownNodes.Count - 1)];
 
@@ -596,6 +597,7 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
                             nodeInputPortal,
                             configData
                             );
+                        nodeInputPortal.AddStateNode(StateNode.Teleport);
                         // monolith = new EntityMonolith(nodeInputPortal, configData);
                         UnitManager.SpawnEntityToNode(nodeInputPortal, monolith);
                         currentArea.portal = (EntityMonolith)monolith;
@@ -603,6 +605,10 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
                         BaseEntity warrior = UnitManager.SpawnWarrior(nodeWarrior);
 
                         nodeWarrior.SetProtectedNeigbours(warrior, nodeInputPortal);
+                    }
+                    else
+                    {
+
                     }
                     //MonolithData monolithData = new MonolithData();
                     //monolithData.position = nodeForEndPortal._position;
@@ -622,6 +628,7 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
                     nodeExitPortal,
                     configData
                     );
+                nodeExitPortal.AddStateNode(StateNode.Teleport);
                 // BaseEntity configMonolithExit = new EntityMonolith(nodeExitPortal);
                 UnitManager.SpawnEntityToNode(nodeExitPortal, configMonolithExit);
                 // UnitManager.SpawnMapObjectAsync(nodeExitPortal, TypeMapObject.Monolith);

@@ -206,7 +206,8 @@ public class GridTileHelper
         HashSet<GridTileNode> removedSet = new HashSet<GridTileNode>();
         openSet.Add(node);
 
-        List<TypeEntity> exitTriggers = new List<TypeEntity> { TypeEntity.Portal, TypeEntity.Town, TypeEntity.Hero };
+
+        // List<TypeEntity> exitTriggers = new List<TypeEntity> { TypeEntity.Town, TypeEntity.Hero };
         // new List<TypeMapObject> { TypeMapObject.Monolith, TypeMapObject.Town, TypeMapObject.Hero };
 
         while (openSet.Count > 0)
@@ -232,7 +233,12 @@ public class GridTileHelper
 
                 if (neighbourNode.OccupiedUnit != null && neighbourNode != node)
                 {
-                    if (exitTriggers.Contains(neighbourNode.OccupiedUnit.ScriptableData.TypeEntity))
+                    // if (exitTriggers.Contains(neighbourNode.OccupiedUnit.ScriptableData.TypeEntity))
+                    if (
+                        (StateNode.Teleport & neighbourNode.StateNode) == StateNode.Teleport
+                        ||
+                        (StateNode.Town & neighbourNode.StateNode) == StateNode.Town
+                        )
                     {
                         //Debug.Log($"Exit OccupiedUnit::: {neighbourNode.OccupiedUnit.typeUnit}");
                         return new List<GridTileNode> { neighbourNode };
@@ -681,6 +687,7 @@ public class GridTileHelper
         color = color == null ? Color.black : color;
 
         node.SetState(TypeStateNode.Disabled);
+        node.AddStateNode(StateNode.Disable);
         GameManager.Instance.MapManager.SetColorForTile(node.position, color);
         // SetColorForTile(node._position, color);
         if (listNoPath == null) return;

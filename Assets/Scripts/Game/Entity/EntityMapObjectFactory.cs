@@ -8,6 +8,8 @@ public class EntityMapObjectFactory
     {
         switch (TypeMapObject)
         {
+            case TypeMapObject.Dwelling:
+                return new EntityDwelling(node, (ScriptableEntityDwelling)configData);
             case TypeMapObject.Mine:
                 return new EntityMine(node, (ScriptableEntityMine)configData);
             case TypeMapObject.Explore:
@@ -15,6 +17,7 @@ public class EntityMapObjectFactory
             case TypeMapObject.Portal:
                 return new EntityMonolith(node, (ScriptableEntityPortal)configData);
             case TypeMapObject.Skills:
+                return new EntityMapObject(node, (ScriptableEntityMapObject)configData);
             case TypeMapObject.Resources:
                 return new EntityMapObject(node, (ScriptableEntityMapObject)configData);
             case TypeMapObject.Artifact:

@@ -50,6 +50,7 @@ public class CreateTownOperation : ILoadingOperation
                 //Create town.
                 var entityTown = new EntityTown(node, node.TypeGround);
                 UnitManager.SpawnEntityToNode(node, entityTown);
+                node.AddStateNode(StateNode.Town);
                 area.town = entityTown;
                 // area.startPosition = entityTown.Position;
                 if (player != null)

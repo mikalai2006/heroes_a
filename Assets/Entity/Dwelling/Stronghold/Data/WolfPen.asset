@@ -10,22 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 90ae20973bbe3d743b99280ea6f5fc58, type: 3}
-  m_Name: NewEntityDwelling
+  m_Name: WolfPen
   m_EditorClassIdentifier: 
-  idObject: 47b7db4e314d4c7080681fcaf1046849
-  TypeEntity: 35
+  idObject: ff5b2c9039ae41ccaa79d7e82e4b4b2c
+  TypeEntity: 34
   MenuSprite: {fileID: 0}
   title:
     m_TableReference:
-      m_TableCollectionName: 
+      m_TableCollectionName: GUID:eccb40f2ef0445e499300535baf5f930
     m_TableEntryReference:
-      m_KeyId: 0
+      m_KeyId: 17241124012032
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []
   MapPrefab:
-    m_AssetGUID: 
+    m_AssetGUID: 90013dcfbc9e4e94f82b738bc628ae22
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
@@ -34,13 +34,12 @@ MonoBehaviour:
   TypeWorkAttribute: 0
   Attributes: []
   listTypeNoPath: 
-  TypeWorkObject: 0
-  TypeMapObject: 0
+  TypeWorkObject: 3
+  TypeMapObject: 7
   Effects: []
-  TypeFaction: 0
-  TypeBuild: 0
-  RequiredBuilds: 
+  TypeFaction: 1
   CostResource: []
+  Creature: {fileID: 0}
   references:
     version: 2
     RefIds: []

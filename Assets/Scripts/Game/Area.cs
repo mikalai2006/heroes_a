@@ -38,6 +38,8 @@ public struct AreaStat
     public int countSkillSchoolN;
     public int countArtifactN;
     public int countArtifact;
+    public int countDwellingN;
+    public int countDwelling;
 
     public override string ToString()
     {
@@ -47,7 +49,8 @@ public struct AreaStat
             " -Force=[{7}]{3}\n" +
             " -Explore=[{8}]{9} \n" +
             " -SkillSchool=[{10}]{11} \n" +
-            " -Artifact=[{12}]{13} \n",
+            " -Artifact=[{12}]{13} \n" +
+            " -Dwelling=[{14}]{15} \n",
             countMine,
             countEveryResource,
             countFreeResource,
@@ -64,7 +67,10 @@ public struct AreaStat
             countSkillSchool,
 
             countArtifactN,
-            countArtifact
+            countArtifact,
+
+            countDwellingN,
+            countDwelling
             );
     }
 }

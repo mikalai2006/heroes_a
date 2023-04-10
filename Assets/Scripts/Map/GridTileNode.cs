@@ -14,11 +14,25 @@ public enum TypeStateNode
     //Protected = 3,
 }
 
+[Flags]
+public enum StateNode
+{
+    Empty = 1 << 0,
+    Teleport = 1 << 1,
+    Cave = 1 << 2,
+    Town = 1 << 3,
+    Road = 1 << 4,
+    Protected = 1 << 5,
+    Disable = 1 << 6,
+}
+
+
 [Serializable]
 public class GridTileNode : IHeapItem<GridTileNode>
 {
     [NonSerialized] private readonly GridTile<GridTileNode> _grid;
     [NonSerialized] private readonly GridTileHelper _gridHelper;
+    [SerializeField] public StateNode StateNode;
     public int X;
     public int Y;
     public int KeyArea = 0;
@@ -98,6 +112,15 @@ public class GridTileNode : IHeapItem<GridTileNode>
 
     }
 
+    public void AddStateNode(StateNode state)
+    {
+        StateNode |= state;
+    }
+
+    public void RemoveStateNode(StateNode state)
+    {
+        StateNode ^= state;
+    }
     public void SetProtectedUnit(BaseEntity unit)
     {
         _protectedUnit = unit;

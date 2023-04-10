@@ -45,8 +45,8 @@ public class EntityMine : BaseEntity, ISaveDataPlay
         else
         {
             ScriptableData = ResourceSystem.Instance
-                .GetEntityByType<ScriptableEntityMine>(TypeEntity.Mine)
-                .Where(t => t.idObject == saveData.idObject)
+                .GetEntityByType<ScriptableEntityMapObject>(TypeEntity.MapObject)
+                .Where(t => t.idObject == saveData.idObject && t.TypeMapObject == TypeMapObject.Mine)
                 .First();
             Data = saveData.data;
             idUnit = saveData.idUnit;

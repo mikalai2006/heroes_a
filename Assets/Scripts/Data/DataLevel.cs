@@ -34,6 +34,7 @@ public class DataUnit
     public List<SaveDataUnit<DataExplore>> explorers;
     // public List<SaveDataUnit<DataSkillSchool>> skillSchools;
     public List<SaveDataUnit<DataEntityMapObject>> resourcesmap;
+    public List<SaveDataUnit<DataEntityDwelling>> dwellings;
 
     public DataUnit()
     {
@@ -47,6 +48,7 @@ public class DataUnit
         explorers = new List<SaveDataUnit<DataExplore>>();
         // skillSchools = new List<SaveDataUnit<DataSkillSchool>>();
         resourcesmap = new List<SaveDataUnit<DataEntityMapObject>>();
+        dwellings = new List<SaveDataUnit<DataEntityDwelling>>();
     }
 }
 
