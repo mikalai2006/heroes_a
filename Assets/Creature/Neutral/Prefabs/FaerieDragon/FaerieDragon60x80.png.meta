@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 29a6246b02426c241bca7fb8cef02141
+guid: 375930caf66c98e428b186a182c7238d
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -119,7 +119,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: StoneGargoyle_0
+      name: FaerieDragon_0
       rect:
         serializedVersion: 2
         x: 0
@@ -133,14 +133,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 079ad437762963e4a923c12dbef24f69
-      internalID: 1615312726
+      spriteID: 3362cb29657a67040b28f78e52eb0731
+      internalID: 838753276
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: StoneGargoyle_1
+      name: FaerieDragon_1
       rect:
         serializedVersion: 2
         x: 60
@@ -154,14 +154,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f1bdcc9fcbe55844c96c64e4586f20bc
-      internalID: 440490998
+      spriteID: e3d1de1d54bf4ef47aecb53e34df8988
+      internalID: 2131482595
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: StoneGargoyle_2
+      name: FaerieDragon_2
       rect:
         serializedVersion: 2
         x: 120
@@ -175,14 +175,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c7c1b822b1d051c4791f8dd88b99f525
-      internalID: 1423672308
+      spriteID: a5f2de02e92dedd4fb7eb1997fb37f43
+      internalID: 1475928240
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: StoneGargoyle_3
+      name: FaerieDragon_3
       rect:
         serializedVersion: 2
         x: 180
@@ -196,14 +196,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 75dec5e7342845b48bcf293185008850
-      internalID: -380442840
+      spriteID: f88c33d0e8a730b4699cb99bad3fabe6
+      internalID: 1981129129
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: StoneGargoyle_4
+      name: FaerieDragon_4
       rect:
         serializedVersion: 2
         x: 240
@@ -217,8 +217,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 407799825219b364eb1dc56629393b06
-      internalID: 1557511317
+      spriteID: 432a2a932a1c548408c20fa7095f2eb3
+      internalID: -1784949018
       vertices: []
       indices: 
       edges: []
@@ -234,11 +234,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      StoneGargoyle_0: 1615312726
-      StoneGargoyle_1: 440490998
-      StoneGargoyle_2: 1423672308
-      StoneGargoyle_3: -380442840
-      StoneGargoyle_4: 1557511317
+      FaerieDragon_0: 838753276
+      FaerieDragon_1: 2131482595
+      FaerieDragon_2: 1475928240
+      FaerieDragon_3: 1981129129
+      FaerieDragon_4: -1784949018
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

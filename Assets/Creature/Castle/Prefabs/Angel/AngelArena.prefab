@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &5760611039377391030
+--- !u!1001 &1429073377770647467
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -10,20 +10,20 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1851675910483808918, guid: 9df1fc771bddcd849aed5086893eb3a5, type: 3}
       propertyPath: m_Name
-      value: FaerieDragon
+      value: AngelArena
       objectReference: {fileID: 0}
     - target: {fileID: 5267992745413332878, guid: 9df1fc771bddcd849aed5086893eb3a5, type: 3}
       propertyPath: m_Size.x
-      value: 1.7142857
+      value: 5.714286
       objectReference: {fileID: 0}
     - target: {fileID: 5267992745413332878, guid: 9df1fc771bddcd849aed5086893eb3a5, type: 3}
       propertyPath: m_Size.y
-      value: 1.9428571
+      value: 4.285714
       objectReference: {fileID: 0}
     - target: {fileID: 5267992745413332878, guid: 9df1fc771bddcd849aed5086893eb3a5, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 838753276, guid: 375930caf66c98e428b186a182c7238d, type: 3}
+      objectReference: {fileID: 871333195, guid: 2b4d69b752328ff44bd1d6d6a48787ef, type: 3}
     - target: {fileID: 5267992745413332878, guid: 9df1fc771bddcd849aed5086893eb3a5, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
@@ -31,7 +31,7 @@ PrefabInstance:
     - target: {fileID: 6076011670535017962, guid: 9df1fc771bddcd849aed5086893eb3a5, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 15684e7510df1a74f89ee900557a423c, type: 2}
+      objectReference: {fileID: 9100000, guid: a7c5c69d18b253246ad0b6bd0db70b5a, type: 2}
     - target: {fileID: 6627406514020417079, guid: 9df1fc771bddcd849aed5086893eb3a5, type: 3}
       propertyPath: m_RootOrder
       value: 0

@@ -14,62 +14,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   idObject: 5912878fb4714a97bc681c484092ad26
   TypeEntity: 10
-  MenuSprite: {fileID: 0}
-  Text:
-    title:
-      m_TableReference:
-        m_TableCollectionName: 
-      m_TableEntryReference:
-        m_KeyId: 0
-        m_Key: 
-      m_FallbackState: 0
-      m_WaitForCompletion: 0
-      m_LocalVariables: []
-    description:
-      m_TableReference:
-        m_TableCollectionName: 
-      m_TableEntryReference:
-        m_KeyId: 0
-        m_Key: 
-      m_FallbackState: 0
-      m_WaitForCompletion: 0
-      m_LocalVariables: []
+  MenuSprite: {fileID: 21300000, guid: 9f61ee62c6925244ca390d732282f564, type: 3}
+  title:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   MapPrefab:
     m_AssetGUID: 11588db93a92c604bb575f3bf1228806
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
-  typeGround: 4
+  TypeGround: 0
   typeInput: 1
-  listTypeNoPath: 
-  DialogText:
-    VisitOk:
-      m_TableReference:
-        m_TableCollectionName: 
-      m_TableEntryReference:
-        m_KeyId: 0
-        m_Key: 
-      m_FallbackState: 0
-      m_WaitForCompletion: 0
-      m_LocalVariables: []
-    VisitNo:
-      m_TableReference:
-        m_TableCollectionName: 
-      m_TableEntryReference:
-        m_KeyId: 0
-        m_Key: 
-      m_FallbackState: 0
-      m_WaitForCompletion: 0
-      m_LocalVariables: []
-    VisitNoResource:
-      m_TableReference:
-        m_TableCollectionName: 
-      m_TableEntryReference:
-        m_KeyId: 0
-        m_Key: 
-      m_FallbackState: 0
-      m_WaitForCompletion: 0
-      m_LocalVariables: []
   TypeFaction: 0
   ArenaModel:
     m_AssetGUID: 
@@ -77,6 +38,7 @@ MonoBehaviour:
     m_SubObjectType: 
     m_EditorAssetChanged: 0
   CreatureParams:
+    Level: 0
     Health: 0
     Attack: 0
     Protection: 0
