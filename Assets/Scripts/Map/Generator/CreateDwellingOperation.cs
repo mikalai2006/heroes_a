@@ -28,14 +28,17 @@ public class CreateDwellingOperation : ILoadingOperation
             {
                 ScriptableEntityTown townArea = (ScriptableEntityTown)area.town.ScriptableData;
 
-                List<GridTileNode> nodes = _root.gridTileHelper.GetAllGridNodes().Where(node =>
-                    node.Empty
-                    && node.Enable
-                    && !node.Road
-                    && !node.Protected
-                    && node.KeyArea == area.id
-                    && _root.gridTileHelper.GetDistanceBetweeenPoints(node.position, area.startPosition) > 10
-                    && _root.gridTileHelper.GetNeighbourList(node).Count >= 4
+                List<GridTileNode> nodes = _root.gridTileHelper.GetAllGridNodes().Where(t =>
+                    t.StateNode.HasFlag(StateNode.Empty)
+                    && !t.StateNode.HasFlag(StateNode.Road)
+                    && !t.StateNode.HasFlag(StateNode.Protected)
+                    // node.Empty
+                    // && node.Enable
+                    // && !node.Road
+                    // && !node.Protected
+                    && t.KeyArea == area.id
+                    && _root.gridTileHelper.GetDistanceBetweeenPoints(t.position, area.startPosition) > 10
+                    && _root.gridTileHelper.GetNeighbourList(t).Count >= 4
                 ).OrderBy(t => Random.value).ToList();
 
                 if (nodes.Count > 0)
@@ -91,6 +94,7 @@ public class CreateDwellingOperation : ILoadingOperation
                                 BaseEntity warrior = UnitManager.SpawnWarrior(nodeWarrior);
 
                                 nodeWarrior.SetProtectedNeigbours(warrior, currentNode);
+                                // currentNode.SetProtectedNode(warrior);
 
                                 nodes.Remove(currentNode);
 

@@ -20,7 +20,10 @@ public class MapEntityHero : BaseMapEntity
         base.Awake();
         _animator = GetComponentInChildren<Animator>();
         _model = transform.Find("Model");
-
+        // var entityHero = (EntityHero)MapObjectClass;
+        // Vector3 moveKoof = entityHero.Data.path[0].OccupiedUnit?
+        //     .ScriptableData.typeInput == TypeInput.Down ? new Vector3(.5f, .0f) : new Vector3(.5f, .5f);
+        // transform.position = entityHero.Position + moveKoof;
         //GameManager.OnBeforeStateChanged += OnChangeGameState;
 
     }
@@ -84,6 +87,7 @@ public class MapEntityHero : BaseMapEntity
         {
             entityHero.Data.path.RemoveAt(0);
             StartCoroutine(MoveHero());
+
         }
 
         switch (newState)
@@ -99,37 +103,58 @@ public class MapEntityHero : BaseMapEntity
 
     IEnumerator MoveHero()
     {
-        var heroEntity = (EntityHero)MapObjectClass;
-        while (heroEntity.Data.path.Count > 0 && _canMove && heroEntity.Data.hit >= 1)
+        var entityHero = (EntityHero)MapObjectClass;
+        while (entityHero.Data.path.Count > 0 && _canMove && entityHero.Data.hit >= 1)
         {
 
-            Vector3 moveKoof = heroEntity.Data.path[0].OccupiedUnit?.ScriptableData.typeInput == TypeInput.Down ? new Vector3(.5f, .0f) : new Vector3(.5f, .5f);
+            // !entityHero.Data.path[0].StateNode.HasFlag(StateNode.Empty)
+            Vector3 moveKoof
+                = entityHero.Data.path[0].OccupiedUnit?.ScriptableData.typeInput == TypeInput.Down
+                    ? new Vector3(.5f, .0f)
+                    : new Vector3(.5f, .5f);
+            Debug.Log($"To = {entityHero.Data.path[0].position} -[{moveKoof}]");
 
-            UpdateAnimate(MapObjectClass.Position, heroEntity.Data.path[0].position);
+            if (entityHero.Data.path[0].StateNode.HasFlag(StateNode.Protected))
+            {
+                entityHero.Data.path[0].ProtectedUnit.MapObjectGameObject.OnGoHero(MapObjectClass.Player); // LevelManager.Instance.GetPlayer(heroEntity.Data.idPlayer)
+
+                GameManager.Instance.ChangeState(GameState.StopMoveHero);
+                _canMove = false;
+                _animator.SetBool("isWalking", false);
+                entityHero.SetPathHero(null);
+                yield break;
+            }
+
+            if (entityHero.Data.path[0].OccupiedUnit != null)
+            {
+                var maoObj = (ScriptableEntityMapObject)entityHero.Data.path[0].OccupiedUnit.ScriptableData;
+                if (maoObj.TypeWorkObject == TypeWorkObject.One)
+                {
+                    entityHero.Data.path[0].OccupiedUnit.MapObjectGameObject.OnGoHero(MapObjectClass.Player);
+                    _canMove = false;
+                    _animator.SetBool("isWalking", false);
+                    yield break;
+                }
+            }
+
+            UpdateAnimate(MapObjectClass.Position, entityHero.Data.path[0].position);
             _animator.SetBool("isWalking", true);
 
             yield return StartCoroutine(
-                SmoothLerp((Vector3)MapObjectClass.Position + moveKoof, (Vector3)heroEntity.Data.path[0].position + moveKoof));
+                SmoothLerp((Vector3)MapObjectClass.Position + moveKoof, (Vector3)entityHero.Data.path[0].position + moveKoof));
 
-            heroEntity.Data.hit -= heroEntity.CalculateHitByNode(heroEntity.Data.path[0]);
-            heroEntity.SetPositionHero(heroEntity.Data.path[0].position);
+            entityHero.Data.hit -= entityHero.CalculateHitByNode(entityHero.Data.path[0]);
+            entityHero.SetPositionHero(entityHero.Data.path[0].position);
 
-            GameManager.Instance.MapManager.DrawCursor(heroEntity.Data.path, heroEntity);
+            GameManager.Instance.MapManager.DrawCursor(entityHero.Data.path, entityHero);
 
-            if (heroEntity.Data.path[0].Protected && heroEntity.Data.path[0].ProtectedUnit != null)
+            if (entityHero.Data.path[0].OccupiedUnit != null)
             {
-                heroEntity.Data.path[0].ProtectedUnit.MapObjectGameObject.OnGoHero(MapObjectClass.Player); // LevelManager.Instance.GetPlayer(heroEntity.Data.idPlayer)
-
-                GameManager.Instance.ChangeState(GameState.StopMoveHero);
+                entityHero.Data.path[0].OccupiedUnit.MapObjectGameObject.OnGoHero(MapObjectClass.Player);
             }
-            if (heroEntity.Data.path[0].OccupiedUnit != null)
-            {
-                heroEntity.Data.path[0].OccupiedUnit.MapObjectGameObject.OnGoHero(MapObjectClass.Player);
-            }
+            onChangeParamsActiveHero?.Invoke(entityHero);
 
-            onChangeParamsActiveHero?.Invoke(heroEntity);
-
-            heroEntity.Data.path.RemoveAt(0);
+            entityHero.Data.path.RemoveAt(0);
         }
 
         GameManager.Instance.ChangeState(GameState.StopMoveHero);
@@ -180,6 +205,7 @@ public class MapEntityHero : BaseMapEntity
         var data = (EntityHero)MapObjectClass;
         data.Data.hit += _hit * data.Data.speed;
     }
+
     private void OnMouseDown()
     {
         // Only allow interaction when it's the hero turn

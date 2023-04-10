@@ -38,9 +38,12 @@ public class CreateArtifactOperation : ILoadingOperation
             Area area = LevelManager.Instance.Level.listArea[x];
 
             List<GridTileNode> nodes = _root.gridTileHelper.GetAllGridNodes().Where(t =>
-                t.Empty
-                && t.Enable
-                && !t.Protected
+                t.StateNode.HasFlag(StateNode.Empty)
+                && !t.StateNode.HasFlag(StateNode.Road)
+                && !t.StateNode.HasFlag(StateNode.Protected)
+                // t.Empty
+                // && t.Enable
+                // && !t.Protected
                 && t.KeyArea == area.id
                 && _root.gridTileHelper.CalculateNeighbours(t) <= 3
                 && _root.gridTileHelper.GetDisableNeighbours(t).count == 2
@@ -61,7 +64,8 @@ public class CreateArtifactOperation : ILoadingOperation
                     GridTileNode nodeWarrior = _root.GetNodeWarrior(currentNode);
 
                     if (nodeWarrior != null
-                        && nodeWarrior.Empty
+                        // && nodeWarrior.Empty
+                        && nodeWarrior.StateNode.HasFlag(StateNode.Empty)
                         && currentNode != null
                         //&& gridTileHelper.CalculateNeighbours(currentNode) < 3
                         )
@@ -86,7 +90,8 @@ public class CreateArtifactOperation : ILoadingOperation
                         BaseEntity warrior = UnitManager.SpawnWarrior(nodeWarrior);
 
                         nodeWarrior.SetProtectedNeigbours(warrior, currentNode);
-                        _root.SetColorForTile(nodeWarrior.position, Color.blue);
+                        // currentNode.SetProtectedNode(warrior);
+                        // _root.SetColorForTile(nodeWarrior.position, Color.blue);
 
                         nodes.Remove(currentNode);
 

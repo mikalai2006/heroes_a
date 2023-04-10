@@ -22,9 +22,10 @@ public class DataDialogMapObject
 
 public enum TypeCheck
 {
-    OnlyOk = 0,
-    Choose = 1,
-    Cost = 2,
+    Default = 0,
+    OnlyOk = 1,
+    Choose = 2,
+    Cost = 3,
 }
 
 public struct DataDialogMapObjectGroup

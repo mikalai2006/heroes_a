@@ -1,29 +1,20 @@
 
 using System;
-using System.Collections;
 using System.Collections.Generic;
 
 using UnityEngine;
 
-[Serializable]
-public enum TypeStateNode
-{
-    Disabled = 0,
-    Enable = 1,
-    // Empty = 2,
-    //Protected = 3,
-}
-
 [Flags]
 public enum StateNode
 {
-    Empty = 1 << 0,
-    Teleport = 1 << 1,
-    Cave = 1 << 2,
-    Town = 1 << 3,
+    Disable = 1 << 0,
+    Empty = 1 << 1,
+    Protected = 1 << 2,
+    Occupied = 1 << 3,
     Road = 1 << 4,
-    Protected = 1 << 5,
-    Disable = 1 << 6,
+    Teleport = 1 << 5,
+    Cave = 1 << 6,
+    Town = 1 << 7,
 }
 
 
@@ -32,25 +23,11 @@ public class GridTileNode : IHeapItem<GridTileNode>
 {
     [NonSerialized] private readonly GridTile<GridTileNode> _grid;
     [NonSerialized] private readonly GridTileHelper _gridHelper;
-    [SerializeField] public StateNode StateNode;
+    [SerializeField] public StateNode StateNode = StateNode.Empty;
     public int X;
     public int Y;
     public int KeyArea = 0;
     public TypeGround TypeGround = TypeGround.None;
-    [SerializeField] private TypeStateNode _state;
-    public TypeStateNode State
-    {
-        get { return _state; }
-        set { _state = value; }
-    }
-
-    //[SerializeField] public bool _isWalkable;
-    public bool Empty => _ocuppiedUnit == null; // _isWalkable && OccupiedUnit == null; // _noPath == false && 
-    public bool Disable => State == TypeStateNode.Disabled;
-    public bool Enable => State == TypeStateNode.Enable;
-
-    [SerializeField] public bool _isRoad = false;
-    public bool Road => _isRoad;
 
     [NonSerialized] public int level;
     [NonSerialized] public Vector3Int position;
@@ -60,6 +37,8 @@ public class GridTileNode : IHeapItem<GridTileNode>
     [NonSerialized] private BaseEntity _protectedUnit = null;
     public BaseEntity ProtectedUnit => _protectedUnit;
     public bool Protected => _protectedUnit != null;
+    public bool IsAllowSpawn =>
+        (StateNode.Empty | ~StateNode.Protected | ~StateNode.Occupied) == (StateNode.Empty | ~StateNode.Protected | ~StateNode.Occupied);
 
     private int heapIndex;
     public int HeapIndex
@@ -83,8 +62,6 @@ public class GridTileNode : IHeapItem<GridTileNode>
     [NonSerialized] public int levelPath = 0;
     [NonSerialized] public bool isCreated = false;
     [NonSerialized] public bool isEdge = false;
-    //[NonSerialized] public bool isNature = false;
-
 
     public GridTileNode(GridTile<GridTileNode> grid, GridTileHelper gridHelper, int x, int y)
     {
@@ -93,8 +70,6 @@ public class GridTileNode : IHeapItem<GridTileNode>
         _grid = grid;
         this.X = x;
         this.Y = y;
-        //_isWalkable = tileData.isWalkable;
-        //typeGround = tileData.typeGround;
     }
 
     public int CompareTo(GridTileNode nodeToCompare)
@@ -105,11 +80,9 @@ public class GridTileNode : IHeapItem<GridTileNode>
         return -compare;
     }
 
-    public void SetState(TypeStateNode state)
+    public void SetDisableNode()
     {
-        _state = state;
-        koofPath = 20;
-
+        StateNode = StateNode.Disable;
     }
 
     public void AddStateNode(StateNode state)
@@ -121,35 +94,69 @@ public class GridTileNode : IHeapItem<GridTileNode>
     {
         StateNode ^= state;
     }
-    public void SetProtectedUnit(BaseEntity unit)
-    {
-        _protectedUnit = unit;
 
-        //if (!Disable)
-        //{
-        //    if (unit == null)
-        //    {
-        //        _state = _ocuppiedUnit != null ? TypeStateNode.Busy : TypeStateNode.Empty;
-        //    } else
-        //    {
-        //        _state = TypeStateNode.Protected;
-        //    }
-        //}
+    /// <summary>
+    ///  Mark node as protected.
+    /// </summary>
+    /// <param name="entity">Entity or null</param>
+    public void SetProtectedUnit(BaseEntity entity)
+    {
+        _protectedUnit = entity;
+        if (entity == null)
+        {
+            StateNode &= ~(StateNode.Protected);
+        }
+        else
+        {
+            StateNode |= StateNode.Protected;
+        }
+#if UNITY_EDITOR
         GameManager.Instance.MapManager.SetColorForTile(
             position,
             _protectedUnit == null ? Color.yellow : Color.red
         );
+#endif
     }
 
-    public void SetOcuppiedUnit(BaseEntity unit)
+    /// <summary>
+    /// Set occupied entity for node.
+    /// </summary>
+    /// <param name="entity">Entity or null</param>
+    public void SetOcuppiedUnit(BaseEntity entity)
     {
-        _ocuppiedUnit = unit;
+        _ocuppiedUnit = entity;
+        if (entity == null)
+        {
+            StateNode &= ~(StateNode.Occupied);
+            StateNode |= StateNode.Empty;
+        }
+        else
+        {
+            StateNode &= ~(StateNode.Empty);
+            StateNode |= StateNode.Occupied;
+        }
+    }
+
+    public void DisableProtectedNeigbours(BaseEntity warriorUnit, GridTileNode protectedNode = null)
+    {
+        List<GridTileNode> nodes = _gridHelper.GetNeighbourList(this, true);
+
+        if (nodes != null || nodes.Count > 0)
+        {
+            for (int i = 0; i < nodes.Count; i++)
+            {
+                if (nodes[i].ProtectedUnit == warriorUnit)
+                {
+                    nodes[i].SetProtectedUnit(null);
+                }
+            }
+        }
+
+        SetProtectedUnit(null);
     }
 
     public void SetProtectedNeigbours(BaseEntity warriorUnit, GridTileNode protectedNode = null)
     {
-        // if (warriorUnit == null) return;
-
         List<GridTileNode> nodes = _gridHelper.GetNeighbourList(this, true);
 
         if (nodes != null || nodes.Count > 0)
@@ -157,21 +164,17 @@ public class GridTileNode : IHeapItem<GridTileNode>
             for (int i = 0; i < nodes.Count; i++)
             {
                 if (
-                    (nodes[i].Enable || !nodes[i].Empty)
-                    && (!nodes[i].Protected || nodes[i].ProtectedUnit == _protectedUnit)
+                    !nodes[i].StateNode.HasFlag(StateNode.Disable)
+                    && !nodes[i].StateNode.HasFlag(StateNode.Protected)
                     )
                 {
-                    nodes[i].SetProtectedUnit(warriorUnit); // ._protectedUnit = warriorUnit;
-                    //Debug.LogWarning($"" +
-                    //$"position=[{nodes[i]._position}]\n" +
-                    //$"ocupiedunit=[{nodes[i].OccupiedUnit?.name}]\n" +
-                    //$"warriorunit=[{nodes[i].ProtectedUnit?.name}]\n"
-                    //);
+                    nodes[i].SetProtectedUnit(warriorUnit);
                 }
             }
         }
 
         SetProtectedUnit(warriorUnit);
+
         if (warriorUnit != null)
         {
             warriorUnit.ProtectedNode = protectedNode;
@@ -180,33 +183,31 @@ public class GridTileNode : IHeapItem<GridTileNode>
         }
     }
 
-
     public void CalculateFCost()
     {
-        fCost = gCost + hCost; // + (int)dataNode.speed;
+        fCost = gCost + hCost;
 
-    }
-    public override string ToString()
-    {
-        return "GridTileNode:::" +
-            "[x" + position.x + ",y" + position.y + "] \n" +
-            "Empty=" + Empty + ",\n" +
-            "Disable=" + Disable + ",\n" +
-            "Enable=" + Enable + ",\n" +
-            "Protected=" + Protected + ",\n" +
-            "Road=" + Road + ",\n" +
-            "keyArea=" + KeyArea + ",\n" +
-            "typeGround=" + TypeGround + ",\n" +
-            "OccupiedUnit=" + OccupiedUnit?.ToString() + ",\n" +
-            "ProtectedUnit=" + ProtectedUnit?.ToString() + ",\n" +
-            "countNeighbours=" + countRelatedNeighbors + ",\n" +
-            "(gCost=" + gCost + ") (hCost=" + hCost + ") (fCost=" + fCost + ")";
     }
 
     public void SetAsRoad()
     {
-        koofPath = 2;
-        _isRoad = true;
+        // koofPath = 2;
+        StateNode |= StateNode.Road;
     }
+
+#if UNITY_EDITOR
+    public override string ToString()
+    {
+        return "GridTileNode:::" +
+            "keyArea=" + KeyArea + ",\n" +
+            "[x" + position.x + ",y" + position.y + "] \n" +
+            "typeGround=" + TypeGround + ",\n" +
+            "OccupiedUnit=" + OccupiedUnit?.ToString() + ",\n" +
+            "StateNode=" + Convert.ToString((byte)StateNode, 2) + ",\n" +
+            "ProtectedUnit=" + ProtectedUnit?.ToString() + ",\n" +
+            "countNeighbours=" + countRelatedNeighbors + ",\n" +
+            "(gCost=" + gCost + ") (hCost=" + hCost + ") (fCost=" + fCost + ")";
+    }
+#endif
 
 }

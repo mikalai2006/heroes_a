@@ -26,10 +26,13 @@ public class CreateMinesOperation : ILoadingOperation
             Area area = LevelManager.Instance.Level.listArea[keyArea];
 
             List<GridTileNode> nodes = _root.gridTileHelper.GetAllGridNodes().Where(node =>
-                node.Empty
-                && node.Enable
-                && !node.Road
-                && !node.Protected
+                node.StateNode.HasFlag(StateNode.Empty)
+                && !node.StateNode.HasFlag(StateNode.Road)
+                && !node.StateNode.HasFlag(StateNode.Protected)
+                // node.Empty
+                // && node.Enable
+                // && !node.Road
+                // && !node.Protected
                 && node.KeyArea == area.id
                 && _root.gridTileHelper.GetDisableNeighbours(node).bottom.Count == 0
                 && _root.gridTileHelper.GetDisableNeighbours(node).top.Count >= 2
@@ -48,14 +51,18 @@ public class CreateMinesOperation : ILoadingOperation
                 {
                     GridTileNode currentNode = nodes[Random.Range(0, nodes.Count)];
 
-                    // NeighboursNature disableNeighbours
-                    //     = _root.gridTileHelper.GetDisableNeighbours(currentNode);
-
                     GridTileNode nodeWarrior = _root.GetNodeWarrior(currentNode);
 
                     if (
                         currentNode != null
                         && nodeWarrior != null
+                        && currentNode.StateNode.HasFlag(StateNode.Empty)
+                        && !currentNode.StateNode.HasFlag(StateNode.Road)
+                        && !currentNode.StateNode.HasFlag(StateNode.Protected)
+                        // && currentNode.Empty
+                        // && currentNode.Enable
+                        // && !currentNode.Road
+                        // && !currentNode.Protected
                         && _root.gridTileHelper.CalculateNeighbours(currentNode) >= 5
                         )
                     {
@@ -81,9 +88,10 @@ public class CreateMinesOperation : ILoadingOperation
                         );
                         UnitManager.SpawnEntityToNode(currentNode, entity);
 
-                        // BaseEntity warrior = UnitManager.SpawnWarrior(nodeWarrior);
+                        BaseEntity warrior = UnitManager.SpawnWarrior(nodeWarrior);
 
-                        // nodeWarrior.SetProtectedNeigbours(warrior, currentNode);
+                        // currentNode.SetProtectedNode(warrior);
+                        nodeWarrior.SetProtectedNeigbours(warrior, currentNode);
 
                         nodes.Remove(currentNode);
 

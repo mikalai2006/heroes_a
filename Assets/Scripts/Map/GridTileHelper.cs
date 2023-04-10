@@ -66,6 +66,7 @@ public class GridTileHelper
 
         GridTileNode startNode = _gridTile.GetGridObject(start);
         GridTileNode startNodeTrigger = startNode;
+        GridTileNode endNodeF = _gridTile.GetGridObject(end); ;
         GridTileNode endNode;
         if (isTrigger)
         {
@@ -76,7 +77,8 @@ public class GridTileHelper
             endNode = _gridTile.GetGridObject(end);
         }
 
-        if (!startNodeTrigger.Empty)
+        // if (!startNodeTrigger.Empty)
+        if (!startNodeTrigger.StateNode.HasFlag(StateNode.Empty))
         {
             startNode = _gridTile.GetGridObject(start - new Vector3Int(0, 1, 0));
         }
@@ -111,6 +113,23 @@ public class GridTileHelper
 
             //GridTileNode currentNode = GetLowestCostNode(openList);
             //GameManager.Instance.mapManager.SetTestColor(currentNode._position, Color.blue);
+            if (currentNode.ProtectedUnit != null
+                && currentNode.ProtectedUnit == endNode.ProtectedUnit
+                && currentNode.OccupiedUnit == null)
+            {
+                // final
+                List<GridTileNode> pathList = CalculatePath(currentNode);
+                // pathList.Add(currentNode.ProtectedUnit.OccupiedNode);
+                if (!startNodeTrigger.StateNode.HasFlag(StateNode.Empty))
+                {
+                    pathList.Reverse();
+                    pathList.Add(startNodeTrigger);
+                    pathList.Reverse();
+                }
+
+                return pathList;
+            }
+
 
             if (currentNode == endNode)
             {
@@ -120,7 +139,7 @@ public class GridTileHelper
                 {
                     pathList.Add(_gridTile.GetGridObject(end));
                 }
-                if (!startNodeTrigger.Empty)
+                if (!startNodeTrigger.StateNode.HasFlag(StateNode.Empty))
                 {
                     pathList.Reverse();
                     pathList.Add(startNodeTrigger);
@@ -137,35 +156,27 @@ public class GridTileHelper
             {
                 if (closedSet.Contains(neighbourNode)) continue;
 
-                //GridTileNode nodeTile = gridTile.getGridObject(neighbourNode._position);
-                //bool mayBeWalked = neighbourNode.Walkable || (!neighbourNode.Walkable
-                //        && neighbourNode.OccupiedUnit == endNode.ProtectedUnit
-                //        && neighbourNode.OccupiedUnit != null
-                //        );
                 bool walk = (
-                    neighbourNode.Empty
-                    && neighbourNode.Enable
+                    // neighbourNode.Empty
+                    // && neighbourNode.Enable
+                    neighbourNode.StateNode.HasFlag(StateNode.Empty)
                     && (
-                        !neighbourNode.Protected
+                        !neighbourNode.StateNode.HasFlag(StateNode.Protected)
                         || (
-                            neighbourNode.Protected
+                            neighbourNode.StateNode.HasFlag(StateNode.Protected)
                             && neighbourNode.ProtectedUnit == endNode.ProtectedUnit
                             )
                         )
                     )
                     || (
-                    !endNode.Empty
+                    !endNode.StateNode.HasFlag(StateNode.Empty)
                     // && neighbourNode.Enable
                     // endNode.OccupiedUnit.typeInput == TypeInput.Down &&
                     && endNode.ProtectedUnit == neighbourNode.ProtectedUnit
                     && endNode.OccupiedUnit == neighbourNode.OccupiedUnit // TODO
                     )
-                    //|| (
-                    //endNode.Protected &&
-                    //endNode.ProtectedUnit == neighbourNode.ProtectedUnit
-                    //)
                     || ignoreNotWalkable;
-                if ((!walk || neighbourNode.Disable) && !ignoreNotWalkable)
+                if ((!walk || neighbourNode.StateNode.HasFlag(StateNode.Disable)) && !ignoreNotWalkable)
                 {
                     closedSet.Add(neighbourNode);
                     continue;
@@ -217,7 +228,7 @@ public class GridTileHelper
 
             foreach (GridTileNode neighbourNode in GetNeighbourList(currentNode, true))
             {
-                if (neighbourNode.Disable)
+                if (neighbourNode.StateNode.HasFlag(StateNode.Disable))
                 {
                     removedSet.Add(neighbourNode);
                     continue;
@@ -521,12 +532,12 @@ public class GridTileHelper
         {
             //left
             GridTileNode left = GetNode(currentNode.X - 1, currentNode.Y);
-            if (left.Disable && left.Empty) neighbours.left.Add(left);
+            if (left.StateNode.HasFlag(StateNode.Disable)) neighbours.left.Add(left);
             // left down
             if (currentNode.Y - 1 >= 0)
             {
                 GridTileNode leftdown = GetNode(currentNode.X - 1, currentNode.Y - 1);
-                if (leftdown.Disable && leftdown.Empty)
+                if (leftdown.StateNode.HasFlag(StateNode.Disable))
                 {
                     neighbours.left.Add(leftdown);
                     neighbours.bottom.Add(leftdown);
@@ -536,7 +547,7 @@ public class GridTileHelper
             if (currentNode.Y + 1 < _gridTile.GetHeight())
             {
                 GridTileNode leftup = GetNode(currentNode.X - 1, currentNode.Y + 1);
-                if (leftup.Disable && leftup.Empty)
+                if (leftup.StateNode.HasFlag(StateNode.Disable))
                 {
                     neighbours.top.Add(leftup);
                     neighbours.left.Add(leftup);
@@ -548,12 +559,12 @@ public class GridTileHelper
         {
             // right
             GridTileNode right = GetNode(currentNode.X + 1, currentNode.Y);
-            if (right.Disable && right.Empty) neighbours.right.Add(right);
+            if (right.StateNode.HasFlag(StateNode.Disable)) neighbours.right.Add(right);
             // right down
             if (currentNode.Y - 1 >= 0)
             {
                 GridTileNode rightDown = GetNode(currentNode.X + 1, currentNode.Y - 1);
-                if (rightDown.Disable && rightDown.Empty)
+                if (rightDown.StateNode.HasFlag(StateNode.Disable))
                 {
                     neighbours.right.Add(rightDown);
                     neighbours.bottom.Add(rightDown);
@@ -563,7 +574,7 @@ public class GridTileHelper
             if (currentNode.Y + 1 < _gridTile.GetHeight())
             {
                 GridTileNode rightUp = GetNode(currentNode.X + 1, currentNode.Y + 1);
-                if (rightUp.Disable && rightUp.Empty)
+                if (rightUp.StateNode.HasFlag(StateNode.Disable))
                 {
                     neighbours.right.Add(rightUp);
                     neighbours.top.Add(rightUp);
@@ -575,13 +586,13 @@ public class GridTileHelper
         if (currentNode.Y - 1 >= 0)
         {
             GridTileNode down = GetNode(currentNode.X, currentNode.Y - 1);
-            if (down.Disable && down.Empty) neighbours.bottom.Add(down);
+            if (down.StateNode.HasFlag(StateNode.Disable)) neighbours.bottom.Add(down);
         }
         // up
         if (currentNode.Y + 1 < _gridTile.GetHeight())
         {
             GridTileNode up = GetNode(currentNode.X, currentNode.Y + 1);
-            if (up.Disable && up.Empty) neighbours.top.Add(up);
+            if (up.StateNode.HasFlag(StateNode.Disable)) neighbours.top.Add(up);
         }
         neighbours.count = neighbours.bottom.Count + neighbours.top.Count
             + neighbours.left.Count + neighbours.right.Count;
@@ -647,7 +658,11 @@ public class GridTileHelper
         int countWalkableNeighbours = 0;
         for (int i = 0; i < neighbours.Count; i++)
         {
-            if (neighbours[i].Empty && neighbours[i].Enable && !neighbours[i].Protected)
+            // if (neighbours[i].Empty && neighbours[i].Enable && !neighbours[i].Protected)
+            if (
+                neighbours[i].StateNode.HasFlag(StateNode.Empty)
+                && !neighbours[i].StateNode.HasFlag(StateNode.Protected)
+                )
             {
                 countWalkableNeighbours++;
             }
@@ -662,11 +677,12 @@ public class GridTileHelper
         for (int i = 0; i < neighbours.Count; i++)
         {
             if (
-                neighbours[i].Empty
-                && neighbours[i].Enable
-                // && neighbours[i].typeGround == node.typeGround
+                // neighbours[i].Empty
+                // && neighbours[i].Enable
+                // && !neighbours[i].Protected
+                neighbours[i].StateNode.HasFlag(StateNode.Empty)
+                && !neighbours[i].StateNode.HasFlag(StateNode.Protected)
                 && neighbours[i].KeyArea == node.KeyArea
-                && !neighbours[i].Protected
                 )
             {
                 countWalkableNeighbours++;
@@ -686,10 +702,10 @@ public class GridTileHelper
     {
         color = color == null ? Color.black : color;
 
-        node.SetState(TypeStateNode.Disabled);
-        node.AddStateNode(StateNode.Disable);
+        //node.SetState(TypeStateNode.Disabled);
+        node.SetDisableNode();
         GameManager.Instance.MapManager.SetColorForTile(node.position, color);
-        // SetColorForTile(node._position, color);
+
         if (listNoPath == null) return;
 
         if (listNoPath.Count > 0)
@@ -704,7 +720,6 @@ public class GridTileHelper
             }
         }
     }
-
 
     /// <summary>
     /// Create list nodes of by list no path option

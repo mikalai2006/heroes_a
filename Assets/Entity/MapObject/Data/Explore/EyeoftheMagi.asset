@@ -30,7 +30,7 @@ MonoBehaviour:
     m_SubObjectType: 
     m_EditorAssetChanged: 0
   TypeGround: 1
-  typeInput: 1
+  typeInput: 0
   TypeWorkAttribute: 0
   Attributes: []
   listTypeNoPath: 

@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 [System.Serializable]
 public abstract class BaseMapEntity : MonoBehaviour, IPointerClickHandler
 {
-    [NonSerialized] protected BaseEntity MapObjectClass;
+    [SerializeField] protected BaseEntity MapObjectClass;
     public BaseEntity GetMapObjectClass => MapObjectClass;
     public virtual void InitUnit(BaseEntity mapObject)
     {

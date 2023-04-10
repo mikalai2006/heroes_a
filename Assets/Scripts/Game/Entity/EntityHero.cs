@@ -71,7 +71,7 @@ public class EntityHero : BaseEntity, ISaveDataPlay
 
     public void SetPositionHero(Vector3Int newPosition)
     {
-        MapObjectGameObject.transform.position = newPosition;
+        // MapObjectGameObject.transform.position = newPosition;// + new Vector3(.5f, .5f);
         Position = newPosition;
         SetPositionCamera(newPosition);
         GameManager.Instance.MapManager.SetColorForTile(newPosition, Color.cyan);
@@ -94,15 +94,15 @@ public class EntityHero : BaseEntity, ISaveDataPlay
         // hero.SetPlayer(_player);
     }
 
-    public void SetPathHero(List<GridTileNode> _path)
+    public void SetPathHero(List<GridTileNode> _path = null)
     {
         Data.path = _path;
         //for (int i = 1; i < path.Count; i++)
         //{
         //    HeroData.path.Add(path[i]._position);
-
+        GameManager.Instance.MapManager.DrawCursor(Data.path, this);
         //}
-        Data.nextPosition = Data.path[Data.path.Count - 1].position;
+        // Data.nextPosition = _path == null ?  : Data.path[Data.path.Count - 1].position;
     }
 
     public override void SetPlayer(Player player)

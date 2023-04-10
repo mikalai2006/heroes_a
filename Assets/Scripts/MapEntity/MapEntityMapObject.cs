@@ -61,10 +61,14 @@ public class MapEntityMapObject : BaseMapEntity, IDialogMapObjectOperation
     public async override void OnGoHero(Player player)
     {
         base.OnGoHero(player);
+
+        EntityMapObject entity = (EntityMapObject)MapObjectClass;
+        ScriptableEntityMapObject configData = (ScriptableEntityMapObject)MapObjectClass.ScriptableData;
         DataResultDialog result = await OnTriggeredHero();
         if (result.isOk)
         {
             MapObjectClass.SetPlayer(player);
+            player.ActiveHero.SetPathHero(null);
 
         }
         else

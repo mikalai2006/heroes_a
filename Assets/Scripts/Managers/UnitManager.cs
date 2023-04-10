@@ -114,15 +114,27 @@ public static class UnitManager
 
         entity.OccupiedNode = node;
         node.SetOcuppiedUnit(entity);
+        // node.SetState(TypeStateNode.Disabled);
 
         ScriptableEntityMapObject configData = (ScriptableEntityMapObject)entity.ScriptableData;
         if (configData.RulesDraw.Count > 0)
         {
-            GameManager.Instance.MapManager
-                .GridTileHelper().SetDisableNode(node, configData.RulesDraw, Color.red);
+            // GameManager.Instance.MapManager
+            //     .GridTileHelper().SetOccupiedNodes(node, configData.RulesDraw, Color.red);
+            List<GridTileNode> list
+                = GameManager.Instance.MapManager.gridTileHelper.GetNodeListAsNoPath(node, configData.RulesDraw);
+            if (list.Count > 0)
+            {
+                foreach (GridTileNode nodePath in list)
+                {
+                    GameManager.Instance.MapManager.SetColorForTile(nodePath.position, Color.black);
+                    nodePath.SetOcuppiedUnit(entity);
+                    // SetDisableNode(nodePath, null, color);
+                }
+            }
         }
 
-        GameManager.Instance.MapManager.SetColorForTile(pos, Color.magenta);
+        GameManager.Instance.MapManager.SetColorForTile(pos, Color.white);
 
         return entity;
     }

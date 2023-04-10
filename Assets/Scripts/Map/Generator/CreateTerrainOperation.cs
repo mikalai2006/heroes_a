@@ -36,8 +36,8 @@ public class CreateTerrainOperation : ILoadingOperation
 
                 _root._tileMap.SetTile(pos, drawRule);
 
-                tileNode.SetState(TypeStateNode.Enable);
-                tileNode.AddStateNode(StateNode.Empty);
+                // tileNode.SetState(TypeStateNode.Enable);
+                // tileNode.AddStateNode(StateNode.Empty);
 
                 if (x == 0 || y == 0 || x == _root.gameModeData.width - 1 || y == _root.gameModeData.height - 1)
                 {
@@ -94,7 +94,7 @@ public class CreateTerrainOperation : ILoadingOperation
 
                 //root.SetColorForTile(node._position, Color.green);
 
-                _root.gridTileHelper.SetDisableNode(node, tileForDraw.listTypeNoPath, Color.white);
+                _root.gridTileHelper.SetDisableNode(node, tileForDraw.listTypeNoPath, Color.black);
 
             }
 

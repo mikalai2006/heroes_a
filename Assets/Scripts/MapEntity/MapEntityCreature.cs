@@ -18,9 +18,9 @@ public class MapEntityCreature : BaseMapEntity, IDialogMapObjectOperation
 
         if (result.isOk)
         {
-            MapObjectClass.OccupiedNode.SetProtectedNeigbours(null);
+            MapObjectClass.OccupiedNode.DisableProtectedNeigbours(MapObjectClass);
 
-            MapObjectClass.OccupiedNode.SetOcuppiedUnit(null);
+            // TODO ARENA
 
             Destroy(gameObject);
         }
@@ -48,6 +48,7 @@ public class MapEntityCreature : BaseMapEntity, IDialogMapObjectOperation
             // Header = string.Format("{0} {1}", stringCountWarriors.GetLocalizedString(), title),
             // Description = message.GetLocalizedString(),
             Sprite = MapObjectClass.ScriptableData.MenuSprite,
+            TypeCheck = TypeCheck.Default
         };
 
         var dialogWindow = new DialogMapObjectProvider(dialogData);

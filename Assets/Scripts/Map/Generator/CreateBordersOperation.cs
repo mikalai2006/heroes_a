@@ -40,8 +40,9 @@ public class CreateBordersOperation : ILoadingOperation
 
         List<GridTileNode> nodes = _root.gridTileHelper.GetAllGridNodes().Where(t =>
             _root.gridTileHelper.CalculateNeighboursByArea(t) < 4
-            && t.Empty
-            && t.Enable
+            && !t.StateNode.HasFlag(StateNode.Disable)
+            // && t.Empty
+            // && t.Enable
             //&& !t.isEdge
             && (
                 t.X > 1 &&
@@ -53,7 +54,8 @@ public class CreateBordersOperation : ILoadingOperation
 
         foreach (GridTileNode tileNode in nodes)
         {
-            if (tileNode.Empty && tileNode.Enable)
+            //tileNode.Empty && tileNode.Enable
+            if (!tileNode.StateNode.HasFlag(StateNode.Disable))
             {
 
                 TileLandscape tileData = _root._dataTypeGround[tileNode.TypeGround];
@@ -86,8 +88,9 @@ public class CreateBordersOperation : ILoadingOperation
         foreach (GridTileNode tileNode in _root.gridTileHelper.GetAllGridNodes().Where(t =>
             t.isEdge
             && _root.gridTileHelper.CalculateNeighbours(t) >= 5
-            && t.Empty
-            && t.Enable
+            && !t.StateNode.HasFlag(StateNode.Disable)
+        // && t.Empty
+        // && t.Enable
         ))
         {
             TileLandscape tileData = _root._dataTypeGround[tileNode.TypeGround];
@@ -137,7 +140,11 @@ public class CreateBordersOperation : ILoadingOperation
                 //float minCountNoMountain = area.countNode * LevelManager.Instance.koofMountains;
 
                 // Create Mountain.
-                if (isMountain && currentNode.Empty && currentNode.Enable && _root.gridTileHelper.GetNeighbourListWithTypeGround(currentNode).Count > 3)
+                if (
+                    isMountain
+                    && !currentNode.StateNode.HasFlag(StateNode.Disable)
+                    && _root.gridTileHelper.GetNeighbourListWithTypeGround(currentNode).Count > 3
+                    )
                 {
                     TileLandscape tileData = _root._dataTypeGround[currentNode.TypeGround];
 
@@ -147,8 +154,8 @@ public class CreateBordersOperation : ILoadingOperation
                     ).ToList(); //  _tileData.cornerTiles.Concat(_tileData.natureTiles).ToList();
 
                     TileNature tileForDraw = listTileForDraw[Random.Range(0, listTileForDraw.Count)];
-
-                    if (currentNode.Empty && currentNode.Enable)
+                    // currentNode.Empty && currentNode.Enable
+                    if (!currentNode.StateNode.HasFlag(StateNode.Disable))
                     {
                         _root._tileMapNature.SetTile(currentNode.position, tileForDraw);
 

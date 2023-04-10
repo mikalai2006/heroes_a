@@ -24,10 +24,13 @@ public class CreateNatureOperation : ILoadingOperation
             Area area = LevelManager.Instance.Level.listArea[x];
 
             List<GridTileNode> nodes = _root.gridTileHelper.GetAllGridNodes().Where(t =>
-                t.Empty
-                && t.Enable
-                && !t.Road
-                && !t.Protected
+                t.StateNode.HasFlag(StateNode.Empty)
+                && !t.StateNode.HasFlag(StateNode.Road)
+                && !t.StateNode.HasFlag(StateNode.Protected)
+                // t.Empty
+                // && t.Enable
+                // && !t.Road
+                // && !t.Protected
                 && t.KeyArea == area.id
                 && _root.gridTileHelper.CalculateNeighbours(t) > 6
             ).OrderBy(t => Random.value).ToList();

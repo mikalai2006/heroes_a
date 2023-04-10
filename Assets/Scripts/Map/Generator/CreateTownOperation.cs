@@ -33,9 +33,10 @@ public class CreateTownOperation : ILoadingOperation
             //Debug.LogWarning($"Spawn town for {area.typeGround}-{area.isFraction}");
 
             List<GridTileNode> listGridNode = _root.gridTileHelper.GetAllGridNodes().Where(t =>
-                t.Empty
-                && !t.Protected
-                && t.Enable
+                t.StateNode.HasFlag(StateNode.Empty)
+                // t.Empty
+                // && !t.Protected
+                // && t.Enable
                 && t.KeyArea == area.id
                 && _root.gridTileHelper.CalculateNeighbours(t) == 8
             // && gridTileHelper.GetDistanceBetweeenPoints(t._position, LevelManager.Instance.GetArea(t.keyArea).startPosition) < 10 
@@ -72,7 +73,7 @@ public class CreateTownOperation : ILoadingOperation
                         }
                         EntityHero newEntity = new EntityHero(node, configTown.TypeFaction);
                         UnitManager.SpawnEntityToNode(node, newEntity);
-                        node.SetOcuppiedUnit(newEntity);
+                        // node.SetOcuppiedUnit(newEntity);
                         LevelManager.Instance.GetArea(area.id).hero = newEntity;
                         newEntity.SetPlayer(player);
                     }
@@ -84,8 +85,9 @@ public class CreateTownOperation : ILoadingOperation
                 {
                     var listNodes = _root.gridTileHelper.GetAllGridNodes().Where(t =>
                     t.KeyArea == area.id
-                    && t.Empty
-                    && t.Enable
+                    && t.StateNode.HasFlag(StateNode.Empty)
+                    // && t.Empty
+                    // && t.Enable
                     && _root.gridTileHelper.GetDistanceBetweeenPoints(t.position, node.position) >= 4
                     && _root.gridTileHelper.GetDistanceBetweeenPoints(t.position, node.position) <= 10
                     && _root.gridTileHelper.CalculateNeighboursByArea(t) == 8

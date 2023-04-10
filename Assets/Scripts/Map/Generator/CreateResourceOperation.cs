@@ -24,9 +24,11 @@ public class CreateResourceOperation : ILoadingOperation
             Area area = LevelManager.Instance.Level.listArea[x];
 
             List<GridTileNode> nodes = _root.gridTileHelper.GetAllGridNodes().Where(t =>
-                t.Empty
-                && t.Enable
-                && !t.Protected
+                t.StateNode.HasFlag(StateNode.Empty)
+                && !t.StateNode.HasFlag(StateNode.Protected)
+                // t.Empty
+                // && t.Enable
+                // && !t.Protected
                 && t.KeyArea == area.id
                 && _root.gridTileHelper.CalculateNeighbours(t) > 2
                 && _root.gridTileHelper.GetDistanceBetweeenPoints(t.position, area.startPosition) > 5

@@ -145,9 +145,10 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
                 .GetGridObject(new Vector3Int(dataGame.dataMap.mapNode[i].X, dataGame.dataMap.mapNode[i].Y));
             node.TypeGround = dataGame.dataMap.mapNode[i].TypeGround;
             node.KeyArea = dataGame.dataMap.mapNode[i].KeyArea;
-            node.State = dataGame.dataMap.mapNode[i].State;
+            // node.State = dataGame.dataMap.mapNode[i].State;
+            node.StateNode = dataGame.dataMap.mapNode[i].StateNode;
 
-            if (dataGame.dataMap.mapNode[i]._isRoad)
+            if (dataGame.dataMap.mapNode[i].StateNode.HasFlag(StateNode.Road))
             {
                 _tileMapRoad.SetTile(node.position, _tileRoad.tileRule);
                 node.SetAsRoad();
@@ -458,7 +459,8 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
     public void CreateCreeks(GridTileNode startNode)
     {
         GridTileNode randomNode = gridTileHelper.GetAllGridNodes().Where(t =>
-            t.Disable
+            // t.Disable
+            t.StateNode.HasFlag(StateNode.Disable)
             && t.KeyArea == startNode.KeyArea
             && (gridTileHelper.GetDistanceBetweeenPoints(t.position, startNode.position) > 5
             && gridTileHelper.GetDistanceBetweeenPoints(t.position, startNode.position) < 15)
@@ -496,32 +498,33 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
         //{
         //    return nodeWarrior;
         //}
-        if (nodeWarrior == null || !nodeWarrior.Empty || nodeWarrior.Disable || nodeWarrior.Protected)
+        if (nodeWarrior == null || !nodeWarrior.IsAllowSpawn)
         {
             nodeWarrior = gridTileHelper.GridTile.GetGridObject(currentNode.position + new Vector3Int(1, 0, 0));
         }
-        if (nodeWarrior == null || !nodeWarrior.Empty || nodeWarrior.Disable || nodeWarrior.Protected)
+        if (nodeWarrior == null || !nodeWarrior.IsAllowSpawn)
         {
             nodeWarrior = gridTileHelper.GridTile.GetGridObject(currentNode.position + new Vector3Int(-1, 0, 0));
         }
 
-        if (nodeWarrior == null || !nodeWarrior.Empty || nodeWarrior.Disable || nodeWarrior.Protected)
+        if (nodeWarrior == null || !nodeWarrior.IsAllowSpawn)
         {
             nodeWarrior = gridTileHelper.GridTile.GetGridObject(currentNode.position + new Vector3Int(0, 1, 0));
         }
-        if (nodeWarrior == null || !nodeWarrior.Empty || nodeWarrior.Disable || nodeWarrior.Protected)
+        if (nodeWarrior == null || !nodeWarrior.IsAllowSpawn)
         {
             nodeWarrior = gridTileHelper.GridTile.GetGridObject(currentNode.position + new Vector3Int(1, 1, 0));
         }
-        if (nodeWarrior == null || !nodeWarrior.Empty || nodeWarrior.Disable || nodeWarrior.Protected)
+        if (nodeWarrior == null || !nodeWarrior.IsAllowSpawn)
         {
             nodeWarrior = gridTileHelper.GridTile.GetGridObject(currentNode.position + new Vector3Int(1, -1, 0));
         }
-        if (nodeWarrior == null || !nodeWarrior.Empty || nodeWarrior.Disable || nodeWarrior.Protected)
+        if (nodeWarrior == null || !nodeWarrior.IsAllowSpawn)
         {
             nodeWarrior = gridTileHelper.GridTile.GetGridObject(currentNode.position + new Vector3Int(-1, 1, 0));
         }
-        if (nodeWarrior == null || !nodeWarrior.Empty || nodeWarrior.Disable || nodeWarrior.Protected)
+        //nodeWarrior.Empty || nodeWarrior.Disable || nodeWarrior.Protected
+        if (nodeWarrior == null || !nodeWarrior.IsAllowSpawn)
         {
             nodeWarrior = gridTileHelper.GridTile.GetGridObject(currentNode.position + new Vector3Int(-1, -1, 0));
         }
@@ -535,8 +538,9 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
             t != node
             && gridTileHelper.CalculateNeighbours(t) > 4
             && t.KeyArea == node.KeyArea
-            && t.Empty
-            && t.Enable
+            // && t.Empty
+            // && t.Enable
+            && t.StateNode.HasFlag(StateNode.Empty)
         // && gridTileHelper.GetDisableNeighbours(t).bottom.Count == 0
         // && gridTileHelper.GetDisableNeighbours(t).top.Count < 2
         ).ToList();
@@ -573,9 +577,10 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
                     t != node
                     //&& gridTileHelper.CalculateNeighbours(t) > 4
                     && t.KeyArea == node.KeyArea
-                    && t.Empty
-                    && t.Enable
-                    && !t.Protected
+                    && t.StateNode.HasFlag(StateNode.Empty)
+                    // && t.Empty
+                    // && t.Enable
+                    // && !t.Protected
                     && t != townNode
                     && gridTileHelper.GetDistanceBetweeenPoints(t.position, townNode.position) > 4
                 ).ToList();
@@ -697,9 +702,9 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
         TileBase clickedTile = _tileMap.GetTile(tilePos);
         GridTileNode node = gridTileHelper.GetNode(tilePos.x, tilePos.y);
 
-        if (clickedTile != null && !node.Disable)
+        if (clickedTile != null && !node.StateNode.HasFlag(StateNode.Disable))
         {
-            if (node.OccupiedUnit == null || node.Protected)
+            if (node.OccupiedUnit == null || node.StateNode.HasFlag(StateNode.Protected))
             {
                 LevelManager.Instance.ActivePlayer.FindPathForHero(tilePos, false, true);
             }
@@ -714,6 +719,7 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
     {
         _tileMapCursor.ClearAllTiles();
 
+        if (paths == null) { return; }
         if (paths.Count == 0) { return; }
 
         float countDistance = hero.Data.hit;
@@ -918,23 +924,23 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
         }
     }
 
-    public void SetTextMeshNode(GridTileNode tileNode, string textString = "")
-    {
-        Vector3 posText = tileNode.position;
-        GameObject text;
-        if (!listTextMesh.TryGetValue(posText, out text))
-        {
-            text = Instantiate(_textMesh, posText, Quaternion.identity);
-            text.transform.SetParent(_tileMapText.transform);
-            listTextMesh.Add(posText, text);
-        }
-        text.GetComponent<TextMeshPro>().text = textString != "" ? textString : string.Format("nei: {0} l:{1} np: {2} w: {3}",
-            tileNode.countRelatedNeighbors,
-            tileNode.level,
-            tileNode.Protected,
-            tileNode.Empty
-            );
-    }
+    // public void SetTextMeshNode(GridTileNode tileNode, string textString = "")
+    // {
+    //     Vector3 posText = tileNode.position;
+    //     GameObject text;
+    //     if (!listTextMesh.TryGetValue(posText, out text))
+    //     {
+    //         text = Instantiate(_textMesh, posText, Quaternion.identity);
+    //         text.transform.SetParent(_tileMapText.transform);
+    //         listTextMesh.Add(posText, text);
+    //     }
+    //     text.GetComponent<TextMeshPro>().text = textString != "" ? textString : string.Format("nei: {0} l:{1} np: {2} w: {3}",
+    //         tileNode.countRelatedNeighbors,
+    //         tileNode.level,
+    //         tileNode.Protected,
+    //         tileNode.Empty
+    //         );
+    // }
 
     public void ResetUnitManager()
     {

@@ -121,7 +121,7 @@ MonoBehaviour:
         Artifact: []
         isOne: 0
     probability: 0.30000001192092896
-  listTypeNoPath: 080000000c000000
+  listTypeNoPath: 
   TypeWorkObject: 3
   TypeMapObject: 2
   Effects: []

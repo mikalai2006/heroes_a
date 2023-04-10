@@ -26,10 +26,13 @@ public class CreateExploreOperation : ILoadingOperation
             Area area = LevelManager.Instance.Level.listArea[x];
 
             List<GridTileNode> nodes = _root.gridTileHelper.GetAllGridNodes().Where(t =>
-                t.Empty
-                && t.Enable
-                && !t.Road
-                && !t.Protected
+                t.StateNode.HasFlag(StateNode.Empty)
+                && !t.StateNode.HasFlag(StateNode.Road)
+                && !t.StateNode.HasFlag(StateNode.Protected)
+                // t.Empty
+                // && t.Enable
+                // && !t.Road
+                // && !t.Protected
                 && t.KeyArea == area.id
                 && _root.gridTileHelper.CalculateNeighbours(t) == 8
                 && _root.gridTileHelper.GetDistanceBetweeenPoints(t.position, area.startPosition) > 10
@@ -48,7 +51,8 @@ public class CreateExploreOperation : ILoadingOperation
                     GridTileNode nodeWarrior = _root.GetNodeWarrior(currentNode);
 
                     if (nodeWarrior != null
-                        && nodeWarrior.Empty
+                        && currentNode.StateNode.HasFlag(StateNode.Empty)
+                        // && nodeWarrior.Empty
                         && currentNode != null
                         && _root.gridTileHelper.CalculateNeighbours(currentNode) == 8
                         )
@@ -66,6 +70,7 @@ public class CreateExploreOperation : ILoadingOperation
                         BaseEntity warrior = UnitManager.SpawnWarrior(nodeWarrior);
 
                         nodeWarrior.SetProtectedNeigbours(warrior, currentNode);
+                        // currentNode.SetProtectedNode(warrior);
 
                         nodes.Remove(currentNode);
 

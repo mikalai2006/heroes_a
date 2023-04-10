@@ -26,10 +26,13 @@ public class CreateResourceEveryWeekOperation : ILoadingOperation
             Area area = LevelManager.Instance.Level.listArea[x];
 
             List<GridTileNode> nodes = _root.gridTileHelper.GetAllGridNodes().Where(t =>
-                    t.Empty
-                    && t.Enable
-                    && !t.Road
-                    && !t.Protected
+                    t.StateNode.HasFlag(StateNode.Empty)
+                    && !t.StateNode.HasFlag(StateNode.Road)
+                    && !t.StateNode.HasFlag(StateNode.Protected)
+                    // t.Empty
+                    // && t.Enable
+                    // && !t.Road
+                    // && !t.Protected
                     && t.KeyArea == area.id
                     && _root.gridTileHelper.CalculateNeighbours(t) == 8
                     && _root.gridTileHelper.GetDistanceBetweeenPoints(t.position, area.startPosition) > 5
@@ -87,6 +90,7 @@ public class CreateResourceEveryWeekOperation : ILoadingOperation
                             area.Stat.countEveryResource++;
 
                             nodeWarrior.SetProtectedNeigbours(warrior, currentNode);
+                            // currentNode.SetProtectedNode(warrior);
 
                             nodes.Remove(currentNode);
 
