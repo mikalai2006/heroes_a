@@ -102,7 +102,8 @@ public class UITownListBuildWindow : MonoBehaviour
                 OnClickToBuild(currentBuild);
             };
 
-            if (_activeTown.Data.ProgressBuilds.Intersect(currentBuild.RequiredBuilds).Any()
+            if (_activeTown.Data.ProgressBuilds.Intersect(currentBuild.RequiredBuilds).Count()
+                    == currentBuild.RequiredBuilds.Count()
                 || currentBuild.RequiredBuilds.Length == 0)
             {
                 item.AddToClassList("town_listbuild_allow");
@@ -134,7 +135,10 @@ public class UITownListBuildWindow : MonoBehaviour
         foreach (var buildItem in build.RequiredBuilds)
         {
             var buildNeed = AllBuilds[buildItem];
-            requireBuilds.Add(buildNeed.Text.title.GetLocalizedString());
+            if (!_activeTown.Data.ProgressBuilds.Contains(buildItem))
+            {
+                requireBuilds.Add(buildNeed.Text.title.GetLocalizedString());
+            }
         }
         // foreach (var buld in _scriptObjectBuildTown.Builds)
         // {
@@ -175,7 +179,8 @@ public class UITownListBuildWindow : MonoBehaviour
             CostResource = build.CostResource,
             isNotBuild = _activeTown.Data.ProgressBuilds.Contains(build.TypeBuild)
                 || !_activePlayer.IsExistsResource(build.CostResource)
-                || !_activeTown.Data.ProgressBuilds.Intersect(build.RequiredBuilds).Any(),
+                || _activeTown.Data.ProgressBuilds.Intersect(build.RequiredBuilds).Count()
+                     < build.RequiredBuilds.Count(),
         };
         var dialog = new UITownBuildItemDialogOperation(dataForDialog);
         var result = await dialog.ShowAndHide();

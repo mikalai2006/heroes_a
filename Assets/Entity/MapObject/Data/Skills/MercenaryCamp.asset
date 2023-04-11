@@ -51,7 +51,7 @@ MonoBehaviour:
         Artifact: []
         isOne: 0
     probability: 1
-  listTypeNoPath: 0e000000
+  listTypeNoPath: 0e0000000c000000
   TypeWorkObject: 4
   TypeMapObject: 4
   listRuleInput: 110000001300000012000000

@@ -82,7 +82,7 @@ public class MapEntityHero : BaseMapEntity
         var entityHero = (EntityHero)MapObjectClass;
         _canMove = newState == GameState.StartMoveHero && this.MapObjectClass ==
             LevelManager.Instance.ActivePlayer.DataPlayer.PlayerDataReferences.ActiveHero;
-        if (_canMove && entityHero.CanMove)
+        if (_canMove && entityHero.IsExistPath)
         {
             entityHero.Data.path.RemoveAt(0);
             StartCoroutine(MoveHero());

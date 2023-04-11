@@ -143,7 +143,7 @@ public static class UnitManager
             {
                 foreach (GridTileNode nodex in list)
                 {
-                    GameManager.Instance.MapManager.SetColorForTile(nodex.position, Color.green);
+                    // GameManager.Instance.MapManager.SetColorForTile(nodex.position, Color.green);
                     nodex.SetAsInputPoint(node);
                 }
             }

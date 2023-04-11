@@ -114,10 +114,10 @@ public class GridTileNode : IHeapItem<GridTileNode>
             StateNode |= StateNode.Protected;
         }
 #if UNITY_EDITOR
-        GameManager.Instance.MapManager.SetColorForTile(
-            position,
-            _protectedUnit == null ? Color.yellow : Color.red
-        );
+        // GameManager.Instance.MapManager.SetColorForTile(
+        //     position,
+        //     _protectedUnit == null ? Color.yellow : Color.red
+        // );
 #endif
     }
 

@@ -40,15 +40,15 @@ MonoBehaviour:
         m_WaitForCompletion: 0
         m_LocalVariables: []
     CostResource:
-    - Resource: {fileID: 11400000, guid: 2de32a5fb2189994a867c9e425391bf7, type: 2}
+    - Resource: {fileID: 11400000, guid: 3894d4d068775c343b5c4bf1510dee33, type: 2}
       Count: 20000
-    - Resource: {fileID: 11400000, guid: 54c499101e891794bbe1ebcd85ffbca2, type: 2}
+    - Resource: {fileID: 11400000, guid: 61799bb2485b4684485b146b76ea01d6, type: 2}
       Count: 10
-    - Resource: {fileID: 11400000, guid: 44743a45dac0d46458714a3d63299694, type: 2}
+    - Resource: {fileID: 11400000, guid: 379c734399110d34f9159a31f3e18074, type: 2}
       Count: 10
-    - Resource: {fileID: 11400000, guid: 4104a44b9194996439f92118e5c7544f, type: 2}
+    - Resource: {fileID: 11400000, guid: 6b8ad83da675426418c328236190e67c, type: 2}
       Count: 10
-    - Resource: {fileID: 11400000, guid: 92a707a7d2331ae4bbbbf15425739f9f, type: 2}
+    - Resource: {fileID: 11400000, guid: f02d0b566815eaa47b30b219422c87e5, type: 2}
       Count: 10
   - MenuSprite: {fileID: 21300000, guid: 32b39bc13de6e9842b24bb9f832bb1d8, type: 3}
     TypeBuild: 32
@@ -74,15 +74,15 @@ MonoBehaviour:
         m_WaitForCompletion: 0
         m_LocalVariables: []
     CostResource:
-    - Resource: {fileID: 11400000, guid: 2de32a5fb2189994a867c9e425391bf7, type: 2}
+    - Resource: {fileID: 11400000, guid: 3894d4d068775c343b5c4bf1510dee33, type: 2}
       Count: 20000
-    - Resource: {fileID: 11400000, guid: 54c499101e891794bbe1ebcd85ffbca2, type: 2}
+    - Resource: {fileID: 11400000, guid: 61799bb2485b4684485b146b76ea01d6, type: 2}
       Count: 10
-    - Resource: {fileID: 11400000, guid: 44743a45dac0d46458714a3d63299694, type: 2}
+    - Resource: {fileID: 11400000, guid: 379c734399110d34f9159a31f3e18074, type: 2}
       Count: 10
-    - Resource: {fileID: 11400000, guid: 4104a44b9194996439f92118e5c7544f, type: 2}
+    - Resource: {fileID: 11400000, guid: 6b8ad83da675426418c328236190e67c, type: 2}
       Count: 10
-    - Resource: {fileID: 11400000, guid: 92a707a7d2331ae4bbbbf15425739f9f, type: 2}
+    - Resource: {fileID: 11400000, guid: f02d0b566815eaa47b30b219422c87e5, type: 2}
       Count: 10
   references:
     version: 2

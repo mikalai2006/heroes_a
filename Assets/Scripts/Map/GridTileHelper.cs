@@ -62,7 +62,7 @@ public class GridTileHelper
 
     public List<GridTileNode> FindPath(Vector3Int start, Vector3Int end, bool force = false, bool ignoreNotWalkable = false)
     {
-        GameManager.Instance.MapManager.ResetTestTileMap();
+        // GameManager.Instance.MapManager.ResetTestTileMap();
 
         GridTileNode startNode = _gridTile.GetGridObject(start);
         GridTileNode startNodeTrigger = startNode;
@@ -96,7 +96,7 @@ public class GridTileHelper
             closedSet.Add(currentNode);
 
             //GridTileNode currentNode = GetLowestCostNode(openList);
-            GameManager.Instance.MapManager.SetColorForTest(currentNode.position, Color.blue);
+            // GameManager.Instance.MapManager.SetColorForTest(currentNode.position, Color.blue);
             if (currentNode.ProtectedUnit != null
                 && currentNode.ProtectedUnit == endNode.ProtectedUnit
                 && currentNode.OccupiedUnit == null)

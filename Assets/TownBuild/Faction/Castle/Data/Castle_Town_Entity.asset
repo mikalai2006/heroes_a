@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f947fec9b979d14a9eb6ab3859f5102, type: 3}
   m_Name: Castle_Town_Entity
   m_EditorClassIdentifier: 
-  idObject: 0001
+  idObject: entity.town.castle
   TypeEntity: 80
   MenuSprite: {fileID: 21300000, guid: 9c566a7b7811219428b08581043b2eac, type: 3}
   title:

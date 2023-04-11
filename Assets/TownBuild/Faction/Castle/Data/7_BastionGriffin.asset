@@ -40,7 +40,7 @@ MonoBehaviour:
         m_WaitForCompletion: 0
         m_LocalVariables: []
     CostResource:
-    - Resource: {fileID: 11400000, guid: ea04c2f186809b945ae03f53199a7876, type: 2}
+    - Resource: {fileID: 11400000, guid: 3894d4d068775c343b5c4bf1510dee33, type: 2}
       Count: 1000
   - MenuSprite: {fileID: 21300000, guid: 30e8a386215a9614586171a8eb3200c3, type: 3}
     TypeBuild: 36
@@ -66,7 +66,7 @@ MonoBehaviour:
         m_WaitForCompletion: 0
         m_LocalVariables: []
     CostResource:
-    - Resource: {fileID: 11400000, guid: ea04c2f186809b945ae03f53199a7876, type: 2}
+    - Resource: {fileID: 11400000, guid: 3894d4d068775c343b5c4bf1510dee33, type: 2}
       Count: 1000
   references:
     version: 2

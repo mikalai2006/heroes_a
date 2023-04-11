@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f947fec9b979d14a9eb6ab3859f5102, type: 3}
   m_Name: Stronghold_Town_Entity
   m_EditorClassIdentifier: 
-  idObject: 0002
+  idObject: entity.town.stronghold
   TypeEntity: 80
   MenuSprite: {fileID: 21300000, guid: 340488d12d6e4ac49ac03e4dea176590, type: 3}
   title:

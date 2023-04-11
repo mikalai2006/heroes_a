@@ -875,19 +875,22 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
     {
         SetColorForTile(pos, color, _tileMapCursor);
     }
-    public void ResetTestTileMap()
-    {
-        _tileTest.ClearAllTiles();
-    }
-    public void SetColorForTest(Vector3Int pos, Color color)
-    {
-        color.a = .3f;
-        Tilemap tileMap = _tileTest;
-        tileMap.SetTile(pos, _tileSky);
-        tileMap.SetTileFlags(pos, TileFlags.None);
-        tileMap.SetColor(pos, color);
-        tileMap.SetTileFlags(pos, TileFlags.LockColor);
-    }
+
+    // public void ResetTestTileMap()
+    // {
+    //     _tileTest.ClearAllTiles();
+    // }
+
+    // public void SetColorForTest(Vector3Int pos, Color color)
+    // {
+    //     color.a = .3f;
+    //     Tilemap tileMap = _tileTest;
+    //     tileMap.SetTile(pos, _tileSky);
+    //     tileMap.SetTileFlags(pos, TileFlags.None);
+    //     tileMap.SetColor(pos, color);
+    //     tileMap.SetTileFlags(pos, TileFlags.LockColor);
+    // }
+
     public void SetColorForTile(Vector3Int pos, Color color, Tilemap __tileMap = null)
     {
         Tilemap tileMap = _tileMap;

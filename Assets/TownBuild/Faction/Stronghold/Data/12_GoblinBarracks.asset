@@ -20,17 +20,6 @@ MonoBehaviour:
     TypeBuild: 19
     UpdatePrefab: {fileID: 0}
     RequiredBuilds: 07000000
-    Locale:
-    - Language: {fileID: 11400000, guid: 30b8a59646ec31e4fa7737b1c0d7cba9, type: 2}
-      Text:
-        title: "\u041A\u0430\u0437\u0430\u0440\u043C\u044B \u0433\u043E\u0431\u043B\u0438\u043D\u043E\u0432"
-        description: "\u0412 \u0443\u043B\u0443\u0447\u0448\u0435\u043D\u043D\u044B\u0445
-          \u043A\u0430\u0437\u0430\u0440\u043C\u0430\u0445 \u0433\u043E\u0431\u043B\u0438\u043D\u043E\u0432
-          \u0432\u044B \u043C\u043E\u0436\u0435\u0442\u0435 \u043D\u0430\u043D\u044F\u0442\u044C
-          \u0433\u043E\u0431\u043B\u0438\u043D\u043E\u0432."
-        visit_ok: 
-        visit_no: 
-        visit_noresource: 
     Text:
       title:
         m_TableReference:
@@ -51,27 +40,16 @@ MonoBehaviour:
         m_WaitForCompletion: 0
         m_LocalVariables: []
     CostResource:
-    - Resource: {fileID: 11400000, guid: 2de32a5fb2189994a867c9e425391bf7, type: 2}
+    - Resource: {fileID: 11400000, guid: 3894d4d068775c343b5c4bf1510dee33, type: 2}
       Count: 200
-    - Resource: {fileID: 11400000, guid: 88388bc7df9ca2b4594e5d8830fcc54d, type: 2}
+    - Resource: {fileID: 11400000, guid: af6fb8015ba018540960794f09d24eea, type: 2}
       Count: 5
-    - Resource: {fileID: 11400000, guid: c1bca1c330d8ff847b7e9e3584dabe06, type: 2}
+    - Resource: {fileID: 11400000, guid: 177478bebb60204468d214efd1fdcc16, type: 2}
       Count: 5
   - MenuSprite: {fileID: 21300000, guid: 10b3a311457d4ab4f83282adc4e59251, type: 3}
     TypeBuild: 20
     UpdatePrefab: {fileID: 0}
     RequiredBuilds: 13000000
-    Locale:
-    - Language: {fileID: 11400000, guid: 30b8a59646ec31e4fa7737b1c0d7cba9, type: 2}
-      Text:
-        title: "\u0423\u043B. \u043A\u0430\u0437\u0430\u0440\u043C\u044B \u0433\u043E\u0431\u043B\u0438\u043D\u043E\u0432"
-        description: "\u0412 \u0443\u043B\u0443\u0447\u0448\u0435\u043D\u043D\u044B\u0445
-          \u043A\u0430\u0437\u0430\u0440\u043C\u0430\u0445 \u0433\u043E\u0431\u043B\u0438\u043D\u043E\u0432
-          \u0432\u044B \u043C\u043E\u0436\u0435\u0442\u0435 \u043D\u0430\u043D\u044F\u0442\u044C
-          \u0445\u043E\u0431\u0433\u043E\u0431\u043B\u0438\u043D\u043E\u0432."
-        visit_ok: 
-        visit_no: 
-        visit_noresource: 
     Text:
       title:
         m_TableReference:
@@ -92,11 +70,11 @@ MonoBehaviour:
         m_WaitForCompletion: 0
         m_LocalVariables: []
     CostResource:
-    - Resource: {fileID: 11400000, guid: 2de32a5fb2189994a867c9e425391bf7, type: 2}
+    - Resource: {fileID: 11400000, guid: 3894d4d068775c343b5c4bf1510dee33, type: 2}
       Count: 1000
-    - Resource: {fileID: 11400000, guid: 88388bc7df9ca2b4594e5d8830fcc54d, type: 2}
+    - Resource: {fileID: 11400000, guid: af6fb8015ba018540960794f09d24eea, type: 2}
       Count: 5
-    - Resource: {fileID: 11400000, guid: c1bca1c330d8ff847b7e9e3584dabe06, type: 2}
+    - Resource: {fileID: 11400000, guid: 177478bebb60204468d214efd1fdcc16, type: 2}
       Count: 5
   references:
     version: 2

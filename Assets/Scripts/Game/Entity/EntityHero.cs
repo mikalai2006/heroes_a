@@ -9,9 +9,9 @@ public class EntityHero : BaseEntity, ISaveDataPlay
 {
     [SerializeField] public DataHero Data = new DataHero();
     public ScriptableEntityHero ConfigData => (ScriptableEntityHero)ScriptableData;
-    private bool _canMove = false;
+    // private bool _canMove = false;
 
-    public bool CanMove
+    public bool IsExistPath
     {
         get
         {
@@ -74,7 +74,7 @@ public class EntityHero : BaseEntity, ISaveDataPlay
         // MapObjectGameObject.transform.position = newPosition;// + new Vector3(.5f, .5f);
         Position = newPosition;
         SetPositionCamera(newPosition);
-        GameManager.Instance.MapManager.SetColorForTile(newPosition, Color.cyan);
+        // GameManager.Instance.MapManager.SetColorForTile(newPosition, Color.cyan);
         SetClearSky(newPosition);
     }
 

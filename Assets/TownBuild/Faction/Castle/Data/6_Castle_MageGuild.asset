@@ -40,11 +40,11 @@ MonoBehaviour:
         m_WaitForCompletion: 0
         m_LocalVariables: []
     CostResource:
-    - Resource: {fileID: 11400000, guid: ea04c2f186809b945ae03f53199a7876, type: 2}
+    - Resource: {fileID: 11400000, guid: 3894d4d068775c343b5c4bf1510dee33, type: 2}
       Count: 2000
-    - Resource: {fileID: 11400000, guid: 058309442a6416347b95e97a2efaa313, type: 2}
+    - Resource: {fileID: 11400000, guid: 177478bebb60204468d214efd1fdcc16, type: 2}
       Count: 5
-    - Resource: {fileID: 11400000, guid: 30cdc368665f1154b904062d3111c160, type: 2}
+    - Resource: {fileID: 11400000, guid: af6fb8015ba018540960794f09d24eea, type: 2}
       Count: 5
   - MenuSprite: {fileID: 21300000, guid: b94a25bdde67f604c95c39cc6a440e4d, type: 3}
     TypeBuild: 15
@@ -70,19 +70,19 @@ MonoBehaviour:
         m_WaitForCompletion: 0
         m_LocalVariables: []
     CostResource:
-    - Resource: {fileID: 11400000, guid: ea04c2f186809b945ae03f53199a7876, type: 2}
+    - Resource: {fileID: 11400000, guid: 3894d4d068775c343b5c4bf1510dee33, type: 2}
       Count: 1000
-    - Resource: {fileID: 11400000, guid: 30cdc368665f1154b904062d3111c160, type: 2}
+    - Resource: {fileID: 11400000, guid: af6fb8015ba018540960794f09d24eea, type: 2}
       Count: 5
-    - Resource: {fileID: 11400000, guid: 058309442a6416347b95e97a2efaa313, type: 2}
+    - Resource: {fileID: 11400000, guid: 61799bb2485b4684485b146b76ea01d6, type: 2}
+      Count: 4
+    - Resource: {fileID: 11400000, guid: 177478bebb60204468d214efd1fdcc16, type: 2}
       Count: 5
-    - Resource: {fileID: 11400000, guid: 19d789934151d984caad385164b2cb4a, type: 2}
+    - Resource: {fileID: 11400000, guid: 379c734399110d34f9159a31f3e18074, type: 2}
       Count: 4
-    - Resource: {fileID: 11400000, guid: 8df33975c1281ac44b70e00eb693d99d, type: 2}
+    - Resource: {fileID: 11400000, guid: 6b8ad83da675426418c328236190e67c, type: 2}
       Count: 4
-    - Resource: {fileID: 11400000, guid: 104e3cffa5962f64d9487c5253418ec6, type: 2}
-      Count: 4
-    - Resource: {fileID: 11400000, guid: b332b028a29cd0a4a8333b9c59d0343b, type: 2}
+    - Resource: {fileID: 11400000, guid: f02d0b566815eaa47b30b219422c87e5, type: 2}
       Count: 4
   - MenuSprite: {fileID: 21300000, guid: b570ac51294531047b6066472c1c6fef, type: 3}
     TypeBuild: 16
@@ -108,19 +108,19 @@ MonoBehaviour:
         m_WaitForCompletion: 0
         m_LocalVariables: []
     CostResource:
-    - Resource: {fileID: 11400000, guid: 2de32a5fb2189994a867c9e425391bf7, type: 2}
+    - Resource: {fileID: 11400000, guid: 3894d4d068775c343b5c4bf1510dee33, type: 2}
       Count: 1000
-    - Resource: {fileID: 11400000, guid: c1bca1c330d8ff847b7e9e3584dabe06, type: 2}
+    - Resource: {fileID: 11400000, guid: af6fb8015ba018540960794f09d24eea, type: 2}
       Count: 5
-    - Resource: {fileID: 11400000, guid: 88388bc7df9ca2b4594e5d8830fcc54d, type: 2}
+    - Resource: {fileID: 11400000, guid: 61799bb2485b4684485b146b76ea01d6, type: 2}
+      Count: 6
+    - Resource: {fileID: 11400000, guid: 177478bebb60204468d214efd1fdcc16, type: 2}
       Count: 5
-    - Resource: {fileID: 11400000, guid: 44743a45dac0d46458714a3d63299694, type: 2}
+    - Resource: {fileID: 11400000, guid: 379c734399110d34f9159a31f3e18074, type: 2}
       Count: 6
-    - Resource: {fileID: 11400000, guid: 54c499101e891794bbe1ebcd85ffbca2, type: 2}
+    - Resource: {fileID: 11400000, guid: 6b8ad83da675426418c328236190e67c, type: 2}
       Count: 6
-    - Resource: {fileID: 11400000, guid: 4104a44b9194996439f92118e5c7544f, type: 2}
-      Count: 6
-    - Resource: {fileID: 11400000, guid: 92a707a7d2331ae4bbbbf15425739f9f, type: 2}
+    - Resource: {fileID: 11400000, guid: f02d0b566815eaa47b30b219422c87e5, type: 2}
       Count: 6
   - MenuSprite: {fileID: 21300000, guid: f41fa67215f44fd4c82ecae70e6f288d, type: 3}
     TypeBuild: 17
@@ -146,19 +146,19 @@ MonoBehaviour:
         m_WaitForCompletion: 0
         m_LocalVariables: []
     CostResource:
-    - Resource: {fileID: 11400000, guid: ea04c2f186809b945ae03f53199a7876, type: 2}
+    - Resource: {fileID: 11400000, guid: 3894d4d068775c343b5c4bf1510dee33, type: 2}
       Count: 1000
-    - Resource: {fileID: 11400000, guid: 058309442a6416347b95e97a2efaa313, type: 2}
+    - Resource: {fileID: 11400000, guid: af6fb8015ba018540960794f09d24eea, type: 2}
       Count: 5
-    - Resource: {fileID: 11400000, guid: 30cdc368665f1154b904062d3111c160, type: 2}
+    - Resource: {fileID: 11400000, guid: 61799bb2485b4684485b146b76ea01d6, type: 2}
+      Count: 8
+    - Resource: {fileID: 11400000, guid: 177478bebb60204468d214efd1fdcc16, type: 2}
       Count: 5
-    - Resource: {fileID: 11400000, guid: 8df33975c1281ac44b70e00eb693d99d, type: 2}
+    - Resource: {fileID: 11400000, guid: 379c734399110d34f9159a31f3e18074, type: 2}
       Count: 8
-    - Resource: {fileID: 11400000, guid: b332b028a29cd0a4a8333b9c59d0343b, type: 2}
+    - Resource: {fileID: 11400000, guid: 6b8ad83da675426418c328236190e67c, type: 2}
       Count: 8
-    - Resource: {fileID: 11400000, guid: 104e3cffa5962f64d9487c5253418ec6, type: 2}
-      Count: 8
-    - Resource: {fileID: 11400000, guid: 19d789934151d984caad385164b2cb4a, type: 2}
+    - Resource: {fileID: 11400000, guid: f02d0b566815eaa47b30b219422c87e5, type: 2}
       Count: 8
   references:
     version: 2

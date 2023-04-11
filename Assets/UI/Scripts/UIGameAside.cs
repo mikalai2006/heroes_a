@@ -76,10 +76,10 @@ public class UIGameAside : MonoBehaviour
                 NextStep();
                 break;
             case GameState.StartMoveHero:
-                StartMoveHero();
+                SetDisableAllButton();
                 break;
             case GameState.StopMoveHero:
-                StopMoveHero();
+                SetEnableAllButton();
                 break;
             case GameState.CreatePathHero:
                 OnToogleEnableBtnGoHero();
@@ -324,9 +324,10 @@ public class UIGameAside : MonoBehaviour
         {
             overlay.style.backgroundColor = color;
         }
+        SetEnableAllButton();
     }
 
-    private void StopMoveHero()
+    private void SetEnableAllButton()
     {
         UQueryBuilder<Button> btns2 = new UQueryBuilder<Button>(_aside.rootVisualElement);
         List<Button> listBtn2 = btns2.Class("button").ToList();
@@ -334,10 +335,10 @@ public class UIGameAside : MonoBehaviour
         {
             btn.SetEnabled(true);
         }
-        OnToogleEnableBtnGoHero();
+        // OnToogleEnableBtnGoHero();
     }
 
-    private void StartMoveHero()
+    private void SetDisableAllButton()
     {
         UQueryBuilder<Button> btns = new UQueryBuilder<Button>(_aside.rootVisualElement);
         List<Button> listBtn = btns.Class("button").ToList();
@@ -353,7 +354,7 @@ public class UIGameAside : MonoBehaviour
         EntityHero activeHero = player.ActiveHero;
         if (activeHero != null)
         {
-            btn.SetEnabled(activeHero.CanMove);
+            btn.SetEnabled(activeHero.IsExistPath);
         }
         else
         {
