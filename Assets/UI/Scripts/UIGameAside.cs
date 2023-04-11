@@ -162,7 +162,7 @@ public class UIGameAside : MonoBehaviour
             _footer = _aside.rootVisualElement.Q<VisualElement>(NameFooter);
 
             boxinfo = _aside.rootVisualElement.Q<VisualElement>(NameAsideBoxInfo);
-            // boxinfo.style.display = DisplayStyle.None;
+            boxinfo.style.display = DisplayStyle.None;
 
         }
         catch (Exception e)
