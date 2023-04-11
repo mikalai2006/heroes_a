@@ -881,6 +881,7 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
     }
     public void SetColorForTest(Vector3Int pos, Color color)
     {
+        color.a = .3f;
         Tilemap tileMap = _tileTest;
         tileMap.SetTile(pos, _tileSky);
         tileMap.SetTileFlags(pos, TileFlags.None);
