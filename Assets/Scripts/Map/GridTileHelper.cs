@@ -60,35 +60,18 @@ public class GridTileHelper
         return listNodes.ElementAt(indexRandomNode).Value;
     }
 
-    public List<GridTileNode> FindPath(Vector3Int start, Vector3Int end, bool isTrigger = false, bool force = false, bool ignoreNotWalkable = false)
+    public List<GridTileNode> FindPath(Vector3Int start, Vector3Int end, bool force = false, bool ignoreNotWalkable = false)
     {
-        //GameManager.Instance.mapManager.ClearTestColor();
+        GameManager.Instance.MapManager.ResetTestTileMap();
 
         GridTileNode startNode = _gridTile.GetGridObject(start);
         GridTileNode startNodeTrigger = startNode;
-        GridTileNode endNodeF = _gridTile.GetGridObject(end); ;
-        GridTileNode endNode;
-        if (isTrigger)
-        {
-            endNode = _gridTile.GetGridObject(end - new Vector3Int(0, 1, 0));
-        }
-        else
-        {
-            endNode = _gridTile.GetGridObject(end);
-        }
-
-        // if (!startNodeTrigger.Empty)
-        if (!startNodeTrigger.StateNode.HasFlag(StateNode.Empty))
-        {
-            startNode = _gridTile.GetGridObject(start - new Vector3Int(0, 1, 0));
-        }
+        GridTileNode endNodeF = _gridTile.GetGridObject(end);
+        GridTileNode endNode = _gridTile.GetGridObject(end);
 
         BinaryHeap<GridTileNode> openSet = new BinaryHeap<GridTileNode>(_gridTile.GetWidth() * _gridTile.GetHeight());
         HashSet<GridTileNode> closedSet = new HashSet<GridTileNode>();
         openSet.Add(startNode);
-
-        //openList = new List<GridTileNode> { startNode };
-        //closedList = new List<GridTileNode>();
 
         for (int x = 0; x < _gridTile.GetWidth(); x++)
         {
@@ -106,27 +89,20 @@ public class GridTileHelper
         startNode.hCost = CalculateDistanceCost(startNode, endNode);
         startNode.CalculateFCost();
 
+        var prevNode = startNode;
         while (openSet.Count > 0)
         {
             GridTileNode currentNode = openSet.RemoveFirst();
             closedSet.Add(currentNode);
 
             //GridTileNode currentNode = GetLowestCostNode(openList);
-            //GameManager.Instance.mapManager.SetTestColor(currentNode._position, Color.blue);
+            GameManager.Instance.MapManager.SetColorForTest(currentNode.position, Color.blue);
             if (currentNode.ProtectedUnit != null
                 && currentNode.ProtectedUnit == endNode.ProtectedUnit
                 && currentNode.OccupiedUnit == null)
             {
-                // final
+                // final protected node
                 List<GridTileNode> pathList = CalculatePath(currentNode);
-                // pathList.Add(currentNode.ProtectedUnit.OccupiedNode);
-                if (!startNodeTrigger.StateNode.HasFlag(StateNode.Empty))
-                {
-                    pathList.Reverse();
-                    pathList.Add(startNodeTrigger);
-                    pathList.Reverse();
-                }
-
                 return pathList;
             }
 
@@ -135,26 +111,48 @@ public class GridTileHelper
             {
                 // final
                 List<GridTileNode> pathList = CalculatePath(endNode);
-                if (isTrigger)
-                {
-                    pathList.Add(_gridTile.GetGridObject(end));
-                }
-                if (!startNodeTrigger.StateNode.HasFlag(StateNode.Empty))
-                {
-                    pathList.Reverse();
-                    pathList.Add(startNodeTrigger);
-                    pathList.Reverse();
-                }
-
                 return pathList;
             }
-
-            //openList.Remove(currentNode);
-            //closedList.Add(currentNode);
 
             foreach (GridTileNode neighbourNode in GetNeighbourList(currentNode, force))
             {
                 if (closedSet.Contains(neighbourNode)) continue;
+
+                // Entry point processing.
+                if (neighbourNode == endNode && endNode.OccupiedUnit != null)
+                {
+                    var data = (ScriptableEntityMapObject)endNode.OccupiedUnit.ScriptableData;
+                    if (
+                        data.RulesInput.Count > 0
+                        && !currentNode.StateNode.HasFlag(StateNode.Input)
+                        && currentNode.InputNode != endNode
+                        )
+                        // Debug.Log(
+                        //     $"NO \n" +
+                        //     $"{neighbourNode.position}[need{end}](input={prevNode.StateNode.HasFlag(StateNode.Input)})\n" +
+                        //     $"currentNode={currentNode.position}(input={currentNode.StateNode.HasFlag(StateNode.Input)})"
+                        //     );
+                        continue;
+                }
+
+                // Exit point processing.
+                if (currentNode == startNode && currentNode.OccupiedUnit != null)
+                {
+                    var data = (ScriptableEntityMapObject)currentNode.OccupiedUnit.ScriptableData;
+                    if (
+                        !neighbourNode.StateNode.HasFlag(StateNode.Input)
+                        && data.RulesInput.Count > 0
+                        && neighbourNode.InputNode != startNode
+                   )
+                    {
+                        // Debug.Log(
+                        //     $"NO START \n" +
+                        //     $"{neighbourNode.position}[need{end}](input={prevNode.StateNode.HasFlag(StateNode.Input)})\n" +
+                        //     $"currentNode={currentNode.position}(input={currentNode.StateNode.HasFlag(StateNode.Input)})"
+                        //     );
+                        continue;
+                    }
+                }
 
                 bool walk = (
                     // neighbourNode.Empty
@@ -169,11 +167,10 @@ public class GridTileHelper
                         )
                     )
                     || (
-                    !endNode.StateNode.HasFlag(StateNode.Empty)
+                    neighbourNode.StateNode.HasFlag(StateNode.Occupied)
                     // && neighbourNode.Enable
-                    // endNode.OccupiedUnit.typeInput == TypeInput.Down &&
-                    && endNode.ProtectedUnit == neighbourNode.ProtectedUnit
-                    && endNode.OccupiedUnit == neighbourNode.OccupiedUnit // TODO
+                    // && endNode.ProtectedUnit == neighbourNode.ProtectedUnit
+                    && neighbourNode.OccupiedUnit == endNode.OccupiedUnit // TODO
                     )
                     || ignoreNotWalkable;
                 if ((!walk || neighbourNode.StateNode.HasFlag(StateNode.Disable)) && !ignoreNotWalkable)
@@ -191,22 +188,17 @@ public class GridTileHelper
                     neighbourNode.hCost = CalculateDistanceCost(neighbourNode, endNode);
                     neighbourNode.CalculateFCost();
 
+                    neighbourNode.levelPath += currentNode.levelPath;
+
                     if (!openSet.Contains(neighbourNode))
                     {
-                        neighbourNode.levelPath += currentNode.levelPath;
                         openSet.Add(neighbourNode);
-                        //Grid2DManager.Instance.SetTextMeshNode(neighbourNode, string.Format(
-                        //    "gCost {0} hCost {1} fCost {2} koof {3}",
-                        //    neighbourNode.gCost,
-                        //    neighbourNode.hCost,
-                        //    neighbourNode.fCost,
-                        //    neighbourNode.koofPath
-                        //    ));
                     }
                 }
             }
-
+            prevNode = currentNode;
         }
+        Debug.Log($"End fULL");
 
         return CalculatePath(endNode);
     }
@@ -274,72 +266,6 @@ public class GridTileHelper
 
         return closedSet.ToList();
     }
-
-    // public List<GridTileNode> IsExistExit2(GridTileNode node)
-    // {
-
-
-    //     List<TypeMapObject> exitTriggers = new List<TypeMapObject> { TypeMapObject.Monolith, TypeMapObject.Town, TypeMapObject.Hero };
-    //     List<GridTileNode> openListNodes = new List<GridTileNode>() { node };
-    //     List<GridTileNode> closedListNodes = new List<GridTileNode>();
-    //     List<GridTileNode> removedListNodes = new List<GridTileNode>();
-    //     //Color col = Color.green;
-    //     //col.a = (float)node.keyArea * UnityEngine.Random.value;
-
-    //     while (openListNodes.Count > 0)
-    //     {
-    //         GridTileNode currentNode = openListNodes[0];
-    //         //Grid2DManager.Instance.SetColorForTile(currentNode._position, col);
-    //         openListNodes.Remove(currentNode);
-    //         closedListNodes.Add(currentNode);
-    //         //if (currentNode.OccupiedUnit != null)
-    //         //{
-    //         //    // exit.
-    //         //    if (exitTriggers.Contains(currentNode.OccupiedUnit.typeUnit))
-    //         //    {
-    //         //        //Debug.Log($"Exit OccupiedUnit::: {currentNode.OccupiedUnit.typeUnit}");
-    //         //        return new List<GridTileNode> { currentNode  };
-    //         //    }
-
-    //         //}
-    //         foreach (GridTileNode neighbourNode in GetNeighbourList(currentNode, true))
-    //         {
-    //             if (neighbourNode.Disable)
-    //             {
-    //                 //closedListNodes.Add(neighbourNode);
-    //                 removedListNodes.Add(neighbourNode);
-    //                 continue;
-    //             }
-
-    //             if (removedListNodes.Contains(neighbourNode)) continue;
-
-    //             if (neighbourNode.KeyArea != node.KeyArea)
-    //             {
-    //                 removedListNodes.Add(neighbourNode);
-    //                 continue;
-    //             }
-
-    //             if (neighbourNode.OccupiedUnit != null && neighbourNode != node)
-    //             {
-    //                 if (exitTriggers.Contains(neighbourNode.OccupiedUnit.typeUnit))
-    //                 {
-    //                     //Debug.Log($"Exit OccupiedUnit::: {neighbourNode.OccupiedUnit.typeUnit}");
-    //                     return new List<GridTileNode> { neighbourNode };
-    //                 }
-    //             }
-
-    //             if (closedListNodes.Contains(neighbourNode)) continue;
-
-    //             if (!openListNodes.Contains(neighbourNode))
-    //             {
-    //                 openListNodes.Add(neighbourNode);
-    //             }
-    //         }
-
-    //     }
-
-    //     return closedListNodes;
-    // }
 
     public List<GridTileNode> GetNeighboursAtDistance(GridTileNode startNode, int distance, bool force = true)
     {

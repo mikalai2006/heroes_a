@@ -22,7 +22,6 @@ public class MapEntityHero : BaseMapEntity
         _model = transform.Find("Model");
         // var entityHero = (EntityHero)MapObjectClass;
         // Vector3 moveKoof = entityHero.Data.path[0].OccupiedUnit?
-        //     .ScriptableData.typeInput == TypeInput.Down ? new Vector3(.5f, .0f) : new Vector3(.5f, .5f);
         // transform.position = entityHero.Position + moveKoof;
         //GameManager.OnBeforeStateChanged += OnChangeGameState;
 
@@ -108,8 +107,10 @@ public class MapEntityHero : BaseMapEntity
         {
 
             // !entityHero.Data.path[0].StateNode.HasFlag(StateNode.Empty)
+            ScriptableEntityMapObject configNodeData
+                = (ScriptableEntityMapObject)entityHero.Data.path[0].OccupiedUnit?.ScriptableData;
             Vector3 moveKoof
-                = entityHero.Data.path[0].OccupiedUnit?.ScriptableData.typeInput == TypeInput.Down
+                = configNodeData?.RulesInput.Count > 0
                     ? new Vector3(.5f, .0f)
                     : new Vector3(.5f, .5f);
             Debug.Log($"To = {entityHero.Data.path[0].position} -[{moveKoof}]");
@@ -144,7 +145,7 @@ public class MapEntityHero : BaseMapEntity
                 SmoothLerp((Vector3)MapObjectClass.Position + moveKoof, (Vector3)entityHero.Data.path[0].position + moveKoof));
 
             entityHero.Data.hit -= entityHero.CalculateHitByNode(entityHero.Data.path[0]);
-            entityHero.SetPositionHero(entityHero.Data.path[0].position);
+            entityHero.SetNewOccupiedNode(entityHero.Data.path[0]);
 
             GameManager.Instance.MapManager.DrawCursor(entityHero.Data.path, entityHero);
 

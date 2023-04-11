@@ -139,21 +139,11 @@ public class Player
         return DataPlayer.PlayerDataReferences.ListHero[id];
     }
 
-    // public void SetActiveTown(BaseTown town)
-    // {
-    //     GameManager.Instance.ChangeState(GameState.ChooseHero);
-
-    //     _data.ActiveTown = town;
-
-    //     LevelManager.Instance.SetPositionCamera(new Vector3(town.Position.x, town.Position.y, -10f));
-
-    // }
-
-    public List<GridTileNode> FindPathForHero(Vector3Int endPoint, bool isTrigger, bool force)
+    public List<GridTileNode> FindPathForHero(Vector3Int endPoint, bool force)
     {
         EntityHero activeHero = DataPlayer.PlayerDataReferences.ActiveHero;
         Vector3Int startPoint = new Vector3Int(activeHero.Position.x, activeHero.Position.y);
-        List<GridTileNode> path = GameManager.Instance.MapManager.GridTileHelper().FindPath(startPoint, endPoint, isTrigger, force);
+        List<GridTileNode> path = GameManager.Instance.MapManager.GridTileHelper().FindPath(startPoint, endPoint, force);
 
         if (path != null && DataPlayer.PlayerDataReferences.ActiveHero != null)
         {

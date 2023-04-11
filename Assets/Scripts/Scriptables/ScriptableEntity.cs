@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -14,16 +13,7 @@ public abstract class ScriptableEntity : ScriptableObject
 
     [Header("Map Options")]
     [SerializeField] public AssetReferenceGameObject MapPrefab;
-    // public TypeMapObject TypeMapObject;
     public TypeGround TypeGround;
-    public TypeInput typeInput;
-}
-
-[System.Serializable]
-public enum TypeInput
-{
-    Down = 0,
-    None = 1,
 }
 
 [System.Serializable]

@@ -79,6 +79,7 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
     private bool _isWater = false;
     public int countArea;
     public Tilemap _tileMap;
+    public Tilemap _tileTest;
     [SerializeField] public GameObject _textMesh;
     [SerializeField] public Tilemap _tileMapText;
     [SerializeField] public Dictionary<Vector3, GameObject> listTextMesh = new Dictionary<Vector3, GameObject>();
@@ -470,7 +471,6 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
             startNode.position,
             randomNode.position,
             false,
-            false,
             true
             );
 
@@ -494,10 +494,6 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
     {
         GridTileNode nodeWarrior = gridTileHelper.GridTile.GetGridObject(currentNode.position + new Vector3Int(0, -1, 0));
 
-        //if (currentNode.OccupiedUnit.typeInput == TypeInput.Down)
-        //{
-        //    return nodeWarrior;
-        //}
         if (nodeWarrior == null || !nodeWarrior.IsAllowSpawn)
         {
             nodeWarrior = gridTileHelper.GridTile.GetGridObject(currentNode.position + new Vector3Int(1, 0, 0));
@@ -706,7 +702,7 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
         {
             if (node.OccupiedUnit == null || node.StateNode.HasFlag(StateNode.Protected))
             {
-                LevelManager.Instance.ActivePlayer.FindPathForHero(tilePos, false, true);
+                LevelManager.Instance.ActivePlayer.FindPathForHero(tilePos, true);
             }
 
         }
@@ -879,7 +875,18 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
     {
         SetColorForTile(pos, color, _tileMapCursor);
     }
-
+    public void ResetTestTileMap()
+    {
+        _tileTest.ClearAllTiles();
+    }
+    public void SetColorForTest(Vector3Int pos, Color color)
+    {
+        Tilemap tileMap = _tileTest;
+        tileMap.SetTile(pos, _tileSky);
+        tileMap.SetTileFlags(pos, TileFlags.None);
+        tileMap.SetColor(pos, color);
+        tileMap.SetTileFlags(pos, TileFlags.LockColor);
+    }
     public void SetColorForTile(Vector3Int pos, Color color, Tilemap __tileMap = null)
     {
         Tilemap tileMap = _tileMap;

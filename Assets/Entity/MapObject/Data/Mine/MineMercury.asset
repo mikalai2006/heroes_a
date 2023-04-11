@@ -30,7 +30,6 @@ MonoBehaviour:
     m_SubObjectType: 
     m_EditorAssetChanged: 0
   TypeGround: -2050
-  typeInput: 0
   TypeWorkAttribute: 0
   Attributes:
   - Item:
@@ -58,6 +57,7 @@ MonoBehaviour:
   listTypeNoPath: 0c000000080000000e000000
   TypeWorkObject: 2
   TypeMapObject: 5
+  listRuleInput: 120000001100000013000000
   Effects: []
   TypeMine: 0
   references:

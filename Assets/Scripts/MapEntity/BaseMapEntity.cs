@@ -97,66 +97,19 @@ public abstract class BaseMapEntity : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        bool isTrigger = true;
 
         Debug.Log($"" +
             $"UnitBase Click \n" +
             $"name-{this.name} \n" +
-            // $"type-{this.typeEntity}\n" +
             $"pos-[{transform.position}]\n" +
             $"ocup-[{MapObjectClass.OccupiedNode.ToString()}]\n"
             );
         Vector3 posObject = transform.position;
 
-        // if (OccupiedNode.Protected)
-        // {
-        //     Debug.Log($"Exist warrior [{OccupiedNode.ProtectedUnit.name}]");
-        //     //posObject = OccupiedNode.ProtectedUnit.Position;
-        // }
-        if (MapObjectClass.ScriptableData.typeInput == TypeInput.None)
-        {
-            //Debug.Log($"Click nopath [{OccupiedNode.Empty}]!");
-            isTrigger = false;
-        }
-        //TileData dataTile = Grid2DManager.Instance.GetTileData(new Vector3Int((int)posObject.x, (int)posObject.y));
-        //GridTileNode baseTile = Grid2DManager.Instance.GetMapObjectByPosition((int)posObject.x, (int)posObject.y);
-
         if (posObject != null)
         {
-
-            //float sp = dataTile.speed;
-            //bool isWalkable = baseTile.Walkable;
-            //Vector3 posHero = UnitManager.Instance.activeHero.transform.position;
-            //Vector3Int start = new Vector3Int((int)posHero.x, (int)posHero.y);
             Vector3Int end = new Vector3Int((int)posObject.x, (int)posObject.y);
-            //List<GridTileNode> path =
-            LevelManager.Instance.ActivePlayer.FindPathForHero(end, isTrigger, true);
-
-            //if (path != null)
-            //{
-
-
-            //    UnitManager.Instance.ChangePathForHero(path);
-            //    //for (int i = 0; i < path.Count - 1; i++)
-            //    //    {
-            //    //        GridTileNode pathNode = path[i];
-            //    //        GridTileNode pathNodeNext = path[i + 1];
-
-            //    //        // Grid2DManager.Instance.SetColorForTile(new Vector3Int(pathNodeNext.x, pathNodeNext.y, 0), Color.blue);
-
-            //    //        Debug.DrawLine(
-            //    //            new Vector3(pathNode.x + (.5f * 1), pathNode.y + (.5f * 1), 0.05f),
-            //    //            new Vector3(pathNodeNext.x + (.5f * 1), pathNodeNext.y + (.5f * 1), 0.05f),
-            //    //            Color.white, 2f
-            //    //        );
-            //    //        // UnitManager.Instance.ChangePositionActiveUnit(new Vector3Int(end.x, end.y, 0));
-
-            //    //    // _player.GetComponent<Rigidbody>().MovePosition(new Vector3(pathNodeNext.x, _player.transform.position.y, pathNodeNext.z));
-            //    //}
-            //}
-
-            //print("Click at " + this.name + " there is a " + baseTile + " speed " + sp + " isWalkable=" + isWalkable);
-
+            LevelManager.Instance.ActivePlayer.FindPathForHero(end, true);
         }
     }
 }

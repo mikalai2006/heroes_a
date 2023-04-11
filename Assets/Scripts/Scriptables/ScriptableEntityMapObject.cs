@@ -10,6 +10,8 @@ public class ScriptableEntityMapObject : ScriptableEntityEffect, IEffected
     public List<TypeNoPath> RulesDraw => listTypeNoPath;
     public TypeWorkObject TypeWorkObject;
     public TypeMapObject TypeMapObject;
+    public List<TypeNoPath> listRuleInput;
+    public List<TypeNoPath> RulesInput => listRuleInput;
     public List<BaseEffect> Effects;
 
     public virtual void OnDoHero(ref Player player, BaseEntity entity)

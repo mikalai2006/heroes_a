@@ -108,6 +108,14 @@ PrefabInstance:
       propertyPath: m_Offset.y
       value: 1.1193972
       objectReference: {fileID: 0}
+    - target: {fileID: 1384247032952595811, guid: d294c356a916e9641b254fe2cccf2330, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.8600001
+      objectReference: {fileID: 0}
+    - target: {fileID: 3812222254614460531, guid: d294c356a916e9641b254fe2cccf2330, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.86
+      objectReference: {fileID: 0}
     - target: {fileID: 6756399688571568113, guid: d294c356a916e9641b254fe2cccf2330, type: 3}
       propertyPath: m_Name
       value: Stronghold_TownMap_Prefab

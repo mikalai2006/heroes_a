@@ -78,6 +78,17 @@ public class EntityHero : BaseEntity, ISaveDataPlay
         SetClearSky(newPosition);
     }
 
+    public void SetNewOccupiedNode(GridTileNode newNode)
+    {
+        OccupiedNode.SetOcuppiedUnit(null);
+        SetPositionHero(newNode.position);
+
+        if (newNode.OccupiedUnit == null)
+        {
+            OccupiedNode = newNode;
+        }
+    }
+
     public void SetClearSky(Vector3Int startPosition)
     {
         List<GridTileNode> noskyNode
@@ -123,6 +134,7 @@ public class EntityHero : BaseEntity, ISaveDataPlay
         var sdata = SaveUnit(Data);
         data.entity.heroes.Add(sdata);
     }
+
 
     #endregion
 }

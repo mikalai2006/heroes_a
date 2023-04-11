@@ -51,7 +51,6 @@ public abstract class BaseEntity
         // ScriptableData = data;
         // typeEntity = data.TypeEntity;
         // typeUnit = data.TypeUnit;
-        // typeInput = data.typeInput;
         Position = node.position;
         idUnit = System.Guid.NewGuid().ToString("N");
         idObject = data.idObject;

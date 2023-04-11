@@ -15,6 +15,7 @@ public enum StateNode
     Teleport = 1 << 5,
     Cave = 1 << 6,
     Town = 1 << 7,
+    Input = 1 << 8
 }
 
 
@@ -31,6 +32,8 @@ public class GridTileNode : IHeapItem<GridTileNode>
 
     [NonSerialized] public int level;
     [NonSerialized] public Vector3Int position;
+    [NonSerialized] private GridTileNode _inputNode = null;
+    public GridTileNode InputNode => _inputNode;
 
     [NonSerialized] private BaseEntity _ocuppiedUnit = null;
     public BaseEntity OccupiedUnit => _ocuppiedUnit;
@@ -119,6 +122,16 @@ public class GridTileNode : IHeapItem<GridTileNode>
     }
 
     /// <summary>
+    /// Set node as input point.
+    /// </summary>
+    /// <param name="entity">Entity or null</param>
+    public void SetAsInputPoint(GridTileNode node)
+    {
+        StateNode |= StateNode.Input;
+        _inputNode = node;
+    }
+
+    /// <summary>
     /// Set occupied entity for node.
     /// </summary>
     /// <param name="entity">Entity or null</param>
@@ -203,7 +216,7 @@ public class GridTileNode : IHeapItem<GridTileNode>
             "[x" + position.x + ",y" + position.y + "] \n" +
             "typeGround=" + TypeGround + ",\n" +
             "OccupiedUnit=" + OccupiedUnit?.ToString() + ",\n" +
-            "StateNode=" + Convert.ToString((byte)StateNode, 2) + ",\n" +
+            "StateNode=" + Convert.ToString((int)StateNode, 2) + ",\n" +
             "ProtectedUnit=" + ProtectedUnit?.ToString() + ",\n" +
             "countNeighbours=" + countRelatedNeighbors + ",\n" +
             "(gCost=" + gCost + ") (hCost=" + hCost + ") (fCost=" + fCost + ")";

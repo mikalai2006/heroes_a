@@ -30,7 +30,6 @@ MonoBehaviour:
     m_SubObjectType: 
     m_EditorAssetChanged: 0
   TypeGround: 16
-  typeInput: 0
   TypeWorkAttribute: 0
   Attributes:
   - Item:
@@ -58,12 +57,9 @@ MonoBehaviour:
   listTypeNoPath: 0c0000000e00000009000000
   TypeWorkObject: 2
   TypeMapObject: 5
+  listRuleInput: 120000001100000013000000
   Effects: []
   TypeMine: 1
-  Resources:
-  - id: 
-    Resource: {fileID: 11400000, guid: 0ffa581b737859344b48fea1a3568956, type: 2}
-    value: 2
   references:
     version: 2
     RefIds: []

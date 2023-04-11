@@ -30,12 +30,12 @@ MonoBehaviour:
     m_SubObjectType: 
     m_EditorAssetChanged: 0
   TypeGround: -2050
-  typeInput: 0
   TypeWorkAttribute: 0
   Attributes: []
   listTypeNoPath: 
   TypeWorkObject: 3
   TypeMapObject: 7
+  listRuleInput: 1100000013000000120000000e000000
   Effects: []
   TypeFaction: 0
   CostResource: []

@@ -15,61 +15,28 @@ MonoBehaviour:
   idObject: 0002
   TypeEntity: 80
   MenuSprite: {fileID: 21300000, guid: 340488d12d6e4ac49ac03e4dea176590, type: 3}
-  Text:
-    title:
-      m_TableReference:
-        m_TableCollectionName: 
-      m_TableEntryReference:
-        m_KeyId: 0
-        m_Key: 
-      m_FallbackState: 0
-      m_WaitForCompletion: 0
-      m_LocalVariables: []
-    description:
-      m_TableReference:
-        m_TableCollectionName: 
-      m_TableEntryReference:
-        m_KeyId: 0
-        m_Key: 
-      m_FallbackState: 0
-      m_WaitForCompletion: 0
-      m_LocalVariables: []
+  title:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   MapPrefab:
     m_AssetGUID: 6a1b4cdbc76adae4a8d4ad518229a293
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
   TypeGround: 16
-  typeInput: 0
+  TypeWorkAttribute: 0
+  Attributes: []
   listTypeNoPath: 080000000e0000000c000000090000000700000006000000030000000f0000000b000000
-  DialogText:
-    VisitOk:
-      m_TableReference:
-        m_TableCollectionName: 
-      m_TableEntryReference:
-        m_KeyId: 0
-        m_Key: 
-      m_FallbackState: 0
-      m_WaitForCompletion: 0
-      m_LocalVariables: []
-    VisitNo:
-      m_TableReference:
-        m_TableCollectionName: 
-      m_TableEntryReference:
-        m_KeyId: 0
-        m_Key: 
-      m_FallbackState: 0
-      m_WaitForCompletion: 0
-      m_LocalVariables: []
-    VisitNoResource:
-      m_TableReference:
-        m_TableCollectionName: 
-      m_TableEntryReference:
-        m_KeyId: 0
-        m_Key: 
-      m_FallbackState: 0
-      m_WaitForCompletion: 0
-      m_LocalVariables: []
+  TypeWorkObject: 0
+  TypeMapObject: 0
+  listRuleInput: 120000001100000013000000
+  Effects: []
   TypeFaction: 1
   BuildTown:
     m_AssetGUID: d6771147da1a9fc439021716d6c3a6c1

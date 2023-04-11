@@ -114,6 +114,7 @@ public static class UnitManager
 
         entity.OccupiedNode = node;
         node.SetOcuppiedUnit(entity);
+        GameManager.Instance.MapManager.SetColorForTile(pos, Color.yellow);
         // node.SetState(TypeStateNode.Disabled);
 
         ScriptableEntityMapObject configData = (ScriptableEntityMapObject)entity.ScriptableData;
@@ -128,13 +129,25 @@ public static class UnitManager
                 foreach (GridTileNode nodePath in list)
                 {
                     GameManager.Instance.MapManager.SetColorForTile(nodePath.position, Color.black);
-                    nodePath.SetOcuppiedUnit(entity);
+                    nodePath.SetDisableNode();
+                    // nodePath.SetOcuppiedUnit(entity);
                     // SetDisableNode(nodePath, null, color);
                 }
             }
         }
-
-        GameManager.Instance.MapManager.SetColorForTile(pos, Color.white);
+        if (configData.RulesInput.Count > 0)
+        {
+            List<GridTileNode> list
+                = GameManager.Instance.MapManager.gridTileHelper.GetNodeListAsNoPath(node, configData.RulesInput);
+            if (list.Count > 0)
+            {
+                foreach (GridTileNode nodex in list)
+                {
+                    GameManager.Instance.MapManager.SetColorForTile(nodex.position, Color.green);
+                    nodex.SetAsInputPoint(node);
+                }
+            }
+        }
 
         return entity;
     }
