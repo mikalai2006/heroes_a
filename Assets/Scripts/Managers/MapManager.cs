@@ -661,7 +661,7 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
     {
         if (start == null || end == null) return;
 
-        List<GridTileNode> path = gridTileHelper.FindPath(start, end, true, true);
+        List<GridTileNode> path = gridTileHelper.FindPath(start, end, true, false);
 
         if (path != null)
         {
