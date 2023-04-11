@@ -121,7 +121,7 @@ public class LevelManager : Singleton<LevelManager>, ISaveDataPlay, ISaveDataGam
         }
 
         //level.activePlayer = level.activePlayer < (countPlayer + countEnemies + 1) ? level.activePlayer++ : 0;
-        // GameManager.Instance.MapManager.ResetSky(ActivePlayer.DataPlayer.nosky);
+        GameManager.Instance.MapManager.ResetSky(ActivePlayer.DataPlayer.nosky);
 
         if (ActivePlayer.ActiveHero == null)
         {
