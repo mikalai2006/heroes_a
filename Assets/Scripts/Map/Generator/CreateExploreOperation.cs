@@ -67,7 +67,7 @@ public class CreateExploreOperation : ILoadingOperation
                             = (EntityExpore)factory.CreateMapObject(TypeMapObject.Explore, currentNode, configData);
                         UnitManager.SpawnEntityToNode(currentNode, entity);
 
-                        BaseEntity warrior = UnitManager.SpawnWarrior(nodeWarrior);
+                        BaseEntity warrior = new EntityCreature(nodeWarrior); // UnitManager.SpawnWarrior(nodeWarrior);
 
                         nodeWarrior.SetProtectedNeigbours(warrior, currentNode);
                         // currentNode.SetProtectedNode(warrior);

@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
@@ -13,11 +15,22 @@ public class ScriptableEntityCreature : ScriptableEntity
 public struct DataCreatureParams
 {
     public int Level;
-    public int Health;
     public int Attack;
-    public int Protection;
-    public int Damage;
-    public int MaxDamage;
-    public int Ammunition;
+    public int Defense;
+    public int DamageMin;
+    public int DamageMax;
+    public int HP;
     public int Speed;
+    public int Ammunition;
+    public int Growth;
+    public int AI;
+
+    public List<CostEntity> Cost;
+}
+
+[System.Serializable]
+public struct CostEntity
+{
+    public ScriptableAttributeResource Resource;
+    public int Count;
 }

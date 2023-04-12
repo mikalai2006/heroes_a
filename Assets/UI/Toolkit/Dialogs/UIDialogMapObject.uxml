@@ -2,31 +2,33 @@
     <Style src="project://database/Assets/UI/Toolkit/Base.uss?fileID=7433441132597879392&amp;guid=fa07b064290e7384d9ad2e26e79f5953&amp;type=3#Base" />
     <Style src="project://database/Assets/UI/Toolkit/Dialog.uss?fileID=7433441132597879392&amp;guid=2438f8d68703dce4ab75f8d1eda15062&amp;type=3#Dialog" />
     <ui:VisualElement name="DialogMapObject" class="dialog_box">
-        <ui:VisualElement name="Panel" class="dialog_panel">
+        <ui:VisualElement name="Panel" class="dialog_panel" style="min-width: 50%;">
             <ui:VisualElement name="Overlay" class="p-2" style="flex-grow: 1; position: absolute; width: 100%; height: 100%;">
                 <ui:VisualElement class="bg border-color" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); border-left-width: 2px; border-right-width: 2px; border-top-width: 2px; border-bottom-width: 2px;" />
             </ui:VisualElement>
             <ui:VisualElement name="Bg" class="dialog_overlay" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); background-image: url(&apos;project://database/Assets/UI/Sprites/Frame.png?fileID=2800000&amp;guid=81eaaceda174c9442b7581ccf4d2787d&amp;type=3#Frame&apos;);" />
-            <ui:VisualElement class="p-4" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
+            <ui:VisualElement name="PanelBlok" class="p-4" style="background-color: rgba(0, 0, 0, 0);">
                 <ui:VisualElement name="Header" class="dialog_header">
                     <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); align-items: center;">
                         <ui:Label tabindex="-1" text="#title" display-tooltip-when-elided="true" name="HeaderDialog" />
                     </ui:VisualElement>
                 </ui:VisualElement>
-                <ui:VisualElement name="Row" class="dialog_box_row">
-                    <ui:VisualElement name="Col" class="text-secondary text-lg" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); align-self: center;">
-                        <ui:VisualElement name="SpriteObject" style="align-self: center;" />
-                        <ui:Label tabindex="-1" text="La belLabelLabelLa belLabelLabelLa belLabelLabelLa belLabelLabelLa belLabelLabelLa belLabelLabelLa belLabelLabelLa belLabelLabelLa belLabelLabelLa belLabel" display-tooltip-when-elided="true" name="DescriptionDialog" enable-rich-text="true" style="white-space: normal; -unity-text-align: upper-center;" />
+                <ui:VisualElement name="GeneralBlok" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
+                    <ui:VisualElement name="Row" class="dialog_box_row">
+                        <ui:VisualElement name="Col" class="text-secondary text-lg" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); align-self: center;">
+                            <ui:VisualElement name="SpriteObject" style="align-self: center;" />
+                            <ui:Label tabindex="-1" text="La belLabelLabelLa belLabelLabelLa belLabelLabelLa belLabelLabelLa belLabelLabelLa belLabelLabelLa belLabelLabelLa belLabelLabelLa belLabelLabelLa belLabel" display-tooltip-when-elided="true" name="DescriptionDialog" enable-rich-text="true" style="white-space: normal; -unity-text-align: upper-center;" />
+                        </ui:VisualElement>
+                        <ui:VisualElement name="BoxVariants" style="flex-direction: row; justify-content: center;" />
                     </ui:VisualElement>
-                    <ui:VisualElement name="BoxVariants" style="flex-direction: row; justify-content: center;" />
-                </ui:VisualElement>
-                <ui:VisualElement name="Row" class="dialog_box_row" style="flex-direction: row; justify-content: center;">
-                    <ui:Button display-tooltip-when-elided="true" name="ButtonCancel" class="button button_text button_bordered button_bg">
-                        <ui:Label tabindex="-1" text="#cancel" display-tooltip-when-elided="true" />
-                    </ui:Button>
-                    <ui:Button display-tooltip-when-elided="true" name="ButtonOk" class="button button_text button_bordered button_bg">
-                        <ui:Label tabindex="-1" text="#ok" display-tooltip-when-elided="true" />
-                    </ui:Button>
+                    <ui:VisualElement name="Row" class="dialog_box_row" style="flex-direction: row; justify-content: center;">
+                        <ui:Button display-tooltip-when-elided="true" name="ButtonCancel" class="button button_text button_bordered button_bg">
+                            <ui:Label tabindex="-1" text="#cancel" display-tooltip-when-elided="true" />
+                        </ui:Button>
+                        <ui:Button display-tooltip-when-elided="true" name="ButtonOk" class="button button_text button_bordered button_bg">
+                            <ui:Label tabindex="-1" text="#ok" display-tooltip-when-elided="true" />
+                        </ui:Button>
+                    </ui:VisualElement>
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>

@@ -88,7 +88,7 @@ public class CreateMinesOperation : ILoadingOperation
                         );
                         UnitManager.SpawnEntityToNode(currentNode, entity);
 
-                        BaseEntity warrior = UnitManager.SpawnWarrior(nodeWarrior);
+                        BaseEntity warrior = new EntityCreature(nodeWarrior); // UnitManager.SpawnWarrior(nodeWarrior);
 
                         // currentNode.SetProtectedNode(warrior);
                         nodeWarrior.SetProtectedNeigbours(warrior, currentNode);

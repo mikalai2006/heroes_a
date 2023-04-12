@@ -12,7 +12,7 @@ public struct DataDialogBuild
     public string title;
     public string description;
     public string textRequireBuild;
-    public List<BuildCostResource> CostResource;
+    public List<CostEntity> CostResource;
     public bool isNotBuild;
 }
 

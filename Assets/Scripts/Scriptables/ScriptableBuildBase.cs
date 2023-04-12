@@ -138,7 +138,7 @@ public struct Build
     [SerializeField] public LangBuild Text;
     // [SerializeField] public TestTypeBuild[] RequireBuilds2;
     // [SerializeField] public int level;
-    [SerializeField] public List<BuildCostResource> CostResource;
+    [SerializeField] public List<CostEntity> CostResource;
 }
 
 [System.Serializable]
@@ -148,12 +148,6 @@ public struct LangBuild
     public LocalizedString description;
 }
 
-[System.Serializable]
-public struct BuildCostResource
-{
-    public ScriptableAttributeResource Resource;
-    public int Count;
-}
 
 [System.Serializable]
 public struct TypeRequireBuild

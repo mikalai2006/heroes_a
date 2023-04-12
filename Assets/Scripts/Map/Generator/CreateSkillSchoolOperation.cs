@@ -75,7 +75,7 @@ public class CreateSkillSchoolOperation : ILoadingOperation
                             // _root.UnitManager
                             //     .SpawnMapObjectAsync(currentNode, TypeMapObject.SkillSchool);
 
-                            BaseEntity warrior = UnitManager.SpawnWarrior(nodeWarrior);
+                            BaseEntity warrior = new EntityCreature(nodeWarrior); // UnitManager.SpawnWarrior(nodeWarrior);
 
                             nodeWarrior.SetProtectedNeigbours(warrior, currentNode);
                             // currentNode.SetProtectedNode(warrior);

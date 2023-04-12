@@ -119,9 +119,17 @@ public class GridTileHelper
                 if (closedSet.Contains(neighbourNode)) continue;
 
                 // Entry point processing.
-                if (neighbourNode == endNode && endNode.OccupiedUnit != null)
+                if (
+                    neighbourNode == endNode
+                    && endNode.OccupiedUnit != null
+                    )
                 {
-                    var data = (ScriptableEntityMapObject)endNode.OccupiedUnit.ScriptableData;
+                    // if (endNode.OccupiedUnit.ScriptableData.TypeEntity != TypeEntity.MapObject)
+                    // {
+                    //     continue;
+                    // }
+                    var data = endNode.OccupiedUnit.ScriptableData as ScriptableEntityMapObject;
+                    if (data == null) continue;
                     if (
                         data.RulesInput.Count > 0
                         && !currentNode.StateNode.HasFlag(StateNode.Input)

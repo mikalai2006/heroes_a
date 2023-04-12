@@ -1,0 +1,59 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:Template name="Button" src="project://database/Assets/UI/Toolkit/Button.uxml?fileID=9197481963319205126&amp;guid=db5e7d04a42304542a4356b1519364b2&amp;type=3#Button" />
+    <Style src="project://database/Assets/UI/Toolkit/Base.uss?fileID=7433441132597879392&amp;guid=fa07b064290e7384d9ad2e26e79f5953&amp;type=3#Base" />
+    <Style src="project://database/Assets/UI/Toolkit/UnityBase.uss?fileID=7433441132597879392&amp;guid=c0905c354b5fb524e83bc41ae3debe10&amp;type=3#UnityBase" />
+    <ui:VisualElement name="DwellingBlok" class="text-lg text-secondary" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); background-image: url(&apos;project://database/Assets/UI/Sprites/Bg.png?fileID=2800000&amp;guid=0641c76439a64674aa800f9e3d79c6a4&amp;type=3#Bg&apos;); -unity-background-scale-mode: scale-and-crop;">
+        <ui:VisualElement name="CreatureSpriteBlok" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); height: 50%; flex-direction: row; justify-content: center; padding-bottom: 10px;">
+            <ui:VisualElement name="Level1" class="border-2 w-25 button_active" style="margin-right: 10px;" />
+            <ui:VisualElement name="Level2" class="border-2 border-color w-25" />
+        </ui:VisualElement>
+        <ui:VisualElement name="PriceBlok" style="height: 35%; flex-direction: row; justify-content: center; flex-grow: 1;">
+            <ui:VisualElement class="border-2 border-color m-1 w-33" style="flex-grow: 1;">
+                <ui:Label tabindex="-1" text="#cost" display-tooltip-when-elided="true" name="TitleCostBlok" class="p-2" />
+                <ui:VisualElement name="CostBlok" class="border-t border-primary text-center" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row;">
+                    <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
+                        <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); background-image: url(&apos;project://database/Assets/Entity/MapObject/Prefabs/Resource/Campfire/Campfire1.png?fileID=2800000&amp;guid=6368503fc3385c24882452865dd2d893&amp;type=3#Campfire1&apos;);" />
+                        <ui:Label tabindex="-1" text="1000" display-tooltip-when-elided="true" />
+                    </ui:VisualElement>
+                    <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
+                        <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); background-image: url(&apos;project://database/Assets/Entity/MapObject/Prefabs/Resource/Campfire/Campfire1.png?fileID=2800000&amp;guid=6368503fc3385c24882452865dd2d893&amp;type=3#Campfire1&apos;);" />
+                        <ui:Label tabindex="-1" text="1000" display-tooltip-when-elided="true" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement class="m-1 w-33 px-4" style="flex-grow: 1;">
+                <ui:VisualElement class="text-center" style="flex-grow: 1; flex-direction: row;">
+                    <ui:VisualElement name="Available" class="border-2 border-color w-50 p-1" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); margin-right: 5px;">
+                        <ui:Label tabindex="-1" text="#available" display-tooltip-when-elided="true" name="TitleAvailable" class="p-2" />
+                        <ui:Label tabindex="-1" text="1" display-tooltip-when-elided="true" name="AvailableCount" class="text_xl font-bold" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="Hire" class="border-2 border-color w-50 p-1" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
+                        <ui:Label tabindex="-1" text="#hire" display-tooltip-when-elided="true" name="TitleHire" class="p-2" />
+                        <ui:Label tabindex="-1" text="1" display-tooltip-when-elided="true" name="HireCount" class="text_xl font-bold" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement style="background-color: rgba(0, 0, 0, 0); margin-top: 20px; margin-bottom: 20px;">
+                    <ui:SliderInt picking-mode="Ignore" value="42" high-value="100" name="SliderValue" class="w-full" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement class="border-2 border-color m-1 w-33" style="flex-grow: 1;">
+                <ui:Label tabindex="-1" text="#cost" display-tooltip-when-elided="true" name="TitleTotalCostBlok" class="p-2" />
+                <ui:VisualElement name="TotalCostBlok" class="border-t border-primary text-center" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row;">
+                    <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
+                        <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); background-image: url(&apos;project://database/Assets/Entity/MapObject/Prefabs/Resource/Campfire/Campfire1.png?fileID=2800000&amp;guid=6368503fc3385c24882452865dd2d893&amp;type=3#Campfire1&apos;);" />
+                        <ui:Label tabindex="-1" text="1000" display-tooltip-when-elided="true" />
+                    </ui:VisualElement>
+                    <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
+                        <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); background-image: url(&apos;project://database/Assets/Entity/MapObject/Prefabs/Resource/Campfire/Campfire1.png?fileID=2800000&amp;guid=6368503fc3385c24882452865dd2d893&amp;type=3#Campfire1&apos;);" />
+                        <ui:Label tabindex="-1" text="1000" display-tooltip-when-elided="true" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="ButtonsBlok" class="p-2" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row; justify-content: center; align-self: center;">
+            <ui:Instance template="Button" name="Button">
+                <AttributeOverrides element-name="Btn" text="rtertertertertertert" />
+            </ui:Instance>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

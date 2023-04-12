@@ -92,20 +92,20 @@ public static class UnitManager
     //     return createdUnit;
     // }
 
-    public static BaseEntity SpawnWarrior(GridTileNode node, TypeGround typeGroud = TypeGround.None, int level = 1)
-    {
-        //if (node == null) return null;
+    // public static BaseEntity SpawnWarrior(GridTileNode node, TypeGround typeGroud = TypeGround.None, int level = 1)
+    // {
+    //     //if (node == null) return null;
 
-        List<ScriptableEntityCreature> listWarriors = ResourceSystem.Instance.GetEntityByType<ScriptableEntityCreature>(TypeEntity.Creature);
-        ScriptableEntityCreature scriptbaleEntity = listWarriors[Random.Range(0, listWarriors.Count)];
-        EntityCreature newEntity = new EntityCreature(node);
-        newEntity.OccupiedNode = node;
-        node.SetOcuppiedUnit(newEntity);
-        // SpawnEntityToNode(node, newEntity);
+    //     List<ScriptableEntityCreature> listWarriors = ResourceSystem.Instance.GetEntityByType<ScriptableEntityCreature>(TypeEntity.Creature);
+    //     ScriptableEntityCreature scriptbaleEntity = listWarriors[Random.Range(0, listWarriors.Count)];
+    //     EntityCreature newEntity = new EntityCreature(node);
+    //     newEntity.OccupiedNode = node;
+    //     node.SetOcuppiedUnit(newEntity);
+    //     // SpawnEntityToNode(node, newEntity);
 
-        // node.OccupiedUnit = createdUnit;
-        return newEntity;
-    }
+    //     // node.OccupiedUnit = createdUnit;
+    //     return newEntity;
+    // }
 
     #region Spawn entity
     public static BaseEntity SpawnEntityToNode(GridTileNode node, BaseEntity entity)

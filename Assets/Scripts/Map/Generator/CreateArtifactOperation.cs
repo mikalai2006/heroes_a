@@ -75,19 +75,23 @@ public class CreateArtifactOperation : ILoadingOperation
                             .GetEntityByType<ScriptableEntityMapObject>(TypeEntity.MapObject)
                             .Where(t => t.TypeMapObject == TypeMapObject.Artifact)
                             .First();
-
-                        EntityArtifact entity = new EntityArtifact(currentNode, (ScriptableEntityArtifact)configData);
-                        var entityArtifact = (ScriptableEntityArtifact)entity.ScriptableData;
-
+                        ScriptableEntityArtifact configArtifact = (ScriptableEntityArtifact)configData;
                         // Generate artefact attribute.
                         ScriptableAttributeArtifact artifact
                             = listArtifacts[Random.Range(0, listArtifacts.Count)];
-                        entityArtifact.Artifact = artifact;
+                        configArtifact.Artifact = artifact;
+
+                        EntityArtifact entity = new EntityArtifact(
+                            currentNode,
+                            configArtifact
+                            );
+                        var entityArtifact = (ScriptableEntityArtifact)entity.ScriptableData;
+
 
                         // Generate protection creature.
                         UnitManager.SpawnEntityToNode(currentNode, entity);
 
-                        BaseEntity warrior = UnitManager.SpawnWarrior(nodeWarrior);
+                        BaseEntity warrior = new EntityCreature(nodeWarrior); //UnitManager.SpawnWarrior(nodeWarrior);
 
                         nodeWarrior.SetProtectedNeigbours(warrior, currentNode);
                         // currentNode.SetProtectedNode(warrior);

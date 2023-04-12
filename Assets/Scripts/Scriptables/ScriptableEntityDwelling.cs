@@ -6,8 +6,8 @@ public class ScriptableEntityDwelling : ScriptableEntityMapObject, IEffected
 {
     [Header("Options Dwelling")]
     public TypeFaction TypeFaction;
-    [SerializeField] public List<BuildCostResource> CostResource;
-    [SerializeField] public ScriptableEntityCreature Creature;
+    // [SerializeField] public List<CostEntity> CostResource;
+    [SerializeField] public List<ScriptableEntityCreature> Creature;
     public override void OnDoHero(ref Player player, BaseEntity entity)
     {
         base.OnDoHero(ref player, entity);

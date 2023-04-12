@@ -6,7 +6,8 @@ using UnityEngine;
 [System.Serializable]
 public struct DataEntityDwelling
 {
-
+    public int value;
+    public int level;
 }
 
 [System.Serializable]
@@ -22,6 +23,7 @@ public class EntityDwelling : BaseEntity, ISaveDataPlay
         if (saveData == null)
         {
             ScriptableData = configData;
+            SetData();
         }
         else
         {
@@ -34,6 +36,13 @@ public class EntityDwelling : BaseEntity, ISaveDataPlay
         }
 
         base.Init(ScriptableData, node);
+    }
+
+    public void SetData()
+    {
+        ScriptableEntityDwelling scriptData = (ScriptableEntityDwelling)ScriptableData;
+        Data.value = 75;
+        Data.level = 0;
     }
 
     public override void SetPlayer(Player player)

@@ -74,7 +74,7 @@ public class CreateResourceEveryWeekOperation : ILoadingOperation
                                 configData
                                 );
 
-                            BaseEntity warrior = UnitManager.SpawnWarrior(nodeWarrior);
+                            BaseEntity warrior = new EntityCreature(nodeWarrior); // UnitManager.SpawnWarrior(nodeWarrior);
 
                             UnitManager.SpawnEntityToNode(currentNode, entity);
                             // _root.UnitManager.SpawnMapObjectAsync(

@@ -315,6 +315,10 @@ MonoBehaviour:
     m_Key: witchhut_exist
     m_Metadata:
       m_Items: []
+  - m_Id: 5513840730210304
+    m_Key: dwelling_d
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

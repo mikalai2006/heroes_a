@@ -33,7 +33,6 @@
 }
 
 .dialog_panel {
-    width: 50%;
 }
 
 .dialog_footer {

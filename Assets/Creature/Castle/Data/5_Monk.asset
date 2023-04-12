@@ -14,62 +14,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   idObject: 42078ab73c58461eb0885fb7a2aa8db4
   TypeEntity: 10
-  MenuSprite: {fileID: 0}
-  Text:
-    title:
-      m_TableReference:
-        m_TableCollectionName: 
-      m_TableEntryReference:
-        m_KeyId: 0
-        m_Key: 
-      m_FallbackState: 0
-      m_WaitForCompletion: 0
-      m_LocalVariables: []
-    description:
-      m_TableReference:
-        m_TableCollectionName: 
-      m_TableEntryReference:
-        m_KeyId: 0
-        m_Key: 
-      m_FallbackState: 0
-      m_WaitForCompletion: 0
-      m_LocalVariables: []
+  MenuSprite: {fileID: 21300000, guid: 2f059478c4af30b43bf395c138dd7f86, type: 3}
+  title:
+    m_TableReference:
+      m_TableCollectionName: GUID:eccb40f2ef0445e499300535baf5f930
+    m_TableEntryReference:
+      m_KeyId: 17241124012032
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   MapPrefab:
     m_AssetGUID: b2d52339c77fd364cbfddc2dafaadf72
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
-  typeGround: 4
-  typeInput: 1
-  listTypeNoPath: 
-  DialogText:
-    VisitOk:
-      m_TableReference:
-        m_TableCollectionName: 
-      m_TableEntryReference:
-        m_KeyId: 0
-        m_Key: 
-      m_FallbackState: 0
-      m_WaitForCompletion: 0
-      m_LocalVariables: []
-    VisitNo:
-      m_TableReference:
-        m_TableCollectionName: 
-      m_TableEntryReference:
-        m_KeyId: 0
-        m_Key: 
-      m_FallbackState: 0
-      m_WaitForCompletion: 0
-      m_LocalVariables: []
-    VisitNoResource:
-      m_TableReference:
-        m_TableCollectionName: 
-      m_TableEntryReference:
-        m_KeyId: 0
-        m_Key: 
-      m_FallbackState: 0
-      m_WaitForCompletion: 0
-      m_LocalVariables: []
+  TypeGround: 0
   TypeFaction: 0
   ArenaModel:
     m_AssetGUID: 
@@ -77,13 +37,19 @@ MonoBehaviour:
     m_SubObjectType: 
     m_EditorAssetChanged: 0
   CreatureParams:
-    Health: 0
+    Level: 5
     Attack: 0
-    Protection: 0
-    Damage: 0
-    MaxDamage: 0
-    Ammunition: 0
+    Defense: 0
+    DamageMin: 0
+    DamageMax: 0
+    HP: 0
     Speed: 0
+    Ammunition: 0
+    Growth: 0
+    AI: 0
+    Cost:
+    - Resource: {fileID: 11400000, guid: 3894d4d068775c343b5c4bf1510dee33, type: 2}
+      Count: 400
   references:
     version: 2
     RefIds: []

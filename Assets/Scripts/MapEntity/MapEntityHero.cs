@@ -113,7 +113,7 @@ public class MapEntityHero : BaseMapEntity
                 = configNodeData?.RulesInput.Count > 0
                     ? new Vector3(.5f, .0f)
                     : new Vector3(.5f, .5f);
-            Debug.Log($"To = {entityHero.Data.path[0].position} -[{moveKoof}]");
+            // Debug.Log($"To = {entityHero.Data.path[0].position} -[{moveKoof}]");
 
             if (entityHero.Data.path[0].StateNode.HasFlag(StateNode.Protected))
             {

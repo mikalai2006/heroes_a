@@ -38,8 +38,9 @@ MonoBehaviour:
   listRuleInput: 1100000013000000120000000e000000
   Effects: []
   TypeFaction: 0
-  CostResource: []
-  Creature: {fileID: 0}
+  Creature:
+  - {fileID: 11400000, guid: d03c087eb728b064e8c1e13511f0d189, type: 2}
+  - {fileID: 11400000, guid: b93745913452c36469604bba8816e3d6, type: 2}
   references:
     version: 2
     RefIds: []

@@ -120,7 +120,7 @@ public class Player
         GameManager.Instance.ChangeState(GameState.ChangeResources);
     }
 
-    public bool IsExistsResource(List<BuildCostResource> resources)
+    public bool IsExistsResource(List<CostEntity> resources)
     {
         bool result = true;
         foreach (var res in resources)

@@ -31,6 +31,9 @@ public class EntityCreature : BaseEntity, ISaveDataPlay
             idUnit = saveData.idUnit;
         }
 
+        OccupiedNode = node;
+        node.SetOcuppiedUnit(this);
+
         base.Init(ScriptableData, node);
     }
 

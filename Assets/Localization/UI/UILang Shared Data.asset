@@ -59,6 +59,26 @@ MonoBehaviour:
     m_Key: UI Login/UI Login
     m_Metadata:
       m_Items: []
+  - m_Id: 5644794723467264
+    m_Key: hire
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5644853351448576
+    m_Key: available
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5644962168471552
+    m_Key: cost
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5645044347469824
+    m_Key: totalcost
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5824790519775232
+    m_Key: cancel
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

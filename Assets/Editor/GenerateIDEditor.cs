@@ -84,11 +84,11 @@ class GenerateIDArtifactEditor : GenerateIDUnitBaseEditor
 
 }
 
-[CustomEditor(typeof(ScriptableEntityCreature))]
-class GenerateIDCreatureEditor : GenerateIDUnitBaseEditor
-{
+// [CustomEditor(typeof(ScriptableEntityCreature))]
+// class GenerateIDCreatureEditor : GenerateIDUnitBaseEditor
+// {
 
-}
+// }
 
 [CustomEditor(typeof(ScriptableEntityDwelling))]
 class GenerateIDEntityDwellingEditor : GenerateIDUnitBaseEditor

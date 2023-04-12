@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 
 using UnityEngine;
+using UnityEngine.Localization;
+using UnityEngine.Localization.SmartFormat.PersistentVariables;
 
 public class MapEntityDwelling : BaseMapEntity, IDialogMapObjectOperation
 {
@@ -35,6 +37,11 @@ public class MapEntityDwelling : BaseMapEntity, IDialogMapObjectOperation
         {
             MapObjectClass.SetPlayer(player);
             SetPlayer(player);
+            DataResultDialogDwelling resultDwelling = await OnShowDialogDwelling();
+            if (resultDwelling.isOk)
+            {
+
+            }
         }
         else
         {
@@ -44,16 +51,36 @@ public class MapEntityDwelling : BaseMapEntity, IDialogMapObjectOperation
 
     public async UniTask<DataResultDialog> OnTriggeredHero()
     {
-        // var t = HelperLanguage.GetLocaleText(this.ScriptableData.Locale);
+        EntityDwelling entity = (EntityDwelling)MapObjectClass;
+        ScriptableEntityDwelling configData = (ScriptableEntityDwelling)MapObjectClass.ScriptableData;
+
+        var nameCreature = configData.Creature[entity.Data.level].title.IsEmpty ?
+            "" : configData.Creature[entity.Data.level].title.GetLocalizedString();
+
+        LocalizedString description = new LocalizedString(Constants.LanguageTable.LANG_TABLE_ADVENTURE, "dwelling_d")
+        {
+            { "name", new StringVariable { Value = "<color=#FFFFAB>" + nameCreature + "</color>" } },
+        };
+
         var dialogData = new DataDialogMapObject()
         {
-            // Header = MapObjectClass.ScriptableData.Text.title.GetLocalizedString(),
-            // Description = t.Text.visit_ok,
-            Sprite = MapObjectClass.ScriptableData.MenuSprite,
+            Header = configData.title.GetLocalizedString(),
+            Description = description.GetLocalizedString(),
+            // Sprite = this.ScriptableData.MenuSprite,
+            TypeCheck = TypeCheck.OnlyOk,
+            TypeWorkAttribute = configData.TypeWorkAttribute,
         };
 
         var dialogWindow = new DialogMapObjectProvider(dialogData);
         return await dialogWindow.ShowAndHide();
     }
 
+    public async UniTask<DataResultDialogDwelling> OnShowDialogDwelling()
+    {
+        EntityDwelling entity = (EntityDwelling)MapObjectClass;
+        // ScriptableEntityDwelling configData = (ScriptableEntityDwelling)MapObjectClass.ScriptableData;
+
+        var dialogWindow = new DialogDwellingProvider(entity);
+        return await dialogWindow.ShowAndHide();
+    }
 }

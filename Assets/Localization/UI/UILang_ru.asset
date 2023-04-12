@@ -67,6 +67,26 @@ MonoBehaviour:
     m_Localized: https://storydata.ru/api/v1/auth
     m_Metadata:
       m_Items: []
+  - m_Id: 5644794723467264
+    m_Localized: "\u041D\u0430\u043D\u044F\u0442\u044C"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5644853351448576
+    m_Localized: "\u0414\u043E\u0441\u0442\u0443\u043F\u043D\u043E"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5644962168471552
+    m_Localized: "\u0421\u0442\u043E\u0438\u043C\u043E\u0441\u0442\u044C"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5645044347469824
+    m_Localized: "\u041E\u0431\u0449\u0430\u044F \u0441\u0442\u043E\u0438\u043C\u043E\u0441\u0442\u044C"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5824790519775232
+    m_Localized: "\u041E\u0442\u043C\u0435\u043D\u0430"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
