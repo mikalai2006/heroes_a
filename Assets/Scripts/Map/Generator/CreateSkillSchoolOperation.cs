@@ -68,14 +68,13 @@ public class CreateSkillSchoolOperation : ILoadingOperation
                             var factory = new EntityMapObjectFactory();
                             BaseEntity entity = factory.CreateMapObject(
                                 TypeMapObject.Skills,
-                                currentNode,
                                 configData
                                 );
-                            UnitManager.SpawnEntityToNode(currentNode, entity);
+                            UnitManager.SpawnEntityMapObjectToNode(currentNode, entity);
                             // _root.UnitManager
                             //     .SpawnMapObjectAsync(currentNode, TypeMapObject.SkillSchool);
 
-                            BaseEntity warrior = new EntityCreature(nodeWarrior); // UnitManager.SpawnWarrior(nodeWarrior);
+                            BaseEntity warrior = UnitManager.SpawnEntityCreature(nodeWarrior);
 
                             nodeWarrior.SetProtectedNeigbours(warrior, currentNode);
                             // currentNode.SetProtectedNode(warrior);

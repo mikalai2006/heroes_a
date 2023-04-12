@@ -15,7 +15,7 @@ public class EntityMonolith : BaseEntity, ISaveDataPlay
 {
     [SerializeField] public DataMonolith Data = new DataMonolith();
     public ScriptableEntityPortal ConfigData => (ScriptableEntityPortal)ScriptableData;
-    public EntityMonolith(GridTileNode node, ScriptableEntityPortal configData, SaveDataUnit<DataMonolith> saveData = null)
+    public EntityMonolith(ScriptableEntityPortal configData, SaveDataUnit<DataMonolith> saveData = null)
     {
         if (saveData == null)
         {
@@ -36,7 +36,7 @@ public class EntityMonolith : BaseEntity, ISaveDataPlay
             idUnit = saveData.idUnit;
         }
 
-        base.Init(ScriptableData, node);
+        base.Init(ScriptableData);
     }
 
     public override void SetPlayer(Player player)

@@ -11,7 +11,7 @@ public class EntityTown : BaseEntity, ISaveDataPlay
     [SerializeField] public DataTown Data = new DataTown();
     public ScriptableEntityTown ConfigData => (ScriptableEntityTown)ScriptableData;
 
-    public EntityTown(GridTileNode node, TypeGround typeGround, SaveDataUnit<DataTown> saveData = null)
+    public EntityTown(TypeGround typeGround, SaveDataUnit<DataTown> saveData = null)
     {
         if (saveData == null)
         {
@@ -36,7 +36,7 @@ public class EntityTown : BaseEntity, ISaveDataPlay
             idUnit = saveData.idUnit;
         }
 
-        base.Init(ScriptableData, node);
+        base.Init(ScriptableData);
     }
 
     public void SetTownAsActive()

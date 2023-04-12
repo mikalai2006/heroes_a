@@ -64,10 +64,10 @@ public class CreateExploreOperation : ILoadingOperation
                         ScriptableEntityMapObject configData
                             = list[UnityEngine.Random.Range(0, list.Count)];
                         EntityExpore entity
-                            = (EntityExpore)factory.CreateMapObject(TypeMapObject.Explore, currentNode, configData);
-                        UnitManager.SpawnEntityToNode(currentNode, entity);
+                            = (EntityExpore)factory.CreateMapObject(TypeMapObject.Explore, configData);
+                        UnitManager.SpawnEntityMapObjectToNode(currentNode, entity);
 
-                        BaseEntity warrior = new EntityCreature(nodeWarrior); // UnitManager.SpawnWarrior(nodeWarrior);
+                        BaseEntity warrior = UnitManager.SpawnEntityCreature(nodeWarrior);
 
                         nodeWarrior.SetProtectedNeigbours(warrior, currentNode);
                         // currentNode.SetProtectedNode(warrior);

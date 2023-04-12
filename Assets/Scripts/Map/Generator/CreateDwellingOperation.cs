@@ -86,12 +86,11 @@ public class CreateDwellingOperation : ILoadingOperation
 
                                 EntityDwelling entity = (EntityDwelling)factory.CreateMapObject(
                                     TypeMapObject.Dwelling,
-                                    currentNode,
                                     configData
                                 );
-                                UnitManager.SpawnEntityToNode(currentNode, entity);
+                                UnitManager.SpawnEntityMapObjectToNode(currentNode, entity);
 
-                                BaseEntity warrior = new EntityCreature(nodeWarrior); // UnitManager.SpawnWarrior(nodeWarrior);
+                                BaseEntity warrior = UnitManager.SpawnEntityCreature(nodeWarrior);
 
                                 nodeWarrior.SetProtectedNeigbours(warrior, currentNode);
                                 // currentNode.SetProtectedNode(warrior);

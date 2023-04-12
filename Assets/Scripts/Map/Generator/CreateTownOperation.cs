@@ -49,8 +49,9 @@ public class CreateTownOperation : ILoadingOperation
                 Player player = LevelManager.Instance.GetPlayer(area.id);
 
                 //Create town.
-                var entityTown = new EntityTown(node, node.TypeGround);
-                UnitManager.SpawnEntityToNode(node, entityTown);
+                var entityTown = new EntityTown(node.TypeGround);
+                UnitManager.SpawnEntityMapObjectToNode(node, entityTown);
+
                 node.AddStateNode(StateNode.Town);
                 area.town = entityTown;
                 // area.startPosition = entityTown.Position;
@@ -71,8 +72,8 @@ public class CreateTownOperation : ILoadingOperation
                         {
                             node = _root.gridTileHelper.GetNode(node.position.x, node.position.y - 1);
                         }
-                        EntityHero newEntity = new EntityHero(node, configTown.TypeFaction);
-                        UnitManager.SpawnEntityToNode(node, newEntity);
+                        EntityHero newEntity = new EntityHero(configTown.TypeFaction);
+                        UnitManager.SpawnEntityMapObjectToNode(node, newEntity);
                         // node.SetOcuppiedUnit(newEntity);
                         LevelManager.Instance.GetArea(area.id).hero = newEntity;
                         newEntity.SetPlayer(player);
@@ -101,10 +102,9 @@ public class CreateTownOperation : ILoadingOperation
                         {
                             EntityMine newmine = (EntityMine)factory.CreateMapObject(
                                 TypeMapObject.Mine,
-                                nodeForSpawn,
                                 configTown.mines[i]
                                 );
-                            UnitManager.SpawnEntityToNode(nodeForSpawn, newmine);
+                            UnitManager.SpawnEntityMapObjectToNode(nodeForSpawn, newmine);
                         }
                     }
                 }

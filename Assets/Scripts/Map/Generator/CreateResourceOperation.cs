@@ -65,10 +65,9 @@ public class CreateResourceOperation : ILoadingOperation
                         var factory = new EntityMapObjectFactory();
                         BaseEntity entity = factory.CreateMapObject(
                             TypeMapObject.Resources,
-                            currentNode,
                             configData
                         );
-                        UnitManager.SpawnEntityToNode(currentNode, entity);
+                        UnitManager.SpawnEntityMapObjectToNode(currentNode, entity);
                         // _root.UnitManager
                         //     .SpawnMapObjectAsync(currentNode, TypeMapObject.Resource, new List<TypeWorkPerk>() { TypeWorkPerk.One });
 

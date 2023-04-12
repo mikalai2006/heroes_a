@@ -418,7 +418,7 @@ public class UIGameAside : MonoBehaviour
 
     private void InitHeroBox()
     {
-        Debug.Log($"Init UI Heroinfo");
+        EntityHero activeHero = player.ActiveHero;
         //var newHeroInfo = _templateHeroInfo.Instantiate();
         //newHeroInfo.style.flexGrow = 1;
         //var InfoBox = aside.Q<VisualElement>("AsideBoxInfo");
@@ -427,16 +427,17 @@ public class UIGameAside : MonoBehaviour
 
         var _heroForceList = _aside.rootVisualElement.Q<VisualElement>("HeroForceList");
         _heroForceList.Clear();
-        for (int i = 0; i < 7; i++)
+        for (int i = 0; i < activeHero.Data.Creatures.Count; i++)
         {
+            var creature = activeHero.Data.Creatures[i];
             var newForce = _templateHeroForce.Instantiate();
             //newForce.style.flexGrow = 1;
+
             newForce.AddToClassList("heroinfo_force_el");
-            if (i >= 6)
-            {
-                newForce.Q<VisualElement>("img").style.backgroundImage = null;
-            }
-            newForce.Q<Label>("ForceValue").text = i < 6 ? i.ToString() : "";
+            newForce.Q<VisualElement>("img").style.backgroundImage
+                = new StyleBackground(creature.ScriptableData.MenuSprite);
+            newForce.Q<Label>("ForceValue").text = creature.Data.value.ToString();
+
             _heroForceList.Add(newForce);
 
         }

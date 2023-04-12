@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28f893db958f10a46a0e59d54d9b29d0, type: 3}
   m_Name: GardenofRevelation
   m_EditorClassIdentifier: 
-  idObject: ecc2485499ab4b6ab3ea8543f3bb1bbe
+  idObject: map.skills.gardenofrevelation
   TypeEntity: 34
   MenuSprite: {fileID: 0}
   title:

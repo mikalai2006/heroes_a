@@ -92,28 +92,32 @@ public static class UnitManager
     //     return createdUnit;
     // }
 
-    // public static BaseEntity SpawnWarrior(GridTileNode node, TypeGround typeGroud = TypeGround.None, int level = 1)
-    // {
-    //     //if (node == null) return null;
+    public static BaseEntity SpawnEntityCreature(GridTileNode node, TypeGround typeGroud = TypeGround.None, int level = 1)
+    {
+        //if (node == null) return null;
 
-    //     List<ScriptableEntityCreature> listWarriors = ResourceSystem.Instance.GetEntityByType<ScriptableEntityCreature>(TypeEntity.Creature);
-    //     ScriptableEntityCreature scriptbaleEntity = listWarriors[Random.Range(0, listWarriors.Count)];
-    //     EntityCreature newEntity = new EntityCreature(node);
-    //     newEntity.OccupiedNode = node;
-    //     node.SetOcuppiedUnit(newEntity);
-    //     // SpawnEntityToNode(node, newEntity);
+        List<ScriptableEntityCreature> listWarriors = ResourceSystem.Instance.GetEntityByType<ScriptableEntityCreature>(TypeEntity.Creature);
+        ScriptableEntityCreature scriptbaleEntity = listWarriors[Random.Range(0, listWarriors.Count)];
+        EntityCreature newEntity = new EntityCreature(scriptbaleEntity);
+        newEntity.OccupiedNode = node;
+        node.SetOcuppiedUnit(newEntity);
+        // SpawnEntityToNode(node, newEntity);
+        newEntity.CreateMapGameObject(node);
 
-    //     // node.OccupiedUnit = createdUnit;
-    //     return newEntity;
-    // }
+        // node.OccupiedUnit = createdUnit;
+        return newEntity;
+    }
 
     #region Spawn entity
-    public static BaseEntity SpawnEntityToNode(GridTileNode node, BaseEntity entity)
+    public static BaseEntity SpawnEntityMapObjectToNode(GridTileNode node, BaseEntity entity)
     {
         Vector3Int pos = node.position;
 
         entity.OccupiedNode = node;
         node.SetOcuppiedUnit(entity);
+
+        entity.CreateMapGameObject(node);
+
         GameManager.Instance.MapManager.SetColorForTile(pos, Color.yellow);
         // node.SetState(TypeStateNode.Disabled);
 

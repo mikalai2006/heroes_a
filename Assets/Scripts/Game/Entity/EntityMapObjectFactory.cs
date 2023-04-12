@@ -2,26 +2,25 @@ public class EntityMapObjectFactory
 {
     public BaseEntity CreateMapObject(
         TypeMapObject TypeMapObject,
-        GridTileNode node,
         ScriptableEntity configData
         )
     {
         switch (TypeMapObject)
         {
             case TypeMapObject.Dwelling:
-                return new EntityDwelling(node, (ScriptableEntityDwelling)configData);
+                return new EntityDwelling((ScriptableEntityDwelling)configData);
             case TypeMapObject.Mine:
-                return new EntityMine(node, (ScriptableEntityMine)configData);
+                return new EntityMine((ScriptableEntityMine)configData);
             case TypeMapObject.Explore:
-                return new EntityExpore(node, (ScriptableEntityExplore)configData);
+                return new EntityExpore((ScriptableEntityExplore)configData);
             case TypeMapObject.Portal:
-                return new EntityMonolith(node, (ScriptableEntityPortal)configData);
+                return new EntityMonolith((ScriptableEntityPortal)configData);
             case TypeMapObject.Skills:
-                return new EntityMapObject(node, (ScriptableEntityMapObject)configData);
+                return new EntityMapObject((ScriptableEntityMapObject)configData);
             case TypeMapObject.Resources:
-                return new EntityMapObject(node, (ScriptableEntityMapObject)configData);
+                return new EntityMapObject((ScriptableEntityMapObject)configData);
             case TypeMapObject.Artifact:
-                return new EntityArtifact(node, (ScriptableEntityArtifact)configData);
+                return new EntityArtifact((ScriptableEntityArtifact)configData);
             default:
                 return null;
         }

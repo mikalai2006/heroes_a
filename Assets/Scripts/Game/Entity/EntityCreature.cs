@@ -9,16 +9,26 @@ public class EntityCreature : BaseEntity, ISaveDataPlay
     [SerializeField] public DataCreature Data = new DataCreature();
     public ScriptableEntityCreature ConfigData => (ScriptableEntityCreature)ScriptableData;
 
-    public EntityCreature(GridTileNode node, SaveDataUnit<DataCreature> saveData = null)
+    public EntityCreature(
+        ScriptableEntityCreature configData,
+        SaveDataUnit<DataCreature> saveData = null)
     {
         if (saveData == null)
         {
-            List<ScriptableEntityCreature> list = ResourceSystem.Instance
-                .GetEntityByType<ScriptableEntityCreature>(TypeEntity.Creature)
-                .ToList();
-            ScriptableData = list[UnityEngine.Random.Range(0, list.Count)];
+            ScriptableData = configData;
+            // if (configData == null)
+            // {
+            //     List<ScriptableEntityCreature> list = ResourceSystem.Instance
+            //         .GetEntityByType<ScriptableEntityCreature>(TypeEntity.Creature)
+            //         .ToList();
+            //     ScriptableData = list[UnityEngine.Random.Range(0, list.Count)];
+            // }
+            // else
+            // {
+            //     ScriptableData = configData;
+            // }
 
-            Data.quantity = 10;
+            Data.value = 10;
             OnChangeQuantityWarrior();
         }
         else
@@ -31,10 +41,6 @@ public class EntityCreature : BaseEntity, ISaveDataPlay
             idUnit = saveData.idUnit;
         }
 
-        OccupiedNode = node;
-        node.SetOcuppiedUnit(this);
-
-        base.Init(ScriptableData, node);
     }
 
     public void OnChangeQuantityWarrior()

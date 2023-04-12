@@ -12,20 +12,13 @@ public class EntityMapObject : BaseEntity, ISaveDataPlay
     [SerializeField] public DataEntityMapObject Data = new DataEntityMapObject();
     public ScriptableEntityMapObject ConfigData => (ScriptableEntityMapObject)ScriptableData;
     public EntityMapObject(
-        GridTileNode node,
         ScriptableEntityMapObject configData,
         SaveDataUnit<DataEntityMapObject> saveData = null
         )
     {
         if (saveData == null)
         {
-            if (configData != null)
-            {
-                ScriptableData = configData;
-            }
-            // else
-            // {
-            // }
+            ScriptableData = configData;
             SetData();
         }
         else
@@ -38,7 +31,7 @@ public class EntityMapObject : BaseEntity, ISaveDataPlay
             idUnit = saveData.idUnit;
         }
 
-        base.Init(ScriptableData, node);
+        base.Init(ScriptableData);
     }
 
     public void SetData()

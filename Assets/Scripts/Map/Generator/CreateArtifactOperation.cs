@@ -81,17 +81,14 @@ public class CreateArtifactOperation : ILoadingOperation
                             = listArtifacts[Random.Range(0, listArtifacts.Count)];
                         configArtifact.Artifact = artifact;
 
-                        EntityArtifact entity = new EntityArtifact(
-                            currentNode,
-                            configArtifact
-                            );
-                        var entityArtifact = (ScriptableEntityArtifact)entity.ScriptableData;
+                        EntityArtifact entity = new EntityArtifact(configArtifact);
+                        // var entityArtifact = (ScriptableEntityArtifact)entity.ScriptableData;
+                        UnitManager.SpawnEntityMapObjectToNode(currentNode, entity);
 
 
                         // Generate protection creature.
-                        UnitManager.SpawnEntityToNode(currentNode, entity);
 
-                        BaseEntity warrior = new EntityCreature(nodeWarrior); //UnitManager.SpawnWarrior(nodeWarrior);
+                        BaseEntity warrior = UnitManager.SpawnEntityCreature(nodeWarrior);
 
                         nodeWarrior.SetProtectedNeigbours(warrior, currentNode);
                         // currentNode.SetProtectedNode(warrior);

@@ -10,7 +10,6 @@ public class EntityArtifact : BaseEntity, ISaveDataPlay
     [SerializeField] public DataArtifact Data = new DataArtifact();
 
     public EntityArtifact(
-        GridTileNode node,
         ScriptableEntityArtifact configData,
         SaveDataUnit<DataArtifact> saveData = null)
     {
@@ -36,7 +35,7 @@ public class EntityArtifact : BaseEntity, ISaveDataPlay
             idUnit = saveData.idUnit;
         }
         SetData();
-        base.Init(ScriptableData, node);
+        base.Init(ScriptableData);
     }
 
     public void SetData()

@@ -45,19 +45,17 @@ public abstract class BaseEntity
     #endregion
 
 
-    public void Init(ScriptableEntity data, GridTileNode node)
+    public void Init(ScriptableEntity data, bool isMapObject = true)
     {
-        AddEvents();
-        // ScriptableData = data;
-        // typeEntity = data.TypeEntity;
-        // typeUnit = data.TypeUnit;
-        Position = node.position;
-        idUnit = System.Guid.NewGuid().ToString("N");
         idObject = data.idObject;
+        idUnit = System.Guid.NewGuid().ToString("N");
+        AddEvents();
+    }
 
-        // Init load gameObject.
-        CreateEntityAsync(data, node);
-
+    public void CreateMapGameObject(GridTileNode node)
+    {
+        Position = node.position;
+        LoadGameObject();
     }
 
     public void DestroyEntity()
@@ -108,13 +106,13 @@ public abstract class BaseEntity
     }
     #endregion
 
-    private void CreateEntityAsync(ScriptableEntity entity, GridTileNode node)
+    private void LoadGameObject()
     {
-        if (entity.MapPrefab.RuntimeKeyIsValid())
+        if (ScriptableData.MapPrefab.RuntimeKeyIsValid())
         {
             Addressables.InstantiateAsync(
-                entity.MapPrefab,
-                node.position,
+                ScriptableData.MapPrefab,
+                Position,
                 Quaternion.identity,
                 GameManager.Instance.MapManager.BlokUnits.transform
                 ).Completed += LoadedAsset;

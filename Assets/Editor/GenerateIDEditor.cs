@@ -78,11 +78,11 @@ class GenerateIDUnitBaseEditor : GenerateIDEditor
     //}
 }
 
-[CustomEditor(typeof(ScriptableEntityArtifact))]
-class GenerateIDArtifactEditor : GenerateIDUnitBaseEditor
-{
+// [CustomEditor(typeof(ScriptableEntityArtifact))]
+// class GenerateIDArtifactEditor : GenerateIDUnitBaseEditor
+// {
 
-}
+// }
 
 // [CustomEditor(typeof(ScriptableEntityCreature))]
 // class GenerateIDCreatureEditor : GenerateIDUnitBaseEditor
@@ -90,39 +90,39 @@ class GenerateIDArtifactEditor : GenerateIDUnitBaseEditor
 
 // }
 
-[CustomEditor(typeof(ScriptableEntityDwelling))]
-class GenerateIDEntityDwellingEditor : GenerateIDUnitBaseEditor
-{
-
-}
-
-[CustomEditor(typeof(ScriptableEntityHero))]
-class GenerateIDEntityHeroEditor : GenerateIDUnitBaseEditor
-{
-
-}
-
-[CustomEditor(typeof(ScriptableEntityMine))]
-class GenerateIDEntityMineEditor : GenerateIDUnitBaseEditor
-{
-
-}
-
-[CustomEditor(typeof(ScriptableEntityExplore))]
-class GenerateIDEntityExploreEditor : GenerateIDUnitBaseEditor
-{
-
-}
-// [CustomEditor(typeof(ScriptableEntitySkillSchool))]
-// class GenerateIDEntitySkillSchoolEditor : GenerateIDUnitBaseEditor
+// [CustomEditor(typeof(ScriptableEntityDwelling))]
+// class GenerateIDEntityDwellingEditor : GenerateIDUnitBaseEditor
 // {
 
 // }
-[CustomEditor(typeof(ScriptableEntityPortal))]
-class GenerateIDEntityPortalEditor : GenerateIDUnitBaseEditor
-{
 
-}
+// [CustomEditor(typeof(ScriptableEntityHero))]
+// class GenerateIDEntityHeroEditor : GenerateIDUnitBaseEditor
+// {
+
+// }
+
+// [CustomEditor(typeof(ScriptableEntityMine))]
+// class GenerateIDEntityMineEditor : GenerateIDUnitBaseEditor
+// {
+
+// }
+
+// [CustomEditor(typeof(ScriptableEntityExplore))]
+// class GenerateIDEntityExploreEditor : GenerateIDUnitBaseEditor
+// {
+
+// }
+// // [CustomEditor(typeof(ScriptableEntitySkillSchool))]
+// // class GenerateIDEntitySkillSchoolEditor : GenerateIDUnitBaseEditor
+// // {
+
+// // }
+// [CustomEditor(typeof(ScriptableEntityPortal))]
+// class GenerateIDEntityPortalEditor : GenerateIDUnitBaseEditor
+// {
+
+// }
 // [CustomEditor(typeof(ScriptableEntityResource))]
 // class GenerateIDEntityResourceEditor : GenerateIDUnitBaseEditor
 // {

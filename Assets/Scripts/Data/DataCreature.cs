@@ -3,7 +3,7 @@ using UnityEngine;
 [System.Serializable]
 public struct DataCreature
 {
-    public int quantity;
+    public int value;
     public Vector3Int protectedNode;
 
 }

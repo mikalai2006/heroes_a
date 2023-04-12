@@ -4,6 +4,8 @@ using System.Linq;
 
 using UnityEngine;
 
+using Random = UnityEngine.Random;
+
 [Serializable]
 public class EntityHero : BaseEntity, ISaveDataPlay
 {
@@ -15,13 +17,17 @@ public class EntityHero : BaseEntity, ISaveDataPlay
     {
         get
         {
-            return Data.path.Count > 0 && Data.hit > 0;
+            return Data.path.Count() > 0 && Data.hit > 0;
         }
         private set { }
     }
 
-    public EntityHero(GridTileNode node, TypeFaction typeFaction, SaveDataUnit<DataHero> saveData = null)
+    public EntityHero(TypeFaction typeFaction, SaveDataUnit<DataHero> saveData = null)
     {
+        Data.Artifacts = new List<EntityArtifact>();
+        Data.Creatures = new List<EntityCreature>();
+        Data.path = new List<GridTileNode>();
+
         if (saveData == null)
         {
             List<ScriptableEntityHero> list = ResourceSystem.Instance
@@ -35,6 +41,15 @@ public class EntityHero : BaseEntity, ISaveDataPlay
             Data.name = ScriptableData.name;
 
             Data.path = new List<GridTileNode>();
+
+            // Generate creatures.
+            ScriptableEntityHero configData = (ScriptableEntityHero)ScriptableData;
+            foreach (var creature in configData.StartCreatures)
+            {
+                var newCreature = new EntityCreature(creature.creature);
+                newCreature.Data.value = Random.Range(creature.min, creature.max);
+                Data.Creatures.Add(newCreature);
+            }
         }
         else
         {
@@ -45,7 +60,7 @@ public class EntityHero : BaseEntity, ISaveDataPlay
             Data = saveData.data;
             idUnit = saveData.idUnit;
         }
-        base.Init(ScriptableData, node);
+        base.Init(ScriptableData);
     }
 
     public float CalculateHitByNode(GridTileNode node)
@@ -137,17 +152,4 @@ public class EntityHero : BaseEntity, ISaveDataPlay
 
 
     #endregion
-}
-
-[System.Serializable]
-public struct DataHero
-{
-    public int idPlayer;
-    public Vector3Int nextPosition;
-    public float speed;
-    public float hit;
-    public float mana;
-    public string name;
-
-    [NonSerialized] public List<GridTileNode> path;
 }

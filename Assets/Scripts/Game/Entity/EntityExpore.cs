@@ -14,16 +14,12 @@ public class EntityExpore : BaseEntity, ISaveDataPlay
     [SerializeField] public DataExplore Data = new DataExplore();
     public ScriptableEntityExplore ConfigData => (ScriptableEntityExplore)ScriptableData;
     public EntityExpore(
-        GridTileNode node,
         ScriptableEntityExplore configData,
         SaveDataUnit<DataExplore> saveData = null)
     {
         if (saveData == null)
         {
-            // List<ScriptableEntityExplore> list = ResourceSystem.Instance
-            //     .GetEntityByType<ScriptableEntityExplore>(TypeEntity.Explore)
-            //     .ToList();
-            ScriptableData = configData; // list[UnityEngine.Random.Range(0, list.Count)];
+            ScriptableData = configData;
         }
         else
         {
@@ -34,7 +30,7 @@ public class EntityExpore : BaseEntity, ISaveDataPlay
             Data = saveData.data;
             idUnit = saveData.idUnit;
         }
-        base.Init(ScriptableData, node);
+        base.Init(ScriptableData);
     }
 
     public override void SetPlayer(Player player)

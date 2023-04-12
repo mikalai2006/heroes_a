@@ -17,29 +17,13 @@ public class EntityMine : BaseEntity, ISaveDataPlay
     [SerializeField] public DataMine Data = new DataMine();
     public ScriptableEntityMine ConfigData => (ScriptableEntityMine)ScriptableData;
     public EntityMine(
-        GridTileNode node,
-        // TypeGround typeGround,
-        // TypeMine typeMine,
         ScriptableEntityMine configData,
         SaveDataUnit<DataMine> saveData = null
         )
     {
         if (saveData == null)
         {
-            if (configData == null)
-            {
-                // List<ScriptableEntityMine> list = ResourceSystem.Instance
-                //     .GetEntityByType<ScriptableEntityMine>(TypeEntity.Mine)
-                //     // .Where(t => t.TypeMine == typeMine
-                //     //     && (t.TypeGround == typeGround))
-                //     .ToList();
-                // ScriptableData = list[UnityEngine.Random.Range(0, list.Count)];
-                ScriptableData = configData;
-            }
-            else
-            {
-                ScriptableData = configData;
-            }
+            ScriptableData = configData;
             Data.idPlayer = -1;
         }
         else
@@ -51,7 +35,7 @@ public class EntityMine : BaseEntity, ISaveDataPlay
             Data = saveData.data;
             idUnit = saveData.idUnit;
         }
-        base.Init(ScriptableData, node);
+        base.Init(ScriptableData);
     }
 
     public override void SetPlayer(Player player)

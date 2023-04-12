@@ -83,12 +83,11 @@ public class CreateMinesOperation : ILoadingOperation
                             = list[UnityEngine.Random.Range(0, list.Count)];
                         EntityMine entity = (EntityMine)factory.CreateMapObject(
                             TypeMapObject.Mine,
-                            currentNode,
                             configData
                         );
-                        UnitManager.SpawnEntityToNode(currentNode, entity);
+                        UnitManager.SpawnEntityMapObjectToNode(currentNode, entity);
 
-                        BaseEntity warrior = new EntityCreature(nodeWarrior); // UnitManager.SpawnWarrior(nodeWarrior);
+                        BaseEntity warrior = UnitManager.SpawnEntityCreature(nodeWarrior);
 
                         // currentNode.SetProtectedNode(warrior);
                         nodeWarrior.SetProtectedNeigbours(warrior, currentNode);

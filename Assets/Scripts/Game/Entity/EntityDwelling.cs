@@ -16,7 +16,6 @@ public class EntityDwelling : BaseEntity, ISaveDataPlay
     [SerializeField] public DataEntityDwelling Data = new DataEntityDwelling();
     public ScriptableEntityDwelling ConfigData => (ScriptableEntityDwelling)ScriptableData;
     public EntityDwelling(
-        GridTileNode node,
         ScriptableEntityDwelling configData,
         SaveDataUnit<DataEntityDwelling> saveData = null)
     {
@@ -35,7 +34,7 @@ public class EntityDwelling : BaseEntity, ISaveDataPlay
             idUnit = saveData.idUnit;
         }
 
-        base.Init(ScriptableData, node);
+        base.Init(ScriptableData);
     }
 
     public void SetData()
