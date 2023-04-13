@@ -686,7 +686,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Archangel_gretting_hit_1
+      name: ArchangelGettingHit_1
       rect:
         serializedVersion: 2
         x: 0
@@ -707,7 +707,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Archangel_gretting_hit_2
+      name: ArchangelGettingHit_2
       rect:
         serializedVersion: 2
         x: 200
@@ -728,7 +728,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Archangel_gretting_hit_3
+      name: ArchangelGettingHit_3
       rect:
         serializedVersion: 2
         x: 400
@@ -749,7 +749,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Archangel_gretting_hit_4
+      name: ArchangelGettingHit_4
       rect:
         serializedVersion: 2
         x: 600
@@ -770,7 +770,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Archangel_gretting_hit_5
+      name: ArchangelGettingHit_5
       rect:
         serializedVersion: 2
         x: 800
@@ -791,7 +791,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Archangel_gretting_hit_6
+      name: ArchangelGettingHit_6
       rect:
         serializedVersion: 2
         x: 1000
@@ -1326,6 +1326,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      ArchangelGettingHit_1: -895856929
+      ArchangelGettingHit_2: -2063967646
+      ArchangelGettingHit_3: 1206925785
+      ArchangelGettingHit_4: 1338260019
+      ArchangelGettingHit_5: 1008505822
+      ArchangelGettingHit_6: 1040962811
       Archangel_attack_down_1: -895856929
       Archangel_attack_down_2: -633443975
       Archangel_attack_down_3: -788205445
@@ -1354,12 +1360,6 @@ TextureImporter:
       Archangel_defended_2: -2108875382
       Archangel_defended_3: 942986188
       Archangel_defended_4: 2124384019
-      Archangel_gretting_hit_1: -2063967646
-      Archangel_gretting_hit_2: 1206925785
-      Archangel_gretting_hit_3: 1338260019
-      Archangel_gretting_hit_4: 1008505822
-      Archangel_gretting_hit_5: 1040962811
-      Archangel_gretting_hit_6: -2115615553
       Archangel_idle_0: -785297788
       Archangel_idle_2: 1894187746
       Archangel_idle_3: -1880058005

@@ -686,7 +686,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AngelGrettingHill_0
+      name: AngelGettingHit_0
       rect:
         serializedVersion: 2
         x: 0
@@ -707,7 +707,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AngelGrettingHill_1
+      name: AngelGettingHit_1
       rect:
         serializedVersion: 2
         x: 200
@@ -728,7 +728,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AngelGrettingHill_2
+      name: AngelGettingHit_2
       rect:
         serializedVersion: 2
         x: 400
@@ -749,7 +749,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AngelGrettingHill_3
+      name: AngelGettingHit_3
       rect:
         serializedVersion: 2
         x: 600
@@ -770,7 +770,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AngelGrettingHill_4
+      name: AngelGettingHit_4
       rect:
         serializedVersion: 2
         x: 800
@@ -791,7 +791,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AngelGrettingHill_5
+      name: AngelGettingHit_5
       rect:
         serializedVersion: 2
         x: 1000
@@ -1334,12 +1334,12 @@ TextureImporter:
       AngelDefend_1: 1651665900
       AngelDefend_2: 1143865402
       AngelDefend_3: -445197780
-      AngelGrettingHill_0: -1454526825
-      AngelGrettingHill_1: -2118803280
-      AngelGrettingHill_2: 672615121
-      AngelGrettingHill_3: 1209607934
-      AngelGrettingHill_4: -1084692594
-      AngelGrettingHill_5: -1768885878
+      AngelGettingHit_0: -1454526825
+      AngelGettingHit_1: -2118803280
+      AngelGettingHit_2: 672615121
+      AngelGettingHit_3: 1209607934
+      AngelGettingHit_4: -1084692594
+      AngelGettingHit_5: -1768885878
       AngelIdleMouseOver_0: 418156582
       AngelIdleMouseOver_2: -927017131
       AngelIdleMouseOver_3: -1955823862
