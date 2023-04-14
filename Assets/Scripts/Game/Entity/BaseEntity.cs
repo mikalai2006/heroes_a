@@ -55,7 +55,15 @@ public abstract class BaseEntity
     public void CreateMapGameObject(GridTileNode node)
     {
         Position = node.position;
+        OccupiedNode = node;
         LoadGameObject();
+    }
+
+    public void DestroyGameObject()
+    {
+        // Debug.Log($"Destroy entity::: {ScriptableData.name}");
+        OccupiedNode.SetOcuppiedUnit(null);
+        RemoveEvents();
     }
 
     public void DestroyEntity()

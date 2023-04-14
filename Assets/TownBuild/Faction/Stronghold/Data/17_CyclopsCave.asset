@@ -12,14 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d42093a1eaf0824c9a2bb9f171cc7f4, type: 3}
   m_Name: 17_CyclopsCave
   m_EditorClassIdentifier: 
-  idObject: 2_12
+  idObject: build.stronghold.cyclopscave
   TypeFaction: 1
-  Prefab: {fileID: 7541003936241444195, guid: c2873cbf86201a94fa353a8172adbfde, type: 3}
+  Prefab:
+    m_AssetGUID: c2873cbf86201a94fa353a8172adbfde
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  TypeBuild: 10
   BuildLevels:
   - MenuSprite: {fileID: 21300000, guid: f8035d9838ecb474aa3ed0606a43fc38, type: 3}
-    TypeBuild: 29
-    UpdatePrefab: {fileID: 0}
-    RequiredBuilds: 19000000
+    UpdatePrefab:
+      m_AssetGUID: 
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
     Text:
       title:
         m_TableReference:
@@ -39,6 +46,9 @@ MonoBehaviour:
         m_FallbackState: 0
         m_WaitForCompletion: 0
         m_LocalVariables: []
+    RequireBuilds:
+    - Build: {fileID: 11400000, guid: 2bbbd984b24b6db45b9a3133d4e95958, type: 2}
+      level: 0
     CostResource:
     - Resource: {fileID: 11400000, guid: 3894d4d068775c343b5c4bf1510dee33, type: 2}
       Count: 3500
@@ -46,10 +56,30 @@ MonoBehaviour:
       Count: 20
     - Resource: {fileID: 11400000, guid: 6b8ad83da675426418c328236190e67c, type: 2}
       Count: 20
+    TypeWorkAttribute: 0
+    Attributes:
+      description:
+        m_TableReference:
+          m_TableCollectionName: 
+        m_TableEntryReference:
+          m_KeyId: 0
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      Resources: []
+      PrimarySkills: []
+      SecondarySkills: []
+      Artifacts:
+        Artifact: []
+        isOne: 0
+      Creature: []
   - MenuSprite: {fileID: 21300000, guid: f7e46df3cf11b29468897871fe0bebf6, type: 3}
-    TypeBuild: 30
-    UpdatePrefab: {fileID: 0}
-    RequiredBuilds: 1d000000
+    UpdatePrefab:
+      m_AssetGUID: 
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
     Text:
       title:
         m_TableReference:
@@ -69,6 +99,9 @@ MonoBehaviour:
         m_FallbackState: 0
         m_WaitForCompletion: 0
         m_LocalVariables: []
+    RequireBuilds:
+    - Build: {fileID: 11400000}
+      level: 0
     CostResource:
     - Resource: {fileID: 11400000, guid: 3894d4d068775c343b5c4bf1510dee33, type: 2}
       Count: 3000
@@ -76,6 +109,24 @@ MonoBehaviour:
       Count: 5
     - Resource: {fileID: 11400000, guid: 177478bebb60204468d214efd1fdcc16, type: 2}
       Count: 5
+    TypeWorkAttribute: 0
+    Attributes:
+      description:
+        m_TableReference:
+          m_TableCollectionName: 
+        m_TableEntryReference:
+          m_KeyId: 0
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      Resources: []
+      PrimarySkills: []
+      SecondarySkills: []
+      Artifacts:
+        Artifact: []
+        isOne: 0
+      Creature: []
   references:
     version: 2
     RefIds: []

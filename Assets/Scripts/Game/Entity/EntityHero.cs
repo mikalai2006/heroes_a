@@ -25,7 +25,7 @@ public class EntityHero : BaseEntity, ISaveDataPlay
     public EntityHero(TypeFaction typeFaction, SaveDataUnit<DataHero> saveData = null)
     {
         Data.Artifacts = new List<EntityArtifact>();
-        Data.Creatures = new List<EntityCreature>();
+        Data.Creatures = new SerializableDictionary<int, EntityCreature>(7);
         Data.path = new List<GridTileNode>();
 
         if (saveData == null)
@@ -38,6 +38,7 @@ public class EntityHero : BaseEntity, ISaveDataPlay
 
             Data.hit = 100f;
             Data.speed = 100;
+            Data.State = StateHero.OnMap;
             Data.name = ScriptableData.name;
 
             Data.path = new List<GridTileNode>();
@@ -48,7 +49,8 @@ public class EntityHero : BaseEntity, ISaveDataPlay
             {
                 var newCreature = new EntityCreature(creature.creature);
                 newCreature.Data.value = Random.Range(creature.min, creature.max);
-                Data.Creatures.Add(newCreature);
+                newCreature.Data.idObject = creature.creature.idObject;
+                Data.Creatures.Add(Data.Creatures.Count, newCreature);
             }
         }
         else
@@ -58,6 +60,19 @@ public class EntityHero : BaseEntity, ISaveDataPlay
                 .Where(t => t.idObject == saveData.idObject)
                 .First();
             Data = saveData.data;
+            Data.Creatures = new SerializableDictionary<int, EntityCreature>(7);
+
+            var creatures = saveData.data.Creatures;
+            foreach (var creature in creatures)
+            {
+                var newCreature = new EntityCreature(null, new SaveDataUnit<DataCreature>()
+                {
+                    data = creature.Value.Data,
+                    idObject = creature.Value.Data.idObject,
+                });
+                Data.Creatures[creature.Key] = newCreature;
+            }
+
             idUnit = saveData.idUnit;
         }
         base.Init(ScriptableData);
@@ -93,15 +108,26 @@ public class EntityHero : BaseEntity, ISaveDataPlay
         SetClearSky(newPosition);
     }
 
-    public void SetNewOccupiedNode(GridTileNode newNode)
+    public void SetGuestForNode(GridTileNode newNode)
     {
-        OccupiedNode.SetOcuppiedUnit(null);
+        OccupiedNode.SetAsGuested(null);
+        // OccupiedNode.SetAsGuested(null);
+
+        // OccupiedNode.SetOcuppiedUnit(null);
         SetPositionHero(newNode.position);
 
-        if (newNode.OccupiedUnit == null)
-        {
-            OccupiedNode = newNode;
-        }
+        OccupiedNode = newNode;
+        OccupiedNode.SetAsGuested(this);
+
+        // if (newNode.OccupiedUnit == null)
+        // {
+        //     OccupiedNode = newNode;
+        // }
+        // else
+        // {
+        //     OccupiedNode = newNode;
+        //     newNode.SetAsGuested(this);
+        // }
     }
 
     public void SetClearSky(Vector3Int startPosition)

@@ -113,7 +113,7 @@ public static class UnitManager
     {
         Vector3Int pos = node.position;
 
-        entity.OccupiedNode = node;
+        // entity.OccupiedNode = node;
         node.SetOcuppiedUnit(entity);
 
         entity.CreateMapGameObject(node);

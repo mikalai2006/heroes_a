@@ -12,14 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d42093a1eaf0824c9a2bb9f171cc7f4, type: 3}
   m_Name: 1_Castle_Town
   m_EditorClassIdentifier: 
-  idObject: 1_1
+  idObject: build.castle.town
   TypeFaction: 0
-  Prefab: {fileID: 286446851186964532, guid: b62b2fd009618fc47b0ab0147d88d6c8, type: 3}
+  Prefab:
+    m_AssetGUID: b62b2fd009618fc47b0ab0147d88d6c8
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  TypeBuild: 3
   BuildLevels:
   - MenuSprite: {fileID: 21300000, guid: 4d3e6b0c6a67af0428ffae1ffabaaf04, type: 3}
-    TypeBuild: 3
-    UpdatePrefab: {fileID: 0}
-    RequiredBuilds: 
+    UpdatePrefab:
+      m_AssetGUID: 
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
     Text:
       title:
         m_TableReference:
@@ -39,13 +46,36 @@ MonoBehaviour:
         m_FallbackState: 0
         m_WaitForCompletion: 0
         m_LocalVariables: []
+    RequireBuilds:
+    - Build: {fileID: 11400000, guid: c81ad83216ce319489a9f6245ace3c02, type: 2}
+      level: 0
     CostResource:
     - Resource: {fileID: 11400000, guid: 3894d4d068775c343b5c4bf1510dee33, type: 2}
       Count: 2500
+    TypeWorkAttribute: 0
+    Attributes:
+      description:
+        m_TableReference:
+          m_TableCollectionName: 
+        m_TableEntryReference:
+          m_KeyId: 0
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      Resources: []
+      PrimarySkills: []
+      SecondarySkills: []
+      Artifacts:
+        Artifact: []
+        isOne: 0
+      Creature: []
   - MenuSprite: {fileID: 21300000, guid: 902ffc27e276f8d4780becebafe138d4, type: 3}
-    TypeBuild: 4
-    UpdatePrefab: {fileID: 0}
-    RequiredBuilds: 0300000002000000
+    UpdatePrefab:
+      m_AssetGUID: 
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
     Text:
       title:
         m_TableReference:
@@ -65,13 +95,38 @@ MonoBehaviour:
         m_FallbackState: 0
         m_WaitForCompletion: 0
         m_LocalVariables: []
+    RequireBuilds:
+    - Build: {fileID: 11400000, guid: c81ad83216ce319489a9f6245ace3c02, type: 2}
+      level: 0
+    - Build: {fileID: 11400000}
+      level: 0
     CostResource:
     - Resource: {fileID: 11400000, guid: 3894d4d068775c343b5c4bf1510dee33, type: 2}
       Count: 2500
+    TypeWorkAttribute: 0
+    Attributes:
+      description:
+        m_TableReference:
+          m_TableCollectionName: 
+        m_TableEntryReference:
+          m_KeyId: 0
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      Resources: []
+      PrimarySkills: []
+      SecondarySkills: []
+      Artifacts:
+        Artifact: []
+        isOne: 0
+      Creature: []
   - MenuSprite: {fileID: 21300000, guid: c2c240480f6cd95479f194fcec515d24, type: 3}
-    TypeBuild: 5
-    UpdatePrefab: {fileID: 0}
-    RequiredBuilds: 040000000b0000000e0000000c000000
+    UpdatePrefab:
+      m_AssetGUID: 
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
     Text:
       title:
         m_TableReference:
@@ -91,13 +146,42 @@ MonoBehaviour:
         m_FallbackState: 0
         m_WaitForCompletion: 0
         m_LocalVariables: []
+    RequireBuilds:
+    - Build: {fileID: 11400000}
+      level: 1
+    - Build: {fileID: 11400000, guid: 3b45696f146815047b06d78c848765b0, type: 2}
+      level: 0
+    - Build: {fileID: 11400000, guid: 6fe2d7dd5b9fe134faf809b127853c5b, type: 2}
+      level: 0
+    - Build: {fileID: 11400000, guid: 1b49d6ea32582c4429db439bfc0108b8, type: 2}
+      level: 0
     CostResource:
     - Resource: {fileID: 11400000, guid: 3894d4d068775c343b5c4bf1510dee33, type: 2}
       Count: 5000
+    TypeWorkAttribute: 0
+    Attributes:
+      description:
+        m_TableReference:
+          m_TableCollectionName: 
+        m_TableEntryReference:
+          m_KeyId: 0
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      Resources: []
+      PrimarySkills: []
+      SecondarySkills: []
+      Artifacts:
+        Artifact: []
+        isOne: 0
+      Creature: []
   - MenuSprite: {fileID: 21300000, guid: bdf32103a704f654ebab3fdcac4a5fc6, type: 3}
-    TypeBuild: 6
-    UpdatePrefab: {fileID: 0}
-    RequiredBuilds: 0500000009000000
+    UpdatePrefab:
+      m_AssetGUID: 
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
     Text:
       title:
         m_TableReference:
@@ -117,9 +201,32 @@ MonoBehaviour:
         m_FallbackState: 0
         m_WaitForCompletion: 0
         m_LocalVariables: []
+    RequireBuilds:
+    - Build: {fileID: 11400000}
+      level: 2
+    - Build: {fileID: 11400000, guid: e8746033e22a4024c89cd236735592d6, type: 2}
+      level: 2
     CostResource:
     - Resource: {fileID: 11400000, guid: 3894d4d068775c343b5c4bf1510dee33, type: 2}
       Count: 10000
+    TypeWorkAttribute: 0
+    Attributes:
+      description:
+        m_TableReference:
+          m_TableCollectionName: 
+        m_TableEntryReference:
+          m_KeyId: 0
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      Resources: []
+      PrimarySkills: []
+      SecondarySkills: []
+      Artifacts:
+        Artifact: []
+        isOne: 0
+      Creature: []
   references:
     version: 2
     RefIds: []

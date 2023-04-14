@@ -12,14 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d42093a1eaf0824c9a2bb9f171cc7f4, type: 3}
   m_Name: 7_HallofValhalla
   m_EditorClassIdentifier: 
-  idObject: 2_14
+  idObject: build.stronghold.hallofvalhalla
   TypeFaction: 1
-  Prefab: {fileID: -4322674389412367072, guid: 166b90e97916e2b48ba2c8e9884e6f9a, type: 3}
+  Prefab:
+    m_AssetGUID: 166b90e97916e2b48ba2c8e9884e6f9a
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  TypeBuild: 19
   BuildLevels:
   - MenuSprite: {fileID: 21300000, guid: a9b284e8902ffc54aa1f9ab54fb496e7, type: 3}
-    TypeBuild: 41
-    UpdatePrefab: {fileID: 0}
-    RequiredBuilds: 07000000
+    UpdatePrefab:
+      m_AssetGUID: 
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
     Text:
       title:
         m_TableReference:
@@ -39,9 +46,30 @@ MonoBehaviour:
         m_FallbackState: 0
         m_WaitForCompletion: 0
         m_LocalVariables: []
+    RequireBuilds:
+    - Build: {fileID: 11400000, guid: e58d2eb9212ae3e40b71115a6a9e06b8, type: 2}
+      level: 0
     CostResource:
     - Resource: {fileID: 11400000, guid: 3894d4d068775c343b5c4bf1510dee33, type: 2}
       Count: 1000
+    TypeWorkAttribute: 0
+    Attributes:
+      description:
+        m_TableReference:
+          m_TableCollectionName: 
+        m_TableEntryReference:
+          m_KeyId: 0
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      Resources: []
+      PrimarySkills: []
+      SecondarySkills: []
+      Artifacts:
+        Artifact: []
+        isOne: 0
+      Creature: []
   references:
     version: 2
     RefIds: []

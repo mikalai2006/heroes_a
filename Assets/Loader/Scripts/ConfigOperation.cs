@@ -28,6 +28,7 @@ namespace Loader
             await ResourceSystem.Instance.LoadCollectionsAsset<TileLandscape>(Constants.Labels.LABEL_LANDSCAPE);
             onProgress?.Invoke(.9f);
             await ResourceSystem.Instance.LoadCollectionsAsset<TileNature>(Constants.Labels.LABEL_NATURE);
+            await ResourceSystem.Instance.LoadCollectionsAsset<ScriptableBuildBase>(Constants.Labels.LABEL_BUILD_BASE);
             // onProgress?.Invoke(.2f);
             // onSetNotify?.Invoke("Load hero configuration ...");
             // await ResourceSystem.Instance.LoadCollectionsAsset<ScriptableUnitBase>(Constants.Labels.LABEL_HERO);
@@ -47,8 +48,6 @@ namespace Loader
             // onSetNotify?.Invoke("Load artifact configuration ...");
             // await ResourceSystem.Instance.LoadCollectionsAsset<ScriptableArtifact>(Constants.Labels.LABEL_ARTIFACT);
             // onProgress?.Invoke(.8f);
-            // await ResourceSystem.Instance.LoadCollectionsAsset<ScriptableBuildTown>(Constants.Labels.LABEL_BUILD_TOWN);
-            // await UniTask.Delay(1);
         }
     }
 }

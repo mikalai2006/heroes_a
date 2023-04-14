@@ -12,14 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d42093a1eaf0824c9a2bb9f171cc7f4, type: 3}
   m_Name: 14_OrcTower
   m_EditorClassIdentifier: 
-  idObject: 2_9
+  idObject: build.stronghold.orctower
   TypeFaction: 1
-  Prefab: {fileID: -1714688031838287941, guid: 9443387e65318c949bd93edf6f1ef1dd, type: 3}
+  Prefab:
+    m_AssetGUID: 9443387e65318c949bd93edf6f1ef1dd
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  TypeBuild: 10
   BuildLevels:
   - MenuSprite: {fileID: 21300000, guid: fcc4bad460c0fdd439c71e0d4cb6ea2d, type: 3}
-    TypeBuild: 23
-    UpdatePrefab: {fileID: 0}
-    RequiredBuilds: 13000000
+    UpdatePrefab:
+      m_AssetGUID: 
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
     Text:
       title:
         m_TableReference:
@@ -39,6 +46,9 @@ MonoBehaviour:
         m_FallbackState: 0
         m_WaitForCompletion: 0
         m_LocalVariables: []
+    RequireBuilds:
+    - Build: {fileID: 11400000, guid: 7f0991f7e084c5d44a118a7e1ece96f5, type: 2}
+      level: 0
     CostResource:
     - Resource: {fileID: 11400000, guid: 3894d4d068775c343b5c4bf1510dee33, type: 2}
       Count: 1000
@@ -46,10 +56,30 @@ MonoBehaviour:
       Count: 5
     - Resource: {fileID: 11400000, guid: 177478bebb60204468d214efd1fdcc16, type: 2}
       Count: 5
+    TypeWorkAttribute: 0
+    Attributes:
+      description:
+        m_TableReference:
+          m_TableCollectionName: 
+        m_TableEntryReference:
+          m_KeyId: 0
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      Resources: []
+      PrimarySkills: []
+      SecondarySkills: []
+      Artifacts:
+        Artifact: []
+        isOne: 0
+      Creature: []
   - MenuSprite: {fileID: 21300000, guid: 7f6ac5e3b729f604e914f84f1fccc12f, type: 3}
-    TypeBuild: 24
-    UpdatePrefab: {fileID: 0}
-    RequiredBuilds: 0b00000017000000
+    UpdatePrefab:
+      m_AssetGUID: 
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
     Text:
       title:
         m_TableReference:
@@ -69,6 +99,11 @@ MonoBehaviour:
         m_FallbackState: 0
         m_WaitForCompletion: 0
         m_LocalVariables: []
+    RequireBuilds:
+    - Build: {fileID: 11400000, guid: c4009eba3617a6c44be95baf6ad16f01, type: 2}
+      level: 0
+    - Build: {fileID: 11400000}
+      level: 0
     CostResource:
     - Resource: {fileID: 11400000, guid: 3894d4d068775c343b5c4bf1510dee33, type: 2}
       Count: 1000
@@ -76,6 +111,24 @@ MonoBehaviour:
       Count: 2
     - Resource: {fileID: 11400000, guid: 177478bebb60204468d214efd1fdcc16, type: 2}
       Count: 2
+    TypeWorkAttribute: 0
+    Attributes:
+      description:
+        m_TableReference:
+          m_TableCollectionName: 
+        m_TableEntryReference:
+          m_KeyId: 0
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      Resources: []
+      PrimarySkills: []
+      SecondarySkills: []
+      Artifacts:
+        Artifact: []
+        isOne: 0
+      Creature: []
   references:
     version: 2
     RefIds: []

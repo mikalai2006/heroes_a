@@ -720,11 +720,14 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
         Debug.Log($"Click {clickedTile.ToString()} \n {node.ToString()}");
     }
 
+    public void ResetCursor()
+    {
+        _tileMapCursor.ClearAllTiles();
+    }
 
     public void DrawCursor(List<GridTileNode> paths, EntityHero hero)
     {
-        _tileMapCursor.ClearAllTiles();
-
+        ResetCursor();
         if (paths == null) { return; }
         if (paths.Count == 0) { return; }
 

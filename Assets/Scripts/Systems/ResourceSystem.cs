@@ -141,6 +141,8 @@ public class ResourceSystem : StaticInstance<ResourceSystem>
     public TileLandscape GetLandscape(TypeGround typeGround) => GetLandscape().Where(t => t.typeGround == typeGround).First();
 
     public List<ScriptableBuildTown> GetBuildTowns() => GetAllAssetsByLabel<ScriptableBuildTown>(Constants.Labels.LABEL_BUILD_TOWN);
+    public List<ScriptableBuildBase> GetAllBuildsForTown() => GetAllAssetsByLabel<ScriptableBuildBase>(Constants.Labels.LABEL_BUILD_BASE);
+
     // public List<ScriptableMapObjectBase> GetUnits() => GetAllAssetsByLabel<ScriptableMapObjectBase>("units");
     // public List<T> GetUnitsByType<T>(TypeMapObject typeUnit) where T : ScriptableMapObjectBase
     // {

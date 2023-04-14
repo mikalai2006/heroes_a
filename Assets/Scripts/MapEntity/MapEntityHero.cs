@@ -145,7 +145,7 @@ public class MapEntityHero : BaseMapEntity
                 SmoothLerp((Vector3)MapObjectClass.Position + moveKoof, (Vector3)entityHero.Data.path[0].position + moveKoof));
 
             entityHero.Data.hit -= entityHero.CalculateHitByNode(entityHero.Data.path[0]);
-            entityHero.SetNewOccupiedNode(entityHero.Data.path[0]);
+            entityHero.SetGuestForNode(entityHero.Data.path[0]);
 
             GameManager.Instance.MapManager.DrawCursor(entityHero.Data.path, entityHero);
 

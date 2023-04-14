@@ -1,0 +1,9 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/Toolkit/Base.uss?fileID=7433441132597879392&amp;guid=fa07b064290e7384d9ad2e26e79f5953&amp;type=3#Base" />
+    <Style src="project://database/Assets/UI/Toolkit/UnityBase.uss?fileID=7433441132597879392&amp;guid=c0905c354b5fb524e83bc41ae3debe10&amp;type=3#UnityBase" />
+    <ui:VisualElement name="DialogHeroButton" class="box_shadow" style="width: 100px; height: 100px;">
+        <ui:Button text="Button" display-tooltip-when-elided="true" name="Btn" class="button m-0 p-0 border-2 button_bordered" style="flex-grow: 1;">
+            <ui:VisualElement name="img" class="p-05" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); background-image: url(&apos;project://database/Assets/Entity/Hero/Stronghold/Sprites/Dessa.png?fileID=2800000&amp;guid=0fb7bcb4f9ed35648b71353dfb609272&amp;type=3#Dessa&apos;); height: 100%;" />
+        </ui:Button>
+    </ui:VisualElement>
+</ui:UXML>

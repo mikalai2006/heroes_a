@@ -143,6 +143,10 @@ PrefabInstance:
       propertyPath: _townGameObject
       value: 
       objectReference: {fileID: 1753116172}
+    - target: {fileID: 2698354849172619512, guid: 8f502c7e46a139a40a24b9d3f1531b35, type: 3}
+      propertyPath: _templateHeroButton
+      value: 
+      objectReference: {fileID: 9197481963319205126, guid: c19b3e69d162e4f4a9d9d1e1f690e744, type: 3}
     - target: {fileID: 7734062810380965684, guid: 8f502c7e46a139a40a24b9d3f1531b35, type: 3}
       propertyPath: m_RootOrder
       value: 1

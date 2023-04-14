@@ -13,7 +13,7 @@ public class ScriptableBuildTown : ScriptableObject
     [SerializeField] public List<ScriptableBuildBase> Builds;
     // [SerializeField] public List<ScriptableBuildArmy> BuildsArmy;
     // [SerializeField] public AssetReferenceScriptableTown TownMap;
-    public TypeBuild[] StartProgressBuilds;
+    public List<BuildLevelItem> StartProgressBuilds;
 }
 
 // [System.Serializable]
@@ -24,9 +24,9 @@ public class ScriptableBuildTown : ScriptableObject
 //     }
 // }
 
-// [System.Serializable]
-// public struct BuildItem
-// {
-//     public ScriptableBuildBase Build;
-
-// }
+[System.Serializable]
+public struct BuildLevelItem
+{
+    public ScriptableBuildBase Build;
+    public int level;
+}

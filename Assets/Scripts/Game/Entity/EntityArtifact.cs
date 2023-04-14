@@ -16,6 +16,7 @@ public class EntityArtifact : BaseEntity, ISaveDataPlay
         if (saveData == null)
         {
             ScriptableData = configData;
+            SetData();
         }
         else
         {
@@ -34,7 +35,6 @@ public class EntityArtifact : BaseEntity, ISaveDataPlay
             .ToList();
             idUnit = saveData.idUnit;
         }
-        SetData();
         base.Init(ScriptableData);
     }
 

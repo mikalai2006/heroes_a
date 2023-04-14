@@ -133,7 +133,7 @@ public class LevelManager : Singleton<LevelManager>, ISaveDataPlay, ISaveDataGam
         {
             ActivePlayer.ActiveHero.SetHeroAsActive();
         }
-
+        ActivePlayer.GenerateHeroTavern();
 
         // if (ActivePlayer.DataPlayer.nosky.Count == 0)
         // {

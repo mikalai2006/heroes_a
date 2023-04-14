@@ -141,34 +141,34 @@ public class TownManagerEditor
 
     private void GenerateListView()
     {
-        Func<VisualElement> makeItem = () => m_ItemRowTemplate.CloneTree();
+        // Func<VisualElement> makeItem = () => m_ItemRowTemplate.CloneTree();
 
-        Action<VisualElement, int> bindItem = (e, i) =>
-        {
-            if (m_UnitDB[i].BuildLevels[0].MenuSprite != null)
-            {
-                e.Q<VisualElement>("icon").style.backgroundImage = new StyleBackground(m_UnitDB[i].BuildLevels[0].MenuSprite);
+        // Action<VisualElement, int> bindItem = (e, i) =>
+        // {
+        //     if (m_UnitDB[i].BuildLevels[0].MenuSprite != null)
+        //     {
+        //         e.Q<VisualElement>("icon").style.backgroundImage = new StyleBackground(m_UnitDB[i].BuildLevels[0].MenuSprite);
 
-            }
-            else
-            {
-                SpriteRenderer[] sprites = m_UnitDB[i].Prefab.gameObject.GetComponentsInChildren<SpriteRenderer>();
-                e.Q<VisualElement>("icon").style.backgroundImage = new StyleBackground(sprites[0].sprite);
-            }
-            // new StyleBackground(m_UnitDB[i].MenuSprite);
-            //m_ItemDatabase[i] == null ? m_DefaultItemIcon.texture :
-            //m_ItemDatabase[i].MenuSprite.texture; //.Icon.texture;
-            e.Q<Label>("name").text = m_UnitDB[i].name; //.FriendlyName;
-        };
-        m_ListUnit = new ListView(m_UnitDB, m_ItemHeight, makeItem, bindItem);
-        //m_ListNature.style.flexGrow = 1;
-        m_ListUnit.selectionType = SelectionType.Single;
-        //m_ListNature.style.height = new StyleLength(new Length(100, LengthUnit.Percent));// m_NatureDB.Count * m_ItemHeight;
-        m_Tabs.Add(m_ListUnit);
+        //     }
+        //     else
+        //     {
+        //         SpriteRenderer[] sprites = m_UnitDB[i].Prefab.gameObject.GetComponentsInChildren<SpriteRenderer>();
+        //         e.Q<VisualElement>("icon").style.backgroundImage = new StyleBackground(sprites[0].sprite);
+        //     }
+        //     // new StyleBackground(m_UnitDB[i].MenuSprite);
+        //     //m_ItemDatabase[i] == null ? m_DefaultItemIcon.texture :
+        //     //m_ItemDatabase[i].MenuSprite.texture; //.Icon.texture;
+        //     e.Q<Label>("name").text = m_UnitDB[i].name; //.FriendlyName;
+        // };
+        // m_ListUnit = new ListView(m_UnitDB, m_ItemHeight, makeItem, bindItem);
+        // //m_ListNature.style.flexGrow = 1;
+        // m_ListUnit.selectionType = SelectionType.Single;
+        // //m_ListNature.style.height = new StyleLength(new Length(100, LengthUnit.Percent));// m_NatureDB.Count * m_ItemHeight;
+        // m_Tabs.Add(m_ListUnit);
 
-        m_ListUnit.selectionChanged += ListView_onSelectionChange;
+        // m_ListUnit.selectionChanged += ListView_onSelectionChange;
 
-        m_ListUnit.selectedIndex = 0;
+        // m_ListUnit.selectedIndex = 0;
     }
 
 
@@ -176,26 +176,26 @@ public class TownManagerEditor
     private void ListView_onSelectionChange(IEnumerable<object> selectedItems)
     {
 
-        //Debug.Log($"Typeof selectedItem {selectedItems.First().GetType()}");
+        // //Debug.Log($"Typeof selectedItem {selectedItems.First().GetType()}");
 
-        m_activeItem = (ScriptableBuildBase)selectedItems.First();
-        SerializedObject so = new SerializedObject(m_activeItem);
-        m_SectionDetails.Bind(so);
+        // m_activeItem = (ScriptableBuildBase)selectedItems.First();
+        // SerializedObject so = new SerializedObject(m_activeItem);
+        // m_SectionDetails.Bind(so);
 
 
-        if (m_activeItem.BuildLevels[0].MenuSprite != null)
-        {
-            m_SectionDetails.Q<VisualElement>("Sprite").style.backgroundImage = new StyleBackground(m_activeItem.BuildLevels[0].MenuSprite);
-        }
-        else
-        {
-            SpriteRenderer[] sprites = m_activeItem.Prefab.gameObject.GetComponentsInChildren<SpriteRenderer>();
-            m_SectionDetails.Q<VisualElement>("Sprite").style.backgroundImage = new StyleBackground(sprites[0].sprite);
-        }
+        // if (m_activeItem.BuildLevels[0].MenuSprite != null)
+        // {
+        //     m_SectionDetails.Q<VisualElement>("Sprite").style.backgroundImage = new StyleBackground(m_activeItem.BuildLevels[0].MenuSprite);
+        // }
+        // else
+        // {
+        //     SpriteRenderer[] sprites = m_activeItem.Prefab.gameObject.GetComponentsInChildren<SpriteRenderer>();
+        //     m_SectionDetails.Q<VisualElement>("Sprite").style.backgroundImage = new StyleBackground(sprites[0].sprite);
+        // }
 
-        m_SectionDetails.style.visibility = Visibility.Visible;
+        // m_SectionDetails.style.visibility = Visibility.Visible;
 
-        GenerateNoPath();
+        // GenerateNoPath();
     }
     private void AddItem_OnClick()
     {
