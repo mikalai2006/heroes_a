@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d42093a1eaf0824c9a2bb9f171cc7f4, type: 3}
+  m_Script: {fileID: 11500000, guid: b06948112444bc04bb8a2304b5eece5a, type: 3}
   m_Name: 6_Stronghold_MageGuild
   m_EditorClassIdentifier: 
   idObject: build.stronghold.mageguild
@@ -56,24 +56,7 @@ MonoBehaviour:
       Count: 5
     - Resource: {fileID: 11400000, guid: af6fb8015ba018540960794f09d24eea, type: 2}
       Count: 5
-    TypeWorkAttribute: 0
-    Attributes:
-      description:
-        m_TableReference:
-          m_TableCollectionName: 
-        m_TableEntryReference:
-          m_KeyId: 0
-          m_Key: 
-        m_FallbackState: 0
-        m_WaitForCompletion: 0
-        m_LocalVariables: []
-      Resources: []
-      PrimarySkills: []
-      SecondarySkills: []
-      Artifacts:
-        Artifact: []
-        isOne: 0
-      Creature: []
+    Effects: []
   - MenuSprite: {fileID: 21300000, guid: ce296084f477e8c428fbab224a02d858, type: 3}
     UpdatePrefab:
       m_AssetGUID: 
@@ -117,24 +100,7 @@ MonoBehaviour:
       Count: 4
     - Resource: {fileID: 11400000, guid: f02d0b566815eaa47b30b219422c87e5, type: 2}
       Count: 4
-    TypeWorkAttribute: 0
-    Attributes:
-      description:
-        m_TableReference:
-          m_TableCollectionName: 
-        m_TableEntryReference:
-          m_KeyId: 0
-          m_Key: 
-        m_FallbackState: 0
-        m_WaitForCompletion: 0
-        m_LocalVariables: []
-      Resources: []
-      PrimarySkills: []
-      SecondarySkills: []
-      Artifacts:
-        Artifact: []
-        isOne: 0
-      Creature: []
+    Effects: []
   - MenuSprite: {fileID: 21300000, guid: 62c1f4f834c1327428971cb92102b4bf, type: 3}
     UpdatePrefab:
       m_AssetGUID: 
@@ -178,24 +144,7 @@ MonoBehaviour:
       Count: 6
     - Resource: {fileID: 11400000, guid: f02d0b566815eaa47b30b219422c87e5, type: 2}
       Count: 6
-    TypeWorkAttribute: 0
-    Attributes:
-      description:
-        m_TableReference:
-          m_TableCollectionName: 
-        m_TableEntryReference:
-          m_KeyId: 0
-          m_Key: 
-        m_FallbackState: 0
-        m_WaitForCompletion: 0
-        m_LocalVariables: []
-      Resources: []
-      PrimarySkills: []
-      SecondarySkills: []
-      Artifacts:
-        Artifact: []
-        isOne: 0
-      Creature: []
+    Effects: []
   references:
     version: 2
     RefIds: []

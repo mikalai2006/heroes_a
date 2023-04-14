@@ -23,7 +23,7 @@ public struct GroupAttributes
     public List<ItemSkill> PrimarySkills;
     public List<ItemTwoSkill> SecondarySkills;
     public ItemArtifact Artifacts;
-    public List<ScriptableEntityCreature> Creature;
+    public ScriptableEntityCreature Creature;
 }
 
 [System.Serializable]

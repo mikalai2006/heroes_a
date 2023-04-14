@@ -14,13 +14,13 @@ public class TownManagerEditor
 
     private static VisualTreeAsset m_ItemRowTemplate, m_NoPathTemplate;
 
-    private static List<ScriptableBuildBase> m_UnitDB = new List<ScriptableBuildBase>();
+    private static List<ScriptableBuilding> m_UnitDB = new List<ScriptableBuilding>();
 
     private ListView m_ListUnit;
     private VisualElement m_Tabs, m_SectionNoPath;
     private readonly float m_ItemHeight = 50, m_NoPathsize = 30;
     private readonly int countNoPath = 2;
-    private ScriptableBuildBase m_activeItem;
+    private ScriptableBuilding m_activeItem;
     private ScrollView m_SectionDetails;
 
     public VisualElement Init()
@@ -134,8 +134,8 @@ public class TownManagerEditor
         foreach (string path in allPaths)
         {
             string cleanedPath = path.Replace("\\", "/");
-            m_UnitDB.Add((ScriptableBuildBase)AssetDatabase.LoadAssetAtPath(cleanedPath,
-                typeof(ScriptableBuildBase)));
+            m_UnitDB.Add((ScriptableBuilding)AssetDatabase.LoadAssetAtPath(cleanedPath,
+                typeof(ScriptableBuilding)));
         }
     }
 
@@ -178,7 +178,7 @@ public class TownManagerEditor
 
         // //Debug.Log($"Typeof selectedItem {selectedItems.First().GetType()}");
 
-        // m_activeItem = (ScriptableBuildBase)selectedItems.First();
+        // m_activeItem = (ScriptableBuilding)selectedItems.First();
         // SerializedObject so = new SerializedObject(m_activeItem);
         // m_SectionDetails.Bind(so);
 
@@ -200,7 +200,7 @@ public class TownManagerEditor
     private void AddItem_OnClick()
     {
         //Create an instance of the scriptable object and set the default parameters
-        ScriptableBuildBase newItem = ScriptableObject.CreateInstance<ScriptableBuildBase>();
+        ScriptableBuilding newItem = ScriptableObject.CreateInstance<ScriptableBuilding>();
         string path = EditorUtility.SaveFilePanelInProject("Save nature", "NewNature", "Asset", "Save new nature", "Assets/Resources/Nature");
         if (path == "") return;
         //newItem.FriendlyName = $"New Item";

@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d42093a1eaf0824c9a2bb9f171cc7f4, type: 3}
+  m_Script: {fileID: 11500000, guid: b06948112444bc04bb8a2304b5eece5a, type: 3}
   m_Name: 9_FreelancersGuild
   m_EditorClassIdentifier: 
   idObject: build.stronghold.freelancersguild
@@ -52,24 +52,7 @@ MonoBehaviour:
     CostResource:
     - Resource: {fileID: 11400000, guid: 3894d4d068775c343b5c4bf1510dee33, type: 2}
       Count: 1000
-    TypeWorkAttribute: 0
-    Attributes:
-      description:
-        m_TableReference:
-          m_TableCollectionName: 
-        m_TableEntryReference:
-          m_KeyId: 0
-          m_Key: 
-        m_FallbackState: 0
-        m_WaitForCompletion: 0
-        m_LocalVariables: []
-      Resources: []
-      PrimarySkills: []
-      SecondarySkills: []
-      Artifacts:
-        Artifact: []
-        isOne: 0
-      Creature: []
+    Effects: []
   references:
     version: 2
     RefIds: []

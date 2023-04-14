@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d42093a1eaf0824c9a2bb9f171cc7f4, type: 3}
+  m_Script: {fileID: 11500000, guid: bc9580e1f67cc4343ab8e2981a25f527, type: 3}
   m_Name: 13_WolfPen
   m_EditorClassIdentifier: 
   idObject: build.stronghold.wolfpen
@@ -56,24 +56,7 @@ MonoBehaviour:
       Count: 10
     - Resource: {fileID: 11400000, guid: 177478bebb60204468d214efd1fdcc16, type: 2}
       Count: 5
-    TypeWorkAttribute: 0
-    Attributes:
-      description:
-        m_TableReference:
-          m_TableCollectionName: 
-        m_TableEntryReference:
-          m_KeyId: 0
-          m_Key: 
-        m_FallbackState: 0
-        m_WaitForCompletion: 0
-        m_LocalVariables: []
-      Resources: []
-      PrimarySkills: []
-      SecondarySkills: []
-      Artifacts:
-        Artifact: []
-        isOne: 0
-      Creature: []
+    Effects: []
   - MenuSprite: {fileID: 21300000, guid: c8c1a389262f944408a08fbe3d690769, type: 3}
     UpdatePrefab:
       m_AssetGUID: 
@@ -111,24 +94,10 @@ MonoBehaviour:
       Count: 5
     - Resource: {fileID: 11400000, guid: 177478bebb60204468d214efd1fdcc16, type: 2}
       Count: 5
-    TypeWorkAttribute: 0
-    Attributes:
-      description:
-        m_TableReference:
-          m_TableCollectionName: 
-        m_TableEntryReference:
-          m_KeyId: 0
-          m_Key: 
-        m_FallbackState: 0
-        m_WaitForCompletion: 0
-        m_LocalVariables: []
-      Resources: []
-      PrimarySkills: []
-      SecondarySkills: []
-      Artifacts:
-        Artifact: []
-        isOne: 0
-      Creature: []
+    Effects: []
+  Creatures:
+  - {fileID: 11400000, guid: 044f1498b144a4a469d3e40931e8a98c, type: 2}
+  - {fileID: 11400000, guid: 13632c679c8d34c4d8d95057429af2b5, type: 2}
   references:
     version: 2
     RefIds: []

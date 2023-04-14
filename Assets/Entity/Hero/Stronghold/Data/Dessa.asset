@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87c649b364422834e97e3024a32c0ffe, type: 3}
   m_Name: Dessa
   m_EditorClassIdentifier: 
-  idObject: cc54fb3e0e754106b25898908e0534cb
+  idObject: hero.dessa
   TypeEntity: 90
   MenuSprite: {fileID: 21300000, guid: 0fb7bcb4f9ed35648b71353dfb609272, type: 3}
   title:

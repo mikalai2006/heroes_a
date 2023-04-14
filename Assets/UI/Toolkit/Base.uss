@@ -134,6 +134,20 @@
     border-bottom-color: rgb(211, 181, 106);
 }
 
+.border-0 {
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top-width: 0;
+    border-bottom-width: 0;
+}
+
+.border-1 {
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+}
+
 .border-2 {
     border-left-width: 2px;
     border-right-width: 2px;
@@ -357,6 +371,10 @@
     height: 33.333%;
 }
 
+.h-125 {
+    height: 12.5%;
+}
+
 .h-full {
     height: 100%;
 }
@@ -394,4 +412,11 @@
 
 .bg-transparent {
     background-color: rgba(0, 0, 0, 0);
+}
+
+.m-px {
+    margin-left: 1px;
+    margin-right: 1px;
+    margin-top: 1px;
+    margin-bottom: 1px;
 }

@@ -44,10 +44,10 @@ namespace Loader
                 UITown.Init(environment);
                 foreach (var build in _town.Data.Generals)
                 {
-                    // var buildConfigData = ResourceSystem.Instance.GetAllBuildsForTown()
-                    //     .Where(t => t.idObject == build.Key)
-                    //     .First();
-
+                    build.Value.CreateGameObject();
+                }
+                foreach (var build in _town.Data.Armys)
+                {
                     build.Value.CreateGameObject();
                 }
             }

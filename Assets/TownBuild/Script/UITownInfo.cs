@@ -8,6 +8,7 @@ using UnityEngine.UIElements;
 public class UITownInfo : MonoBehaviour
 {
     [SerializeField] private VisualTreeAsset _templateHeroForce;
+    [SerializeField] private VisualTreeAsset _templateTownInfoCreature;
     [SerializeField] private VisualTreeAsset _templateHeroButton;
     [SerializeField] private VisualTreeAsset _templateTownInfo;
     private Button _btnHeroInTown;
@@ -54,6 +55,30 @@ public class UITownInfo : MonoBehaviour
         // }
         _townInfoHeroVisit = _parent.Q<VisualElement>("TownHeroVisitForce");
         DrawHeroAsGuest();
+
+        DrawTownInfo();
+    }
+
+    private void DrawTownInfo()
+    {
+        // _townInfo.Clear();
+        var spriteTownEl = _townInfo.Q<VisualElement>("TownIcon");
+        var nameTownEl = _townInfo.Q<VisualElement>("TownName");
+        var listTownDwellingEl = _townInfo.Q<VisualElement>("TownDwellingList");
+        listTownDwellingEl.Clear();
+
+        foreach (var build in _activeTown.Data.Armys)
+        {
+            var btnCreature = _templateTownInfoCreature.Instantiate();
+            btnCreature.AddToClassList("w-25");
+            btnCreature.AddToClassList("h-50");
+            btnCreature.Q<VisualElement>("Img").style.backgroundImage
+                = new StyleBackground(((ScriptableBuildingArmy)((BuildArmy)build.Value).ConfigData).Creatures[build.Value.level].MenuSprite);
+            btnCreature.Q<Label>("Value").text = "+" + (build.Value.Data.quantity.ToString());
+            listTownDwellingEl.Add(btnCreature);
+        }
+
+
     }
 
     private void DrawHeroAsGuest()
@@ -111,11 +136,11 @@ public class UITownInfo : MonoBehaviour
         if (_chooseHero != null && _chooseHero != _activeTown.OccupiedNode.GuestedUnit)
         {
             // move old guest and destroy GameObject.
-            _activeTown.Data.HeroinTown = heroGuest;
-            if (_activeTown.Data.HeroinTown != null)
+            _activeTown.Data.HeroinTown = heroGuest?.IdEntity;
+            if (heroGuest != null)
             {
-                _activeTown.Data.HeroinTown.MapObjectGameObject.gameObject.SetActive(false);
-                _activeTown.Data.HeroinTown.Data.State = StateHero.InTown;
+                heroGuest.MapObjectGameObject.gameObject.SetActive(false);
+                heroGuest.Data.State = StateHero.InTown;
             }
 
             // create new guest and create GameObject.
@@ -152,8 +177,10 @@ public class UITownInfo : MonoBehaviour
 
     private void OnClickHeroInTown(ClickEvent evt)
     {
-        var heroInTown = (EntityHero)_activeTown.Data.HeroinTown;
-        if (_chooseHero != null && _chooseHero != _activeTown.Data.HeroinTown)
+        var heroInTown = _activeTown.Data.HeroinTown != null && _activeTown.Data.HeroinTown != ""
+            ? (EntityHero)UnitManager.Entities[_activeTown.Data.HeroinTown]
+            : null;
+        if (_chooseHero != null && _chooseHero.IdEntity != _activeTown.Data.HeroinTown)
         {
             // move old hero in town and destroy GameObject.
             _activeTown.OccupiedNode.SetAsGuested(heroInTown);
@@ -172,7 +199,7 @@ public class UITownInfo : MonoBehaviour
             _activePlayer.SetActiveHero((EntityHero)_activeTown.OccupiedNode.GuestedUnit);
 
             // create new hero in town and destroy GameObject.
-            _activeTown.Data.HeroinTown = _chooseHero;
+            _activeTown.Data.HeroinTown = _chooseHero.IdEntity;
             _chooseHero.MapObjectGameObject.gameObject.SetActive(false);
             _chooseHero.Data.State = StateHero.InTown;
 
@@ -197,14 +224,17 @@ public class UITownInfo : MonoBehaviour
         _townInfoHero.Clear();
 
         // add Hero blok.
+        EntityHero hero = _activeTown.Data.HeroinTown != null && _activeTown.Data.HeroinTown != ""
+            ? (EntityHero)UnitManager.Entities[_activeTown.Data.HeroinTown]
+            : null;
         var heroBlok = _templateHeroButton.Instantiate();
         _btnHeroInTown = heroBlok.Q<Button>("Btn");
-        heroBlok.AddToClassList("w-33");
-        heroBlok.AddToClassList("h-33");
-        if (_activeTown.Data.HeroinTown != null && _activeTown.Data.HeroinTown.ScriptableData != null)
+        heroBlok.AddToClassList("w-full");
+        heroBlok.AddToClassList("h-125");
+        if (hero != null)
         {
             heroBlok.Q<VisualElement>("img").style.backgroundImage =
-                new StyleBackground(_activeTown.Data.HeroinTown.ScriptableData.MenuSprite);
+                new StyleBackground(hero.ScriptableData.MenuSprite);
         }
         else
         {
@@ -216,17 +246,19 @@ public class UITownInfo : MonoBehaviour
         for (int i = 0; i < 7; i++)
         {
             var itemHeroForce = _templateHeroForce.Instantiate();
-            itemHeroForce.AddToClassList("w-33");
-            itemHeroForce.AddToClassList("h-33");
+            itemHeroForce.AddToClassList("w-full");
+            itemHeroForce.AddToClassList("h-125");
 
-            if (_activeTown.Data.HeroinTown != null)
+            if (hero != null)
             {
 
                 EntityCreature creature;
-                EntityHero entityHero = (EntityHero)_activeTown.Data.HeroinTown;
-                entityHero.Data.Creatures.TryGetValue(i, out creature);
+                // EntityHero entityHero = (EntityHero)_activeTown.Data.HeroinTown;
+                hero.Data.Creatures.TryGetValue(i, out creature);
                 if (creature != null)
                 {
+
+                    Debug.Log($"Create creature::: [{creature.ScriptableData.idObject}]");
                     itemHeroForce.Q<VisualElement>("img").style.backgroundImage =
                         new StyleBackground(creature.ScriptableData.MenuSprite);
                     itemHeroForce.Q<Label>("ForceValue").text = creature.Data.value.ToString();

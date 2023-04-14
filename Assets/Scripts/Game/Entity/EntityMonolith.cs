@@ -11,12 +11,14 @@ public struct DataMonolith
 }
 
 [System.Serializable]
-public class EntityMonolith : BaseEntity, ISaveDataPlay
+public class EntityMonolith : BaseEntity
 {
     [SerializeField] public DataMonolith Data = new DataMonolith();
     public ScriptableEntityPortal ConfigData => (ScriptableEntityPortal)ScriptableData;
     public EntityMonolith(ScriptableEntityPortal configData, SaveDataUnit<DataMonolith> saveData = null)
     {
+        base.Init();
+
         if (saveData == null)
         {
             // List<ScriptableEntityPortal> list = ResourceSystem.Instance
@@ -24,6 +26,7 @@ public class EntityMonolith : BaseEntity, ISaveDataPlay
             //     .ToList();
             // ScriptableData = list[UnityEngine.Random.Range(0, list.Count)];
             ScriptableData = configData;
+            idObject = ScriptableData.idObject;
             Data.portalPoints = new List<Vector3Int>();
         }
         else
@@ -34,9 +37,8 @@ public class EntityMonolith : BaseEntity, ISaveDataPlay
                 .First();
             Data = saveData.data;
             idUnit = saveData.idUnit;
+            idObject = saveData.idObject;
         }
-
-        base.Init(ScriptableData);
     }
 
     public override void SetPlayer(Player player)
@@ -52,7 +54,7 @@ public class EntityMonolith : BaseEntity, ISaveDataPlay
     //     throw new System.NotImplementedException();
     // }
 
-    public void SaveDataPlay(ref DataPlay data)
+    public override void SaveEntity(ref DataPlay data)
     {
         var sdata = SaveUnit(Data);
         data.entity.monoliths.Add(sdata);

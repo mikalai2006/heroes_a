@@ -10,7 +10,7 @@ public class ScriptableBuildTown : ScriptableObject
     // public int level;
     public AssetReference Prefab;
     public Sprite Bg;
-    [SerializeField] public List<ScriptableBuildBase> Builds;
+    [SerializeField] public List<ScriptableBuilding> Builds;
     // [SerializeField] public List<ScriptableBuildArmy> BuildsArmy;
     // [SerializeField] public AssetReferenceScriptableTown TownMap;
     public List<BuildLevelItem> StartProgressBuilds;
@@ -27,6 +27,6 @@ public class ScriptableBuildTown : ScriptableObject
 [System.Serializable]
 public struct BuildLevelItem
 {
-    public ScriptableBuildBase Build;
+    public ScriptableBuilding Build;
     public int level;
 }

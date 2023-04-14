@@ -127,7 +127,8 @@ public class LevelManager : Singleton<LevelManager>, ISaveDataPlay, ISaveDataGam
         {
             //GetActivePlayer().SetActiveHero(GetActivePlayer().GetActiveHero());
             // ActivePlayer.ActiveHero = ActivePlayer.DataPlayer.PlayerDataReferences.ListHero[0];
-            ActivePlayer.DataPlayer.PlayerDataReferences.ListHero[0].SetHeroAsActive();
+            if (ActivePlayer.DataPlayer.PlayerDataReferences.ListHero.Count > 0)
+                ActivePlayer.DataPlayer.PlayerDataReferences.ListHero[0].SetHeroAsActive();
         }
         else
         {

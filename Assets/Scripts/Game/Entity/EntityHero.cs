@@ -7,7 +7,7 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 
 [Serializable]
-public class EntityHero : BaseEntity, ISaveDataPlay
+public class EntityHero : BaseEntity
 {
     [SerializeField] public DataHero Data = new DataHero();
     public ScriptableEntityHero ConfigData => (ScriptableEntityHero)ScriptableData;
@@ -24,6 +24,8 @@ public class EntityHero : BaseEntity, ISaveDataPlay
 
     public EntityHero(TypeFaction typeFaction, SaveDataUnit<DataHero> saveData = null)
     {
+        base.Init();
+
         Data.Artifacts = new List<EntityArtifact>();
         Data.Creatures = new SerializableDictionary<int, EntityCreature>(7);
         Data.path = new List<GridTileNode>();
@@ -32,7 +34,8 @@ public class EntityHero : BaseEntity, ISaveDataPlay
         {
             List<ScriptableEntityHero> list = ResourceSystem.Instance
                 .GetEntityByType<ScriptableEntityHero>(TypeEntity.Hero)
-                .Where(t => t.TypeFaction == typeFaction)
+                .Where(t => t.TypeFaction == typeFaction
+                    && !UnitManager.IdsExistsHeroes.Contains(t.idObject))
                 .ToList();
             ScriptableData = list[UnityEngine.Random.Range(0, list.Count)];
 
@@ -40,6 +43,7 @@ public class EntityHero : BaseEntity, ISaveDataPlay
             Data.speed = 100;
             Data.State = StateHero.OnMap;
             Data.name = ScriptableData.name;
+            idObject = ScriptableData.idObject;
 
             Data.path = new List<GridTileNode>();
 
@@ -52,6 +56,7 @@ public class EntityHero : BaseEntity, ISaveDataPlay
                 newCreature.Data.idObject = creature.creature.idObject;
                 Data.Creatures.Add(Data.Creatures.Count, newCreature);
             }
+            UnitManager.IdsExistsHeroes.Add(ScriptableData.idObject);
         }
         else
         {
@@ -74,8 +79,8 @@ public class EntityHero : BaseEntity, ISaveDataPlay
             }
 
             idUnit = saveData.idUnit;
+            idObject = saveData.idObject;
         }
-        base.Init(ScriptableData);
     }
 
     public float CalculateHitByNode(GridTileNode node)
@@ -103,9 +108,12 @@ public class EntityHero : BaseEntity, ISaveDataPlay
     {
         // MapObjectGameObject.transform.position = newPosition;// + new Vector3(.5f, .5f);
         Position = newPosition;
-        SetPositionCamera(newPosition);
-        // GameManager.Instance.MapManager.SetColorForTile(newPosition, Color.cyan);
-        SetClearSky(newPosition);
+        if (Player != null)
+        {
+            SetPositionCamera(newPosition);
+            // GameManager.Instance.MapManager.SetColorForTile(newPosition, Color.cyan);
+            SetClearSky(newPosition);
+        }
     }
 
     public void SetGuestForNode(GridTileNode newNode)
@@ -170,12 +178,16 @@ public class EntityHero : BaseEntity, ISaveDataPlay
     //     // throw new NotImplementedException();
     // }
 
-    public void SaveDataPlay(ref DataPlay data)
+    // public void SaveDataPlay(ref DataPlay data)
+    // {
+    //     var sdata = SaveUnit(Data);
+    //     data.entity.heroes.Add(sdata);
+    // }
+    public override void SaveEntity(ref DataPlay data)
     {
         var sdata = SaveUnit(Data);
         data.entity.heroes.Add(sdata);
     }
-
 
     #endregion
 }

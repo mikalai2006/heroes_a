@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d42093a1eaf0824c9a2bb9f171cc7f4, type: 3}
+  m_Script: {fileID: 11500000, guid: bc9580e1f67cc4343ab8e2981a25f527, type: 3}
   m_Name: 15_OgreFort
   m_EditorClassIdentifier: 
   idObject: build.stronghold.ogrefort
@@ -54,24 +54,7 @@ MonoBehaviour:
       Count: 2000
     - Resource: {fileID: 11400000, guid: af6fb8015ba018540960794f09d24eea, type: 2}
       Count: 20
-    TypeWorkAttribute: 0
-    Attributes:
-      description:
-        m_TableReference:
-          m_TableCollectionName: 
-        m_TableEntryReference:
-          m_KeyId: 0
-          m_Key: 
-        m_FallbackState: 0
-        m_WaitForCompletion: 0
-        m_LocalVariables: []
-      Resources: []
-      PrimarySkills: []
-      SecondarySkills: []
-      Artifacts:
-        Artifact: []
-        isOne: 0
-      Creature: []
+    Effects: []
   - MenuSprite: {fileID: 21300000, guid: ca77d7ac51bf364478a0a86e5de4369e, type: 3}
     UpdatePrefab:
       m_AssetGUID: 
@@ -111,24 +94,9 @@ MonoBehaviour:
       Count: 5
     - Resource: {fileID: 11400000, guid: f02d0b566815eaa47b30b219422c87e5, type: 2}
       Count: 5
-    TypeWorkAttribute: 0
-    Attributes:
-      description:
-        m_TableReference:
-          m_TableCollectionName: 
-        m_TableEntryReference:
-          m_KeyId: 0
-          m_Key: 
-        m_FallbackState: 0
-        m_WaitForCompletion: 0
-        m_LocalVariables: []
-      Resources: []
-      PrimarySkills: []
-      SecondarySkills: []
-      Artifacts:
-        Artifact: []
-        isOne: 0
-      Creature: []
+    Effects: []
+  Creatures:
+  - {fileID: 11400000, guid: 7df000dfe67f063478052d4e0578b42a, type: 2}
   references:
     version: 2
     RefIds: []

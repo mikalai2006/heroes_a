@@ -1,10 +1,4 @@
-using Cysharp.Threading.Tasks;
-
 using System;
-using System.Linq;
-
-using UnityEngine;
-using UnityEngine.EventSystems;
 
 [Serializable]
 public class BuildGeneral : BaseBuild
@@ -13,15 +7,17 @@ public class BuildGeneral : BaseBuild
 
     public BuildGeneral(
         int level,
-        ScriptableBuildBase configData,
+        ScriptableBuilding configData,
+        EntityTown town,
         SaveDataBuild<DataBuildGeneral> saveData = null
         )
     {
+        base.Init(level, town);
+
         if (saveData == null)
         {
             ConfigData = configData;
-            // ResourceSystem.Instance.GetBuildTowns()
-            //     .Where(t => t.TypeFaction == typeFaction && t.typ)
+            OnRunEffects();
         }
         else
         {
@@ -29,18 +25,9 @@ public class BuildGeneral : BaseBuild
             Data = saveData.data;
         }
 
-        base.Init(configData, level);
     }
-    // public async UniTask<DataResultBuildDialog> OnClickToBuild()
-    // {
-    //     var dialogWindow = new UITownListBuildOperation(new DataDialogMapObject(), UITown._activeBuildTown);
-    //     return await dialogWindow.ShowAndHide();
-    // }
-
-    // public async void OnPointerClick(PointerEventData eventData)
-    // {
-    //     Debug.Log($"Click council");
-    //     var result = await OnClickToBuild();
-    //     UITown.DrawBuilds(result);
-    // }
+    public void OnRunEffects()
+    {
+        ((ScriptableBuilding)ConfigData).BuildLevels[level].OnAddEffect(ref _player, Town);
+    }
 }

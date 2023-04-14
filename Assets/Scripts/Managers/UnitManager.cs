@@ -4,6 +4,8 @@ using UnityEngine;
 
 public static class UnitManager
 {
+    public static Dictionary<string, BaseEntity> Entities = new Dictionary<string, BaseEntity>();
+    public static List<string> IdsExistsHeroes = new List<string>();
     // public static EntityTown SpawnTownAsync(GridTileNode gridNode, int keyArea)
     // {
     //     Player player = LevelManager.Instance.GetPlayer(keyArea);
@@ -99,6 +101,7 @@ public static class UnitManager
         List<ScriptableEntityCreature> listWarriors = ResourceSystem.Instance.GetEntityByType<ScriptableEntityCreature>(TypeEntity.Creature);
         ScriptableEntityCreature scriptbaleEntity = listWarriors[Random.Range(0, listWarriors.Count)];
         EntityCreature newEntity = new EntityCreature(scriptbaleEntity);
+        Entities.Add(newEntity.IdEntity, newEntity);
         newEntity.OccupiedNode = node;
         node.SetOcuppiedUnit(newEntity);
         // SpawnEntityToNode(node, newEntity);
@@ -115,7 +118,8 @@ public static class UnitManager
 
         // entity.OccupiedNode = node;
         node.SetOcuppiedUnit(entity);
-
+        Debug.Log($"add entity {entity.ScriptableData.name}");
+        Entities.Add(entity.IdEntity, entity);
         entity.CreateMapGameObject(node);
 
         GameManager.Instance.MapManager.SetColorForTile(pos, Color.yellow);
@@ -154,6 +158,14 @@ public static class UnitManager
         }
 
         return entity;
+    }
+
+    internal static void Reset()
+    {
+
+        Entities.Clear();
+        IdsExistsHeroes.Clear();
+
     }
     #endregion
 }

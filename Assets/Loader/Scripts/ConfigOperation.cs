@@ -28,7 +28,7 @@ namespace Loader
             await ResourceSystem.Instance.LoadCollectionsAsset<TileLandscape>(Constants.Labels.LABEL_LANDSCAPE);
             onProgress?.Invoke(.9f);
             await ResourceSystem.Instance.LoadCollectionsAsset<TileNature>(Constants.Labels.LABEL_NATURE);
-            await ResourceSystem.Instance.LoadCollectionsAsset<ScriptableBuildBase>(Constants.Labels.LABEL_BUILD_BASE);
+            await ResourceSystem.Instance.LoadCollectionsAsset<ScriptableBuilding>(Constants.Labels.LABEL_BUILD_BASE);
             // onProgress?.Invoke(.2f);
             // onSetNotify?.Invoke("Load hero configuration ...");
             // await ResourceSystem.Instance.LoadCollectionsAsset<ScriptableUnitBase>(Constants.Labels.LABEL_HERO);

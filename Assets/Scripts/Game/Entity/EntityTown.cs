@@ -6,13 +6,15 @@ using System.Linq;
 using UnityEngine;
 
 [Serializable]
-public class EntityTown : BaseEntity, ISaveDataPlay
+public class EntityTown : BaseEntity
 {
     [SerializeField] public DataTown Data = new DataTown();
     public ScriptableEntityTown ConfigData => (ScriptableEntityTown)ScriptableData;
 
     public EntityTown(TypeGround typeGround, SaveDataUnit<DataTown> saveData = null)
     {
+        base.Init();
+
         if (saveData == null)
         {
             List<ScriptableEntityTown> list = ResourceSystem.Instance
@@ -23,8 +25,9 @@ public class EntityTown : BaseEntity, ISaveDataPlay
 
             Data.idPlayer = -1;
             Data.name = ConfigData.name;
+            idObject = ScriptableData.idObject;
             // Data.ProgressBuilds = ConfigData.BuildTown.StartProgressBuilds.ToList(); // TypeBuild.None | TypeBuild.Tavern_1;
-            Data.LevelsBuilds = new SerializableDictionary<TypeBuild, BuildItem>();
+            // Data.LevelsBuilds = new SerializableDictionary<TypeBuild, BuildItem>();
             Data.Generals = new SerializableDictionary<string, BuildGeneral>();
             Data.Armys = new SerializableDictionary<string, BuildArmy>();
             // Data.ProgressBuilds = new List<TypeBuild>();
@@ -77,9 +80,14 @@ public class EntityTown : BaseEntity, ISaveDataPlay
                 var newBuild = CreateBuild(configData, item.Value.level);
             }
             idUnit = saveData.idUnit;
+            idObject = saveData.idObject;
+
+            // Data.HeroinTown = new EntityHero(TypeFaction.Neutral, new SaveDataUnit<DataHero>(){
+            //     data = saveData.data.HeroinTown.Data,
+            //     idObject = saveData.data.HeroinTown
+            // });
         }
 
-        base.Init(ScriptableData);
     }
 
     public void SetTownAsActive()
@@ -111,14 +119,13 @@ public class EntityTown : BaseEntity, ISaveDataPlay
     // {
     //     throw new System.NotImplementedException();
     // }
-
-    public void SaveDataPlay(ref DataPlay data)
+    public override void SaveEntity(ref DataPlay data)
     {
         var sdata = SaveUnit(Data);
         data.entity.towns.Add(sdata);
     }
 
-    public BaseBuild CreateBuild(ScriptableBuildBase buildConfig, int level)
+    public BaseBuild CreateBuild(ScriptableBuilding buildConfig, int level)
     {
         if (buildConfig.TypeBuild == TypeBuild.Army)
         {
@@ -126,10 +133,11 @@ public class EntityTown : BaseEntity, ISaveDataPlay
             if (Data.Armys.TryGetValue(buildConfig.idObject, out build))
             {
                 Data.Armys[buildConfig.idObject].level += 1;
+                // Data.Armys[buildConfig.idObject].OnRunEffects();
             }
             else
             {
-                build = new BuildArmy(level, buildConfig);
+                build = new BuildArmy(level, (ScriptableBuildingArmy)buildConfig, this);
                 Data.Armys.Add(buildConfig.idObject, build);
             }
             return build;
@@ -140,10 +148,11 @@ public class EntityTown : BaseEntity, ISaveDataPlay
             if (Data.Generals.TryGetValue(buildConfig.idObject, out build))
             {
                 Data.Generals[buildConfig.idObject].level += 1;
+                Data.Generals[buildConfig.idObject].OnRunEffects();
             }
             else
             {
-                build = new BuildGeneral(level, buildConfig);
+                build = new BuildGeneral(level, (ScriptableBuildingGeneral)buildConfig, this);
                 Data.Generals.Add(buildConfig.idObject, build);
             }
             return build;
@@ -161,7 +170,7 @@ public class EntityTown : BaseEntity, ISaveDataPlay
                 Data.Armys.TryGetValue(item.Build.idObject, out isArmy);
                 if (isArmy == null || (isArmy != null && isArmy.level < item.level))
                 {
-                    result.Add(item.Build.BuildLevels[item.level]);
+                    result.Add(((ScriptableBuildingArmy)item.Build).BuildLevels[item.level]);
                 }
             }
             else
@@ -170,14 +179,14 @@ public class EntityTown : BaseEntity, ISaveDataPlay
                 Data.Generals.TryGetValue(item.Build.idObject, out isGen);
                 if (isGen == null || (isGen != null && isGen.level < item.level))
                 {
-                    result.Add(item.Build.BuildLevels[item.level]);
+                    result.Add(((ScriptableBuildingGeneral)item.Build).BuildLevels[item.level]);
                 }
             }
         }
         return result;
     }
 
-    public int GetLevelBuild(ScriptableBuildBase configBuildData)
+    public int GetLevelBuild(ScriptableBuilding configBuildData)
     {
         var result = -1;
         if (configBuildData.TypeBuild == TypeBuild.Army)
@@ -204,10 +213,34 @@ public class EntityTown : BaseEntity, ISaveDataPlay
     public override void OnAfterStateChanged(GameState newState)
     {
         base.OnAfterStateChanged(newState);
+        switch (newState)
+        {
+            case GameState.StepNextPlayer:
+                // OnRunGeneralBuilds();
+                OnRunArmyBuilds();
+                break;
+        }
+    }
 
+    // private void OnRunGeneralBuilds()
+    // {
+    //     if (Player == LevelManager.Instance.ActivePlayer)
+    //     {
+    //         foreach (var build in Data.Generals)
+    //         {
+    //             Debug.Log($"OnRunGeneralBuilds::: Next day - {build.Value.ConfigData.name}");
+    //         }
+    //     };
+    // }
+
+    private void OnRunArmyBuilds()
+    {
         if (Player == LevelManager.Instance.ActivePlayer)
         {
-            Debug.Log($"Next day - {ScriptableData.name}");
+            foreach (var build in Data.Armys)
+            {
+                Debug.Log($"OnRunArmyBuilds::: Next day - {build.Value.ConfigData.name}");
+            }
         };
     }
     #endregion

@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87c649b364422834e97e3024a32c0ffe, type: 3}
+  m_Name: Christian
+  m_EditorClassIdentifier: 
+  idObject: hero.christian
+  TypeEntity: 90
+  MenuSprite: {fileID: 21300000, guid: f8816806f522baf48a48e01a92b230bf, type: 3}
+  title:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  MapPrefab:
+    m_AssetGUID: cdb8937ffef7b4e4f8b4a1da97ea1e3f
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  TypeGround: 0
+  TypeWorkAttribute: 0
+  Attributes: []
+  listTypeNoPath: 
+  TypeWorkObject: 0
+  TypeMapObject: 0
+  listRuleInput: 
+  Effects: []
+  TypeFaction: 0
+  PrimarySkill:
+  - PrimarySkill: {fileID: 11400000, guid: 642756d81958c7d4e8cf4a4f01d6f919, type: 2}
+    value: 0
+  - PrimarySkill: {fileID: 11400000, guid: 59f8140e6c3547348b0623ced1853e18, type: 2}
+    value: 0
+  StartCreatures:
+  - creature: {fileID: 11400000, guid: 45a286b764d7a864683d354b9e7d65fb, type: 2}
+    min: 10
+    max: 20
+  - creature: {fileID: 11400000, guid: d03c087eb728b064e8c1e13511f0d189, type: 2}
+    min: 2
+    max: 3
+  references:
+    version: 2
+    RefIds: []

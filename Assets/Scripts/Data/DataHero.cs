@@ -26,4 +26,5 @@ public enum StateHero
 {
     OnMap = 1 << 0,
     InTown = 1 << 1,
+    InGuest = 1 << 2
 }

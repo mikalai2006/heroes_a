@@ -76,6 +76,7 @@ public class CreateTownOperation : ILoadingOperation
                         // UnitManager.SpawnEntityMapObjectToNode(node, newEntity);
                         node.SetAsGuested(newEntity);
                         newEntity.CreateMapGameObject(node);
+                        UnitManager.Entities.Add(newEntity.IdEntity, newEntity);
                         // node.SetOcuppiedUnit(newEntity);
                         LevelManager.Instance.GetArea(area.id).hero = newEntity;
                         newEntity.SetPlayer(player);

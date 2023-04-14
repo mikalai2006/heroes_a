@@ -38,15 +38,15 @@ MonoBehaviour:
     m_EditorAssetChanged: 0
   CreatureParams:
     Level: 2
-    Attack: 0
-    Defense: 0
-    DamageMin: 0
-    DamageMax: 0
-    HP: 0
-    Speed: 0
+    Attack: 6
+    Defense: 3
+    DamageMin: 2
+    DamageMax: 3
+    HP: 10
+    Speed: 4
     Ammunition: 0
-    Growth: 0
-    AI: 0
+    Growth: 9
+    AI: 126
     Cost:
     - Resource: {fileID: 11400000, guid: 3894d4d068775c343b5c4bf1510dee33, type: 2}
       Count: 100

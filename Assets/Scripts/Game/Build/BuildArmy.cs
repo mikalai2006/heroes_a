@@ -1,10 +1,4 @@
-using Cysharp.Threading.Tasks;
-
 using System;
-using System.Linq;
-
-using UnityEngine;
-using UnityEngine.EventSystems;
 
 [Serializable]
 public class BuildArmy : BaseBuild
@@ -13,15 +7,16 @@ public class BuildArmy : BaseBuild
 
     public BuildArmy(
         int level,
-        ScriptableBuildBase configData,
+        ScriptableBuilding configData,
+        EntityTown town,
         SaveDataBuild<DataBuildArmy> saveData = null
         )
     {
+        base.Init(level, town);
         if (saveData == null)
         {
             ConfigData = configData;
-            // ResourceSystem.Instance.GetBuildTowns()
-            //     .Where(t => t.TypeFaction == typeFaction && t.typ)
+            Data.quantity = ((ScriptableBuildingArmy)configData).Creatures[0].CreatureParams.Growth;
         }
         else
         {
@@ -29,6 +24,19 @@ public class BuildArmy : BaseBuild
             Data = saveData.data;
         }
 
-        base.Init(configData, level);
     }
+
+
+    public void OnRunEffects()
+    {
+        ((ScriptableBuildingArmy)ConfigData).BuildLevels[level].OnAddEffect(ref _player, Town);
+    }
+    // public void OnRun()
+    // {
+    //     var data = ConfigData.BuildLevels[level].Attributes;
+    //     if (data.Creature != null)
+    //     {
+    //         Data.quantity += data.Creature.CreatureParams.Growth;
+    //     }
+    // }
 }

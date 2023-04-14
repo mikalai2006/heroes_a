@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87c649b364422834e97e3024a32c0ffe, type: 3}
   m_Name: SirMullich
   m_EditorClassIdentifier: 
-  idObject: 4e31a409330f41139ffaa983fd5fd9d0
+  idObject: hero.sirmullich
   TypeEntity: 90
   MenuSprite: {fileID: 21300000, guid: e0990ee82737313408727464352e402c, type: 3}
   title:
