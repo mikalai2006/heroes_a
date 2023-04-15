@@ -32,10 +32,10 @@ MonoBehaviour:
   TypeGround: 0
   TypeFaction: 0
   ArenaModel:
-    m_AssetGUID: 
+    m_AssetGUID: b423a0e6d60da8c41b19b9ed29389d1c
     m_SubObjectName: 
     m_SubObjectType: 
-    m_EditorAssetChanged: 0
+    m_EditorAssetChanged: 1
   CreatureParams:
     Level: 7
     Attack: 0
