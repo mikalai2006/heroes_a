@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 128dffce0ec47ce45913bdac58139aab, type: 3}
   m_Name: Artifact
   m_EditorClassIdentifier: 
-  idObject: 86f856bb6b1742c8a9e8eab17743d017
+  idObject: map.artifact
   TypeEntity: 34
   MenuSprite: {fileID: 0}
   title:
@@ -29,13 +29,13 @@ MonoBehaviour:
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
-  TypeGround: -2050
-  typeInput: 1
+  TypeGround: 2046
   TypeWorkAttribute: 0
   Attributes: []
   listTypeNoPath: 
   TypeWorkObject: 1
   TypeMapObject: 6
+  listRuleInput: 
   Effects: []
   Artifact: {fileID: 0}
   references:

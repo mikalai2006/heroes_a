@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87c649b364422834e97e3024a32c0ffe, type: 3}
   m_Name: SirMullich
   m_EditorClassIdentifier: 
-  idObject: 4e31a409330f41139ffaa983fd5fd9d0
+  idObject: hero.sirmullich
   TypeEntity: 90
   MenuSprite: {fileID: 21300000, guid: e0990ee82737313408727464352e402c, type: 3}
   title:
@@ -48,6 +48,18 @@ MonoBehaviour:
     min: 10
     max: 20
   - creature: {fileID: 11400000, guid: d03c087eb728b064e8c1e13511f0d189, type: 2}
+    min: 2
+    max: 3
+  - creature: {fileID: 11400000, guid: 203fcde347e55264b97e1a9e2acffe1e, type: 2}
+    min: 2
+    max: 3
+  - creature: {fileID: 11400000, guid: f4417669ef6505d4591991dfc43bac0d, type: 2}
+    min: 2
+    max: 3
+  - creature: {fileID: 11400000, guid: 6731d909c99ecb34f88a1e0795901e4d, type: 2}
+    min: 2
+    max: 3
+  - creature: {fileID: 11400000, guid: b770f4df671795844af7854c6469b998, type: 2}
     min: 2
     max: 3
   references:

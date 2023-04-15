@@ -7,7 +7,7 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 
 [Serializable]
-public class EntityHero : BaseEntity, ISaveDataPlay
+public class EntityHero : BaseEntity
 {
     [SerializeField] public DataHero Data = new DataHero();
     public ScriptableEntityHero ConfigData => (ScriptableEntityHero)ScriptableData;
@@ -24,21 +24,26 @@ public class EntityHero : BaseEntity, ISaveDataPlay
 
     public EntityHero(TypeFaction typeFaction, SaveDataUnit<DataHero> saveData = null)
     {
+        base.Init();
+
         Data.Artifacts = new List<EntityArtifact>();
-        Data.Creatures = new List<EntityCreature>();
+        Data.Creatures = new SerializableDictionary<int, EntityCreature>(7);
         Data.path = new List<GridTileNode>();
 
         if (saveData == null)
         {
             List<ScriptableEntityHero> list = ResourceSystem.Instance
                 .GetEntityByType<ScriptableEntityHero>(TypeEntity.Hero)
-                .Where(t => t.TypeFaction == typeFaction)
+                .Where(t => t.TypeFaction == typeFaction
+                    && !UnitManager.IdsExistsHeroes.Contains(t.idObject))
                 .ToList();
             ScriptableData = list[UnityEngine.Random.Range(0, list.Count)];
 
             Data.hit = 100f;
             Data.speed = 100;
+            Data.State = StateHero.OnMap;
             Data.name = ScriptableData.name;
+            idObject = ScriptableData.idObject;
 
             Data.path = new List<GridTileNode>();
 
@@ -48,8 +53,10 @@ public class EntityHero : BaseEntity, ISaveDataPlay
             {
                 var newCreature = new EntityCreature(creature.creature);
                 newCreature.Data.value = Random.Range(creature.min, creature.max);
-                Data.Creatures.Add(newCreature);
+                newCreature.Data.idObject = creature.creature.idObject;
+                Data.Creatures.Add(Data.Creatures.Count, newCreature);
             }
+            UnitManager.IdsExistsHeroes.Add(ScriptableData.idObject);
         }
         else
         {
@@ -58,9 +65,22 @@ public class EntityHero : BaseEntity, ISaveDataPlay
                 .Where(t => t.idObject == saveData.idObject)
                 .First();
             Data = saveData.data;
+            Data.Creatures = new SerializableDictionary<int, EntityCreature>(7);
+
+            var creatures = saveData.data.Creatures;
+            foreach (var creature in creatures)
+            {
+                var newCreature = new EntityCreature(null, new SaveDataUnit<DataCreature>()
+                {
+                    data = creature.Value.Data,
+                    idObject = creature.Value.Data.idObject,
+                });
+                Data.Creatures[creature.Key] = newCreature;
+            }
+
             idUnit = saveData.idUnit;
+            idObject = saveData.idObject;
         }
-        base.Init(ScriptableData);
     }
 
     public float CalculateHitByNode(GridTileNode node)
@@ -88,20 +108,34 @@ public class EntityHero : BaseEntity, ISaveDataPlay
     {
         // MapObjectGameObject.transform.position = newPosition;// + new Vector3(.5f, .5f);
         Position = newPosition;
-        SetPositionCamera(newPosition);
-        // GameManager.Instance.MapManager.SetColorForTile(newPosition, Color.cyan);
-        SetClearSky(newPosition);
+        if (Player != null)
+        {
+            SetPositionCamera(newPosition);
+            // GameManager.Instance.MapManager.SetColorForTile(newPosition, Color.cyan);
+            SetClearSky(newPosition);
+        }
     }
 
-    public void SetNewOccupiedNode(GridTileNode newNode)
+    public void SetGuestForNode(GridTileNode newNode)
     {
-        OccupiedNode.SetOcuppiedUnit(null);
+        OccupiedNode.SetAsGuested(null);
+        // OccupiedNode.SetAsGuested(null);
+
+        // OccupiedNode.SetOcuppiedUnit(null);
         SetPositionHero(newNode.position);
 
-        if (newNode.OccupiedUnit == null)
-        {
-            OccupiedNode = newNode;
-        }
+        OccupiedNode = newNode;
+        OccupiedNode.SetAsGuested(this);
+
+        // if (newNode.OccupiedUnit == null)
+        // {
+        //     OccupiedNode = newNode;
+        // }
+        // else
+        // {
+        //     OccupiedNode = newNode;
+        //     newNode.SetAsGuested(this);
+        // }
     }
 
     public void SetClearSky(Vector3Int startPosition)
@@ -144,12 +178,16 @@ public class EntityHero : BaseEntity, ISaveDataPlay
     //     // throw new NotImplementedException();
     // }
 
-    public void SaveDataPlay(ref DataPlay data)
+    // public void SaveDataPlay(ref DataPlay data)
+    // {
+    //     var sdata = SaveUnit(Data);
+    //     data.entity.heroes.Add(sdata);
+    // }
+    public override void SaveEntity(ref DataPlay data)
     {
         var sdata = SaveUnit(Data);
         data.entity.heroes.Add(sdata);
     }
-
 
     #endregion
 }

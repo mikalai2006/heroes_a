@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28f893db958f10a46a0e59d54d9b29d0, type: 3}
   m_Name: Campfire
   m_EditorClassIdentifier: 
-  idObject: map.resource.bonfire
+  idObject: map.resource.campfire
   TypeEntity: 34
   MenuSprite: {fileID: 0}
   title:
@@ -58,6 +58,7 @@ MonoBehaviour:
       Artifacts:
         Artifact: []
         isOne: 1
+      Creature: {fileID: 0}
     probability: 0.30000001192092896
   - Item:
       description:
@@ -85,6 +86,7 @@ MonoBehaviour:
       Artifacts:
         Artifact: []
         isOne: 1
+      Creature: {fileID: 0}
     probability: 0.30000001192092896
   - Item:
       description:
@@ -112,6 +114,7 @@ MonoBehaviour:
       Artifacts:
         Artifact: []
         isOne: 1
+      Creature: {fileID: 0}
     probability: 0.30000001192092896
   - Item:
       description:
@@ -139,6 +142,7 @@ MonoBehaviour:
       Artifacts:
         Artifact: []
         isOne: 1
+      Creature: {fileID: 0}
     probability: 0.30000001192092896
   listTypeNoPath: 
   TypeWorkObject: 1

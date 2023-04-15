@@ -18,6 +18,7 @@ public class Constants
         public const string UI_DIALOG_MAP_OBJECTS = "UIDialogMapObject";
         public const string UI_DIALOG_DWELLING = "UIDialogDwelling";
         public const string UI_TOWN_LIST_BUILD = "UITownListBuild";
+        public const string UI_TAVERN = "UITavern";
         public const string UI_TOWN_BUILD_ITEM = "UITownBuildItemDialog";
         public const string UI_LOGIN = "UILogin";
         public const string UI_GAME_MENU = "UIGameMenu";
@@ -28,6 +29,7 @@ public class Constants
     public class Labels
     {
         public const string LABEL_BUILD_TOWN = "build_town";
+        public const string LABEL_BUILD_BASE = "build_base";
         public const string LABEL_SKILL = "skill";
         public const string LABEL_MAP_OBJECT = "map_object";
         public const string LABEL_ARTIFACT = "artifact";

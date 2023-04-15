@@ -9,17 +9,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d42093a1eaf0824c9a2bb9f171cc7f4, type: 3}
+  m_Script: {fileID: 11500000, guid: b06948112444bc04bb8a2304b5eece5a, type: 3}
   m_Name: 3_Castle_Tavern
   m_EditorClassIdentifier: 
-  idObject: 1_3
+  idObject: build.castle.tavern
   TypeFaction: 0
-  Prefab: {fileID: 8953912998524533871, guid: 304f7947443e0fa4f97b1fb86fc7a8b6, type: 3}
+  Prefab:
+    m_AssetGUID: 304f7947443e0fa4f97b1fb86fc7a8b6
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  TypeBuild: 2
   BuildLevels:
   - MenuSprite: {fileID: 21300000, guid: cd8f7ed605dfee847af9680c601c9bd0, type: 3}
-    TypeBuild: 2
-    UpdatePrefab: {fileID: 0}
-    RequiredBuilds: 
+    UpdatePrefab:
+      m_AssetGUID: 
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
     Text:
       title:
         m_TableReference:
@@ -39,15 +46,19 @@ MonoBehaviour:
         m_FallbackState: 0
         m_WaitForCompletion: 0
         m_LocalVariables: []
+    RequireBuilds: []
     CostResource:
     - Resource: {fileID: 11400000, guid: 3894d4d068775c343b5c4bf1510dee33, type: 2}
       Count: 500
     - Resource: {fileID: 11400000, guid: af6fb8015ba018540960794f09d24eea, type: 2}
       Count: 5
+    Effects: []
   - MenuSprite: {fileID: 21300000, guid: d6717bb3b3fdafd4aa8521cae71a8b14, type: 3}
-    TypeBuild: 33
-    UpdatePrefab: {fileID: 0}
-    RequiredBuilds: 02000000
+    UpdatePrefab:
+      m_AssetGUID: 
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
     Text:
       title:
         m_TableReference:
@@ -67,11 +78,15 @@ MonoBehaviour:
         m_FallbackState: 0
         m_WaitForCompletion: 0
         m_LocalVariables: []
+    RequireBuilds:
+    - Build: {fileID: 11400000}
+      level: 0
     CostResource:
     - Resource: {fileID: 11400000, guid: 3894d4d068775c343b5c4bf1510dee33, type: 2}
       Count: 500
     - Resource: {fileID: 11400000, guid: af6fb8015ba018540960794f09d24eea, type: 2}
       Count: 5
+    Effects: []
   references:
     version: 2
     RefIds: []

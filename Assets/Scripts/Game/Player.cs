@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 using UnityEngine;
 
@@ -13,12 +14,14 @@ public class PlayerData
     public SerializableDictionary<TypeResource, int> Resource;
     public SerializableShortPosition nosky = new SerializableShortPosition();
     [System.NonSerialized] public PlayerDataReferences PlayerDataReferences;
+    public List<string> HeroesInTavern;
 
     // public Hero ActiveHero => PlayerDataReferences.ActiveHero;
 
     public PlayerData()
     {
         PlayerDataReferences = new PlayerDataReferences();
+        HeroesInTavern = new List<string>();
     }
 }
 
@@ -142,6 +145,11 @@ public class Player
     public List<GridTileNode> FindPathForHero(Vector3Int endPoint, bool force)
     {
         EntityHero activeHero = DataPlayer.PlayerDataReferences.ActiveHero;
+        if (activeHero == null)
+        {
+            GameManager.Instance.MapManager.ResetCursor();
+            return default;
+        }
         Vector3Int startPoint = new Vector3Int(activeHero.Position.x, activeHero.Position.y);
         List<GridTileNode> path = GameManager.Instance.MapManager.GridTileHelper().FindPath(startPoint, endPoint, force);
 
@@ -154,6 +162,20 @@ public class Player
 
 
         return path;
+    }
+
+    public void GenerateHeroTavern()
+    {
+        var allHeroFaction = ResourceSystem.Instance
+            .GetEntityByType<ScriptableEntityHero>(TypeEntity.Hero)
+            // .Where(t => t.TypeFaction == this. && t.TypeMapObject == TypeMapObject.Mine)
+            .OrderBy(t => UnityEngine.Random.value)
+            .ToList();
+        if (allHeroFaction.Count > 0)
+        {
+            _data.HeroesInTavern.Add(allHeroFaction[0].idObject);
+            _data.HeroesInTavern.Add(allHeroFaction[1].idObject);
+        }
     }
 
     public void AddTown(BaseEntity town)

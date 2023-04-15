@@ -8,4 +8,9 @@ public abstract class BaseEffect : ScriptableObject, IEffected
     {
         // throw new System.NotImplementedException();
     }
+
+    public virtual void OnAddEffect(ref Player player, BaseEntity entity)
+    {
+
+    }
 }

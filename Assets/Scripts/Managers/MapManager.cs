@@ -125,6 +125,7 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
 
     public void LoadGameData(DataPlay dataPlay, DataGame dataGame)
     {
+
         LevelManager.Instance.LoadLevel(dataPlay, dataGame);
 
         gameModeData = dataGame.dataMap.GameModeData;
@@ -221,7 +222,16 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
             if (unitHero.idObject == "") continue;
 
             EntityHero hero = new EntityHero(TypeFaction.Neutral, unitHero);
-            UnitManager.SpawnEntityMapObjectToNode(tileNode, hero);
+            // UnitManager.SpawnEntityMapObjectToNode(tileNode, hero);
+            UnitManager.Entities.Add(hero.IdEntity, hero);
+            if (unitHero.data.State == StateHero.OnMap)
+            {
+                hero.CreateMapGameObject(tileNode);
+                hero.SetGuestForNode(tileNode);
+            }
+            // if (unitHero.data.State == StateHero.InTown) {
+            //     tileNode.SetAsGuested(hero);
+            // }
             if (unitHero.data.idPlayer >= 0)
             {
                 hero.SetPlayer(LevelManager.Instance.GetPlayer(unitHero.data.idPlayer));
@@ -331,6 +341,7 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
 
             EntityCreature warrior = new EntityCreature(null, item);
             nodeWarrior.SetProtectedNeigbours(warrior, currentNode);
+            warrior.CreateMapGameObject(nodeWarrior);
             // UnitManager.SpawnEntityToNode(tileNode, entity);
             // BaseWarriors warrior = (BaseWarriors)await UnitManager.SpawnUnitToNode(scriptableData, tileNode);
             // tileNode.SetProtectedNeigbours(entity, protectedNode);
@@ -380,6 +391,8 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
         //         }
         //     }
         // }
+
+        UnitManager.Reset();
 
         _tileMap.ClearAllTiles();
         _tileMapSky.ClearAllTiles();
@@ -720,11 +733,14 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
         Debug.Log($"Click {clickedTile.ToString()} \n {node.ToString()}");
     }
 
+    public void ResetCursor()
+    {
+        _tileMapCursor.ClearAllTiles();
+    }
 
     public void DrawCursor(List<GridTileNode> paths, EntityHero hero)
     {
-        _tileMapCursor.ClearAllTiles();
-
+        ResetCursor();
         if (paths == null) { return; }
         if (paths.Count == 0) { return; }
 

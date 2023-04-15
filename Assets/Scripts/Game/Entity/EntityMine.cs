@@ -12,7 +12,7 @@ public struct DataMine
 
 }
 [Serializable]
-public class EntityMine : BaseEntity, ISaveDataPlay
+public class EntityMine : BaseEntity
 {
     [SerializeField] public DataMine Data = new DataMine();
     public ScriptableEntityMine ConfigData => (ScriptableEntityMine)ScriptableData;
@@ -21,10 +21,13 @@ public class EntityMine : BaseEntity, ISaveDataPlay
         SaveDataUnit<DataMine> saveData = null
         )
     {
+        base.Init();
+
         if (saveData == null)
         {
             ScriptableData = configData;
             Data.idPlayer = -1;
+            idObject = ScriptableData.idObject;
         }
         else
         {
@@ -34,8 +37,8 @@ public class EntityMine : BaseEntity, ISaveDataPlay
                 .First();
             Data = saveData.data;
             idUnit = saveData.idUnit;
+            idObject = saveData.idObject;
         }
-        base.Init(ScriptableData);
     }
 
     public override void SetPlayer(Player player)
@@ -72,7 +75,7 @@ public class EntityMine : BaseEntity, ISaveDataPlay
     //     throw new System.NotImplementedException();
     // }
 
-    public void SaveDataPlay(ref DataPlay data)
+    public override void SaveEntity(ref DataPlay data)
     {
         var sdata = SaveUnit(Data);
         data.entity.mines.Add(sdata);

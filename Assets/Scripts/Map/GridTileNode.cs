@@ -15,7 +15,8 @@ public enum StateNode
     Teleport = 1 << 5,
     Cave = 1 << 6,
     Town = 1 << 7,
-    Input = 1 << 8
+    Input = 1 << 8,
+    Guested = 1 << 9
 }
 
 
@@ -39,6 +40,8 @@ public class GridTileNode : IHeapItem<GridTileNode>
     public BaseEntity OccupiedUnit => _ocuppiedUnit;
     [NonSerialized] private BaseEntity _protectedUnit = null;
     public BaseEntity ProtectedUnit => _protectedUnit;
+    [NonSerialized] private BaseEntity _guestedUnit = null;
+    public BaseEntity GuestedUnit => _guestedUnit;
     public bool Protected => _protectedUnit != null;
     public bool IsAllowSpawn =>
         (StateNode.Empty | ~StateNode.Protected | ~StateNode.Occupied) == (StateNode.Empty | ~StateNode.Protected | ~StateNode.Occupied);
@@ -129,6 +132,23 @@ public class GridTileNode : IHeapItem<GridTileNode>
     {
         StateNode |= StateNode.Input;
         _inputNode = node;
+    }
+
+    /// <summary>
+    /// Set guested.
+    /// </summary>
+    /// <param name="entity">Entity or null</param>
+    public void SetAsGuested(BaseEntity entity)
+    {
+        if (entity == null)
+        {
+            StateNode &= ~(StateNode.Guested);
+        }
+        else
+        {
+            StateNode |= StateNode.Guested;
+        }
+        _guestedUnit = entity;
     }
 
     /// <summary>

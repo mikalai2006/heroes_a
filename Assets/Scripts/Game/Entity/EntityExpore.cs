@@ -9,7 +9,7 @@ public struct DataExplore
 
 }
 [Serializable]
-public class EntityExpore : BaseEntity, ISaveDataPlay
+public class EntityExpore : BaseEntity
 {
     [SerializeField] public DataExplore Data = new DataExplore();
     public ScriptableEntityExplore ConfigData => (ScriptableEntityExplore)ScriptableData;
@@ -17,9 +17,12 @@ public class EntityExpore : BaseEntity, ISaveDataPlay
         ScriptableEntityExplore configData,
         SaveDataUnit<DataExplore> saveData = null)
     {
+        base.Init();
+
         if (saveData == null)
         {
             ScriptableData = configData;
+            idObject = ScriptableData.idObject;
         }
         else
         {
@@ -29,8 +32,8 @@ public class EntityExpore : BaseEntity, ISaveDataPlay
                 .First();
             Data = saveData.data;
             idUnit = saveData.idUnit;
+            idObject = saveData.idObject;
         }
-        base.Init(ScriptableData);
     }
 
     public override void SetPlayer(Player player)
@@ -50,7 +53,7 @@ public class EntityExpore : BaseEntity, ISaveDataPlay
     //     throw new System.NotImplementedException();
     // }
 
-    public void SaveDataPlay(ref DataPlay data)
+    public override void SaveEntity(ref DataPlay data)
     {
         var sdata = SaveUnit(Data);
         data.entity.explorers.Add(sdata);

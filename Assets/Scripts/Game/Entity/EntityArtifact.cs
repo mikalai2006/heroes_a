@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 
 [System.Serializable]
-public class EntityArtifact : BaseEntity, ISaveDataPlay
+public class EntityArtifact : BaseEntity
 {
     private ScriptableEntityArtifact ConfigData => (ScriptableEntityArtifact)ScriptableData;
     [SerializeField] public DataArtifact Data = new DataArtifact();
@@ -13,9 +13,13 @@ public class EntityArtifact : BaseEntity, ISaveDataPlay
         ScriptableEntityArtifact configData,
         SaveDataUnit<DataArtifact> saveData = null)
     {
+        base.Init();
+
         if (saveData == null)
         {
             ScriptableData = configData;
+            SetData();
+            idObject = ScriptableData.idObject;
         }
         else
         {
@@ -33,9 +37,8 @@ public class EntityArtifact : BaseEntity, ISaveDataPlay
             .Where(t => t.idObject == Data.ida)
             .ToList();
             idUnit = saveData.idUnit;
+            idObject = saveData.idObject;
         }
-        SetData();
-        base.Init(ScriptableData);
     }
 
     public void SetData()
@@ -63,7 +66,7 @@ public class EntityArtifact : BaseEntity, ISaveDataPlay
     //     throw new System.NotImplementedException();
     // }
 
-    public void SaveDataPlay(ref DataPlay data)
+    public override void SaveEntity(ref DataPlay data)
     {
         var sdata = SaveUnit(Data);
         data.entity.artifacts.Add(sdata);

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0d8212908477464180378f8b97b7d0c, type: 3}
   m_Name: RedwoodObservatory
   m_EditorClassIdentifier: 
-  idObject: a1f86d53f66f4ec09f068000893d092a
+  idObject: explore.redwoodobservatory
   TypeEntity: 34
   MenuSprite: {fileID: 0}
   title:

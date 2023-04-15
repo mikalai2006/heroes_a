@@ -79,6 +79,10 @@ MonoBehaviour:
     m_Key: cancel
     m_Metadata:
       m_Items: []
+  - m_Id: 6233687562813440
+    m_Key: tavern_d
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

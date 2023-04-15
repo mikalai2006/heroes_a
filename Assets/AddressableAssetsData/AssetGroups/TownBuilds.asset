@@ -61,6 +61,18 @@ MonoBehaviour:
     m_SerializedLabels:
     - entity
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 584f38d39f7bae540b84765f4c8a80e5
+    m_Address: Assets/TownBuild/Faction/Stronghold/Data
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - build_base
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8d16204b5868a1d47acd9373025248a1
+    m_Address: Assets/TownBuild/Faction/Castle/Data
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - build_base
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 9a6380555b06f9d46b9bf47dd32221de, type: 2}
   m_SchemaSet:

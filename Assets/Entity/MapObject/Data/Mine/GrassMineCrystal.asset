@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b503cd952d2dab8428453d0020d24401, type: 3}
   m_Name: GrassMineCrystal
   m_EditorClassIdentifier: 
-  idObject: bbb337a756e84cad8bddae5e157a3ee3
+  idObject: grass.mine.crystal
   TypeEntity: 34
   MenuSprite: {fileID: 21300000, guid: 07dd80dfed0274b448fe512649dd28f5, type: 3}
   title:
@@ -53,6 +53,7 @@ MonoBehaviour:
       Artifacts:
         Artifact: []
         isOne: 0
+      Creature: {fileID: 0}
     probability: 1
   listTypeNoPath: 0c000000080000000e000000
   TypeWorkObject: 2

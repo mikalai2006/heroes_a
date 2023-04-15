@@ -9,17 +9,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d42093a1eaf0824c9a2bb9f171cc7f4, type: 3}
+  m_Script: {fileID: 11500000, guid: bc9580e1f67cc4343ab8e2981a25f527, type: 3}
   m_Name: 18_BehemothLair
   m_EditorClassIdentifier: 
-  idObject: 2_13
+  idObject: build.stronghold.behemothlair
   TypeFaction: 1
-  Prefab: {fileID: -8090597799309417108, guid: 57441c22a9afa194e805bfc5b292b065, type: 3}
+  Prefab:
+    m_AssetGUID: 57441c22a9afa194e805bfc5b292b065
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  TypeBuild: 10
   BuildLevels:
   - MenuSprite: {fileID: 21300000, guid: 20c2b1aaab43ac84396890bc389f624f, type: 3}
-    TypeBuild: 31
-    UpdatePrefab: {fileID: 0}
-    RequiredBuilds: 1b000000
+    UpdatePrefab:
+      m_AssetGUID: 
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
     Text:
       title:
         m_TableReference:
@@ -39,6 +46,9 @@ MonoBehaviour:
         m_FallbackState: 0
         m_WaitForCompletion: 0
         m_LocalVariables: []
+    RequireBuilds:
+    - Build: {fileID: 11400000, guid: e415ac95d35ab1f458a85098f58bfb8b, type: 2}
+      level: 0
     CostResource:
     - Resource: {fileID: 11400000, guid: 3894d4d068775c343b5c4bf1510dee33, type: 2}
       Count: 10000
@@ -48,10 +58,13 @@ MonoBehaviour:
       Count: 10
     - Resource: {fileID: 11400000, guid: 6b8ad83da675426418c328236190e67c, type: 2}
       Count: 10
+    Effects: []
   - MenuSprite: {fileID: 21300000, guid: 421d105f62b468f4e984ab0f9f880686, type: 3}
-    TypeBuild: 32
-    UpdatePrefab: {fileID: 0}
-    RequiredBuilds: 1f000000
+    UpdatePrefab:
+      m_AssetGUID: 
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
     Text:
       title:
         m_TableReference:
@@ -71,6 +84,9 @@ MonoBehaviour:
         m_FallbackState: 0
         m_WaitForCompletion: 0
         m_LocalVariables: []
+    RequireBuilds:
+    - Build: {fileID: 11400000}
+      level: 0
     CostResource:
     - Resource: {fileID: 11400000, guid: 3894d4d068775c343b5c4bf1510dee33, type: 2}
       Count: 15000
@@ -80,6 +96,7 @@ MonoBehaviour:
       Count: 10
     - Resource: {fileID: 11400000, guid: 6b8ad83da675426418c328236190e67c, type: 2}
       Count: 20
+    Effects: []
   references:
     version: 2
     RefIds: []

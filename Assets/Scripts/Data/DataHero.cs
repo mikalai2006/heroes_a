@@ -15,6 +15,16 @@ public struct DataHero
     public string name;
 
     [NonSerialized] public List<EntityArtifact> Artifacts;
-    [NonSerialized] public List<EntityCreature> Creatures;
+    public SerializableDictionary<int, EntityCreature> Creatures;
     [NonSerialized] public List<GridTileNode> path;
+    public StateHero State;
+}
+
+[Serializable]
+[Flags]
+public enum StateHero
+{
+    OnMap = 1 << 0,
+    InTown = 1 << 1,
+    InGuest = 1 << 2
 }

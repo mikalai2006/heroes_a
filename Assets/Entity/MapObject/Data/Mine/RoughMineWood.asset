@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b503cd952d2dab8428453d0020d24401, type: 3}
   m_Name: RoughMineWood
   m_EditorClassIdentifier: 
-  idObject: ca89f5996a8343c29affb64af14d62dd
+  idObject: rough.mine.wood
   TypeEntity: 34
   MenuSprite: {fileID: 21300000, guid: 4792d5366fba1384b972de1dd8170bd5, type: 3}
   title:
@@ -53,6 +53,7 @@ MonoBehaviour:
       Artifacts:
         Artifact: []
         isOne: 0
+      Creature: {fileID: 0}
     probability: 1
   listTypeNoPath: 0c0000000e00000009000000
   TypeWorkObject: 2

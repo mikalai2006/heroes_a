@@ -45,7 +45,7 @@ public enum TypeEntity
     // Mine = 32,
     // SkillSchool = 33,
     MapObject = 34,
-    // Dwelling = 35,
+    Building = 35,
 }
 
 [System.Serializable]

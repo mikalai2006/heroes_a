@@ -65,15 +65,18 @@ public class CreateTownOperation : ILoadingOperation
                 // Spawn hero.
                 if (player != null)
                 {
-                    int randomCountHero = Helpers.GenerateValueByRangeAndStep(1, 2, 1);
+                    int randomCountHero = Helpers.GenerateValueByRangeAndStep(1, 3, 1);
                     for (int i = 0; i < randomCountHero; i++)
                     {
-                        if (node.OccupiedUnit != null)
-                        {
-                            node = _root.gridTileHelper.GetNode(node.position.x, node.position.y - 1);
-                        }
+                        // if (node.OccupiedUnit != null)
+                        // {
+                        //     node = _root.gridTileHelper.GetNode(node.position.x, node.position.y - 1);
+                        // }
                         EntityHero newEntity = new EntityHero(configTown.TypeFaction);
-                        UnitManager.SpawnEntityMapObjectToNode(node, newEntity);
+                        // UnitManager.SpawnEntityMapObjectToNode(node, newEntity);
+                        node.SetAsGuested(newEntity);
+                        newEntity.CreateMapGameObject(node);
+                        UnitManager.Entities.Add(newEntity.IdEntity, newEntity);
                         // node.SetOcuppiedUnit(newEntity);
                         LevelManager.Instance.GetArea(area.id).hero = newEntity;
                         newEntity.SetPlayer(player);

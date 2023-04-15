@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   idObject: d58b54c10bfa479ebbe74065907d0f7d
   TypeEntity: 10
-  MenuSprite: {fileID: 21300000, guid: 2f059478c4af30b43bf395c138dd7f86, type: 3}
+  MenuSprite: {fileID: 21300000, guid: eba36a7e8433a874a806dfee2acc11b7, type: 3}
   title:
     m_TableReference:
       m_TableCollectionName: GUID:eccb40f2ef0445e499300535baf5f930
@@ -38,15 +38,15 @@ MonoBehaviour:
     m_EditorAssetChanged: 0
   CreatureParams:
     Level: 1
-    Attack: 4
+    Attack: 6
     Defense: 5
-    DamageMin: 0
-    DamageMax: 0
-    HP: 0
-    Speed: 0
+    DamageMin: 2
+    DamageMax: 3
+    HP: 10
+    Speed: 5
     Ammunition: 0
-    Growth: 0
-    AI: 0
+    Growth: 14
+    AI: 115
     Cost:
     - Resource: {fileID: 11400000, guid: 3894d4d068775c343b5c4bf1510dee33, type: 2}
       Count: 75

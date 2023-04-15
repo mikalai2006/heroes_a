@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 
 using Cysharp.Threading.Tasks;
 
@@ -41,6 +42,14 @@ namespace Loader
             if (UITown != null)
             {
                 UITown.Init(environment);
+                foreach (var build in _town.Data.Generals)
+                {
+                    build.Value.CreateGameObject();
+                }
+                foreach (var build in _town.Data.Armys)
+                {
+                    build.Value.CreateGameObject();
+                }
             }
             // GameObject Town = GameObject.FindGameObjectWithTag("Town");
 
