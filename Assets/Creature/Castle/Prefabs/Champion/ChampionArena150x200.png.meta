@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 71194ed1bba978b469504ab10b30e289
+guid: 77367a065988b6d47bd8ed381ae010e8
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 50
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -119,91 +119,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: CavalierIdleMouseOver_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 1350
-        width: 200
-        height: 150
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9d48bbb15985ea248bc1bac00c51b872
-      internalID: -142701432
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CavalierIdleMouseOver_1
-      rect:
-        serializedVersion: 2
-        x: 200
-        y: 1350
-        width: 200
-        height: 150
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e4bfe2344e9ea24459ad07341b9948fe
-      internalID: -1593386430
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CavalierIdleMouseOver_2
-      rect:
-        serializedVersion: 2
-        x: 400
-        y: 1350
-        width: 200
-        height: 150
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e7ba2952595843d43903107f73cbab10
-      internalID: -861324221
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CavalierIdleMouseOver_3
-      rect:
-        serializedVersion: 2
-        x: 600
-        y: 1350
-        width: 200
-        height: 150
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a0c5a2183d56dfe43909b32f185eac94
-      internalID: -805820105
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CavalierIdle_0
+      name: ChampionIdle_0
       rect:
         serializedVersion: 2
         x: 0
@@ -217,14 +133,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2df016c5685492446a04b407ff65070d
-      internalID: 2018943277
+      spriteID: 08fd527595e526142953386d279aee7a
+      internalID: 1465106649
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CavalierIdle_1
+      name: ChampionIdle_1
       rect:
         serializedVersion: 2
         x: 200
@@ -238,14 +154,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 60b588575ddf5a24b87cd61874ec5b46
-      internalID: -1883580285
+      spriteID: 1fe13ed1e17502d49be0da15fc0a1bad
+      internalID: 293511593
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CavalierIdle_2
+      name: ChampionIdle_2
       rect:
         serializedVersion: 2
         x: 400
@@ -259,14 +175,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 291a7b6ce5c650b42811dd68edd6a084
-      internalID: 1188013360
+      spriteID: b428b03d24552dc4a867d3b931df51fc
+      internalID: -1894973228
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CavalierIdle_3
+      name: ChampionIdle_3
       rect:
         serializedVersion: 2
         x: 600
@@ -280,14 +196,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ccef095657ffb3347ac9a5a389568a0c
-      internalID: -901839854
+      spriteID: 45be7540925f65a468b9cfa27b793f0b
+      internalID: -849085324
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CavalierIdle_4
+      name: ChampionIdleMouseOver_0
       rect:
         serializedVersion: 2
         x: 800
@@ -301,14 +217,98 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d479b5ee8cbd97040be9fe1612018031
-      internalID: 19872984
+      spriteID: 4f7630fa270ba0b4485ccd5afe76deba
+      internalID: 562772797
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CavalierAttackStright_0
+      name: ChampionIdleMouseOver_1
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 1200
+        width: 200
+        height: 150
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e241077112336fb4abe47d53093dffb5
+      internalID: 65176173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChampionIdleMouseOver_2
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 1200
+        width: 200
+        height: 150
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ef4b80ee60eaa64ebf07bccd1be26b2
+      internalID: 1628406145
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChampionIdleMouseOver_3
+      rect:
+        serializedVersion: 2
+        x: 1400
+        y: 1200
+        width: 200
+        height: 150
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b43454d7d01193742bcbeb2b5afffa46
+      internalID: 1490031725
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChampionIdleMouseOver_4
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 1200
+        width: 200
+        height: 150
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f5afc120da7010488fa730bf6967593
+      internalID: 201668554
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChampionAttackStright_0
       rect:
         serializedVersion: 2
         x: 0
@@ -322,14 +322,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2f5ad69bbbcf2514b969def995a0e2cf
-      internalID: 860587959
+      spriteID: 2563abe8cc4b2f442abb9f2eb96aed57
+      internalID: 969320967
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CavalierAttackStright_1
+      name: ChampionAttackStright_1
       rect:
         serializedVersion: 2
         x: 200
@@ -343,14 +343,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6909c02b4951a4744ad9512d20f405a9
-      internalID: 1557755116
+      spriteID: f749eb91b20e2d244a0010bd29a45607
+      internalID: -1578424770
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CavalierAttackStright_2
+      name: ChampionAttackStright_2
       rect:
         serializedVersion: 2
         x: 400
@@ -364,14 +364,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c26db05d26889b9469cb5977b1e1a876
-      internalID: -989650677
+      spriteID: 73185ec6b74a0514aabbf7214dc78d00
+      internalID: 1170482630
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CavalierAttackStright_3
+      name: ChampionAttackStright_3
       rect:
         serializedVersion: 2
         x: 600
@@ -385,14 +385,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fee68996f7a0d9642a9140f06d068c44
-      internalID: -1270301984
+      spriteID: 8535d5d369f0d1544afab3e8613231fb
+      internalID: -1069536996
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CavalierAttackStright_4
+      name: ChampionAttackStright_4
       rect:
         serializedVersion: 2
         x: 800
@@ -406,14 +406,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 766da3f9b910a09409ed832a120a8eb2
-      internalID: -1908297391
+      spriteID: 7b8fd79ea7898ad4a8a711c8973cec9c
+      internalID: 784448882
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CavalierAttackStright_5
+      name: ChampionAttackStright_5
       rect:
         serializedVersion: 2
         x: 1000
@@ -427,14 +427,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dafcc187ab98e344dabe38d5559c72a9
-      internalID: -1889480857
+      spriteID: 6b8842307dcffc741ac027c99d2de64c
+      internalID: 375632829
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CavalierAttackStright_6
+      name: ChampionAttackStright_6
       rect:
         serializedVersion: 2
         x: 1200
@@ -448,14 +448,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 26f441218131df44bb55da4765456bf7
-      internalID: -343397093
+      spriteID: 1afce3cb91324f8409407e8713f0e202
+      internalID: -509730283
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CavalierAttackStright_7
+      name: ChampionAttackStright_7
       rect:
         serializedVersion: 2
         x: 1400
@@ -469,14 +469,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2342d1bbfbf506047944def33a57ac94
-      internalID: 351975629
+      spriteID: d61b648cf7381ea429ab999bf8efd8e3
+      internalID: -1203335437
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CavalierAttackStright_8
+      name: ChampionAttackStright_8
       rect:
         serializedVersion: 2
         x: 1600
@@ -490,14 +490,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4d2a41907446fc44a9691a39db72822e
-      internalID: -150933596
+      spriteID: 13c50ca1685247449bac24b8333c9e08
+      internalID: -1765506947
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CavalierAttackUp_1
+      name: ChampionAttackUp_0
       rect:
         serializedVersion: 2
         x: 200
@@ -511,14 +511,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4c8d107d9f5865d479a4341815a5c9fd
-      internalID: -2095054601
+      spriteID: 7c8a55613a03fcb4da143517a585546d
+      internalID: -1317170133
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CavalierAttackUp_2
+      name: ChampionAttackUp_1
       rect:
         serializedVersion: 2
         x: 400
@@ -532,14 +532,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f2368394c62ea2b499e83b133aae085b
-      internalID: -1533249231
+      spriteID: 9b828c36ec13afb4fbd1fdf7c25564dc
+      internalID: -769843716
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CavalierAttackUp_3
+      name: ChampionAttackUp_2
       rect:
         serializedVersion: 2
         x: 600
@@ -553,14 +553,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9b9a7daa7d8ecfd4abfc5bf87dbb7cc6
-      internalID: 1854220967
+      spriteID: 14f7ac92c43e64f4693352f8a8278653
+      internalID: -1144016427
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CavalierAttackUp_4
+      name: ChampionAttackUp_3
       rect:
         serializedVersion: 2
         x: 800
@@ -574,14 +574,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: eaaa1d11678ad144ea1663ea1b8cb3c9
-      internalID: 1901997703
+      spriteID: 67d38e840d467f2459ca04221035f767
+      internalID: -1366715546
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CavalierAttackUp_5
+      name: ChampionAttackUp_4
       rect:
         serializedVersion: 2
         x: 1000
@@ -595,14 +595,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5646b19fcb0a89341aa97898b144b946
-      internalID: 481620579
+      spriteID: b1fda917bca20524381a057925740ae7
+      internalID: 243350025
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CavalierAttackUp_6
+      name: ChampionAttackUp_5
       rect:
         serializedVersion: 2
         x: 1200
@@ -616,14 +616,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 961463e0f2317b248b11ac467a0d5fc3
-      internalID: -34699995
+      spriteID: 3864dca17ec729c438f905a100058d02
+      internalID: 1902029031
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CavalierAttackUp_7
+      name: ChampionAttackUp_6
       rect:
         serializedVersion: 2
         x: 1400
@@ -637,14 +637,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 44d6a7bc6c535014b81147b2b1066296
-      internalID: -460616170
+      spriteID: eefffd914d7ea2c4a8f8ed7a296b2b5b
+      internalID: 379952770
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CavalierAttackUp_8
+      name: ChampionAttackUp_7
       rect:
         serializedVersion: 2
         x: 1600
@@ -658,14 +658,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d84be0d237b6e5346ac0faf4f270c15a
-      internalID: -465486581
+      spriteID: 9e73d757b790ab949a5bcb85281eb8f7
+      internalID: 1321614833
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CavalierAttackDown_1
+      name: ChampionAttackDown_0
       rect:
         serializedVersion: 2
         x: 200
@@ -679,14 +679,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d0fd408b0a0e24c4ebbabc055ccde327
-      internalID: -1950961142
+      spriteID: c3895aaa2889d74469f313f003ed8dee
+      internalID: -1710509040
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CavalierAttackDown_2
+      name: ChampionAttackDown_1
       rect:
         serializedVersion: 2
         x: 400
@@ -700,14 +700,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 719fd7f3972ab314aade91f8164f696d
-      internalID: -845367711
+      spriteID: baefdbfe1954e6149a709da5c11ab1c0
+      internalID: -2024621217
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CavalierAttackDown_3
+      name: ChampionAttackDown_2
       rect:
         serializedVersion: 2
         x: 600
@@ -721,14 +721,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 401e15e9f69bf5e46997564b56c67fad
-      internalID: 50331152
+      spriteID: 22cedb35930b4b24cbe5361de0805c7e
+      internalID: -604010159
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CavalierAttackDown_4
+      name: ChampionAttackDown_3
       rect:
         serializedVersion: 2
         x: 800
@@ -742,14 +742,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8e29904dd8330564aa697d8a6c1f0fff
-      internalID: -295661079
+      spriteID: 48ca5598b5858154b87b7e62d7e3eba7
+      internalID: -1017785995
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CavalierAttackDown_5
+      name: ChampionAttackDown_4
       rect:
         serializedVersion: 2
         x: 1000
@@ -763,17 +763,17 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fa7b2e3aa9e231c4e9f2d35f33b174d0
-      internalID: -1341993524
+      spriteID: 047f3bcb5701751468b168023562d5ba
+      internalID: 1028048024
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CavalierAttackDown_6
+      name: ChampionAttackDown_5
       rect:
         serializedVersion: 2
-        x: 1202
+        x: 1200
         y: 750
         width: 200
         height: 150
@@ -784,14 +784,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c77bfdd5d17534b448a3d6fc3beff5d8
-      internalID: 493871990
+      spriteID: a3ae7669e5435274e94bbdba8726df4b
+      internalID: -747947070
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CavalierAttackDown_7
+      name: ChampionAttackDown_6
       rect:
         serializedVersion: 2
         x: 1400
@@ -805,14 +805,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 22f29f98dea4ed8449634d3850aad965
-      internalID: 1216648182
+      spriteID: d9d8abaa6a8fc284aa367bda8c4c71b2
+      internalID: -1632914067
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CavalierAttackDown_8
+      name: ChampionAttackDown_7
       rect:
         serializedVersion: 2
         x: 1600
@@ -826,35 +826,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: beeecd466f3d08143a9a22f285dc4c82
-      internalID: -790534410
+      spriteID: af19f91ede5fbae429a464c75dca5f27
+      internalID: 1888808344
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CavalierDeath_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 600
-        width: 200
-        height: 150
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2a699cf6b3d15ee4692c43f5ace16ae0
-      internalID: 1699588629
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CavalierDeath_1
+      name: ChampionDeath_0
       rect:
         serializedVersion: 2
         x: 200
@@ -868,14 +847,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 114187451e3628b4cb1df0bac4da67af
-      internalID: -672874948
+      spriteID: d9452ccd9f2b4d14b8108b4f26d092c9
+      internalID: 939283053
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CavalierDeath_2
+      name: ChampionDeath_1
       rect:
         serializedVersion: 2
         x: 400
@@ -889,14 +868,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 72af117493205d8488a84780fd624cd3
-      internalID: -686019723
+      spriteID: adc10e4b5d3ad284b8a0d01879002895
+      internalID: -1801940153
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CavalierDeath_3
+      name: ChampionDeath_2
       rect:
         serializedVersion: 2
         x: 600
@@ -910,14 +889,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 62fc7e9002c35ca4f9fa6b3b4089be75
-      internalID: 383543377
+      spriteID: 2170a7c1f918ce1449294f50c714b186
+      internalID: 880495709
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CavalierDeath_4
+      name: ChampionDeath_3
       rect:
         serializedVersion: 2
         x: 800
@@ -931,14 +910,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9fd0b75e6dd18184287b6a3224118531
-      internalID: -2142830189
+      spriteID: 4cc6d91d4bd04a04e877d2c2062e001a
+      internalID: 1277513494
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CavalierDeath_5
+      name: ChampionDeath_4
       rect:
         serializedVersion: 2
         x: 1000
@@ -952,14 +931,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5f989b438bcf5af43a3d0931764a78b6
-      internalID: 84970233
+      spriteID: 54c01ba78325dae4aa99a0e7937f0cc7
+      internalID: -880949702
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CavalierDeath_6
+      name: ChampionDeath_5
       rect:
         serializedVersion: 2
         x: 1200
@@ -973,14 +952,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d905fe88ffa7ace4cb346a67f52af590
-      internalID: 1349671317
+      spriteID: 2a8c2bfdc0e643340bb4e27b74ad9a28
+      internalID: 1764031217
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CavalierDeath_7
+      name: ChampionDeath_6
       rect:
         serializedVersion: 2
         x: 1400
@@ -994,14 +973,35 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f4e1806f170e0f548b815d47e393fd0a
-      internalID: 516113268
+      spriteID: f26a58ca30b9492489ec9f686d335b03
+      internalID: -2127736498
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CavalierDefend_0
+      name: ChampionDeath_7
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 600
+        width: 200
+        height: 150
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2cbcece3fd48f7e48af80c66cbeefcd1
+      internalID: -945291927
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChampionDefend_0
       rect:
         serializedVersion: 2
         x: 0
@@ -1015,18 +1015,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dbe979e135da5f847be723731dac985a
-      internalID: -481881696
+      spriteID: b5b32ea311d6f9149a259cd5fecc5f87
+      internalID: -2086073092
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CavalierDefend_1
+      name: ChampionDefend_1
       rect:
         serializedVersion: 2
-        x: 200
-        y: 450
+        x: 0
+        y: 1200
         width: 200
         height: 150
       alignment: 7
@@ -1036,14 +1036,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c2e337eee3476c147b1fa996ad7a4916
-      internalID: -1091796077
+      spriteID: 5402398cf7de3ca438124d884d986f7f
+      internalID: 1501756149
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CavalierDefend_2
+      name: ChampionDefend_2
       rect:
         serializedVersion: 2
         x: 400
@@ -1057,14 +1057,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 42210233a51b78f48a924a7ab772cf73
-      internalID: -491024003
+      spriteID: 3f7568dfff4d94a46a9715f683273a64
+      internalID: 1773653998
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CavalierDefend_3
+      name: ChampionDefend_3
       rect:
         serializedVersion: 2
         x: 600
@@ -1078,14 +1078,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dd1cc12fd923f3b4e902d9fe3b09c83f
-      internalID: 1335002737
+      spriteID: 8c91063003103f646b96e0133acbb495
+      internalID: 255278741
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CavalierDefend_4
+      name: ChampionDefend_4
       rect:
         serializedVersion: 2
         x: 800
@@ -1099,14 +1099,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7dd1c186da7a1c64294f79a0cadb001a
-      internalID: -1138030528
+      spriteID: 4c797af8f37d0974e9676ff134d24ee9
+      internalID: 1982768094
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CavalierTurn_0
+      name: ChampionDefend_5
       rect:
         serializedVersion: 2
         x: 1000
@@ -1120,56 +1120,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 96acef290600e714cb50f4aebbf5075b
-      internalID: -772376942
+      spriteID: 2226122e84254444c975fe6bf8254c96
+      internalID: 181902673
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CavalierTurn_1
-      rect:
-        serializedVersion: 2
-        x: 1200
-        y: 450
-        width: 200
-        height: 150
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7f8a88f1593bb694488a253caebfe493
-      internalID: -160645776
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CavalierTurn_2
-      rect:
-        serializedVersion: 2
-        x: 1400
-        y: 450
-        width: 200
-        height: 150
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c9c0c63dd51f1f940bd5f4a627525d3b
-      internalID: 1368965531
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CavalierGettingHit_0
+      name: ChampionGettingHit_0
       rect:
         serializedVersion: 2
         x: 0
@@ -1183,14 +1141,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b0ac82329bcd43b48a9b030adc6c0a70
-      internalID: 2133736019
+      spriteID: 08aa4797537b1f945862fb992180af54
+      internalID: 1874866614
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CavalierGettingHit_1
+      name: ChampionGettingHit_1
       rect:
         serializedVersion: 2
         x: 200
@@ -1204,14 +1162,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 154444355d48b5346a709db81cd572b1
-      internalID: -1545663113
+      spriteID: 7c033f17ae40a9d4eade1196fcf9014a
+      internalID: -1391328712
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CavalierGettingHit_2
+      name: ChampionGettingHit_2
       rect:
         serializedVersion: 2
         x: 400
@@ -1225,14 +1183,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 456b6381006827c4d8284b78599725ee
-      internalID: 1249544880
+      spriteID: 3f055cac283458f458b720a2f026c3cd
+      internalID: -1310427829
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CavalierGettingHit_3
+      name: ChampionGettingHit_3
       rect:
         serializedVersion: 2
         x: 600
@@ -1246,14 +1204,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 509b0688833c84f4db9e1d6e719a5489
-      internalID: 2090512047
+      spriteID: 9a38cef23bea56548ab8eaeaae309988
+      internalID: -580519452
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CavalierGettingHit_4
+      name: ChampionGettingHit_4
       rect:
         serializedVersion: 2
         x: 800
@@ -1267,14 +1225,77 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 40f1fbb9e4573ec41b407445f63c5d9c
-      internalID: 1331144520
+      spriteID: 3783dbd0c6b65d141bf9e13fd456fc93
+      internalID: -1004417221
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CavalierStartMoving_0
+      name: ChampionStartMoving_0
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 300
+        width: 200
+        height: 150
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09d9e0671aa2d4c4f9adc3fcc688fd7d
+      internalID: 1969216982
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChampionStartMoving_1
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 300
+        width: 200
+        height: 150
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b3104bbc1d615949a5d36bacfeb5bd2
+      internalID: 1347013445
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChampionStartMoving_2
+      rect:
+        serializedVersion: 2
+        x: 1400
+        y: 300
+        width: 200
+        height: 150
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 88e4e205311e345429c387df339d0eb9
+      internalID: -998497414
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChampionMoving_0
       rect:
         serializedVersion: 2
         x: 0
@@ -1288,14 +1309,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4c2485173988e03439a2d2582a65caf7
-      internalID: 121625258
+      spriteID: 770c169c55457214098391d2538ca336
+      internalID: -1821192213
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CavalierStartMoving_1
+      name: ChampionMoving_1
       rect:
         serializedVersion: 2
         x: 200
@@ -1309,14 +1330,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1400551bdb2ac024fa78df901a3e09fd
-      internalID: -1389699150
+      spriteID: 07b26fc65bd50bc4e974350bb5249241
+      internalID: 779716616
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CavalierStartMoving_2
+      name: ChampionMoving_2
       rect:
         serializedVersion: 2
         x: 400
@@ -1330,14 +1351,35 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3ac3649fc5fdaa14b8cd841e60b3aa36
-      internalID: 838637762
+      spriteID: 3e95ad6363d75b24ea59d873a1109246
+      internalID: 795582381
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CavalierStopMoving_0
+      name: ChampionMoving_3
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 150
+        width: 200
+        height: 150
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1884521fc4c341941a5edff76c2033b2
+      internalID: -994997574
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChampionMoving_4
       rect:
         serializedVersion: 2
         x: 800
@@ -1351,14 +1393,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c0b1d89259f4b8c4bb6ee63f06b3262a
-      internalID: 988246678
+      spriteID: d1375ce0e62023e4285de94c683080d4
+      internalID: 302826387
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CavalierStopMoving_1
+      name: ChampionMoving_5
       rect:
         serializedVersion: 2
         x: 1000
@@ -1372,14 +1414,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: daa46cccf388bee41938f5435d93803d
-      internalID: -1299349770
+      spriteID: 265a0e0898d6c80468e10670850f02b5
+      internalID: -1605726907
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CavalierStopMoving_2
+      name: ChampionMoving_6
       rect:
         serializedVersion: 2
         x: 1200
@@ -1393,35 +1435,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 45c9ba2b4e456dd4fb41db46f9643865
-      internalID: -436102644
+      spriteID: 63b0385f651168c48bfcd7f50a5d328c
+      internalID: 1755332368
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CavalierStopMoving_3
-      rect:
-        serializedVersion: 2
-        x: 1400
-        y: 150
-        width: 200
-        height: 150
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 21c028d9caed79c47beac01293baef55
-      internalID: 171331676
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CavalierMoving_0
+      name: ChampionStopMoving_0
       rect:
         serializedVersion: 2
         x: 0
@@ -1435,14 +1456,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3185181997205eb45a5b92d22b47e318
-      internalID: -315786555
+      spriteID: 782d4797cb2f27247836510656f2b0f4
+      internalID: 2040354025
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CavalierMoving_1
+      name: ChampionStopMoving_1
       rect:
         serializedVersion: 2
         x: 200
@@ -1456,14 +1477,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f2caf20ff269eff46b694fba7f76b7da
-      internalID: 387824917
+      spriteID: 4deb96f12469d3f429e520565deb7424
+      internalID: -290992775
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CavalierMoving_2
+      name: ChampionStopMoving_2
       rect:
         serializedVersion: 2
         x: 400
@@ -1477,14 +1498,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4320d065146734747a1ae538233f86f6
-      internalID: -1906272516
+      spriteID: 3259db8ba0bb7cc4cad8c22c91b49aa4
+      internalID: 2053106840
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CavalierMoving_3
+      name: ChampionStopMoving_3
       rect:
         serializedVersion: 2
         x: 600
@@ -1498,14 +1519,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1b608ce1dcb8c3c4e8b27b9843b99da1
-      internalID: 1188994130
+      spriteID: 53d46603e7a28a44ea32105187d7d4d3
+      internalID: -695315279
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CavalierMoving_4
+      name: ChampionTurn_0
       rect:
         serializedVersion: 2
         x: 800
@@ -1519,17 +1540,17 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 72f4d90aefc882f449e5b367862df7a9
-      internalID: 1510710073
+      spriteID: f224a8f77bdd2a347a9b68663913a00f
+      internalID: -1421832812
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CavalierMoving_5
+      name: ChampionTurn_1
       rect:
         serializedVersion: 2
-        x: 1001
+        x: 998
         y: 0
         width: 200
         height: 150
@@ -1540,14 +1561,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5d737dcacb443e044a8bcf6792ca9b95
-      internalID: 692995552
+      spriteID: c9b2f5affcebbe84a9b1712ef2951045
+      internalID: 1523910806
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CavalierMoving_6
+      name: ChampionTurn_2
       rect:
         serializedVersion: 2
         x: 1200
@@ -1561,71 +1582,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ab4a1986f9aa5654ba3c3e4a9095415e
-      internalID: -899388493
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CavalierMoving_7
-      rect:
-        serializedVersion: 2
-        x: 1400
-        y: 0
-        width: 200
-        height: 150
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 59a3c24d7cf41cd46a45c21c718733a3
-      internalID: -1936807153
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CavalierGettingHit_5
-      rect:
-        serializedVersion: 2
-        x: 1000
-        y: 300
-        width: 200
-        height: 150
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f25b89c57ec6cd94a803d1d578469bee
-      internalID: 284869921
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CavalierGettingHit_6
-      rect:
-        serializedVersion: 2
-        x: 1200
-        y: 300
-        width: 200
-        height: 150
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a928341c63dce224a9871c9e41ac2081
-      internalID: 810331554
+      spriteID: 68ed689478f5f9f4988dbfde495eba2a
+      internalID: -596216040
       vertices: []
       indices: 
       edges: []
@@ -1641,90 +1599,80 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      CavalierArena150x200_0: 1599013234
-      CavalierArena150x200_1: -1060431340
-      CavalierArena150x200_2: 490400340
-      CavalierArena150x200_20: -1616084629
-      CavalierArena150x200_3: -2059502671
-      CavalierArena150x200_45: -2023915699
-      CavalierArena150x200_59: -1568511206
-      CavalierArena150x200_6: 1705019548
-      CavalierArena150x200_60: 864952690
-      CavalierArena150x200_61: -1704006935
-      CavalierArena150x200_65: 1234848609
-      CavalierArena150x200_7: 64509155
-      CavalierAttackDown_1: -1950961142
-      CavalierAttackDown_2: -845367711
-      CavalierAttackDown_3: 50331152
-      CavalierAttackDown_4: -295661079
-      CavalierAttackDown_5: -1341993524
-      CavalierAttackDown_6: 493871990
-      CavalierAttackDown_7: 1216648182
-      CavalierAttackDown_8: -790534410
-      CavalierAttackStright_0: 860587959
-      CavalierAttackStright_1: 1557755116
-      CavalierAttackStright_2: -989650677
-      CavalierAttackStright_3: -1270301984
-      CavalierAttackStright_4: -1908297391
-      CavalierAttackStright_5: -1889480857
-      CavalierAttackStright_6: -343397093
-      CavalierAttackStright_7: 351975629
-      CavalierAttackStright_8: -150933596
-      CavalierAttackUp_1: -2095054601
-      CavalierAttackUp_2: -1533249231
-      CavalierAttackUp_3: 1854220967
-      CavalierAttackUp_4: 1901997703
-      CavalierAttackUp_5: 481620579
-      CavalierAttackUp_6: -34699995
-      CavalierAttackUp_7: -460616170
-      CavalierAttackUp_8: -465486581
-      CavalierDeath_0: 1699588629
-      CavalierDeath_1: -672874948
-      CavalierDeath_2: -686019723
-      CavalierDeath_3: 383543377
-      CavalierDeath_4: -2142830189
-      CavalierDeath_5: 84970233
-      CavalierDeath_6: 1349671317
-      CavalierDeath_7: 516113268
-      CavalierDefend_0: -481881696
-      CavalierDefend_1: -1091796077
-      CavalierDefend_2: -491024003
-      CavalierDefend_3: 1335002737
-      CavalierDefend_4: -1138030528
-      CavalierGettingHit_0: 2133736019
-      CavalierGettingHit_1: -1545663113
-      CavalierGettingHit_2: 1249544880
-      CavalierGettingHit_3: 2090512047
-      CavalierGettingHit_4: 1331144520
-      CavalierGettingHit_5: 284869921
-      CavalierGettingHit_6: 810331554
-      CavalierIdleMouseOver_0: -1593386430
-      CavalierIdleMouseOver_1: -861324221
-      CavalierIdleMouseOver_2: -805820105
-      CavalierIdleMouseOver_3: -142701432
-      CavalierIdle_0: 2018943277
-      CavalierIdle_1: -1883580285
-      CavalierIdle_2: 1188013360
-      CavalierIdle_3: -901839854
-      CavalierIdle_4: 19872984
-      CavalierMoving_0: -315786555
-      CavalierMoving_1: 387824917
-      CavalierMoving_2: -1906272516
-      CavalierMoving_3: 1188994130
-      CavalierMoving_4: 1510710073
-      CavalierMoving_5: 692995552
-      CavalierMoving_6: -899388493
-      CavalierMoving_7: -1936807153
-      CavalierStartMoving_0: 121625258
-      CavalierStartMoving_1: -1389699150
-      CavalierStartMoving_2: 838637762
-      CavalierStopMoving_0: 988246678
-      CavalierStopMoving_1: -1299349770
-      CavalierStopMoving_2: -436102644
-      CavalierStopMoving_3: 171331676
-      CavalierTurn_0: -772376942
-      CavalierTurn_1: -160645776
-      CavalierTurn_2: 1368965531
+      ChampionArena150x200_18: -1060623481
+      ChampionArena150x200_49: -120287265
+      ChampionArena150x200_50: -2099483208
+      ChampionArena150x200_66: 661346088
+      ChampionAttackDown_0: -1710509040
+      ChampionAttackDown_1: -2024621217
+      ChampionAttackDown_2: -604010159
+      ChampionAttackDown_3: -1017785995
+      ChampionAttackDown_4: 1028048024
+      ChampionAttackDown_5: -747947070
+      ChampionAttackDown_6: -1632914067
+      ChampionAttackDown_7: 1888808344
+      ChampionAttackStright_0: 969320967
+      ChampionAttackStright_1: -1578424770
+      ChampionAttackStright_2: 1170482630
+      ChampionAttackStright_3: -1069536996
+      ChampionAttackStright_4: 784448882
+      ChampionAttackStright_5: 375632829
+      ChampionAttackStright_6: -509730283
+      ChampionAttackStright_7: -1203335437
+      ChampionAttackStright_8: -1765506947
+      ChampionAttackUp_0: -1317170133
+      ChampionAttackUp_1: -769843716
+      ChampionAttackUp_2: -1144016427
+      ChampionAttackUp_3: -1366715546
+      ChampionAttackUp_4: 243350025
+      ChampionAttackUp_5: 1902029031
+      ChampionAttackUp_6: 379952770
+      ChampionAttackUp_7: 1321614833
+      ChampionDeath_0: 939283053
+      ChampionDeath_1: -1801940153
+      ChampionDeath_2: 880495709
+      ChampionDeath_3: 1277513494
+      ChampionDeath_4: -880949702
+      ChampionDeath_5: 1764031217
+      ChampionDeath_6: -2127736498
+      ChampionDeath_7: -945291927
+      ChampionDefend_0: -2086073092
+      ChampionDefend_1: 1501756149
+      ChampionDefend_2: 1773653998
+      ChampionDefend_3: 255278741
+      ChampionDefend_4: 1982768094
+      ChampionDefend_5: 181902673
+      ChampionGettingHit_0: 1874866614
+      ChampionGettingHit_1: -1391328712
+      ChampionGettingHit_2: -1310427829
+      ChampionGettingHit_3: -580519452
+      ChampionGettingHit_4: -1004417221
+      ChampionIdleMouseOver_0: 562772797
+      ChampionIdleMouseOver_1: 65176173
+      ChampionIdleMouseOver_2: 1628406145
+      ChampionIdleMouseOver_3: 1490031725
+      ChampionIdleMouseOver_4: 201668554
+      ChampionIdle_0: 1465106649
+      ChampionIdle_1: 293511593
+      ChampionIdle_2: -1894973228
+      ChampionIdle_3: -849085324
+      ChampionMoving_0: -1821192213
+      ChampionMoving_1: 779716616
+      ChampionMoving_2: 795582381
+      ChampionMoving_3: -994997574
+      ChampionMoving_4: 302826387
+      ChampionMoving_5: -1605726907
+      ChampionMoving_6: 1755332368
+      ChampionStartMoving_0: 1969216982
+      ChampionStartMoving_1: 1347013445
+      ChampionStartMoving_2: -998497414
+      ChampionStopMoving_0: 2040354025
+      ChampionStopMoving_1: -290992775
+      ChampionStopMoving_2: 2053106840
+      ChampionStopMoving_3: -695315279
+      ChampionTurn_0: -1421832812
+      ChampionTurn_1: 1523910806
+      ChampionTurn_2: -596216040
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
