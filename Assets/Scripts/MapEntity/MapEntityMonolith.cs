@@ -25,15 +25,21 @@ public class MapEntityMonolith : BaseMapEntity, IDialogMapObjectOperation
     public async override void OnGoHero(Player player)
     {
         base.OnGoHero(player);
-        DataResultDialog result = await OnTriggeredHero();
-        if (result.isOk)
+        if (LevelManager.Instance.ActivePlayer.DataPlayer.playerType != PlayerType.Bot)
         {
-            MapObjectClass.SetPlayer(player);
-
+            DataResultDialog result = await OnTriggeredHero();
+            if (result.isOk)
+            {
+                MapObjectClass.SetPlayer(player);
+            }
+            else
+            {
+                // Click cancel.
+            }
         }
         else
         {
-            // Click cancel.
+
         }
     }
 

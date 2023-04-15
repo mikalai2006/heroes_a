@@ -62,11 +62,11 @@ public class UIMenuApp : MonoBehaviour
         };
 
         var loadGameButton = MenuApp.rootVisualElement.Q<Button>("loadgame");
-        loadGameButton.clickable.clicked += () =>
+        loadGameButton.clickable.clicked += async () =>
         {
             GameManager.Instance.ChangeState(GameState.LoadGame);
             HideNewGameWindow();
-            GameManager.Instance.AssetProvider.UnloadAsset(_environment);
+            await GameManager.Instance.AssetProvider.UnloadAsset(_environment);
         };
 
         var btnQuit = MenuApp.rootVisualElement.Q<Button>("ButtonQuit");
@@ -100,11 +100,11 @@ public class UIMenuApp : MonoBehaviour
         };
 
         _btnNewGame = _box.Q<VisualElement>("ButtonNewGame").Q<Button>("Btn");
-        _btnNewGame.clickable.clicked += () =>
+        _btnNewGame.clickable.clicked += async () =>
         {
             GameManager.Instance.ChangeState(GameState.NewGame);
             HideNewGameWindow();
-            GameManager.Instance.AssetProvider.UnloadAsset(_environment);
+            await GameManager.Instance.AssetProvider.UnloadAsset(_environment);
 
         };
 

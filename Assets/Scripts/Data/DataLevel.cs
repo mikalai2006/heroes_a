@@ -7,6 +7,7 @@ public class DataLevel
 {
 
     [SerializeField] public int countPlayer;
+    [SerializeField] public int countBot;
     [SerializeField] public int countArea;
     [SerializeField] public List<Player> listPlayer;
     [SerializeField] public List<Area> listArea;

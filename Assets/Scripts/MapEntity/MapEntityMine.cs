@@ -30,18 +30,23 @@ public class MapEntityMine : BaseMapEntity, IDialogMapObjectOperation
     {
         base.OnGoHero(player);
 
-        DataResultDialog result = await OnTriggeredHero();
-
-        if (result.isOk)
+        if (LevelManager.Instance.ActivePlayer.DataPlayer.playerType != PlayerType.Bot)
         {
-            // player.AddMines(this);
-            var entity = (EntityMine)MapObjectClass;
-            entity.SetPlayer(player);
-            SetPlayer(player);
+
+            DataResultDialog result = await OnTriggeredHero();
+
+            if (result.isOk)
+            {
+                OnHeroGo(player);
+            }
+            else
+            {
+                // Click cancel.
+            }
         }
         else
         {
-            // Click cancel.
+            OnHeroGo(player);
         }
     }
 
@@ -56,5 +61,12 @@ public class MapEntityMine : BaseMapEntity, IDialogMapObjectOperation
 
         var dialogWindow = new DialogMapObjectProvider(dialogData);
         return await dialogWindow.ShowAndHide();
+    }
+
+    private void OnHeroGo(Player player)
+    {
+        var entity = (EntityMine)MapObjectClass;
+        entity.SetPlayer(player);
+        SetPlayer(player);
     }
 }

@@ -60,7 +60,7 @@ public class GridTileHelper
         return listNodes.ElementAt(indexRandomNode).Value;
     }
 
-    public List<GridTileNode> FindPath(Vector3Int start, Vector3Int end, bool force = false, bool ignoreNotWalkable = false)
+    public List<GridTileNode> FindPath(Vector3Int start, Vector3Int end, bool isDiagonal = false, bool ignoreNotWalkable = false)
     {
         // GameManager.Instance.MapManager.ResetTestTileMap();
 
@@ -114,7 +114,7 @@ public class GridTileHelper
                 return pathList;
             }
 
-            foreach (GridTileNode neighbourNode in GetNeighbourList(currentNode, force))
+            foreach (GridTileNode neighbourNode in GetNeighbourList(currentNode, isDiagonal))
             {
                 if (closedSet.Contains(neighbourNode)) continue;
 
@@ -210,7 +210,11 @@ public class GridTileHelper
 
         return CalculatePath(endNode);
     }
-    public List<GridTileNode> IsExistExit(GridTileNode node)
+    public List<GridTileNode> IsExistExit(
+        GridTileNode node,
+        StateNode triggerExit = (StateNode.Teleport | StateNode.Town),
+        StateNode excludeState = StateNode.Disable
+        )
     {
         BinaryHeap<GridTileNode> openSet = new BinaryHeap<GridTileNode>(_gridTile.GetWidth() * _gridTile.GetHeight());
         HashSet<GridTileNode> closedSet = new HashSet<GridTileNode>();
@@ -228,7 +232,7 @@ public class GridTileHelper
 
             foreach (GridTileNode neighbourNode in GetNeighbourList(currentNode, true))
             {
-                if (neighbourNode.StateNode.HasFlag(StateNode.Disable))
+                if ((neighbourNode.StateNode & excludeState) == excludeState)//.HasFlag(StateNode.Disable)
                 {
                     removedSet.Add(neighbourNode);
                     continue;
@@ -246,9 +250,11 @@ public class GridTileHelper
                 {
                     // if (exitTriggers.Contains(neighbourNode.OccupiedUnit.ScriptableData.TypeEntity))
                     if (
-                        (StateNode.Teleport & neighbourNode.StateNode) == StateNode.Teleport
-                        ||
-                        (StateNode.Town & neighbourNode.StateNode) == StateNode.Town
+                        // (StateNode.Teleport & neighbourNode.StateNode) == StateNode.Teleport
+                        // ||
+                        // (StateNode.Town & neighbourNode.StateNode) == StateNode.Town
+
+                        (neighbourNode.StateNode & triggerExit) != 0
                         )
                     {
                         //Debug.Log($"Exit OccupiedUnit::: {neighbourNode.OccupiedUnit.typeUnit}");

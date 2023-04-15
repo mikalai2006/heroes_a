@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Random = UnityEngine.Random;
 
 using UnityEngine;
+using Cysharp.Threading.Tasks;
 
 [System.Serializable]
 public class PlayerData
@@ -189,6 +191,62 @@ public class Player
     public EntityTown GetTown(int id)
     {
         return DataPlayer.PlayerDataReferences.ListTown[id];
+    }
+
+    public async UniTask RunBot()
+    {
+        Debug.Log($"Bot::: Start - {this.DataPlayer.id}");
+
+        foreach (var hero in _data.PlayerDataReferences.ListHero)
+        {
+            SetActiveHero(hero);
+            Debug.Log($"Bot::: Set active hero {hero.ScriptableData.name}");
+            if (hero.Data.path.Count == 0)
+            {
+                var potentialPoints = GameManager.Instance
+                    .MapManager
+                    .gridTileHelper
+                    .GetNeighboursAtDistance(hero.OccupiedNode, 15, true)
+                    .Where(t =>
+                        t.StateNode.HasFlag(StateNode.Occupied)
+                        && !t.StateNode.HasFlag(StateNode.Guested)
+                        )
+                    .ToList();
+                // .IsExistExit(hero.OccupiedNode, (StateNode.Occupied | ~StateNode.Guested));
+                // .MapManager
+                // .gridTileHelper
+                // .GetNeighboursAtDistance(hero.OccupiedNode, 10)
+                // .Where(t => !t.StateNode.HasFlag(StateNode.Disable))
+                // .ToList();
+                var path = GameManager.Instance
+                    .MapManager
+                    .gridTileHelper
+                    .FindPath(
+                        hero.OccupiedNode.position,
+                        potentialPoints[Random.Range(0, potentialPoints.Count)].position,
+                        true
+                        );
+                hero.SetPathHero(path);
+                Debug.Log($"Bot::: Move to node {path[path.Count - 1].ToString()}");
+            }
+
+            await hero.StartMove();
+
+            Debug.Log($"Bot::: Move hero {hero.ScriptableData.name}");
+            // GameManager.Instance.ChangeState(GameState.StartMoveHero);
+        }
+
+        Debug.Log($"Bot::: Finish - {this.DataPlayer.id}");
+        GameManager.Instance.ChangeState(GameState.StepNextPlayer);
+    }
+
+    public List<GridTileNode> AIPath()
+    {
+        List<GridTileNode> result = new List<GridTileNode>();
+
+
+
+        return result;
     }
 
 }

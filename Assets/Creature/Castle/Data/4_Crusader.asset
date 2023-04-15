@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   idObject: 4a4935ba34554c689a12d66efcb17e9d
   TypeEntity: 10
-  MenuSprite: {fileID: 21300000, guid: 174d7f784ee180a4ab5a177e0d403d45, type: 3}
+  MenuSprite: {fileID: -521883785, guid: e7a6d1e198529c44c93ed148f1bf1afe, type: 3}
   title:
     m_TableReference:
       m_TableCollectionName: GUID:eccb40f2ef0445e499300535baf5f930

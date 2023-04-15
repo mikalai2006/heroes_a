@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "NewEntityHero", menuName = "Game/Entity/Hero")]
-public class ScriptableEntityHero : ScriptableEntityMapObject
+public class ScriptableEntityHero : ScriptableEntity
 {
     [Header("Options Hero")]
     public TypeFaction TypeFaction;

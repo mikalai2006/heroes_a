@@ -47,14 +47,17 @@ public class MapEntityTown : BaseMapEntity
     {
         base.OnGoHero(player);
 
-        var loadingOperations = new Queue<ILoadingOperation>();
+        if (LevelManager.Instance.ActivePlayer.DataPlayer.playerType != PlayerType.Bot)
+        {
+            var loadingOperations = new Queue<ILoadingOperation>();
 
-        // GameManager.Instance.AssetProvider.UnloadAdditiveScene(_scene);
-        var town = (EntityTown)GetMapObjectClass;
-        player.SetActiveTown(town);
-        // player.ActiveTown.SetGuest(player.ActiveHero);
-        loadingOperations.Enqueue(new TownLoadOperation(town));
-        await GameManager.Instance.LoadingScreenProvider.LoadAndDestroy(loadingOperations);
+            // GameManager.Instance.AssetProvider.UnloadAdditiveScene(_scene);
+            var town = (EntityTown)GetMapObjectClass;
+            player.SetActiveTown(town);
+            // player.ActiveTown.SetGuest(player.ActiveHero);
+            loadingOperations.Enqueue(new TownLoadOperation(town));
+            await GameManager.Instance.LoadingScreenProvider.LoadAndDestroy(loadingOperations);
+        }
     }
 
     public override void OnPointerClick(PointerEventData eventData)

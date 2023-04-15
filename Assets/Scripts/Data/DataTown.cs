@@ -11,7 +11,7 @@ public struct DataTown
     public bool isBuild;
     // public SerializableDictionary<TypeBuild, BuildItem> LevelsBuilds;
     public string HeroinTown;
-    public List<EntityCreature> Creatures;
+    public SerializableDictionary<int, EntityCreature> Creatures;
     public SerializableDictionary<string, BuildGeneral> Generals;
     public SerializableDictionary<string, BuildArmy> Armys;
 }

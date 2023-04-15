@@ -36,10 +36,13 @@ public class EntityCreature : BaseEntity
         }
         else
         {
-            ScriptableData = ResourceSystem.Instance
-                .GetEntityByType<ScriptableEntityCreature>(TypeEntity.Creature)
-                .Where(t => t.idObject == saveData.idObject)
-                .First();
+            if (saveData.idObject != "")
+            {
+                ScriptableData = ResourceSystem.Instance
+                    .GetEntityByType<ScriptableEntityCreature>(TypeEntity.Creature)
+                    .Where(t => t.idObject == saveData.idObject)
+                    .First();
+            }
             Data = saveData.data;
             idObject = saveData.idObject;
             idUnit = saveData.idUnit;

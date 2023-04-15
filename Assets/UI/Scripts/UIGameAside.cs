@@ -79,9 +79,9 @@ public class UIGameAside : MonoBehaviour
             case GameState.StepNextPlayer:
                 NextStep();
                 break;
-            case GameState.StartMoveHero:
-                SetDisableAllButton();
-                break;
+            // case GameState.StartMoveHero:
+            //     SetDisableAllButton();
+            //     break;
             case GameState.StopMoveHero:
                 SetEnableAllButton();
                 break;
@@ -225,7 +225,9 @@ public class UIGameAside : MonoBehaviour
 
     private void OnMoveHero(ClickEvent evt)
     {
-        GameManager.Instance.ChangeState(GameState.StartMoveHero);
+        //GameManager.Instance.ChangeState(GameState.StartMoveHero);
+        SetDisableAllButton();
+        LevelManager.Instance.ActivePlayer.ActiveHero.StartMove();
     }
 
     private void NextStep()
@@ -418,12 +420,15 @@ public class UIGameAside : MonoBehaviour
         {
             var creature = activeHero.Data.Creatures[i];
             var newForce = _templateHeroForce.Instantiate();
+            newForce.AddToClassList("heroinfo_force_el");
             //newForce.style.flexGrow = 1;
 
-            newForce.AddToClassList("heroinfo_force_el");
-            newForce.Q<VisualElement>("img").style.backgroundImage
-                = new StyleBackground(creature.ScriptableData.MenuSprite);
-            newForce.Q<Label>("ForceValue").text = creature.Data.value.ToString();
+            if (creature != null)
+            {
+                newForce.Q<VisualElement>("img").style.backgroundImage
+                    = new StyleBackground(creature.ScriptableData.MenuSprite);
+                newForce.Q<Label>("ForceValue").text = creature.Data.value.ToString();
+            }
 
             _heroForceList.Add(newForce);
 

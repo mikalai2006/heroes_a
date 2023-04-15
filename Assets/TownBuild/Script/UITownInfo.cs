@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -23,6 +24,11 @@ public class UITownInfo : MonoBehaviour
     private Player _activePlayer;
     private EntityHero _chooseHero;
     public static event Action onMoveHero;
+    private SerializableDictionary<int, EntityCreature> _startCheckedCreatures
+        = new SerializableDictionary<int, EntityCreature>();
+    private EntityCreature _endCheckedCreature;
+    private int _startPositionChecked = -1;
+    private int _endChecked;
 
     public void Init(VisualElement parent)
     {
@@ -106,12 +112,13 @@ public class UITownInfo : MonoBehaviour
         for (int i = 0; i < 7; i++)
         {
             var itemHeroForce = _templateHeroForce.Instantiate();
+            itemHeroForce.name = "creature";
             itemHeroForce.AddToClassList("w-125");
             itemHeroForce.AddToClassList("h-full");
 
             if (_activeTown.OccupiedNode.GuestedUnit != null)
             {
-
+                var index = i;
                 EntityCreature creature;
                 EntityHero entityHero = (EntityHero)_activeTown.OccupiedNode.GuestedUnit;
                 entityHero.Data.Creatures.TryGetValue(i, out creature);
@@ -121,6 +128,17 @@ public class UITownInfo : MonoBehaviour
                         new StyleBackground(creature.ScriptableData.MenuSprite);
                     itemHeroForce.Q<Label>("ForceValue").text = creature.Data.value.ToString();
                 }
+                itemHeroForce.RegisterCallback<ClickEvent>((ClickEvent evt) =>
+                {
+                    if (_startPositionChecked == -1)
+                    {
+                        OnChooseCreature(index, entityHero.Data.Creatures);
+                    }
+                    else
+                    {
+                        OnMoveCreature(index, entityHero.Data.Creatures);
+                    };
+                });
             }
             else
             {
@@ -180,28 +198,54 @@ public class UITownInfo : MonoBehaviour
         var heroInTown = _activeTown.Data.HeroinTown != null && _activeTown.Data.HeroinTown != ""
             ? (EntityHero)UnitManager.Entities[_activeTown.Data.HeroinTown]
             : null;
+
         if (_chooseHero != null && _chooseHero.IdEntity != _activeTown.Data.HeroinTown)
         {
-            // move old hero in town and destroy GameObject.
-            _activeTown.OccupiedNode.SetAsGuested(heroInTown);
-            if (_activeTown.OccupiedNode.GuestedUnit != null)
+            // merge creatures.
+            if (_activeTown.Data.Creatures.Where(t => t.Value != null).Count() > 0)
             {
-                ((EntityHero)_activeTown.OccupiedNode.GuestedUnit).Data.State = StateHero.OnMap;
-                if (_activeTown.OccupiedNode.GuestedUnit.MapObjectGameObject != null)
+                var resultMergeCreatures = Helpers.SummUnitBetweenList(
+                    _chooseHero.Data.Creatures,
+                    _activeTown.Data.Creatures
+                    );
+                if (resultMergeCreatures.Count > 7)
                 {
-                    _chooseHero.MapObjectGameObject.gameObject.SetActive(true);
+                    // Show dialog No move.
+
                 }
                 else
                 {
-                    _activeTown.OccupiedNode.GuestedUnit.CreateMapGameObject(_activeTown.OccupiedNode);
+                    _chooseHero.Data.Creatures = resultMergeCreatures;
+                    _activeTown.OccupiedNode.SetAsGuested(heroInTown);
+                    // create new hero in town and destroy GameObject.
+                    _activeTown.Data.HeroinTown = _chooseHero.IdEntity;
+                    _chooseHero.MapObjectGameObject.gameObject.SetActive(false);
+                    _chooseHero.Data.State = StateHero.InTown;
+                    _activeTown.ResetCreatures();
                 }
             }
-            _activePlayer.SetActiveHero((EntityHero)_activeTown.OccupiedNode.GuestedUnit);
+            else
+            {
+                _activeTown.OccupiedNode.SetAsGuested(heroInTown);
+                if (_activeTown.OccupiedNode.GuestedUnit != null)
+                {
+                    ((EntityHero)_activeTown.OccupiedNode.GuestedUnit).Data.State = StateHero.OnMap;
+                    if (_activeTown.OccupiedNode.GuestedUnit.MapObjectGameObject != null)
+                    {
+                        _chooseHero.MapObjectGameObject.gameObject.SetActive(true);
+                    }
+                    else
+                    {
+                        _activeTown.OccupiedNode.GuestedUnit.CreateMapGameObject(_activeTown.OccupiedNode);
+                    }
+                }
+                _activePlayer.SetActiveHero((EntityHero)_activeTown.OccupiedNode.GuestedUnit);
 
-            // create new hero in town and destroy GameObject.
-            _activeTown.Data.HeroinTown = _chooseHero.IdEntity;
-            _chooseHero.MapObjectGameObject.gameObject.SetActive(false);
-            _chooseHero.Data.State = StateHero.InTown;
+                // create new hero in town and destroy GameObject.
+                _activeTown.Data.HeroinTown = _chooseHero.IdEntity;
+                _chooseHero.MapObjectGameObject.gameObject.SetActive(false);
+                _chooseHero.Data.State = StateHero.InTown;
+            }
 
             _btnHeroInTown.RemoveFromClassList("button_active");
             _btnHeroGuest.RemoveFromClassList("button_active");
@@ -233,8 +277,8 @@ public class UITownInfo : MonoBehaviour
         heroBlok.AddToClassList("h-125");
         if (hero != null)
         {
-            heroBlok.Q<VisualElement>("img").style.backgroundImage =
-                new StyleBackground(hero.ScriptableData.MenuSprite);
+            heroBlok.Q<VisualElement>("img").style.backgroundImage
+                = new StyleBackground(hero.ScriptableData.MenuSprite);
         }
         else
         {
@@ -245,30 +289,175 @@ public class UITownInfo : MonoBehaviour
 
         for (int i = 0; i < 7; i++)
         {
+            var index = i;
             var itemHeroForce = _templateHeroForce.Instantiate();
+            itemHeroForce.name = "creature";
             itemHeroForce.AddToClassList("w-full");
             itemHeroForce.AddToClassList("h-125");
 
+            SerializableDictionary<int, EntityCreature> creatures;
             if (hero != null)
             {
-
-                EntityCreature creature;
-                // EntityHero entityHero = (EntityHero)_activeTown.Data.HeroinTown;
-                hero.Data.Creatures.TryGetValue(i, out creature);
-                if (creature != null)
-                {
-
-                    Debug.Log($"Create creature::: [{creature.ScriptableData.idObject}]");
-                    itemHeroForce.Q<VisualElement>("img").style.backgroundImage =
-                        new StyleBackground(creature.ScriptableData.MenuSprite);
-                    itemHeroForce.Q<Label>("ForceValue").text = creature.Data.value.ToString();
-                }
+                creatures = hero.Data.Creatures; //.TryGetValue(i, out creature);
             }
             else
             {
-                itemHeroForce.SetEnabled(false);
+                creatures = _activeTown.Data.Creatures;
             }
+
+            EntityCreature creature;
+            creatures.TryGetValue(i, out creature);
+
+            if (creature != null)
+            {
+                // Debug.Log($"Create creature::: [{creature.ScriptableData.idObject}]");
+                itemHeroForce.Q<VisualElement>("img").style.backgroundImage
+                    = new StyleBackground(creature.ScriptableData.MenuSprite);
+                itemHeroForce.Q<Label>("ForceValue").text = creature.Data.value.ToString();
+            }
+            itemHeroForce.RegisterCallback<ClickEvent>((ClickEvent evt) =>
+            {
+                if (_startPositionChecked == -1)
+                {
+                    OnChooseCreature(index, creatures);
+                }
+                else
+                {
+                    OnMoveCreature(index, creatures);
+                };
+                // OnClickCreature(index, creature);
+            });
+            // }
+            // else
+            // {
+            //     itemHeroForce.SetEnabled(false);
+            // }
             _townInfoHero.Add(itemHeroForce);
         }
     }
+
+    // private void OnEndMoveCreature()
+    // {
+    //     Debug.Log($"OnEndMoveCreature ::: start-{_startPositionChecked}:end-{_endChecked}");
+    //     UQueryBuilder<VisualElement> builderGuest
+    //             = new UQueryBuilder<VisualElement>(_parent);
+    //     List<VisualElement> listGuestCreature = builderGuest.Name("creature").ToList();
+    //     foreach (var item in listGuestCreature)
+    //     {
+    //         item.Q<Button>("HeroInfoForce").RemoveFromClassList("button_active");
+    //     }
+    //     _startCheckedCreature = null;
+    //     _endCheckedCreature = null;
+    //     _startChecked = -1;
+    //     _endChecked = -1;
+
+    // }
+
+    private void OnChooseCreature(int index, SerializableDictionary<int, EntityCreature> creatures)
+    {
+        if (creatures[index] == null) return;
+
+        UQueryBuilder<VisualElement> builder = new UQueryBuilder<VisualElement>(_townInfoHero);
+        List<VisualElement> list = builder.Name("creature").ToList();
+        for (int i = 0; i < list.Count; i++)
+        {
+            var item = list[i];
+            item.Q<Button>("HeroInfoForce").AddToClassList("button_active");
+            item.SetEnabled(true);
+        }
+
+        if (_activeTown.OccupiedNode.GuestedUnit != null)
+        {
+            UQueryBuilder<VisualElement> builderGuest
+                = new UQueryBuilder<VisualElement>(_townInfoHeroVisit);
+            List<VisualElement> listGuestCreature = builderGuest.Name("creature").ToList();
+            for (int i = 0; i < listGuestCreature.Count; i++)
+            {
+                var item = listGuestCreature[i];
+                item.Q<Button>("HeroInfoForce").AddToClassList("button_active");
+                item.SetEnabled(true);
+            }
+        }
+        _startCheckedCreatures = creatures;
+        _startPositionChecked = index;
+    }
+
+    private void OnMoveCreature(int index, SerializableDictionary<int, EntityCreature> creatures)
+    {
+        Debug.Log($"OnMoveCreature ::: start-{_startPositionChecked}:end-{_endChecked}");
+        UQueryBuilder<VisualElement> builderGuest
+                = new UQueryBuilder<VisualElement>(_parent);
+        List<VisualElement> listGuestCreature = builderGuest.Name("creature").ToList();
+        foreach (var item in listGuestCreature)
+        {
+            item.Q<Button>("HeroInfoForce").RemoveFromClassList("button_active");
+        }
+
+        Helpers.MoveUnitBetweenList(
+            _startCheckedCreatures,
+            _startPositionChecked,
+            creatures,
+            index
+            );
+        // creatures[index] = _startCheckedCreatures[_startPositionChecked];
+        DrawHeroAsGuest();
+        DrawHeroInTown();
+        // _startCheckedCreatures.Clear();
+        _startPositionChecked = -1;
+        // _endCheckedCreature = null;
+        // _endChecked = -1;
+
+    }
+
+    // private void OnClickCreature(int index, EntityCreature creature)
+    // {
+
+    //     if (_startChecked == -1)
+    //     {
+    //         _startChecked = index;
+    //         _startCheckedCreature = creature;
+    //     }
+    //     else
+    //     {
+    //         _endChecked = index;
+    //         _endCheckedCreature = creature;
+    //     }
+
+    //     UQueryBuilder<VisualElement> builder = new UQueryBuilder<VisualElement>(_townInfoHero);
+    //     List<VisualElement> list = builder.Name("creature").ToList();
+    //     for (int i = 0; i < list.Count; i++)
+    //     {
+    //         var item = list[i];
+    //         item.Q<Button>("HeroInfoForce").AddToClassList("button_active");
+    //         item.SetEnabled(true);
+    //         // item.RegisterCallback<ClickEvent>((ClickEvent evt) =>
+    //         // {
+    //         //     OnMoveCreature();
+    //         //     _endChecked = i;
+    //         // });
+    //     }
+
+    //     if (_activeTown.OccupiedNode.GuestedUnit != null)
+    //     {
+    //         UQueryBuilder<VisualElement> builderGuest
+    //             = new UQueryBuilder<VisualElement>(_townInfoHeroVisit);
+    //         List<VisualElement> listGuestCreature = builderGuest.Name("creature").ToList();
+    //         for (int i = 0; i < listGuestCreature.Count; i++)
+    //         {
+    //             var item = listGuestCreature[i];
+    //             item.Q<Button>("HeroInfoForce").AddToClassList("button_active");
+    //             item.SetEnabled(true);
+    //             // item.RegisterCallback<ClickEvent>((ClickEvent evt) =>
+    //             // {
+    //             //     OnMoveCreature();
+    //             //     _endChecked = i;
+    //             // });
+    //         }
+    //     }
+
+    //     if (_endChecked != -1)
+    //     {
+    //         OnEndMoveCreature();
+    //     }
+    // }
 }

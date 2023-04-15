@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
+using Cysharp.Threading.Tasks;
+
 using UnityEngine;
 
 using Random = UnityEngine.Random;
@@ -27,7 +29,6 @@ public class EntityHero : BaseEntity
         base.Init();
 
         Data.Artifacts = new List<EntityArtifact>();
-        Data.Creatures = new SerializableDictionary<int, EntityCreature>(7);
         Data.path = new List<GridTileNode>();
 
         if (saveData == null)
@@ -49,12 +50,19 @@ public class EntityHero : BaseEntity
 
             // Generate creatures.
             ScriptableEntityHero configData = (ScriptableEntityHero)ScriptableData;
-            foreach (var creature in configData.StartCreatures)
+            Data.Creatures = new SerializableDictionary<int, EntityCreature>();
+            for (int i = 0; i < 7; i++)
             {
+                Data.Creatures.Add(i, null);
+            }
+
+            for (int i = 0; i < configData.StartCreatures.Count; i++)
+            {
+                var creature = configData.StartCreatures[i];
                 var newCreature = new EntityCreature(creature.creature);
                 newCreature.Data.value = Random.Range(creature.min, creature.max);
                 newCreature.Data.idObject = creature.creature.idObject;
-                Data.Creatures.Add(Data.Creatures.Count, newCreature);
+                Data.Creatures[i] = newCreature;
             }
             UnitManager.IdsExistsHeroes.Add(ScriptableData.idObject);
         }
@@ -65,17 +73,22 @@ public class EntityHero : BaseEntity
                 .Where(t => t.idObject == saveData.idObject)
                 .First();
             Data = saveData.data;
-            Data.Creatures = new SerializableDictionary<int, EntityCreature>(7);
+            Data.Creatures = new SerializableDictionary<int, EntityCreature>();
 
             var creatures = saveData.data.Creatures;
-            foreach (var creature in creatures)
+            for (int i = 0; i < creatures.Count; i++)
             {
-                var newCreature = new EntityCreature(null, new SaveDataUnit<DataCreature>()
+                var creature = creatures[i];
+                EntityCreature newCreature = null;
+                if (creature.Data.idObject != "")
                 {
-                    data = creature.Value.Data,
-                    idObject = creature.Value.Data.idObject,
-                });
-                Data.Creatures[creature.Key] = newCreature;
+                    newCreature = new EntityCreature(null, new SaveDataUnit<DataCreature>()
+                    {
+                        data = creature.Data,
+                        idObject = creature.Data.idObject,
+                    });
+                }
+                Data.Creatures[i] = newCreature;
             }
 
             idUnit = saveData.idUnit;
@@ -145,6 +158,11 @@ public class EntityHero : BaseEntity
         Player.SetNosky(noskyNode);
     }
 
+    public async UniTask StartMove()
+    {
+        await ((MapEntityHero)MapObjectGameObject).StartMove();
+    }
+
     public void SetPlayer(PlayerData playerData)
     {
         Data.idPlayer = playerData.id;
@@ -156,7 +174,7 @@ public class EntityHero : BaseEntity
 
     public void SetPathHero(List<GridTileNode> _path = null)
     {
-        Data.path = _path;
+        Data.path = _path != null ? _path : new List<GridTileNode>();
         //for (int i = 1; i < path.Count; i++)
         //{
         //    HeroData.path.Add(path[i]._position);

@@ -14,20 +14,32 @@ public class MapEntityCreature : BaseMapEntity, IDialogMapObjectOperation
     {
         base.OnGoHero(player);
 
-        DataResultDialog result = await OnTriggeredHero();
-
-        if (result.isOk)
+        if (LevelManager.Instance.ActivePlayer.DataPlayer.playerType != PlayerType.Bot)
         {
-            MapObjectClass.OccupiedNode.DisableProtectedNeigbours(MapObjectClass);
+            DataResultDialog result = await OnTriggeredHero();
 
-            // TODO ARENA
-
-            Destroy(gameObject);
+            if (result.isOk)
+            {
+                OnHeroGo(player);
+            }
+            else
+            {
+                // Click cancel.
+            }
         }
         else
         {
-            // Click cancel.
+            OnHeroGo(player);
         }
+    }
+
+    private void OnHeroGo(Player player)
+    {
+        MapObjectClass.OccupiedNode.DisableProtectedNeigbours(MapObjectClass);
+
+        // TODO ARENA
+
+        Destroy(gameObject);
     }
 
     public async UniTask<DataResultDialog> OnTriggeredHero()
