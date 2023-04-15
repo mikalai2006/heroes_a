@@ -154,16 +154,16 @@ public class MapEntityHero : BaseMapEntity
             if (!cancellationToken.IsCancellationRequested && nodeTo.OccupiedUnit != null)
             {
                 var maoObj = (ScriptableEntityMapObject)nodeTo.OccupiedUnit.ScriptableData;
-                // if (maoObj.TypeWorkObject == TypeWorkObject.One)
-                // {
-                // _canMove = false;
-                // _animator.SetBool("isWalking", false);
-                nodeTo.OccupiedUnit.MapObjectGameObject.OnGoHero(MapObjectClass.Player);
-                entityHero.SetPathHero(null);
-                cancelTokenSource.Cancel();
-                cancelTokenSource.Dispose();
-                break;
-                // }
+                if (maoObj.TypeWorkObject == TypeWorkObject.One)
+                {
+                    // _canMove = false;
+                    // _animator.SetBool("isWalking", false);
+                    nodeTo.OccupiedUnit.MapObjectGameObject.OnGoHero(MapObjectClass.Player);
+                    // entityHero.SetPathHero(null);
+                    cancelTokenSource.Cancel();
+                    cancelTokenSource.Dispose();
+                    break;
+                }
             }
 
             UpdateAnimate(MapObjectClass.Position, nodeTo.position);
@@ -178,18 +178,16 @@ public class MapEntityHero : BaseMapEntity
 
             GameManager.Instance.MapManager.DrawCursor(entityHero.Data.path, entityHero);
 
-            // if (entityHero.Data.path[0].OccupiedUnit != null)
-            // {
-            //     entityHero.Data.path[0].OccupiedUnit.MapObjectGameObject.OnGoHero(MapObjectClass.Player);
-            // }
+            if (entityHero.Data.path[0].OccupiedUnit != null)
+            {
+                entityHero.Data.path[0].OccupiedUnit.MapObjectGameObject.OnGoHero(MapObjectClass.Player);
+            }
             if (entityHero.Player.DataPlayer.playerType != PlayerType.Bot)
             {
                 onChangeParamsActiveHero?.Invoke(entityHero);
             }
 
-            entityHero.Data.path.RemoveAt(0);
-
-
+            if (entityHero.Data.path.Count > 0) entityHero.Data.path.RemoveAt(0);
         }
 
         GameManager.Instance.ChangeState(GameState.StopMoveHero);

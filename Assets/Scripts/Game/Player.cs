@@ -144,28 +144,6 @@ public class Player
         return DataPlayer.PlayerDataReferences.ListHero[id];
     }
 
-    public List<GridTileNode> FindPathForHero(Vector3Int endPoint, bool force)
-    {
-        EntityHero activeHero = DataPlayer.PlayerDataReferences.ActiveHero;
-        if (activeHero == null)
-        {
-            GameManager.Instance.MapManager.ResetCursor();
-            return default;
-        }
-        Vector3Int startPoint = new Vector3Int(activeHero.Position.x, activeHero.Position.y);
-        List<GridTileNode> path = GameManager.Instance.MapManager.GridTileHelper().FindPath(startPoint, endPoint, force);
-
-        if (path != null && DataPlayer.PlayerDataReferences.ActiveHero != null)
-        {
-            activeHero.SetPathHero(path);
-            GameManager.Instance.MapManager.DrawCursor(path, activeHero);
-            GameManager.Instance.ChangeState(GameState.CreatePathHero);
-        }
-
-
-        return path;
-    }
-
     public void GenerateHeroTavern()
     {
         var allHeroFaction = ResourceSystem.Instance
@@ -234,6 +212,46 @@ public class Player
 
             Debug.Log($"Bot::: Move hero {hero.ScriptableData.name}");
             // GameManager.Instance.ChangeState(GameState.StartMoveHero);
+        }
+
+        foreach (var town in _data.PlayerDataReferences.ListTown)
+        {
+            // Get allow building.
+            ScriptableEntityTown entityTown = (ScriptableEntityTown)town.ScriptableData;
+            ScriptableBuildTown configBuildTown = (ScriptableBuildTown)entityTown.BuildTown;
+            var allCurrentLevelsBuilding = town.GetLisNextLevelBuilds(configBuildTown);
+            Dictionary<ScriptableBuilding, int> allowBulding = new Dictionary<ScriptableBuilding, int>();
+            foreach (var parentBuild in allCurrentLevelsBuilding)
+            {
+                var indexNextBuild = 0;
+
+                if (parentBuild.Value == parentBuild.Key.BuildLevels.Count - 1)
+                {
+                    continue;
+                }
+                else
+                {
+                    indexNextBuild = parentBuild.Value + 1;
+                }
+                allowBulding.Add(parentBuild.Key, indexNextBuild);
+            }
+            var allowNextBuild = allowBulding
+                .Where(t => town.GetListNeedNoBuilds(t.Key.BuildLevels[t.Value].RequireBuilds).Count == 0
+                    && IsExistsResource(t.Key.BuildLevels[t.Value].CostResource)
+                )
+                .OrderBy(t => Random.value)
+                .First();
+            Debug.Log($"Bot::: Builded - {allowNextBuild.Key.name}");
+            var newBuild = town.CreateBuild(allowNextBuild.Key, allowNextBuild.Value);
+
+            var build = allowNextBuild.Key.BuildLevels[allowNextBuild.Value];
+            for (int i = 0; i < build.CostResource.Count; i++)
+            {
+                ChangeResource(
+                    build.CostResource[i].Resource.TypeResource,
+                    -build.CostResource[i].Count
+                    );
+            }
         }
 
         Debug.Log($"Bot::: Finish - {this.DataPlayer.id}");

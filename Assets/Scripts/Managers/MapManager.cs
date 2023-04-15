@@ -221,7 +221,7 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
 
             if (unitHero.idObject == "") continue;
 
-            EntityHero hero = new EntityHero(TypeFaction.Neutral, unitHero);
+            EntityHero hero = new EntityHero(TypeFaction.Neutral, null, unitHero);
             // UnitManager.SpawnEntityMapObjectToNode(tileNode, hero);
             UnitManager.Entities.Add(hero.IdEntity, hero);
             if (unitHero.data.State == StateHero.OnMap)
@@ -725,7 +725,7 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
         {
             if (node.OccupiedUnit == null || node.StateNode.HasFlag(StateNode.Protected))
             {
-                LevelManager.Instance.ActivePlayer.FindPathForHero(tilePos, true);
+                LevelManager.Instance.ActivePlayer.ActiveHero.FindPathForHero(tilePos, true);
             }
 
         }

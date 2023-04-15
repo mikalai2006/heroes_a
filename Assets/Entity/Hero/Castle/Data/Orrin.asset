@@ -17,9 +17,9 @@ MonoBehaviour:
   MenuSprite: {fileID: 21300000, guid: e11eef3ed6e99f04f8c82af185860c1a, type: 3}
   title:
     m_TableReference:
-      m_TableCollectionName: 
+      m_TableCollectionName: GUID:20373cbdea5ac9c418c19cbf0eaabc21
     m_TableEntryReference:
-      m_KeyId: 0
+      m_KeyId: 496925573120
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
@@ -30,13 +30,6 @@ MonoBehaviour:
     m_SubObjectType: 
     m_EditorAssetChanged: 0
   TypeGround: 0
-  TypeWorkAttribute: 0
-  Attributes: []
-  listTypeNoPath: 
-  TypeWorkObject: 0
-  TypeMapObject: 0
-  listRuleInput: 
-  Effects: []
   TypeFaction: 0
   PrimarySkill:
   - PrimarySkill: {fileID: 11400000, guid: 642756d81958c7d4e8cf4a4f01d6f919, type: 2}

@@ -77,6 +77,7 @@ public class UIGameAside : MonoBehaviour
         switch (state)
         {
             case GameState.StepNextPlayer:
+            case GameState.StartGame:
                 NextStep();
                 break;
             // case GameState.StartMoveHero:

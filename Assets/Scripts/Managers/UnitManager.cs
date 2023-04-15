@@ -118,7 +118,7 @@ public static class UnitManager
 
         // entity.OccupiedNode = node;
         node.SetOcuppiedUnit(entity);
-        Debug.Log($"add entity {entity.ScriptableData.name}");
+        // Debug.Log($"add entity {entity.ScriptableData.name}");
         Entities.Add(entity.IdEntity, entity);
         entity.CreateMapGameObject(node);
 
@@ -160,7 +160,22 @@ public static class UnitManager
         return entity;
     }
 
-    internal static void Reset()
+    public static EntityHero CreateHero(
+        TypeFaction typeFaction,
+        GridTileNode node,
+        ScriptableEntityHero heroData = null
+    )
+    {
+        // var entity = new EntityHero(TypeFaction.Neutral, activeHeroData);
+        EntityHero newEntity = new EntityHero(typeFaction, heroData);
+        node.SetAsGuested(newEntity);
+        newEntity.CreateMapGameObject(node);
+        Entities.Add(newEntity.IdEntity, newEntity);
+        // LevelManager.Instance.GetArea(area.id).hero = newEntity;
+        return newEntity;
+    }
+
+    public static void Reset()
     {
 
         Entities.Clear();

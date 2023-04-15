@@ -205,6 +205,32 @@ public class EntityTown : BaseEntity
         return result;
     }
 
+    public Dictionary<ScriptableBuilding, int> GetLisNextLevelBuilds(ScriptableBuildTown configBuildTown)
+    {
+        var result = new Dictionary<ScriptableBuilding, int>();
+        foreach (var parentBuild in configBuildTown.Builds)
+        {
+
+            var indexLevelBuild = GetLevelBuild(parentBuild);
+            // Build currentBuild = parentBuild.BuildLevels[0];
+
+            // if (indexLevelBuild != -1)
+            // {
+            //     if (indexLevelBuild < parentBuild.BuildLevels.Count - 1)
+            //     {
+            //         indexLevelBuild++;
+            //     }
+            // }
+            // else
+            // {
+            //     indexLevelBuild = 0;
+            // }
+
+            result.Add(parentBuild, indexLevelBuild);
+        }
+        return result;
+    }
+
     public int GetLevelBuild(ScriptableBuilding configBuildData)
     {
         var result = -1;

@@ -43,7 +43,7 @@ public class GameManager : StaticInstance<GameManager>
         switch (newState)
         {
             case GameState.StartApp:
-                HandleStarting();
+                HandleStartApp();
                 break;
             case GameState.NewGame:
                 HandleNewGame();
@@ -59,6 +59,9 @@ public class GameManager : StaticInstance<GameManager>
                 break;
             case GameState.StepNextPlayer:
                 HandleSetActivePlayer();
+                break;
+            case GameState.StartGame:
+                HandleStartGame();
                 break;
             case GameState.ChooseHero:
                 HandleChooseHero();
@@ -132,7 +135,7 @@ public class GameManager : StaticInstance<GameManager>
         DataManager.Instance.Load();
 
         // await MapManager.NewMap();
-        ChangeState(GameState.StepNextPlayer);
+        ChangeState(GameState.StartGame);
     }
 
     private void HandleSaveGame()
@@ -140,7 +143,11 @@ public class GameManager : StaticInstance<GameManager>
         DataManager.Instance.Save();
     }
 
-    private void HandleStarting()
+    private void HandleStartApp()
+    {
+        //UIManager.Instance.ShowStartMenu();
+    }
+    private void HandleStartGame()
     {
         //UIManager.Instance.ShowStartMenu();
     }
@@ -183,6 +190,7 @@ public enum GameState
     CreateLevel = 9,
     ChooseHero = 10,
     ChangeHeroParams = 11,
+    StartGame = 12,
     ChangeResources = 100,
 
     StartMoveHero = 200,

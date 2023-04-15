@@ -93,6 +93,9 @@ MonoBehaviour:
     - Resource: {fileID: 11400000, guid: 177478bebb60204468d214efd1fdcc16, type: 2}
       Count: 5
     Effects: []
+  Creatures:
+  - {fileID: 11400000, guid: 7225164ceb73cbd4d9df4215358e36e7, type: 2}
+  - {fileID: 11400000, guid: 9b23414f36bb0be419f8266ca6c35f45, type: 2}
   references:
     version: 2
     RefIds: []

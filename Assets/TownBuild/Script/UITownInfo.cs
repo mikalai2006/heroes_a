@@ -30,6 +30,22 @@ public class UITownInfo : MonoBehaviour
     private int _startPositionChecked = -1;
     private int _endChecked;
 
+    private void Start()
+    {
+        UITavernWindow.onBuyHero += onBuyHero;
+    }
+
+    private void OnDestroy()
+    {
+        UITavernWindow.onBuyHero -= onBuyHero;
+    }
+
+    private void onBuyHero()
+    {
+        DrawHeroAsGuest();
+        onMoveHero?.Invoke();
+    }
+
     public void Init(VisualElement parent)
     {
         _parent = parent;
@@ -90,7 +106,6 @@ public class UITownInfo : MonoBehaviour
     private void DrawHeroAsGuest()
     {
         _townInfoHeroVisit.Clear();
-
 
         // add Hero blok.
         var heroBlok = _templateHeroButton.Instantiate();

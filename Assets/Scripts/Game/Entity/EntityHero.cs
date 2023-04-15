@@ -24,21 +24,30 @@ public class EntityHero : BaseEntity
         private set { }
     }
 
-    public EntityHero(TypeFaction typeFaction, SaveDataUnit<DataHero> saveData = null)
+    public EntityHero(
+        TypeFaction typeFaction,
+        ScriptableEntityHero heroData = null,
+        SaveDataUnit<DataHero> saveData = null
+    )
     {
         base.Init();
 
-        Data.Artifacts = new List<EntityArtifact>();
-        Data.path = new List<GridTileNode>();
 
         if (saveData == null)
         {
-            List<ScriptableEntityHero> list = ResourceSystem.Instance
-                .GetEntityByType<ScriptableEntityHero>(TypeEntity.Hero)
-                .Where(t => t.TypeFaction == typeFaction
-                    && !UnitManager.IdsExistsHeroes.Contains(t.idObject))
-                .ToList();
-            ScriptableData = list[UnityEngine.Random.Range(0, list.Count)];
+            if (heroData == null)
+            {
+                List<ScriptableEntityHero> list = ResourceSystem.Instance
+                    .GetEntityByType<ScriptableEntityHero>(TypeEntity.Hero)
+                    .Where(t => t.TypeFaction == typeFaction
+                        && !UnitManager.IdsExistsHeroes.Contains(t.idObject))
+                    .ToList();
+                ScriptableData = list[UnityEngine.Random.Range(0, list.Count)];
+            }
+            else
+            {
+                ScriptableData = heroData;
+            }
 
             Data.hit = 100f;
             Data.speed = 100;
@@ -46,6 +55,7 @@ public class EntityHero : BaseEntity
             Data.name = ScriptableData.name;
             idObject = ScriptableData.idObject;
 
+            Data.Artifacts = new List<EntityArtifact>();
             Data.path = new List<GridTileNode>();
 
             // Generate creatures.
@@ -90,6 +100,9 @@ public class EntityHero : BaseEntity
                 }
                 Data.Creatures[i] = newCreature;
             }
+
+            Data.Artifacts = new List<EntityArtifact>();
+            Data.path = FindPathForHero(Data.nextPosition, true);
 
             idUnit = saveData.idUnit;
             idObject = saveData.idObject;
@@ -189,6 +202,29 @@ public class EntityHero : BaseEntity
         Data.idPlayer = player.DataPlayer.id;
         player.AddHero(this);
     }
+
+    public List<GridTileNode> FindPathForHero(Vector3Int endPoint, bool force)
+    {
+        // EntityHero activeHero = DataPlayer.PlayerDataReferences.ActiveHero;
+        if (this == null)
+        {
+            GameManager.Instance.MapManager.ResetCursor();
+            return default;
+        }
+        Vector3Int startPoint = new Vector3Int(this.Position.x, this.Position.y);
+        List<GridTileNode> path = GameManager.Instance.MapManager.GridTileHelper().FindPath(startPoint, endPoint, force);
+
+        if (path != null && this != null)
+        {
+            this.SetPathHero(path);
+            // GameManager.Instance.MapManager.DrawCursor(path, this);
+            // GameManager.Instance.ChangeState(GameState.CreatePathHero);
+        }
+
+
+        return path;
+    }
+
 
     #region SaveLoadData
     // public void LoadDataPlay(DataPlay data)

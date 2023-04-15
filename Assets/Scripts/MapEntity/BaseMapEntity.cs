@@ -114,7 +114,7 @@ public abstract class BaseMapEntity : MonoBehaviour, IPointerClickHandler
             if (posObject != null)
             {
                 Vector3Int end = new Vector3Int((int)posObject.x, (int)posObject.y);
-                LevelManager.Instance.ActivePlayer.FindPathForHero(end, true);
+                LevelManager.Instance.ActivePlayer.ActiveHero.FindPathForHero(end, true);
             }
         }
     }
