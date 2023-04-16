@@ -14,7 +14,6 @@ public class EntityHero : BaseEntity
     [SerializeField] public DataHero Data = new DataHero();
     public ScriptableEntityHero ConfigData => (ScriptableEntityHero)ScriptableData;
     public static event Action<EntityHero> onChangeParamsActiveHero;
-    // private bool _canMove = false;
 
     public bool IsExistPath
     {
@@ -79,14 +78,17 @@ public class EntityHero : BaseEntity
         }
         else
         {
+            // Find config data.
             ScriptableData = ResourceSystem.Instance
                 .GetEntityByType<ScriptableEntityHero>(TypeEntity.Hero)
                 .Where(t => t.idObject == saveData.idObject)
                 .First();
+
             Data = saveData.data;
             Position = saveData.position;
-            Data.Creatures = new SerializableDictionary<int, EntityCreature>();
 
+            // Create creatures.
+            Data.Creatures = new SerializableDictionary<int, EntityCreature>();
             var creatures = saveData.data.Creatures;
             for (int i = 0; i < creatures.Count; i++)
             {
@@ -103,12 +105,14 @@ public class EntityHero : BaseEntity
                 Data.Creatures[i] = newCreature;
             }
 
-            // Data.Artifacts = new List<EntityArtifact>();
-            if (Data.State != StateHero.InTown)
+            // Create path.
+            Data.path = new List<GridTileNode>();
+            if (Data.State != StateHero.InTown && Data.nextPosition != Vector3Int.zero)
             {
                 Data.path = FindPathForHero(saveData.data.nextPosition, true);
             }
 
+            // Data.Artifacts = new List<EntityArtifact>();
             idUnit = saveData.idUnit;
             idObject = saveData.idObject;
         }

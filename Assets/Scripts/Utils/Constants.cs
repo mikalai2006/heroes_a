@@ -16,6 +16,7 @@ public class Constants
     {
         public const string UI_GAME_ASIDE = "UIGameAside";
         public const string UI_DIALOG_MAP_OBJECTS = "UIDialogMapObject";
+        public const string UI_DIALOG_HELP = "UIDialogHelpWindow";
         public const string UI_DIALOG_DWELLING = "UIDialogDwelling";
         public const string UI_TOWN_LIST_BUILD = "UITownListBuild";
         public const string UI_TAVERN = "UITavern";

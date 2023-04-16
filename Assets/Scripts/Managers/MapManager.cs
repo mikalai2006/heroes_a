@@ -713,7 +713,7 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
         return gridTileHelper;
     }
 
-    public void ChangePath()
+    public async void ChangePath()
     {
         Vector2 posMouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector3Int tilePos = _tileMap.WorldToCell(posMouse);
@@ -725,7 +725,21 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
         {
             if (node.OccupiedUnit == null || node.StateNode.HasFlag(StateNode.Protected))
             {
-                LevelManager.Instance.ActivePlayer.ActiveHero.FindPathForHero(tilePos, true);
+                if (LevelManager.Instance.ActivePlayer.ActiveHero != null)
+                {
+                    LevelManager.Instance.ActivePlayer.ActiveHero.FindPathForHero(tilePos, true);
+                }
+                else
+                {
+                    var dialogData = new DataDialogHelp()
+                    {
+                        Header = "Hello",
+                        Description = "Help",
+                    };
+
+                    var dialogWindow = new DialogHelpProvider(dialogData);
+                    await dialogWindow.ShowAndHide();
+                }
             }
 
         }

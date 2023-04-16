@@ -95,7 +95,7 @@ public abstract class BaseMapEntity : MonoBehaviour, IPointerClickHandler
     {
     }
 
-    public virtual void OnPointerClick(PointerEventData eventData)
+    public async virtual void OnPointerClick(PointerEventData eventData)
     {
         if (eventData.clickCount >= 2)
         {
@@ -103,18 +103,33 @@ public abstract class BaseMapEntity : MonoBehaviour, IPointerClickHandler
         else
         {
 
-            Debug.Log($"" +
-                $"UnitBase Click \n" +
-                $"name-{this.name} \n" +
-                $"pos-[{transform.position}]\n" +
-                $"ocup-[{MapObjectClass.OccupiedNode.ToString()}]\n"
-                );
-            Vector3 posObject = transform.position;
-
-            if (posObject != null)
+            if (LevelManager.Instance.ActivePlayer.ActiveHero != null)
             {
-                Vector3Int end = new Vector3Int((int)posObject.x, (int)posObject.y);
-                LevelManager.Instance.ActivePlayer.ActiveHero.FindPathForHero(end, true);
+
+                Debug.Log($"" +
+                    $"UnitBase Click \n" +
+                    $"name-{this.name} \n" +
+                    $"pos-[{transform.position}]\n" +
+                    $"ocup-[{MapObjectClass.OccupiedNode.ToString()}]\n"
+                    );
+                Vector3 posObject = transform.position;
+
+                if (posObject != null)
+                {
+                    Vector3Int end = new Vector3Int((int)posObject.x, (int)posObject.y);
+                    LevelManager.Instance.ActivePlayer.ActiveHero.FindPathForHero(end, true);
+                }
+            }
+            else
+            {
+                var dialogData = new DataDialogHelp()
+                {
+                    Header = "Hello",
+                    Description = "Help",
+                };
+
+                var dialogWindow = new DialogHelpProvider(dialogData);
+                await dialogWindow.ShowAndHide();
             }
         }
     }

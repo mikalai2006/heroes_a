@@ -78,7 +78,7 @@ public class UIGameAside : MonoBehaviour
         {
             case GameState.StepNextPlayer:
             case GameState.StartGame:
-                NextStep();
+                DrawHeroButtons();
                 break;
             // case GameState.StartMoveHero:
             //     SetDisableAllButton();
@@ -93,7 +93,7 @@ public class UIGameAside : MonoBehaviour
                 OnRedrawResource();
                 break;
             case GameState.ChangeHeroParams:
-                NextStep();
+                DrawHeroButtons();
                 break;
         }
     }
@@ -146,9 +146,8 @@ public class UIGameAside : MonoBehaviour
                 DataResultGameMenu result = await ShowGameMenu();
                 if (result.isOk)
                 {
-
                     var loadingOperations = new Queue<ILoadingOperation>();
-                    GameManager.Instance.AssetProvider.UnloadAdditiveScene(_scene);
+                    await GameManager.Instance.AssetProvider.UnloadAdditiveScene(_scene);
                     loadingOperations.Enqueue(new MenuAppOperation());
                     await GameManager.Instance.LoadingScreenProvider.LoadAndDestroy(loadingOperations);
                 }
@@ -224,14 +223,14 @@ public class UIGameAside : MonoBehaviour
         }
     }
 
-    private void OnMoveHero(ClickEvent evt)
+    private async void OnMoveHero(ClickEvent evt)
     {
         //GameManager.Instance.ChangeState(GameState.StartMoveHero);
         SetDisableAllButton();
-        LevelManager.Instance.ActivePlayer.ActiveHero.StartMove();
+        await LevelManager.Instance.ActivePlayer.ActiveHero.StartMove();
     }
 
-    private void NextStep()
+    private void DrawHeroButtons()
     {
         player = LevelManager.Instance.ActivePlayer;
 
@@ -273,7 +272,7 @@ public class UIGameAside : MonoBehaviour
                 newButtonTown.Q<VisualElement>("image").style.backgroundImage =
                     new StyleBackground(town.ScriptableData.MenuSprite);
 
-                newButtonTown.Q<Button>(NameAllAsideButton).clickable.clicked += async () =>
+                newButtonTown.Q<Button>(NameAllAsideButton).clickable.clicked += () =>
                 {
                     //Debug.Log($"Click button {town.TownData.position}");
                     if (player.ActiveTown == town)
