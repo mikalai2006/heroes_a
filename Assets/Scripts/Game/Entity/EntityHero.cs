@@ -83,6 +83,7 @@ public class EntityHero : BaseEntity
                 .Where(t => t.idObject == saveData.idObject)
                 .First();
             Data = saveData.data;
+            Position = saveData.position;
             Data.Creatures = new SerializableDictionary<int, EntityCreature>();
 
             var creatures = saveData.data.Creatures;
@@ -101,8 +102,11 @@ public class EntityHero : BaseEntity
                 Data.Creatures[i] = newCreature;
             }
 
-            Data.Artifacts = new List<EntityArtifact>();
-            Data.path = FindPathForHero(Data.nextPosition, true);
+            // Data.Artifacts = new List<EntityArtifact>();
+            if (Data.State != StateHero.InTown)
+            {
+                Data.path = FindPathForHero(saveData.data.nextPosition, true);
+            }
 
             idUnit = saveData.idUnit;
             idObject = saveData.idObject;
@@ -187,13 +191,29 @@ public class EntityHero : BaseEntity
 
     public void SetPathHero(List<GridTileNode> _path = null)
     {
-        Data.path = _path != null ? _path : new List<GridTileNode>();
+        if (_path != null)
+        {
+            _path.RemoveAt(0);
+            Data.path = _path;
+        }
+        else
+        {
+            Data.path = new List<GridTileNode>();
+        }
+        // Data.path = _path != null ? _path : new List<GridTileNode>();
         //for (int i = 1; i < path.Count; i++)
         //{
         //    HeroData.path.Add(path[i]._position);
         GameManager.Instance.MapManager.DrawCursor(Data.path, this);
         //}
-        // Data.nextPosition = _path == null ?  : Data.path[Data.path.Count - 1].position;
+        if (Data.path.Count > 0)
+        {
+            Data.nextPosition = _path[_path.Count - 1].position;
+        }
+        else
+        {
+            Data.nextPosition = Vector3Int.zero;
+        }
     }
 
     public override void SetPlayer(Player player)
@@ -203,24 +223,28 @@ public class EntityHero : BaseEntity
         player.AddHero(this);
     }
 
-    public List<GridTileNode> FindPathForHero(Vector3Int endPoint, bool force)
+    public List<GridTileNode> FindPathForHero(Vector3Int endPoint, bool isDiagonal)
     {
         // EntityHero activeHero = DataPlayer.PlayerDataReferences.ActiveHero;
-        if (this == null)
-        {
-            GameManager.Instance.MapManager.ResetCursor();
-            return default;
-        }
+        // if (this == null)
+        // {
+        //     GameManager.Instance.MapManager.ResetCursor();
+        //     return default;
+        // }
         Vector3Int startPoint = new Vector3Int(this.Position.x, this.Position.y);
-        List<GridTileNode> path = GameManager.Instance.MapManager.GridTileHelper().FindPath(startPoint, endPoint, force);
+        List<GridTileNode> path = GameManager.Instance
+            .MapManager
+            .GridTileHelper()
+            .FindPath(startPoint, endPoint, isDiagonal);
 
-        if (path != null && this != null)
-        {
-            this.SetPathHero(path);
-            // GameManager.Instance.MapManager.DrawCursor(path, this);
-            // GameManager.Instance.ChangeState(GameState.CreatePathHero);
-        }
-
+        // if (path != null)
+        // {
+        //     this.SetPathHero(path);
+        //     // GameManager.Instance.MapManager.DrawCursor(path, this);
+        //     // GameManager.Instance.ChangeState(GameState.CreatePathHero);
+        // }
+        Debug.Log($"Draw path::: {endPoint}[{Position}]= {path.Count}");
+        this.SetPathHero(path);
 
         return path;
     }

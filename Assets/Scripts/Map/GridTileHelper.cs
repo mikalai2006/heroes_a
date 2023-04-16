@@ -65,8 +65,8 @@ public class GridTileHelper
         // GameManager.Instance.MapManager.ResetTestTileMap();
 
         GridTileNode startNode = _gridTile.GetGridObject(start);
-        GridTileNode startNodeTrigger = startNode;
-        GridTileNode endNodeF = _gridTile.GetGridObject(end);
+        // GridTileNode startNodeTrigger = startNode;
+        // GridTileNode endNodeF = _gridTile.GetGridObject(end);
         GridTileNode endNode = _gridTile.GetGridObject(end);
 
         BinaryHeap<GridTileNode> openSet = new BinaryHeap<GridTileNode>(_gridTile.GetWidth() * _gridTile.GetHeight());

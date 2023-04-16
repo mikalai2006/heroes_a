@@ -747,6 +747,12 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
         float countDistance = hero.Data.hit;
         //Debug.Log($"hero.HeroData.hit.Value={hero.HeroData.hit.Value}");
 
+        if (paths.Count == 1)
+        {
+            _tileMapCursor.SetTile(paths[0].position, _cursorSprites.center);
+            return;
+        }
+
         for (int i = 0; i < paths.Count - 1; i++)
         {
             GridTileNode node = paths[i];

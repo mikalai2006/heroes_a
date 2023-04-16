@@ -114,7 +114,7 @@ public class MapEntityHero : BaseMapEntity
         _canMove = true;
         if (entityHero.IsExistPath)
         {
-            entityHero.Data.path.RemoveAt(0);
+            // entityHero.Data.path.RemoveAt(0);
             cancelTokenSource = new CancellationTokenSource();
             await MoveHero(cancelTokenSource.Token);
         }
@@ -130,7 +130,6 @@ public class MapEntityHero : BaseMapEntity
             && !cancellationToken.IsCancellationRequested
             )
         {
-
             var nodeTo = entityHero.Data.path[0];
             ScriptableEntityMapObject configNodeData
                 = (ScriptableEntityMapObject)nodeTo.OccupiedUnit?.ScriptableData;

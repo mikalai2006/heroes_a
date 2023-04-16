@@ -13,6 +13,7 @@ public class PlayerData
     public Color color;
     public PlayerType playerType;
     public int idArea;
+    public TypeFaction typeFaction = TypeFaction.Neutral;
     public SerializableDictionary<TypeResource, int> Resource;
     public SerializableShortPosition nosky = new SerializableShortPosition();
     [System.NonSerialized] public PlayerDataReferences PlayerDataReferences;
@@ -146,22 +147,46 @@ public class Player
 
     public void GenerateHeroTavern()
     {
-        var allHeroFaction = ResourceSystem.Instance
+        _data.HeroesInTavern = new List<string>();
+
+        var allHero = ResourceSystem.Instance
             .GetEntityByType<ScriptableEntityHero>(TypeEntity.Hero)
-            // .Where(t => t.TypeFaction == this. && t.TypeMapObject == TypeMapObject.Mine)
+            .Where(t => !UnitManager.Entities.ContainsKey(t.idObject))
             .OrderBy(t => UnityEngine.Random.value)
             .ToList();
-        if (allHeroFaction.Count > 0)
+        var myFactionHero = allHero.Where(t => t.TypeFaction == _data.typeFaction);
+
+        if (allHero.Count == 0) return;
+
+        if (allHero.Count > 0)
         {
-            _data.HeroesInTavern.Add(allHeroFaction[0].idObject);
-            _data.HeroesInTavern.Add(allHeroFaction[1].idObject);
+            if (myFactionHero.Count() > 0)
+            {
+                var firstHero = allHero
+                    .Where(t => t.TypeFaction == _data.typeFaction)
+                    .OrderBy(t => UnityEngine.Random.value)
+                    .ToList();
+                _data.HeroesInTavern.Add(firstHero[0].idObject);
+            }
+            else
+            {
+                _data.HeroesInTavern.Add(allHero[0].idObject);
+            }
+            if (allHero.Count > 1) _data.HeroesInTavern.Add(allHero[1].idObject);
         }
+
+
     }
 
     public void AddTown(BaseEntity town)
     {
         // EntityTown _town = (EntityTown)town;
         // _town.SetPlayer(DataPlayer);
+        if (_data.typeFaction == TypeFaction.Neutral)
+        {
+            ScriptableEntityTown townConfig = (ScriptableEntityTown)town.ScriptableData;
+            _data.typeFaction = townConfig.TypeFaction;
+        }
         DataPlayer.PlayerDataReferences.ListTown.Add((EntityTown)town);
 
     }
@@ -179,44 +204,47 @@ public class Player
         {
             SetActiveHero(hero);
             Debug.Log($"Bot::: Set active hero {hero.ScriptableData.name}");
-            if (hero.Data.path.Count == 0)
+            while (hero.Data.hit > 0)
             {
-                var potentialPoints = GameManager.Instance
-                    .MapManager
-                    .gridTileHelper
-                    .GetNeighboursAtDistance(hero.OccupiedNode, 15, true)
-                    .Where(t =>
-                        t.StateNode.HasFlag(StateNode.Occupied)
-                        && !t.StateNode.HasFlag(StateNode.Guested)
-                        )
-                    .ToList();
-                // .IsExistExit(hero.OccupiedNode, (StateNode.Occupied | ~StateNode.Guested));
-                // .MapManager
-                // .gridTileHelper
-                // .GetNeighboursAtDistance(hero.OccupiedNode, 10)
-                // .Where(t => !t.StateNode.HasFlag(StateNode.Disable))
-                // .ToList();
-                var path = GameManager.Instance
-                    .MapManager
-                    .gridTileHelper
-                    .FindPath(
-                        hero.OccupiedNode.position,
-                        potentialPoints[Random.Range(0, potentialPoints.Count)].position,
-                        true
-                        );
-                hero.SetPathHero(path);
-                Debug.Log($"Bot::: Move to node {path[path.Count - 1].ToString()}");
+                if (hero.Data.path.Count == 0)
+                {
+                    var potentialPoints = GameManager.Instance
+                        .MapManager
+                        .gridTileHelper
+                        .GetNeighboursAtDistance(hero.OccupiedNode, 15, true)
+                        .Where(t =>
+                            t.StateNode.HasFlag(StateNode.Occupied)
+                            && !t.StateNode.HasFlag(StateNode.Guested)
+                            )
+                        .ToList();
+                    // .IsExistExit(hero.OccupiedNode, (StateNode.Occupied | ~StateNode.Guested));
+                    // .MapManager
+                    // .gridTileHelper
+                    // .GetNeighboursAtDistance(hero.OccupiedNode, 10)
+                    // .Where(t => !t.StateNode.HasFlag(StateNode.Disable))
+                    // .ToList();
+                    // var path = GameManager.Instance
+                    //     .MapManager
+                    //     .gridTileHelper
+                    //     .FindPath(
+                    //         hero.OccupiedNode.position,
+                    //         potentialPoints[Random.Range(0, potentialPoints.Count)].position,
+                    //         true
+                    //         );
+                    // hero.SetPathHero(path);
+                    var path = hero.FindPathForHero(potentialPoints[Random.Range(0, potentialPoints.Count)].position, true);
+                    Debug.Log($"Bot::: Move to node {path[path.Count - 1].ToString()}");
+                }
+
+                await hero.StartMove();
             }
-
-            await hero.StartMove();
-
             Debug.Log($"Bot::: Move hero {hero.ScriptableData.name}");
             // GameManager.Instance.ChangeState(GameState.StartMoveHero);
         }
 
+        // AI Make building.
         foreach (var town in _data.PlayerDataReferences.ListTown)
         {
-            // Get allow building.
             ScriptableEntityTown entityTown = (ScriptableEntityTown)town.ScriptableData;
             ScriptableBuildTown configBuildTown = (ScriptableBuildTown)entityTown.BuildTown;
             var allCurrentLevelsBuilding = town.GetLisNextLevelBuilds(configBuildTown);
@@ -235,22 +263,26 @@ public class Player
                 }
                 allowBulding.Add(parentBuild.Key, indexNextBuild);
             }
-            var allowNextBuild = allowBulding
+            var potentialAllowNextBuild = allowBulding
                 .Where(t => town.GetListNeedNoBuilds(t.Key.BuildLevels[t.Value].RequireBuilds).Count == 0
                     && IsExistsResource(t.Key.BuildLevels[t.Value].CostResource)
-                )
-                .OrderBy(t => Random.value)
-                .First();
-            Debug.Log($"Bot::: Builded - {allowNextBuild.Key.name}");
-            var newBuild = town.CreateBuild(allowNextBuild.Key, allowNextBuild.Value);
-
-            var build = allowNextBuild.Key.BuildLevels[allowNextBuild.Value];
-            for (int i = 0; i < build.CostResource.Count; i++)
+                );
+            if (potentialAllowNextBuild.Count() > 0)
             {
-                ChangeResource(
-                    build.CostResource[i].Resource.TypeResource,
-                    -build.CostResource[i].Count
-                    );
+                var allowNextBuild = potentialAllowNextBuild
+                    .OrderBy(t => Random.value)
+                    .First();
+                Debug.Log($"Bot::: Builded - {allowNextBuild.Key.name}");
+                var newBuild = town.CreateBuild(allowNextBuild.Key, allowNextBuild.Value);
+
+                var build = allowNextBuild.Key.BuildLevels[allowNextBuild.Value];
+                for (int i = 0; i < build.CostResource.Count; i++)
+                {
+                    ChangeResource(
+                        build.CostResource[i].Resource.TypeResource,
+                        -build.CostResource[i].Count
+                        );
+                }
             }
         }
 
