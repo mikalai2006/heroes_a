@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 //using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Localization;
 
 using Random = UnityEngine.Random;
 
@@ -28,7 +29,8 @@ public class CreateAreasOperation : ILoadingOperation
 
     public async UniTask Load(Action<float> onProgress, Action<string> onSetNotify)
     {
-        onSetNotify?.Invoke("Create areas ...");
+        var t = new LocalizedString(Constants.LanguageTable.LANG_TABLE_UILANG, "createdgameobject").GetLocalizedString();
+        onSetNotify(t + " areas ...");
 
         List<TileLandscape> listTileData = _root._dataTypeGround.Values
         .Where(t => t.typeGround != TypeGround.None && t.typeGround != TypeGround.Sand).ToList();

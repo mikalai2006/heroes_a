@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using TMPro;
 
 using UnityEngine;
+using UnityEngine.Localization;
 using UnityEngine.Tilemaps;
 
 // [System.Serializable]
@@ -733,8 +734,8 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
                 {
                     var dialogData = new DataDialogHelp()
                     {
-                        Header = "Hello",
-                        Description = "Help",
+                        Header = new LocalizedString(Constants.LanguageTable.LANG_TABLE_UILANG, "Help").GetLocalizedString(),
+                        Description = new LocalizedString(Constants.LanguageTable.LANG_TABLE_ADVENTURE, "needchoosehero").GetLocalizedString(),
                     };
 
                     var dialogWindow = new DialogHelpProvider(dialogData);

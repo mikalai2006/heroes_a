@@ -4,6 +4,8 @@ using AppInfo;
 
 using Cysharp.Threading.Tasks;
 
+using UnityEngine.Localization;
+
 namespace Loader
 {
     public class ConfigOperation : ILoadingOperation
@@ -14,16 +16,15 @@ namespace Loader
         }
         public async UniTask Load(Action<float> onProgress, Action<string> onSetNotify)
         {
-            onSetNotify?.Invoke("Load gamemode configuration ...");
+            var t = new LocalizedString(Constants.LanguageTable.LANG_TABLE_UILANG, "loadgameconfig").GetLocalizedString();
+            onSetNotify?.Invoke(t);
             onProgress?.Invoke(.3f);
             await ResourceSystem.Instance.LoadCollectionsAsset<ScriptableGameMode>(Constants.Labels.LABEL_GAMEMODE);
-            onSetNotify?.Invoke("Load entity configuration ...");
+            await ResourceSystem.Instance.LoadCollectionsAsset<ScriptableGameSetting>(Constants.Labels.LABEL_GAMESETTING);
             onProgress?.Invoke(.6f);
             await ResourceSystem.Instance.LoadCollectionsAsset<ScriptableEntity>(Constants.Labels.LABEL_ENTITY);
             onProgress?.Invoke(.7f);
-            onSetNotify?.Invoke("Load attributes configuration ...");
             await ResourceSystem.Instance.LoadCollectionsAsset<ScriptableAttribute>(Constants.Labels.LABEL_ATTRIBUTE);
-            onSetNotify?.Invoke("Load nature configuration ...");
             onProgress?.Invoke(.8f);
             await ResourceSystem.Instance.LoadCollectionsAsset<TileLandscape>(Constants.Labels.LABEL_LANDSCAPE);
             onProgress?.Invoke(.9f);

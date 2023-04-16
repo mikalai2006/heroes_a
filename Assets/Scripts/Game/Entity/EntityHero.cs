@@ -5,6 +5,7 @@ using System.Linq;
 using Cysharp.Threading.Tasks;
 
 using UnityEngine;
+using UnityEngine.Localization;
 
 using Random = UnityEngine.Random;
 
@@ -255,6 +256,21 @@ public class EntityHero : BaseEntity
 
         // Debug.Log($"Draw path::: {endPoint}[{Position}]= {path.Count}");
         this.SetPathHero(path);
+
+        // if (
+        //     path == null
+        //     && Player.DataPlayer.playerType != PlayerType.Bot
+        //     )
+        // {
+        //     var dialogData = new DataDialogHelp()
+        //     {
+        //         Header = new LocalizedString(Constants.LanguageTable.LANG_TABLE_UILANG, "Help").GetLocalizedString(),
+        //         Description = new LocalizedString(Constants.LanguageTable.LANG_TABLE_ADVENTURE, "nomove").GetLocalizedString(),
+        //     };
+
+        //     var dialogWindow = new DialogHelpProvider(dialogData);
+        //     dialogWindow.ShowAndHide();
+        // }
 
         return path;
     }

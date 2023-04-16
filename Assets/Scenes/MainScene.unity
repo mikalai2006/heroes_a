@@ -428,21 +428,23 @@ MonoBehaviour:
   isWater: 0
   _countArea: 0
   GameModeData:
-    title: 
-    width: 0
-    height: 0
-    koofSizeArea: 0
-    noiseScaleMontain: 0
-    koofMountains: 0
-    koofNature: 0
-    koofMines: 0
-    koofMinTown: 0
-    koofResource: 0
-    koofFreeResource: 0
-    koofExplore: 0
-    koofSchoolSkills: 0
-    koofArtifacts: 0
-    koofDwelling: 0
+    title: S
+    width: 50
+    height: 50
+    koofSizeArea: 1
+    noiseScaleMontain: 0.121
+    koofMountains: 0.27
+    koofNature: 0.01
+    koofMines: 0.08
+    koofMinTown: 0.07
+    koofResource: 0.005
+    koofFreeResource: 0.03
+    koofExplore: 0.003
+    koofSchoolSkills: 0.007
+    koofArtifacts: 0.03
+    koofDwelling: 0.0457
+  DataGameSetting:
+    Compexity: 100
   countPlayer: 1
   countBot: 1
   maxPlayer: 5

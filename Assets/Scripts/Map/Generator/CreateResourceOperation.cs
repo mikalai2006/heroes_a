@@ -5,6 +5,7 @@ using Random = UnityEngine.Random;
 using Cysharp.Threading.Tasks;
 using System;
 using System.Linq;
+using UnityEngine.Localization;
 
 public class CreateResourceOperation : ILoadingOperation
 {
@@ -17,7 +18,8 @@ public class CreateResourceOperation : ILoadingOperation
 
     public async UniTask Load(Action<float> onProgress, Action<string> onSetNotify)
     {
-        onSetNotify("Create resource ...");
+        var t = new LocalizedString(Constants.LanguageTable.LANG_TABLE_UILANG, "createdgameobject").GetLocalizedString();
+        onSetNotify(t + " resources ...");
 
         for (int x = 0; x < LevelManager.Instance.Level.listArea.Count; x++)
         {

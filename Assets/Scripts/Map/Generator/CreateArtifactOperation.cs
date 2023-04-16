@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using UnityEngine;
+using UnityEngine.Localization;
 
 using Random = UnityEngine.Random;
 
@@ -22,7 +23,9 @@ public class CreateArtifactOperation : ILoadingOperation
 
     public async UniTask Load(Action<float> onProgress, Action<string> onSetNotify)
     {
-        onSetNotify?.Invoke("Create artifacts ...");
+        var t = new LocalizedString(Constants.LanguageTable.LANG_TABLE_UILANG, "createdgameobject").GetLocalizedString();
+        onSetNotify(t + " artifacts ...");
+
         var factory = new EntityMapObjectFactory();
 
         //Get all attributes artifacts.

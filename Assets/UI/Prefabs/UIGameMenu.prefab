@@ -45,6 +45,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82a30f5719ef7d74c96a48f6e49e0dcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _localization:
+    m_TableReference:
+      m_TableCollectionName: GUID:9b6db77d8a0719a4490c3b7aad12567c
   _menuDoc: {fileID: 1323997457802355816}
 --- !u!1 &7545619130686498035
 GameObject:

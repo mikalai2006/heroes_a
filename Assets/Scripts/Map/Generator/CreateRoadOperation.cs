@@ -5,6 +5,7 @@ using Loader;
 using Cysharp.Threading.Tasks;
 using System;
 using System.Linq;
+using UnityEngine.Localization;
 
 public class CreateRoadOperation : ILoadingOperation
 {
@@ -15,7 +16,8 @@ public class CreateRoadOperation : ILoadingOperation
     }
     public async UniTask Load(Action<float> onProgress, Action<string> onSetNotify)
     {
-        onSetNotify("Create roads ...");
+        var t = new LocalizedString(Constants.LanguageTable.LANG_TABLE_UILANG, "createdgameobject").GetLocalizedString();
+        onSetNotify(t + " roads ...");
 
         List<Area> listArea = LevelManager.Instance.Level.listArea.Where(t =>
             t.portal != null

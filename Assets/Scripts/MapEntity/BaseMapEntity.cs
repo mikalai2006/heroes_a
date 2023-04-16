@@ -2,6 +2,7 @@ using System;
 
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Localization;
 
 [System.Serializable]
 public abstract class BaseMapEntity : MonoBehaviour, IPointerClickHandler
@@ -124,8 +125,8 @@ public abstract class BaseMapEntity : MonoBehaviour, IPointerClickHandler
             {
                 var dialogData = new DataDialogHelp()
                 {
-                    Header = "Hello",
-                    Description = "Help",
+                    Header = new LocalizedString(Constants.LanguageTable.LANG_TABLE_UILANG, "Help").GetLocalizedString(),
+                    Description = new LocalizedString(Constants.LanguageTable.LANG_TABLE_ADVENTURE, "needchoosehero").GetLocalizedString(),
                 };
 
                 var dialogWindow = new DialogHelpProvider(dialogData);

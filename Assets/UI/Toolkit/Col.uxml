@@ -1,6 +1,11 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
-    <ui:VisualElement name="Col" class="dialog_box_col mt-2">
-        <ui:Label tabindex="-1" text="#countplayer" display-tooltip-when-elided="true" enable-rich-text="false" name="NameOption" class="text" />
-        <ui:VisualElement name="BoxOption" class="row_horizontal" />
+    <Style src="project://database/Assets/UI/Toolkit/Base.uss?fileID=7433441132597879392&amp;guid=fa07b064290e7384d9ad2e26e79f5953&amp;type=3#Base" />
+    <ui:VisualElement name="Col" class="mt-2 box_shadow">
+        <ui:VisualElement class="box_bg" style="flex-grow: 1;">
+            <ui:Label tabindex="-1" text="#countplayer" display-tooltip-when-elided="true" enable-rich-text="false" name="NameOption" class="text-primary" />
+            <ui:VisualElement class="box_shadow" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
+                <ui:VisualElement name="BoxOption" class="row_horizontal box_bg" />
+            </ui:VisualElement>
+        </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

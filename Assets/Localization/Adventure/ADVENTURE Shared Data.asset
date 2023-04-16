@@ -319,6 +319,14 @@ MonoBehaviour:
     m_Key: dwelling_d
     m_Metadata:
       m_Items: []
+  - m_Id: 7234268620292096
+    m_Key: nomove
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7235440680796160
+    m_Key: needchoosehero
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

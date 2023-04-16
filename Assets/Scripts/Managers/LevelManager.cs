@@ -15,6 +15,7 @@ public class LevelManager : Singleton<LevelManager>, ISaveDataPlay, ISaveDataGam
     public int CountArea => _countArea;
 
     public DataGameMode GameModeData;
+    public DataGameSetting DataGameSetting;
 
     [Header("Setting level")]
     [Space(10)]

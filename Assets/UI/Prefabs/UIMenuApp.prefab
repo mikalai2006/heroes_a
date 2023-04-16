@@ -142,9 +142,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db0ca43dbc574ad488a7196fe7b126fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _localization:
+    m_TableReference:
+      m_TableCollectionName: GUID:9b6db77d8a0719a4490c3b7aad12567c
   _menuAppDoc: {fileID: 5331411726998848105}
-  mapGenerator: {fileID: 0}
   _menuNewGameDoc: {fileID: 5395260629747610372}
   _templateButton: {fileID: 9197481963319205126, guid: db5e7d04a42304542a4356b1519364b2, type: 3}
+  _templateButtonWithImg: {fileID: 9197481963319205126, guid: 93de6cb7ebf6fca42bc3fdf8f26f3259, type: 3}
   _templateColumn: {fileID: 9197481963319205126, guid: aeb61825a88c3414e9945054eb442191, type: 3}
-  _levelManager: {fileID: 0}

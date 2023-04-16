@@ -5,6 +5,7 @@ using Cysharp.Threading.Tasks;
 using System;
 using System.Linq;
 using Random = UnityEngine.Random;
+using UnityEngine.Localization;
 
 public class CreateDwellingOperation : ILoadingOperation
 {
@@ -17,7 +18,9 @@ public class CreateDwellingOperation : ILoadingOperation
 
     public async UniTask Load(Action<float> onProgress, Action<string> onSetNotify)
     {
-        onSetNotify("Create dwellings ...");
+        var t = new LocalizedString(Constants.LanguageTable.LANG_TABLE_UILANG, "createdgameobject").GetLocalizedString();
+        onSetNotify(t + " dwellings ...");
+
         var factory = new EntityMapObjectFactory();
 
         for (int keyArea = 0; keyArea < LevelManager.Instance.Level.listArea.Count; keyArea++)

@@ -4,6 +4,7 @@ using Cysharp.Threading.Tasks;
 using System;
 using System.Linq;
 using Random = UnityEngine.Random;
+using UnityEngine.Localization;
 
 public class CreateTownOperation : ILoadingOperation
 {
@@ -16,7 +17,8 @@ public class CreateTownOperation : ILoadingOperation
 
     public async UniTask Load(Action<float> onProgress, Action<string> onSetNotify)
     {
-        onSetNotify("Create towns ...");
+        var t = new LocalizedString(Constants.LanguageTable.LANG_TABLE_UILANG, "createdgameobject").GetLocalizedString();
+        onSetNotify(t + "towns ...");
 
         for (int x = 0; x < LevelManager.Instance.Level.listArea.Count; x++)
         {

@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a65cfdab86604e40a6aaa5b4c21ea31, type: 3}
+  m_Name: DefaultGameSetting
+  m_EditorClassIdentifier: 
+  idObject: 
+  Complexities:
+  - value: 100
+    sprite: {fileID: -1560610031, guid: c4c05eb8d4f42bb46a51404b3bfd32d7, type: 3}
+  - value: 120
+    sprite: {fileID: -1243349403, guid: c4c05eb8d4f42bb46a51404b3bfd32d7, type: 3}
+  - value: 140
+    sprite: {fileID: 122301707, guid: c4c05eb8d4f42bb46a51404b3bfd32d7, type: 3}
+  - value: 160
+    sprite: {fileID: -426406784, guid: c4c05eb8d4f42bb46a51404b3bfd32d7, type: 3}
+  - value: 180
+    sprite: {fileID: -864904784, guid: c4c05eb8d4f42bb46a51404b3bfd32d7, type: 3}
+  - value: 200
+    sprite: {fileID: 1770593047, guid: c4c05eb8d4f42bb46a51404b3bfd32d7, type: 3}
