@@ -62,6 +62,15 @@ public class EntityCreature : BaseEntity
         //}
     }
 
+    public override void SetPlayer(Player player)
+    {
+        // ScriptableEntityMapObject configData = (ScriptableEntityMapObject)ScriptableData;
+        ScriptableEntityCreature configData = (ScriptableEntityCreature)ScriptableData;
+        // configData.OnDoHero(ref player, this);
+        MapObjectGameObject.DestroyGameObject();
+        DestroyGameObject();
+    }
+
     #region SaveLoadData
     // public void LoadDataPlay(DataPlay data)
     // {

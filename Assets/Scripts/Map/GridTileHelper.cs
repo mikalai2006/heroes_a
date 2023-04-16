@@ -206,9 +206,9 @@ public class GridTileHelper
             }
             prevNode = currentNode;
         }
-        Debug.Log($"End fULL");
+        Debug.Log($"Not found path");
 
-        return CalculatePath(endNode);
+        return null; // CalculatePath(endNode);
     }
     public List<GridTileNode> IsExistExit(
         GridTileNode node,

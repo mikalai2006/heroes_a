@@ -45,18 +45,30 @@ public class MapEntityArtifact : BaseMapEntity, IDialogMapObjectOperation
 
     public override async void OnGoHero(Player player)
     {
-        DataResultDialog result = await OnTriggeredHero();
-
-        if (result.isOk)
+        if (LevelManager.Instance.ActivePlayer.DataPlayer.playerType != PlayerType.Bot)
         {
-            // Set artifact for hero.
-            MapObjectClass.SetPlayer(player);
-            Destroy(gameObject);
+            DataResultDialog result = await OnTriggeredHero();
+
+            if (result.isOk)
+            {
+                // Set artifact for hero.
+                OnHeroGo(player);
+            }
+            else
+            {
+                // Click cancel.
+            }
         }
         else
         {
-            // Click cancel.
+
+            OnHeroGo(player);
         }
     }
 
+    private void OnHeroGo(Player player)
+    {
+        MapObjectClass.SetPlayer(player);
+        Destroy(gameObject);
+    }
 }

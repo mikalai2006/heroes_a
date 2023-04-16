@@ -86,7 +86,6 @@ public class MapEntityMapObject : BaseMapEntity, IDialogMapObjectOperation
     private void OnHeroGo(Player player)
     {
         MapObjectClass.SetPlayer(player);
-        player.ActiveHero.SetPathHero(null);
     }
 
     public override void OnNextDay()

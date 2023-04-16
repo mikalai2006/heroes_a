@@ -13,6 +13,7 @@ public class EntityHero : BaseEntity
 {
     [SerializeField] public DataHero Data = new DataHero();
     public ScriptableEntityHero ConfigData => (ScriptableEntityHero)ScriptableData;
+    public static event Action<EntityHero> onChangeParamsActiveHero;
     // private bool _canMove = false;
 
     public bool IsExistPath
@@ -117,8 +118,19 @@ public class EntityHero : BaseEntity
     {
         var dataNode = ResourceSystem.Instance.GetLandscape(node.TypeGround);
         float val = (100 - dataNode.dataNode.speed + (100 - Data.speed + 10));
-        //Debug.Log($"CalculateHitByNode::: {val}");
         return val;
+    }
+
+    public void ChangeHitHero(GridTileNode node)
+    {
+        var val = CalculateHitByNode(node);
+        Data.hit -= val;
+
+        // Debug.Log($"ChangeHitHero:::[node {node.position}]{ScriptableData.name}-{Data.hit}");
+        if (Player != null && Player.DataPlayer.playerType != PlayerType.Bot)
+        {
+            onChangeParamsActiveHero?.Invoke(this);
+        }
     }
 
     public void SetHeroAsActive()
@@ -193,7 +205,7 @@ public class EntityHero : BaseEntity
     {
         if (_path != null)
         {
-            _path.RemoveAt(0);
+            // if (_path[0].position == this.Position) _path.RemoveAt(0);
             Data.path = _path;
         }
         else
@@ -237,13 +249,7 @@ public class EntityHero : BaseEntity
             .GridTileHelper()
             .FindPath(startPoint, endPoint, isDiagonal);
 
-        // if (path != null)
-        // {
-        //     this.SetPathHero(path);
-        //     // GameManager.Instance.MapManager.DrawCursor(path, this);
-        //     // GameManager.Instance.ChangeState(GameState.CreatePathHero);
-        // }
-        Debug.Log($"Draw path::: {endPoint}[{Position}]= {path.Count}");
+        // Debug.Log($"Draw path::: {endPoint}[{Position}]= {path.Count}");
         this.SetPathHero(path);
 
         return path;

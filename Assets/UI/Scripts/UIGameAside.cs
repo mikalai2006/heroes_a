@@ -61,14 +61,14 @@ public class UIGameAside : MonoBehaviour
     private void Start()
     {
         GameManager.OnAfterStateChanged += OnAfterStateChanged;
-        MapEntityHero.onChangeParamsActiveHero += ChangeParamsActiveHero;
+        EntityHero.onChangeParamsActiveHero += ChangeParamsActiveHero;
         UITownInfo.onMoveHero += DrawHeroBox;
     }
 
     private void OnDestroy()
     {
-        MapEntityHero.onChangeParamsActiveHero -= ChangeParamsActiveHero;
         GameManager.OnAfterStateChanged -= OnAfterStateChanged;
+        EntityHero.onChangeParamsActiveHero -= ChangeParamsActiveHero;
         UITownInfo.onMoveHero -= DrawHeroBox;
     }
 

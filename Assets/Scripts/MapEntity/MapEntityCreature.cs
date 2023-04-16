@@ -40,6 +40,7 @@ public class MapEntityCreature : BaseMapEntity, IDialogMapObjectOperation
         // TODO ARENA
 
         Destroy(gameObject);
+        MapObjectClass.SetPlayer(player);
     }
 
     public async UniTask<DataResultDialog> OnTriggeredHero()

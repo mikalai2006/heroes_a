@@ -138,6 +138,7 @@ public class EntityMapObject : BaseEntity
         {
             //ScriptableData.MapPrefab.ReleaseInstance(gameObject);
             MapObjectGameObject.DestroyGameObject();
+            DestroyGameObject();
         }
     }
 
