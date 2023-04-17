@@ -81,6 +81,8 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
     public int countArea;
     public Tilemap _tileMap;
     public Tilemap _tileTest;
+    [SerializeField] public Tilemap _tileMapEdge;
+    [SerializeField] public RuleTile _tileEdge;
     [SerializeField] public GameObject _textMesh;
     [SerializeField] public Tilemap _tileMapText;
     [SerializeField] public Dictionary<Vector3, GameObject> listTextMesh = new Dictionary<Vector3, GameObject>();
@@ -452,6 +454,7 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
         operations.Enqueue(new CreateResourceOperation(this));
         operations.Enqueue(new CreateArtifactOperation(this));
         operations.Enqueue(new CreateDwellingOperation(this));
+        operations.Enqueue(new CreateEdgesOperation(this));
         await GameManager.Instance.LoadingScreenProvider.LoadAndDestroy(operations);
 
         Application.targetFrameRate = -1;
@@ -475,6 +478,7 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
         colliderTileMap.offset = new Vector2((float)gameModeData.width / 2, (float)gameModeData.height / 2);
         colliderTileMap.size = new Vector2(gameModeData.width, gameModeData.height);
         CompositeCollider2D composeColiiderTileMap = _tileMap.GetComponent<CompositeCollider2D>();
+        // _tileMap.CompressBounds();
     }
 
 

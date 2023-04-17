@@ -157,7 +157,7 @@ public class CreateBordersOperation : ILoadingOperation
 
                     List<TileNature> listTileForDraw = ResourceSystem.Instance.GetNature().Where(t =>
                         t.typeGround == tileData.typeGround
-                        && !t.isWalkable
+                        && t.isCorner
                     ).ToList(); //  _tileData.cornerTiles.Concat(_tileData.natureTiles).ToList();
 
                     TileNature tileForDraw = listTileForDraw[Random.Range(0, listTileForDraw.Count)];

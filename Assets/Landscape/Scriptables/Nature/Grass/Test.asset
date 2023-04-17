@@ -22,5 +22,5 @@ MonoBehaviour:
   dataNode:
     speed: 0
   isWalkable: 0
-  isCorner: 1
+  isCorner: 0
   listTypeNoPath: 0e000000
