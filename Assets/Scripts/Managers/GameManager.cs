@@ -20,6 +20,11 @@ public class GameManager : StaticInstance<GameManager>
 
     void Start()
     {
+#if !UNITY_EDITOR
+        Debug.unityLogger.logEnabled = true;
+#else
+        Debug.unityLogger.logEnabled = false;
+#endif
         //QualitySettings.vSyncCount = 0;
 
         ChangeState(GameState.StartApp);

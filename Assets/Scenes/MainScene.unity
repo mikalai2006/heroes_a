@@ -445,6 +445,7 @@ MonoBehaviour:
     koofDwelling: 0.0457
   DataGameSetting:
     Compexity: 100
+    speedHero: 0.3
   countPlayer: 1
   countBot: 1
   maxPlayer: 5

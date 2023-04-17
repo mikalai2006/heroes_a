@@ -198,13 +198,13 @@ public class Player
 
     public async UniTask RunBot()
     {
-        Debug.Log($"Bot::: Start - {this.DataPlayer.id}");
-        var countProbePath = 10;
+        // Debug.Log($"Bot::: Start - {this.DataPlayer.id}");
+        var countProbePath = 2;
 
         foreach (var hero in _data.PlayerDataReferences.ListHero)
         {
             SetActiveHero(hero);
-            Debug.Log($"Bot::: Set active hero {hero.ScriptableData.name}");
+            // Debug.Log($"Bot::: Set active hero {hero.ScriptableData.name}");
             var countProbe = 0;
             while (hero.Data.hit > 0 && countProbe < countProbePath)
             {
@@ -242,7 +242,7 @@ public class Player
                     //         true
                     //         );
                     // hero.SetPathHero(path);
-                    Debug.Log($"Bot::: Find path [{hero.OccupiedNode.position}]");
+                    // Debug.Log($"Bot::: Find path [{hero.OccupiedNode.position}]");
                     var path = hero.FindPathForHero(potentialPoints[0].position, true);
                     // Debug.Log($"Bot::: Move from [{hero.OccupiedNode.ToString()}] to node {path[path.Count - 1].ToString()}");
                     countProbe++;
@@ -250,7 +250,7 @@ public class Player
 
                 await hero.StartMove();
             }
-            Debug.Log($"Bot::: End Move hero {hero.ScriptableData.name}[hit={hero.Data.hit}]");
+            // Debug.Log($"Bot::: End Move hero {hero.ScriptableData.name}[hit={hero.Data.hit}]");
             // GameManager.Instance.ChangeState(GameState.StartMoveHero);
         }
 
@@ -284,7 +284,7 @@ public class Player
                 var allowNextBuild = potentialAllowNextBuild
                     .OrderBy(t => Random.value)
                     .First();
-                Debug.Log($"Bot::: Builded - {allowNextBuild.Key.name}");
+                // Debug.Log($"Bot::: Builded - {allowNextBuild.Key.name}");
                 var newBuild = town.CreateBuild(allowNextBuild.Key, allowNextBuild.Value);
 
                 var build = allowNextBuild.Key.BuildLevels[allowNextBuild.Value];
@@ -298,7 +298,7 @@ public class Player
             }
         }
 
-        Debug.Log($"Bot::: Finish - {this.DataPlayer.id}");
+        // Debug.Log($"Bot::: Finish - {this.DataPlayer.id}");
         GameManager.Instance.ChangeState(GameState.StepNextPlayer);
     }
 

@@ -157,7 +157,7 @@ public class EntityHero : BaseEntity
         Position = newPosition;
         if (Player != null)
         {
-            SetPositionCamera(newPosition);
+            //SetPositionCamera(newPosition);
             // GameManager.Instance.MapManager.SetColorForTile(newPosition, Color.cyan);
             SetClearSky(newPosition);
         }
@@ -210,7 +210,7 @@ public class EntityHero : BaseEntity
     {
         if (_path != null)
         {
-            // if (_path[0].position == this.Position) _path.RemoveAt(0);
+            if (_path[0].position == this.Position) _path.RemoveAt(0);
             Data.path = _path;
         }
         else
@@ -221,7 +221,10 @@ public class EntityHero : BaseEntity
         //for (int i = 1; i < path.Count; i++)
         //{
         //    HeroData.path.Add(path[i]._position);
-        GameManager.Instance.MapManager.DrawCursor(Data.path, this);
+        if (Player != null && Player.DataPlayer.playerType != PlayerType.Bot)
+        {
+            GameManager.Instance.MapManager.DrawCursor(Data.path, this);
+        }
         //}
         if (Data.path.Count > 0)
         {

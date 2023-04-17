@@ -32,14 +32,14 @@ MonoBehaviour:
   TypeGround: 0
   TypeWorkAttribute: 0
   Attributes: []
-  listTypeNoPath: 
+  listTypeNoPath: 0c000000
   TypeWorkObject: 3
   TypeMapObject: 7
   listRuleInput: 1100000013000000120000000e000000
   Effects: []
   TypeFaction: 1
-  CostResource: []
-  Creature: {fileID: 0}
+  Creature:
+  - {fileID: 11400000, guid: 4fd41ea386a0ace4abad0946d8860497, type: 2}
   references:
     version: 2
     RefIds: []

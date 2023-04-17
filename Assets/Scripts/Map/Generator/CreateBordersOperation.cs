@@ -38,7 +38,7 @@ public class CreateBordersOperation : ILoadingOperation
     private async UniTask CreateBorderMountain()
     {
         var t = new LocalizedString(Constants.LanguageTable.LANG_TABLE_UILANG, "createdgameobject").GetLocalizedString();
-        _onSetNotify(t + " every week resources ...");
+        _onSetNotify(t + " border mountains ...");
 
 
         List<GridTileNode> nodes = _root.gridTileHelper.GetAllGridNodes().Where(t =>
@@ -121,7 +121,7 @@ public class CreateBordersOperation : ILoadingOperation
     private async UniTask CreateRandomMountain()
     {
         var t = new LocalizedString(Constants.LanguageTable.LANG_TABLE_UILANG, "createdgameobject").GetLocalizedString();
-        _onSetNotify(t + " normalize area ...");
+        _onSetNotify(t + " perlin mountains ...");
 
 
         if (LevelManager.Instance.GameModeData.noiseScaleMontain == 0 || LevelManager.Instance.GameModeData.koofMountains == 0)

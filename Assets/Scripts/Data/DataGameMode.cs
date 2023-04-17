@@ -27,5 +27,6 @@ public struct DataGameMode
 public struct DataGameSetting
 {
     public int Compexity;
+    public float speedHero;
 
 }
