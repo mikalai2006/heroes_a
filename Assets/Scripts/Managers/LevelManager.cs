@@ -7,29 +7,18 @@ public class LevelManager : Singleton<LevelManager>, ISaveDataPlay, ISaveDataGam
 {
     [SerializeField] private Transform _camera;
     public DataLevel Level;
+    public ScriptableGameSetting GameSettings;
 
-    [Header("General")]
-    [Space(10)]
-    public bool isWater = false;
-    [SerializeField] private int _countArea;
-    public int CountArea => _countArea;
+    // [Header("General")]
+    // [Space(10)]
+    // [SerializeField] private int _countArea;u
+    // public int ContArea => _countArea;
 
-    public DataGameMode GameModeData;
-    public DataGameSetting DataGameSetting;
+    // public DataGameMode GameModeData;
+    // public DataGameSetting DataGameSetting;
 
-    [Header("Setting level")]
-    [Space(10)]
-    public int countPlayer;
-    public int countBot;
-    public int maxPlayer;
-    //public List<Player> listPlayer;
-
-    public Color[] colors = new Color[4] {
-        Color.red,
-        Color.green,
-        Color.yellow,
-        Color.cyan
-    };
+    // [Header("Setting level")]
+    // [Space(10)]
 
     public Player ActivePlayer
     {
@@ -40,10 +29,10 @@ public class LevelManager : Singleton<LevelManager>, ISaveDataPlay, ISaveDataGam
         }
     }
 
-    public LevelManager()
-    {
-        GameModeData = new DataGameMode();
-    }
+    // public LevelManager()
+    // {
+    //     GameModeData = new DataGameMode();
+    // }
 
     //protected override void Awake()
     //{
@@ -78,86 +67,141 @@ public class LevelManager : Singleton<LevelManager>, ISaveDataPlay, ISaveDataGam
     //    }
     //}
 
+    public void Init()
+    {
+        GameSettings = ResourceSystem.Instance
+            .GetAllAssetsByLabel<ScriptableGameSetting>(Constants.Labels.LABEL_GAMESETTING)
+            .First();
+    }
+
+    public void CreateListPlayer()
+    {
+        Level.Settings.Players = new List<Player>();
+
+        for (int i = 0; i < Level.Settings.countPlayer; i++)
+        {
+            var dataPlayer = new PlayerData()
+            {
+                id = i,
+                color = GameSettings.colors[i],
+                playerType = PlayerType.User
+            };
+
+            Player player = new Player(dataPlayer);
+            Level.Settings.Players.Add(player);
+
+        }
+        // Level.countPlayer = countPlayer;
+        // Level.countBot = countBot;
+        // _countArea = Mathf.CeilToInt(
+        //     (GameModeData.width * GameModeData.height) /
+        //     (
+        //         ((GameModeData.width * GameModeData.height) / (countPlayer + countBot))
+        //         * GameModeData.koofSizeArea
+        //     )
+        //     );
+        // Level.activePlayer = -1;
+
+        // for (int i = 0; i < countPlayer; i++)
+        // {
+        //     var dataPlayer = new PlayerData();
+        //     dataPlayer.id = i;
+        //     dataPlayer.color = DataGameSetting.colors[i];
+        //     dataPlayer.playerType = PlayerType.User;
+
+        //     var player = new Player(dataPlayer);
+        //     Level.listPlayer.Add(player);
+        // }
+
+        // for (int i = countPlayer; i < (countPlayer + countBot); i++)
+        // {
+        //     var dataPlayer = new PlayerData();
+        //     dataPlayer.id = i;
+        //     dataPlayer.color = colors[i];
+        //     dataPlayer.playerType = PlayerType.Bot;
+        //     var player = new Player(dataPlayer);
+
+        //     Level.listPlayer.Add(player);
+        // }
+    }
     public void NewLevel()
     {
+        // Level.countPlayer = countPlayer;
+        // Level.countBot = countBot;
+        // _countArea = Mathf.CeilToInt(
+        //     (GameModeData.width * GameModeData.height) /
+        //     (
+        //         ((GameModeData.width * GameModeData.height) / (countPlayer + countBot))
+        //         * GameModeData.koofSizeArea
+        //     )
+        //     );
+        // Level.activePlayer = -1;
 
-        Level = new DataLevel();
-        Level.countPlayer = countPlayer;
-        Level.countBot = countBot;
-        _countArea = Mathf.CeilToInt(
-            (GameModeData.width * GameModeData.height) /
-            (
-                ((GameModeData.width * GameModeData.height) / (countPlayer + countBot))
-                * GameModeData.koofSizeArea
-            )
-            );
-        Level.activePlayer = -1;
+        // for (int i = 0; i < countPlayer; i++)
+        // {
+        //     var dataPlayer = new PlayerData();
+        //     dataPlayer.id = i;
+        //     dataPlayer.color = DataGameSetting.colors[i];
+        //     dataPlayer.playerType = PlayerType.User;
 
-        for (int i = 0; i < countPlayer; i++)
-        {
-            var dataPlayer = new PlayerData();
-            dataPlayer.id = i;
-            dataPlayer.color = colors[i];
-            dataPlayer.playerType = PlayerType.User;
+        //     var player = new Player(dataPlayer);
+        //     Level.listPlayer.Add(player);
+        // }
 
-            var player = new Player(dataPlayer);
-            Level.listPlayer.Add(player);
-        }
+        // for (int i = countPlayer; i < (countPlayer + countBot); i++)
+        // {
+        //     var dataPlayer = new PlayerData();
+        //     dataPlayer.id = i;
+        //     dataPlayer.color = colors[i];
+        //     dataPlayer.playerType = PlayerType.Bot;
+        //     var player = new Player(dataPlayer);
 
-        for (int i = countPlayer; i < (countPlayer + countBot); i++)
-        {
-            var dataPlayer = new PlayerData();
-            dataPlayer.id = i;
-            dataPlayer.color = colors[i];
-            dataPlayer.playerType = PlayerType.Bot;
-            var player = new Player(dataPlayer);
-
-            Level.listPlayer.Add(player);
-        }
+        //     Level.listPlayer.Add(player);
+        // }
 
     }
 
     public async void StepNextPlayer()
     {
-        if (Level.activePlayer < (countPlayer + countBot - 1))
-        {
-            Level.activePlayer++;
-        }
-        else
-        {
-            Level.activePlayer = 0;
-        }
-
-        //level.activePlayer = level.activePlayer < (countPlayer + countEnemies + 1) ? level.activePlayer++ : 0;
-        // GameManager.Instance.MapManager.ResetSky(ActivePlayer.DataPlayer.nosky);
-
-        if (ActivePlayer.ActiveHero == null)
-        {
-            //GetActivePlayer().SetActiveHero(GetActivePlayer().GetActiveHero());
-            // ActivePlayer.ActiveHero = ActivePlayer.DataPlayer.PlayerDataReferences.ListHero[0];
-            if (ActivePlayer.DataPlayer.PlayerDataReferences.ListHero.Count > 0)
-                ActivePlayer.DataPlayer.PlayerDataReferences.ListHero[0].SetHeroAsActive();
-        }
-        else
-        {
-            ActivePlayer.ActiveHero.SetHeroAsActive();
-        }
-
-        if (ActivePlayer.DataPlayer.playerType == PlayerType.Bot)
-        {
-            await ActivePlayer.RunBot();
-        }
-
-        ActivePlayer.GenerateHeroTavern();
-
-        // if (ActivePlayer.DataPlayer.nosky.Count == 0)
+        // if (Level.activePlayer < (countPlayer + countBot - 1))
         // {
-        //     List<GridTileNode> listNoskyNode = GameManager.Instance
-        //         .MapManager.DrawSky(ActivePlayer.ActiveHero.OccupiedNode, 5);
-        //     ActivePlayer.SetNosky(listNoskyNode);
+        //     Level.activePlayer++;
+        // }
+        // else
+        // {
+        //     Level.activePlayer = 0;
         // }
 
-        //Debug.Log($" Active Hero {level.activePlayer}");
+        // //level.activePlayer = level.activePlayer < (countPlayer + countEnemies + 1) ? level.activePlayer++ : 0;
+        // // GameManager.Instance.MapManager.ResetSky(ActivePlayer.DataPlayer.nosky);
+
+        // if (ActivePlayer.ActiveHero == null)
+        // {
+        //     //GetActivePlayer().SetActiveHero(GetActivePlayer().GetActiveHero());
+        //     // ActivePlayer.ActiveHero = ActivePlayer.DataPlayer.PlayerDataReferences.ListHero[0];
+        //     if (ActivePlayer.DataPlayer.PlayerDataReferences.ListHero.Count > 0)
+        //         ActivePlayer.DataPlayer.PlayerDataReferences.ListHero[0].SetHeroAsActive();
+        // }
+        // else
+        // {
+        //     ActivePlayer.ActiveHero.SetHeroAsActive();
+        // }
+
+        // if (ActivePlayer.DataPlayer.playerType == PlayerType.Bot)
+        // {
+        //     await ActivePlayer.RunBot();
+        // }
+
+        // ActivePlayer.GenerateHeroTavern();
+
+        // // if (ActivePlayer.DataPlayer.nosky.Count == 0)
+        // // {
+        // //     List<GridTileNode> listNoskyNode = GameManager.Instance
+        // //         .MapManager.DrawSky(ActivePlayer.ActiveHero.OccupiedNode, 5);
+        // //     ActivePlayer.SetNosky(listNoskyNode);
+        // // }
+
+        // //Debug.Log($" Active Hero {level.activePlayer}");
     }
 
     public void AddArea(int id, TileLandscape landscape)
@@ -217,15 +261,15 @@ public class LevelManager : Singleton<LevelManager>, ISaveDataPlay, ISaveDataGam
 
     public void LoadLevel(DataPlay dataPlay, DataGame dataGame)
     {
-        GameModeData = dataGame.dataMap.GameModeData;
+        Level.GameModeData = dataGame.dataMap.GameModeData;
 
         Level = new DataLevel();
         Level = dataPlay.Level;
-        Level.countPlayer = dataPlay.Level.countPlayer;
+        Level.Settings.countPlayer = dataPlay.Level.Settings.countPlayer;
         // _countArea = Mathf.CeilToInt((GameModeData.width * GameModeData.height) / (((GameModeData.width * GameModeData.height) / countPlayer) * GameModeData.koofSizeArea));
         // Level.activePlayer = -1;
 
-        for (int i = 0; i < dataPlay.Level.countPlayer; i++)
+        for (int i = 0; i < dataPlay.Level.Settings.countPlayer; i++)
         {
             var data = dataPlay.Level.listPlayer[i];
             var player = new Player(dataPlay.Level.listPlayer[i].DataPlayer);
@@ -256,6 +300,6 @@ public class LevelManager : Singleton<LevelManager>, ISaveDataPlay, ISaveDataGam
 
     public void SaveDataGame(ref DataGame data)
     {
-        data.dataMap.GameModeData = GameModeData;
+        data.dataMap.GameModeData = Level.GameModeData;
     }
 }

@@ -422,11 +422,11 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
 #endif
         InitSetting();
 
-        gameModeData = LevelManager.Instance.GameModeData;
+        gameModeData = LevelManager.Instance.Level.GameModeData;
 
-        _isWater = LevelManager.Instance.isWater;
+        _isWater = LevelManager.Instance.Level.Settings.isWater;
 
-        countArea = LevelManager.Instance.CountArea;
+        countArea = LevelManager.Instance.Level.Settings.CountArea;
 
         // Create grid tile nodes.
         gridTileHelper = new GridTileHelper(gameModeData.width, gameModeData.height);

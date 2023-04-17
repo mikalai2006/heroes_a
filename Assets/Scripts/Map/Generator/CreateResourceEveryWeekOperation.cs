@@ -44,7 +44,7 @@ public class CreateResourceEveryWeekOperation : ILoadingOperation
             if (nodes.Count > 0)
             {
                 int maxCountResource = Mathf.CeilToInt(
-                    LevelManager.Instance.GameModeData.koofResource * area.countNode);
+                    LevelManager.Instance.Level.GameModeData.koofResource * area.countNode);
                 area.Stat.countEveryResourceN = maxCountResource;
                 int countCreated = 0;
 

@@ -47,7 +47,7 @@ public class CreateDwellingOperation : ILoadingOperation
                 if (nodes.Count > 0)
                 {
                     int count = Mathf.CeilToInt(
-                        LevelManager.Instance.GameModeData.koofDwelling * .1f * area.countNode);
+                        LevelManager.Instance.Level.GameModeData.koofDwelling * .1f * area.countNode);
                     area.Stat.countDwellingN = count;
                     int countCreated = 0;
                     List<ScriptableEntityMapObject> list = ResourceSystem.Instance

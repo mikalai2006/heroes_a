@@ -207,7 +207,7 @@ public class MapEntityHero : BaseMapEntity
 
     private async UniTask SmoothLerp(Vector3 startPosition, Vector3 endPosition)
     {
-        float time = LevelManager.Instance.DataGameSetting.speedHero;
+        float time = LevelManager.Instance.Level.Settings.speedHero;
         float elapsedTime = 0;
         while (elapsedTime < time)
         {

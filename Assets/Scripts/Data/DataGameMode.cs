@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 using UnityEngine;
 
 [System.Serializable]
@@ -26,7 +28,13 @@ public struct DataGameMode
 [System.Serializable]
 public struct DataGameSetting
 {
-    public int Compexity;
+    public int compexity;
     public float speedHero;
-
+    public List<Player> Players;
+    public int countPlayer;
+    public int countCommand;
+    public int countBot;
+    public bool isWater;
+    [SerializeField] private int _countArea;
+    public int CountArea => _countArea;
 }

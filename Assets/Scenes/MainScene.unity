@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44402242, g: 0.49316543, b: 0.5722324, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -418,48 +418,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 1866570067}
   Level:
-    countPlayer: 0
-    countBot: 0
-    countArea: 0
     listPlayer: []
     listArea: []
     countDay: 0
     activePlayer: 0
-  isWater: 0
-  _countArea: 0
-  GameModeData:
-    title: S
-    width: 50
-    height: 50
-    koofSizeArea: 1
-    noiseScaleMontain: 0.121
-    koofMountains: 0.27
-    koofNature: 0.01
-    koofMines: 0.08
-    koofMinTown: 0.07
-    koofResource: 0.005
-    koofFreeResource: 0.03
-    koofExplore: 0.003
-    koofSchoolSkills: 0.007
-    koofArtifacts: 0.03
-    koofDwelling: 0.0457
-  DataGameSetting:
-    Compexity: 100
-    speedHero: 0.3
-  countPlayer: 1
-  countBot: 1
-  maxPlayer: 5
-  colors:
-  - {r: 0.8113208, g: 0.12907375, b: 0, a: 1}
-  - {r: 0.03404235, g: 0.37480146, b: 0.8018868, a: 1}
-  - {r: 0, g: 0.8, b: 0.031673815, a: 1}
-  - {r: 0, g: 0.8207547, b: 0.8207547, a: 1}
-  - {r: 0.81960785, g: 0.62384176, b: 0, a: 1}
-  - {r: 0.81960785, g: 0, b: 0.6466933, a: 1}
-  - {r: 0.81960785, g: 0.25566676, b: 0, a: 1}
-  - {r: 0.3287595, g: 0.07778571, b: 0.7169812, a: 1}
-  - {r: 0.45806202, g: 0.7169812, b: 0, a: 1}
-  - {r: 0, g: 0.04154112, b: 0.7735849, a: 1}
+    Settings:
+      compexity: 100
+      speedHero: 0.3
+      Players: []
+      countPlayer: 2
+      countCommand: 0
+      countBot: 0
+      isWater: 0
+      _countArea: 0
+    GameModeData:
+      title: S
+      width: 50
+      height: 50
+      koofSizeArea: 1
+      noiseScaleMontain: 0.121
+      koofMountains: 0.27
+      koofNature: 0.01
+      koofMines: 0.08
+      koofMinTown: 0.07
+      koofResource: 0.005
+      koofFreeResource: 0.03
+      koofExplore: 0.003
+      koofSchoolSkills: 0.007
+      koofArtifacts: 0.03
+      koofDwelling: 0.0457
 --- !u!1 &416465639
 GameObject:
   m_ObjectHideFlags: 0

@@ -39,14 +39,12 @@ public class CreateEdgesOperation : ILoadingOperation
         var t = new LocalizedString(Constants.LanguageTable.LANG_TABLE_UILANG, "createdgameobject").GetLocalizedString();
         _onSetNotify(t + " edges ...");
 
-
         for (int x = -countEdgeTile; x < _root.gameModeData.width + countEdgeTile; x++)
         {
             for (int y = -countEdgeTile; y < _root.gameModeData.height + countEdgeTile; y++)
             {
                 if (x < 0 || y < 0 || x > _root.gameModeData.width - 1 || y > _root.gameModeData.height - 1)
                 {
-                    Debug.Log("Draw edge");
                     _root._tileMapEdge.SetTile(new Vector3Int(x, y), _root._tileEdge);
                 }
             }

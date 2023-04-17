@@ -42,7 +42,7 @@ public class CreateSkillSchoolOperation : ILoadingOperation
             if (nodes.Count > 0)
             {
                 int maxCountSchool = Mathf.CeilToInt(
-                    LevelManager.Instance.GameModeData.koofSchoolSkills * area.countNode);
+                    LevelManager.Instance.Level.GameModeData.koofSchoolSkills * area.countNode);
                 area.Stat.countSkillSchoolN = maxCountSchool;
                 int countCreated = 0;
 

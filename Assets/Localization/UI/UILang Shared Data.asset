@@ -179,6 +179,22 @@ MonoBehaviour:
     m_Key: menuapp
     m_Metadata:
       m_Items: []
+  - m_Id: 7683828035518464
+    m_Key: advancedmapoption
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7687705073975296
+    m_Key: advancedmapoption_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7710644666269696
+    m_Key: countcommand
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7755343401746432
+    m_Key: random
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

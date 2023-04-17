@@ -6,18 +6,24 @@ using UnityEngine;
 public class DataLevel
 {
 
-    [SerializeField] public int countPlayer;
-    [SerializeField] public int countBot;
-    [SerializeField] public int countArea;
+    // [SerializeField] public int countPlayer;
+    // [SerializeField] public int countBot;
+    // [SerializeField] public int countArea;
+    // [SerializeField] public int countCommand;
     [SerializeField] public List<Player> listPlayer;
     [SerializeField] public List<Area> listArea;
     [SerializeField] public int countDay;
     [SerializeField] public int activePlayer;
+    [SerializeField] public DataGameSetting Settings;
+    [SerializeField] public DataGameMode GameModeData;
 
     public DataLevel()
     {
         listPlayer = new List<Player>();
         listArea = new List<Area>();
+        Settings = new DataGameSetting();
+        GameModeData = new DataGameMode();
+        Settings.Players = new List<Player>();
     }
 }
 

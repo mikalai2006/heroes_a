@@ -27,7 +27,7 @@ public class CreateTownOperation : ILoadingOperation
             float minCountNodeAreaForTown = ((float)area.countNode / (float)_root.gridTileHelper.GridTile.SizeGrid);
 
             // For small area cancel spawn town.
-            if (minCountNodeAreaForTown < LevelManager.Instance.GameModeData.koofMinTown || !area.isFraction)
+            if (minCountNodeAreaForTown < LevelManager.Instance.Level.GameModeData.koofMinTown || !area.isFraction)
             {
                 continue;
             }

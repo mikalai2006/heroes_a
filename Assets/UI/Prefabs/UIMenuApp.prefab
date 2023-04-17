@@ -148,5 +148,7 @@ MonoBehaviour:
   _menuAppDoc: {fileID: 5331411726998848105}
   _menuNewGameDoc: {fileID: 5395260629747610372}
   _templateButton: {fileID: 9197481963319205126, guid: db5e7d04a42304542a4356b1519364b2, type: 3}
+  _templateColAdvance: {fileID: 9197481963319205126, guid: 524f473689690134790dae5b226cbd30, type: 3}
+  _templateColAdvanceChooser: {fileID: 9197481963319205126, guid: 7ed6b57c76513a447902140430855108, type: 3}
   _templateButtonWithImg: {fileID: 9197481963319205126, guid: 93de6cb7ebf6fca42bc3fdf8f26f3259, type: 3}
   _templateColumn: {fileID: 9197481963319205126, guid: aeb61825a88c3414e9945054eb442191, type: 3}

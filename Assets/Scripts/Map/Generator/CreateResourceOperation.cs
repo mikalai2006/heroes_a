@@ -39,7 +39,7 @@ public class CreateResourceOperation : ILoadingOperation
             if (nodes.Count > 0)
             {
                 int maxCountResource = Mathf.CeilToInt(
-                    LevelManager.Instance.GameModeData.koofFreeResource * area.countNode);
+                    LevelManager.Instance.Level.GameModeData.koofFreeResource * area.countNode);
 
                 area.Stat.countFreeResourceN = maxCountResource;
 

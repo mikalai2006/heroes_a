@@ -17,9 +17,9 @@ MonoBehaviour:
   MenuSprite: {fileID: 21300000, guid: 340488d12d6e4ac49ac03e4dea176590, type: 3}
   title:
     m_TableReference:
-      m_TableCollectionName: 
+      m_TableCollectionName: GUID:99ee07ddc90ffba41a3d18974d364707
     m_TableEntryReference:
-      m_KeyId: 0
+      m_KeyId: 4674787021586432
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
@@ -39,7 +39,6 @@ MonoBehaviour:
   Effects: []
   TypeFaction: 1
   BuildTown: {fileID: 11400000, guid: d6771147da1a9fc439021716d6c3a6c1, type: 2}
-  StartProgressBuilds: 0200000003000000
   heroes:
   - {fileID: 11400000, guid: 21735f6df6e648440bbd95115e142041, type: 2}
   mines:
