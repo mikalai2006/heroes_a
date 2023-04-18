@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 
 [System.Serializable]
-public class EntityCreature : BaseEntity, ISaveDataPlay
+public class EntityCreature : BaseEntity
 {
     [SerializeField] public DataCreature Data = new DataCreature();
     public ScriptableEntityCreature ConfigData => (ScriptableEntityCreature)ScriptableData;
@@ -13,9 +13,12 @@ public class EntityCreature : BaseEntity, ISaveDataPlay
         ScriptableEntityCreature configData,
         SaveDataUnit<DataCreature> saveData = null)
     {
+        base.Init();
+
         if (saveData == null)
         {
             ScriptableData = configData;
+            idObject = ScriptableData.idObject;
             // if (configData == null)
             // {
             //     List<ScriptableEntityCreature> list = ResourceSystem.Instance
@@ -38,9 +41,9 @@ public class EntityCreature : BaseEntity, ISaveDataPlay
                 .Where(t => t.idObject == saveData.idObject)
                 .First();
             Data = saveData.data;
+            idObject = saveData.idObject;
             idUnit = saveData.idUnit;
         }
-
     }
 
     public void OnChangeQuantityWarrior()
@@ -62,7 +65,7 @@ public class EntityCreature : BaseEntity, ISaveDataPlay
     //     throw new System.NotImplementedException();
     // }
 
-    public void SaveDataPlay(ref DataPlay data)
+    public override void SaveEntity(ref DataPlay data)
     {
         var sdata = SaveUnit(Data);
         data.entity.creatures.Add(sdata);

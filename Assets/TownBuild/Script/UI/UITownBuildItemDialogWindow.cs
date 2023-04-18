@@ -11,6 +11,7 @@ public class UITownBuildItemDialogWindow : MonoBehaviour
     [SerializeField] private UIDocument _uiDoc;
     public UIDocument DialogApp => _uiDoc;
     [SerializeField] private VisualTreeAsset _templateItem;
+    [SerializeField] private VisualTreeAsset _templateBuildDialog;
     private readonly string _nameButtonOk = "ButtonOk";
     private readonly string _nameButtonCancel = "ButtonCancel";
     private readonly string _nameOverlay = "Overlay";
@@ -28,6 +29,8 @@ public class UITownBuildItemDialogWindow : MonoBehaviour
     private VisualElement _requireResourceBlok;
     private Label _requireBuildBlok;
     private VisualElement _boxSpriteObject;
+    private readonly string _nameGeneralBlok = "GeneralBlok";
+    private VisualElement _generalBlok;
     private TaskCompletionSource<DataResultBuildDialog> _processCompletionSource;
 
     public UnityEvent processAction;
@@ -37,10 +40,18 @@ public class UITownBuildItemDialogWindow : MonoBehaviour
     private EntityTown _activeTown;
     private Player _activePlayer;
     private ScriptableEntityTown _scriptObjectTown;
-    // private ScriptableBuildTown _scriptObjectBuildTown;
 
     private void Awake()
     {
+
+        DialogApp.rootVisualElement.Q<VisualElement>("Panel").AddToClassList("w-75");
+        _headerLabel = DialogApp.rootVisualElement.Q<Label>(_nameHeaderLabel);
+        _generalBlok = DialogApp.rootVisualElement.Q<VisualElement>(_nameGeneralBlok);
+        VisualElement dialog = _templateBuildDialog.Instantiate();
+        dialog.style.flexGrow = 1;
+        _generalBlok.Clear();
+        _generalBlok.Add(dialog);
+
         _activePlayer = LevelManager.Instance.ActivePlayer;
         _activeTown = _activePlayer.ActiveTown;
 
@@ -52,7 +63,7 @@ public class UITownBuildItemDialogWindow : MonoBehaviour
         _buttonOk = DialogApp.rootVisualElement.Q<Button>(_nameButtonOk);
         _buttonOk.clickable.clicked += OnClickOk;
 
-        _headerLabel = DialogApp.rootVisualElement.Q<Label>(_nameHeaderLabel);
+        // _headerLabel = DialogApp.rootVisualElement.Q<Label>(_nameHeaderLabel);
         _descriptionLabel = DialogApp.rootVisualElement.Q<Label>(_nameDescriptionLabel);
 
         _requireResourceBlok = DialogApp.rootVisualElement.Q<VisualElement>(_nameRequireResource);

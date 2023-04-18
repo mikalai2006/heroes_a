@@ -14,13 +14,13 @@ public class TownManagerEditor
 
     private static VisualTreeAsset m_ItemRowTemplate, m_NoPathTemplate;
 
-    private static List<ScriptableBuildBase> m_UnitDB = new List<ScriptableBuildBase>();
+    private static List<ScriptableBuilding> m_UnitDB = new List<ScriptableBuilding>();
 
     private ListView m_ListUnit;
     private VisualElement m_Tabs, m_SectionNoPath;
     private readonly float m_ItemHeight = 50, m_NoPathsize = 30;
     private readonly int countNoPath = 2;
-    private ScriptableBuildBase m_activeItem;
+    private ScriptableBuilding m_activeItem;
     private ScrollView m_SectionDetails;
 
     public VisualElement Init()
@@ -134,41 +134,41 @@ public class TownManagerEditor
         foreach (string path in allPaths)
         {
             string cleanedPath = path.Replace("\\", "/");
-            m_UnitDB.Add((ScriptableBuildBase)AssetDatabase.LoadAssetAtPath(cleanedPath,
-                typeof(ScriptableBuildBase)));
+            m_UnitDB.Add((ScriptableBuilding)AssetDatabase.LoadAssetAtPath(cleanedPath,
+                typeof(ScriptableBuilding)));
         }
     }
 
     private void GenerateListView()
     {
-        Func<VisualElement> makeItem = () => m_ItemRowTemplate.CloneTree();
+        // Func<VisualElement> makeItem = () => m_ItemRowTemplate.CloneTree();
 
-        Action<VisualElement, int> bindItem = (e, i) =>
-        {
-            if (m_UnitDB[i].BuildLevels[0].MenuSprite != null)
-            {
-                e.Q<VisualElement>("icon").style.backgroundImage = new StyleBackground(m_UnitDB[i].BuildLevels[0].MenuSprite);
+        // Action<VisualElement, int> bindItem = (e, i) =>
+        // {
+        //     if (m_UnitDB[i].BuildLevels[0].MenuSprite != null)
+        //     {
+        //         e.Q<VisualElement>("icon").style.backgroundImage = new StyleBackground(m_UnitDB[i].BuildLevels[0].MenuSprite);
 
-            }
-            else
-            {
-                SpriteRenderer[] sprites = m_UnitDB[i].Prefab.gameObject.GetComponentsInChildren<SpriteRenderer>();
-                e.Q<VisualElement>("icon").style.backgroundImage = new StyleBackground(sprites[0].sprite);
-            }
-            // new StyleBackground(m_UnitDB[i].MenuSprite);
-            //m_ItemDatabase[i] == null ? m_DefaultItemIcon.texture :
-            //m_ItemDatabase[i].MenuSprite.texture; //.Icon.texture;
-            e.Q<Label>("name").text = m_UnitDB[i].name; //.FriendlyName;
-        };
-        m_ListUnit = new ListView(m_UnitDB, m_ItemHeight, makeItem, bindItem);
-        //m_ListNature.style.flexGrow = 1;
-        m_ListUnit.selectionType = SelectionType.Single;
-        //m_ListNature.style.height = new StyleLength(new Length(100, LengthUnit.Percent));// m_NatureDB.Count * m_ItemHeight;
-        m_Tabs.Add(m_ListUnit);
+        //     }
+        //     else
+        //     {
+        //         SpriteRenderer[] sprites = m_UnitDB[i].Prefab.gameObject.GetComponentsInChildren<SpriteRenderer>();
+        //         e.Q<VisualElement>("icon").style.backgroundImage = new StyleBackground(sprites[0].sprite);
+        //     }
+        //     // new StyleBackground(m_UnitDB[i].MenuSprite);
+        //     //m_ItemDatabase[i] == null ? m_DefaultItemIcon.texture :
+        //     //m_ItemDatabase[i].MenuSprite.texture; //.Icon.texture;
+        //     e.Q<Label>("name").text = m_UnitDB[i].name; //.FriendlyName;
+        // };
+        // m_ListUnit = new ListView(m_UnitDB, m_ItemHeight, makeItem, bindItem);
+        // //m_ListNature.style.flexGrow = 1;
+        // m_ListUnit.selectionType = SelectionType.Single;
+        // //m_ListNature.style.height = new StyleLength(new Length(100, LengthUnit.Percent));// m_NatureDB.Count * m_ItemHeight;
+        // m_Tabs.Add(m_ListUnit);
 
-        m_ListUnit.selectionChanged += ListView_onSelectionChange;
+        // m_ListUnit.selectionChanged += ListView_onSelectionChange;
 
-        m_ListUnit.selectedIndex = 0;
+        // m_ListUnit.selectedIndex = 0;
     }
 
 
@@ -176,31 +176,31 @@ public class TownManagerEditor
     private void ListView_onSelectionChange(IEnumerable<object> selectedItems)
     {
 
-        //Debug.Log($"Typeof selectedItem {selectedItems.First().GetType()}");
+        // //Debug.Log($"Typeof selectedItem {selectedItems.First().GetType()}");
 
-        m_activeItem = (ScriptableBuildBase)selectedItems.First();
-        SerializedObject so = new SerializedObject(m_activeItem);
-        m_SectionDetails.Bind(so);
+        // m_activeItem = (ScriptableBuilding)selectedItems.First();
+        // SerializedObject so = new SerializedObject(m_activeItem);
+        // m_SectionDetails.Bind(so);
 
 
-        if (m_activeItem.BuildLevels[0].MenuSprite != null)
-        {
-            m_SectionDetails.Q<VisualElement>("Sprite").style.backgroundImage = new StyleBackground(m_activeItem.BuildLevels[0].MenuSprite);
-        }
-        else
-        {
-            SpriteRenderer[] sprites = m_activeItem.Prefab.gameObject.GetComponentsInChildren<SpriteRenderer>();
-            m_SectionDetails.Q<VisualElement>("Sprite").style.backgroundImage = new StyleBackground(sprites[0].sprite);
-        }
+        // if (m_activeItem.BuildLevels[0].MenuSprite != null)
+        // {
+        //     m_SectionDetails.Q<VisualElement>("Sprite").style.backgroundImage = new StyleBackground(m_activeItem.BuildLevels[0].MenuSprite);
+        // }
+        // else
+        // {
+        //     SpriteRenderer[] sprites = m_activeItem.Prefab.gameObject.GetComponentsInChildren<SpriteRenderer>();
+        //     m_SectionDetails.Q<VisualElement>("Sprite").style.backgroundImage = new StyleBackground(sprites[0].sprite);
+        // }
 
-        m_SectionDetails.style.visibility = Visibility.Visible;
+        // m_SectionDetails.style.visibility = Visibility.Visible;
 
-        GenerateNoPath();
+        // GenerateNoPath();
     }
     private void AddItem_OnClick()
     {
         //Create an instance of the scriptable object and set the default parameters
-        ScriptableBuildBase newItem = ScriptableObject.CreateInstance<ScriptableBuildBase>();
+        ScriptableBuilding newItem = ScriptableObject.CreateInstance<ScriptableBuilding>();
         string path = EditorUtility.SaveFilePanelInProject("Save nature", "NewNature", "Asset", "Save new nature", "Assets/Resources/Nature");
         if (path == "") return;
         //newItem.FriendlyName = $"New Item";

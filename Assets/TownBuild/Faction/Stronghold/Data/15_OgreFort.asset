@@ -9,17 +9,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d42093a1eaf0824c9a2bb9f171cc7f4, type: 3}
+  m_Script: {fileID: 11500000, guid: bc9580e1f67cc4343ab8e2981a25f527, type: 3}
   m_Name: 15_OgreFort
   m_EditorClassIdentifier: 
-  idObject: 2_10
+  idObject: build.stronghold.ogrefort
   TypeFaction: 1
-  Prefab: {fileID: 6161251204520527620, guid: 9d3fadc1329c8d749934213fdfd005ea, type: 3}
+  Prefab:
+    m_AssetGUID: 9d3fadc1329c8d749934213fdfd005ea
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  TypeBuild: 10
   BuildLevels:
   - MenuSprite: {fileID: 21300000, guid: d4c4c16d043f9e4489129acc7df5636f, type: 3}
-    TypeBuild: 25
-    UpdatePrefab: {fileID: 0}
-    RequiredBuilds: 17000000
+    UpdatePrefab:
+      m_AssetGUID: 
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
     Text:
       title:
         m_TableReference:
@@ -39,15 +46,21 @@ MonoBehaviour:
         m_FallbackState: 0
         m_WaitForCompletion: 0
         m_LocalVariables: []
+    RequireBuilds:
+    - Build: {fileID: 11400000, guid: 95e103e71544c034c8023c97e8ca75e7, type: 2}
+      level: 0
     CostResource:
     - Resource: {fileID: 11400000, guid: 3894d4d068775c343b5c4bf1510dee33, type: 2}
       Count: 2000
     - Resource: {fileID: 11400000, guid: af6fb8015ba018540960794f09d24eea, type: 2}
       Count: 20
+    Effects: []
   - MenuSprite: {fileID: 21300000, guid: ca77d7ac51bf364478a0a86e5de4369e, type: 3}
-    TypeBuild: 26
-    UpdatePrefab: {fileID: 0}
-    RequiredBuilds: 0e00000019000000
+    UpdatePrefab:
+      m_AssetGUID: 
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
     Text:
       title:
         m_TableReference:
@@ -67,6 +80,11 @@ MonoBehaviour:
         m_FallbackState: 0
         m_WaitForCompletion: 0
         m_LocalVariables: []
+    RequireBuilds:
+    - Build: {fileID: 11400000, guid: 67301e89dc06415468cdeed22400d7c7, type: 2}
+      level: 0
+    - Build: {fileID: 11400000}
+      level: 0
     CostResource:
     - Resource: {fileID: 11400000, guid: 3894d4d068775c343b5c4bf1510dee33, type: 2}
       Count: 2000
@@ -76,6 +94,9 @@ MonoBehaviour:
       Count: 5
     - Resource: {fileID: 11400000, guid: f02d0b566815eaa47b30b219422c87e5, type: 2}
       Count: 5
+    Effects: []
+  Creatures:
+  - {fileID: 11400000, guid: 7df000dfe67f063478052d4e0578b42a, type: 2}
   references:
     version: 2
     RefIds: []

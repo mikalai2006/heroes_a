@@ -9,10 +9,10 @@
 }
 
 .dialog_box_row {
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 0;
+    padding-right: 0;
     padding-top: 15px;
-    padding-bottom: 15px;
+    padding-bottom: 0;
     flex-grow: 0;
 }
 

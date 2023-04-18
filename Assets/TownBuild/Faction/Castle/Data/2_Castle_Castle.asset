@@ -9,17 +9,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d42093a1eaf0824c9a2bb9f171cc7f4, type: 3}
+  m_Script: {fileID: 11500000, guid: b06948112444bc04bb8a2304b5eece5a, type: 3}
   m_Name: 2_Castle_Castle
   m_EditorClassIdentifier: 
-  idObject: 1_2
+  idObject: build.castle.castle
   TypeFaction: 0
-  Prefab: {fileID: -944693676003837266, guid: 3d9e8b4a1791c6d49a52cad1349b2db6, type: 3}
+  Prefab:
+    m_AssetGUID: 3d9e8b4a1791c6d49a52cad1349b2db6
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  TypeBuild: 4
   BuildLevels:
   - MenuSprite: {fileID: 21300000, guid: d6be9b29f4544614794d2315dd52bf14, type: 3}
-    TypeBuild: 7
-    UpdatePrefab: {fileID: 0}
-    RequiredBuilds: 03000000
+    UpdatePrefab:
+      m_AssetGUID: 
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
     Text:
       title:
         m_TableReference:
@@ -39,6 +46,9 @@ MonoBehaviour:
         m_FallbackState: 0
         m_WaitForCompletion: 0
         m_LocalVariables: []
+    RequireBuilds:
+    - Build: {fileID: 11400000, guid: a35cde0bd0b1e37448f750d1881714f8, type: 2}
+      level: 0
     CostResource:
     - Resource: {fileID: 11400000, guid: 3894d4d068775c343b5c4bf1510dee33, type: 2}
       Count: 5000
@@ -46,10 +56,14 @@ MonoBehaviour:
       Count: 20
     - Resource: {fileID: 11400000, guid: af6fb8015ba018540960794f09d24eea, type: 2}
       Count: 20
+    Effects:
+    - {fileID: 11400000, guid: 819d95a8225ed9a4d9c1d1e5a4ceca4e, type: 2}
   - MenuSprite: {fileID: 21300000, guid: 2e314c6b1b2cf654b9933a0da08b8548, type: 3}
-    TypeBuild: 8
-    UpdatePrefab: {fileID: 0}
-    RequiredBuilds: 07000000
+    UpdatePrefab:
+      m_AssetGUID: 
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
     Text:
       title:
         m_TableReference:
@@ -69,15 +83,22 @@ MonoBehaviour:
         m_FallbackState: 0
         m_WaitForCompletion: 0
         m_LocalVariables: []
+    RequireBuilds:
+    - Build: {fileID: 11400000}
+      level: 0
     CostResource:
-    - Resource: {fileID: 11400000, guid: 2de32a5fb2189994a867c9e425391bf7, type: 2}
+    - Resource: {fileID: 11400000, guid: 3894d4d068775c343b5c4bf1510dee33, type: 2}
       Count: 2500
-    - Resource: {fileID: 11400000, guid: c1bca1c330d8ff847b7e9e3584dabe06, type: 2}
+    - Resource: {fileID: 11400000, guid: 177478bebb60204468d214efd1fdcc16, type: 2}
       Count: 5
+    Effects:
+    - {fileID: 11400000, guid: 4fe010df0f11bd846a78548a47305258, type: 2}
   - MenuSprite: {fileID: 21300000, guid: 8632173f16cc8fb4eb1027a8467ac1cb, type: 3}
-    TypeBuild: 9
-    UpdatePrefab: {fileID: 0}
-    RequiredBuilds: 08000000
+    UpdatePrefab:
+      m_AssetGUID: 
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
     Text:
       title:
         m_TableReference:
@@ -97,6 +118,9 @@ MonoBehaviour:
         m_FallbackState: 0
         m_WaitForCompletion: 0
         m_LocalVariables: []
+    RequireBuilds:
+    - Build: {fileID: 11400000}
+      level: 1
     CostResource:
     - Resource: {fileID: 11400000, guid: 3894d4d068775c343b5c4bf1510dee33, type: 2}
       Count: 5000
@@ -104,6 +128,8 @@ MonoBehaviour:
       Count: 10
     - Resource: {fileID: 11400000, guid: af6fb8015ba018540960794f09d24eea, type: 2}
       Count: 10
+    Effects:
+    - {fileID: 11400000, guid: ecca841e3e6a0d14bb2beee15eafcd31, type: 2}
   references:
     version: 2
     RefIds: []

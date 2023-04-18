@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 using Cysharp.Threading.Tasks;
@@ -61,11 +62,14 @@ public class UIGameAside : MonoBehaviour
     {
         GameManager.OnAfterStateChanged += OnAfterStateChanged;
         MapEntityHero.onChangeParamsActiveHero += ChangeParamsActiveHero;
+        UITownInfo.onMoveHero += DrawHeroBox;
     }
+
     private void OnDestroy()
     {
         MapEntityHero.onChangeParamsActiveHero -= ChangeParamsActiveHero;
         GameManager.OnAfterStateChanged -= OnAfterStateChanged;
+        UITownInfo.onMoveHero -= DrawHeroBox;
     }
 
     private void OnAfterStateChanged(GameState state)
@@ -172,6 +176,53 @@ public class UIGameAside : MonoBehaviour
 
     }
 
+    private void DrawHeroBox()
+    {
+        _herobox.Clear();
+        var listHeroOnMap = player.DataPlayer.PlayerDataReferences.ListHero
+            .Where(h => h.Data.State.HasFlag(StateHero.OnMap)).ToList();
+        for (int i = 0; i < 5; i++)
+        {
+            var newButtonHero = _templateButtonHero.Instantiate();
+            newButtonHero.AddToClassList(NameHeroButton);
+
+            if (i < listHeroOnMap.Count)
+            {
+                EntityHero hero = listHeroOnMap[i];
+                MapEntityHero heroGameObject = (MapEntityHero)hero.MapObjectGameObject;
+                var hit = newButtonHero.Q<VisualElement>(NameHit);
+                hit.name = hero.IdEntity;
+
+                hit.style.height = new StyleLength(new Length(hero.Data.hit, LengthUnit.Percent));
+
+                var mana = newButtonHero.Q<VisualElement>(NameMana);
+                mana.style.height = new StyleLength(new Length(hero.Data.mana, LengthUnit.Percent));
+
+                newButtonHero.Q<VisualElement>("image").style.backgroundImage =
+                    new StyleBackground(hero.ScriptableData.MenuSprite);
+
+                newButtonHero.Q<Button>(NameAllAsideButton).RegisterCallback<ClickEvent>((ClickEvent evt) =>
+                {
+                    OnResetFocusButton();
+                    OnSetActiveHero(evt, hero);
+
+                    newButtonHero.Q<Button>(NameAllAsideButton).AddToClassList(NameSelectedButton);
+                });
+
+                if (hero == player.ActiveHero)
+                {
+                    newButtonHero.Q<Button>(NameAllAsideButton).AddToClassList(NameSelectedButton);
+                }
+            }
+            else
+            {
+                newButtonHero.SetEnabled(false);
+            }
+
+            _herobox.Add(newButtonHero);
+        }
+    }
+
     private void OnMoveHero(ClickEvent evt)
     {
         GameManager.Instance.ChangeState(GameState.StartMoveHero);
@@ -202,71 +253,7 @@ public class UIGameAside : MonoBehaviour
 
         //Debug.Log($"UI Player aside::: id{player.data.id} hero[{player.data.ListHero.Count}] town[{player.data.ListTown.Count}]");
 
-        for (int i = 0; i < 5; i++)
-        {
-
-            var newButtonHero = _templateButtonHero.Instantiate();
-            //newButtonHero.style.flexGrow = 1;
-            newButtonHero.AddToClassList(NameHeroButton);
-            //Debug.Log($"hero btn {i}");
-
-            if (i < player.DataPlayer.PlayerDataReferences.ListHero.Count)
-            {
-                EntityHero hero = player.DataPlayer.PlayerDataReferences.ListHero[i];
-                MapEntityHero heroGameObject = (MapEntityHero)hero.MapObjectGameObject;
-                var hit = newButtonHero.Q<VisualElement>(NameHit);
-                hit.name = hero.IdEntity;
-                // // hit.UnbindAllProperties();
-                // hit.BindProperty(heroGameObject.hit);
-                hit.style.height = new StyleLength(new Length(hero.Data.hit, LengthUnit.Percent));
-
-
-                var mana = newButtonHero.Q<VisualElement>(NameMana); //.style.height = new StyleLength(new Length(37, LengthUnit.Percent));
-                // mana.UnbindAllProperties();
-                // mana.BindProperty(heroGameObject.mana);
-                mana.style.height = new StyleLength(new Length(hero.Data.mana, LengthUnit.Percent));
-
-                newButtonHero.Q<VisualElement>("image").style.backgroundImage =
-                    new StyleBackground(hero.ScriptableData.MenuSprite);
-
-                newButtonHero.Q<Button>(NameAllAsideButton).RegisterCallback<ClickEvent>((ClickEvent evt) =>
-                {
-                    OnResetFocusButton();
-                    OnSetActiveHero(evt, hero);
-
-                    newButtonHero.Q<Button>(NameAllAsideButton).AddToClassList(NameSelectedButton);
-                });
-
-                if (hero == player.ActiveHero)
-                {
-                    newButtonHero.Q<Button>(NameAllAsideButton).AddToClassList(NameSelectedButton);
-                }
-                //.clickable.clicked += () =>
-                //{
-                //    //Debug.Log($"Click button {hero.HeroData.position}");
-                //    OnResetFocusButton();
-                //    player.SetActiveHero(hero);
-
-                //    newButtonHero.Q<Button>(NameAllAsideButton).AddToClassList(NameSelectedButton);
-
-                //    if (boxinfo.style.display == DisplayStyle.None)
-                //    {
-                //        boxinfo.style.display = DisplayStyle.Flex;
-                //        ChangeHeroInfo();
-                //    } else
-                //    {
-                //        boxinfo.style.display = DisplayStyle.None;
-                //    }
-                //};
-
-            }
-            else
-            {
-                newButtonHero.SetEnabled(false);
-            }
-
-            _herobox.Add(newButtonHero);
-        }
+        DrawHeroBox();
 
 
         for (int i = 0; i < countTown; i++)

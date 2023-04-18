@@ -45,9 +45,8 @@ public abstract class BaseEntity
     #endregion
 
 
-    public void Init(ScriptableEntity data, bool isMapObject = true)
+    public void Init()
     {
-        idObject = data.idObject;
         idUnit = System.Guid.NewGuid().ToString("N");
         AddEvents();
     }
@@ -55,7 +54,15 @@ public abstract class BaseEntity
     public void CreateMapGameObject(GridTileNode node)
     {
         Position = node.position;
+        OccupiedNode = node;
         LoadGameObject();
+    }
+
+    public void DestroyGameObject()
+    {
+        // Debug.Log($"Destroy entity::: {ScriptableData.name}");
+        OccupiedNode.SetOcuppiedUnit(null);
+        RemoveEvents();
     }
 
     public void DestroyEntity()
@@ -104,6 +111,12 @@ public abstract class BaseEntity
         // typeEntity = Data.typeEntity;
         idObject = Data.idObject;
     }
+
+    public virtual void SaveEntity(ref DataPlay data)
+    {
+
+    }
+
     #endregion
 
     private void LoadGameObject()

@@ -1,7 +1,12 @@
 using System.Collections.Generic;
 using System.Linq;
 
+using Cysharp.Threading.Tasks;
+
+using Loader;
+
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class MapEntityTown : BaseMapEntity
 {
@@ -38,6 +43,31 @@ public class MapEntityTown : BaseMapEntity
         //_canMove = false;
     }
 
+    public async override void OnGoHero(Player player)
+    {
+        base.OnGoHero(player);
+
+        var loadingOperations = new Queue<ILoadingOperation>();
+
+        // GameManager.Instance.AssetProvider.UnloadAdditiveScene(_scene);
+        var town = (EntityTown)GetMapObjectClass;
+        player.SetActiveTown(town);
+        // player.ActiveTown.SetGuest(player.ActiveHero);
+        loadingOperations.Enqueue(new TownLoadOperation(town));
+        await GameManager.Instance.LoadingScreenProvider.LoadAndDestroy(loadingOperations);
+    }
+
+    public override void OnPointerClick(PointerEventData eventData)
+    {
+        if (
+            eventData.clickCount >= 2
+            && GetMapObjectClass.Player == LevelManager.Instance.ActivePlayer
+            )
+        {
+            OnGoHero(GetMapObjectClass.Player);
+        }
+        base.OnPointerClick(eventData);
+    }
     //public override void OnSaveUnit()
     //{
     //    // SaveUnit(Data);

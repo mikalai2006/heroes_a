@@ -95,21 +95,27 @@ public abstract class BaseMapEntity : MonoBehaviour, IPointerClickHandler
     {
     }
 
-    public void OnPointerClick(PointerEventData eventData)
+    public virtual void OnPointerClick(PointerEventData eventData)
     {
-
-        Debug.Log($"" +
-            $"UnitBase Click \n" +
-            $"name-{this.name} \n" +
-            $"pos-[{transform.position}]\n" +
-            $"ocup-[{MapObjectClass.OccupiedNode.ToString()}]\n"
-            );
-        Vector3 posObject = transform.position;
-
-        if (posObject != null)
+        if (eventData.clickCount >= 2)
         {
-            Vector3Int end = new Vector3Int((int)posObject.x, (int)posObject.y);
-            LevelManager.Instance.ActivePlayer.FindPathForHero(end, true);
+        }
+        else
+        {
+
+            Debug.Log($"" +
+                $"UnitBase Click \n" +
+                $"name-{this.name} \n" +
+                $"pos-[{transform.position}]\n" +
+                $"ocup-[{MapObjectClass.OccupiedNode.ToString()}]\n"
+                );
+            Vector3 posObject = transform.position;
+
+            if (posObject != null)
+            {
+                Vector3Int end = new Vector3Int((int)posObject.x, (int)posObject.y);
+                LevelManager.Instance.ActivePlayer.FindPathForHero(end, true);
+            }
         }
     }
 }

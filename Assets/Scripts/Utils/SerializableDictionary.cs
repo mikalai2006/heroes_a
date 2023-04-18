@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
 
 [System.Serializable]
@@ -7,6 +8,11 @@ public class SerializableDictionary<TKey, TValue> : Dictionary<TKey, TValue>, IS
 {
     [SerializeField] private List<TKey> keys = new List<TKey>();
     [SerializeField] private List<TValue> values = new List<TValue>();
+
+    public SerializableDictionary(int length = 0)
+    {
+        new Dictionary<TKey, TValue>(length);
+    }
 
     public void OnBeforeSerialize()
     {
@@ -29,7 +35,7 @@ public class SerializableDictionary<TKey, TValue> : Dictionary<TKey, TValue>, IS
                 $"{keys.Count} does not match the number of values {values.Count}");
         }
 
-        for(int i = 0; i < keys.Count; i++)
+        for (int i = 0; i < keys.Count; i++)
         {
             this.Add(keys[i], values[i]);
         }

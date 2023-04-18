@@ -85,15 +85,19 @@ public class DataManager : Singleton<DataManager>
     public void SaveDataPlay()
     {
 
-        foreach (BaseMapEntity obj in _playCustomDataObject)
-        {
-            var intObj = (ISaveDataPlay)obj.GetMapObjectClass;
-            intObj.SaveDataPlay(ref _dataPlay);
-        }
+        // foreach (BaseMapEntity obj in _playCustomDataObject)
+        // {
+        //     var intObj = (ISaveDataPlay)obj.GetMapObjectClass;
+        //     intObj.SaveDataPlay(ref _dataPlay);
+        // }
         foreach (ISaveDataPlay obj in _playDataObject)
         {
             obj.SaveDataPlay(ref _dataPlay);
         }
+        foreach (var ent in UnitManager.Entities)
+        {
+            ent.Value.SaveEntity(ref _dataPlay);
+        };
         _fileDataHandler.SaveDataPlay(_dataPlay);
     }
 

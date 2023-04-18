@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f947fec9b979d14a9eb6ab3859f5102, type: 3}
+  m_Name: Stronghold_Town_Entity
+  m_EditorClassIdentifier: 
+  idObject: entity.town.stronghold
+  TypeEntity: 80
+  MenuSprite: {fileID: 21300000, guid: 340488d12d6e4ac49ac03e4dea176590, type: 3}
+  title:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  MapPrefab:
+    m_AssetGUID: 6a1b4cdbc76adae4a8d4ad518229a293
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  TypeGround: 16
+  TypeWorkAttribute: 0
+  Attributes: []
+  listTypeNoPath: 080000000e0000000c000000090000000700000006000000030000000f0000000b000000
+  TypeWorkObject: 0
+  TypeMapObject: 0
+  listRuleInput: 120000001100000013000000
+  Effects: []
+  TypeFaction: 1
+  BuildTown: {fileID: 11400000, guid: d6771147da1a9fc439021716d6c3a6c1, type: 2}
+  StartProgressBuilds: 0200000003000000
+  heroes:
+  - {fileID: 11400000, guid: 21735f6df6e648440bbd95115e142041, type: 2}
+  mines:
+  - {fileID: 11400000, guid: eb2794684cfb9bc4eb3e342e33ed9b2f, type: 2}
+  - {fileID: 11400000, guid: 67823b77ad812a94398ac2979a01ebc7, type: 2}
+  creatures: []
+  references:
+    version: 2
+    RefIds: []

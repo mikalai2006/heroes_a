@@ -9,17 +9,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d42093a1eaf0824c9a2bb9f171cc7f4, type: 3}
+  m_Script: {fileID: 11500000, guid: b06948112444bc04bb8a2304b5eece5a, type: 3}
   m_Name: 5_Castle_MarketPlace
   m_EditorClassIdentifier: 
-  idObject: 1_5
+  idObject: build.castle.marketplace
   TypeFaction: 0
-  Prefab: {fileID: -7943310686219343270, guid: ef11d506db95c24449f21cf1fd2eb30a, type: 3}
+  Prefab:
+    m_AssetGUID: ef11d506db95c24449f21cf1fd2eb30a
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  TypeBuild: 6
   BuildLevels:
   - MenuSprite: {fileID: 21300000, guid: 2fd16f7b2785daa4d912926703990b7c, type: 3}
-    TypeBuild: 12
-    UpdatePrefab: {fileID: 0}
-    RequiredBuilds: 
+    UpdatePrefab:
+      m_AssetGUID: 
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
     Text:
       title:
         m_TableReference:
@@ -39,15 +46,19 @@ MonoBehaviour:
         m_FallbackState: 0
         m_WaitForCompletion: 0
         m_LocalVariables: []
+    RequireBuilds: []
     CostResource:
     - Resource: {fileID: 11400000, guid: 3894d4d068775c343b5c4bf1510dee33, type: 2}
       Count: 500
     - Resource: {fileID: 11400000, guid: af6fb8015ba018540960794f09d24eea, type: 2}
       Count: 5
+    Effects: []
   - MenuSprite: {fileID: 21300000, guid: d2d30e73ae4a10b4896d51a015936030, type: 3}
-    TypeBuild: 13
-    UpdatePrefab: {fileID: -7073681216773581706, guid: 9eec67a3525df704eb166f087188458f, type: 3}
-    RequiredBuilds: 0c000000
+    UpdatePrefab:
+      m_AssetGUID: 
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
     Text:
       title:
         m_TableReference:
@@ -67,11 +78,15 @@ MonoBehaviour:
         m_FallbackState: 0
         m_WaitForCompletion: 0
         m_LocalVariables: []
+    RequireBuilds:
+    - Build: {fileID: 11400000}
+      level: 0
     CostResource:
     - Resource: {fileID: 11400000, guid: 3894d4d068775c343b5c4bf1510dee33, type: 2}
       Count: 5000
     - Resource: {fileID: 11400000, guid: 177478bebb60204468d214efd1fdcc16, type: 2}
       Count: 5
+    Effects: []
   references:
     version: 2
     RefIds: []

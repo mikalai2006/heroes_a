@@ -45,6 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _templateHeroForce: {fileID: 9197481963319205126, guid: 3e598cf930e15bd41a05c9f8834b7a09, type: 3}
+  _templateTownInfoCreature: {fileID: 9197481963319205126, guid: eb9191393d0e98e4494aafd9d31d00ad, type: 3}
+  _templateHeroButton: {fileID: 0}
   _templateTownInfo: {fileID: 9197481963319205126, guid: 6a8abc76fb95cd64dbdac23116430566, type: 3}
 --- !u!1 &7734062810380965685
 GameObject:
@@ -78,7 +80,7 @@ Transform:
   m_Children:
   - {fileID: 4167651822033674123}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7734062810380965707
 MonoBehaviour:
@@ -110,4 +112,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _uiDoc: {fileID: 7734062810380965707}
   _uiTownInfo: {fileID: 2698354849172619512}
-  _bgCanvas: {fileID: 0}
+  _bgImage: {fileID: 0}
+  _townGameObject: {fileID: 0}
+  _activeBuildTown: {fileID: 0}

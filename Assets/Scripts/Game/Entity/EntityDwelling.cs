@@ -11,7 +11,7 @@ public struct DataEntityDwelling
 }
 
 [System.Serializable]
-public class EntityDwelling : BaseEntity, ISaveDataPlay
+public class EntityDwelling : BaseEntity
 {
     [SerializeField] public DataEntityDwelling Data = new DataEntityDwelling();
     public ScriptableEntityDwelling ConfigData => (ScriptableEntityDwelling)ScriptableData;
@@ -19,9 +19,12 @@ public class EntityDwelling : BaseEntity, ISaveDataPlay
         ScriptableEntityDwelling configData,
         SaveDataUnit<DataEntityDwelling> saveData = null)
     {
+        base.Init();
+
         if (saveData == null)
         {
             ScriptableData = configData;
+            idObject = ScriptableData.idObject;
             SetData();
         }
         else
@@ -32,9 +35,9 @@ public class EntityDwelling : BaseEntity, ISaveDataPlay
                 .First();
             Data = saveData.data;
             idUnit = saveData.idUnit;
+            idObject = saveData.idObject;
         }
 
-        base.Init(ScriptableData);
     }
 
     public void SetData()
@@ -51,7 +54,7 @@ public class EntityDwelling : BaseEntity, ISaveDataPlay
     }
 
     #region SaveData
-    public void SaveDataPlay(ref DataPlay data)
+    public override void SaveEntity(ref DataPlay data)
     {
         var sdata = SaveUnit(Data);
         data.entity.dwellings.Add(sdata);
