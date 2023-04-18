@@ -34,7 +34,16 @@ public struct DataGameSetting
     public int countPlayer;
     public int countCommand;
     public int countBot;
+    public int countBotCommand;
     public bool isWater;
+    public TypeGame TypeGame;
     [SerializeField] private int _countArea;
     public int CountArea => _countArea;
+}
+
+[System.Serializable]
+public enum TypeGame
+{
+    Single = 0,
+    MultipleOneDevice = 1,
 }

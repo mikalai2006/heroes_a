@@ -9,7 +9,7 @@
         <ui:VisualElement name="Panel" class="dialog_panel border-color bg" style="min-height: 100%; align-items: flex-end; flex-grow: 1;">
             <ui:VisualElement name="Bg" class="dialog_bgframe" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);" />
             <ui:VisualElement name="PanelBox" class="p-4 h-full" style="flex-direction: row; flex-grow: 1;">
-                <ui:VisualElement name="BoxSetting" class="w-67 border-color bg" style="flex-grow: 1; display: none; margin-right: 10px; padding-right: 10px; border-right-width: 1px;">
+                <ui:VisualElement name="BoxSetting" class="w-67 border-color bg" style="flex-grow: 1; margin-right: 10px; padding-right: 10px; border-right-width: 1px;">
                     <ui:VisualElement name="Header" class="box_shadow">
                         <ui:VisualElement name="HeaderText" class="box_bg p-1" style="flex-grow: 1;">
                             <ui:Label tabindex="-1" text="#randommap_t" display-tooltip-when-elided="true" class="text-secondary m-0 p-0" />
@@ -20,7 +20,7 @@
                         <ui:Instance template="Col" name="Col" />
                     </ui:ScrollView>
                 </ui:VisualElement>
-                <ui:VisualElement name="BoxAdvanced" class="w-67 border-color bg" style="flex-grow: 1; display: flex; margin-right: 10px; padding-right: 10px; border-right-width: 1px;">
+                <ui:VisualElement name="BoxAdvanced" class="w-67 border-color bg" style="flex-grow: 1; display: none; margin-right: 10px; padding-right: 10px; border-right-width: 1px;">
                     <ui:VisualElement name="Header" class="box_shadow" style="flex-shrink: 0;">
                         <ui:VisualElement name="HeaderText" class="box_bg p-1" style="flex-grow: 1; flex-shrink: 0;">
                             <ui:Label tabindex="-1" text="#advancedmapoption" display-tooltip-when-elided="true" class="text-secondary m-0 p-0" />

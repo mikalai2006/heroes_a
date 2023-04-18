@@ -6,6 +6,8 @@
         <ui:VisualElement name="ButtonsSection" class="startmenu_panel" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
             <ui:Button text="#newgame" display-tooltip-when-elided="true" name="newgame" class="button button_bg button_bordered button_text" />
             <ui:Button text="#loadgame" display-tooltip-when-elided="true" name="loadgame" class="button button_bg button_text button_bordered" />
+        </ui:VisualElement>
+        <ui:VisualElement name="ButtonsSection" class="startmenu_panel" style="background-color: rgba(0, 0, 0, 0);">
             <ui:Button text="#quit" display-tooltip-when-elided="true" name="ButtonQuit" class="button button_bg button_text button_bordered" />
         </ui:VisualElement>
     </ui:VisualElement>
