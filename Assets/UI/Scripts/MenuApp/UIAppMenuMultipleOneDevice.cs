@@ -40,6 +40,8 @@ public class UIAppMenuMultipleOneDevice : UILocaleBase
         _root.Q<Button>("ok").clickable.clicked += () =>
             {
                 CreateListTypesPlayer();
+                // _parent.AppMenuNewGame.DrawAdvancedOptions();
+                _parent.AppMenuNewGame.Show();
             };
         // var btnMultipleGame = _root.Q<Button>("multiplegame");
         // btnMultipleGame.clickable.clicked += () =>
@@ -73,10 +75,6 @@ public class UIAppMenuMultipleOneDevice : UILocaleBase
     private void CreateListTypesPlayer()
     {
         LevelManager.Instance.TypePlayers.Clear();
-        foreach (var type in LevelManager.Instance.ConfigGameSettings.TypesPlayer)
-        {
-            if (type.TypePlayer == PlayerType.Bot) LevelManager.Instance.TypePlayers.Add(type);
-        };
 
         // Queries text fields.
         UQueryBuilder<TextField> builder = new UQueryBuilder<TextField>(_root);
@@ -91,9 +89,13 @@ public class UIAppMenuMultipleOneDevice : UILocaleBase
             });
         }
 
+        foreach (var type in LevelManager.Instance.ConfigGameSettings.TypesPlayer)
+        {
+            if (type.TypePlayer == PlayerType.Bot) LevelManager.Instance.TypePlayers.Add(type);
+        };
         LevelManager.Instance.Level.Settings.countPlayer = listNotEmptyFieldText.Count();
+
         Hide();
-        _parent.AppMenuNewGame.Show();
     }
 
     public void Hide()

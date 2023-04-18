@@ -71,6 +71,7 @@ public class LevelManager : Singleton<LevelManager>, ISaveDataPlay, ISaveDataGam
 
     public void Init()
     {
+        TypePlayers.Clear();
         Level = new DataLevel();
         Level = DefaultSettings;
         ConfigGameSettings = ResourceSystem.Instance
@@ -89,7 +90,7 @@ public class LevelManager : Singleton<LevelManager>, ISaveDataPlay, ISaveDataGam
         Level.listPlayer = new List<Player>();
         Level.listArea = new List<Area>();
 
-        var userType = TypePlayers.Find(t => t.TypePlayer == PlayerType.User);
+        var noBotType = TypePlayers.Where(t => t.TypePlayer != PlayerType.Bot).ToList();
         var botType = TypePlayers.Find(t => t.TypePlayer == PlayerType.Bot);
 
         for (int i = 0; i < Level.Settings.countPlayer + Level.Settings.countBot; i++)
@@ -102,7 +103,14 @@ public class LevelManager : Singleton<LevelManager>, ISaveDataPlay, ISaveDataGam
             };
 
             Player player = new Player(dataPlayer);
-            player.StartSetting.TypePlayerItem = i == 0 ? userType : botType;
+            if (Level.Settings.TypeGame == TypeGame.MultipleOneDevice)
+            {
+                player.StartSetting.TypePlayerItem = TypePlayers[i];
+            }
+            else
+            {
+                player.StartSetting.TypePlayerItem = i == 0 ? noBotType.First() : botType;
+            }
             player.DataPlayer.playerType = player.StartSetting.TypePlayerItem.TypePlayer;
             Level.listPlayer.Add(player);
 

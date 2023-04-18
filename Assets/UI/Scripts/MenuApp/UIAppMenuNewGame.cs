@@ -141,10 +141,11 @@ public class UIAppMenuNewGame : UILocaleBase
 
     private void ChangeTypePlayer(Player player)
     {
-        Debug.Log($"player Type before ={player.StartSetting.TypePlayerItem.title}");
+        // Debug.Log($"player Type before ={player.StartSetting.TypePlayerItem.title}");
 
         var allTypes = LevelManager.Instance.TypePlayers;
         var botType = allTypes.Find(t => t.TypePlayer == PlayerType.Bot);
+        var notbotType = allTypes.Where(t => t.TypePlayer != PlayerType.Bot).ToList();
         var currentIndex = allTypes.FindIndex(t => t == player.StartSetting.TypePlayerItem);
         currentIndex++;
         if (currentIndex > allTypes.Count - 1)
@@ -160,12 +161,22 @@ public class UIAppMenuNewGame : UILocaleBase
                 item.StartSetting.TypePlayerItem = botType;
             }
         }
+
         player.StartSetting.TypePlayerItem = allTypes[currentIndex];
         player.DataPlayer.playerType = allTypes[currentIndex].TypePlayer;
-        Debug.Log($"player type after ={player.StartSetting.TypePlayerItem.title}");
+
+        var listBots = LevelManager.Instance.Level.listPlayer
+            .Where(t => t.StartSetting.TypePlayerItem.TypePlayer == PlayerType.Bot);
+
+        if (listBots.Count() == LevelManager.Instance.Level.listPlayer.Count())
+        {
+            player.StartSetting.TypePlayerItem = notbotType[0];
+            player.DataPlayer.playerType = notbotType[0].TypePlayer;
+        }
+        // Debug.Log($"player type after ={player.StartSetting.TypePlayerItem.title}");
     }
 
-    private void DrawAdvancedOptions()
+    public void DrawAdvancedOptions()
     {
         var _boxContentAdvancedList = _box.Q<ScrollView>("BoxAdvancedOptions");
         _boxContentAdvancedList.Clear();
@@ -461,7 +472,7 @@ public class UIAppMenuNewGame : UILocaleBase
         AddOptionCountBot();
         AddOptionCountBotCommand();
         AddCompexity();
-
+        DrawAdvancedOptions();
         if (
             (Level.Settings.countPlayer < 2 && Level.Settings.countBot == 0)
             ||
