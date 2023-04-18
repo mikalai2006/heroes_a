@@ -48,10 +48,10 @@ public class CreateTownOperation : ILoadingOperation
             if (listGridNode.Count() > 0)
             {
                 GridTileNode node = listGridNode[listGridNode.Count - 1];
-                Player player = LevelManager.Instance.GetPlayer(area.id);
+                Player player = LevelManager.Instance.GetPlayer(area.idPlayer);
 
                 //Create town.
-                var entityTown = new EntityTown(node.TypeGround);
+                var entityTown = new EntityTown(node.TypeGround, player != null ? player.StartSetting.town : null);
                 UnitManager.SpawnEntityMapObjectToNode(node, entityTown);
 
                 node.AddStateNode(StateNode.Town);
@@ -67,28 +67,19 @@ public class CreateTownOperation : ILoadingOperation
                 // Spawn hero.
                 if (player != null)
                 {
-                    int randomCountHero = Helpers.GenerateValueByRangeAndStep(1, 3, 1);
-                    for (int i = 0; i < randomCountHero; i++)
-                    {
-                        // // if (node.OccupiedUnit != null)
-                        // // {
-                        // //     node = _root.gridTileHelper.GetNode(node.position.x, node.position.y - 1);
-                        // // }
-                        // EntityHero newEntity = new EntityHero(configTown.TypeFaction);
-                        // // UnitManager.SpawnEntityMapObjectToNode(node, newEntity);
-                        // node.SetAsGuested(newEntity);
-                        // newEntity.CreateMapGameObject(node);
-                        // UnitManager.Entities.Add(newEntity.IdEntity, newEntity);
-                        // // node.SetOcuppiedUnit(newEntity);
-                        // LevelManager.Instance.GetArea(area.id).hero = newEntity;
-                        // newEntity.SetPlayer(player);
-                        var hero = UnitManager.CreateHero(
-                            configTown.TypeFaction,
-                            node
-                        );
-                        hero.SetPlayer(player);
-                    }
+                    var hero = UnitManager.CreateHero(
+                        configTown.TypeFaction,
+                        node,
+                        player.StartSetting.hero
+                    );
+                    hero.SetPlayer(player);
                 }
+                // TODO Spawn random hero
+                // int randomCountHero = Helpers.GenerateValueByRangeAndStep(1, 3, 1);
+                // for (int i = 0; i < randomCountHero; i++)
+                // {
+                // }
+
                 area.startPosition = node.position;
 
                 // Spawn mines.

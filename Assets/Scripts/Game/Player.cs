@@ -12,7 +12,9 @@ public class PlayerData
     public int id;
     public Color color;
     public PlayerType playerType;
-    public int idArea;
+    // public TypePlayerItem playerType2;
+    // public string name;
+    // public int idArea;
     public TypeFaction typeFaction = TypeFaction.Neutral;
     public SerializableDictionary<TypeResource, int> Resource;
     public SerializableShortPosition nosky = new SerializableShortPosition();
@@ -50,6 +52,7 @@ public class StartSetting
 {
     [SerializeField] public ScriptableEntityHero hero;
     [SerializeField] public ScriptableEntityTown town;
+    public TypePlayerItem TypePlayerItem;
     public TypeStartBonus bonus;
 
     public StartSetting()

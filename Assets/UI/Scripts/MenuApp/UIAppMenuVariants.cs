@@ -12,7 +12,6 @@ public class UIAppMenuVariants : UILocaleBase
     public void Init()
     {
         _root = _rootDoc.rootVisualElement;
-
         _root.Q<Button>("back").clickable.clicked += () =>
         {
             Hide();
@@ -24,12 +23,15 @@ public class UIAppMenuVariants : UILocaleBase
             _parent.AppMenuNewGame.Show();
             Hide();
         };
-        _root.Q<Button>("multiplegame").clickable.clicked += () =>
+        var btnMultipleGame = _root.Q<Button>("multiplegame");
+        btnMultipleGame.clickable.clicked += () =>
         {
             LevelManager.Instance.Level.Settings.TypeGame = TypeGame.MultipleOneDevice;
-            _parent.AppMenuNewGame.Show();
-            Hide();
+            // _parent.AppMenuNewGame.Show();
+            _parent.DialogMultipleOneDeviceDoc.Show();
+            // Hide();
         };
+        // btnMultipleGame.SetEnabled(false); //TODO
 
         Hide();
         base.Localize(_root);

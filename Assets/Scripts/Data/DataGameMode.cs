@@ -26,19 +26,16 @@ public struct DataGameMode
 }
 
 [System.Serializable]
-public struct DataGameSetting
+public class DataGameSetting
 {
     public int compexity;
     public float speedHero;
-    public List<Player> Players;
     public int countPlayer;
     public int countCommand;
     public int countBot;
     public int countBotCommand;
     public bool isWater;
     public TypeGame TypeGame;
-    [SerializeField] private int _countArea;
-    public int CountArea => _countArea;
 }
 
 [System.Serializable]

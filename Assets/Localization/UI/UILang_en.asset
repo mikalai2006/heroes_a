@@ -50,6 +50,10 @@ MonoBehaviour:
     m_Localized: https://62.217.180.192/api/v1/auth
     m_Metadata:
       m_Items: []
+  - m_Id: 8062342026919936
+    m_Localized: 'Hotseat: Input names'
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

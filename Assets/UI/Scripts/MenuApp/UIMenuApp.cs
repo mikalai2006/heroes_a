@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UIElements;
 using Cysharp.Threading.Tasks;
+using System.Collections.Generic;
 
 public class UIMenuApp : UILocaleBase
 {
@@ -10,6 +11,8 @@ public class UIMenuApp : UILocaleBase
     public UIAppMenuNewGame AppMenuNewGame => _appMenuNewGame;
     [SerializeField] private UIAppMenuVariants _appMenuVariantsDoc;
     public UIAppMenuVariants AppMenuVariants => _appMenuVariantsDoc;
+    [SerializeField] private UIAppMenuMultipleOneDevice _dialogMultipleOneDeviceDoc;
+    public UIAppMenuMultipleOneDevice DialogMultipleOneDeviceDoc => _dialogMultipleOneDeviceDoc;
 
     private GameObject _environment;
 
@@ -19,6 +22,7 @@ public class UIMenuApp : UILocaleBase
 
         LevelManager.Instance.Init();
 
+        _dialogMultipleOneDeviceDoc.Init();
         _appMenuVariantsDoc.Init();
         _appMenuNewGame.Init();
 

@@ -4,6 +4,7 @@ using UnityEngine.UIElements;
 using System.Linq;
 using UnityEngine.Localization;
 
+
 public class UIAppMenuNewGame : UILocaleBase
 {
     [SerializeField] private UIDocument _rootDoc;
@@ -29,9 +30,8 @@ public class UIAppMenuNewGame : UILocaleBase
     [SerializeField] private VisualTreeAsset _templateColumn;
     private List<ScriptableEntityHero> _listChoosedHero = new List<ScriptableEntityHero>();
     private List<ScriptableEntityHero> _listHeroes = new List<ScriptableEntityHero>();
-    private ScriptableGameSetting _settings;
+    private ScriptableGameSetting _configGameSettings;
     private List<ScriptableGameMode> _listGameMode;
-
 
     public void Init()
     {
@@ -40,8 +40,7 @@ public class UIAppMenuNewGame : UILocaleBase
         _listGameMode = ResourceSystem.Instance.GetGameMode();
         _listHeroes = ResourceSystem.Instance
             .GetEntityByType<ScriptableEntityHero>(TypeEntity.Hero);
-        _settings = ResourceSystem.Instance
-            .GetAllAssetsByLabel<ScriptableGameSetting>(Constants.Labels.LABEL_GAMESETTING)[0];
+        _configGameSettings = LevelManager.Instance.ConfigGameSettings;
 
         // new game window
         _box = _root.Q<VisualElement>("NewGameBox");
@@ -106,6 +105,7 @@ public class UIAppMenuNewGame : UILocaleBase
 
     public void Show()
     {
+        RefreshOptions();
         _root.style.display = DisplayStyle.Flex;
     }
     public void Hide()
@@ -139,6 +139,32 @@ public class UIAppMenuNewGame : UILocaleBase
         }
     }
 
+    private void ChangeTypePlayer(Player player)
+    {
+        Debug.Log($"player Type before ={player.StartSetting.TypePlayerItem.title}");
+
+        var allTypes = LevelManager.Instance.TypePlayers;
+        var botType = allTypes.Find(t => t.TypePlayer == PlayerType.Bot);
+        var currentIndex = allTypes.FindIndex(t => t == player.StartSetting.TypePlayerItem);
+        currentIndex++;
+        if (currentIndex > allTypes.Count - 1)
+        {
+            currentIndex = 0;
+        }
+
+        foreach (var item in LevelManager.Instance.Level.listPlayer)
+        {
+            if (item.StartSetting.TypePlayerItem == allTypes[currentIndex] && item.StartSetting.TypePlayerItem != botType)
+            {
+                item.DataPlayer.playerType = PlayerType.Bot;
+                item.StartSetting.TypePlayerItem = botType;
+            }
+        }
+        player.StartSetting.TypePlayerItem = allTypes[currentIndex];
+        player.DataPlayer.playerType = allTypes[currentIndex].TypePlayer;
+        Debug.Log($"player type after ={player.StartSetting.TypePlayerItem.title}");
+    }
+
     private void DrawAdvancedOptions()
     {
         var _boxContentAdvancedList = _box.Q<ScrollView>("BoxAdvancedOptions");
@@ -147,11 +173,24 @@ public class UIAppMenuNewGame : UILocaleBase
         var Level = LevelManager.Instance.Level;
         List<ScriptableEntityTown> listTowns = ResourceSystem.Instance
             .GetEntityByType<ScriptableEntityTown>(TypeEntity.Town);
+        var TypesPlayer = LevelManager.Instance.TypePlayers;
 
-        foreach (var player in Level.Settings.Players)
+        foreach (var player in Level.listPlayer)
         {
-
             var newCol = _templateColAdvance.Instantiate();
+
+            // Type user section
+            var typePlayerText = newCol.Q<Button>("typeplayer");
+            var currentTypePlayer = player.StartSetting.TypePlayerItem != null
+                ? TypesPlayer.Where(t => t == player.StartSetting.TypePlayerItem).First()
+                : TypesPlayer.Where(t => t.TypePlayer == PlayerType.Bot).First();
+            typePlayerText.text = currentTypePlayer.title;
+            typePlayerText.clickable.clicked += () =>
+            {
+                ChangeTypePlayer(player);
+                DrawAdvancedOptions();
+            };
+
             var listChoosers = newCol.Q<VisualElement>("ListChoosers");
             listChoosers.Clear();
             // newCol.Q<Label>(nameNameOption).text = player.DataPlayer.id.ToString();
@@ -313,7 +352,7 @@ public class UIAppMenuNewGame : UILocaleBase
             chooserBonus.AddToClassList("px-1");
 
             SetBonus(player.StartSetting.bonus, chooserBonus);
-            var indexActiveBonus = _settings.StartBonuses
+            var indexActiveBonus = _configGameSettings.StartBonuses
                 .FindIndex(t => t.bonus == player.StartSetting.bonus);
             chooserBonus.Q<Button>("arrowleft").clickable.clicked += () =>
             {
@@ -323,11 +362,11 @@ public class UIAppMenuNewGame : UILocaleBase
                 }
                 else if (indexActiveBonus == -1)
                 {
-                    indexActiveBonus = _settings.StartBonuses.Count - 1;
+                    indexActiveBonus = _configGameSettings.StartBonuses.Count - 1;
                 }
-                if (indexActiveBonus >= 0 && indexActiveBonus < _settings.StartBonuses.Count)
+                if (indexActiveBonus >= 0 && indexActiveBonus < _configGameSettings.StartBonuses.Count)
                 {
-                    player.StartSetting.bonus = _settings.StartBonuses[indexActiveBonus].bonus;
+                    player.StartSetting.bonus = _configGameSettings.StartBonuses[indexActiveBonus].bonus;
                 }
                 else
                 {
@@ -338,17 +377,17 @@ public class UIAppMenuNewGame : UILocaleBase
             };
             chooserBonus.Q<Button>("arrowright").clickable.clicked += () =>
             {
-                if (indexActiveBonus <= _settings.StartBonuses.Count - 1)
+                if (indexActiveBonus <= _configGameSettings.StartBonuses.Count - 1)
                 {
                     indexActiveBonus++;
                 }
-                else if (indexActiveBonus == _settings.StartBonuses.Count)
+                else if (indexActiveBonus == _configGameSettings.StartBonuses.Count)
                 {
                     indexActiveBonus = 0;
                 }
-                if (indexActiveBonus >= 0 && indexActiveBonus < _settings.StartBonuses.Count)
+                if (indexActiveBonus >= 0 && indexActiveBonus < _configGameSettings.StartBonuses.Count)
                 {
-                    player.StartSetting.bonus = _settings.StartBonuses[indexActiveBonus].bonus;
+                    player.StartSetting.bonus = _configGameSettings.StartBonuses[indexActiveBonus].bonus;
                 }
                 else
                 {
@@ -386,7 +425,7 @@ public class UIAppMenuNewGame : UILocaleBase
 
     private void SetBonus(TypeStartBonus typeBonus, VisualElement chooser)
     {
-        var bonuses = _settings.StartBonuses.Where(t => t.bonus == typeBonus);
+        var bonuses = _configGameSettings.StartBonuses.Where(t => t.bonus == typeBonus);
         if (bonuses.Count() > 0)
         {
             var bonus = bonuses.First();
@@ -412,14 +451,16 @@ public class UIAppMenuNewGame : UILocaleBase
         _boxOptions = _box.Q<ScrollView>("BoxOptions");
         _boxOptions.Clear();
 
+        LevelManager.Instance.CreateListPlayer();
+
+        _listChoosedHero.Clear();
+
         CreateListGameMode();
         AddOptionCountPlay();
         AddOptionCountCommand();
         AddOptionCountBot();
         AddOptionCountBotCommand();
         AddCompexity();
-
-        LevelManager.Instance.CreateListPlayer();
 
         if (
             (Level.Settings.countPlayer < 2 && Level.Settings.countBot == 0)
@@ -468,7 +509,7 @@ public class UIAppMenuNewGame : UILocaleBase
         var _complexityValue = _complexityBox.Q<Label>("ComplexityValue");
         _complexityList.Clear();
 
-        foreach (var item in _settings.Complexities)
+        foreach (var item in _configGameSettings.Complexities)
         {
             var btnTemplate = _templateButtonWithImg.Instantiate();
             var btn = btnTemplate.Q<Button>();
@@ -597,7 +638,7 @@ public class UIAppMenuNewGame : UILocaleBase
         var NewColBoxBtn = newCol.Q<VisualElement>(nameBoxOption);
         NewColBoxBtn.Clear();
 
-        for (int i = 0; i <= LevelManager.Instance.GameSettings.maxPlayer - 1; i++)
+        for (int i = 0; i <= LevelManager.Instance.ConfigGameSettings.maxPlayer - 1; i++)
         {
             var newButtonBox = _templateButton.Instantiate();
             var newBtn = newButtonBox.Q<Button>("Btn");
@@ -635,7 +676,7 @@ public class UIAppMenuNewGame : UILocaleBase
         var NewColBoxBtn = newCol.Q<VisualElement>(nameBoxOption);
         NewColBoxBtn.Clear();
 
-        for (int i = 1; i <= LevelManager.Instance.GameSettings.maxPlayer; i++)
+        for (int i = 1; i <= LevelManager.Instance.ConfigGameSettings.maxPlayer; i++)
         {
             var newButtonBox = _templateButton.Instantiate();
             var newBtn = newButtonBox.Q<Button>("Btn");
@@ -674,7 +715,7 @@ public class UIAppMenuNewGame : UILocaleBase
         var NewColBoxBtn = newCol.Q<VisualElement>(nameBoxOption);
         NewColBoxBtn.Clear();
 
-        int maxCountBot = LevelManager.Instance.GameSettings.maxPlayer - Level.Settings.countPlayer;
+        int maxCountBot = LevelManager.Instance.ConfigGameSettings.maxPlayer - Level.Settings.countPlayer;
 
         if (Level.Settings.countBot > maxCountBot)
         {

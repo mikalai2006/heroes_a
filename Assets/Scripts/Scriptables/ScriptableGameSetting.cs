@@ -14,6 +14,7 @@ public class ScriptableGameSetting : ScriptableObject
     public Sprite randomTown;
 
     public List<StartBonusItem> StartBonuses;
+    public List<TypePlayerItem> TypesPlayer;
 }
 
 [System.Serializable]
@@ -30,4 +31,11 @@ public struct Complexity
 {
     public int value;
     public Sprite sprite;
+}
+
+[System.Serializable]
+public class TypePlayerItem
+{
+    public string title;
+    public PlayerType TypePlayer;
 }

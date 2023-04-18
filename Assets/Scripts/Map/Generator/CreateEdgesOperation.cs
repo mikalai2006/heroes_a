@@ -43,7 +43,7 @@ public class CreateEdgesOperation : ILoadingOperation
         {
             for (int y = -countEdgeTile; y < _root.gameModeData.height + countEdgeTile; y++)
             {
-                if (x < 0 || y < 0 || x > _root.gameModeData.width - 1 || y > _root.gameModeData.height - 1)
+                if (x < 0 || y < 0 || x > _root.gameModeData.width - 1) //  || y > _root.gameModeData.height - 1
                 {
                     _root._tileMapEdge.SetTile(new Vector3Int(x, y), _root._tileEdge);
                 }

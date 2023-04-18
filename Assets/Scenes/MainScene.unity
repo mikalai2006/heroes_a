@@ -421,16 +421,16 @@ MonoBehaviour:
     listPlayer: []
     listArea: []
     countDay: 0
-    activePlayer: 0
+    activePlayer: -1
     Settings:
       compexity: 100
       speedHero: 0.3
-      Players: []
-      countPlayer: 2
+      countPlayer: 1
       countCommand: 0
-      countBot: 0
+      countBot: 1
+      countBotCommand: 0
       isWater: 0
-      _countArea: 0
+      TypeGame: 0
     GameModeData:
       title: S
       width: 50
@@ -447,6 +447,7 @@ MonoBehaviour:
       koofSchoolSkills: 0.007
       koofArtifacts: 0.03
       koofDwelling: 0.0457
+  ConfigGameSettings: {fileID: 0}
 --- !u!1 &416465639
 GameObject:
   m_ObjectHideFlags: 0

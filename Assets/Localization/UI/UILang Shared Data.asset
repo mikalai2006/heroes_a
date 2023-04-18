@@ -211,6 +211,10 @@ MonoBehaviour:
     m_Key: back
     m_Metadata:
       m_Items: []
+  - m_Id: 8062342026919936
+    m_Key: Hotseat
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

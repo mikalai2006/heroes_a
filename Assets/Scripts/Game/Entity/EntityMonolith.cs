@@ -4,10 +4,14 @@ using System.Linq;
 using UnityEngine;
 
 [System.Serializable]
-public struct DataMonolith
+public class DataMonolith
 {
     public int keyArea;
     [SerializeField] public List<Vector3Int> portalPoints;
+    public DataMonolith()
+    {
+        portalPoints = new List<Vector3Int>();
+    }
 }
 
 [System.Serializable]
@@ -27,7 +31,6 @@ public class EntityMonolith : BaseEntity
             // ScriptableData = list[UnityEngine.Random.Range(0, list.Count)];
             ScriptableData = configData;
             idObject = ScriptableData.idObject;
-            Data.portalPoints = new List<Vector3Int>();
         }
         else
         {

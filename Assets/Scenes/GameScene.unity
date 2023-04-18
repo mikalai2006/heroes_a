@@ -902,7 +902,37 @@ MonoBehaviour:
     koofSchoolSkills: 0
     koofArtifacts: 0
     koofDwelling: 0
-  countArea: 0
+  Level:
+    listPlayer: []
+    listArea: []
+    countDay: 0
+    activePlayer: 0
+    Settings:
+      compexity: 0
+      speedHero: 0
+      countPlayer: 0
+      countCommand: 0
+      countBot: 0
+      countBotCommand: 0
+      isWater: 0
+      TypeGame: 0
+      countArea: 0
+    GameModeData:
+      title: 
+      width: 0
+      height: 0
+      koofSizeArea: 0
+      noiseScaleMontain: 0
+      koofMountains: 0
+      koofNature: 0
+      koofMines: 0
+      koofMinTown: 0
+      koofResource: 0
+      koofFreeResource: 0
+      koofExplore: 0
+      koofSchoolSkills: 0
+      koofArtifacts: 0
+      koofDwelling: 0
   _tileMap: {fileID: 63901569}
   _tileTest: {fileID: 1552992054}
   _tileMapEdge: {fileID: 1189192356}
