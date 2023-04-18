@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 using UnityEngine;
@@ -147,6 +148,141 @@ public static class Helpers
         }
 
         return string.Format("army_{0}", name);
+    }
+
+
+    /// <summary>
+    /// Move unit between lists.
+    /// </summary>
+    /// <param name="startCheckedCreatures"></param>
+    /// <param name="startPositionChecked"></param>
+    /// <param name="endCheckedCreatures"></param>
+    /// <param name="endPositionChecked"></param>
+    public static void MoveUnitBetweenList(
+        SerializableDictionary<int, EntityCreature> startCheckedCreatures,
+        int startPositionChecked,
+        SerializableDictionary<int, EntityCreature> endCheckedCreatures,
+        int endPositionChecked)
+    {
+        var startUnit = startCheckedCreatures[startPositionChecked];
+        var endUnit = endCheckedCreatures[endPositionChecked];
+
+        if (endUnit != null && startUnit.Data.idObject == endUnit.Data.idObject)
+        {
+            endUnit.Data.value += startUnit.Data.value;
+            startUnit = null;
+        }
+        else
+        {
+            startCheckedCreatures[startPositionChecked] = endUnit;
+            endCheckedCreatures[endPositionChecked] = startUnit;
+        }
+    }
+
+    /// <summary>
+    /// Summ unit two lists.
+    /// </summary>
+    /// <param name="listTo"></param>
+    /// <param name="listFrom"></param>
+    public static SerializableDictionary<int, EntityCreature> SummUnitBetweenList(
+        SerializableDictionary<int, EntityCreature> listTo,
+        SerializableDictionary<int, EntityCreature> listFrom
+        )
+    {
+        var rezList = new SerializableDictionary<int, EntityCreature>();
+        foreach (var item in listTo)
+        {
+            rezList.Add(item.Key, item.Value);
+        }
+
+        foreach (var item in listFrom)
+        {
+            if (item.Value == null) continue;
+
+            var existItem = rezList
+                .Where(t => t.Value != null && t.Value.Data.idObject == item.Value.Data.idObject);
+
+            if (existItem.Count() != 0)
+            {
+                existItem.First().Value.Data.value += item.Value.Data.value;
+            }
+            else
+            {
+                var emptyItems = rezList
+                    .Where(t => t.Value == null);
+                if (emptyItems.Count() == 0)
+                {
+                    rezList.Add(rezList.Count, item.Value);
+                }
+                else
+                {
+                    rezList[emptyItems.First().Key] = item.Value;
+                }
+            }
+        }
+        // var unitFrom = listFrom
+        //     .Where(t => t.Value != null)
+        //     .Select(t => t.Value)
+        //     .ToDictionary(t => t.Data.idObject, t => t);
+        // var unitTo = listTo
+        //     .Where(t => t.Value != null)
+        //     .Select(t => t.Value)
+        //     .ToDictionary(t => t.Data.idObject, t => t);
+
+        // foreach (var itemFrom in unitFrom)
+        // {
+        //     EntityCreature creatureTo;
+        //     bool isExistTo = unitTo.TryGetValue(itemFrom.Key, out creatureTo);
+        //     if (isExistTo)
+        //     {
+        //         creatureTo.Data.value += itemFrom.Value.Data.value;
+        //     }
+        //     else
+        //     {
+        //         unitTo.Add(itemFrom.Value.Data.idObject, itemFrom.Value);
+        //     }
+        // }
+
+        // var result = listTo;
+
+        // foreach (var item in unitTo)
+        // {
+        //     var emptyItemForInsert = result.Where(t => t.Value == null).First();
+
+        //     var itemForInsert = result
+        //         .Where(t => t.Value != null && t.Value.Data.idObject == item.Key)
+        //         .First();
+        //     if (itemForInsert.Value != null)
+        //     {
+        //         result[itemForInsert.Key] = item.Value;
+        //     }
+        //     else
+        //     {
+        //         result[emptyItemForInsert.Key] = item.Value;
+        //     }
+        //     // result[p] = item.Value;
+        // }
+
+        return rezList;
+    }
+
+    /// <summary>
+    /// Clone Dictionary
+    /// </summary>
+    /// <param name="original"></param>
+    /// <typeparam name="TKey"></typeparam>
+    /// <typeparam name="TValue"></typeparam>
+    /// <returns></returns>
+    public static Dictionary<TKey, TValue> CloneDictionaryCloningValues<TKey, TValue>
+   (Dictionary<TKey, TValue> original) where TValue : ICloneable
+    {
+        Dictionary<TKey, TValue> ret = new Dictionary<TKey, TValue>(original.Count,
+                                                                original.Comparer);
+        foreach (KeyValuePair<TKey, TValue> entry in original)
+        {
+            ret.Add(entry.Key, (TValue)entry.Value.Clone());
+        }
+        return ret;
     }
 }
 // public static class HelperLanguage

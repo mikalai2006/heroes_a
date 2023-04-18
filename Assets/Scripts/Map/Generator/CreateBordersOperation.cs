@@ -6,6 +6,7 @@ using Cysharp.Threading.Tasks;
 using System;
 using System.Linq;
 using Random = UnityEngine.Random;
+using UnityEngine.Localization;
 
 public class CreateBordersOperation : ILoadingOperation
 {
@@ -36,7 +37,9 @@ public class CreateBordersOperation : ILoadingOperation
     /// <returns>UniTask</returns>
     private async UniTask CreateBorderMountain()
     {
-        _onSetNotify("Create Mountains ...");
+        var t = new LocalizedString(Constants.LanguageTable.LANG_TABLE_UILANG, "createdgameobject").GetLocalizedString();
+        _onSetNotify(t + " border mountains ...");
+
 
         List<GridTileNode> nodes = _root.gridTileHelper.GetAllGridNodes().Where(t =>
             _root.gridTileHelper.CalculateNeighboursByArea(t) < 4
@@ -83,7 +86,9 @@ public class CreateBordersOperation : ILoadingOperation
     /// <returns>UniTask</returns>
     private async UniTask CreateEdgeMountain()
     {
-        _onSetNotify("Create Edge Mountains ...");
+        var t = new LocalizedString(Constants.LanguageTable.LANG_TABLE_UILANG, "createdgameobject").GetLocalizedString();
+        _onSetNotify(t + " edge mountains ...");
+
 
         foreach (GridTileNode tileNode in _root.gridTileHelper.GetAllGridNodes().Where(t =>
             t.isEdge
@@ -115,7 +120,9 @@ public class CreateBordersOperation : ILoadingOperation
 
     private async UniTask CreateRandomMountain()
     {
-        _onSetNotify("Normalize Mountains ...");
+        var t = new LocalizedString(Constants.LanguageTable.LANG_TABLE_UILANG, "createdgameobject").GetLocalizedString();
+        _onSetNotify(t + " perlin mountains ...");
+
 
         if (LevelManager.Instance.GameModeData.noiseScaleMontain == 0 || LevelManager.Instance.GameModeData.koofMountains == 0)
         {
@@ -150,7 +157,7 @@ public class CreateBordersOperation : ILoadingOperation
 
                     List<TileNature> listTileForDraw = ResourceSystem.Instance.GetNature().Where(t =>
                         t.typeGround == tileData.typeGround
-                        && !t.isWalkable
+                        && t.isCorner
                     ).ToList(); //  _tileData.cornerTiles.Concat(_tileData.natureTiles).ToList();
 
                     TileNature tileForDraw = listTileForDraw[Random.Range(0, listTileForDraw.Count)];

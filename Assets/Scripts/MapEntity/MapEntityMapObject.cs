@@ -63,18 +63,29 @@ public class MapEntityMapObject : BaseMapEntity, IDialogMapObjectOperation
         base.OnGoHero(player);
 
         EntityMapObject entity = (EntityMapObject)MapObjectClass;
-        ScriptableEntityMapObject configData = (ScriptableEntityMapObject)MapObjectClass.ScriptableData;
-        DataResultDialog result = await OnTriggeredHero();
-        if (result.isOk)
+        if (LevelManager.Instance.ActivePlayer.DataPlayer.playerType != PlayerType.Bot)
         {
-            MapObjectClass.SetPlayer(player);
-            player.ActiveHero.SetPathHero(null);
 
+            ScriptableEntityMapObject configData = (ScriptableEntityMapObject)MapObjectClass.ScriptableData;
+            DataResultDialog result = await OnTriggeredHero();
+            if (result.isOk)
+            {
+                OnHeroGo(player);
+            }
+            else
+            {
+                // Click cancel.
+            }
         }
         else
         {
-            // Click cancel.
+            OnHeroGo(player);
         }
+    }
+
+    private void OnHeroGo(Player player)
+    {
+        MapObjectClass.SetPlayer(player);
     }
 
     public override void OnNextDay()

@@ -1,0 +1,84 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: Heroes Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: Heroes
+  m_TableCollectionNameGuidString: 20373cbdea5ac9c418c19cbf0eaabc21
+  m_Entries:
+  - m_Id: 34050572288
+    m_Key: adela
+    m_Metadata:
+      m_Items: []
+  - m_Id: 230872481792
+    m_Key: Adelaide
+    m_Metadata:
+      m_Items: []
+  - m_Id: 340129906688
+    m_Key: Christian
+    m_Metadata:
+      m_Items: []
+  - m_Id: 390323142656
+    m_Key: Edric
+    m_Metadata:
+      m_Items: []
+  - m_Id: 496925573120
+    m_Key: Orrin
+    m_Metadata:
+      m_Items: []
+  - m_Id: 590236254208
+    m_Key: SirMullich
+    m_Metadata:
+      m_Items: []
+  - m_Id: 638529470464
+    m_Key: Sorsha
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1018898317312
+    m_Key: CragHack
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1089165492224
+    m_Key: Dessa
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1207876878336
+    m_Key: Gird
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1243176140800
+    m_Key: Gretchin
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1275992375296
+    m_Key: Gurnisson
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1329952096256
+    m_Key: Jabarkas
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1331323633664
+    m_Key: Oris
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 1339301174347563010
+  references:
+    version: 2
+    RefIds:
+    - rid: 1339301174347563010
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1681572001117

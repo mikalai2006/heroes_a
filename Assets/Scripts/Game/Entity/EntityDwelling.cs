@@ -51,6 +51,7 @@ public class EntityDwelling : BaseEntity
     {
         ScriptableEntityDwelling configData = (ScriptableEntityDwelling)ScriptableData;
         configData.OnDoHero(ref player, this);
+        _player = player;
     }
 
     #region SaveData

@@ -4,6 +4,7 @@ using Cysharp.Threading.Tasks;
 using System;
 using System.Linq;
 using Random = UnityEngine.Random;
+using UnityEngine.Localization;
 
 public class CreateTownOperation : ILoadingOperation
 {
@@ -16,7 +17,8 @@ public class CreateTownOperation : ILoadingOperation
 
     public async UniTask Load(Action<float> onProgress, Action<string> onSetNotify)
     {
-        onSetNotify("Create towns ...");
+        var t = new LocalizedString(Constants.LanguageTable.LANG_TABLE_UILANG, "createdgameobject").GetLocalizedString();
+        onSetNotify(t + "towns ...");
 
         for (int x = 0; x < LevelManager.Instance.Level.listArea.Count; x++)
         {
@@ -68,18 +70,23 @@ public class CreateTownOperation : ILoadingOperation
                     int randomCountHero = Helpers.GenerateValueByRangeAndStep(1, 3, 1);
                     for (int i = 0; i < randomCountHero; i++)
                     {
-                        // if (node.OccupiedUnit != null)
-                        // {
-                        //     node = _root.gridTileHelper.GetNode(node.position.x, node.position.y - 1);
-                        // }
-                        EntityHero newEntity = new EntityHero(configTown.TypeFaction);
-                        // UnitManager.SpawnEntityMapObjectToNode(node, newEntity);
-                        node.SetAsGuested(newEntity);
-                        newEntity.CreateMapGameObject(node);
-                        UnitManager.Entities.Add(newEntity.IdEntity, newEntity);
-                        // node.SetOcuppiedUnit(newEntity);
-                        LevelManager.Instance.GetArea(area.id).hero = newEntity;
-                        newEntity.SetPlayer(player);
+                        // // if (node.OccupiedUnit != null)
+                        // // {
+                        // //     node = _root.gridTileHelper.GetNode(node.position.x, node.position.y - 1);
+                        // // }
+                        // EntityHero newEntity = new EntityHero(configTown.TypeFaction);
+                        // // UnitManager.SpawnEntityMapObjectToNode(node, newEntity);
+                        // node.SetAsGuested(newEntity);
+                        // newEntity.CreateMapGameObject(node);
+                        // UnitManager.Entities.Add(newEntity.IdEntity, newEntity);
+                        // // node.SetOcuppiedUnit(newEntity);
+                        // LevelManager.Instance.GetArea(area.id).hero = newEntity;
+                        // newEntity.SetPlayer(player);
+                        var hero = UnitManager.CreateHero(
+                            configTown.TypeFaction,
+                            node
+                        );
+                        hero.SetPlayer(player);
                     }
                 }
                 area.startPosition = node.position;

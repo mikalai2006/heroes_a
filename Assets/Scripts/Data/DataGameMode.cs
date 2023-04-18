@@ -22,3 +22,11 @@ public struct DataGameMode
     [Range(0f, 0.1f)] public float koofArtifacts;
     [Range(0f, 0.1f)] public float koofDwelling;
 }
+
+[System.Serializable]
+public struct DataGameSetting
+{
+    public int Compexity;
+    public float speedHero;
+
+}

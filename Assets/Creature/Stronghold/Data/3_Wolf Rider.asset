@@ -14,62 +14,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   idObject: ab14f405e5264d9099eda699c9b2b834
   TypeEntity: 10
-  MenuSprite: {fileID: 0}
-  Text:
-    title:
-      m_TableReference:
-        m_TableCollectionName: 
-      m_TableEntryReference:
-        m_KeyId: 0
-        m_Key: 
-      m_FallbackState: 0
-      m_WaitForCompletion: 0
-      m_LocalVariables: []
-    description:
-      m_TableReference:
-        m_TableCollectionName: 
-      m_TableEntryReference:
-        m_KeyId: 0
-        m_Key: 
-      m_FallbackState: 0
-      m_WaitForCompletion: 0
-      m_LocalVariables: []
+  MenuSprite: {fileID: -1997176659, guid: e7a6d1e198529c44c93ed148f1bf1afe, type: 3}
+  title:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   MapPrefab:
     m_AssetGUID: 4236611ec08e31d4b83eff38c4fa5768
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
-  typeGround: 16
-  typeInput: 1
-  listTypeNoPath: 
-  DialogText:
-    VisitOk:
-      m_TableReference:
-        m_TableCollectionName: 
-      m_TableEntryReference:
-        m_KeyId: 0
-        m_Key: 
-      m_FallbackState: 0
-      m_WaitForCompletion: 0
-      m_LocalVariables: []
-    VisitNo:
-      m_TableReference:
-        m_TableCollectionName: 
-      m_TableEntryReference:
-        m_KeyId: 0
-        m_Key: 
-      m_FallbackState: 0
-      m_WaitForCompletion: 0
-      m_LocalVariables: []
-    VisitNoResource:
-      m_TableReference:
-        m_TableCollectionName: 
-      m_TableEntryReference:
-        m_KeyId: 0
-        m_Key: 
-      m_FallbackState: 0
-      m_WaitForCompletion: 0
-      m_LocalVariables: []
+  TypeGround: 0
   TypeFaction: 1
   ArenaModel:
     m_AssetGUID: 
@@ -77,13 +37,17 @@ MonoBehaviour:
     m_SubObjectType: 
     m_EditorAssetChanged: 0
   CreatureParams:
-    Health: 0
+    Level: 0
     Attack: 0
-    Protection: 0
-    Damage: 0
-    MaxDamage: 0
-    Ammunition: 0
+    Defense: 0
+    DamageMin: 0
+    DamageMax: 0
+    HP: 0
     Speed: 0
+    Ammunition: 0
+    Growth: 0
+    AI: 0
+    Cost: []
   references:
     version: 2
     RefIds: []

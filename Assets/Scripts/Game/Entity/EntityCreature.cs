@@ -36,10 +36,13 @@ public class EntityCreature : BaseEntity
         }
         else
         {
-            ScriptableData = ResourceSystem.Instance
-                .GetEntityByType<ScriptableEntityCreature>(TypeEntity.Creature)
-                .Where(t => t.idObject == saveData.idObject)
-                .First();
+            if (saveData.idObject != "")
+            {
+                ScriptableData = ResourceSystem.Instance
+                    .GetEntityByType<ScriptableEntityCreature>(TypeEntity.Creature)
+                    .Where(t => t.idObject == saveData.idObject)
+                    .First();
+            }
             Data = saveData.data;
             idObject = saveData.idObject;
             idUnit = saveData.idUnit;
@@ -57,6 +60,15 @@ public class EntityCreature : BaseEntity
         //    // Debug.Log($"Warrior {name} protectedNode as :::name[{protectedUnit.ScriptableData.name}]level[{protectedUnit.ScriptableData.level}]");
 
         //}
+    }
+
+    public override void SetPlayer(Player player)
+    {
+        // ScriptableEntityMapObject configData = (ScriptableEntityMapObject)ScriptableData;
+        ScriptableEntityCreature configData = (ScriptableEntityCreature)ScriptableData;
+        // configData.OnDoHero(ref player, this);
+        MapObjectGameObject.DestroyGameObject();
+        DestroyGameObject();
     }
 
     #region SaveLoadData

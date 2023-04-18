@@ -149,6 +149,7 @@ MonoBehaviour:
     - resource
     - attribute
     - build_base
+    - gamesetting
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: d17b4f64a43f1ea4697eba1d03bab099, type: 2}

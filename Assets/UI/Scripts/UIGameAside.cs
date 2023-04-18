@@ -61,14 +61,14 @@ public class UIGameAside : MonoBehaviour
     private void Start()
     {
         GameManager.OnAfterStateChanged += OnAfterStateChanged;
-        MapEntityHero.onChangeParamsActiveHero += ChangeParamsActiveHero;
+        EntityHero.onChangeParamsActiveHero += ChangeParamsActiveHero;
         UITownInfo.onMoveHero += DrawHeroBox;
     }
 
     private void OnDestroy()
     {
-        MapEntityHero.onChangeParamsActiveHero -= ChangeParamsActiveHero;
         GameManager.OnAfterStateChanged -= OnAfterStateChanged;
+        EntityHero.onChangeParamsActiveHero -= ChangeParamsActiveHero;
         UITownInfo.onMoveHero -= DrawHeroBox;
     }
 
@@ -77,11 +77,12 @@ public class UIGameAside : MonoBehaviour
         switch (state)
         {
             case GameState.StepNextPlayer:
-                NextStep();
+            case GameState.StartGame:
+                DrawHeroButtons();
                 break;
-            case GameState.StartMoveHero:
-                SetDisableAllButton();
-                break;
+            // case GameState.StartMoveHero:
+            //     SetDisableAllButton();
+            //     break;
             case GameState.StopMoveHero:
                 SetEnableAllButton();
                 break;
@@ -92,7 +93,7 @@ public class UIGameAside : MonoBehaviour
                 OnRedrawResource();
                 break;
             case GameState.ChangeHeroParams:
-                NextStep();
+                DrawHeroButtons();
                 break;
         }
     }
@@ -145,9 +146,8 @@ public class UIGameAside : MonoBehaviour
                 DataResultGameMenu result = await ShowGameMenu();
                 if (result.isOk)
                 {
-
                     var loadingOperations = new Queue<ILoadingOperation>();
-                    GameManager.Instance.AssetProvider.UnloadAdditiveScene(_scene);
+                    await GameManager.Instance.AssetProvider.UnloadAdditiveScene(_scene);
                     loadingOperations.Enqueue(new MenuAppOperation());
                     await GameManager.Instance.LoadingScreenProvider.LoadAndDestroy(loadingOperations);
                 }
@@ -223,12 +223,14 @@ public class UIGameAside : MonoBehaviour
         }
     }
 
-    private void OnMoveHero(ClickEvent evt)
+    private async void OnMoveHero(ClickEvent evt)
     {
-        GameManager.Instance.ChangeState(GameState.StartMoveHero);
+        //GameManager.Instance.ChangeState(GameState.StartMoveHero);
+        SetDisableAllButton();
+        await LevelManager.Instance.ActivePlayer.ActiveHero.StartMove();
     }
 
-    private void NextStep()
+    private void DrawHeroButtons()
     {
         player = LevelManager.Instance.ActivePlayer;
 
@@ -270,7 +272,7 @@ public class UIGameAside : MonoBehaviour
                 newButtonTown.Q<VisualElement>("image").style.backgroundImage =
                     new StyleBackground(town.ScriptableData.MenuSprite);
 
-                newButtonTown.Q<Button>(NameAllAsideButton).clickable.clicked += async () =>
+                newButtonTown.Q<Button>(NameAllAsideButton).clickable.clicked += () =>
                 {
                     //Debug.Log($"Click button {town.TownData.position}");
                     if (player.ActiveTown == town)
@@ -418,12 +420,15 @@ public class UIGameAside : MonoBehaviour
         {
             var creature = activeHero.Data.Creatures[i];
             var newForce = _templateHeroForce.Instantiate();
+            newForce.AddToClassList("heroinfo_force_el");
             //newForce.style.flexGrow = 1;
 
-            newForce.AddToClassList("heroinfo_force_el");
-            newForce.Q<VisualElement>("img").style.backgroundImage
-                = new StyleBackground(creature.ScriptableData.MenuSprite);
-            newForce.Q<Label>("ForceValue").text = creature.Data.value.ToString();
+            if (creature != null)
+            {
+                newForce.Q<VisualElement>("img").style.backgroundImage
+                    = new StyleBackground(creature.ScriptableData.MenuSprite);
+                newForce.Q<Label>("ForceValue").text = creature.Data.value.ToString();
+            }
 
             _heroForceList.Add(newForce);
 

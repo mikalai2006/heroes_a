@@ -1,4 +1,4 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/Toolkit/Base.uss?fileID=7433441132597879392&amp;guid=fa07b064290e7384d9ad2e26e79f5953&amp;type=3#Base" />
-    <ui:Button text="S" display-tooltip-when-elided="true" name="Btn" class="button button_bg button_text button_bordered m-px" style="flex-grow: 1;" />
+    <ui:Button text="button" display-tooltip-when-elided="true" name="Btn" class="button button_bg button_text button_bordered m-px" />
 </ui:UXML>

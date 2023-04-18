@@ -2,15 +2,18 @@ using System;
 
 using Cysharp.Threading.Tasks;
 
+using UnityEngine.Localization;
+
 namespace Loader
 {
     public class MenuAppOperation : ILoadingOperation
     {
         public async UniTask Load(Action<float> onProgress, Action<string> onSetNotify)
         {
-            onSetNotify?.Invoke("Menu app loading...");
+            var t = new LocalizedString(Constants.LanguageTable.LANG_TABLE_UILANG, "loadgamemenu").GetLocalizedString();
+            onSetNotify?.Invoke(t);
 
-            onProgress?.Invoke(0.9f);
+            onProgress?.Invoke(0.1f);
 
             var environment = await GameManager.Instance.AssetProvider.LoadAsset("UIMenuApp");
 
@@ -19,7 +22,7 @@ namespace Loader
 
             component.Init(environment);
 
-            onProgress?.Invoke(1f);
+            onProgress?.Invoke(.3f);
 
         }
     }

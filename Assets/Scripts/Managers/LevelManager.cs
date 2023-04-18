@@ -15,6 +15,7 @@ public class LevelManager : Singleton<LevelManager>, ISaveDataPlay, ISaveDataGam
     public int CountArea => _countArea;
 
     public DataGameMode GameModeData;
+    public DataGameSetting DataGameSetting;
 
     [Header("Setting level")]
     [Space(10)]
@@ -82,7 +83,14 @@ public class LevelManager : Singleton<LevelManager>, ISaveDataPlay, ISaveDataGam
 
         Level = new DataLevel();
         Level.countPlayer = countPlayer;
-        _countArea = Mathf.CeilToInt((GameModeData.width * GameModeData.height) / (((GameModeData.width * GameModeData.height) / countPlayer) * GameModeData.koofSizeArea));
+        Level.countBot = countBot;
+        _countArea = Mathf.CeilToInt(
+            (GameModeData.width * GameModeData.height) /
+            (
+                ((GameModeData.width * GameModeData.height) / (countPlayer + countBot))
+                * GameModeData.koofSizeArea
+            )
+            );
         Level.activePlayer = -1;
 
         for (int i = 0; i < countPlayer; i++)
@@ -109,9 +117,9 @@ public class LevelManager : Singleton<LevelManager>, ISaveDataPlay, ISaveDataGam
 
     }
 
-    public void StepNextPlayer()
+    public async void StepNextPlayer()
     {
-        if (Level.activePlayer < countPlayer - 1)
+        if (Level.activePlayer < (countPlayer + countBot - 1))
         {
             Level.activePlayer++;
         }
@@ -134,6 +142,12 @@ public class LevelManager : Singleton<LevelManager>, ISaveDataPlay, ISaveDataGam
         {
             ActivePlayer.ActiveHero.SetHeroAsActive();
         }
+
+        if (ActivePlayer.DataPlayer.playerType == PlayerType.Bot)
+        {
+            await ActivePlayer.RunBot();
+        }
+
         ActivePlayer.GenerateHeroTavern();
 
         // if (ActivePlayer.DataPlayer.nosky.Count == 0)

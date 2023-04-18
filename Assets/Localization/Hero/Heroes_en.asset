@@ -1,0 +1,79 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Heroes_en
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: 20373cbdea5ac9c418c19cbf0eaabc21, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 34050572288
+    m_Localized: Adela
+    m_Metadata:
+      m_Items: []
+  - m_Id: 230872481792
+    m_Localized: Adelaide
+    m_Metadata:
+      m_Items: []
+  - m_Id: 340129906688
+    m_Localized: Christian
+    m_Metadata:
+      m_Items: []
+  - m_Id: 390323142656
+    m_Localized: Edric
+    m_Metadata:
+      m_Items: []
+  - m_Id: 496925573120
+    m_Localized: Orrin
+    m_Metadata:
+      m_Items: []
+  - m_Id: 590236254208
+    m_Localized: SirMullich
+    m_Metadata:
+      m_Items: []
+  - m_Id: 638529470464
+    m_Localized: Sorsha
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1018898317312
+    m_Localized: CragHack
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1089165492224
+    m_Localized: Dessa
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1207876878336
+    m_Localized: Gird
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1243176140800
+    m_Localized: Gretchin
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1275992375296
+    m_Localized: Gurnisson
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1329952096256
+    m_Localized: Jabarkas
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1331323633664
+    m_Localized: Oris
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

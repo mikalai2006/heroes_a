@@ -5,7 +5,7 @@ using UnityEngine.Events;
 using UnityEngine.UIElements;
 
 
-public class UIGameMenu : MonoBehaviour
+public class UIGameMenu : UILocaleBase
 {
     [SerializeField] public UnityAction OnHideSetting;
     [SerializeField] public UnityAction OnSave;
@@ -43,18 +43,8 @@ public class UIGameMenu : MonoBehaviour
             GameManager.Instance.ChangeState(GameState.SaveGame);
         };
 
-        // Hide();
+        base.Localize(_box);
     }
-
-    // public void Show()
-    // {
-    //     _box.style.display = DisplayStyle.Flex;
-    // }
-
-    // public void Hide()
-    // {
-    //     _box.style.display = DisplayStyle.None;
-    // }
 
     private void OnClickOk()
     {

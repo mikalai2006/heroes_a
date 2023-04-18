@@ -16,7 +16,7 @@ public class AppStartup : MonoBehaviour
 
         var loadingOperations = new Queue<ILoadingOperation>();
         loadingOperations.Enqueue(GameManager.Instance.AssetProvider);
-        loadingOperations.Enqueue(new LoginOperation(appInfo));
+        // loadingOperations.Enqueue(new LoginOperation(appInfo));
         loadingOperations.Enqueue(new ConfigOperation(appInfo));
         loadingOperations.Enqueue(new MenuAppOperation());
         GameManager.Instance.AppInfo = appInfo;

@@ -18,7 +18,7 @@ public class TownManagerEditor
 
     private ListView m_ListUnit;
     private VisualElement m_Tabs, m_SectionNoPath;
-    private readonly float m_ItemHeight = 50, m_NoPathsize = 30;
+    private readonly float m_NoPathsize = 30; //  m_ItemHeight = 50,
     private readonly int countNoPath = 2;
     private ScriptableBuilding m_activeItem;
     private ScrollView m_SectionDetails;

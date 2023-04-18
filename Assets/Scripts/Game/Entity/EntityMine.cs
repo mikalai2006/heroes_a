@@ -46,6 +46,7 @@ public class EntityMine : BaseEntity
         base.SetPlayer(player);
         Data.idPlayer = player.DataPlayer.id;
         player.AddMines(this);
+        _player = player;
     }
 
     #region Change GameState

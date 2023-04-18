@@ -1,5 +1,7 @@
 using System;
 
+using UnityEngine;
+
 [Serializable]
 public class BuildGeneral : BaseBuild
 {
@@ -24,7 +26,6 @@ public class BuildGeneral : BaseBuild
             ConfigData = configData;
             Data = saveData.data;
         }
-
     }
     public void OnRunEffects()
     {

@@ -23,30 +23,44 @@ public class MapEntityDwelling : BaseMapEntity, IDialogMapObjectOperation
     {
         base.Start();
     }
+
     public void SetPlayer(Player player)
     {
         _flag.color = player.DataPlayer.color;
     }
+
     public async override void OnGoHero(Player player)
     {
         base.OnGoHero(player);
 
-        DataResultDialog result = await OnTriggeredHero();
-
-        if (result.isOk)
+        if (LevelManager.Instance.ActivePlayer.DataPlayer.playerType != PlayerType.Bot)
         {
-            MapObjectClass.SetPlayer(player);
-            SetPlayer(player);
-            DataResultDialogDwelling resultDwelling = await OnShowDialogDwelling();
-            if (resultDwelling.isOk)
-            {
+            DataResultDialog result = await OnTriggeredHero();
 
+            if (result.isOk)
+            {
+                OnHeroGo(player);
+                DataResultDialogDwelling resultDwelling = await OnShowDialogDwelling();
+                if (resultDwelling.isOk)
+                {
+
+                }
+            }
+            else
+            {
+                // Click cancel.
             }
         }
         else
         {
-            // Click cancel.
+            OnHeroGo(player);
         }
+    }
+
+    private void OnHeroGo(Player player)
+    {
+        MapObjectClass.SetPlayer(player);
+        SetPlayer(player);
     }
 
     public async UniTask<DataResultDialog> OnTriggeredHero()

@@ -43,6 +43,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - gamemode
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: eb0b0f31db04a7246b7832cf9cac2505
+    m_Address: Assets/ScriptableObjects/DefaultGameSetting.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - gamesetting
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 9a6380555b06f9d46b9bf47dd32221de, type: 2}
   m_SchemaSet:

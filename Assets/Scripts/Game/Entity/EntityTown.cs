@@ -26,32 +26,20 @@ public class EntityTown : BaseEntity
             Data.idPlayer = -1;
             Data.name = ConfigData.name;
             idObject = ScriptableData.idObject;
-            // Data.ProgressBuilds = ConfigData.BuildTown.StartProgressBuilds.ToList(); // TypeBuild.None | TypeBuild.Tavern_1;
-            // Data.LevelsBuilds = new SerializableDictionary<TypeBuild, BuildItem>();
+
             Data.Generals = new SerializableDictionary<string, BuildGeneral>();
             Data.Armys = new SerializableDictionary<string, BuildArmy>();
-            // Data.ProgressBuilds = new List<TypeBuild>();
+
+            // Data.Creatures = new SerializableDictionary<int, EntityCreature>();
+            // for (int i = 0; i < 7; i++)
+            // {
+            //     Data.Creatures.Add(i, null);
+            // }
+            ResetCreatures();
+
             foreach (var item in ConfigData.BuildTown.StartProgressBuilds)
             {
-                // var configData = ResourceSystem.Instance
-                //             .GetAllBuildsForTown()
-                //             .Where(t =>
-                //                 t.t
-                //                 && t.TypeFaction == ConfigData.TypeFaction
-                //             // {
-                //             //     var result = false;
-                //             //     if (t.BuildLevels.Where(
-                //             //         b => b.TypeBuild == item
-                //             //         ).Count() > 0)
-                //             //     {
-                //             //         result = true;
-                //             //     }
-                //             //     return result;
-                //             // }
-                //             )
-                //             .First();
                 var newBuild = CreateBuild(item.Build, item.level);
-                // Data.ProgressBuilds.Add(newBuild.ConfigData.BuildLevels[item.level].TypeBuild);
             }
         }
         else
@@ -79,6 +67,29 @@ public class EntityTown : BaseEntity
                     .First();
                 var newBuild = CreateBuild(configData, item.Value.level);
             }
+
+            var creatures = saveData.data.Creatures;
+            ResetCreatures();
+            // Data.Creatures = new SerializableDictionary<int, EntityCreature>();
+            // for (int i = 0; i < 7; i++)
+            // {
+            //     Data.Creatures.Add(i, null);
+            // }
+            for (int i = 0; i < creatures.Count; i++)
+            {
+                var creature = creatures[i];
+                EntityCreature newCreature = null;
+                if (creature.Data.idObject != "")
+                {
+                    newCreature = new EntityCreature(null, new SaveDataUnit<DataCreature>()
+                    {
+                        data = creature.Data,
+                        idObject = creature.Data.idObject,
+                    });
+                }
+                Data.Creatures[i] = newCreature;
+            }
+
             idUnit = saveData.idUnit;
             idObject = saveData.idObject;
 
@@ -88,6 +99,14 @@ public class EntityTown : BaseEntity
             // });
         }
 
+    }
+    public void ResetCreatures()
+    {
+        Data.Creatures = new SerializableDictionary<int, EntityCreature>();
+        for (int i = 0; i < 7; i++)
+        {
+            Data.Creatures.Add(i, null);
+        }
     }
 
     public void SetTownAsActive()
@@ -182,6 +201,32 @@ public class EntityTown : BaseEntity
                     result.Add(((ScriptableBuildingGeneral)item.Build).BuildLevels[item.level]);
                 }
             }
+        }
+        return result;
+    }
+
+    public Dictionary<ScriptableBuilding, int> GetLisNextLevelBuilds(ScriptableBuildTown configBuildTown)
+    {
+        var result = new Dictionary<ScriptableBuilding, int>();
+        foreach (var parentBuild in configBuildTown.Builds)
+        {
+
+            var indexLevelBuild = GetLevelBuild(parentBuild);
+            // Build currentBuild = parentBuild.BuildLevels[0];
+
+            // if (indexLevelBuild != -1)
+            // {
+            //     if (indexLevelBuild < parentBuild.BuildLevels.Count - 1)
+            //     {
+            //         indexLevelBuild++;
+            //     }
+            // }
+            // else
+            // {
+            //     indexLevelBuild = 0;
+            // }
+
+            result.Add(parentBuild, indexLevelBuild);
         }
         return result;
     }

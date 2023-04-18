@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using UnityEngine;
+using UnityEngine.Localization;
 
 using Random = UnityEngine.Random;
 
@@ -22,7 +23,8 @@ public class CreateTerrainOperation : ILoadingOperation
 
     public async UniTask Load(Action<float> onProgress, Action<string> onSetNotify)
     {
-        onSetNotify("Create terrain ...");
+        var t = new LocalizedString(Constants.LanguageTable.LANG_TABLE_UILANG, "createdgameobject").GetLocalizedString();
+        onSetNotify(t + "terrain ...");
 
         for (int x = 0; x < _root.gameModeData.width; x++)
         {

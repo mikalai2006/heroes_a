@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine.Localization;
 using System.Collections;
+using System;
 
 public class UITavernWindow : MonoBehaviour
 {
@@ -19,11 +20,13 @@ public class UITavernWindow : MonoBehaviour
     private readonly string _nameGeneralBlok = "GeneralBlok";
     private readonly string _nameOverlay = "Overlay";
     private readonly string _nameHeroList = "HeroList";
+    private readonly string _nameTextHeroInfo = "TextHeroInfo";
 
     private Button _buttonClose;
     private Button _buttonPrice;
     private VisualElement _heroList;
     private Label _headerLabel;
+    private Label _heroInfoLabel;
     private VisualElement _generalBlok;
 
     private TaskCompletionSource<DataResultBuildDialog> _processCompletionSource;
@@ -34,6 +37,8 @@ public class UITavernWindow : MonoBehaviour
 
     private Player _activePlayer;
     private ScriptableBuildTown _scriptObjectBuildTown;
+    private ScriptableEntityHero _activeHeroData;
+    public static event Action onBuyHero;
 
     private void Start()
     {
@@ -56,9 +61,10 @@ public class UITavernWindow : MonoBehaviour
         _buttonClose.clickable.clicked += OnClickClose;
 
         _buttonPrice = DialogApp.rootVisualElement.Q<VisualElement>(_nameButtonPrice).Q<Button>("Btn");
-        _buttonPrice.clickable.clicked += OnClickPrice;
+        _buttonPrice.clickable.clicked += OnClickBuy;
 
         _heroList = DialogApp.rootVisualElement.Q<VisualElement>(_nameHeroList);
+        _heroInfoLabel = DialogApp.rootVisualElement.Q<Label>(_nameTextHeroInfo);
     }
 
     public async Task<DataResultBuildDialog> ProcessAction()
@@ -122,14 +128,23 @@ public class UITavernWindow : MonoBehaviour
                 box.AddToClassList("button_bordered");
             }
         }
+
+        _activeHeroData = heroData;
         // show info hero.
+        _heroInfoLabel.text = heroData.title.GetLocalizedString();
     }
 
-    private void OnClickPrice()
+    private void OnClickBuy()
     {
         _dataResultDialog.isOk = false;
+        var newHero = UnitManager.CreateHero(
+            TypeFaction.Neutral,
+            _activePlayer.ActiveTown.OccupiedNode,
+            _activeHeroData);
+        newHero.SetPlayer(_activePlayer);
+        // _activePlayer.ActiveTown.Data.HeroinTown = newHero.IdEntity;
         _processCompletionSource.SetResult(_dataResultDialog);
-
+        onBuyHero?.Invoke();
         processAction?.Invoke();
     }
 

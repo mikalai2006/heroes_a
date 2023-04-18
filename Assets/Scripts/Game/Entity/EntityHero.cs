@@ -2,7 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
+using Cysharp.Threading.Tasks;
+
 using UnityEngine;
+using UnityEngine.Localization;
 
 using Random = UnityEngine.Random;
 
@@ -11,7 +14,7 @@ public class EntityHero : BaseEntity
 {
     [SerializeField] public DataHero Data = new DataHero();
     public ScriptableEntityHero ConfigData => (ScriptableEntityHero)ScriptableData;
-    // private bool _canMove = false;
+    public static event Action<EntityHero> onChangeParamsActiveHero;
 
     public bool IsExistPath
     {
@@ -22,22 +25,30 @@ public class EntityHero : BaseEntity
         private set { }
     }
 
-    public EntityHero(TypeFaction typeFaction, SaveDataUnit<DataHero> saveData = null)
+    public EntityHero(
+        TypeFaction typeFaction,
+        ScriptableEntityHero heroData = null,
+        SaveDataUnit<DataHero> saveData = null
+    )
     {
         base.Init();
 
-        Data.Artifacts = new List<EntityArtifact>();
-        Data.Creatures = new SerializableDictionary<int, EntityCreature>(7);
-        Data.path = new List<GridTileNode>();
 
         if (saveData == null)
         {
-            List<ScriptableEntityHero> list = ResourceSystem.Instance
-                .GetEntityByType<ScriptableEntityHero>(TypeEntity.Hero)
-                .Where(t => t.TypeFaction == typeFaction
-                    && !UnitManager.IdsExistsHeroes.Contains(t.idObject))
-                .ToList();
-            ScriptableData = list[UnityEngine.Random.Range(0, list.Count)];
+            if (heroData == null)
+            {
+                List<ScriptableEntityHero> list = ResourceSystem.Instance
+                    .GetEntityByType<ScriptableEntityHero>(TypeEntity.Hero)
+                    .Where(t => t.TypeFaction == typeFaction
+                        && !UnitManager.IdsExistsHeroes.Contains(t.idObject))
+                    .ToList();
+                ScriptableData = list[UnityEngine.Random.Range(0, list.Count)];
+            }
+            else
+            {
+                ScriptableData = heroData;
+            }
 
             Data.hit = 100f;
             Data.speed = 100;
@@ -45,39 +56,64 @@ public class EntityHero : BaseEntity
             Data.name = ScriptableData.name;
             idObject = ScriptableData.idObject;
 
+            Data.Artifacts = new List<EntityArtifact>();
             Data.path = new List<GridTileNode>();
 
             // Generate creatures.
             ScriptableEntityHero configData = (ScriptableEntityHero)ScriptableData;
-            foreach (var creature in configData.StartCreatures)
+            Data.Creatures = new SerializableDictionary<int, EntityCreature>();
+            for (int i = 0; i < 7; i++)
             {
+                Data.Creatures.Add(i, null);
+            }
+
+            for (int i = 0; i < configData.StartCreatures.Count; i++)
+            {
+                var creature = configData.StartCreatures[i];
                 var newCreature = new EntityCreature(creature.creature);
                 newCreature.Data.value = Random.Range(creature.min, creature.max);
                 newCreature.Data.idObject = creature.creature.idObject;
-                Data.Creatures.Add(Data.Creatures.Count, newCreature);
+                Data.Creatures[i] = newCreature;
             }
             UnitManager.IdsExistsHeroes.Add(ScriptableData.idObject);
         }
         else
         {
+            // Find config data.
             ScriptableData = ResourceSystem.Instance
                 .GetEntityByType<ScriptableEntityHero>(TypeEntity.Hero)
                 .Where(t => t.idObject == saveData.idObject)
                 .First();
-            Data = saveData.data;
-            Data.Creatures = new SerializableDictionary<int, EntityCreature>(7);
 
+            Data = saveData.data;
+            Position = saveData.position;
+
+            // Create creatures.
+            Data.Creatures = new SerializableDictionary<int, EntityCreature>();
             var creatures = saveData.data.Creatures;
-            foreach (var creature in creatures)
+            for (int i = 0; i < creatures.Count; i++)
             {
-                var newCreature = new EntityCreature(null, new SaveDataUnit<DataCreature>()
+                var creature = creatures[i];
+                EntityCreature newCreature = null;
+                if (creature.Data.idObject != "")
                 {
-                    data = creature.Value.Data,
-                    idObject = creature.Value.Data.idObject,
-                });
-                Data.Creatures[creature.Key] = newCreature;
+                    newCreature = new EntityCreature(null, new SaveDataUnit<DataCreature>()
+                    {
+                        data = creature.Data,
+                        idObject = creature.Data.idObject,
+                    });
+                }
+                Data.Creatures[i] = newCreature;
             }
 
+            // Create path.
+            Data.path = new List<GridTileNode>();
+            if (Data.State != StateHero.InTown && Data.nextPosition != Vector3Int.zero)
+            {
+                Data.path = FindPathForHero(saveData.data.nextPosition, true);
+            }
+
+            // Data.Artifacts = new List<EntityArtifact>();
             idUnit = saveData.idUnit;
             idObject = saveData.idObject;
         }
@@ -87,8 +123,19 @@ public class EntityHero : BaseEntity
     {
         var dataNode = ResourceSystem.Instance.GetLandscape(node.TypeGround);
         float val = (100 - dataNode.dataNode.speed + (100 - Data.speed + 10));
-        //Debug.Log($"CalculateHitByNode::: {val}");
         return val;
+    }
+
+    public void ChangeHitHero(GridTileNode node)
+    {
+        var val = CalculateHitByNode(node);
+        Data.hit -= val;
+
+        // Debug.Log($"ChangeHitHero:::[node {node.position}]{ScriptableData.name}-{Data.hit}");
+        if (Player != null && Player.DataPlayer.playerType != PlayerType.Bot)
+        {
+            onChangeParamsActiveHero?.Invoke(this);
+        }
     }
 
     public void SetHeroAsActive()
@@ -110,7 +157,7 @@ public class EntityHero : BaseEntity
         Position = newPosition;
         if (Player != null)
         {
-            SetPositionCamera(newPosition);
+            //SetPositionCamera(newPosition);
             // GameManager.Instance.MapManager.SetColorForTile(newPosition, Color.cyan);
             SetClearSky(newPosition);
         }
@@ -145,6 +192,11 @@ public class EntityHero : BaseEntity
         Player.SetNosky(noskyNode);
     }
 
+    public async UniTask StartMove()
+    {
+        await ((MapEntityHero)MapObjectGameObject).StartMove();
+    }
+
     public void SetPlayer(PlayerData playerData)
     {
         Data.idPlayer = playerData.id;
@@ -156,13 +208,32 @@ public class EntityHero : BaseEntity
 
     public void SetPathHero(List<GridTileNode> _path = null)
     {
-        Data.path = _path;
+        if (_path != null)
+        {
+            if (_path[0].position == this.Position) _path.RemoveAt(0);
+            Data.path = _path;
+        }
+        else
+        {
+            Data.path = new List<GridTileNode>();
+        }
+        // Data.path = _path != null ? _path : new List<GridTileNode>();
         //for (int i = 1; i < path.Count; i++)
         //{
         //    HeroData.path.Add(path[i]._position);
-        GameManager.Instance.MapManager.DrawCursor(Data.path, this);
+        if (Player != null && Player.DataPlayer.playerType != PlayerType.Bot)
+        {
+            GameManager.Instance.MapManager.DrawCursor(Data.path, this);
+        }
         //}
-        // Data.nextPosition = _path == null ?  : Data.path[Data.path.Count - 1].position;
+        if (Data.path.Count > 0)
+        {
+            Data.nextPosition = _path[_path.Count - 1].position;
+        }
+        else
+        {
+            Data.nextPosition = Vector3Int.zero;
+        }
     }
 
     public override void SetPlayer(Player player)
@@ -171,6 +242,42 @@ public class EntityHero : BaseEntity
         Data.idPlayer = player.DataPlayer.id;
         player.AddHero(this);
     }
+
+    public List<GridTileNode> FindPathForHero(Vector3Int endPoint, bool isDiagonal)
+    {
+        // EntityHero activeHero = DataPlayer.PlayerDataReferences.ActiveHero;
+        // if (this == null)
+        // {
+        //     GameManager.Instance.MapManager.ResetCursor();
+        //     return default;
+        // }
+        Vector3Int startPoint = new Vector3Int(this.Position.x, this.Position.y);
+        List<GridTileNode> path = GameManager.Instance
+            .MapManager
+            .GridTileHelper()
+            .FindPath(startPoint, endPoint, isDiagonal);
+
+        // Debug.Log($"Draw path::: {endPoint}[{Position}]= {path.Count}");
+        this.SetPathHero(path);
+
+        // if (
+        //     path == null
+        //     && Player.DataPlayer.playerType != PlayerType.Bot
+        //     )
+        // {
+        //     var dialogData = new DataDialogHelp()
+        //     {
+        //         Header = new LocalizedString(Constants.LanguageTable.LANG_TABLE_UILANG, "Help").GetLocalizedString(),
+        //         Description = new LocalizedString(Constants.LanguageTable.LANG_TABLE_ADVENTURE, "nomove").GetLocalizedString(),
+        //     };
+
+        //     var dialogWindow = new DialogHelpProvider(dialogData);
+        //     dialogWindow.ShowAndHide();
+        // }
+
+        return path;
+    }
+
 
     #region SaveLoadData
     // public void LoadDataPlay(DataPlay data)

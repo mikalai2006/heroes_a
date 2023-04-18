@@ -6,6 +6,7 @@ using Cysharp.Threading.Tasks;
 using System;
 using System.Linq;
 using Random = UnityEngine.Random;
+using UnityEngine.Localization;
 
 public class CreateExploreOperation : ILoadingOperation
 {
@@ -18,7 +19,9 @@ public class CreateExploreOperation : ILoadingOperation
 
     public async UniTask Load(Action<float> onProgress, Action<string> onSetNotify)
     {
-        onSetNotify("Create explore ...");
+        var t = new LocalizedString(Constants.LanguageTable.LANG_TABLE_UILANG, "createdgameobject").GetLocalizedString();
+        onSetNotify(t + " explore ...");
+
         var factory = new EntityMapObjectFactory();
 
         for (int x = 0; x < LevelManager.Instance.Level.listArea.Count; x++)

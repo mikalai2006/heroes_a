@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using TMPro;
 
 using UnityEngine;
+using UnityEngine.Localization;
 using UnityEngine.Tilemaps;
 
 // [System.Serializable]
@@ -80,6 +81,8 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
     public int countArea;
     public Tilemap _tileMap;
     public Tilemap _tileTest;
+    [SerializeField] public Tilemap _tileMapEdge;
+    [SerializeField] public RuleTile _tileEdge;
     [SerializeField] public GameObject _textMesh;
     [SerializeField] public Tilemap _tileMapText;
     [SerializeField] public Dictionary<Vector3, GameObject> listTextMesh = new Dictionary<Vector3, GameObject>();
@@ -221,7 +224,7 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
 
             if (unitHero.idObject == "") continue;
 
-            EntityHero hero = new EntityHero(TypeFaction.Neutral, unitHero);
+            EntityHero hero = new EntityHero(TypeFaction.Neutral, null, unitHero);
             // UnitManager.SpawnEntityMapObjectToNode(tileNode, hero);
             UnitManager.Entities.Add(hero.IdEntity, hero);
             if (unitHero.data.State == StateHero.OnMap)
@@ -451,6 +454,7 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
         operations.Enqueue(new CreateResourceOperation(this));
         operations.Enqueue(new CreateArtifactOperation(this));
         operations.Enqueue(new CreateDwellingOperation(this));
+        operations.Enqueue(new CreateEdgesOperation(this));
         await GameManager.Instance.LoadingScreenProvider.LoadAndDestroy(operations);
 
         Application.targetFrameRate = -1;
@@ -474,6 +478,7 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
         colliderTileMap.offset = new Vector2((float)gameModeData.width / 2, (float)gameModeData.height / 2);
         colliderTileMap.size = new Vector2(gameModeData.width, gameModeData.height);
         CompositeCollider2D composeColiiderTileMap = _tileMap.GetComponent<CompositeCollider2D>();
+        // _tileMap.CompressBounds();
     }
 
 
@@ -713,7 +718,7 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
         return gridTileHelper;
     }
 
-    public void ChangePath()
+    public async void ChangePath()
     {
         Vector2 posMouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector3Int tilePos = _tileMap.WorldToCell(posMouse);
@@ -725,7 +730,21 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
         {
             if (node.OccupiedUnit == null || node.StateNode.HasFlag(StateNode.Protected))
             {
-                LevelManager.Instance.ActivePlayer.FindPathForHero(tilePos, true);
+                if (LevelManager.Instance.ActivePlayer.ActiveHero != null)
+                {
+                    LevelManager.Instance.ActivePlayer.ActiveHero.FindPathForHero(tilePos, true);
+                }
+                else
+                {
+                    var dialogData = new DataDialogHelp()
+                    {
+                        Header = new LocalizedString(Constants.LanguageTable.LANG_TABLE_UILANG, "Help").GetLocalizedString(),
+                        Description = new LocalizedString(Constants.LanguageTable.LANG_TABLE_ADVENTURE, "needchoosehero").GetLocalizedString(),
+                    };
+
+                    var dialogWindow = new DialogHelpProvider(dialogData);
+                    await dialogWindow.ShowAndHide();
+                }
             }
 
         }
@@ -746,6 +765,12 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
 
         float countDistance = hero.Data.hit;
         //Debug.Log($"hero.HeroData.hit.Value={hero.HeroData.hit.Value}");
+
+        if (paths.Count == 1)
+        {
+            _tileMapCursor.SetTile(paths[0].position, _cursorSprites.center);
+            return;
+        }
 
         for (int i = 0; i < paths.Count - 1; i++)
         {

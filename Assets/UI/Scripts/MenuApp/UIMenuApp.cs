@@ -1,26 +1,26 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UIElements;
 using UnityEngine.AddressableAssets;
 
-public class UIMenuApp : MonoBehaviour
+public class UIMenuApp : UILocaleBase
 {
     [SerializeField] private UIDocument _menuAppDoc;
     public UIDocument MenuApp => _menuAppDoc;
 
-    [SerializeField] private MapManager mapGenerator;
+    // [SerializeField] private MapManager mapGenerator;
 
-    public UnityAction OnQuit;
+    // public UnityAction OnQuit;
     private VisualElement buttonsSection;
 
     [SerializeField] private UIDocument _menuNewGameDoc;
     [SerializeField] private VisualTreeAsset _templateButton;
+    [SerializeField] private VisualTreeAsset _templateButtonWithImg;
     [SerializeField] private VisualTreeAsset _templateColumn;
     public UIDocument MenuNewGame => _menuNewGameDoc;
 
-    [SerializeField] public LevelManager _levelManager;
-    public LevelManager LevelManager => _levelManager;
+    // [SerializeField] public LevelManager _levelManager;
+    // public LevelManager LevelManager => _levelManager;
 
     private VisualElement _box;
     private VisualElement _boxOptions;
@@ -39,9 +39,11 @@ public class UIMenuApp : MonoBehaviour
 
     private string nameTabAdvance = "Advance";
     private Button _btnTabAdvance;
-    private string nameTabContentAdvance = "TabContentAdvance";
-    private VisualElement _tabContentAdvance;
-
+    private string nameBoxContentSetting = "BoxSetting";
+    private VisualElement _boxContentSetting;
+    private VisualElement _boxContentGeneral;
+    private VisualElement _buttonRandomSetting;
+    private VisualElement _complexityBox;
     private List<ScriptableGameMode> _listGameMode;
 
     private GameObject _environment;
@@ -62,11 +64,11 @@ public class UIMenuApp : MonoBehaviour
         };
 
         var loadGameButton = MenuApp.rootVisualElement.Q<Button>("loadgame");
-        loadGameButton.clickable.clicked += () =>
+        loadGameButton.clickable.clicked += async () =>
         {
             GameManager.Instance.ChangeState(GameState.LoadGame);
             HideNewGameWindow();
-            GameManager.Instance.AssetProvider.UnloadAsset(_environment);
+            await GameManager.Instance.AssetProvider.UnloadAsset(_environment);
         };
 
         var btnQuit = MenuApp.rootVisualElement.Q<Button>("ButtonQuit");
@@ -77,35 +79,43 @@ public class UIMenuApp : MonoBehaviour
 
         // new game window
         _box = _menuNewGameDoc.rootVisualElement.Q<VisualElement>("NewGameBox");
-
-        _tabContentAdvance = _box.Q<VisualElement>(nameTabContentAdvance);
-        _btnTabAdvance = _box.Q<Button>(nameTabAdvance);
-        _btnTabAdvance.clickable.clicked += () =>
+        _complexityBox = _box.Q<VisualElement>("Complexity");
+        _boxContentSetting = _box.Q<VisualElement>(nameBoxContentSetting);
+        _boxContentGeneral = _box.Q<VisualElement>("BoxGeneral");
+        _buttonRandomSetting = _box.Q<VisualElement>("RandomOptions");
+        _buttonRandomSetting.Q<Button>().clickable.clicked += () =>
         {
-            _tabContentGeneral.style.display = DisplayStyle.None;
-            _btnTabGeneral.RemoveFromClassList(nameTabActive);
-            _tabContentAdvance.style.display = DisplayStyle.Flex;
-            _btnTabAdvance.AddToClassList(nameTabActive);
-
+            ShowHideRandomOptions();
         };
 
-        _tabContentGeneral = _box.Q<VisualElement>(nameTabContentGeneral);
-        _btnTabGeneral = _box.Q<Button>(nameTabGeneral);
-        _btnTabGeneral.clickable.clicked += () =>
-        {
-            _tabContentGeneral.style.display = DisplayStyle.Flex;
-            _btnTabGeneral.AddToClassList(nameTabActive);
-            _tabContentAdvance.style.display = DisplayStyle.None;
-            _btnTabAdvance.RemoveFromClassList(nameTabActive);
-        };
+        ShowHideRandomOptions();
+        // _tabContentAdvance = _box.Q<VisualElement>(nameTabContentAdvance);
+        // _btnTabAdvance = _box.Q<Button>(nameTabAdvance);
+        // _btnTabAdvance.clickable.clicked += () =>
+        // {
+        //     _tabContentGeneral.style.display = DisplayStyle.None;
+        //     _btnTabGeneral.RemoveFromClassList(nameTabActive);
+        //     _tabContentAdvance.style.display = DisplayStyle.Flex;
+        //     _btnTabAdvance.AddToClassList(nameTabActive);
+
+        // };
+
+        // _tabContentGeneral = _box.Q<VisualElement>(nameTabContentGeneral);
+        // _btnTabGeneral = _box.Q<Button>(nameTabGeneral);
+        // _btnTabGeneral.clickable.clicked += () =>
+        // {
+        //     _tabContentGeneral.style.display = DisplayStyle.Flex;
+        //     _btnTabGeneral.AddToClassList(nameTabActive);
+        //     _tabContentAdvance.style.display = DisplayStyle.None;
+        //     _btnTabAdvance.RemoveFromClassList(nameTabActive);
+        // };
 
         _btnNewGame = _box.Q<VisualElement>("ButtonNewGame").Q<Button>("Btn");
-        _btnNewGame.clickable.clicked += () =>
+        _btnNewGame.clickable.clicked += async () =>
         {
             GameManager.Instance.ChangeState(GameState.NewGame);
             HideNewGameWindow();
-            GameManager.Instance.AssetProvider.UnloadAsset(_environment);
-
+            await GameManager.Instance.AssetProvider.UnloadAsset(_environment);
         };
 
         var btnClose = _menuNewGameDoc.rootVisualElement.Q<VisualElement>("ButtonClose").Q<Button>("Btn");
@@ -113,26 +123,43 @@ public class UIMenuApp : MonoBehaviour
         {
             HideNewGameWindow();
         };
+        // MenuApp.rootVisualElement.Add(_menuNewGameDoc.rootVisualElement);
 
         HideNewGameWindow();
         RefreshOptions();
 
+        base.Localize(MenuApp.rootVisualElement);
+
+    }
+
+    private void ShowHideRandomOptions()
+    {
+        if (_boxContentSetting.style.display == DisplayStyle.None)
+        {
+            _boxContentSetting.style.display = DisplayStyle.Flex;
+        }
+        else
+        {
+            _boxContentSetting.style.display = DisplayStyle.None;
+        }
     }
 
     private void RefreshOptions()
     {
-        Debug.Log("Refresh");
         _boxOptions = _box.Q<ScrollView>("BoxOptions");
         _boxOptions.Clear();
 
         CreateListGameMode();
         AddOptionCountPlay();
         AddOptionCountBot();
+        AddCompexity();
 
         if (
             (LevelManager.Instance.countPlayer < 2 && LevelManager.Instance.countBot == 0)
             ||
             (LevelManager.Instance.GameModeData.title == "")
+            ||
+            (LevelManager.Instance.DataGameSetting.Compexity < 99)
             )
         {
             _btnNewGame.SetEnabled(false);
@@ -141,6 +168,7 @@ public class UIMenuApp : MonoBehaviour
         {
             _btnNewGame.SetEnabled(true);
         }
+        base.Localize(_box);
     }
 
     //private void AddOptionSizeArea()
@@ -166,11 +194,51 @@ public class UIMenuApp : MonoBehaviour
 
     //    _boxOptions.Add(newCol);
     //}
+    public void AddCompexity()
+    {
+        var _complexityList = _complexityBox.Q<VisualElement>("ComplexityList");
+        var _complexityValue = _complexityBox.Q<Label>("ComplexityValue");
+        _complexityList.Clear();
+        var allComplexity = ResourceSystem.Instance
+            .GetAllAssetsByLabel<ScriptableGameSetting>(Constants.Labels.LABEL_GAMESETTING);
+
+        foreach (var item in allComplexity[0].Complexities)
+        {
+            var btnTemplate = _templateButtonWithImg.Instantiate();
+            var btn = btnTemplate.Q<Button>();
+            btn.Q<VisualElement>("img").style.backgroundImage
+                = new StyleBackground(item.sprite);
+            btn.AddToClassList("w-125");
+            btn.style.height = new StyleLength(new Length(70, LengthUnit.Pixel));
+
+            if (LevelManager.Instance.DataGameSetting.Compexity == item.value)
+            {
+                btn.AddToClassList("button_checked");
+                btn.RemoveFromClassList("button_bg");
+                btn.RemoveFromClassList("button_bordered");
+                _complexityValue.text = item.value + "%";
+            }
+            else
+            {
+                btn.clickable.clicked += () =>
+                {
+                    LevelManager.Instance.DataGameSetting.Compexity = item.value;
+
+                    RefreshOptions();
+                };
+            }
+
+            _complexityList.Add(btn);
+        }
+
+
+    }
 
     public void CreateListGameMode()
     {
+        var boxActiveMode = _box.Q<Label>("ActiveSizeMap");
         var newCol = _templateColumn.Instantiate();
-        newCol.Q<Label>(nameNameOption).text = "#size map";
+        newCol.Q<Label>(nameNameOption).text = "#sizemap";
 
         var NewColBoxBtn = newCol.Q<VisualElement>(nameBoxOption);
         NewColBoxBtn.Clear();
@@ -187,6 +255,8 @@ public class UIMenuApp : MonoBehaviour
                 btn.AddToClassList("button_checked");
                 btn.RemoveFromClassList("button_bg");
                 btn.RemoveFromClassList("button_bordered");
+
+                boxActiveMode.text = currentMode.GameModeData.title;
             }
             else
             {

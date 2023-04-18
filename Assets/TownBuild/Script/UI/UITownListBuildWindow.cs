@@ -63,69 +63,41 @@ public class UITownListBuildWindow : MonoBehaviour
         ScriptableEntityTown scriptDataTown = (ScriptableEntityTown)_activeTown.ScriptableData;
         _scriptObjectBuildTown = scriptDataTown.BuildTown; // ResourceSystem.Instance.GetBuildTowns().Where(t => t.TypeFaction == scriptDataTown.TypeFaction).First();
 
-        foreach (var parentBuild in _scriptObjectBuildTown.Builds)
+        var allowBuilds = _activeTown.GetLisNextLevelBuilds(_scriptObjectBuildTown);
+
+        foreach (var parentBuild in allowBuilds)
         {
             var item = _templateBuildItem.Instantiate();
             // var _bitsProgress = new HelperBitArray(44);
             // _bitsProgress.SetItem<TypeBuild>(_activeTown.Data.ProgressBuilds);
             // check status build and choose actual build.
 
-            var indexLevelBuild = _activeTown.GetLevelBuild(parentBuild);
-            Build currentBuild = parentBuild.BuildLevels[0];
+            var indexNextBuild = 0;
 
-            if (indexLevelBuild == parentBuild.BuildLevels.Count - 1)
+            if (parentBuild.Value == parentBuild.Key.BuildLevels.Count - 1)
             {
                 item.AddToClassList("town_listbuild_builded");
-            }
-
-            if (indexLevelBuild != -1)
-            {
-                if (indexLevelBuild < parentBuild.BuildLevels.Count - 1)
-                {
-                    indexLevelBuild++;
-                }
+                indexNextBuild = parentBuild.Key.BuildLevels.Count - 1;
             }
             else
             {
-                indexLevelBuild = 0;
+                indexNextBuild = parentBuild.Value + 1;
             }
 
-            currentBuild = parentBuild.BuildLevels[indexLevelBuild];
-            // if (indexLevelBuild == parentBuild.BuildLevels.Count - 1)
-            //     {
-            //         item.AddToClassList("town_listbuild_builded");
-            //     }
-            // if (indexLevelBuild == parentBuild.BuildLevels.Count - 1)
-            // {
-            //     item.AddToClassList("town_listbuild_builded");
-            // }
-            // else
-            // {
-            //     indexLevelBuild = 0;
-            // }
-            // currentBuild = parentBuild.BuildLevels[indexLevelBuild];
+            Build currentBuild = parentBuild.Key.BuildLevels[indexNextBuild];
 
-            // for (int i = 0; i < parentBuild.BuildLevels.Count; i++)
-            // {
-            //     var levelBuild = parentBuild.BuildLevels[i];
-            //     currentBuild = levelBuild;
-            //     indexLevelBuild = i;
-            //     AllBuilds.Add(currentBuild.TypeBuild, currentBuild);
-            //     // var needBuilds = _activeTown.GetListNeedNoBuilds();
-            //     // if (_activeTown.Data.ProgressBuilds.Contains(levelBuild.TypeBuild))
-            //     if (_activeTown.GetLevelBuild(levelBuild))
-            //     {
-            //         if (i == parentBuild.BuildLevels.Count - 1)
-            //         {
-            //             item.AddToClassList("town_listbuild_builded");
-            //         }
-            //     }
-            //     else
-            //     {
-            //         // currentBuild = levelBuild;
-            //         break;
-            //     }
-            // }
+            if (
+                _activeTown.GetListNeedNoBuilds(currentBuild.RequireBuilds).Count == 0
+                || currentBuild.RequireBuilds.Count == 0
+                )
+            {
+                item.AddToClassList("town_listbuild_allow");
+            }
+            else
+            {
+                item.AddToClassList("town_listbuild_disallow");
+            }
+
 
             var img = item.Q<VisualElement>("Img");
             img.style.backgroundImage = new StyleBackground(currentBuild.MenuSprite);
@@ -138,23 +110,12 @@ public class UITownListBuildWindow : MonoBehaviour
 
             item.Q<Button>("TownBuildItem").clickable.clicked += () =>
             {
-                OnClickToBuild(parentBuild, indexLevelBuild);
+                OnClickToBuild(parentBuild.Key, indexNextBuild);
             };
 
             // if (_activeTown.Data.ProgressBuilds.Intersect(currentBuild.RequiredBuilds).Count()
             //         == currentBuild.RequiredBuilds.Count()
             //     || currentBuild.RequiredBuilds.Length == 0)
-            if (
-                _activeTown.GetListNeedNoBuilds(currentBuild.RequireBuilds).Count == 0
-                || currentBuild.RequireBuilds.Count == 0
-                )
-            {
-                item.AddToClassList("town_listbuild_allow");
-            }
-            else
-            {
-                item.AddToClassList("town_listbuild_disallow");
-            }
             _listBuild.Add(item);
         }
 

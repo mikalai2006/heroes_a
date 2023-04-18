@@ -6,6 +6,7 @@ using Cysharp.Threading.Tasks;
 using System;
 using System.Linq;
 using Random = UnityEngine.Random;
+using UnityEngine.Localization;
 
 public class CreateResourceEveryWeekOperation : ILoadingOperation
 {
@@ -18,7 +19,9 @@ public class CreateResourceEveryWeekOperation : ILoadingOperation
 
     public async UniTask Load(Action<float> onProgress, Action<string> onSetNotify)
     {
-        onSetNotify("Create every week resource ...");
+        var t = new LocalizedString(Constants.LanguageTable.LANG_TABLE_UILANG, "createdgameobject").GetLocalizedString();
+        onSetNotify(t + " every week resources ...");
+
         var factory = new EntityMapObjectFactory();
 
         for (int x = 0; x < LevelManager.Instance.Level.listArea.Count; x++)
