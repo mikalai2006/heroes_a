@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BuildText Shared Data
   m_EditorClassIdentifier: 
   m_TableCollectionName: BuildText
-  m_TableCollectionNameGuidString: 00000000000000000000000000000000
+  m_TableCollectionNameGuidString: df1602531e116924e9365043f9d77dcb
   m_Entries: []
   m_Metadata:
     m_Items: []
