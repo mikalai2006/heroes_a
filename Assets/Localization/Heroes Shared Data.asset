@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Heroes Shared Data
   m_EditorClassIdentifier: 
   m_TableCollectionName: Heroes
-  m_TableCollectionNameGuidString: 00000000000000000000000000000000
+  m_TableCollectionNameGuidString: 55372d53f114a9c4986cff40fe53416f
   m_Entries: []
   m_Metadata:
     m_Items: []
