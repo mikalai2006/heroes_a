@@ -1,11 +1,9 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
-    <ui:Template name="HeroInfoForce" src="project://database/Assets/UI/Toolkit/HeroInfoForce.uxml?fileID=9197481963319205126&amp;guid=4f6a4d47381761f40ba034485fd3dcd4&amp;type=3#HeroInfoForce" />
-    <Style src="project://database/Assets/UI/Toolkit/AsideMenu.uss?fileID=7433441132597879392&amp;guid=e55e2feb94a32ea4281de07ce70e415f&amp;type=3#AsideMenu" />
     <Style src="project://database/Assets/UI/Toolkit/Base.uss?fileID=7433441132597879392&amp;guid=fa07b064290e7384d9ad2e26e79f5953&amp;type=3#Base" />
     <Style src="project://database/Assets/UI/Toolkit/HeroInfoBox.uss?fileID=7433441132597879392&amp;guid=244c2fc00bdb3364e8ae63d4903d5670&amp;type=3#HeroInfoBox" />
-    <ui:VisualElement name="HeroInfoBox" class="aside_blok border-color h-full text-secondary">
+    <ui:VisualElement name="HeroInfoBox" class="border-color h-full text-secondary">
         <ui:VisualElement name="Overlay" class="overlay" style="flex-grow: 1; background-image: url(&apos;project://database/Assets/UI/Sprites/Bg.png?fileID=2800000&amp;guid=0641c76439a64674aa800f9e3d79c6a4&amp;type=3#Bg&apos;);" />
-        <ui:VisualElement name="Box" class="heroinfo_bg" style="height: 30%;">
+        <ui:VisualElement name="Box" style="height: 30%;">
             <ui:VisualElement name="HeroInfoHeader" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row;">
                 <ui:VisualElement name="HeroIcon" style="width: 30%;" />
                 <ui:VisualElement name="HeroInfo" style="width: 70%;">
@@ -31,12 +29,8 @@
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
-        <ui:VisualElement name="HeroForce" class="heroinfo_bg" style="height: 65%; margin-top: 3px;">
-            <ui:VisualElement name="HeroForceList" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row; flex-wrap: wrap; height: 100%;">
-                <ui:Instance template="HeroInfoForce" name="HeroInfoForce" class="heroinfo_force_el">
-                    <AttributeOverrides element-name="ForceValue" />
-                </ui:Instance>
-            </ui:VisualElement>
+        <ui:VisualElement name="HeroForce" style="height: 65%; margin-top: 3px;">
+            <ui:VisualElement name="HeroForceList" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row; flex-wrap: wrap; height: 100%;" />
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

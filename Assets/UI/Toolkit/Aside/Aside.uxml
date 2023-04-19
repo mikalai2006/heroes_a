@@ -1,7 +1,7 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
     <ui:Template name="ButtonHero" src="project://database/Assets/UI/Toolkit/ButtonHero.uxml?fileID=9197481963319205126&amp;guid=f48f1348bc1d8904d9e98008b8bbc067&amp;type=3#ButtonHero" />
     <ui:Template name="ButtonTown" src="project://database/Assets/UI/Toolkit/ButtonTown.uxml?fileID=9197481963319205126&amp;guid=b88a51368884639478bf9ce1cc9de318&amp;type=3#ButtonTown" />
-    <ui:Template name="HeroInfoBox" src="project://database/Assets/UI/Toolkit/HeroInfoBox.uxml?fileID=9197481963319205126&amp;guid=51eec4db8f30b6c41bd719323f42bd13&amp;type=3#HeroInfoBox" />
+    <ui:Template name="HeroInfoBox" src="project://database/Assets/UI/Toolkit/HeroInfoAside.uxml?fileID=9197481963319205126&amp;guid=51eec4db8f30b6c41bd719323f42bd13&amp;type=3#HeroInfoBox" />
     <Style src="project://database/Assets/UI/Toolkit/AsideMenu.uss?fileID=7433441132597879392&amp;guid=e55e2feb94a32ea4281de07ce70e415f&amp;type=3#AsideMenu" />
     <Style src="project://database/Assets/UI/Toolkit/Base.uss?fileID=7433441132597879392&amp;guid=fa07b064290e7384d9ad2e26e79f5953&amp;type=3#Base" />
     <Style src="project://database/Assets/UI/Toolkit/Footer.uss?fileID=7433441132597879392&amp;guid=100acbaeadba496408baf44e6dfd4501&amp;type=3#Footer" />
@@ -45,7 +45,7 @@
         <ui:VisualElement name="ActionBox" class="border-color aside_blok aside_actionbox">
             <ui:VisualElement name="Overlay" class="overlay" />
             <ui:VisualElement name="AsideBoxInfo" class="p-05" style="flex-grow: 1; background-color: rgb(0, 0, 0);">
-                <ui:Instance template="HeroInfoBox" name="HeroInfoBox" style="flex-grow: 1; display: none;" />
+                <ui:Instance template="HeroInfoBox" style="flex-grow: 1; display: none;" />
             </ui:VisualElement>
             <ui:VisualElement name="ActionList" class="aside_blok_list" style="align-items: stretch; flex-grow: 1; display: none;">
                 <ui:VisualElement style="flex-direction: row; flex-grow: 0; flex-wrap: wrap; flex-shrink: 0; width: 100%;">

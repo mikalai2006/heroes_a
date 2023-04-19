@@ -191,6 +191,7 @@ public class UIGameAside : UILocaleBase
     {
         EntityTown activeTown = player.ActiveTown;
         if (activeTown == null) return;
+        player.SetActiveHero(null);
 
         Debug.Log("Change info hero");
         VisualElement townInfo = _templateTownInfo.Instantiate();
@@ -452,27 +453,22 @@ public class UIGameAside : UILocaleBase
     private void InitHeroBox()
     {
         EntityHero activeHero = player.ActiveHero;
-        //var newHeroInfo = _templateHeroInfo.Instantiate();
-        //newHeroInfo.style.flexGrow = 1;
-        //var InfoBox = aside.Q<VisualElement>("AsideBoxInfo");
-        //InfoBox.Clear();
-        //InfoBox.Add(newHeroInfo);
-
         var _heroForceList = _aside.rootVisualElement.Q<VisualElement>("HeroForceList");
         _heroForceList.Clear();
         for (int i = 0; i < activeHero.Data.Creatures.Count; i++)
         {
             var creature = activeHero.Data.Creatures[i];
-            var newForce = _templateHeroForce.Instantiate();
-            newForce.AddToClassList("heroinfo_force_el");
-            //newForce.style.flexGrow = 1;
-
+            var newForce = _templateTownInfoCreature.Instantiate();
+            newForce.AddToClassList("w-25");
+            newForce.AddToClassList("h-50");
             if (creature != null)
             {
-                newForce.Q<VisualElement>("img").style.backgroundImage
+                newForce.Q<VisualElement>("Img").style.backgroundImage
                     = new StyleBackground(creature.ScriptableData.MenuSprite);
-                newForce.Q<Label>("ForceValue").text = creature.Data.value.ToString();
             }
+            newForce.Q<Label>("Value").text = creature != null
+                ? creature.Data.value.ToString()
+                : "";
 
             _heroForceList.Add(newForce);
 
