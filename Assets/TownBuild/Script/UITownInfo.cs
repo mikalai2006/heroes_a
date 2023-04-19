@@ -33,11 +33,13 @@ public class UITownInfo : MonoBehaviour
     private void Start()
     {
         UITavernWindow.onBuyHero += onBuyHero;
+        UITownListBuildWindow.OnCloseListBuilds += DrawTownInfo;
     }
 
     private void OnDestroy()
     {
         UITavernWindow.onBuyHero -= onBuyHero;
+        UITownListBuildWindow.OnCloseListBuilds -= DrawTownInfo;
     }
 
     private void onBuyHero()
@@ -89,7 +91,8 @@ public class UITownInfo : MonoBehaviour
         var listTownDwellingEl = _townInfo.Q<VisualElement>("TownDwellingList");
         listTownDwellingEl.Clear();
 
-        foreach (var build in _activeTown.Data.Armys)
+        foreach (var build in _activeTown.Data.Armys
+            .OrderBy(t => ((ScriptableBuildingArmy)((BuildArmy)t.Value).ConfigData).Creatures[t.Value.level].CreatureParams.Level))
         {
             var btnCreature = _templateTownInfoCreature.Instantiate();
             btnCreature.AddToClassList("w-25");
@@ -99,8 +102,14 @@ public class UITownInfo : MonoBehaviour
             btnCreature.Q<Label>("Value").text = "+" + (build.Value.Data.quantity.ToString());
             listTownDwellingEl.Add(btnCreature);
         }
-
-
+        for (int i = _activeTown.Data.Armys.Count; i < 7; i++)
+        {
+            var btnCreature = _templateTownInfoCreature.Instantiate();
+            btnCreature.AddToClassList("w-25");
+            btnCreature.AddToClassList("h-50");
+            btnCreature.Q<Label>("Value").text = "";
+            listTownDwellingEl.Add(btnCreature);
+        }
     }
 
     private void DrawHeroAsGuest()

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine.Localization;
 using System.Collections;
+using System;
 
 public class UITownListBuildWindow : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class UITownListBuildWindow : MonoBehaviour
     private readonly string _nameButtonClose = "ButtonClose";
     private readonly string _nameOverlay = "Overlay";
     private readonly string _nameListBuild = "ListBuild";
+    public static event Action OnCloseListBuilds;
 
     private Button _buttonClose;
     private VisualElement _listBuild;
@@ -129,6 +131,7 @@ public class UITownListBuildWindow : MonoBehaviour
         _dataResultDialog.isOk = false;
         _processCompletionSource.SetResult(_dataResultDialog);
 
+        OnCloseListBuilds?.Invoke();
         processAction?.Invoke();
     }
 

@@ -68,4 +68,6 @@ MonoBehaviour:
   _templateButtonHero: {fileID: 9197481963319205126, guid: f48f1348bc1d8904d9e98008b8bbc067, type: 3}
   _templateButtonTown: {fileID: 9197481963319205126, guid: b88a51368884639478bf9ce1cc9de318, type: 3}
   _templateHeroInfo: {fileID: 9197481963319205126, guid: 51eec4db8f30b6c41bd719323f42bd13, type: 3}
+  _templateTownInfoCreature: {fileID: 9197481963319205126, guid: eb9191393d0e98e4494aafd9d31d00ad, type: 3}
+  _templateTownInfo: {fileID: 9197481963319205126, guid: 90ce38dc66d268a4d94d8d8065b8ba3b, type: 3}
   _templateHeroForce: {fileID: 9197481963319205126, guid: 4f6a4d47381761f40ba034485fd3dcd4, type: 3}

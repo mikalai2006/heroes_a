@@ -13,6 +13,7 @@ public class UITown : UILocaleBase
 {
     [SerializeField] public UnityAction OnHideSetting;
     public static event Action OnExitFromTown;
+    public static event Action OnInputToTown;
     [SerializeField] public UnityAction OnSave;
     [SerializeField] private UIDocument _uiDoc;
     [SerializeField] private UITownInfo _uiTownInfo;
@@ -64,6 +65,7 @@ public class UITown : UILocaleBase
             overlay.style.backgroundColor = color;
         }
 
+        OnInputToTown?.Invoke();
         base.Localize(_box);
     }
 

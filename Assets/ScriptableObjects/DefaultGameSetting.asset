@@ -22,6 +22,7 @@ MonoBehaviour:
   - {r: 0.5716156, g: 0.20825918, b: 0.6792453, a: 1}
   - {r: 0.20784311, g: 0.49296337, b: 0.6784314, a: 1}
   - {r: 0.735849, g: 0.60186034, b: 0.12842648, a: 1}
+  alphaOverlay: 0.735
   Complexities:
   - value: 120
     sprite: {fileID: -1560610031, guid: c4c05eb8d4f42bb46a51404b3bfd32d7, type: 3}
@@ -78,7 +79,7 @@ MonoBehaviour:
       m_WaitForCompletion: 0
       m_LocalVariables: []
     TypePlayer: 2
-  alphaOverlay: 0.735
+  deltaDoubleClick: 0.5
   references:
     version: 2
     RefIds: []

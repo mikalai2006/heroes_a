@@ -247,6 +247,10 @@ MonoBehaviour:
     m_Key: cardall
     m_Metadata:
       m_Items: []
+  - m_Id: 8334269937254400
+    m_Key: weekcreature
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

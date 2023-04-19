@@ -9,6 +9,7 @@ public class ScriptableGameSetting : ScriptableObject
     public string idObject;
     public int maxPlayer;
     public List<Color> colors;
+    [Range(0.5f, 1f)] public float alphaOverlay;
     public List<Complexity> Complexities;
 
     public Sprite randomTown;
@@ -16,7 +17,8 @@ public class ScriptableGameSetting : ScriptableObject
     public List<StartBonusItem> StartBonuses;
     public List<ItemPlayerType> TypesPlayer;
 
-    [Range(0.5f, 1f)] public float alphaOverlay;
+    [Range(0.3f, 1f)] public float deltaDoubleClick;
+
 }
 
 [System.Serializable]
