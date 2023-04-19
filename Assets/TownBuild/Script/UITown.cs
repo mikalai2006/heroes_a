@@ -81,7 +81,8 @@ public class UITown : UILocaleBase
         _box = _uiDoc.rootVisualElement;
 
         _uiTownInfo.Init(_box);
-
+        _box.Q<VisualElement>("TownSide").style.display = DisplayStyle.Flex;
+        _box.Q<VisualElement>("TownHeroVisit").style.display = DisplayStyle.Flex;
         // foreach (var t in activeBuildTown.Builds)
         // {
         //     foreach (var b in t.BuildLevels)
