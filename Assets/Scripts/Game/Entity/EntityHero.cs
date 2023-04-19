@@ -194,7 +194,14 @@ public class EntityHero : BaseEntity
 
     public async UniTask StartMove()
     {
-        await ((MapEntityHero)MapObjectGameObject).StartMove();
+        if (Data.path.Count > 0 && Data.hit > 0)
+        {
+            await ((MapEntityHero)MapObjectGameObject).StartMove();
+        }
+        else
+        {
+            GameManager.Instance.ChangeState(GameState.StopMoveHero);
+        }
     }
 
     public void SetPlayer(PlayerData playerData)

@@ -205,6 +205,9 @@
     -unity-font-style: bold;
 }
 
+.text-sm {
+}
+
 .text_md {
     font-size: 16px;
 }
@@ -255,6 +258,10 @@
     padding-bottom: 2px;
 }
 
+.pt-0 {
+    padding-top: 0;
+}
+
 .pt-2 {
     padding-top: 5px;
 }
@@ -293,6 +300,10 @@
 .px-4 {
     padding-left: 20px;
     padding-right: 20px;
+}
+
+.mt-0 {
+    margin-top: 0;
 }
 
 .mt-2 {

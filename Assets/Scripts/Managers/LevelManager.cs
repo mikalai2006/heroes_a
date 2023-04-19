@@ -9,7 +9,7 @@ public class LevelManager : Singleton<LevelManager>, ISaveDataPlay, ISaveDataGam
     public DataLevel Level;
     private DataLevel DefaultSettings;
     public ScriptableGameSetting ConfigGameSettings;
-    public List<TypePlayerItem> TypePlayers = new List<TypePlayerItem>();
+    public List<CurrentPlayerType> TypePlayers = new List<CurrentPlayerType>();
     // [Header("General")]
     // [Space(10)]
 
@@ -77,10 +77,19 @@ public class LevelManager : Singleton<LevelManager>, ISaveDataPlay, ISaveDataGam
         ConfigGameSettings = ResourceSystem.Instance
             .GetAllAssetsByLabel<ScriptableGameSetting>(Constants.Labels.LABEL_GAMESETTING)
             .First();
+        CreateListTypePlayers();
+    }
+
+    public void CreateListTypePlayers()
+    {
 
         foreach (var type in ConfigGameSettings.TypesPlayer)
         {
-            TypePlayers.Add(type);
+            TypePlayers.Add(new CurrentPlayerType()
+            {
+                title = type.title.GetLocalizedString(),
+                TypePlayer = type.TypePlayer
+            });
         };
     }
 
@@ -202,7 +211,7 @@ public class LevelManager : Singleton<LevelManager>, ISaveDataPlay, ISaveDataGam
         }
 
         //level.activePlayer = level.activePlayer < (countPlayer + countEnemies + 1) ? level.activePlayer++ : 0;
-        // GameManager.Instance.MapManager.ResetSky(ActivePlayer.DataPlayer.nosky);
+        GameManager.Instance.MapManager.ResetSky(ActivePlayer.DataPlayer.nosky);
 
         if (ActivePlayer.ActiveHero == null)
         {

@@ -215,6 +215,38 @@ MonoBehaviour:
     m_Key: Hotseat
     m_Metadata:
       m_Items: []
+  - m_Id: 8119709808623616
+    m_Key: bot
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8119800044879872
+    m_Key: player
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8127354724581376
+    m_Key: totravel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8127631309570048
+    m_Key: settings
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8134379470749696
+    m_Key: gohero
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8134437322784768
+    m_Key: nextstep
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8141067301060608
+    m_Key: exit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8141099014193152
+    m_Key: cardall
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

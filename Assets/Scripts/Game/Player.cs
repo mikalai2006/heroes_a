@@ -18,7 +18,7 @@ public class PlayerData
     public TypeFaction typeFaction = TypeFaction.Neutral;
     public SerializableDictionary<TypeResource, int> Resource;
     public SerializableShortPosition nosky = new SerializableShortPosition();
-    [System.NonSerialized] public PlayerDataReferences PlayerDataReferences;
+    public PlayerDataReferences PlayerDataReferences; // [System.NonSerialized] 
     public List<string> HeroesInTavern;
 
     // public Hero ActiveHero => PlayerDataReferences.ActiveHero;
@@ -52,12 +52,19 @@ public class StartSetting
 {
     [SerializeField] public ScriptableEntityHero hero;
     [SerializeField] public ScriptableEntityTown town;
-    public TypePlayerItem TypePlayerItem;
+    public CurrentPlayerType TypePlayerItem;
     public TypeStartBonus bonus;
 
     public StartSetting()
     {
     }
+}
+
+[System.Serializable]
+public class CurrentPlayerType
+{
+    public string title;
+    public PlayerType TypePlayer;
 }
 
 [System.Serializable]

@@ -968,9 +968,9 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
 
     public void ResetSky(SerializableShortPosition positions)
     {
-        for (int x = 0; x < gameModeData.width; x++)
+        for (int x = -1; x < gameModeData.width + 1; x++)
         {
-            for (int y = 0; y < gameModeData.height; y++)
+            for (int y = -1; y < gameModeData.height + 3; y++)
             {
                 Vector3Int position = new Vector3Int(x, y);
                 if (positions.ContainsKey(position))

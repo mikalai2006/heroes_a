@@ -206,7 +206,7 @@ public class UIAppMenuNewGame : UILocaleBase
             listChoosers.Clear();
             // newCol.Q<Label>(nameNameOption).text = player.DataPlayer.id.ToString();
             Color color = player.DataPlayer.color;
-            color.a = 0.8f;
+            color.a = LevelManager.Instance.ConfigGameSettings.alphaOverlay;
             newCol.Q<VisualElement>("Overlay").style.backgroundColor
                 = color;
 
@@ -707,6 +707,11 @@ public class UIAppMenuNewGame : UILocaleBase
                 newBtn.clickable.clicked += () =>
                 {
                     Level.Settings.countPlayer = j;
+                    if (Level.Settings.countBot != 0)
+                    {
+                        Level.Settings.countBot
+                            = LevelManager.Instance.ConfigGameSettings.maxPlayer - Level.Settings.countPlayer;
+                    }
                     LevelManager.Instance.CreateListPlayer();
                     RefreshOptions();
                 };

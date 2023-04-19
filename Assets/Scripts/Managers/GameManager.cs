@@ -20,11 +20,11 @@ public class GameManager : StaticInstance<GameManager>
 
     void Start()
     {
-        // #if !UNITY_EDITOR
-        //         Debug.unityLogger.logEnabled = true;
-        // #else
-        //         Debug.unityLogger.logEnabled = false;
-        // #endif
+#if UNITY_EDITOR
+        Debug.unityLogger.logEnabled = true;
+#else
+        Debug.unityLogger.logEnabled = false;
+#endif
         //QualitySettings.vSyncCount = 0;
 
         ChangeState(GameState.StartApp);
@@ -161,8 +161,9 @@ public class GameManager : StaticInstance<GameManager>
 
     }
 
-    private void HandleStartMoveHero()
+    private async void HandleStartMoveHero()
     {
+        await LevelManager.Instance.ActivePlayer.ActiveHero.StartMove();
         //ChangeState(GameState.MoveHero);
     }
     private void HandleStopMoveHero()

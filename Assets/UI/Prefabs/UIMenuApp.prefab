@@ -138,7 +138,6 @@ MonoBehaviour:
   _templateOneDeviceBlok: {fileID: 9197481963319205126, guid: c629c50765ed5074484093e213eff011, type: 3}
   _rootDoc: {fileID: 5637520387396119137}
   _parent: {fileID: 9039340197473060595}
-  _dialogDoc: {fileID: 0}
 --- !u!1 &3592234800831590800
 GameObject:
   m_ObjectHideFlags: 0

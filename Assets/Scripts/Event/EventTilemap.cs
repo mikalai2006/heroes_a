@@ -122,8 +122,19 @@ public class EventTilemap : MonoBehaviour
         }
         else
         {
-            GameManager.Instance.MapManager.ChangePath();
+            Debug.Log($"Count click {data.clickCount}");
+            if (data.clickCount == 2)
+            {
+                // move active hero.
+                GameManager.Instance.ChangeState(GameState.StartMoveHero);
+            }
+            else
+            {
+                // find path.
+                GameManager.Instance.MapManager.ChangePath();
+            }
         }
+
 
         zoom(Input.GetAxis("Mouse ScrollWheel"));
     }

@@ -13,7 +13,7 @@ using UnityEngine.ResourceManagement.ResourceProviders;
 using UnityEngine.UIElements;
 
 
-public class UIGameAside : MonoBehaviour
+public class UIGameAside : UILocaleBase
 {
     [SerializeField] public UnityAction OnShowSetting;
     [SerializeField] public UnityAction OnClickMoveHero;
@@ -28,6 +28,7 @@ public class UIGameAside : MonoBehaviour
     //[Space(10)]
     private VisualElement aside;
     private VisualElement _footer;
+    private VisualElement _mapButtons;
     [SerializeField] private VisualTreeAsset _templateButtonHero;
     [SerializeField] private VisualTreeAsset _templateButtonTown;
     [SerializeField] private VisualTreeAsset _templateHeroInfo;
@@ -48,6 +49,7 @@ public class UIGameAside : MonoBehaviour
     private string NameTownButton = "aside_town_button";
     private string NameAllAsideButton = "ButtonAside";
     private string NameSelectedButton = "button_active";
+    private string NameBorderedButton = "button_bordered";
     private string NameHit = "hit";
     private string NameMana = "mana";
     private string NameOverlay = "Overlay";
@@ -63,6 +65,7 @@ public class UIGameAside : MonoBehaviour
         GameManager.OnAfterStateChanged += OnAfterStateChanged;
         EntityHero.onChangeParamsActiveHero += ChangeParamsActiveHero;
         UITownInfo.onMoveHero += DrawHeroBox;
+        UITown.OnExitFromTown += ShowMapButtons;
     }
 
     private void OnDestroy()
@@ -70,6 +73,7 @@ public class UIGameAside : MonoBehaviour
         GameManager.OnAfterStateChanged -= OnAfterStateChanged;
         EntityHero.onChangeParamsActiveHero -= ChangeParamsActiveHero;
         UITownInfo.onMoveHero -= DrawHeroBox;
+        UITown.OnExitFromTown -= ShowMapButtons;
     }
 
     private void OnAfterStateChanged(GameState state)
@@ -79,6 +83,7 @@ public class UIGameAside : MonoBehaviour
             case GameState.StepNextPlayer:
             case GameState.StartGame:
                 DrawHeroButtons();
+                ChangeHeroInfo();
                 break;
             // case GameState.StartMoveHero:
             //     SetDisableAllButton();
@@ -120,13 +125,10 @@ public class UIGameAside : MonoBehaviour
     private async void ShowTown()
     {
         OnShowTown?.Invoke();
-        // aside.style.display = DisplayStyle.None;
+        HideMapButtons();
         var loadingOperations = new Queue<ILoadingOperation>();
-
-        // GameManager.Instance.AssetProvider.UnloadAdditiveScene(_scene);
         loadingOperations.Enqueue(new TownLoadOperation(player.ActiveTown));
         await GameManager.Instance.LoadingScreenProvider.LoadAndDestroy(loadingOperations);
-
     }
 
     public void Init(SceneInstance scene)
@@ -134,11 +136,8 @@ public class UIGameAside : MonoBehaviour
         try
         {
             _scene = scene;
-            // GameObject GridMap = GameObject.FindGameObjectWithTag("Map")?.GetComponent<GameObject>();
-            // GridMap.SetActive(false);
-
-            //GameManager.OnAfterStateChanged += OnChangeGameState;
             aside = _aside.rootVisualElement.Q<VisualElement>(NameWrapper);
+            _mapButtons = _aside.rootVisualElement.Q<VisualElement>("MapButtons");
 
             var btnGameMenu = _aside.rootVisualElement.Q<Button>(NameBtnGameMenu);
             btnGameMenu.clickable.clicked += async () =>
@@ -166,7 +165,6 @@ public class UIGameAside : MonoBehaviour
             _footer = _aside.rootVisualElement.Q<VisualElement>(NameFooter);
 
             boxinfo = _aside.rootVisualElement.Q<VisualElement>(NameAsideBoxInfo);
-            boxinfo.style.display = DisplayStyle.None;
 
         }
         catch (Exception e)
@@ -174,6 +172,18 @@ public class UIGameAside : MonoBehaviour
             Debug.LogWarning("Aside UI error: \n" + e);
         }
 
+        base.Localize(aside);
+    }
+
+    private void HideMapButtons()
+    {
+
+        _mapButtons.style.display = DisplayStyle.None;
+    }
+    private void ShowMapButtons()
+    {
+
+        _mapButtons.style.display = DisplayStyle.Flex;
     }
 
     private void DrawHeroBox()
@@ -201,17 +211,19 @@ public class UIGameAside : MonoBehaviour
                 newButtonHero.Q<VisualElement>("image").style.backgroundImage =
                     new StyleBackground(hero.ScriptableData.MenuSprite);
 
-                newButtonHero.Q<Button>(NameAllAsideButton).RegisterCallback<ClickEvent>((ClickEvent evt) =>
+                newButtonHero.Q<Button>(NameAllAsideButton).clickable.clicked += () =>
                 {
                     OnResetFocusButton();
-                    OnSetActiveHero(evt, hero);
+                    OnSetActiveHero(hero);
 
                     newButtonHero.Q<Button>(NameAllAsideButton).AddToClassList(NameSelectedButton);
-                });
+                    newButtonHero.Q<Button>(NameAllAsideButton).RemoveFromClassList(NameBorderedButton);
+                };
 
                 if (hero == player.ActiveHero)
                 {
                     newButtonHero.Q<Button>(NameAllAsideButton).AddToClassList(NameSelectedButton);
+                    newButtonHero.Q<Button>(NameAllAsideButton).RemoveFromClassList(NameBorderedButton);
                 }
             }
             else
@@ -236,12 +248,6 @@ public class UIGameAside : MonoBehaviour
 
         aside.style.display = DisplayStyle.Flex;
         _footer.style.display = DisplayStyle.Flex;
-        //UQueryBuilder<VisualElement> builder = new UQueryBuilder<VisualElement>(_aside.rootVisualElement);
-        //List<VisualElement> list = builder.Class("border-color").ToList();
-        //foreach (var overlay in list)
-        //{
-        //    overlay.style.borderTopColor= color; // .RemoveFromClassList("border-color");
-        //}
 
         _herobox = aside.Q<VisualElement>(NameHeroBox);
         _herobox.Clear();
@@ -249,14 +255,9 @@ public class UIGameAside : MonoBehaviour
         var townbox = aside.Q<VisualElement>(NameTownBox);
         townbox.Clear();
 
-
         OnResetFocusButton();
-        // OnSetActiveHero(null, player.ActiveHero);
-
-        //Debug.Log($"UI Player aside::: id{player.data.id} hero[{player.data.ListHero.Count}] town[{player.data.ListTown.Count}]");
 
         DrawHeroBox();
-
 
         for (int i = 0; i < countTown; i++)
         {
@@ -286,6 +287,7 @@ public class UIGameAside : MonoBehaviour
                         town.SetTownAsActive();
                     }
                     OnResetFocusButton();
+                    newButtonTown.Q<Button>(NameAllAsideButton).RemoveFromClassList("button_bordered");
                     newButtonTown.Q<Button>(NameAllAsideButton).AddToClassList(NameSelectedButton);
 
                 };
@@ -304,7 +306,7 @@ public class UIGameAside : MonoBehaviour
         OnRedrawResource();
 
         Color color = player.DataPlayer.color;
-        color.a = .6f;
+        color.a = LevelManager.Instance.ConfigGameSettings.alphaOverlay;
 
         // Queries overlay.
         UQueryBuilder<VisualElement> builder = new UQueryBuilder<VisualElement>(_aside.rootVisualElement);
@@ -351,36 +353,36 @@ public class UIGameAside : MonoBehaviour
         }
     }
 
-    private void OnSetActiveHero(ClickEvent evt, EntityHero hero)
+    private void OnSetActiveHero(EntityHero hero)
     {
 
         EntityHero activeHero = player.ActiveHero;
 
         // OnResetFocusButton();
+
+        // if (activeHero == hero)
+        // {
+        //     if (boxinfo.style.display == DisplayStyle.None)
+        //     {
+        //         // ChangeHeroInfo();
+        //         boxinfo.style.display = DisplayStyle.Flex;
+        //     }
+        //     else
+        //     {
+        //         boxinfo.style.display = DisplayStyle.None;
+        //     }
+        // }
+        // else
+        // {
+        //     boxinfo.style.display = DisplayStyle.None;
+
+        //     //activeHero = hero;
+        //     // player.SetActiveHero(hero);
+        // }
+
+
+        hero.SetHeroAsActive();
         ChangeHeroInfo();
-
-        if (activeHero == hero)
-        {
-            if (boxinfo.style.display == DisplayStyle.None)
-            {
-                // ChangeHeroInfo();
-                boxinfo.style.display = DisplayStyle.Flex;
-            }
-            else
-            {
-                boxinfo.style.display = DisplayStyle.None;
-            }
-        }
-        else
-        {
-            boxinfo.style.display = DisplayStyle.None;
-
-            //activeHero = hero;
-            // player.SetActiveHero(hero);
-            hero.SetHeroAsActive();
-        }
-
-
         // OnToogleEnableBtnGoHero();
     }
 
@@ -455,6 +457,7 @@ public class UIGameAside : MonoBehaviour
         foreach (var overlay in list)
         {
             overlay.RemoveFromClassList(NameSelectedButton);
+            overlay.AddToClassList(NameBorderedButton);
         }
         // boxinfo.style.display = DisplayStyle.None;
     }

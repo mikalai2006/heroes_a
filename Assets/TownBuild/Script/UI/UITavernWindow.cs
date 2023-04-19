@@ -78,7 +78,7 @@ public class UITavernWindow : MonoBehaviour
         UQueryBuilder<VisualElement> builder = new UQueryBuilder<VisualElement>(DialogApp.rootVisualElement);
         List<VisualElement> list = builder.Name(_nameOverlay).ToList();
         Color color = _activePlayer.DataPlayer.color;
-        color.a = .6f;
+        color.a = LevelManager.Instance.ConfigGameSettings.alphaOverlay;
         foreach (var overlay in list)
         {
             overlay.style.backgroundColor = color;

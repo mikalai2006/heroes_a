@@ -61,6 +61,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbcbe26fdac8fc3429f36a0090824cde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _localization:
+    m_TableReference:
+      m_TableCollectionName: GUID:9b6db77d8a0719a4490c3b7aad12567c
   _aside: {fileID: 884500699009012167}
   _templateButtonHero: {fileID: 9197481963319205126, guid: f48f1348bc1d8904d9e98008b8bbc067, type: 3}
   _templateButtonTown: {fileID: 9197481963319205126, guid: b88a51368884639478bf9ce1cc9de318, type: 3}

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -9,9 +10,10 @@ using UnityEngine.ResourceManagement.ResourceProviders;
 using UnityEngine.UIElements;
 
 
-public class UITown : MonoBehaviour
+public class UITown : UILocaleBase
 {
     [SerializeField] public UnityAction OnHideSetting;
+    public static event Action OnExitFromTown;
     [SerializeField] public UnityAction OnSave;
     [SerializeField] private UIDocument _uiDoc;
     [SerializeField] private UITownInfo _uiTownInfo;
@@ -103,7 +105,7 @@ public class UITown : MonoBehaviour
 
         // Fill overlay color player.
         Color color = _activePlayer.DataPlayer.color;
-        color.a = .6f;
+        color.a = LevelManager.Instance.ConfigGameSettings.alphaOverlay;
         UQueryBuilder<VisualElement> builder = new UQueryBuilder<VisualElement>(_box);
         List<VisualElement> list = builder.Name(NameOverlay).ToList();
         foreach (var overlay in list)
@@ -112,6 +114,7 @@ public class UITown : MonoBehaviour
         }
 
         // _blokHeroVisit = _box.Q<VisualElement>(_nameBlokHeroVisit);
+        base.Localize(_box);
     }
 
 
@@ -126,6 +129,7 @@ public class UITown : MonoBehaviour
             Addressables.ReleaseInstance(_asset);
             // Addressables.ReleaseInstance(_townPrefabAsset);
         }
+        OnExitFromTown?.Invoke();
         // var activeBuildTown = ResourceSystem.Instance.GetBuildTowns().Where(t => t.TypeFaction == TypeFaction.Castle).First();
         // // ResourceSystem.Instance.DestroyAssetsByLabel(Constants.Labels.LABEL_BUILD_TOWN);
         // ResourceSystem.Instance.DestroyAsset(activeBuildTown);

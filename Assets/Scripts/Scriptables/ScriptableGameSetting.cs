@@ -14,7 +14,9 @@ public class ScriptableGameSetting : ScriptableObject
     public Sprite randomTown;
 
     public List<StartBonusItem> StartBonuses;
-    public List<TypePlayerItem> TypesPlayer;
+    public List<ItemPlayerType> TypesPlayer;
+
+    [Range(0.5f, 1f)] public float alphaOverlay;
 }
 
 [System.Serializable]
@@ -34,8 +36,8 @@ public struct Complexity
 }
 
 [System.Serializable]
-public class TypePlayerItem
+public class ItemPlayerType
 {
-    public string title;
+    public LocalizedString title;
     public PlayerType TypePlayer;
 }

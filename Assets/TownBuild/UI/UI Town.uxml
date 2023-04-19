@@ -38,7 +38,7 @@
                     <AttributeOverrides element-name="Btn" text="#cardall" />
                 </ui:Instance>
                 <ui:Instance template="Button" name="ButtonClose">
-                    <AttributeOverrides element-name="Btn" text="#close" />
+                    <AttributeOverrides element-name="Btn" text="#exit" />
                 </ui:Instance>
                 <ui:Button display-tooltip-when-elided="true" class="button_bordered border-color button button_bg" style="flex-grow: 1; margin-left: 0; margin-right: 0; margin-bottom: 0; display: none;">
                     <ui:Label tabindex="-1" text="X" display-tooltip-when-elided="true" style="padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0;" />

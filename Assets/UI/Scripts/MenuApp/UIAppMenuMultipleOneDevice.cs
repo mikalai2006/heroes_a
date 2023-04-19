@@ -67,7 +67,7 @@ public class UIAppMenuMultipleOneDevice : UILocaleBase
             var input = new TextField();
             input.name = "text";
             input.label = "";
-            input.value = (i == 0) ? playerFromSettings.title : "";
+            input.value = (i == 0) ? playerFromSettings.title.GetLocalizedString() : "";
             listNames.Add(input);
         }
     }
@@ -82,7 +82,7 @@ public class UIAppMenuMultipleOneDevice : UILocaleBase
         var listNotEmptyFieldText = list.Where(t => t.value != "");
         foreach (var item in listNotEmptyFieldText)
         {
-            LevelManager.Instance.TypePlayers.Add(new TypePlayerItem()
+            LevelManager.Instance.TypePlayers.Add(new CurrentPlayerType()
             {
                 title = item.value,
                 TypePlayer = PlayerType.User
@@ -91,9 +91,17 @@ public class UIAppMenuMultipleOneDevice : UILocaleBase
 
         foreach (var type in LevelManager.Instance.ConfigGameSettings.TypesPlayer)
         {
-            if (type.TypePlayer == PlayerType.Bot) LevelManager.Instance.TypePlayers.Add(type);
+            if (type.TypePlayer == PlayerType.Bot)
+            {
+                LevelManager.Instance.TypePlayers.Add(new CurrentPlayerType()
+                {
+                    title = type.title.GetLocalizedString(),
+                    TypePlayer = PlayerType.Bot
+                });
+            }
         };
         LevelManager.Instance.Level.Settings.countPlayer = listNotEmptyFieldText.Count();
+        LevelManager.Instance.Level.Settings.countBot = 0;
 
         Hide();
     }
