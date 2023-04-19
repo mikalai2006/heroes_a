@@ -34,6 +34,9 @@
                 <ui:Instance template="UI TownHeroInfoForce" name="UI TownHeroInfoForce" class="w-33 h-33" />
             </ui:VisualElement>
             <ui:VisualElement class="bg-black p-05 border-1 border-color" style="flex-grow: 1; margin-left: 5px; margin-top: 5px; align-items: stretch; justify-content: flex-end;">
+                <ui:Instance template="Button" name="SplitCreature" class="text-sm">
+                    <AttributeOverrides element-name="Btn" text="#splitcreature" />
+                </ui:Instance>
                 <ui:Instance template="Button" name="Button">
                     <AttributeOverrides element-name="Btn" text="#cardall" />
                 </ui:Instance>

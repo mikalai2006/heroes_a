@@ -50,7 +50,7 @@ public class EntityArtifact : BaseEntity
     public override void SetPlayer(Player player)
     {
         ScriptableEntityArtifact configData = (ScriptableEntityArtifact)ScriptableData;
-        configData.OnDoHero(ref player, this);
+        configData.RunHero(ref player, this);
     }
 
     #region InitData

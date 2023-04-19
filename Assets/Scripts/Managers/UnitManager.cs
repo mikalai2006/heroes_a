@@ -171,6 +171,7 @@ public static class UnitManager
         node.SetAsGuested(newEntity);
         newEntity.CreateMapGameObject(node);
         Entities.Add(newEntity.IdEntity, newEntity);
+        // UnitManager.IdsExistsHeroes.Add(heroData.idObject);
         // LevelManager.Instance.GetArea(area.id).hero = newEntity;
         return newEntity;
     }

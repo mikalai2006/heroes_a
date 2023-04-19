@@ -62,7 +62,6 @@ public class GridTileHelper
 
     public List<GridTileNode> FindPath(Vector3Int start, Vector3Int end, bool isDiagonal = false, bool ignoreNotWalkable = false)
     {
-        Debug.Log("Find path");
         // GameManager.Instance.MapManager.ResetTestTileMap();
 
         GridTileNode startNode = _gridTile.GetGridObject(start);

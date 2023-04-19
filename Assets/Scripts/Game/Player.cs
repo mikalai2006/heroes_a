@@ -86,7 +86,7 @@ public enum PlayerType
 [System.Serializable]
 public class Player
 {
-    [SerializeField] private PlayerData _data;
+    [SerializeField] private PlayerData _data = new PlayerData();
     public StartSetting StartSetting;
     public PlayerData DataPlayer
     {
@@ -101,6 +101,9 @@ public class Player
     }
     public EntityHero ActiveHero => _data.PlayerDataReferences.ActiveHero;
     public EntityTown ActiveTown => _data.PlayerDataReferences.ActiveTown;
+    public bool IsMaxCountHero => _data.PlayerDataReferences.ListHero
+            .Where(t => t.Data.State.HasFlag(StateHero.OnMap))
+            .Count() == LevelManager.Instance.ConfigGameSettings.maxCountHero;
 
     public Player(PlayerData data)
     {
@@ -113,7 +116,36 @@ public class Player
         {
             _data.Resource.Add(typeResource, typeResource == TypeResource.Gold ? 100000 : 200);
         }
+
+        AddEvents();
     }
+
+    #region Events GameState
+    public void AddEvents()
+    {
+        GameManager.OnBeforeStateChanged += OnBeforeStateChanged;
+        GameManager.OnAfterStateChanged += OnAfterStateChanged;
+    }
+    public void RemoveEvents()
+    {
+        GameManager.OnBeforeStateChanged -= OnBeforeStateChanged;
+        GameManager.OnAfterStateChanged -= OnAfterStateChanged;
+    }
+
+    public virtual void OnBeforeStateChanged(GameState newState)
+    {
+    }
+
+    public virtual void OnAfterStateChanged(GameState newState)
+    {
+        switch (newState)
+        {
+            case GameState.NextDay:
+                GenerateHeroForTavern();
+                break;
+        }
+    }
+    #endregion
 
     public void SetActiveHero(EntityHero entityHero)
     {
@@ -178,37 +210,78 @@ public class Player
         return DataPlayer.PlayerDataReferences.ListHero[id];
     }
 
-    public void GenerateHeroTavern()
+    public void BuyHero(ScriptableEntityHero configData)
     {
-        _data.HeroesInTavern = new List<string>();
+        var newHero = UnitManager.CreateHero(
+            TypeFaction.Neutral,
+            ActiveTown.OccupiedNode,
+            configData);
+        newHero.SetPlayer(this);
+        _data.HeroesInTavern.Remove(configData.idObject);
+        GenerateHeroForTavern();
+    }
 
-        var allHero = ResourceSystem.Instance
-            .GetEntityByType<ScriptableEntityHero>(TypeEntity.Hero)
-            .Where(t => !UnitManager.Entities.ContainsKey(t.idObject))
-            .OrderBy(t => UnityEngine.Random.value)
-            .ToList();
-        var myFactionHero = allHero.Where(t => t.TypeFaction == _data.typeFaction);
-
-        if (allHero.Count == 0) return;
-
-        if (allHero.Count > 0)
+    private void GenerateHeroForTavern()
+    {
+        var player = this;
+        if (player == null) return;
+        if (LevelManager.Instance.ActivePlayer == player)
         {
-            if (myFactionHero.Count() > 0)
+            // Debug.Log($"GenerateHeroForTavern {player.DataPlayer.id}[{player.DataPlayer.HeroesInTavern.Count}]");
+
+            var heroesInTavern = new List<string>();
+            if (player.DataPlayer.HeroesInTavern.Count == 1)
             {
-                var firstHero = allHero
-                    .Where(t => t.TypeFaction == _data.typeFaction)
-                    .OrderBy(t => UnityEngine.Random.value)
-                    .ToList();
-                _data.HeroesInTavern.Add(firstHero[0].idObject);
+                heroesInTavern.Concat(player.DataPlayer.HeroesInTavern);
+            }
+
+            var typeFaction = player.DataPlayer.typeFaction;
+            var allHero = ResourceSystem.Instance
+                .GetEntityByType<ScriptableEntityHero>(TypeEntity.Hero)
+                .Where(t =>
+                    !UnitManager.IdsExistsHeroes.Contains(t.idObject)
+                )
+                .OrderBy(t => UnityEngine.Random.value)
+                .ToList();
+            if (allHero.Count == 0) return;
+
+            // Generate hero native faction.
+            var isFactionHeroes = allHero
+                .Where(t => t.TypeFaction == typeFaction)
+                .ToList();
+            if (isFactionHeroes.Count > 0)
+            {
+                for (int i = 0; i < 2; i++)
+                {
+                    if (isFactionHeroes.ElementAtOrDefault(i) != null)
+                    {
+                        heroesInTavern.Add(isFactionHeroes[i].idObject);
+                        UnitManager.IdsExistsHeroes.Add(isFactionHeroes[i].idObject);
+                    }
+                }
+            }
+            if (heroesInTavern.Count == 2)
+            {
+                player.DataPlayer.HeroesInTavern = heroesInTavern;
+                return;
             }
             else
             {
-                _data.HeroesInTavern.Add(allHero[0].idObject);
+                var isNotFactionHeroes = allHero
+                .Where(t => t.TypeFaction != typeFaction)
+                .ToList();
+                for (int i = heroesInTavern.Count; i < 2; i++)
+                {
+                    if (isNotFactionHeroes.ElementAtOrDefault(i) != null)
+                    {
+                        heroesInTavern.Add(isNotFactionHeroes[i].idObject);
+                        UnitManager.IdsExistsHeroes.Add(isNotFactionHeroes[i].idObject);
+                    }
+                }
             }
-            if (allHero.Count > 1) _data.HeroesInTavern.Add(allHero[1].idObject);
+
+            player.DataPlayer.HeroesInTavern = heroesInTavern;
         }
-
-
     }
 
     public void AddTown(BaseEntity town)
@@ -318,7 +391,7 @@ public class Player
                     .OrderBy(t => Random.value)
                     .First();
                 // Debug.Log($"Bot::: Builded - {allowNextBuild.Key.name}");
-                var newBuild = town.CreateBuild(allowNextBuild.Key, allowNextBuild.Value);
+                var newBuild = town.CreateBuild(allowNextBuild.Key, allowNextBuild.Value, this);
 
                 var build = allowNextBuild.Key.BuildLevels[allowNextBuild.Value];
                 for (int i = 0; i < build.CostResource.Count; i++)
@@ -332,7 +405,7 @@ public class Player
         }
 
         // Debug.Log($"Bot::: Finish - {this.DataPlayer.id}");
-        GameManager.Instance.ChangeState(GameState.StepNextPlayer);
+        GameManager.Instance.ChangeState(GameState.NextDay);
     }
 
     public List<GridTileNode> AIPath()

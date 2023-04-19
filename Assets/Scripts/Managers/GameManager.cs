@@ -62,7 +62,7 @@ public class GameManager : StaticInstance<GameManager>
             case GameState.CreateMap:
                 HandleCreateMap();
                 break;
-            case GameState.StepNextPlayer:
+            case GameState.NextDay:
                 HandleSetActivePlayer();
                 break;
             case GameState.StartGame:
@@ -100,6 +100,10 @@ public class GameManager : StaticInstance<GameManager>
             case GameState.SaveGame:
                 HandleSaveGame();
                 break;
+            case GameState.NextMonth:
+                break;
+            case GameState.NextWeek:
+                break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(newState), newState, null);
         }
@@ -117,7 +121,7 @@ public class GameManager : StaticInstance<GameManager>
 
         await MapManager.NewMap();
 
-        ChangeState(GameState.StepNextPlayer);
+        ChangeState(GameState.NextDay);
     }
     private void HandleCreateLevel()
     {
@@ -187,7 +191,6 @@ public enum GameState
 {
     StartApp = 0,
     CreateMap = 1,
-    StepNextPlayer = 2,
     EnemyTurn = 3,
     Win = 4,
     Lose = 5,
@@ -197,6 +200,9 @@ public enum GameState
     ChooseHero = 10,
     ChangeHeroParams = 11,
     StartGame = 12,
+    NextWeek = 13,
+    NextMonth = 14,
+    NextDay = 15,
     ChangeResources = 100,
 
     StartMoveHero = 200,

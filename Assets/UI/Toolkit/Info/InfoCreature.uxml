@@ -1,0 +1,72 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:Template name="Button" src="project://database/Assets/UI/Toolkit/Button.uxml?fileID=9197481963319205126&amp;guid=db5e7d04a42304542a4356b1519364b2&amp;type=3#Button" />
+    <Style src="project://database/Assets/UI/Toolkit/Base.uss?fileID=7433441132597879392&amp;guid=fa07b064290e7384d9ad2e26e79f5953&amp;type=3#Base" />
+    <Style src="project://database/Assets/UI/Toolkit/UnityBase.uss?fileID=7433441132597879392&amp;guid=c0905c354b5fb524e83bc41ae3debe10&amp;type=3#UnityBase" />
+    <Style src="project://database/Assets/UI/Toolkit/Info/InfoCreature.uss?fileID=7433441132597879392&amp;guid=8c3c33f22beddf240a0ff6311237cc84&amp;type=3#InfoCreature" />
+    <ui:VisualElement name="CreatureInfo" class="text-lg text-secondary" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); background-image: url(&apos;project://database/Assets/UI/Sprites/Bg.png?fileID=2800000&amp;guid=0641c76439a64674aa800f9e3d79c6a4&amp;type=3#Bg&apos;); -unity-background-scale-mode: scale-and-crop;">
+        <ui:VisualElement name="CreatureRow" style="flex-direction: row; flex-grow: 1;">
+            <ui:VisualElement class="w-25 h-full mr-2">
+                <ui:VisualElement name="Sprite" class="border-2 w-25 h-full w-full border-color" />
+            </ui:VisualElement>
+            <ui:VisualElement class="w-75" style="flex-grow: 1;">
+                <ui:VisualElement name="Attack" class="box_shadow info_row" style="flex-direction: row; align-items: center; flex-grow: 1;">
+                    <ui:VisualElement class="info_picto box_bg mr-1" style="background-image: url(&apos;project://database/Assets/UI/Sprites/InfoCreature/attack.png?fileID=2800000&amp;guid=6ab9efc0563d84742af4657e1f76d992&amp;type=3#attack&apos;);" />
+                    <ui:VisualElement class="box_bg" style="flex-grow: 1; flex-direction: row; justify-content: space-between;">
+                        <ui:Label tabindex="-1" text="#attack" display-tooltip-when-elided="true" class="m-0 p-0" style="flex-grow: 1;" />
+                        <ui:Label tabindex="-1" text="0" display-tooltip-when-elided="true" name="AttackValue" class="m-0 p-0" style="flex-grow: 1; -unity-text-align: upper-right;" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="Defense" class="box_shadow info_row" style="flex-direction: row; align-items: center; flex-grow: 1;">
+                    <ui:VisualElement class="info_picto box_bg mr-1" style="background-image: url(&apos;project://database/Assets/UI/Sprites/InfoCreature/defense.png?fileID=2800000&amp;guid=ad50bfebd566f4845889bd1e65802d5f&amp;type=3#defense&apos;);" />
+                    <ui:VisualElement class="box_bg" style="flex-grow: 1; flex-direction: row; justify-content: space-between;">
+                        <ui:Label tabindex="-1" text="#defense" display-tooltip-when-elided="true" class="m-0 p-0" style="flex-grow: 1;" />
+                        <ui:Label tabindex="-1" text="0" display-tooltip-when-elided="true" name="AttackValue" class="m-0 p-0" style="flex-grow: 1; -unity-text-align: upper-right;" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="Ammount" class="box_shadow info_row" style="flex-direction: row; align-items: center; flex-grow: 1;">
+                    <ui:VisualElement class="info_picto box_bg mr-1" style="background-image: url(&apos;project://database/Assets/UI/Sprites/InfoCreature/ammount.png?fileID=2800000&amp;guid=3a0896781bf80ce4c8d52cb13324f760&amp;type=3#ammount&apos;);" />
+                    <ui:VisualElement class="box_bg" style="flex-grow: 1; flex-direction: row; justify-content: space-between;">
+                        <ui:Label tabindex="-1" text="#ammount" display-tooltip-when-elided="true" class="m-0 p-0" style="flex-grow: 1;" />
+                        <ui:Label tabindex="-1" text="0" display-tooltip-when-elided="true" name="value" class="m-0 p-0" style="flex-grow: 1; -unity-text-align: upper-right;" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="Damage" class="box_shadow info_row" style="flex-direction: row; align-items: center; flex-grow: 1;">
+                    <ui:VisualElement class="info_picto box_bg mr-1" style="background-image: url(&apos;project://database/Assets/UI/Sprites/InfoCreature/damage.png?fileID=2800000&amp;guid=219050a6e2bf39a4093483343eee4cc6&amp;type=3#damage&apos;);" />
+                    <ui:VisualElement class="box_bg" style="flex-grow: 1; flex-direction: row; justify-content: space-between;">
+                        <ui:Label tabindex="-1" text="#damage" display-tooltip-when-elided="true" class="m-0 p-0" style="flex-grow: 1;" />
+                        <ui:Label tabindex="-1" text="0" display-tooltip-when-elided="true" name="value" class="m-0 p-0" style="flex-grow: 1; -unity-text-align: upper-right;" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="HP" class="box_shadow info_row" style="flex-direction: row; align-items: center; flex-grow: 1;">
+                    <ui:VisualElement class="box_bg" style="flex-grow: 1; flex-direction: row; justify-content: space-between;">
+                        <ui:VisualElement class="info_picto box_bg mr-1" style="background-image: url(&apos;project://database/Assets/UI/Sprites/InfoCreature/HP.png?fileID=2800000&amp;guid=e8eea111670417249bc1c58d64737882&amp;type=3#HP&apos;);" />
+                        <ui:Label tabindex="-1" text="#hp" display-tooltip-when-elided="true" name="Label" class="m-0 p-0" style="flex-grow: 1;" />
+                        <ui:Label tabindex="-1" text="0" display-tooltip-when-elided="true" name="value" class="m-0 p-0" style="flex-grow: 1; -unity-text-align: upper-right;" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="HPa" class="box_shadow info_row" style="flex-direction: row; align-items: center; flex-grow: 1;">
+                    <ui:VisualElement class="info_picto box_bg mr-1" style="background-image: url(&apos;project://database/Assets/UI/Sprites/InfoCreature/HPa.png?fileID=2800000&amp;guid=3b60d422a71422f4f8c3c8779552ac13&amp;type=3#HPa&apos;);" />
+                    <ui:VisualElement class="box_bg" style="flex-grow: 1; flex-direction: row; justify-content: space-between;">
+                        <ui:Label tabindex="-1" text="#hpa" display-tooltip-when-elided="true" class="m-0 p-0" style="flex-grow: 1;" />
+                        <ui:Label tabindex="-1" text="0" display-tooltip-when-elided="true" name="value" class="m-0 p-0" style="flex-grow: 1; -unity-text-align: upper-right;" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="Speed" class="box_shadow info_row" style="flex-direction: row; align-items: center; flex-grow: 1;">
+                    <ui:VisualElement class="info_picto box_bg mr-1" style="background-image: url(&apos;project://database/Assets/UI/Sprites/InfoCreature/speed.png?fileID=2800000&amp;guid=c59a56b2c9b645f4680a3382f4bf7aa0&amp;type=3#speed&apos;);" />
+                    <ui:VisualElement class="box_bg" style="flex-grow: 1; flex-direction: row; justify-content: space-between;">
+                        <ui:Label tabindex="-1" text="#speed" display-tooltip-when-elided="true" class="m-0 p-0" style="flex-grow: 1;" />
+                        <ui:Label tabindex="-1" text="0" display-tooltip-when-elided="true" name="value" class="m-0 p-0" style="flex-grow: 1; -unity-text-align: upper-right;" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="ButtonsBlok" class="p-2" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row; justify-content: space-between;">
+            <ui:Instance template="Button" name="ButtonKill">
+                <AttributeOverrides element-name="Btn" text="#kill" />
+            </ui:Instance>
+            <ui:Instance template="Button" name="ButtonClose">
+                <AttributeOverrides element-name="Btn" text="#close" />
+            </ui:Instance>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

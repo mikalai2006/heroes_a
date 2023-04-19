@@ -47,7 +47,7 @@ public class EntityMonolith : BaseEntity
     public override void SetPlayer(Player player)
     {
         ScriptableEntityPortal configData = (ScriptableEntityPortal)ScriptableData;
-        configData.OnDoHero(ref player, this);
+        configData.RunHero(ref player, this);
         // Debug.Log($"Teleport to position::: {Data.portalPoints[0]}");
     }
 

@@ -23,6 +23,27 @@ MonoBehaviour:
   - {r: 0.20784311, g: 0.49296337, b: 0.6784314, a: 1}
   - {r: 0.735849, g: 0.60186034, b: 0.12842648, a: 1}
   alphaOverlay: 0.735
+  TypesPlayer:
+  - title:
+      m_TableReference:
+        m_TableCollectionName: GUID:9b6db77d8a0719a4490c3b7aad12567c
+      m_TableEntryReference:
+        m_KeyId: 8119800044879872
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    TypePlayer: 0
+  - title:
+      m_TableReference:
+        m_TableCollectionName: GUID:9b6db77d8a0719a4490c3b7aad12567c
+      m_TableEntryReference:
+        m_KeyId: 8119709808623616
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    TypePlayer: 2
   Complexities:
   - value: 120
     sprite: {fileID: -1560610031, guid: c4c05eb8d4f42bb46a51404b3bfd32d7, type: 3}
@@ -34,7 +55,6 @@ MonoBehaviour:
     sprite: {fileID: -864904784, guid: c4c05eb8d4f42bb46a51404b3bfd32d7, type: 3}
   - value: 200
     sprite: {fileID: 1770593047, guid: c4c05eb8d4f42bb46a51404b3bfd32d7, type: 3}
-  randomTown: {fileID: 0}
   StartBonuses:
   - bonus: 1
     sprite: {fileID: 36309692, guid: a4dbc25aa5c0cc543a2d01e118853fe1, type: 3}
@@ -58,27 +78,9 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
-  TypesPlayer:
-  - title:
-      m_TableReference:
-        m_TableCollectionName: GUID:9b6db77d8a0719a4490c3b7aad12567c
-      m_TableEntryReference:
-        m_KeyId: 8119800044879872
-        m_Key: 
-      m_FallbackState: 0
-      m_WaitForCompletion: 0
-      m_LocalVariables: []
-    TypePlayer: 0
-  - title:
-      m_TableReference:
-        m_TableCollectionName: GUID:9b6db77d8a0719a4490c3b7aad12567c
-      m_TableEntryReference:
-        m_KeyId: 8119709808623616
-        m_Key: 
-      m_FallbackState: 0
-      m_WaitForCompletion: 0
-      m_LocalVariables: []
-    TypePlayer: 2
+  CostHero:
+  - Resource: {fileID: 11400000, guid: 3894d4d068775c343b5c4bf1510dee33, type: 2}
+    Count: 2500
   deltaDoubleClick: 0.5
   references:
     version: 2

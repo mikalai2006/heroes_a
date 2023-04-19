@@ -9,12 +9,12 @@ public class ScriptableEntityExplore : ScriptableEntityMapObject, IEffected
     [Header("Options Perk")]
     public List<BaseEffect> Perks;
 
-    public override void OnDoHero(ref Player player, BaseEntity entity)
+    public override void RunHero(ref Player player, BaseEntity entity)
     {
-        base.OnDoHero(ref player, entity);
+        base.RunHero(ref player, entity);
         foreach (var perk in Perks)
         {
-            perk.OnDoHero(ref player, entity);
+            perk.RunHero(ref player, entity);
         }
     }
 }

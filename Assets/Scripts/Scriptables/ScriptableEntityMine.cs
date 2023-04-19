@@ -11,9 +11,9 @@ public class ScriptableEntityMine : ScriptableEntityMapObject, IEffected
     // [Header("Options Perk")]
     // public List<EntityMinePerk> Resources;
 
-    public override void OnDoHero(ref Player player, BaseEntity entity)
+    public override void RunHero(ref Player player, BaseEntity entity)
     {
-        base.OnDoHero(ref player, entity);
+        base.RunHero(ref player, entity);
     }
     // public MapObjectType TypeMapObject;
     // public TypeWorkMapObject TypeWork;

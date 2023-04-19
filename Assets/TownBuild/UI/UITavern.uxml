@@ -2,12 +2,12 @@
     <ui:Template name="DialogHeroButton" src="project://database/Assets/UI/Toolkit/DialogHeroButton.uxml?fileID=9197481963319205126&amp;guid=1e3342a9d71bfff4188bdbbafb0f776a&amp;type=3#DialogHeroButton" />
     <ui:Template name="Button" src="project://database/Assets/UI/Toolkit/Button.uxml?fileID=9197481963319205126&amp;guid=db5e7d04a42304542a4356b1519364b2&amp;type=3#Button" />
     <Style src="project://database/Assets/UI/Toolkit/Base.uss?fileID=7433441132597879392&amp;guid=fa07b064290e7384d9ad2e26e79f5953&amp;type=3#Base" />
-    <Style src="project://database/Assets/UI/Toolkit/Dialog.uss?fileID=7433441132597879392&amp;guid=2438f8d68703dce4ab75f8d1eda15062&amp;type=3#Dialog" />
+    <Style src="project://database/Assets/UI/Toolkit/Dialogs/UIDialog.uss?fileID=7433441132597879392&amp;guid=2438f8d68703dce4ab75f8d1eda15062&amp;type=3#UIDialog" />
     <ui:VisualElement name="Tavern" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); background-image: url(&apos;project://database/Assets/UI/Sprites/Bg.png?fileID=2800000&amp;guid=0641c76439a64674aa800f9e3d79c6a4&amp;type=3#Bg&apos;);">
         <ui:VisualElement name="Row" class="dialog_box_row">
             <ui:VisualElement class="box_shadow" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
-                <ui:VisualElement name="Text" class="text-secondary text-lg p-2 box_bg" style="flex-grow: 1; align-self: center;">
-                    <ui:Label tabindex="-1" text="La belLabelLabelLa belLabelLabelLa belLabelLabelLa belLabelLabelLa belLabelLabelLa belLabelLabelLa belLabelLabelLa belLabelLabelLa belLabelLabelLa belLabel" display-tooltip-when-elided="true" name="DescriptionDialog" enable-rich-text="true" style="white-space: normal; -unity-text-align: upper-center;" />
+                <ui:VisualElement class="text-secondary text-lg p-2 box_bg" style="flex-grow: 1; align-self: center;">
+                    <ui:Label tabindex="-1" text="La belLabelLabelLa belLabelLabelLa belLabelLabelLa belLabelLabelLa belLabelLabelLa belLabelLabelLa belLabelLabelLa belLabelLabelLa belLabelLabelLa belLabel" display-tooltip-when-elided="true" name="description" enable-rich-text="true" style="white-space: normal; -unity-text-align: upper-center;" />
                 </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement class="mt-2 text-secondary text-lg text-center box_shadow" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">

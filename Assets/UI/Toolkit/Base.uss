@@ -49,7 +49,7 @@
 }
 
 .button_text {
-    font-size: 25px;
+    font-size: 20px;
     color: rgb(255, 255, 255);
 }
 
@@ -258,6 +258,10 @@
     padding-bottom: 2px;
 }
 
+.pr-1 {
+    padding-right: 5px;
+}
+
 .pt-0 {
     padding-top: 0;
 }
@@ -350,6 +354,10 @@
     margin-right: 20px;
     margin-top: 20px;
     margin-bottom: 20px;
+}
+
+.mr-1 {
+    margin-right: 5px;
 }
 
 .mx-1 {

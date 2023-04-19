@@ -16,9 +16,9 @@ public class ScriptableEntityArtifact : ScriptableEntityMapObject, IEffected
     // [Header("Options Perks")]
     // public List<ArtifactItemSkill> Skills;
 
-    public override void OnDoHero(ref Player player, BaseEntity entity)
+    public override void RunHero(ref Player player, BaseEntity entity)
     {
-        base.OnDoHero(ref player, entity);
+        base.RunHero(ref player, entity);
         // foreach (var primarySkill in Skills)
         // {
         //     Debug.Log($"Increment hero skills {primarySkill.PrimarySkill.name}[{primarySkill.value}]");

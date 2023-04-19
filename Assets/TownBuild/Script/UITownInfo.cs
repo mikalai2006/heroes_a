@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using UnityEngine;
+using UnityEngine.Localization;
 using UnityEngine.UIElements;
 
 public class UITownInfo : MonoBehaviour
@@ -23,12 +24,14 @@ public class UITownInfo : MonoBehaviour
     private EntityTown _activeTown;
     private Player _activePlayer;
     private EntityHero _chooseHero;
+    private Button _buttonSplitCreature;
     public static event Action onMoveHero;
     private SerializableDictionary<int, EntityCreature> _startCheckedCreatures
         = new SerializableDictionary<int, EntityCreature>();
     private EntityCreature _endCheckedCreature;
     private int _startPositionChecked = -1;
     private int _endChecked;
+    private bool _isSplit = false;
 
     private void Start()
     {
@@ -63,21 +66,18 @@ public class UITownInfo : MonoBehaviour
         _townInfoBox.Add(_townInfo);
 
         _townInfoHero = _parent.Q<VisualElement>("TownHeroForce");
+
+        _buttonSplitCreature = _parent.Q<TemplateContainer>("SplitCreature").Q<Button>("Btn");
+        _buttonSplitCreature.clickable.clicked += () =>
+        {
+            _isSplit = true;
+        };
+        _buttonSplitCreature.SetEnabled(false);
+
         DrawHeroInTown();
-        // for (int i = 0; i < 9; i++)
-        // {
-        //     var itemHeroForce = _templateHeroForce.Instantiate();
-        //     itemHeroForce.AddToClassList("w-33");
-        //     itemHeroForce.AddToClassList("h-33");
-        //     if (i < 4)
-        //     {
-        //         itemHeroForce.Q<VisualElement>("img").style.backgroundImage =
-        //             new StyleBackground(_activePlayer.ActiveHero.ScriptableData.MenuSprite);
-        //         itemHeroForce.Q<Label>("ForceValue").text = Random.Range(0, 100).ToString();
-        //     }
-        //     _townInfoHero.Add(itemHeroForce);
-        // }
+
         _townInfoHeroVisit = _parent.Q<VisualElement>("TownHeroVisitForce");
+
         DrawHeroAsGuest();
 
         DrawTownInfo();
@@ -172,8 +172,23 @@ public class UITownInfo : MonoBehaviour
         }
     }
 
-    private void OnClickHeroGuest(ClickEvent evt)
+    private async void OnClickHeroGuest(ClickEvent evt)
     {
+
+        if (_chooseHero != null && _activePlayer.IsMaxCountHero)
+        {
+            var dialogData = new DataDialogHelp()
+            {
+                Header = new LocalizedString(Constants.LanguageTable.LANG_TABLE_UILANG, "Help").GetLocalizedString(),
+                Description = new LocalizedString(Constants.LanguageTable.LANG_TABLE_UILANG, "maxhero_message").GetLocalizedString(),
+            };
+            var dialogWindow = new DialogHelpProvider(dialogData);
+            await dialogWindow.ShowAndHide();
+            SetDeactiveButtonsHero();
+            _chooseHero = null;
+            return;
+        }
+
         var heroGuest = (EntityHero)_activeTown.OccupiedNode.GuestedUnit;
         if (_chooseHero != null && _chooseHero != _activeTown.OccupiedNode.GuestedUnit)
         {
@@ -202,8 +217,7 @@ public class UITownInfo : MonoBehaviour
 
             _activePlayer.SetActiveHero((EntityHero)_activeTown.OccupiedNode.GuestedUnit);
 
-            _btnHeroInTown.RemoveFromClassList("button_active");
-            _btnHeroGuest.RemoveFromClassList("button_active");
+            SetDeactiveButtonsHero();
             _chooseHero = null;
             DrawHeroAsGuest();
             DrawHeroInTown();
@@ -211,10 +225,23 @@ public class UITownInfo : MonoBehaviour
         else
         {
             _btnHeroInTown.SetEnabled(true);
-            _btnHeroInTown.AddToClassList("button_active");
+            SetActiveButtonsHero();
             _chooseHero = heroGuest;
         }
         onMoveHero?.Invoke();
+    }
+
+    private void SetDeactiveButtonsHero()
+    {
+        _btnHeroInTown.RemoveFromClassList("button_active");
+        _btnHeroGuest.RemoveFromClassList("button_active");
+    }
+
+    private void SetActiveButtonsHero()
+    {
+        _btnHeroInTown.AddToClassList("button_active");
+        _btnHeroGuest.AddToClassList("button_active");
+
     }
 
     private void OnClickHeroInTown(ClickEvent evt)
@@ -322,7 +349,7 @@ public class UITownInfo : MonoBehaviour
             SerializableDictionary<int, EntityCreature> creatures;
             if (hero != null)
             {
-                creatures = hero.Data.Creatures; //.TryGetValue(i, out creature);
+                creatures = hero.Data.Creatures;
             }
             else
             {
@@ -334,7 +361,6 @@ public class UITownInfo : MonoBehaviour
 
             if (creature != null)
             {
-                // Debug.Log($"Create creature::: [{creature.ScriptableData.idObject}]");
                 itemHeroForce.Q<VisualElement>("img").style.backgroundImage
                     = new StyleBackground(creature.ScriptableData.MenuSprite);
                 itemHeroForce.Q<Label>("ForceValue").text = creature.Data.value.ToString();
@@ -360,26 +386,10 @@ public class UITownInfo : MonoBehaviour
         }
     }
 
-    // private void OnEndMoveCreature()
-    // {
-    //     Debug.Log($"OnEndMoveCreature ::: start-{_startPositionChecked}:end-{_endChecked}");
-    //     UQueryBuilder<VisualElement> builderGuest
-    //             = new UQueryBuilder<VisualElement>(_parent);
-    //     List<VisualElement> listGuestCreature = builderGuest.Name("creature").ToList();
-    //     foreach (var item in listGuestCreature)
-    //     {
-    //         item.Q<Button>("HeroInfoForce").RemoveFromClassList("button_active");
-    //     }
-    //     _startCheckedCreature = null;
-    //     _endCheckedCreature = null;
-    //     _startChecked = -1;
-    //     _endChecked = -1;
-
-    // }
-
     private void OnChooseCreature(int index, SerializableDictionary<int, EntityCreature> creatures)
     {
         if (creatures[index] == null) return;
+        _buttonSplitCreature.SetEnabled(true);
 
         UQueryBuilder<VisualElement> builder = new UQueryBuilder<VisualElement>(_townInfoHero);
         List<VisualElement> list = builder.Name("creature").ToList();
@@ -406,9 +416,55 @@ public class UITownInfo : MonoBehaviour
         _startPositionChecked = index;
     }
 
-    private void OnMoveCreature(int index, SerializableDictionary<int, EntityCreature> creatures)
+    private async void OnMoveCreature(int index, SerializableDictionary<int, EntityCreature> creatures)
     {
-        Debug.Log($"OnMoveCreature ::: start-{_startPositionChecked}:end-{_endChecked}");
+        if (creatures[index] != _startCheckedCreatures[_startPositionChecked])
+        {
+            if (
+                _startCheckedCreatures.Where(t => t.Value != null).Count() == 1
+                && creatures[index] == null
+                && !_isSplit)
+            {
+                var dialogData = new DataDialogHelp()
+                {
+                    Header = new LocalizedString(Constants.LanguageTable.LANG_TABLE_UILANG, "Help").GetLocalizedString(),
+                    Description = new LocalizedString(Constants.LanguageTable.LANG_TABLE_UILANG, "hero_lastcreature").GetLocalizedString(),
+                };
+                var dialogWindow = new DialogHelpProvider(dialogData);
+                await dialogWindow.ShowAndHide();
+            }
+            else if (_isSplit)
+            {
+                // Show dialog split creatures.
+            }
+            else
+            {
+                Helpers.MoveUnitBetweenList(
+                    _startCheckedCreatures,
+                    _startPositionChecked,
+                    creatures,
+                    index
+                    );
+            }
+        }
+        else
+        {
+            if (_isSplit)
+            {
+                // Show dialog split creatures.
+            }
+            else
+            {
+                // Show dialog info creature.
+                var dialogWindow = new UIInfoCreatureOperation();
+                var result = await dialogWindow.ShowAndHide();
+                if (result.isOk)
+                {
+
+                }
+            }
+        }
+
         UQueryBuilder<VisualElement> builderGuest
                 = new UQueryBuilder<VisualElement>(_parent);
         List<VisualElement> listGuestCreature = builderGuest.Name("creature").ToList();
@@ -416,72 +472,10 @@ public class UITownInfo : MonoBehaviour
         {
             item.Q<Button>("HeroInfoForce").RemoveFromClassList("button_active");
         }
-
-        Helpers.MoveUnitBetweenList(
-            _startCheckedCreatures,
-            _startPositionChecked,
-            creatures,
-            index
-            );
-        // creatures[index] = _startCheckedCreatures[_startPositionChecked];
         DrawHeroAsGuest();
         DrawHeroInTown();
-        // _startCheckedCreatures.Clear();
+        _isSplit = false;
+        _buttonSplitCreature.SetEnabled(false);
         _startPositionChecked = -1;
-        // _endCheckedCreature = null;
-        // _endChecked = -1;
-
     }
-
-    // private void OnClickCreature(int index, EntityCreature creature)
-    // {
-
-    //     if (_startChecked == -1)
-    //     {
-    //         _startChecked = index;
-    //         _startCheckedCreature = creature;
-    //     }
-    //     else
-    //     {
-    //         _endChecked = index;
-    //         _endCheckedCreature = creature;
-    //     }
-
-    //     UQueryBuilder<VisualElement> builder = new UQueryBuilder<VisualElement>(_townInfoHero);
-    //     List<VisualElement> list = builder.Name("creature").ToList();
-    //     for (int i = 0; i < list.Count; i++)
-    //     {
-    //         var item = list[i];
-    //         item.Q<Button>("HeroInfoForce").AddToClassList("button_active");
-    //         item.SetEnabled(true);
-    //         // item.RegisterCallback<ClickEvent>((ClickEvent evt) =>
-    //         // {
-    //         //     OnMoveCreature();
-    //         //     _endChecked = i;
-    //         // });
-    //     }
-
-    //     if (_activeTown.OccupiedNode.GuestedUnit != null)
-    //     {
-    //         UQueryBuilder<VisualElement> builderGuest
-    //             = new UQueryBuilder<VisualElement>(_townInfoHeroVisit);
-    //         List<VisualElement> listGuestCreature = builderGuest.Name("creature").ToList();
-    //         for (int i = 0; i < listGuestCreature.Count; i++)
-    //         {
-    //             var item = listGuestCreature[i];
-    //             item.Q<Button>("HeroInfoForce").AddToClassList("button_active");
-    //             item.SetEnabled(true);
-    //             // item.RegisterCallback<ClickEvent>((ClickEvent evt) =>
-    //             // {
-    //             //     OnMoveCreature();
-    //             //     _endChecked = i;
-    //             // });
-    //         }
-    //     }
-
-    //     if (_endChecked != -1)
-    //     {
-    //         OnEndMoveCreature();
-    //     }
-    // }
 }

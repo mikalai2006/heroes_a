@@ -15,11 +15,39 @@ public abstract class BaseBuild
     [NonSerialized] public BuildMonoBehavior BuildGameObject;
     [NonSerialized] public EntityTown Town;
 
+    #region Events GameState
+    // public void AddEvents()
+    // {
+    //     GameManager.OnBeforeStateChanged += OnBeforeStateChanged;
+    //     GameManager.OnAfterStateChanged += OnAfterStateChanged;
+    // }
+    // public void RemoveEvents()
+    // {
+    //     GameManager.OnBeforeStateChanged -= OnBeforeStateChanged;
+    //     GameManager.OnAfterStateChanged -= OnAfterStateChanged;
+    // }
 
-    public void Init(int level, EntityTown town)
+    // public virtual void OnBeforeStateChanged(GameState newState)
+    // {
+    //     // switch (newState)
+    //     // {
+    //     //     case GameState.SaveGame:
+    //     //         // OnSaveUnit();
+    //     //         break;
+    //     // }
+    // }
+
+    // public virtual void OnAfterStateChanged(GameState newState)
+    // {
+    // }
+    #endregion
+
+    public void Init(int level, EntityTown town, Player player)
     {
         this.level = level;
         this.Town = town;
+        SetPlayer(player);
+        // AddEvents();
     }
 
     public void CreateGameObject()
@@ -35,9 +63,31 @@ public abstract class BaseBuild
         }
     }
 
+    public virtual void OnRunOneEffect()
+    {
+        ((ScriptableBuilding)ConfigData).BuildLevels[level].RunOne(ref _player, Town);
+    }
+
+    public void DestroyGameObject()
+    {
+        Debug.Log($"Destroy GameObject [{ConfigData.name}]");
+        ConfigData.Prefab.ReleaseInstance(BuildGameObject.gameObject);
+        BuildGameObject = null;
+    }
+
+    // public void DestroyBuild()
+    // {
+    //     // RemoveEvents();
+    // }
+
     public void UpdateGameObject()
     {
         BuildGameObject.InitGameObject(this);
+    }
+
+    public void SetPlayer(Player player)
+    {
+        _player = player;
     }
 
     private void LoadGameObject()
@@ -67,4 +117,5 @@ public abstract class BaseBuild
             Debug.LogError($"Error Load prefab::: {handle.Status}");
         }
     }
+
 }

@@ -84,7 +84,7 @@ public class UIGameAside : UILocaleBase
     {
         switch (state)
         {
-            case GameState.StepNextPlayer:
+            case GameState.NextDay:
             case GameState.StartGame:
                 DrawAside();
                 ChangeHeroInfo();
@@ -161,7 +161,7 @@ public class UIGameAside : UILocaleBase
             var btnNextStep = _aside.rootVisualElement.Q<Button>(NameBtnNextStep);
             btnNextStep.clickable.clicked += () =>
             {
-                GameManager.Instance.ChangeState(GameState.StepNextPlayer);
+                GameManager.Instance.ChangeState(GameState.NextDay);
                 OnClickNextStep?.Invoke();
             };
 
@@ -204,25 +204,60 @@ public class UIGameAside : UILocaleBase
         var listTownDwellingEl = townInfo.Q<VisualElement>("DwellingList");
         listTownDwellingEl.Clear();
 
-        foreach (var build in activeTown.Data.Armys
-            .OrderBy(t => ((ScriptableBuildingArmy)((BuildArmy)t.Value).ConfigData).Creatures[t.Value.level].CreatureParams.Level))
+        // Get hero by id.
+        EntityHero hero = activeTown.Data.HeroinTown != null && activeTown.Data.HeroinTown != ""
+            ? (EntityHero)UnitManager.Entities[activeTown.Data.HeroinTown]
+            : null;
+        SerializableDictionary<int, EntityCreature> creatures = new SerializableDictionary<int, EntityCreature>();
+        if (hero != null)
+        {
+            creatures = hero.Data.Creatures;
+        }
+        else
+        {
+            creatures = activeTown.Data.Creatures;
+        }
+        foreach (var creature in creatures)
         {
             var btnCreature = _templateTownInfoCreature.Instantiate();
             btnCreature.AddToClassList("w-25");
             btnCreature.AddToClassList("h-50");
-            btnCreature.Q<VisualElement>("Img").style.backgroundImage
-                = new StyleBackground(((ScriptableBuildingArmy)((BuildArmy)build.Value).ConfigData).Creatures[build.Value.level].MenuSprite);
-            btnCreature.Q<Label>("Value").text = "+" + (build.Value.Data.quantity.ToString());
+            if (creature.Value != null)
+            {
+                btnCreature.Q<VisualElement>("Img").style.backgroundImage
+                    = new StyleBackground(creature.Value.ConfigData.MenuSprite);
+            }
+            btnCreature.Q<Label>("Value").text = creature.Value != null ? creature.Value.Data.value.ToString() : "";
             listTownDwellingEl.Add(btnCreature);
         }
-        for (int i = activeTown.Data.Armys.Count; i < 7; i++)
-        {
-            var btnCreature = _templateTownInfoCreature.Instantiate();
-            btnCreature.AddToClassList("w-25");
-            btnCreature.AddToClassList("h-50");
-            btnCreature.Q<Label>("Value").text = "";
-            listTownDwellingEl.Add(btnCreature);
-        }
+        // for (int i = activeTown.Data.Armys.Count; i < 7; i++)
+        // {
+        //     var btnCreature = _templateTownInfoCreature.Instantiate();
+        //     btnCreature.AddToClassList("w-25");
+        //     btnCreature.AddToClassList("h-50");
+        //     btnCreature.Q<Label>("Value").text = "";
+        //     listTownDwellingEl.Add(btnCreature);
+        // }
+
+        // foreach (var build in activeTown.Data.Armys
+        //     .OrderBy(t => ((ScriptableBuildingArmy)((BuildArmy)t.Value).ConfigData).Creatures[t.Value.level].CreatureParams.Level))
+        // {
+        //     var btnCreature = _templateTownInfoCreature.Instantiate();
+        //     btnCreature.AddToClassList("w-25");
+        //     btnCreature.AddToClassList("h-50");
+        //     btnCreature.Q<VisualElement>("Img").style.backgroundImage
+        //         = new StyleBackground(((ScriptableBuildingArmy)((BuildArmy)build.Value).ConfigData).Creatures[build.Value.level].MenuSprite);
+        //     btnCreature.Q<Label>("Value").text = "+" + (build.Value.Data.quantity.ToString());
+        //     listTownDwellingEl.Add(btnCreature);
+        // }
+        // for (int i = activeTown.Data.Armys.Count; i < 7; i++)
+        // {
+        //     var btnCreature = _templateTownInfoCreature.Instantiate();
+        //     btnCreature.AddToClassList("w-25");
+        //     btnCreature.AddToClassList("h-50");
+        //     btnCreature.Q<Label>("Value").text = "";
+        //     listTownDwellingEl.Add(btnCreature);
+        // }
 
         boxinfo.Clear();
         boxinfo.Add(townInfo);

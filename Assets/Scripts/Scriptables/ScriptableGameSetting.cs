@@ -16,6 +16,8 @@ public class ScriptableGameSetting : ScriptableObject
     public List<ItemPlayerType> TypesPlayer;
     public List<Complexity> Complexities;
     public List<StartBonusItem> StartBonuses;
+    [SerializeField] public List<CostEntity> CostHero;
+    public int maxCountHero = 5;
 
     [Header("Setting System")]
     [Space(5)]

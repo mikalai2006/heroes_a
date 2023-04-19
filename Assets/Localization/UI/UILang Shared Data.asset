@@ -251,6 +251,38 @@ MonoBehaviour:
     m_Key: weekcreature
     m_Metadata:
       m_Items: []
+  - m_Id: 8433118315970560
+    m_Key: tavern_cit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8435570469666816
+    m_Key: nocardhero
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8436118216409088
+    m_Key: nocardhero_cash
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8443209240969216
+    m_Key: herotavern
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8443363054485504
+    m_Key: price
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8531898981842944
+    m_Key: maxhero_message
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8538769478287360
+    m_Key: hero_lastcreature
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8539779076620288
+    m_Key: splitcreature
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

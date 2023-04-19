@@ -53,11 +53,11 @@ public class EntityMine : BaseEntity
     public override void OnAfterStateChanged(GameState newState)
     {
         base.OnAfterStateChanged(newState);
-        if (newState == GameState.StepNextPlayer)
+        if (newState == GameState.NextDay)
         {
             ScriptableEntityMine configData = (ScriptableEntityMine)ScriptableData;
             Player player = LevelManager.Instance.ActivePlayer;
-            configData.OnDoHero(ref player, this);
+            configData.RunHero(ref player, this);
             // if (Data.idPlayer == player.DataPlayer.id)
             // {
             //     if (ConfigData.Resources.Count > 0)

@@ -1,0 +1,9 @@
+.info_picto {
+    width: 30px;
+    height: 100%;
+}
+
+.info_row {
+    height: 30px;
+    max-height: 30px;
+}

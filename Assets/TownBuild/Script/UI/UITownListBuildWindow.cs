@@ -208,7 +208,7 @@ public class UITownListBuildWindow : MonoBehaviour
             // _dataResultDialog.PreProgressBuild = _activeTown.Data.ProgressBuilds;
             // _activeTown.Data.ProgressBuilds.Add(build.TypeBuild);
             _dataResultDialog.build = build;
-            var newBuild = _activeTown.CreateBuild(buildConfig, level);
+            var newBuild = _activeTown.CreateBuild(buildConfig, level, _activePlayer);
             if (level == 0)
             {
                 newBuild.CreateGameObject();

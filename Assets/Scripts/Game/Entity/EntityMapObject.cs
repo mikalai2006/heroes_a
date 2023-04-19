@@ -124,7 +124,7 @@ public class EntityMapObject : BaseEntity
     public override void SetPlayer(Player player)
     {
         ScriptableEntityMapObject configData = (ScriptableEntityMapObject)ScriptableData;
-        configData.OnDoHero(ref player, this);
+        configData.RunHero(ref player, this);
         // ScriptableResource dataScriptable = ResourceSystem.Instance.GetUnit<ScriptableResource>(idObject);
 
         // ItemResource dataResource = dataScriptable.ListResource[Random.Range(0, dataScriptable.ListResource.Count)];

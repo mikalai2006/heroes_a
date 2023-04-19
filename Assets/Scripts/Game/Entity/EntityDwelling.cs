@@ -50,7 +50,7 @@ public class EntityDwelling : BaseEntity
     public override void SetPlayer(Player player)
     {
         ScriptableEntityDwelling configData = (ScriptableEntityDwelling)ScriptableData;
-        configData.OnDoHero(ref player, this);
+        configData.RunHero(ref player, this);
         _player = player;
     }
 

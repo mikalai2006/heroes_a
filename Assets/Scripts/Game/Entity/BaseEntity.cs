@@ -16,6 +16,7 @@ public abstract class BaseEntity
     protected string idUnit;
     public string IdEntity => idUnit;
     protected string idObject;
+    public string IdObject => idObject;
 
     #region Events GameState
     public void AddEvents()

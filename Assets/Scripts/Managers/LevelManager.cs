@@ -18,10 +18,6 @@ public class LevelManager : Singleton<LevelManager>, ISaveDataPlay, ISaveDataGam
 
     // [Header("Setting level")]
     // [Space(10)]
-    private void Start()
-    {
-        DefaultSettings = Level;
-    }
     public Player ActivePlayer
     {
         get { return Level.listPlayer[Level.activePlayer]; }
@@ -29,6 +25,10 @@ public class LevelManager : Singleton<LevelManager>, ISaveDataPlay, ISaveDataGam
         {
             Level.listPlayer[Level.activePlayer] = value;
         }
+    }
+    private void Start()
+    {
+        DefaultSettings = Level;
     }
 
     // public LevelManager()
@@ -229,8 +229,6 @@ public class LevelManager : Singleton<LevelManager>, ISaveDataPlay, ISaveDataGam
         {
             await ActivePlayer.RunBot();
         }
-
-        ActivePlayer.GenerateHeroTavern();
 
         // if (ActivePlayer.DataPlayer.nosky.Count == 0)
         // {

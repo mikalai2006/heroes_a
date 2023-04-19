@@ -1,5 +1,4 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
-    <ui:Template name="HeroInfoForce" src="project://database/Assets/UI/Toolkit/HeroInfoForce.uxml?fileID=9197481963319205126&amp;guid=4f6a4d47381761f40ba034485fd3dcd4&amp;type=3#HeroInfoForce" />
     <Style src="project://database/Assets/UI/Toolkit/Base.uss?fileID=7433441132597879392&amp;guid=fa07b064290e7384d9ad2e26e79f5953&amp;type=3#Base" />
     <ui:VisualElement class="text-secondary bg border-1 border-color" style="flex-grow: 1; margin-left: 5px;">
         <ui:VisualElement name="Box" style="height: 30%;">
@@ -16,7 +15,7 @@
         <ui:VisualElement class="p-05" style="height: 70%; margin-top: 5px;">
             <ui:Label tabindex="-1" text="#weekcreature" display-tooltip-when-elided="true" class="m-0" />
             <ui:VisualElement name="TownDwellingList" style="flex-grow: 1; flex-direction: row; flex-wrap: wrap; height: 100%;">
-                <ui:Instance template="HeroInfoForce" name="HeroInfoForce" class="heroinfo_force_el" />
+
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>

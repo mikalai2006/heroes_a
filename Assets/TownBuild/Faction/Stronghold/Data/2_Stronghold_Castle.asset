@@ -56,7 +56,12 @@ MonoBehaviour:
       Count: 20
     - Resource: {fileID: 11400000, guid: af6fb8015ba018540960794f09d24eea, type: 2}
       Count: 20
-    Effects: []
+    Effect:
+      One:
+      - {fileID: 11400000, guid: 819d95a8225ed9a4d9c1d1e5a4ceca4e, type: 2}
+      EveryDay: []
+      EveryWeek: []
+      RunHero: []
   - MenuSprite: {fileID: 21300000, guid: 96b6c32c50d5ce14e949897cfe48255a, type: 3}
     UpdatePrefab:
       m_AssetGUID: 
@@ -90,7 +95,12 @@ MonoBehaviour:
       Count: 2500
     - Resource: {fileID: 11400000, guid: 177478bebb60204468d214efd1fdcc16, type: 2}
       Count: 5
-    Effects: []
+    Effect:
+      One:
+      - {fileID: 11400000, guid: 4fe010df0f11bd846a78548a47305258, type: 2}
+      EveryDay: []
+      EveryWeek: []
+      RunHero: []
   - MenuSprite: {fileID: 21300000, guid: 032393052e4c9cb49b3f4ff69bb92c2b, type: 3}
     UpdatePrefab:
       m_AssetGUID: 
@@ -126,7 +136,12 @@ MonoBehaviour:
       Count: 10
     - Resource: {fileID: 11400000, guid: af6fb8015ba018540960794f09d24eea, type: 2}
       Count: 10
-    Effects: []
+    Effect:
+      One:
+      - {fileID: 11400000, guid: ecca841e3e6a0d14bb2beee15eafcd31, type: 2}
+      EveryDay: []
+      EveryWeek: []
+      RunHero: []
   references:
     version: 2
     RefIds: []

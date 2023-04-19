@@ -52,8 +52,12 @@ MonoBehaviour:
       Count: 1000
     - Resource: {fileID: 11400000, guid: af6fb8015ba018540960794f09d24eea, type: 2}
       Count: 5
-    Effects:
-    - {fileID: 11400000, guid: ec1a91c33140bfe4ea4559a7e3704f10, type: 2}
+    Effect:
+      One: []
+      EveryDay: []
+      EveryWeek: []
+      RunHero:
+      - {fileID: 11400000, guid: ec1a91c33140bfe4ea4559a7e3704f10, type: 2}
   references:
     version: 2
     RefIds: []

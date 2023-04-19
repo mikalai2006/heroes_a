@@ -92,15 +92,14 @@ public class BuildMonoBehavior : MonoBehaviour, IPointerClickHandler
 
     public async UniTask<DataResultBuildDialog> OnClickToTavern()
     {
-        var dialogWindow = new UITavernOperation();
+        var dialogWindow = new UITavernOperation(Build);
         return await dialogWindow.ShowAndHide();
     }
 
     protected virtual void OnDestroy()
     {
-        Debug.Log($"Destroy object [{Build.ConfigData.name}] - gameObject[{gameObject.name}]");
-        Build.ConfigData.Prefab.ReleaseInstance(gameObject);
-        Build = null;
+        Build.DestroyGameObject();
+        // Build = null;
     }
 
 
