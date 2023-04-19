@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 using UnityEngine;
 
 [System.Serializable]
@@ -24,9 +26,21 @@ public struct DataGameMode
 }
 
 [System.Serializable]
-public struct DataGameSetting
+public class DataGameSetting
 {
-    public int Compexity;
+    public int compexity;
     public float speedHero;
+    public int countPlayer;
+    public int countCommand;
+    public int countBot;
+    public int countBotCommand;
+    public bool isWater;
+    public TypeGame TypeGame;
+}
 
+[System.Serializable]
+public enum TypeGame
+{
+    Single = 0,
+    MultipleOneDevice = 1,
 }

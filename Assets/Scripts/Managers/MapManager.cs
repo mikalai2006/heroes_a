@@ -78,7 +78,7 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
     // public LocalizationManager LocalizationManager;
     [SerializeField] public DataGameMode gameModeData;
     private bool _isWater = false;
-    public int countArea;
+    public DataLevel Level;
     public Tilemap _tileMap;
     public Tilemap _tileTest;
     [SerializeField] public Tilemap _tileMapEdge;
@@ -123,7 +123,6 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
         data.dataMap.natureNode = _listNatureNode;
         //data.dataMap.GameModeData = gameModeData;
         data.dataMap.isWater = _isWater;
-        data.dataMap.countArea = countArea;
     }
 
     public void LoadGameData(DataPlay dataPlay, DataGame dataGame)
@@ -134,7 +133,6 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
         gameModeData = dataGame.dataMap.GameModeData;
         _listNatureNode = dataGame.dataMap.natureNode;
         _isWater = dataGame.dataMap.isWater;
-        countArea = dataGame.dataMap.countArea;
 
         // Clear all tilemap.
         InitSetting();
@@ -210,7 +208,7 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
 
             if (unitTown.idObject == "") continue;
 
-            EntityTown town = new EntityTown(TypeGround.None, unitTown);
+            EntityTown town = new EntityTown(TypeGround.None, null, unitTown);
             UnitManager.SpawnEntityMapObjectToNode(tileNode, town);
             if (unitTown.data.idPlayer >= 0)
             {
@@ -414,7 +412,7 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
 
     public async UniTask NewMap()
     {
-        Application.targetFrameRate = 60;
+        // Application.targetFrameRate = 60;
 
 #if UNITY_EDITOR
         System.Diagnostics.Stopwatch stopWatch = new System.Diagnostics.Stopwatch();
@@ -422,11 +420,11 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
 #endif
         InitSetting();
 
-        gameModeData = LevelManager.Instance.GameModeData;
+        gameModeData = LevelManager.Instance.Level.GameModeData;
 
-        _isWater = LevelManager.Instance.isWater;
+        _isWater = LevelManager.Instance.Level.Settings.isWater;
 
-        countArea = LevelManager.Instance.CountArea;
+        Level = LevelManager.Instance.Level;
 
         // Create grid tile nodes.
         gridTileHelper = new GridTileHelper(gameModeData.width, gameModeData.height);
@@ -653,11 +651,11 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
                     = listConfigPortals[UnityEngine.Random.Range(0, listConfigPortals.Count)];
 
                 var factory = new EntityMapObjectFactory();
-                EntityMonolith configMonolithExit = (EntityMonolith)factory.CreateMapObject(
+                EntityMonolith monolithExit = (EntityMonolith)factory.CreateMapObject(
                     TypeMapObject.Portal,
                     configData
                     );
-                UnitManager.SpawnEntityMapObjectToNode(nodeExitPortal, configMonolithExit);
+                UnitManager.SpawnEntityMapObjectToNode(nodeExitPortal, monolithExit);
                 nodeExitPortal.AddStateNode(StateNode.Teleport);
                 // BaseEntity configMonolithExit = new EntityMonolith(nodeExitPortal);
                 // UnitManager.SpawnMapObjectAsync(nodeExitPortal, TypeMapObject.Monolith);
@@ -671,10 +669,11 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
                 }
                 // //MonolithData monolithExitData = new MonolithData();
                 // //monolithExitData.position = monolithExit.Position;
-                // //monolithExit.Init(monolithExitData);
-
-                monolith.Data.portalPoints.Add(configMonolithExit.Position);
-                configMonolithExit.Data.portalPoints.Add(monolith.Position);
+                // // //monolithExit.Init(monolithExitData);
+                // Debug.Log($"monolith for currentArea {currentArea.id}[countNode={currentArea.countNode}]");
+                // Debug.Log($"monolithExit={monolithExit.Position}]");
+                monolith.Data.portalPoints.Add(monolithExit.Position);
+                monolithExit.Data.portalPoints.Add(monolith.Position);
                 return true;
             }
         }
@@ -969,9 +968,9 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
 
     public void ResetSky(SerializableShortPosition positions)
     {
-        for (int x = 0; x < gameModeData.width; x++)
+        for (int x = -1; x < gameModeData.width + 1; x++)
         {
-            for (int y = 0; y < gameModeData.height; y++)
+            for (int y = -1; y < gameModeData.height + 3; y++)
             {
                 Vector3Int position = new Vector3Int(x, y);
                 if (positions.ContainsKey(position))

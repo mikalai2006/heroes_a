@@ -71,6 +71,18 @@ MonoBehaviour:
     m_Key: gold
     m_Metadata:
       m_Items: []
+  - m_Id: 4674727164674048
+    m_Key: town_castle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4674787021586432
+    m_Key: town_stronghold
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4737672213069824
+    m_Key: artifact
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

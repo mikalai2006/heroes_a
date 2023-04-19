@@ -100,13 +100,13 @@ public abstract class BaseMapEntity : MonoBehaviour, IPointerClickHandler
     {
         if (eventData.clickCount >= 2)
         {
+            GameManager.Instance.ChangeState(GameState.StartMoveHero);
         }
         else
         {
 
             if (LevelManager.Instance.ActivePlayer.ActiveHero != null)
             {
-
                 Debug.Log($"" +
                     $"UnitBase Click \n" +
                     $"name-{this.name} \n" +

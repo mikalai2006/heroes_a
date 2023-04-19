@@ -68,9 +68,7 @@ public class CreateTerrainOperation : ILoadingOperation
     /// <returns></returns>
     private async UniTask NormalizeArea()
     {
-        _root.countArea = LevelManager.Instance.Level.listArea.Count;
-
-        List<Area> areaList = LevelManager.Instance.Level.listArea.Where(t => t.countNode < 30).ToList();
+        List<Area> areaList = LevelManager.Instance.Level.listArea.Where(t => t.countNode < 10).ToList();
 
         while (areaList.Count > 0)
         {
@@ -106,7 +104,6 @@ public class CreateTerrainOperation : ILoadingOperation
 
         }
 
-        _root.countArea = LevelManager.Instance.Level.listArea.Count;
         await UniTask.Delay(1);
     }
 }

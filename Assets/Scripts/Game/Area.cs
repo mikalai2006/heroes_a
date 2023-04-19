@@ -4,6 +4,7 @@ using UnityEngine;
 public class Area
 {
     public int id;
+    public int idPlayer;
     public int countNode;
     public Vector3Int startPosition;
     public TypeGround typeGround;

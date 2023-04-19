@@ -1,0 +1,22 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/Toolkit/Base.uss?fileID=7433441132597879392&amp;guid=fa07b064290e7384d9ad2e26e79f5953&amp;type=3#Base" />
+    <ui:VisualElement name="VisualElement" class="box_shadow" style="flex-grow: 1;">
+        <ui:VisualElement>
+            <ui:VisualElement name="VisualElement" style="flex-grow: 1; flex-direction: row;">
+                <ui:Button display-tooltip-when-elided="true" name="arrowleft" enable-rich-text="true" class="button bg-transparent button_bordered" style="height: 64px; flex-grow: 1;">
+                    <ui:VisualElement name="arrow" class="btn_arrow" style="background-image: url(&apos;project://database/Assets/UI/Sprites/Clipart/arrow.png?fileID=2800000&amp;guid=3c373a5e897c27747bd4fe425fe87841&amp;type=3#arrow&apos;); rotate: -180deg;" />
+                </ui:Button>
+                <ui:VisualElement style="background-color: rgba(0, 0, 0, 0); width: 58px; height: 64px;">
+                    <ui:VisualElement name="random" class="inset-0" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); background-image: url(&apos;project://database/Assets/UI/Sprites/Clipart/random.png?fileID=2800000&amp;guid=8e6e4bf40dac36d4bb91682cf07ab3fe&amp;type=3#random&apos;); position: absolute;" />
+                    <ui:VisualElement name="img" style="flex-grow: 1;" />
+                </ui:VisualElement>
+                <ui:Button display-tooltip-when-elided="true" name="arrowright" enable-rich-text="true" class="button button_bordered bg-transparent" style="height: 64px; flex-grow: 1;">
+                    <ui:VisualElement name="arrow" class="btn_arrow" style="background-image: url(&apos;project://database/Assets/UI/Sprites/Clipart/arrow.png?fileID=2800000&amp;guid=3c373a5e897c27747bd4fe425fe87841&amp;type=3#arrow&apos;);" />
+                </ui:Button>
+            </ui:VisualElement>
+            <ui:VisualElement style="flex-grow: 1;">
+                <ui:Label tabindex="-1" text="#random" display-tooltip-when-elided="true" name="text" class="m-0 p-1 text-secondary text-center text_md" style="padding-top: 0;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

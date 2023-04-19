@@ -32,21 +32,41 @@ public class CreateAreasOperation : ILoadingOperation
         var t = new LocalizedString(Constants.LanguageTable.LANG_TABLE_UILANG, "createdgameobject").GetLocalizedString();
         onSetNotify(t + " areas ...");
 
-        List<TileLandscape> listTileData = _root._dataTypeGround.Values
-        .Where(t => t.typeGround != TypeGround.None && t.typeGround != TypeGround.Sand).ToList();
+        var listPlayers = _root.Level.listPlayer;
+        var countPlayer = listPlayers.Count;
 
-        _maxSizeOneWorld = 1f / (float)_root.countArea;
+        List<TileLandscape> listTileData
+            = _root._dataTypeGround.Values
+            .Where(t => t.typeGround != TypeGround.None && t.typeGround != TypeGround.Sand).ToList();
+
+        _maxSizeOneWorld = Mathf.CeilToInt(
+            (
+                (_root.Level.GameModeData.width * _root.Level.GameModeData.height)
+                / (_root.Level.Settings.countPlayer + _root.Level.Settings.countBot)
+                )
+            * _root.Level.GameModeData.koofSizeArea
+        );
 
         _closedList = new Dictionary<Vector3Int, GridTileNode>();
 
         _openList = _root.gridTileHelper.GetAllGridNodes().ToDictionary(t => t.position, t => t);
 
-        float oneProgressValue = 1f / (float)_root.countArea;
+        float oneProgressValue = 1f / (float)countPlayer;
 
-        for (int i = 0; i < _root.countArea; i++)
+        for (int i = 0; i < listPlayers.Count; i++)
         {
 
-            TileLandscape randomTileData = listTileData[Random.Range(0, listTileData.Count)];
+            TileLandscape tileData;
+            if (listPlayers[i].StartSetting.town != null)
+            {
+                tileData = listTileData
+                    .Where(t => t.typeGround == listPlayers[i].StartSetting.town.TypeGround)
+                    .First();
+            }
+            else
+            {
+                tileData = listTileData[Random.Range(0, listTileData.Count)];
+            }
 
             GridTileNode randomNode = _openList.ElementAt(Random.Range(0, _openList.Count)).Value;
 
@@ -59,9 +79,9 @@ public class CreateAreasOperation : ILoadingOperation
                 listNeighbors = _root.gridTileHelper.GetNeighbourListWithTypeGround(randomNode);
             }
 
-            LevelManager.Instance.AddArea(i, randomTileData);
+            LevelManager.Instance.AddArea(i, tileData, listPlayers[i].DataPlayer.id);
 
-            await CreateArea(i, randomNode, randomTileData);
+            await CreateArea(i, randomNode, tileData);
 
             onProgress?.Invoke(i * oneProgressValue);
 
@@ -71,7 +91,7 @@ public class CreateAreasOperation : ILoadingOperation
 
         if (_openList.Count > 0)
         {
-            int keyEmprtyArea = _root.countArea;
+            int keyEmptyArea = countPlayer;
 
             listTileData = _root._dataTypeGround.Values.Where(t => t.typeGround != TypeGround.None).ToList();
 
@@ -79,11 +99,11 @@ public class CreateAreasOperation : ILoadingOperation
             {
                 TileLandscape randomTileData = listTileData[Random.Range(0, listTileData.Count)];
 
-                LevelManager.Instance.AddArea(keyEmprtyArea, randomTileData);
+                LevelManager.Instance.AddArea(keyEmptyArea, randomTileData);
 
-                await CreateArea(keyEmprtyArea, _openList.ElementAt(0).Value, randomTileData);
+                await CreateArea(keyEmptyArea, _openList.ElementAt(0).Value, randomTileData);
 
-                keyEmprtyArea++;
+                keyEmptyArea++;
             }
         }
 
@@ -112,7 +132,7 @@ public class CreateAreasOperation : ILoadingOperation
         startNode.level = 0;
         startNode.KeyArea = keyArea;
         float maxCountNode = (
-            (_root.gridTileHelper.GridTile.GetHeight() * _root.gridTileHelper.GridTile.GetWidth() * _maxSizeOneWorld) -
+            (_maxSizeOneWorld) -
             (_root.gridTileHelper.GridTile.GetHeight() * _root.gridTileHelper.GridTile.GetWidth() * .03f)
             );
 

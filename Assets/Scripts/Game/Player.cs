@@ -12,11 +12,13 @@ public class PlayerData
     public int id;
     public Color color;
     public PlayerType playerType;
-    public int idArea;
+    // public TypePlayerItem playerType2;
+    // public string name;
+    // public int idArea;
     public TypeFaction typeFaction = TypeFaction.Neutral;
     public SerializableDictionary<TypeResource, int> Resource;
     public SerializableShortPosition nosky = new SerializableShortPosition();
-    [System.NonSerialized] public PlayerDataReferences PlayerDataReferences;
+    public PlayerDataReferences PlayerDataReferences; // [System.NonSerialized] 
     public List<string> HeroesInTavern;
 
     // public Hero ActiveHero => PlayerDataReferences.ActiveHero;
@@ -45,6 +47,35 @@ public class PlayerDataReferences
     }
 }
 
+[System.Serializable]
+public class StartSetting
+{
+    [SerializeField] public ScriptableEntityHero hero;
+    [SerializeField] public ScriptableEntityTown town;
+    public CurrentPlayerType TypePlayerItem;
+    public TypeStartBonus bonus;
+
+    public StartSetting()
+    {
+    }
+}
+
+[System.Serializable]
+public class CurrentPlayerType
+{
+    public string title;
+    public PlayerType TypePlayer;
+}
+
+[System.Serializable]
+public enum TypeStartBonus
+{
+    None = 0,
+    Gold = 1,
+    Artifact = 2,
+}
+
+[System.Serializable]
 public enum PlayerType
 {
     User = 0,
@@ -56,6 +87,7 @@ public enum PlayerType
 public class Player
 {
     [SerializeField] private PlayerData _data;
+    public StartSetting StartSetting;
     public PlayerData DataPlayer
     {
         get { return _data; }
@@ -73,6 +105,7 @@ public class Player
     public Player(PlayerData data)
     {
         _data = new PlayerData();
+        StartSetting = new StartSetting();
         _data = data;
         _data.PlayerDataReferences = new PlayerDataReferences();
         _data.Resource = new SerializableDictionary<TypeResource, int>();

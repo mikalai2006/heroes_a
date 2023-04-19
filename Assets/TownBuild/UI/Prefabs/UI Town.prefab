@@ -110,6 +110,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a379cd68c04b29448b6ec20b44ded041, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _localization:
+    m_TableReference:
+      m_TableCollectionName: GUID:9b6db77d8a0719a4490c3b7aad12567c
   _uiDoc: {fileID: 7734062810380965707}
   _uiTownInfo: {fileID: 2698354849172619512}
   _bgImage: {fileID: 0}

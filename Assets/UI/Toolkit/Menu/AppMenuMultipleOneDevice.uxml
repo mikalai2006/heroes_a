@@ -1,0 +1,11 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/Toolkit/StartMenu.uss?fileID=7433441132597879392&amp;guid=0573e25767d79a448968409d1afe7050&amp;type=3#StartMenu" />
+    <Style src="project://database/Assets/UI/Toolkit/Base.uss?fileID=7433441132597879392&amp;guid=fa07b064290e7384d9ad2e26e79f5953&amp;type=3#Base" />
+    <ui:VisualElement name="MultipleOneDevice" class="text-secondary">
+        <ui:VisualElement name="ListNames" class="w-full" />
+        <ui:VisualElement name="ButtonsSection" class="w-full" style="background-color: rgba(0, 0, 0, 0); align-self: center; flex-direction: row; justify-content: center;">
+            <ui:Button text="#ok" display-tooltip-when-elided="true" name="ok" class="button button_bg button_text button_bordered" />
+            <ui:Button text="#back" display-tooltip-when-elided="true" name="back" class="button button_bg button_text button_bordered" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

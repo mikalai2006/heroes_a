@@ -13,16 +13,72 @@ MonoBehaviour:
   m_Name: DefaultGameSetting
   m_EditorClassIdentifier: 
   idObject: 
+  maxPlayer: 5
+  colors:
+  - {r: 0.6981132, g: 0.10208259, b: 0.13895053, a: 1}
+  - {r: 0.091625154, g: 0.29530424, b: 0.6698113, a: 1}
+  - {r: 0.12820905, g: 0.6037736, b: 0.11107157, a: 1}
+  - {r: 0.6886792, g: 0.28933042, b: 0.068218224, a: 1}
+  - {r: 0.5716156, g: 0.20825918, b: 0.6792453, a: 1}
+  - {r: 0.20784311, g: 0.49296337, b: 0.6784314, a: 1}
+  - {r: 0.735849, g: 0.60186034, b: 0.12842648, a: 1}
   Complexities:
-  - value: 100
-    sprite: {fileID: -1560610031, guid: c4c05eb8d4f42bb46a51404b3bfd32d7, type: 3}
   - value: 120
-    sprite: {fileID: -1243349403, guid: c4c05eb8d4f42bb46a51404b3bfd32d7, type: 3}
+    sprite: {fileID: -1560610031, guid: c4c05eb8d4f42bb46a51404b3bfd32d7, type: 3}
   - value: 140
-    sprite: {fileID: 122301707, guid: c4c05eb8d4f42bb46a51404b3bfd32d7, type: 3}
+    sprite: {fileID: -1243349403, guid: c4c05eb8d4f42bb46a51404b3bfd32d7, type: 3}
   - value: 160
-    sprite: {fileID: -426406784, guid: c4c05eb8d4f42bb46a51404b3bfd32d7, type: 3}
+    sprite: {fileID: 122301707, guid: c4c05eb8d4f42bb46a51404b3bfd32d7, type: 3}
   - value: 180
     sprite: {fileID: -864904784, guid: c4c05eb8d4f42bb46a51404b3bfd32d7, type: 3}
   - value: 200
     sprite: {fileID: 1770593047, guid: c4c05eb8d4f42bb46a51404b3bfd32d7, type: 3}
+  randomTown: {fileID: 0}
+  StartBonuses:
+  - bonus: 1
+    sprite: {fileID: 36309692, guid: a4dbc25aa5c0cc543a2d01e118853fe1, type: 3}
+    title:
+      m_TableReference:
+        m_TableCollectionName: GUID:99ee07ddc90ffba41a3d18974d364707
+      m_TableEntryReference:
+        m_KeyId: 1500759150723072
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+  - bonus: 2
+    sprite: {fileID: 933523507, guid: 490ba0d6e3fee684782c8751fbe7a923, type: 3}
+    title:
+      m_TableReference:
+        m_TableCollectionName: GUID:99ee07ddc90ffba41a3d18974d364707
+      m_TableEntryReference:
+        m_KeyId: 4737672213069824
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+  TypesPlayer:
+  - title:
+      m_TableReference:
+        m_TableCollectionName: GUID:9b6db77d8a0719a4490c3b7aad12567c
+      m_TableEntryReference:
+        m_KeyId: 8119800044879872
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    TypePlayer: 0
+  - title:
+      m_TableReference:
+        m_TableCollectionName: GUID:9b6db77d8a0719a4490c3b7aad12567c
+      m_TableEntryReference:
+        m_KeyId: 8119709808623616
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    TypePlayer: 2
+  alphaOverlay: 0.735
+  references:
+    version: 2
+    RefIds: []

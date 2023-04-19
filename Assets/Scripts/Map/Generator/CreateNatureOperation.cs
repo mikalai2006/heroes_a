@@ -38,7 +38,7 @@ public class CreateNatureOperation : ILoadingOperation
             ).OrderBy(t => Random.value).ToList();
             if (nodes.Count > 0)
             {
-                int countLandscape = Mathf.CeilToInt(LevelManager.Instance.GameModeData.koofNature * nodes.Count * .1f);
+                int countLandscape = Mathf.CeilToInt(LevelManager.Instance.Level.GameModeData.koofNature * nodes.Count * .1f);
                 int countCreated = 0;
                 while (countCreated < countLandscape && nodes.Count > 0)
                 {

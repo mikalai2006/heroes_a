@@ -44,7 +44,7 @@ public class CreateExploreOperation : ILoadingOperation
             if (nodes.Count > 0)
             {
                 int maxCountExplore = Mathf.CeilToInt(
-                    LevelManager.Instance.GameModeData.koofExplore * area.countNode);
+                    LevelManager.Instance.Level.GameModeData.koofExplore * area.countNode);
                 area.Stat.countExploreN = maxCountExplore;
                 int countCreated = 0;
 

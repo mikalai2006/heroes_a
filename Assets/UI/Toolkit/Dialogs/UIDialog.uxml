@@ -1,6 +1,7 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/Toolkit/Base.uss?fileID=7433441132597879392&amp;guid=fa07b064290e7384d9ad2e26e79f5953&amp;type=3#Base" />
     <Style src="project://database/Assets/UI/Toolkit/Dialog.uss?fileID=7433441132597879392&amp;guid=2438f8d68703dce4ab75f8d1eda15062&amp;type=3#Dialog" />
+    <Style src="project://database/Assets/UI/Toolkit/UnityBase.uss?fileID=7433441132597879392&amp;guid=c0905c354b5fb524e83bc41ae3debe10&amp;type=3#UnityBase" />
     <ui:VisualElement name="DialogMapObject" class="dialog_box">
         <ui:VisualElement name="Panel" class="dialog_panel" style="min-width: 50%;">
             <ui:VisualElement name="Overlay" class="p-2 inset-0" style="flex-grow: 1; position: absolute; background-color: rgb(212, 0, 0);">

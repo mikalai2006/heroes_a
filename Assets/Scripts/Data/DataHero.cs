@@ -16,7 +16,7 @@ public struct DataHero
 
     [NonSerialized] public List<EntityArtifact> Artifacts;
     public SerializableDictionary<int, EntityCreature> Creatures;
-    [NonSerialized] public List<GridTileNode> path;
+    public List<GridTileNode> path; // [NonSerialized]
     public StateHero State;
 }
 

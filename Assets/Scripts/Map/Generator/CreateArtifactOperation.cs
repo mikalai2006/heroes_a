@@ -55,7 +55,7 @@ public class CreateArtifactOperation : ILoadingOperation
 
             if (nodes.Count > 0)
             {
-                int maxCount = Mathf.CeilToInt(LevelManager.Instance.GameModeData.koofArtifacts * area.countNode);
+                int maxCount = Mathf.CeilToInt(LevelManager.Instance.Level.GameModeData.koofArtifacts * area.countNode);
 
                 area.Stat.countArtifactN = maxCount;
 

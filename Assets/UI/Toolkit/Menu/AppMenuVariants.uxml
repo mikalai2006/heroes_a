@@ -1,0 +1,13 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/Toolkit/StartMenu.uss?fileID=7433441132597879392&amp;guid=0573e25767d79a448968409d1afe7050&amp;type=3#StartMenu" />
+    <Style src="project://database/Assets/UI/Toolkit/Base.uss?fileID=7433441132597879392&amp;guid=fa07b064290e7384d9ad2e26e79f5953&amp;type=3#Base" />
+    <ui:VisualElement name="AppMenuVariants" class="startmenu_panel h-full" style="align-self: flex-end; justify-content: space-between; background-color: rgb(24, 24, 24);">
+        <ui:VisualElement name="ButtonsSection" class="w-full">
+            <ui:Button text="#singlegame" display-tooltip-when-elided="true" name="singlegame" class="button button_bg button_bordered button_text" />
+            <ui:Button text="#multiplegame" display-tooltip-when-elided="true" name="multiplegame" class="button button_bg button_text button_bordered" />
+        </ui:VisualElement>
+        <ui:VisualElement name="ButtonsSection" class="w-full" style="background-color: rgba(0, 0, 0, 0);">
+            <ui:Button text="#back" display-tooltip-when-elided="true" name="back" class="button button_bg button_text button_bordered" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

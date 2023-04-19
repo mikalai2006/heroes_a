@@ -46,7 +46,7 @@ public class CreateMinesOperation : ILoadingOperation
             if (nodes.Count > 0)
             {
                 int countLandscape = Mathf.CeilToInt(
-                    LevelManager.Instance.GameModeData.koofMines * .1f * area.countNode);
+                    LevelManager.Instance.Level.GameModeData.koofMines * .1f * area.countNode);
                 area.Stat.countMineN = countLandscape;
                 int countCreated = 0;
 

@@ -11,17 +11,25 @@ public class EntityTown : BaseEntity
     [SerializeField] public DataTown Data = new DataTown();
     public ScriptableEntityTown ConfigData => (ScriptableEntityTown)ScriptableData;
 
-    public EntityTown(TypeGround typeGround, SaveDataUnit<DataTown> saveData = null)
+    public EntityTown(TypeGround typeGround, ScriptableEntityTown configData = null, SaveDataUnit<DataTown> saveData = null)
     {
         base.Init();
 
         if (saveData == null)
         {
-            List<ScriptableEntityTown> list = ResourceSystem.Instance
-                .GetEntityByType<ScriptableEntityTown>(TypeEntity.Town)
-                .Where(t => t.TypeGround == typeGround)
-                .ToList();
-            ScriptableData = list[UnityEngine.Random.Range(0, list.Count)];
+            if (configData == null)
+            {
+
+                List<ScriptableEntityTown> list = ResourceSystem.Instance
+                    .GetEntityByType<ScriptableEntityTown>(TypeEntity.Town)
+                    .Where(t => t.TypeGround == typeGround)
+                    .ToList();
+                ScriptableData = list[UnityEngine.Random.Range(0, list.Count)];
+            }
+            else
+            {
+                ScriptableData = configData;
+            }
 
             Data.idPlayer = -1;
             Data.name = ConfigData.name;
@@ -53,19 +61,19 @@ public class EntityTown : BaseEntity
             Data.Armys = new SerializableDictionary<string, BuildArmy>();
             foreach (var item in saveData.data.Generals)
             {
-                var configData = ResourceSystem.Instance
+                var configDataBuild = ResourceSystem.Instance
                     .GetAllBuildsForTown()
                     .Where(t => t.idObject == item.Key)
                     .First();
-                var newBuild = CreateBuild(configData, item.Value.level);
+                var newBuild = CreateBuild(configDataBuild, item.Value.level);
             }
             foreach (var item in saveData.data.Armys)
             {
-                var configData = ResourceSystem.Instance
+                var configDataBuild = ResourceSystem.Instance
                     .GetAllBuildsForTown()
                     .Where(t => t.idObject == item.Key)
                     .First();
-                var newBuild = CreateBuild(configData, item.Value.level);
+                var newBuild = CreateBuild(configDataBuild, item.Value.level);
             }
 
             var creatures = saveData.data.Creatures;

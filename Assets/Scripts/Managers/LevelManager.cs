@@ -7,30 +7,21 @@ public class LevelManager : Singleton<LevelManager>, ISaveDataPlay, ISaveDataGam
 {
     [SerializeField] private Transform _camera;
     public DataLevel Level;
+    private DataLevel DefaultSettings;
+    public ScriptableGameSetting ConfigGameSettings;
+    public List<CurrentPlayerType> TypePlayers = new List<CurrentPlayerType>();
+    // [Header("General")]
+    // [Space(10)]
 
-    [Header("General")]
-    [Space(10)]
-    public bool isWater = false;
-    [SerializeField] private int _countArea;
-    public int CountArea => _countArea;
+    // public DataGameMode GameModeData;
+    // public DataGameSetting DataGameSetting;
 
-    public DataGameMode GameModeData;
-    public DataGameSetting DataGameSetting;
-
-    [Header("Setting level")]
-    [Space(10)]
-    public int countPlayer;
-    public int countBot;
-    public int maxPlayer;
-    //public List<Player> listPlayer;
-
-    public Color[] colors = new Color[4] {
-        Color.red,
-        Color.green,
-        Color.yellow,
-        Color.cyan
-    };
-
+    // [Header("Setting level")]
+    // [Space(10)]
+    private void Start()
+    {
+        DefaultSettings = Level;
+    }
     public Player ActivePlayer
     {
         get { return Level.listPlayer[Level.activePlayer]; }
@@ -40,10 +31,10 @@ public class LevelManager : Singleton<LevelManager>, ISaveDataPlay, ISaveDataGam
         }
     }
 
-    public LevelManager()
-    {
-        GameModeData = new DataGameMode();
-    }
+    // public LevelManager()
+    // {
+    //     GameModeData = new DataGameMode();
+    // }
 
     //protected override void Awake()
     //{
@@ -78,48 +69,139 @@ public class LevelManager : Singleton<LevelManager>, ISaveDataPlay, ISaveDataGam
     //    }
     //}
 
-    public void NewLevel()
+    public void Init()
+    {
+        TypePlayers.Clear();
+        Level = new DataLevel();
+        Level = DefaultSettings;
+        ConfigGameSettings = ResourceSystem.Instance
+            .GetAllAssetsByLabel<ScriptableGameSetting>(Constants.Labels.LABEL_GAMESETTING)
+            .First();
+        CreateListTypePlayers();
+    }
+
+    public void CreateListTypePlayers()
     {
 
-        Level = new DataLevel();
-        Level.countPlayer = countPlayer;
-        Level.countBot = countBot;
-        _countArea = Mathf.CeilToInt(
-            (GameModeData.width * GameModeData.height) /
-            (
-                ((GameModeData.width * GameModeData.height) / (countPlayer + countBot))
-                * GameModeData.koofSizeArea
-            )
-            );
-        Level.activePlayer = -1;
-
-        for (int i = 0; i < countPlayer; i++)
+        foreach (var type in ConfigGameSettings.TypesPlayer)
         {
-            var dataPlayer = new PlayerData();
-            dataPlayer.id = i;
-            dataPlayer.color = colors[i];
-            dataPlayer.playerType = PlayerType.User;
+            TypePlayers.Add(new CurrentPlayerType()
+            {
+                title = type.title.GetLocalizedString(),
+                TypePlayer = type.TypePlayer
+            });
+        };
+    }
 
-            var player = new Player(dataPlayer);
+    public void CreateListPlayer()
+    {
+        Level = DefaultSettings;
+        Level.listPlayer = new List<Player>();
+        Level.listArea = new List<Area>();
+
+        var noBotType = TypePlayers.Where(t => t.TypePlayer != PlayerType.Bot).ToList();
+        var botType = TypePlayers.Find(t => t.TypePlayer == PlayerType.Bot);
+
+        for (int i = 0; i < Level.Settings.countPlayer + Level.Settings.countBot; i++)
+        {
+            var dataPlayer = new PlayerData()
+            {
+                id = i,
+                color = ConfigGameSettings.colors[i],
+                playerType = PlayerType.User
+            };
+
+            Player player = new Player(dataPlayer);
+            if (Level.Settings.TypeGame == TypeGame.MultipleOneDevice)
+            {
+                player.StartSetting.TypePlayerItem = TypePlayers[i];
+            }
+            else
+            {
+                player.StartSetting.TypePlayerItem = i == 0 ? noBotType.First() : botType;
+            }
+            player.DataPlayer.playerType = player.StartSetting.TypePlayerItem.TypePlayer;
             Level.listPlayer.Add(player);
+
+            // Area area = new Area();
+            // area.idPlayer = player.DataPlayer.id;
+            // area.typeGround =
+            // Level.listArea.Add(area);
         }
 
-        for (int i = countPlayer; i < (countPlayer + countBot); i++)
-        {
-            var dataPlayer = new PlayerData();
-            dataPlayer.id = i;
-            dataPlayer.color = colors[i];
-            dataPlayer.playerType = PlayerType.Bot;
-            var player = new Player(dataPlayer);
+        // for (int i = Level.Settings.countPlayer; i < (Level.Settings.countPlayer + Level.Settings.countBot); i++)
+        // {
+        //     var dataPlayer = new PlayerData()
+        //     {
+        //         id = i,
+        //         color = ConfigGameSettings.colors[i],
+        //         // playerType = PlayerType.Bot
+        //     };
 
-            Level.listPlayer.Add(player);
-        }
+        //     var player = new Player(dataPlayer);
+        //     player.StartSetting.TypePlayerItem = botType;
+        //     Level.listPlayer.Add(player);
+        // }
+
+        // Level.countPlayer = countPlayer;
+        // Level.countBot = countBot;
+        // Level.activePlayer = -1;
+
+        // for (int i = 0; i < countPlayer; i++)
+        // {
+        //     var dataPlayer = new PlayerData();
+        //     dataPlayer.id = i;
+        //     dataPlayer.color = DataGameSetting.colors[i];
+        //     dataPlayer.playerType = PlayerType.User;
+
+        //     var player = new Player(dataPlayer);
+        //     Level.listPlayer.Add(player);
+        // }
+
+        // for (int i = countPlayer; i < (countPlayer + countBot); i++)
+        // {
+        //     var dataPlayer = new PlayerData();
+        //     dataPlayer.id = i;
+        //     dataPlayer.color = colors[i];
+        //     dataPlayer.playerType = PlayerType.Bot;
+        //     var player = new Player(dataPlayer);
+
+        //     Level.listPlayer.Add(player);
+        // }
+    }
+    public void NewLevel()
+    {
+        // Level.countPlayer = countPlayer;
+        // Level.countBot = countBot;
+        // Level.activePlayer = -1;
+
+        // for (int i = 0; i < countPlayer; i++)
+        // {
+        //     var dataPlayer = new PlayerData();
+        //     dataPlayer.id = i;
+        //     dataPlayer.color = DataGameSetting.colors[i];
+        //     dataPlayer.playerType = PlayerType.User;
+
+        //     var player = new Player(dataPlayer);
+        //     Level.listPlayer.Add(player);
+        // }
+
+        // for (int i = countPlayer; i < (countPlayer + countBot); i++)
+        // {
+        //     var dataPlayer = new PlayerData();
+        //     dataPlayer.id = i;
+        //     dataPlayer.color = colors[i];
+        //     dataPlayer.playerType = PlayerType.Bot;
+        //     var player = new Player(dataPlayer);
+
+        //     Level.listPlayer.Add(player);
+        // }
 
     }
 
     public async void StepNextPlayer()
     {
-        if (Level.activePlayer < (countPlayer + countBot - 1))
+        if (Level.activePlayer < (Level.Settings.countPlayer + Level.Settings.countBot - 1))
         {
             Level.activePlayer++;
         }
@@ -129,7 +211,7 @@ public class LevelManager : Singleton<LevelManager>, ISaveDataPlay, ISaveDataGam
         }
 
         //level.activePlayer = level.activePlayer < (countPlayer + countEnemies + 1) ? level.activePlayer++ : 0;
-        // GameManager.Instance.MapManager.ResetSky(ActivePlayer.DataPlayer.nosky);
+        GameManager.Instance.MapManager.ResetSky(ActivePlayer.DataPlayer.nosky);
 
         if (ActivePlayer.ActiveHero == null)
         {
@@ -157,16 +239,15 @@ public class LevelManager : Singleton<LevelManager>, ISaveDataPlay, ISaveDataGam
         //     ActivePlayer.SetNosky(listNoskyNode);
         // }
 
-        //Debug.Log($" Active Hero {level.activePlayer}");
+        // //Debug.Log($" Active Hero {level.activePlayer}");
     }
 
-    public void AddArea(int id, TileLandscape landscape)
+    public void AddArea(int id, TileLandscape landscape, int idPlayer = -1)
     {
-        //Debug.Log($"Add area {id}");
         Area area = new Area();
         area.id = id;
+        area.idPlayer = idPlayer;
         area.typeGround = landscape.typeGround;
-        //TileLandscape landscape = ResourceSystem.Instance.GetLandscape(typeGround);
         area.isFraction = landscape.isFraction;
         Level.listArea.Add(area);
     }
@@ -189,7 +270,7 @@ public class LevelManager : Singleton<LevelManager>, ISaveDataPlay, ISaveDataGam
     public Player GetPlayer(int id)
     {
         //Debug.Log($"GetPlayer {id}");
-        return id >= Level.listPlayer.Count ? null : Level.listPlayer[id];
+        return id >= Level.listPlayer.Count ? null : Level.listPlayer.Find(t => t.DataPlayer.id == id);
     }
 
     public override string ToString()
@@ -217,15 +298,12 @@ public class LevelManager : Singleton<LevelManager>, ISaveDataPlay, ISaveDataGam
 
     public void LoadLevel(DataPlay dataPlay, DataGame dataGame)
     {
-        GameModeData = dataGame.dataMap.GameModeData;
+        Level.GameModeData = dataGame.dataMap.GameModeData;
 
         Level = new DataLevel();
         Level = dataPlay.Level;
-        Level.countPlayer = dataPlay.Level.countPlayer;
-        // _countArea = Mathf.CeilToInt((GameModeData.width * GameModeData.height) / (((GameModeData.width * GameModeData.height) / countPlayer) * GameModeData.koofSizeArea));
-        // Level.activePlayer = -1;
-
-        for (int i = 0; i < dataPlay.Level.countPlayer; i++)
+        Level.Settings.countPlayer = dataPlay.Level.Settings.countPlayer;
+        for (int i = 0; i < dataPlay.Level.Settings.countPlayer; i++)
         {
             var data = dataPlay.Level.listPlayer[i];
             var player = new Player(dataPlay.Level.listPlayer[i].DataPlayer);
@@ -256,6 +334,6 @@ public class LevelManager : Singleton<LevelManager>, ISaveDataPlay, ISaveDataGam
 
     public void SaveDataGame(ref DataGame data)
     {
-        data.dataMap.GameModeData = GameModeData;
+        data.dataMap.GameModeData = Level.GameModeData;
     }
 }

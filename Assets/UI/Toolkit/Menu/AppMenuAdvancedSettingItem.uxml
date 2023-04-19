@@ -1,0 +1,19 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:Template name="AppMenuAdvancedSettingChooser" src="project://database/Assets/UI/Toolkit/Menu/AppMenuAdvancedSettingChooser.uxml?fileID=9197481963319205126&amp;guid=7ed6b57c76513a447902140430855108&amp;type=3#AppMenuAdvancedSettingChooser" />
+    <Style src="project://database/Assets/UI/Toolkit/Base.uss?fileID=7433441132597879392&amp;guid=fa07b064290e7384d9ad2e26e79f5953&amp;type=3#Base" />
+    <ui:VisualElement name="ColAdvance" class="box_shadow">
+        <ui:VisualElement name="Bg" class="inset-0 bg" style="flex-grow: 1; position: absolute;" />
+        <ui:VisualElement name="Overlay" class="inset-0" style="flex-grow: 1; position: absolute; background-color: rgb(185, 3, 3);" />
+        <ui:VisualElement class="p-05" style="flex-grow: 1; flex-direction: row;">
+            <ui:VisualElement class="w-25" style="flex-grow: 1;">
+                <ui:VisualElement class="box_shadow">
+                    <ui:Button text="Button" display-tooltip-when-elided="true" name="typeplayer" class="m-0 text-secondary button button_bg button_bordered" />
+                </ui:VisualElement>
+                <ui:VisualElement style="flex-direction: row;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="ListChoosers" class="w-75" style="flex-grow: 1; flex-direction: row;">
+                <ui:Instance template="AppMenuAdvancedSettingChooser" name="AppMenuAdvancedSettingChooser" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

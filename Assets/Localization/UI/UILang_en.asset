@@ -50,6 +50,26 @@ MonoBehaviour:
     m_Localized: https://62.217.180.192/api/v1/auth
     m_Metadata:
       m_Items: []
+  - m_Id: 8062342026919936
+    m_Localized: 'Hotseat: Input names'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8119709808623616
+    m_Localized: Computer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8119800044879872
+    m_Localized: Player
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8127354724581376
+    m_Localized: To travel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8127631309570048
+    m_Localized: Settings
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

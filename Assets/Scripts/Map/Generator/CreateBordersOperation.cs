@@ -124,7 +124,9 @@ public class CreateBordersOperation : ILoadingOperation
         _onSetNotify(t + " perlin mountains ...");
 
 
-        if (LevelManager.Instance.GameModeData.noiseScaleMontain == 0 || LevelManager.Instance.GameModeData.koofMountains == 0)
+        if (
+            LevelManager.Instance.Level.GameModeData.noiseScaleMontain == 0
+            || LevelManager.Instance.Level.GameModeData.koofMountains == 0)
         {
             return;
         }
@@ -138,9 +140,12 @@ public class CreateBordersOperation : ILoadingOperation
             {
                 GridTileNode currentNode = _root.gridTileHelper.GetNode(x, y);
 
-                float noiseValue = Mathf.PerlinNoise(x * LevelManager.Instance.GameModeData.noiseScaleMontain + xOffSet, y * LevelManager.Instance.GameModeData.noiseScaleMontain + zOffSet);
+                float noiseValue = Mathf.PerlinNoise(
+                    x * LevelManager.Instance.Level.GameModeData.noiseScaleMontain + xOffSet,
+                    y * LevelManager.Instance.Level.GameModeData.noiseScaleMontain + zOffSet
+                    );
 
-                bool isMountain = noiseValue < LevelManager.Instance.GameModeData.koofMountains;
+                bool isMountain = noiseValue < LevelManager.Instance.Level.GameModeData.koofMountains;
 
                 //Area area = LevelManager.Instance.GetArea(currentNode.keyArea);
 
