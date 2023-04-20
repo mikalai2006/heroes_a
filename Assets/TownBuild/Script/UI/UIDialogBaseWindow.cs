@@ -14,6 +14,7 @@ public class UIDialogBaseWindow : UILocaleBase
     private readonly string _nameOverlay = "Overlay";
     protected Label Title;
     private VisualElement _generalBlok;
+    protected VisualElement Panel;
     protected VisualElement root;
     // protected TaskCompletionSource<DataResultBuildDialog> _processCompletionSource;
     // // public UnityEvent processAction;
@@ -26,8 +27,8 @@ public class UIDialogBaseWindow : UILocaleBase
         Title = root.Q<Label>(_nameHeaderLabel);
         _generalBlok = root.Q<VisualElement>(_nameGeneralBlok);
 
-        var panel = root.Q<VisualElement>("Panel");
-        panel.AddToClassList("w-50");
+        Panel = root.Q<VisualElement>("Panel");
+        Panel.AddToClassList("w-50");
 
         var panelBlok = root.Q<VisualElement>("PanelBlok");
         panelBlok.style.flexGrow = 1;

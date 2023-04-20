@@ -18,6 +18,7 @@ public class Constants
         public const string UI_DIALOG_MAP_OBJECTS = "UIDialogMapObject";
         public const string UI_DIALOG_HELP = "UIDialogHelpWindow";
         public const string UI_DIALOG_DWELLING = "UIDialogDwelling";
+        public const string UI_DIALOG_HEROINFO = "UIDialogHeroInfo";
         public const string UI_DIALOG_SPLIT_CREATURE = "UIDialogSplitCreature";
         public const string UI_TOWN_LIST_BUILD = "UITownListBuild";
         public const string UI_INFO_CREATURE = "UIInfoCreature";

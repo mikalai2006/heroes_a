@@ -321,6 +321,10 @@
     margin-bottom: 1px;
 }
 
+.mr-1 {
+    margin-right: 5px;
+}
+
 .m-0 {
     margin-left: 0;
     margin-right: 0;
@@ -329,10 +333,10 @@
 }
 
 .m-1 {
-    margin-left: 3px;
-    margin-right: 3px;
-    margin-top: 3px;
-    margin-bottom: 3px;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 .m-2 {
@@ -356,10 +360,6 @@
     margin-bottom: 20px;
 }
 
-.mr-1 {
-    margin-right: 5px;
-}
-
 .mx-1 {
     margin-left: 5px;
     margin-right: 5px;
@@ -367,6 +367,14 @@
 
 .mr-2 {
     margin-right: 10px;
+}
+
+.w-125 {
+    width: 12.5%;
+}
+
+.w-14 {
+    width: 14.3%;
 }
 
 .w-25 {
@@ -389,16 +397,16 @@
     width: 75%;
 }
 
+.w-full {
+    width: 100%;
+}
+
 .h-50 {
     height: 50%;
 }
 
-.inset-0 {
-    left: 0;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    position: absolute;
+.h-14 {
+    height: 14.3%;
 }
 
 .h-33 {
@@ -413,12 +421,12 @@
     height: 100%;
 }
 
-.w-full {
-    width: 100%;
-}
-
-.w-125 {
-    width: 12.5%;
+.inset-0 {
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    position: absolute;
 }
 
 .box_shadow {

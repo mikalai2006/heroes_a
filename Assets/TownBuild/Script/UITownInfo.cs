@@ -19,7 +19,9 @@ public class UITownInfo : MonoBehaviour
     private const string _nameTownInfo = "TownInfo";
     private VisualElement _townInfoBox;
     private VisualElement _townInfoHero;
+    private VisualElement _townInfoHeroForce;
     private VisualElement _townInfoHeroVisit;
+    private VisualElement _townInfoHeroVisitForce;
     private VisualElement _townInfo;
     private EntityTown _activeTown;
     private Player _activePlayer;
@@ -28,9 +30,9 @@ public class UITownInfo : MonoBehaviour
     public static event Action onMoveHero;
     private SerializableDictionary<int, EntityCreature> _startCheckedCreatures
         = new SerializableDictionary<int, EntityCreature>();
-    private EntityCreature _endCheckedCreature;
+    // private EntityCreature _endCheckedCreature;
     private int _startPositionChecked = -1;
-    private int _endChecked;
+    // private int _endChecked;
     private bool _isSplit = false;
     private EntityHero _startHeroMoveCreature;
 
@@ -66,7 +68,8 @@ public class UITownInfo : MonoBehaviour
         _townInfoBox.Clear();
         _townInfoBox.Add(_townInfo);
 
-        _townInfoHero = _parent.Q<VisualElement>("TownHeroForce");
+        _townInfoHero = _parent.Q<VisualElement>("TownHero");
+        _townInfoHeroForce = _parent.Q<VisualElement>("TownHeroForce");
 
         _buttonSplitCreature = _parent.Q<TemplateContainer>("SplitCreature").Q<Button>("Btn");
         _buttonSplitCreature.clickable.clicked += () =>
@@ -77,7 +80,8 @@ public class UITownInfo : MonoBehaviour
 
         DrawHeroInTown();
 
-        _townInfoHeroVisit = _parent.Q<VisualElement>("TownHeroVisitForce");
+        _townInfoHeroVisit = _parent.Q<VisualElement>("TownHeroVisit");
+        _townInfoHeroVisitForce = _parent.Q<VisualElement>("TownHeroVisitForce");
 
         DrawHeroAsGuest();
 
@@ -120,7 +124,7 @@ public class UITownInfo : MonoBehaviour
         // add Hero blok.
         var heroBlok = _templateHeroButton.Instantiate();
         _btnHeroGuest = heroBlok.Q<Button>("Btn");
-        heroBlok.AddToClassList("w-125");
+        heroBlok.AddToClassList("w-full");
         heroBlok.AddToClassList("h-full");
         if (_activeTown.OccupiedNode.GuestedUnit != null)
         {
@@ -134,11 +138,12 @@ public class UITownInfo : MonoBehaviour
         _townInfoHeroVisit.Add(heroBlok);
         _btnHeroGuest.RegisterCallback<ClickEvent>(OnClickHeroGuest);
 
+        _townInfoHeroVisitForce.Clear();
         for (int i = 0; i < 7; i++)
         {
             var itemHeroForce = _templateHeroForce.Instantiate();
             itemHeroForce.name = "creature";
-            itemHeroForce.AddToClassList("w-125");
+            itemHeroForce.AddToClassList("w-14");
             itemHeroForce.AddToClassList("h-full");
 
             if (_activeTown.OccupiedNode.GuestedUnit != null)
@@ -170,7 +175,7 @@ public class UITownInfo : MonoBehaviour
             {
                 itemHeroForce.SetEnabled(false);
             }
-            _townInfoHeroVisit.Add(itemHeroForce);
+            _townInfoHeroVisitForce.Add(itemHeroForce);
         }
     }
 
@@ -246,58 +251,71 @@ public class UITownInfo : MonoBehaviour
 
     }
 
-    private void OnClickHeroInTown(ClickEvent evt)
+    private async void OnClickHeroInTown(ClickEvent evt)
     {
         var heroInTown = _activeTown.Data.HeroinTown != null && _activeTown.Data.HeroinTown != ""
             ? (EntityHero)UnitManager.Entities[_activeTown.Data.HeroinTown]
             : null;
 
-        if (_chooseHero != null && _chooseHero.IdEntity != _activeTown.Data.HeroinTown)
+        if (_chooseHero != null)
         {
-            // merge creatures.
-            if (_activeTown.Data.Creatures.Where(t => t.Value != null).Count() > 0)
+            if (_chooseHero.IdEntity != _activeTown.Data.HeroinTown)
             {
-                var resultMergeCreatures = Helpers.SummUnitBetweenList(
-                    _chooseHero.Data.Creatures,
-                    _activeTown.Data.Creatures
-                    );
-                if (resultMergeCreatures.Count > 7)
+                // merge creatures.
+                if (_activeTown.Data.Creatures.Where(t => t.Value != null).Count() > 0)
                 {
-                    // Show dialog No move.
+                    var resultMergeCreatures = Helpers.SummUnitBetweenList(
+                        _chooseHero.Data.Creatures,
+                        _activeTown.Data.Creatures
+                        );
+                    if (resultMergeCreatures.Count > 7)
+                    {
+                        // Show dialog No move.
 
+                    }
+                    else
+                    {
+                        _chooseHero.Data.Creatures = resultMergeCreatures;
+                        _activeTown.OccupiedNode.SetAsGuested(heroInTown);
+                        // create new hero in town and destroy GameObject.
+                        _activeTown.Data.HeroinTown = _chooseHero.IdEntity;
+                        _chooseHero.MapObjectGameObject.gameObject.SetActive(false);
+                        _chooseHero.Data.State = StateHero.InTown;
+                        _activeTown.ResetCreatures();
+                    }
                 }
                 else
                 {
-                    _chooseHero.Data.Creatures = resultMergeCreatures;
                     _activeTown.OccupiedNode.SetAsGuested(heroInTown);
+                    if (_activeTown.OccupiedNode.GuestedUnit != null)
+                    {
+                        ((EntityHero)_activeTown.OccupiedNode.GuestedUnit).Data.State = StateHero.OnMap;
+                        if (_activeTown.OccupiedNode.GuestedUnit.MapObjectGameObject != null)
+                        {
+                            _chooseHero.MapObjectGameObject.gameObject.SetActive(true);
+                        }
+                        else
+                        {
+                            _activeTown.OccupiedNode.GuestedUnit.CreateMapGameObject(_activeTown.OccupiedNode);
+                        }
+                    }
+                    _activePlayer.SetActiveHero((EntityHero)_activeTown.OccupiedNode.GuestedUnit);
+
                     // create new hero in town and destroy GameObject.
                     _activeTown.Data.HeroinTown = _chooseHero.IdEntity;
                     _chooseHero.MapObjectGameObject.gameObject.SetActive(false);
                     _chooseHero.Data.State = StateHero.InTown;
-                    _activeTown.ResetCreatures();
                 }
+
             }
             else
             {
-                _activeTown.OccupiedNode.SetAsGuested(heroInTown);
-                if (_activeTown.OccupiedNode.GuestedUnit != null)
+                var dialogHeroInfo = new DialogHeroInfoOperation(_chooseHero);
+                var result = await dialogHeroInfo.ShowAndHide();
+                if (result.isOk)
                 {
-                    ((EntityHero)_activeTown.OccupiedNode.GuestedUnit).Data.State = StateHero.OnMap;
-                    if (_activeTown.OccupiedNode.GuestedUnit.MapObjectGameObject != null)
-                    {
-                        _chooseHero.MapObjectGameObject.gameObject.SetActive(true);
-                    }
-                    else
-                    {
-                        _activeTown.OccupiedNode.GuestedUnit.CreateMapGameObject(_activeTown.OccupiedNode);
-                    }
-                }
-                _activePlayer.SetActiveHero((EntityHero)_activeTown.OccupiedNode.GuestedUnit);
 
-                // create new hero in town and destroy GameObject.
-                _activeTown.Data.HeroinTown = _chooseHero.IdEntity;
-                _chooseHero.MapObjectGameObject.gameObject.SetActive(false);
-                _chooseHero.Data.State = StateHero.InTown;
+                }
             }
 
             _btnHeroInTown.RemoveFromClassList("button_active");
@@ -327,7 +345,7 @@ public class UITownInfo : MonoBehaviour
         var heroBlok = _templateHeroButton.Instantiate();
         _btnHeroInTown = heroBlok.Q<Button>("Btn");
         heroBlok.AddToClassList("w-full");
-        heroBlok.AddToClassList("h-125");
+        heroBlok.AddToClassList("h-full");
         if (hero != null)
         {
             heroBlok.Q<VisualElement>("img").style.backgroundImage
@@ -340,13 +358,14 @@ public class UITownInfo : MonoBehaviour
         _townInfoHero.Add(heroBlok);
         _btnHeroInTown.RegisterCallback<ClickEvent>(OnClickHeroInTown);
 
+        _townInfoHeroForce.Clear();
         for (int i = 0; i < 7; i++)
         {
             var index = i;
             var itemHeroForce = _templateHeroForce.Instantiate();
             itemHeroForce.name = "creature";
             itemHeroForce.AddToClassList("w-full");
-            itemHeroForce.AddToClassList("h-125");
+            itemHeroForce.AddToClassList("h-14");
 
             SerializableDictionary<int, EntityCreature> creatures;
             if (hero != null)
@@ -385,7 +404,7 @@ public class UITownInfo : MonoBehaviour
             // {
             //     itemHeroForce.SetEnabled(false);
             // }
-            _townInfoHero.Add(itemHeroForce);
+            _townInfoHeroForce.Add(itemHeroForce);
         }
     }
 
@@ -394,7 +413,7 @@ public class UITownInfo : MonoBehaviour
         if (creatures[index] == null) return;
         _buttonSplitCreature.SetEnabled(true);
 
-        UQueryBuilder<VisualElement> builder = new UQueryBuilder<VisualElement>(_townInfoHero);
+        UQueryBuilder<VisualElement> builder = new UQueryBuilder<VisualElement>(_townInfoHeroForce);
         List<VisualElement> list = builder.Name("creature").ToList();
         for (int i = 0; i < list.Count; i++)
         {
@@ -406,7 +425,7 @@ public class UITownInfo : MonoBehaviour
         if (_activeTown.OccupiedNode.GuestedUnit != null)
         {
             UQueryBuilder<VisualElement> builderGuest
-                = new UQueryBuilder<VisualElement>(_townInfoHeroVisit);
+                = new UQueryBuilder<VisualElement>(_townInfoHeroVisitForce);
             List<VisualElement> listGuestCreature = builderGuest.Name("creature").ToList();
             for (int i = 0; i < listGuestCreature.Count; i++)
             {
