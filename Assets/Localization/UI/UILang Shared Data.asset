@@ -283,6 +283,10 @@ MonoBehaviour:
     m_Key: splitcreature
     m_Metadata:
       m_Items: []
+  - m_Id: 8732964939792384
+    m_Key: split
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

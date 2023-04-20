@@ -15,9 +15,9 @@ public class UIDialogBaseWindow : UILocaleBase
     protected Label Title;
     private VisualElement _generalBlok;
     protected VisualElement root;
-    protected TaskCompletionSource<DataResultBuildDialog> _processCompletionSource;
-    // public UnityEvent processAction;
-    protected DataResultBuildDialog _dataResultDialog;
+    // protected TaskCompletionSource<DataResultBuildDialog> _processCompletionSource;
+    // // public UnityEvent processAction;
+    // protected DataResultBuildDialog _dataResultDialog;
     protected Player _activePlayer;
 
     public virtual void Start()
@@ -40,8 +40,8 @@ public class UIDialogBaseWindow : UILocaleBase
 
     protected void Init()
     {
-        _dataResultDialog = new DataResultBuildDialog();
-        _processCompletionSource = new TaskCompletionSource<DataResultBuildDialog>();
+        // _dataResultDialog = new DataResultBuildDialog();
+        // _processCompletionSource = new TaskCompletionSource<DataResultBuildDialog>();
 
         _activePlayer = LevelManager.Instance.ActivePlayer;
         UQueryBuilder<VisualElement> builder = new UQueryBuilder<VisualElement>(root);

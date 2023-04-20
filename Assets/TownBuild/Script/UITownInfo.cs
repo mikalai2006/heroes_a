@@ -32,6 +32,7 @@ public class UITownInfo : MonoBehaviour
     private int _startPositionChecked = -1;
     private int _endChecked;
     private bool _isSplit = false;
+    private EntityHero _startHeroMoveCreature;
 
     private void Start()
     {
@@ -156,6 +157,7 @@ public class UITownInfo : MonoBehaviour
                 {
                     if (_startPositionChecked == -1)
                     {
+                        _startHeroMoveCreature = entityHero;
                         OnChooseCreature(index, entityHero.Data.Creatures);
                     }
                     else
@@ -369,6 +371,7 @@ public class UITownInfo : MonoBehaviour
             {
                 if (_startPositionChecked == -1)
                 {
+                    _startHeroMoveCreature = hero;
                     OnChooseCreature(index, creatures);
                 }
                 else
@@ -418,11 +421,30 @@ public class UITownInfo : MonoBehaviour
 
     private async void OnMoveCreature(int index, SerializableDictionary<int, EntityCreature> creatures)
     {
-        if (creatures[index] != _startCheckedCreatures[_startPositionChecked])
+        if (creatures[index] == _startCheckedCreatures[_startPositionChecked])
+        {
+            // if (_isSplit)
+            // {
+            //     // Show dialog split creatures.
+            // }
+            // else
+            // {
+            // Show dialog info creature.
+            var dialogWindow = new UIInfoCreatureOperation();
+            var result = await dialogWindow.ShowAndHide();
+            if (result.isOk)
+            {
+
+            }
+            // }
+        }
+        else
         {
             if (
                 _startCheckedCreatures.Where(t => t.Value != null).Count() == 1
+                && _startCheckedCreatures != creatures
                 && creatures[index] == null
+                && _startHeroMoveCreature != null
                 && !_isSplit)
             {
                 var dialogData = new DataDialogHelp()
@@ -433,35 +455,40 @@ public class UITownInfo : MonoBehaviour
                 var dialogWindow = new DialogHelpProvider(dialogData);
                 await dialogWindow.ShowAndHide();
             }
-            else if (_isSplit)
+            else if (
+                _isSplit
+                && (
+                    creatures[index] == null
+                    || creatures[index].IdObject == _startCheckedCreatures[_startPositionChecked].IdObject
+                    )
+                )
             {
                 // Show dialog split creatures.
+                var dialogWindow = new DialogSplitCreatureOperation(
+                    _startCheckedCreatures[_startPositionChecked],
+                    creatures[index]
+                    );
+                var result = await dialogWindow.ShowAndHide();
+                if (result.isOk)
+                {
+                    Helpers.MoveUnitBetweenList(
+                        ref _startCheckedCreatures,
+                        _startPositionChecked,
+                        ref creatures,
+                        index,
+                        result.value1,
+                        result.value2
+                        );
+                }
             }
             else
             {
                 Helpers.MoveUnitBetweenList(
-                    _startCheckedCreatures,
+                    ref _startCheckedCreatures,
                     _startPositionChecked,
-                    creatures,
+                    ref creatures,
                     index
                     );
-            }
-        }
-        else
-        {
-            if (_isSplit)
-            {
-                // Show dialog split creatures.
-            }
-            else
-            {
-                // Show dialog info creature.
-                var dialogWindow = new UIInfoCreatureOperation();
-                var result = await dialogWindow.ShowAndHide();
-                if (result.isOk)
-                {
-
-                }
             }
         }
 

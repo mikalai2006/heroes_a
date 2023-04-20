@@ -1,0 +1,42 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:Template name="Button" src="project://database/Assets/UI/Toolkit/Button.uxml?fileID=9197481963319205126&amp;guid=db5e7d04a42304542a4356b1519364b2&amp;type=3#Button" />
+    <Style src="project://database/Assets/UI/Toolkit/Base.uss?fileID=7433441132597879392&amp;guid=fa07b064290e7384d9ad2e26e79f5953&amp;type=3#Base" />
+    <Style src="project://database/Assets/UI/Toolkit/UnityBase.uss?fileID=7433441132597879392&amp;guid=c0905c354b5fb524e83bc41ae3debe10&amp;type=3#UnityBase" />
+    <ui:VisualElement name="SplitCreature" class="text-lg text-secondary" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); background-image: url(&apos;project://database/Assets/UI/Sprites/Bg.png?fileID=2800000&amp;guid=0641c76439a64674aa800f9e3d79c6a4&amp;type=3#Bg&apos;); -unity-background-scale-mode: scale-and-crop;">
+        <ui:VisualElement name="CreatureSpriteBlok" class="p-4" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row; justify-content: space-between; padding-bottom: 10px;">
+            <ui:VisualElement name="Creature1" class="border-2 border-color" style="margin-right: 10px; width: 200px; height: 150px;" />
+            <ui:VisualElement name="Creature2" class="border-2 border-color" style="width: 200px; height: 150px;" />
+        </ui:VisualElement>
+        <ui:VisualElement style="align-items: center;">
+            <ui:VisualElement class="m-1 px-4 w-full" style="flex-grow: 1;">
+                <ui:VisualElement style="background-color: rgba(0, 0, 0, 0); margin-top: 20px; margin-bottom: 20px;">
+                    <ui:SliderInt picking-mode="Ignore" value="42" high-value="100" name="Slider" class="w-full" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement style="flex-direction: row; justify-content: center; flex-grow: 0;">
+            <ui:VisualElement class="m-1 w-33 px-4" style="flex-grow: 1;">
+                <ui:VisualElement class="text-center" style="flex-direction: row; justify-content: space-between;">
+                    <ui:VisualElement class="box_shadow" style="flex-grow: 1; max-width: 30%;">
+                        <ui:VisualElement class="box_bg">
+                            <ui:Label tabindex="-1" text="1" display-tooltip-when-elided="true" name="Value1" class="text_xl font-bold p-2" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement class="box_shadow" style="flex-grow: 1; max-width: 30%;">
+                        <ui:VisualElement class="box_bg">
+                            <ui:Label tabindex="-1" text="1" display-tooltip-when-elided="true" name="Value2" class="text_xl font-bold p-2" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement class="p-2" style="flex-grow: 1; flex-direction: row; justify-content: space-between;">
+            <ui:Instance template="Button" name="Ok">
+                <AttributeOverrides element-name="Btn" text="#split" />
+            </ui:Instance>
+            <ui:Instance template="Button" name="Cancel">
+                <AttributeOverrides element-name="Btn" text="#cancel" />
+            </ui:Instance>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

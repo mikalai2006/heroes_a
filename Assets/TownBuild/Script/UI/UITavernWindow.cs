@@ -19,6 +19,8 @@ public class UITavernWindow : UIDialogBaseWindow
     private Label _heroInfoLabel;
     private ScriptableEntityHero _activeHeroData;
     public static event Action onBuyHero;
+    protected TaskCompletionSource<DataResultBuildDialog> _processCompletionSource;
+    protected DataResultBuildDialog _dataResultDialog;
 
     public override void Start()
     {
@@ -37,6 +39,9 @@ public class UITavernWindow : UIDialogBaseWindow
     public async Task<DataResultBuildDialog> ProcessAction(BaseBuild build)
     {
         base.Init();
+
+        _dataResultDialog = new DataResultBuildDialog();
+        _processCompletionSource = new TaskCompletionSource<DataResultBuildDialog>();
 
         Title.text = build.ConfigData.BuildLevels[build.level].Text.title.GetLocalizedString();
         root.Q<Label>("description").text

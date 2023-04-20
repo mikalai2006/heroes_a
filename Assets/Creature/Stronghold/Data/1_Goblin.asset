@@ -17,9 +17,9 @@ MonoBehaviour:
   MenuSprite: {fileID: 1722126353, guid: e7a6d1e198529c44c93ed148f1bf1afe, type: 3}
   title:
     m_TableReference:
-      m_TableCollectionName: 
+      m_TableCollectionName: GUID:eccb40f2ef0445e499300535baf5f930
     m_TableEntryReference:
-      m_KeyId: 0
+      m_KeyId: 16941378076672
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0

@@ -6,6 +6,8 @@ public class UIInfoCreatureWindow : UIDialogBaseWindow
 {
     private readonly string _nameButtonClose = "ButtonClose";
     private Button _buttonClose;
+    protected TaskCompletionSource<DataResultBuildDialog> _processCompletionSource;
+    protected DataResultBuildDialog _dataResultDialog;
 
     public override void Start()
     {
@@ -29,8 +31,6 @@ public class UIInfoCreatureWindow : UIDialogBaseWindow
         base.Init();
 
         _dataResultDialog = new DataResultBuildDialog();
-
-
         _processCompletionSource = new TaskCompletionSource<DataResultBuildDialog>();
 
         return await _processCompletionSource.Task;
