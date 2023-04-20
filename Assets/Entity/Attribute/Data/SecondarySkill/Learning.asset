@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8b94748fd66a1e4498620a2843740b4e, type: 3}
-  m_Name: Armorer
+  m_Name: Learning
   m_EditorClassIdentifier: 
-  idObject: attribute.skill.armorer
+  idObject: attribute.skill.learning
   TypeAttribute: 40
   MenuSprite: {fileID: 0}
   Text:
@@ -34,7 +34,11 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
-  TypeTwoSkill: 15
+  TypeTwoSkill: 52
+  SpriteLevel:
+  - {fileID: 1474113446, guid: bb3826057700334448fec2c60c7241e3, type: 3}
+  - {fileID: -580216416, guid: bb3826057700334448fec2c60c7241e3, type: 3}
+  - {fileID: -791070158, guid: bb3826057700334448fec2c60c7241e3, type: 3}
   references:
     version: 2
     RefIds: []

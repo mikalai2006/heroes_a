@@ -291,6 +291,46 @@ MonoBehaviour:
     m_Key: kill
     m_Metadata:
       m_Items: []
+  - m_Id: 8872920928649216
+    m_Key: experience
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8872952096522240
+    m_Key: power
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8873138059378688
+    m_Key: knowledge
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8873193055092736
+    m_Key: defense
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8873272813977600
+    m_Key: attack
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8874683966586880
+    m_Key: level
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8876842170875904
+    m_Key: manacount
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8881204851015680
+    m_Key: basic
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8881245615456256
+    m_Key: advanced
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8881364129710080
+    m_Key: expert
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

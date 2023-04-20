@@ -51,6 +51,7 @@ MonoBehaviour:
   _uiDoc: {fileID: 1116622595317704597}
   _templateInsertBlok: {fileID: 9197481963319205126, guid: 16e40c736d7b7c14796447cb6c2bf649, type: 3}
   _templateHeroCreature: {fileID: 9197481963319205126, guid: 3e598cf930e15bd41a05c9f8834b7a09, type: 3}
+  _templateSecondarySkill: {fileID: 9197481963319205126, guid: fa61937b25def8b4796b509a486ca9c3, type: 3}
   _templateItem: {fileID: 0}
 --- !u!1 &3905194594967962867
 GameObject:

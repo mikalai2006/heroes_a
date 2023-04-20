@@ -31,7 +31,10 @@ MonoBehaviour:
     m_EditorAssetChanged: 0
   TypeGround: 0
   TypeFaction: 1
-  PrimarySkill: []
+  ClassHero: {fileID: 11400000, guid: 2506fee5f50b951438df247c0d7427e0, type: 2}
+  StartSecondarySkill:
+  - SecondarySkill: {fileID: 11400000, guid: dc0c8987aed0b2d4cbe3bb0e396a233b, type: 2}
+    value: 1
   StartCreatures:
   - creature: {fileID: 11400000, guid: 9f3b6d3f88186174ea86b4e0f01dc676, type: 2}
     min: 15

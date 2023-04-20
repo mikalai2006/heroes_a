@@ -9,7 +9,7 @@ using UnityEngine.UIElements;
 public class UIDialogHeroInfo : UIDialogBaseWindow
 {
     [SerializeField] private VisualTreeAsset _templateHeroCreature;
-    [SerializeField] private VisualTreeAsset _templateItem;
+    [SerializeField] private VisualTreeAsset _templateSecondarySkill;
     private Button _buttonOk;
     private Button _buttonCancel;
     protected TaskCompletionSource<DataResultDialogHeroInfo> _processCompletionSource;
@@ -17,6 +17,12 @@ public class UIDialogHeroInfo : UIDialogBaseWindow
     private EntityHero _hero;
     private VisualElement _creaturesBlok;
     private VisualElement _avaHero;
+    private VisualElement _secondSkillBlok;
+    private Label _attack;
+    private Label _defense;
+    private Label _knowledge;
+    private Label _power;
+    private Label _experience;
     private Label _nameHero;
     private Label _descriptionHero;
     private Button _buttonSplitCreature;
@@ -39,6 +45,13 @@ public class UIDialogHeroInfo : UIDialogBaseWindow
         _descriptionHero = root.Q<Label>("Description");
 
         _creaturesBlok = root.Q<VisualElement>("Creatures");
+
+        _secondSkillBlok = root.Q<VisualElement>("SecondSkills");
+        _attack = root.Q<Label>("Attack");
+        _defense = root.Q<Label>("Defense");
+        _knowledge = root.Q<Label>("Knowledge");
+        _power = root.Q<Label>("Power");
+        _experience = root.Q<Label>("Experience");
 
         _buttonCancel = root.Q<VisualElement>("Cancel").Q<Button>("Btn");
         _buttonCancel.clickable.clicked += OnClickCancel;
@@ -63,10 +76,11 @@ public class UIDialogHeroInfo : UIDialogBaseWindow
         _processCompletionSource = new TaskCompletionSource<DataResultDialogHeroInfo>();
 
         _hero = hero;
+        FillPrimarySkills();
+        FillSecondarySkills();
         FillCreaturesBlok();
 
-        _nameHero.text = _hero.Data.name;
-        _descriptionHero.text = _hero.Data.name + " 11 уровень";
+
         if (_hero.ConfigData.MenuSprite != null)
         {
             _avaHero.style.backgroundImage = new StyleBackground(_hero.ConfigData.MenuSprite);
@@ -75,7 +89,12 @@ public class UIDialogHeroInfo : UIDialogBaseWindow
             = (ScriptableEntityHero)_hero.ScriptableData;
         Title.style.display = DisplayStyle.None;
 
-
+        _nameHero.text = _hero.Data.name;
+        LocalizedString textLevel = new LocalizedString(Constants.LanguageTable.LANG_TABLE_UILANG, "level");
+        _descriptionHero.text
+            = textLevel.GetLocalizedString()
+            + " " + _hero.Data.level
+            + ", " + configDataHero.ClassHero.name;
 
         return await _processCompletionSource.Task;
     }
@@ -92,6 +111,54 @@ public class UIDialogHeroInfo : UIDialogBaseWindow
         _processCompletionSource.SetResult(_dataResultDialog);
     }
 
+    private void FillPrimarySkills()
+    {
+        _attack.text = _hero.Data.attack.ToString();
+        _defense.text = _hero.Data.defense.ToString();
+        _knowledge.text = _hero.Data.knowledge.ToString();
+        _power.text = _hero.Data.power.ToString();
+        _experience.text = _hero.Data.experience.ToString();
+    }
+
+    private void FillSecondarySkills()
+    {
+        _secondSkillBlok.Clear();
+        foreach (var skill in _hero.Data.SSkills)
+        {
+            var skillConfigData = ResourceSystem.Instance
+                .GetAttributesByType<ScriptableAttributeSecondarySkill>(TypeAttribute.SecondarySkill)
+                .Where(t => t.TypeTwoSkill == skill.Key).First();
+
+            string type = "";
+            switch (skill.Value)
+            {
+                case 0:
+                    type = new LocalizedString(Constants.LanguageTable.LANG_TABLE_UILANG, "basic").GetLocalizedString();
+                    break;
+                case 1:
+                    type = new LocalizedString(Constants.LanguageTable.LANG_TABLE_UILANG, "advanced").GetLocalizedString();
+                    break;
+                case 2:
+                    type = new LocalizedString(Constants.LanguageTable.LANG_TABLE_UILANG, "expert").GetLocalizedString();
+                    break;
+            }
+            var newBlok = _templateSecondarySkill.Instantiate();
+            newBlok.AddToClassList("w-50");
+            newBlok.Q<VisualElement>("Img").style.backgroundImage
+                = new StyleBackground(skillConfigData.SpriteLevel[skill.Value]);
+            newBlok.Q<Label>("Type").text = type;
+            newBlok.Q<Label>("Title").text = skillConfigData.name;
+            _secondSkillBlok.Add(newBlok);
+        }
+        for (int i = _hero.Data.SSkills.Count; i < 8; i++)
+        {
+            var newBlok = _templateSecondarySkill.Instantiate();
+            newBlok.AddToClassList("w-50");
+            newBlok.Q<Label>("Title").text
+                = "";
+            _secondSkillBlok.Add(newBlok);
+        }
+    }
     private void FillCreaturesBlok()
     {
         _creaturesBlok.Clear();
