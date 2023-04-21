@@ -14,6 +14,7 @@ public abstract class BaseBuild
     public Player Player => _player;
     [NonSerialized] public BuildMonoBehavior BuildGameObject;
     [NonSerialized] public EntityTown Town;
+    [NonSerialized] public bool _isPulse;
 
     #region Events GameState
     // public void AddEvents()
@@ -50,8 +51,10 @@ public abstract class BaseBuild
         // AddEvents();
     }
 
-    public void CreateGameObject()
+    public void CreateGameObject(bool isPulse = false)
     {
+        _isPulse = isPulse;
+
         if (ConfigData != null)
         {
             // Draw GameObject.
@@ -80,9 +83,14 @@ public abstract class BaseBuild
     //     // RemoveEvents();
     // }
 
-    public void UpdateGameObject()
+    public void UpdateGameObject(bool isPulse = false)
     {
         BuildGameObject.InitGameObject(this);
+
+        if (isPulse)
+        {
+            BuildGameObject.GoPulse();
+        }
     }
 
     public void SetPlayer(Player player)
@@ -111,6 +119,11 @@ public abstract class BaseBuild
             var r_asset = handle.Result;
             BuildGameObject = r_asset.GetComponent<BuildMonoBehavior>();
             UpdateGameObject();
+            if (_isPulse)
+            {
+                BuildGameObject.GoPulse();
+                _isPulse = false;
+            }
         }
         else
         {

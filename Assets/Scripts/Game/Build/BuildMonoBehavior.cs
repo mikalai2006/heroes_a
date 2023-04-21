@@ -14,6 +14,11 @@ public class BuildMonoBehavior : MonoBehaviour, IPointerClickHandler
     #region Events GameState
     #endregion
 
+    public void GoPulse()
+    {
+        StartCoroutine(Pulse());
+    }
+
     public IEnumerator Pulse()
     {
         foreach (Transform transform in Helpers.GetDeepChildren<SpriteRenderer>(gameObject, true))
@@ -58,8 +63,6 @@ public class BuildMonoBehavior : MonoBehaviour, IPointerClickHandler
                 child.gameObject.SetActive(false);
             }
         }
-
-        StartCoroutine(Pulse());
         // if (TypeCreateBuild == build.BuildLevels[i].TypeBuild)
         // {
         //     // Debug.Log($"Pulse {build.name}");

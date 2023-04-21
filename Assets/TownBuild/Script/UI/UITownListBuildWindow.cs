@@ -210,11 +210,11 @@ public class UITownListBuildWindow : MonoBehaviour
             var newBuild = _activeTown.CreateBuild(buildConfig, level, _activePlayer);
             if (level == 0)
             {
-                newBuild.CreateGameObject();
+                newBuild.CreateGameObject(true);
             }
             else
             {
-                newBuild.UpdateGameObject();
+                newBuild.UpdateGameObject(true);
             }
             // _activeTown.Data.LevelsBuilds.Add(build.TypeBuild, 1);
 
