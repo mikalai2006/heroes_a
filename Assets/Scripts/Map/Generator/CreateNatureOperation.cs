@@ -56,7 +56,7 @@ public class CreateNatureOperation : ILoadingOperation
 
                         _root._listNatureNode.Add(new GridTileNatureNode(currentNode, tileForDraw.idObject, false, tileForDraw.name));
 
-                        _root.gridTileHelper.SetDisableNode(currentNode, tileForDraw.listTypeNoPath, Color.green);
+                        _root.gridTileHelper.SetDisableNode(currentNode, tileForDraw.listTypeNoPath, Color.black);
 
                         nodes.Remove(currentNode);
 

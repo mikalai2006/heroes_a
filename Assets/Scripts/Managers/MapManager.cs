@@ -449,13 +449,13 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
         operations.Enqueue(new CreateSkillSchoolOperation(this));
 
         operations.Enqueue(new CreateResourceEveryWeekOperation(this));
+        operations.Enqueue(new CreateDwellingOperation(this));
         operations.Enqueue(new CreateResourceOperation(this));
         operations.Enqueue(new CreateArtifactOperation(this));
-        operations.Enqueue(new CreateDwellingOperation(this));
         operations.Enqueue(new CreateEdgesOperation(this));
         await GameManager.Instance.LoadingScreenProvider.LoadAndDestroy(operations);
 
-        Application.targetFrameRate = -1;
+        // Application.targetFrameRate = -1;
 
 #if UNITY_EDITOR
         stopWatch.Stop();

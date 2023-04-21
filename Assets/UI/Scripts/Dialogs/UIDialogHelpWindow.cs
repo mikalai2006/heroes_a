@@ -4,7 +4,7 @@ using UnityEngine.UIElements;
 using UnityEngine.Events;
 using System.Collections.Generic;
 
-public class UIDialogHelpWindow : MonoBehaviour
+public class UIDialogHelpWindow : UILocaleBase
 {
     [SerializeField] private UIDocument _uiDoc;
     public UIDocument DialogApp => _uiDoc;
@@ -29,15 +29,19 @@ public class UIDialogHelpWindow : MonoBehaviour
     private DataDialogHelp _dataDialog;
     private DataResultDialog _dataResultDialog;
 
+    private VisualElement _root;
+
     private void Start()
     {
-        _headerLabel = DialogApp.rootVisualElement.Q<Label>(_nameHeaderLabel);
-        _generalBlok = DialogApp.rootVisualElement.Q<VisualElement>(_nameGeneralBlok);
+        _root = DialogApp.rootVisualElement;
 
-        var panel = DialogApp.rootVisualElement.Q<VisualElement>("Panel");
+        _headerLabel = _root.Q<Label>(_nameHeaderLabel);
+        _generalBlok = _root.Q<VisualElement>(_nameGeneralBlok);
+
+        var panel = _root.Q<VisualElement>("Panel");
         panel.AddToClassList("w-50");
 
-        var panelBlok = DialogApp.rootVisualElement.Q<VisualElement>("PanelBlok");
+        var panelBlok = _root.Q<VisualElement>("PanelBlok");
         panelBlok.style.flexGrow = 1;
 
         VisualElement docDialogBlok = _templateHelp.Instantiate();
@@ -45,12 +49,13 @@ public class UIDialogHelpWindow : MonoBehaviour
         _generalBlok.Clear();
         _generalBlok.Add(docDialogBlok);
 
-        _buttonOk = DialogApp.rootVisualElement.Q<Button>(_nameButtonOk);
+        _buttonOk = _root.Q<Button>(_nameButtonOk);
         _buttonOk.clickable.clicked += OnClickOk;
-        _headerLabel = DialogApp.rootVisualElement.Q<Label>(_nameHeaderLabel);
-        _descriptionLabel = DialogApp.rootVisualElement.Q<Label>(_nameDescriptionLabel);
-        _boxSpriteObject = DialogApp.rootVisualElement.Q<VisualElement>(_nameSpriteElement);
+        _headerLabel = _root.Q<Label>(_nameHeaderLabel);
+        _descriptionLabel = _root.Q<Label>(_nameDescriptionLabel);
+        _boxSpriteObject = _root.Q<VisualElement>(_nameSpriteElement);
 
+        base.Localize(_root);
     }
 
     public async Task<DataResultDialog> ProcessAction(DataDialogHelp dataDialog)

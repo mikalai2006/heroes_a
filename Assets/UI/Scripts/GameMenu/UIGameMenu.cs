@@ -48,14 +48,12 @@ public class UIGameMenu : UILocaleBase
 
     private void OnClickOk()
     {
-        Debug.Log("Click ok");
         _dataResultGameMenu.isOk = true;
         _processCompletionSource.SetResult(_dataResultGameMenu);
 
     }
     private void OnClickClose()
     {
-        Debug.Log("Click close");
         _dataResultGameMenu.isOk = false;
         _processCompletionSource.SetResult(_dataResultGameMenu);
 

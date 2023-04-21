@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -10,6 +11,7 @@ public class UIDialogHeroInfo : UIDialogBaseWindow
 {
     [SerializeField] private VisualTreeAsset _templateHeroCreature;
     [SerializeField] private VisualTreeAsset _templateSecondarySkill;
+    public static event Action OnMoveCreature;
     private Button _buttonOk;
     private Button _buttonCancel;
     protected TaskCompletionSource<DataResultDialogHeroInfo> _processCompletionSource;
@@ -65,12 +67,9 @@ public class UIDialogHeroInfo : UIDialogBaseWindow
 
     }
 
-    public async Task<DataResultDialogHeroInfo> ProcessAction(
-        EntityHero hero
-    )
+    public async Task<DataResultDialogHeroInfo> ProcessAction(EntityHero hero)
     {
         base.Init();
-
 
         _dataResultDialog = new DataResultDialogHeroInfo();
         _processCompletionSource = new TaskCompletionSource<DataResultDialogHeroInfo>();
@@ -147,8 +146,9 @@ public class UIDialogHeroInfo : UIDialogBaseWindow
             newBlok.Q<VisualElement>("Img").style.backgroundImage
                 = new StyleBackground(skillConfigData.Levels[skill.Value].Sprite);
             newBlok.Q<Label>("Type").text = type;
-            newBlok.Q<Label>("Title").text = skillConfigData.name;
+            newBlok.Q<Label>("Title").text = skillConfigData.Text.title.GetLocalizedString();
             _secondSkillBlok.Add(newBlok);
+            newBlok.RegisterCallback<ClickEvent>((ClickEvent evt) => ShowInfoSecondarySkill(skillConfigData, skill.Value));
         }
         for (int i = _hero.Data.SSkills.Count; i < 8; i++)
         {
@@ -159,6 +159,19 @@ public class UIDialogHeroInfo : UIDialogBaseWindow
             _secondSkillBlok.Add(newBlok);
         }
     }
+
+    private async void ShowInfoSecondarySkill(ScriptableAttributeSecondarySkill configData, int level)
+    {
+        var dialogData = new DataDialogHelp()
+        {
+            Header = configData.Levels[level].Title.GetLocalizedString(),
+            Description = configData.Levels[level].Description.GetLocalizedString(),
+        };
+
+        var dialogWindow = new DialogHelpProvider(dialogData);
+        await dialogWindow.ShowAndHide();
+    }
+
     private void FillCreaturesBlok()
     {
         _creaturesBlok.Clear();
@@ -190,11 +203,11 @@ public class UIDialogHeroInfo : UIDialogBaseWindow
             {
                 if (_startPositionChecked == -1)
                 {
-                    OnChooseCreature(index, _hero.Data.Creatures);
+                    ChooseCreature(index, _hero.Data.Creatures);
                 }
                 else
                 {
-                    OnMoveCreature(index, _hero.Data.Creatures);
+                    MoveCreature(index, _hero.Data.Creatures);
                 };
             });
 
@@ -203,7 +216,7 @@ public class UIDialogHeroInfo : UIDialogBaseWindow
 
     }
 
-    private void OnChooseCreature(int index, SerializableDictionary<int, EntityCreature> creatures)
+    private void ChooseCreature(int index, SerializableDictionary<int, EntityCreature> creatures)
     {
         if (creatures[index] == null) return;
         _buttonSplitCreature.SetEnabled(true);
@@ -221,7 +234,7 @@ public class UIDialogHeroInfo : UIDialogBaseWindow
         _startPositionChecked = index;
     }
 
-    private async void OnMoveCreature(int index, SerializableDictionary<int, EntityCreature> creatures)
+    private async void MoveCreature(int index, SerializableDictionary<int, EntityCreature> creatures)
     {
         if (creatures[index] == _startCheckedCreatures[_startPositionChecked])
         {
@@ -280,6 +293,7 @@ public class UIDialogHeroInfo : UIDialogBaseWindow
                         result.value1,
                         result.value2
                         );
+                    OnMoveCreature?.Invoke();
                 }
             }
             else
@@ -290,6 +304,7 @@ public class UIDialogHeroInfo : UIDialogBaseWindow
                     ref creatures,
                     index
                     );
+                OnMoveCreature?.Invoke();
             }
         }
 

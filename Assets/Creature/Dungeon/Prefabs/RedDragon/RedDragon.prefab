@@ -8,6 +8,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -4043091559794413259, guid: 9df1fc771bddcd849aed5086893eb3a5, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -4043091559794413259, guid: 9df1fc771bddcd849aed5086893eb3a5, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 1851675910483808918, guid: 9df1fc771bddcd849aed5086893eb3a5, type: 3}
       propertyPath: m_Name
       value: RedDragon

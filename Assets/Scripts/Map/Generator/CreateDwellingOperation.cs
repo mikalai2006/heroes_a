@@ -75,17 +75,19 @@ public class CreateDwellingOperation : ILoadingOperation
 
                             GridTileNode nodeWarrior = _root.GetNodeWarrior(currentNode);
 
+                            ScriptableEntityMapObject configData
+                                = list[UnityEngine.Random.Range(0, list.Count)];
+
                             if (
                                 currentNode != null
                                 && nodeWarrior != null
                                 && disableNeighbours.bottom.Count == 0
                                 // && disableNeighbours.top.Count >= 2
-                                && _root.gridTileHelper.CalculateNeighbours(currentNode) >= 5
+                                // && _root.gridTileHelper.CalculateNeighbours(currentNode) >= 5
+                                && configData != null
+                                && _root.gridTileHelper.GetAllowInsertObjectToNode(currentNode, configData)
                                 )
                             {
-
-                                ScriptableEntityMapObject configData
-                                    = list[UnityEngine.Random.Range(0, list.Count)];
 
                                 EntityDwelling entity = (EntityDwelling)factory.CreateMapObject(
                                     TypeMapObject.Dwelling,

@@ -123,7 +123,7 @@ public class EventTilemap : MonoBehaviour
         }
         else
         {
-            Debug.Log($"timeDifference {Time.realtimeSinceStartup - timeClickPrev}");
+            // Debug.Log($"timeDifference {Time.realtimeSinceStartup - timeClickPrev}");
             // if (data.clickCount == 2)
             if (Time.realtimeSinceStartup - timeClickPrev < LevelManager.Instance.ConfigGameSettings.deltaDoubleClick)
             {

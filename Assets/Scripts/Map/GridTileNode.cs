@@ -117,10 +117,10 @@ public class GridTileNode : IHeapItem<GridTileNode>
             StateNode |= StateNode.Protected;
         }
 #if UNITY_EDITOR
-        // GameManager.Instance.MapManager.SetColorForTile(
-        //     position,
-        //     _protectedUnit == null ? Color.yellow : Color.red
-        // );
+        GameManager.Instance.MapManager.SetColorForTile(
+            position,
+            _protectedUnit == null ? Color.yellow : Color.red
+        );
 #endif
     }
 
@@ -190,8 +190,11 @@ public class GridTileNode : IHeapItem<GridTileNode>
 
     public void SetProtectedNeigbours(BaseEntity warriorUnit, GridTileNode protectedNode = null)
     {
-        List<GridTileNode> nodes = _gridHelper.GetNeighbourList(this, true);
-
+        // List<GridTileNode> nodes = _gridHelper.GetNeighbourList(this, true);
+        protectedNode.SetProtectedUnit(warriorUnit);
+        ScriptableEntityMapObject configData = (ScriptableEntityMapObject)protectedNode.OccupiedUnit.ScriptableData;
+        List<GridTileNode> nodes
+            = GameManager.Instance.MapManager.gridTileHelper.GetNodeListAsNoPath(protectedNode, configData.RulesInput);
         if (nodes != null || nodes.Count > 0)
         {
             for (int i = 0; i < nodes.Count; i++)

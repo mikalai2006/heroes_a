@@ -53,6 +53,7 @@ MonoBehaviour:
       Artifacts:
         Artifact: []
         isOne: 0
+      Creature: {fileID: 0}
     probability: 0.5
   - Item:
       description:
@@ -75,8 +76,9 @@ MonoBehaviour:
       Artifacts:
         Artifact: []
         isOne: 0
+      Creature: {fileID: 0}
     probability: 0.5
-  listTypeNoPath: 080000000c000000
+  listTypeNoPath: 080000000c000000070000000b00000006000000
   TypeWorkObject: 3
   TypeMapObject: 2
   listRuleInput: 1200000013000000110000000e000000

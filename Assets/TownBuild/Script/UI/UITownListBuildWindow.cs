@@ -8,12 +8,11 @@ using UnityEngine.Localization;
 using System.Collections;
 using System;
 
-public class UITownListBuildWindow : MonoBehaviour
+public class UITownListBuildWindow : UILocaleBase
 {
     [SerializeField] private UIDocument _uiDoc;
     public UIDocument DialogApp => _uiDoc;
     [SerializeField] private VisualTreeAsset _templateBuildItem;
-    private readonly string _nameButtonClose = "ButtonClose";
     private readonly string _nameOverlay = "Overlay";
     private readonly string _nameListBuild = "ListBuild";
     public static event Action OnCloseListBuilds;
@@ -34,13 +33,13 @@ public class UITownListBuildWindow : MonoBehaviour
 
     // private Dictionary<TypeBuild, Build> AllBuilds = new Dictionary<TypeBuild, Build>();
 
-    private void Awake()
+    private void Start()
     {
-        _buttonClose = DialogApp.rootVisualElement.Q<Button>(_nameButtonClose);
+        _buttonClose = DialogApp.rootVisualElement.Q<TemplateContainer>("Cancel").Q<Button>("Btn");
         _buttonClose.clickable.clicked += OnClickClose;
 
         _listBuild = DialogApp.rootVisualElement.Q<VisualElement>(_nameListBuild);
-
+        base.Localize(DialogApp.rootVisualElement);
     }
 
     public async Task<DataResultBuildDialog> ProcessAction(DataDialogMapObject dataDialog)
@@ -137,7 +136,6 @@ public class UITownListBuildWindow : MonoBehaviour
 
     public async void OnClickToBuild(ScriptableBuilding buildConfig, int level)
     {
-        Debug.Log($"Level {level}- {buildConfig.name}");
         List<string> requireBuilds = new List<string>();
         var build = buildConfig.BuildLevels[level];
 
@@ -211,11 +209,11 @@ public class UITownListBuildWindow : MonoBehaviour
             var newBuild = _activeTown.CreateBuild(buildConfig, level, _activePlayer);
             if (level == 0)
             {
-                newBuild.CreateGameObject();
+                newBuild.CreateGameObject(true);
             }
             else
             {
-                newBuild.UpdateGameObject();
+                newBuild.UpdateGameObject(true);
             }
             // _activeTown.Data.LevelsBuilds.Add(build.TypeBuild, 1);
 

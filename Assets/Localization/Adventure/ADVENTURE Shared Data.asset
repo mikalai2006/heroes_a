@@ -327,6 +327,10 @@ MonoBehaviour:
     m_Key: needchoosehero
     m_Metadata:
       m_Items: []
+  - m_Id: 9097561723011072
+    m_Key: novacantplace
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

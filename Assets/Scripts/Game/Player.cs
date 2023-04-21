@@ -218,7 +218,13 @@ public class Player
             configData);
         newHero.SetPlayer(this);
         _data.HeroesInTavern.Remove(configData.idObject);
+        foreach (var res in LevelManager.Instance.ConfigGameSettings.CostHero)
+        {
+            ChangeResource(res.Resource.TypeResource, -res.Count);
+        }
+
         GenerateHeroForTavern();
+
     }
 
     private void GenerateHeroForTavern()

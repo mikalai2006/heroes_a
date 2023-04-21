@@ -638,6 +638,12 @@ MonoBehaviour:
       \u0442\u0435\u0440\u0440\u0438\u0442\u043E\u0440\u0438\u0438! "
     m_Metadata:
       m_Items: []
+  - m_Id: 9097561723011072
+    m_Localized: "\u0423 \u0432\u0430\u0441 \u043D\u0435\u0442 \u043C\u0435\u0441\u0442\u0430
+      \u0432 \u0430\u0440\u043C\u0438\u0438! \u0412\u044B \u043D\u0435 \u043C\u043E\u0436\u0435\u0442\u0435
+      \u043D\u0430\u043D\u044F\u0442\u044C \u044D\u0442\u0438 \u0432\u043E\u0439\u0441\u043A\u0430."
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:

@@ -55,7 +55,7 @@ MonoBehaviour:
         isOne: 0
       Creature: {fileID: 0}
     probability: 1
-  listTypeNoPath: 0c0000000e00000009000000
+  listTypeNoPath: 0c0000000b00000008000000090000000e000000
   TypeWorkObject: 2
   TypeMapObject: 5
   listRuleInput: 120000001100000013000000

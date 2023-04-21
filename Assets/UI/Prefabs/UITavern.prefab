@@ -99,6 +99,4 @@ MonoBehaviour:
   _uiDoc: {fileID: 6035481953896663689}
   _templateInsertBlok: {fileID: 9197481963319205126, guid: db9a3fc5cb4c4bc44aacd1a4826bda5d, type: 3}
   _templateHeroButton: {fileID: 9197481963319205126, guid: 1e3342a9d71bfff4188bdbbafb0f776a, type: 3}
-  processAction:
-    m_PersistentCalls:
-      m_Calls: []
+  _templateCostItem: {fileID: 9197481963319205126, guid: c8d8f5a78bfd96e43994188922617468, type: 3}

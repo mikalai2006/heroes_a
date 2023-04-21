@@ -45,8 +45,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b9a8eb6b0df2dd4f97f2dadfdca3483, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _localization:
+    m_TableReference:
+      m_TableCollectionName: GUID:9b6db77d8a0719a4490c3b7aad12567c
   _uiDoc: {fileID: 3225743083509349779}
-  _templateDwellingBlok: {fileID: 9197481963319205126, guid: fe583fcead8a8bf4b91c003f31845dd8, type: 3}
+  _templateInsertBlok: {fileID: 9197481963319205126, guid: fe583fcead8a8bf4b91c003f31845dd8, type: 3}
   _templateButton: {fileID: 9197481963319205126, guid: db5e7d04a42304542a4356b1519364b2, type: 3}
   _templateItem: {fileID: 9197481963319205126, guid: c8d8f5a78bfd96e43994188922617468, type: 3}
   processAction:

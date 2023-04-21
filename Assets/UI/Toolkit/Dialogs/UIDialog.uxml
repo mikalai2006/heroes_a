@@ -1,6 +1,6 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/Toolkit/Base.uss?fileID=7433441132597879392&amp;guid=fa07b064290e7384d9ad2e26e79f5953&amp;type=3#Base" />
-    <Style src="project://database/Assets/UI/Toolkit/Dialog.uss?fileID=7433441132597879392&amp;guid=2438f8d68703dce4ab75f8d1eda15062&amp;type=3#Dialog" />
+    <Style src="project://database/Assets/UI/Toolkit/Dialogs/UIDialog.uss?fileID=7433441132597879392&amp;guid=2438f8d68703dce4ab75f8d1eda15062&amp;type=3#UIDialog" />
     <Style src="project://database/Assets/UI/Toolkit/UnityBase.uss?fileID=7433441132597879392&amp;guid=c0905c354b5fb524e83bc41ae3debe10&amp;type=3#UnityBase" />
     <ui:VisualElement name="DialogMapObject" class="dialog_box">
         <ui:VisualElement name="Panel" class="dialog_panel" style="min-width: 50%;">
@@ -11,7 +11,7 @@
             <ui:VisualElement name="PanelBlok" class="p-4" style="background-color: rgba(0, 0, 0, 0);">
                 <ui:VisualElement name="Header" class="dialog_header">
                     <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); align-items: center;">
-                        <ui:Label tabindex="-1" text="#title" display-tooltip-when-elided="true" name="HeaderDialog" />
+                        <ui:Label tabindex="-1" text="title" display-tooltip-when-elided="true" name="HeaderDialog" />
                     </ui:VisualElement>
                 </ui:VisualElement>
                 <ui:VisualElement name="GeneralBlok" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">

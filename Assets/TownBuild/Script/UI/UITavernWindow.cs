@@ -9,6 +9,7 @@ using UnityEngine.Localization;
 public class UITavernWindow : UIDialogBaseWindow
 {
     [SerializeField] private VisualTreeAsset _templateHeroButton;
+    [SerializeField] private VisualTreeAsset _templateCostItem;
     private readonly string _nameButtonClose = "ButtonClose";
     private readonly string _nameButtonPrice = "ButtonPrice";
     private readonly string _nameHeroList = "HeroList";
@@ -47,11 +48,34 @@ public class UITavernWindow : UIDialogBaseWindow
         root.Q<Label>("description").text
             = new LocalizedString(Constants.LanguageTable.LANG_TABLE_UILANG, "tavern_cit").GetLocalizedString();
 
+
+
+        // Add cost blok.
+        var costBlok = root.Q<VisualElement>("CostBlok");
+        foreach (var res in GameSetting.CostHero)
+        {
+            var itemResource = _templateCostItem.Instantiate();
+            // itemResource.style.flexGrow = 1;
+            var label = itemResource.Q<Label>("Value");
+            label.text = (res.Count).ToString();
+            var sprite = res.Resource.MenuSprite;
+
+            var _spriteElement = itemResource.Q<VisualElement>("Sprite");
+            _spriteElement.style.backgroundImage = new StyleBackground(sprite);
+            _spriteElement.style.width = new StyleLength(
+                new Length(sprite.bounds.size.x * sprite.pixelsPerUnit, LengthUnit.Pixel)
+            );
+            _spriteElement.style.height = new StyleLength(
+                new Length(sprite.bounds.size.y * sprite.pixelsPerUnit, LengthUnit.Pixel)
+            );
+            costBlok.Add(itemResource);
+        }
+
+
         _heroList.Clear();
 
         EntityTown town = (EntityTown)_activePlayer.ActiveTown;
         var listConfigHero = ResourceSystem.Instance.GetEntityByType<ScriptableEntityHero>(TypeEntity.Hero);
-        Debug.Log($"Count hero=[{_activePlayer.DataPlayer.HeroesInTavern.Count}]");
         if (_activePlayer.DataPlayer.HeroesInTavern.Count > 0)
         {
             foreach (var heroId in _activePlayer.DataPlayer.HeroesInTavern)

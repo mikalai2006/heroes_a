@@ -131,9 +131,11 @@ public class GridTileHelper
                     var data = endNode.OccupiedUnit.ScriptableData as ScriptableEntityMapObject;
                     if (data == null) continue;
                     if (
-                        data.RulesInput.Count > 0
+                        (data.RulesInput.Count > 0
                         && !currentNode.StateNode.HasFlag(StateNode.Input)
-                        && currentNode.InputNode != endNode
+                        && currentNode.InputNode != endNode)
+                        ||
+                        (currentNode.StateNode.HasFlag(StateNode.Input) && currentNode.InputNode != endNode)
                         )
                         // Debug.Log(
                         //     $"NO \n" +
@@ -206,10 +208,11 @@ public class GridTileHelper
             }
             prevNode = currentNode;
         }
-        Debug.Log($"Not found path");
+        // Debug.Log($"Not found path");
 
         return null; // CalculatePath(endNode);
     }
+
     public List<GridTileNode> IsExistExit(
         GridTileNode node,
         StateNode triggerExit = (StateNode.Teleport | StateNode.Town),
@@ -279,6 +282,37 @@ public class GridTileHelper
         }
 
         return closedSet.ToList();
+    }
+
+    public bool GetAllowInsertObjectToNode(GridTileNode node, ScriptableEntityMapObject configData)
+    {
+        List<GridTileNode> allInputNode
+            = GameManager.Instance.MapManager.gridTileHelper.GetNodeListAsNoPath(node, configData.RulesInput);
+        for (int i = 0; i < allInputNode.Count; i++)
+        {
+            var currentNode = allInputNode[i];
+            if (!currentNode.StateNode.HasFlag(StateNode.Empty)
+                || currentNode.StateNode.HasFlag(StateNode.Road)
+                || currentNode.StateNode.HasFlag(StateNode.Input)
+                || currentNode.StateNode.HasFlag(StateNode.Protected))
+            {
+                return false;
+            }
+        }
+        List<GridTileNode> allDrawNode
+            = GameManager.Instance.MapManager.gridTileHelper.GetNodeListAsNoPath(node, configData.RulesDraw);
+        for (int i = 0; i < allDrawNode.Count; i++)
+        {
+            var currentNode = allDrawNode[i];
+            if (!currentNode.StateNode.HasFlag(StateNode.Empty)
+                || currentNode.StateNode.HasFlag(StateNode.Road)
+                || currentNode.StateNode.HasFlag(StateNode.Input)
+                || currentNode.StateNode.HasFlag(StateNode.Protected))
+            {
+                return false;
+            }
+        }
+        return true;
     }
 
     public List<GridTileNode> GetNeighboursAtDistance(GridTileNode startNode, int distance, bool force = true)

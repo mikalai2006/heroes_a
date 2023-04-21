@@ -108,6 +108,46 @@ PrefabInstance:
       propertyPath: m_Offset.y
       value: 1.1824012
       objectReference: {fileID: 0}
+    - target: {fileID: 1352693667011623927, guid: d294c356a916e9641b254fe2cccf2330, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1384247032952595811, guid: d294c356a916e9641b254fe2cccf2330, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.275
+      objectReference: {fileID: 0}
+    - target: {fileID: 1384247032952595811, guid: d294c356a916e9641b254fe2cccf2330, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1384247032952595811, guid: d294c356a916e9641b254fe2cccf2330, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.86
+      objectReference: {fileID: 0}
+    - target: {fileID: 3812222254614460531, guid: d294c356a916e9641b254fe2cccf2330, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.581
+      objectReference: {fileID: 0}
+    - target: {fileID: 3812222254614460531, guid: d294c356a916e9641b254fe2cccf2330, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.87149996
+      objectReference: {fileID: 0}
+    - target: {fileID: 3812222254614460531, guid: d294c356a916e9641b254fe2cccf2330, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.581
+      objectReference: {fileID: 0}
+    - target: {fileID: 3812222254614460531, guid: d294c356a916e9641b254fe2cccf2330, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3812222254614460531, guid: d294c356a916e9641b254fe2cccf2330, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.26
+      objectReference: {fileID: 0}
+    - target: {fileID: 4196379839811597225, guid: d294c356a916e9641b254fe2cccf2330, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6756399688571568113, guid: d294c356a916e9641b254fe2cccf2330, type: 3}
       propertyPath: m_Name
       value: Castle_TownMap_Prefab

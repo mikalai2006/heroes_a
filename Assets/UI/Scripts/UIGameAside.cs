@@ -69,6 +69,8 @@ public class UIGameAside : UILocaleBase
         UITownInfo.onMoveHero += DrawHeroBox;
         UITown.OnExitFromTown += ShowMapButtons;
         UITown.OnInputToTown += HideMapButtons;
+        UIDialogDwellingWindow.OnBuyCreature += ChangeHeroInfo;
+        UIDialogHeroInfo.OnMoveCreature += ChangeHeroInfo;
     }
 
     private void OnDestroy()
@@ -78,6 +80,8 @@ public class UIGameAside : UILocaleBase
         UITownInfo.onMoveHero -= DrawHeroBox;
         UITown.OnExitFromTown -= ShowMapButtons;
         UITown.OnInputToTown -= HideMapButtons;
+        UIDialogDwellingWindow.OnBuyCreature -= ChangeHeroInfo;
+        UIDialogHeroInfo.OnMoveCreature -= ChangeHeroInfo;
     }
 
     private void OnAfterStateChanged(GameState state)
@@ -193,7 +197,6 @@ public class UIGameAside : UILocaleBase
         if (activeTown == null) return;
         player.SetActiveHero(null);
 
-        Debug.Log("Change info hero");
         VisualElement townInfo = _templateTownInfo.Instantiate();
         townInfo.style.flexGrow = 1;
 
@@ -288,10 +291,24 @@ public class UIGameAside : UILocaleBase
                 newButtonHero.Q<VisualElement>("image").style.backgroundImage =
                     new StyleBackground(hero.ScriptableData.MenuSprite);
 
-                newButtonHero.Q<Button>(NameAllAsideButton).clickable.clicked += () =>
+                var time = Time.realtimeSinceStartup;
+                newButtonHero.Q<Button>(NameAllAsideButton).clickable.clicked += async () =>
                 {
+                    if (Time.realtimeSinceStartup - time < LevelManager.Instance.ConfigGameSettings.deltaDoubleClick)
+                    {
+                        var dialogHeroInfo = new DialogHeroInfoOperation(hero);
+                        var result = await dialogHeroInfo.ShowAndHide();
+                        if (result.isOk)
+                        {
+
+                        }
+                    }
+                    else
+                    {
+                        OnSetActiveHero(hero);
+                        time = Time.realtimeSinceStartup;
+                    }
                     OnResetFocusButton();
-                    OnSetActiveHero(hero);
 
                     newButtonHero.Q<Button>(NameAllAsideButton).AddToClassList(NameSelectedButton);
                     newButtonHero.Q<Button>(NameAllAsideButton).RemoveFromClassList(NameBorderedButton);
@@ -469,7 +486,6 @@ public class UIGameAside : UILocaleBase
         EntityHero activeHero = player.ActiveHero;
         if (activeHero == null) return;
 
-        Debug.Log("Change info hero");
         VisualElement HeroInfo = _templateHeroInfo.Instantiate();
         HeroInfo.style.flexGrow = 1;
 
@@ -477,6 +493,10 @@ public class UIGameAside : UILocaleBase
         heroImg.style.backgroundImage = new StyleBackground(activeHero.ScriptableData.MenuSprite);
         Label name = HeroInfo.Q<Label>("HeroName");
         name.text = activeHero.Data.name;
+        HeroInfo.Q<Label>("Attack").text = activeHero.Data.attack.ToString();
+        HeroInfo.Q<Label>("Defense").text = activeHero.Data.defense.ToString();
+        HeroInfo.Q<Label>("Knowledge").text = activeHero.Data.knowledge.ToString();
+        HeroInfo.Q<Label>("Power").text = activeHero.Data.power.ToString();
 
         boxinfo.Clear();
         boxinfo.Add(HeroInfo);

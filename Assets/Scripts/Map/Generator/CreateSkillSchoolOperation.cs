@@ -52,46 +52,49 @@ public class CreateSkillSchoolOperation : ILoadingOperation
 
                     GridTileNode nodeWarrior = _root.GetNodeWarrior(currentNode);
 
-                    if (nodeWarrior != null && currentNode != null && _root.gridTileHelper.CalculateNeighbours(currentNode) == 8)
-                    {
-                        List<TypeWorkObject> typeWork = new List<TypeWorkObject>() {
+                    List<TypeWorkObject> typeWork = new List<TypeWorkObject>() {
                             TypeWorkObject.One
                         };
-                        List<ScriptableEntityMapObject> list = ResourceSystem.Instance
-                            .GetEntityByType<ScriptableEntityMapObject>(TypeEntity.MapObject)
-                            .Where(t => (
-                                t.TypeGround & currentNode.TypeGround) == currentNode.TypeGround
-                                && t.TypeMapObject == TypeMapObject.Skills
-                                )
-                            .ToList();
-                        var configData = list[UnityEngine.Random.Range(0, list.Count)];
-                        if (configData != null)
+                    List<ScriptableEntityMapObject> list = ResourceSystem.Instance
+                        .GetEntityByType<ScriptableEntityMapObject>(TypeEntity.MapObject)
+                        .Where(t => (
+                            t.TypeGround & currentNode.TypeGround) == currentNode.TypeGround
+                            && t.TypeMapObject == TypeMapObject.Skills
+                            )
+                        .ToList();
+                    var configData = list[UnityEngine.Random.Range(0, list.Count)];
+
+                    if (
+                        nodeWarrior != null
+                        && currentNode != null
+                        && configData != null
+                        && _root.gridTileHelper.GetAllowInsertObjectToNode(currentNode, configData)
+                        // && _root.gridTileHelper.CalculateNeighbours(currentNode) == 8
+                        )
+                    {
+                        var factory = new EntityMapObjectFactory();
+
+                        BaseEntity entity = factory.CreateMapObject(TypeMapObject.Skills, configData);
+
+                        UnitManager.SpawnEntityMapObjectToNode(currentNode, entity);
+                        // _root.UnitManager
+                        //     .SpawnMapObjectAsync(currentNode, TypeMapObject.SkillSchool);
+
+                        BaseEntity warrior = UnitManager.SpawnEntityCreature(nodeWarrior);
+
+                        nodeWarrior.SetProtectedNeigbours(warrior, currentNode);
+                        // currentNode.SetProtectedNode(warrior);
+
+                        nodes.Remove(currentNode);
+
+                        countCreated++;
+
+                        area.Stat.countSkillSchool++;
+
+                        List<GridTileNode> listExistExitNode = _root.gridTileHelper.IsExistExit(currentNode);
+                        if (listExistExitNode.Count > 1)
                         {
-                            var factory = new EntityMapObjectFactory();
-                            BaseEntity entity = factory.CreateMapObject(
-                                TypeMapObject.Skills,
-                                configData
-                                );
-                            UnitManager.SpawnEntityMapObjectToNode(currentNode, entity);
-                            // _root.UnitManager
-                            //     .SpawnMapObjectAsync(currentNode, TypeMapObject.SkillSchool);
-
-                            BaseEntity warrior = UnitManager.SpawnEntityCreature(nodeWarrior);
-
-                            nodeWarrior.SetProtectedNeigbours(warrior, currentNode);
-                            // currentNode.SetProtectedNode(warrior);
-
-                            nodes.Remove(currentNode);
-
-                            countCreated++;
-
-                            area.Stat.countSkillSchool++;
-
-                            List<GridTileNode> listExistExitNode = _root.gridTileHelper.IsExistExit(currentNode);
-                            if (listExistExitNode.Count > 1)
-                            {
-                                _root.CreatePortal(currentNode, listExistExitNode);
-                            }
+                            _root.CreatePortal(currentNode, listExistExitNode);
                         }
                     }
                     else

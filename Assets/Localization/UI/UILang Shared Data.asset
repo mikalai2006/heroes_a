@@ -331,6 +331,30 @@ MonoBehaviour:
     m_Key: expert
     m_Metadata:
       m_Items: []
+  - m_Id: 9062375727726592
+    m_Key: ok
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9062852502650880
+    m_Key: speed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9062889278308352
+    m_Key: hp
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9063148888948736
+    m_Key: ammount
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9063203247128576
+    m_Key: damage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9167083192614912
+    m_Key: "\u0441ouncil_hall"
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

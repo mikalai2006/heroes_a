@@ -23,25 +23,42 @@ public class CreateMinesOperation : ILoadingOperation
         onSetNotify(t + " mines ...");
 
         var factory = new EntityMapObjectFactory();
+        List<GridTileNode> allNodes = _root.gridTileHelper.GetAllGridNodes();
 
         for (int keyArea = 0; keyArea < LevelManager.Instance.Level.listArea.Count; keyArea++)
         {
             Area area = LevelManager.Instance.Level.listArea[keyArea];
 
-            List<GridTileNode> nodes = _root.gridTileHelper.GetAllGridNodes().Where(node =>
-                node.StateNode.HasFlag(StateNode.Empty)
+            List<GridTileNode> nodes = new List<GridTileNode>();
+            for (int i = 0; i < allNodes.Count; i++)
+            {
+                var node = allNodes[i];
+                if (node.StateNode.HasFlag(StateNode.Empty)
                 && !node.StateNode.HasFlag(StateNode.Road)
                 && !node.StateNode.HasFlag(StateNode.Protected)
-                // node.Empty
-                // && node.Enable
-                // && !node.Road
-                // && !node.Protected
                 && node.KeyArea == area.id
                 && _root.gridTileHelper.GetDisableNeighbours(node).bottom.Count == 0
                 && _root.gridTileHelper.GetDisableNeighbours(node).top.Count >= 2
                 && _root.gridTileHelper.GetDistanceBetweeenPoints(node.position, area.startPosition) > 10
-                && _root.gridTileHelper.GetNeighbourList(node).Count >= 4
-            ).OrderBy(t => Random.value).ToList();
+                && _root.gridTileHelper.GetNeighbourList(node).Count >= 4)
+                {
+                    nodes.Add(node);
+                }
+            }
+            // var nodes = .Where(node =>
+            //     node.StateNode.HasFlag(StateNode.Empty)
+            //     && !node.StateNode.HasFlag(StateNode.Road)
+            //     && !node.StateNode.HasFlag(StateNode.Protected)
+            //     // node.Empty
+            //     // && node.Enable
+            //     // && !node.Road
+            //     // && !node.Protected
+            //     && node.KeyArea == area.id
+            //     && _root.gridTileHelper.GetDisableNeighbours(node).bottom.Count == 0
+            //     && _root.gridTileHelper.GetDisableNeighbours(node).top.Count >= 2
+            //     && _root.gridTileHelper.GetDistanceBetweeenPoints(node.position, area.startPosition) > 10
+            //     && _root.gridTileHelper.GetNeighbourList(node).Count >= 4
+            // ).OrderBy(t => Random.value).ToList();
 
             if (nodes.Count > 0)
             {
@@ -56,34 +73,34 @@ public class CreateMinesOperation : ILoadingOperation
 
                     GridTileNode nodeWarrior = _root.GetNodeWarrior(currentNode);
 
+                    List<ScriptableEntityMapObject> list = ResourceSystem.Instance
+                        .GetEntityByType<ScriptableEntityMapObject>(TypeEntity.MapObject)
+                        .Where(t =>
+                            t.TypeMapObject == TypeMapObject.Mine
+                            && ((ScriptableEntityMine)t).TypeMine == TypeMine.Free
+                            && (
+                                (t.TypeGround & currentNode.TypeGround) == currentNode.TypeGround
+                                ||
+                                (t.TypeGround & TypeGround.None) == TypeGround.None
+                                )
+                            )
+                        .ToList();
+                    ScriptableEntityMapObject configData = list[UnityEngine.Random.Range(0, list.Count)];
+
                     if (
                         currentNode != null
                         && nodeWarrior != null
-                        && currentNode.StateNode.HasFlag(StateNode.Empty)
-                        && !currentNode.StateNode.HasFlag(StateNode.Road)
-                        && !currentNode.StateNode.HasFlag(StateNode.Protected)
-                        // && currentNode.Empty
-                        // && currentNode.Enable
-                        // && !currentNode.Road
-                        // && !currentNode.Protected
-                        && _root.gridTileHelper.CalculateNeighbours(currentNode) >= 5
+                        && _root.gridTileHelper.GetAllowInsertObjectToNode(currentNode, configData)
+                        // currentNode.StateNode.HasFlag(StateNode.Empty)
+                        // && !currentNode.StateNode.HasFlag(StateNode.Road)
+                        // && !currentNode.StateNode.HasFlag(StateNode.Protected)
+                        // // && currentNode.Empty
+                        // // && currentNode.Enable
+                        // // && !currentNode.Road
+                        // // && !currentNode.Protected
+                        // && _root.gridTileHelper.CalculateNeighbours(currentNode) >= 5
                         )
                     {
-
-                        List<ScriptableEntityMapObject> list = ResourceSystem.Instance
-                            .GetEntityByType<ScriptableEntityMapObject>(TypeEntity.MapObject)
-                            .Where(t =>
-                                t.TypeMapObject == TypeMapObject.Mine
-                                && ((ScriptableEntityMine)t).TypeMine == TypeMine.Free
-                                && (
-                                    (t.TypeGround & currentNode.TypeGround) == currentNode.TypeGround
-                                    ||
-                                    (t.TypeGround & TypeGround.None) == TypeGround.None
-                                    )
-                                )
-                            .ToList();
-                        ScriptableEntityMapObject configData
-                            = list[UnityEngine.Random.Range(0, list.Count)];
                         EntityMine entity = (EntityMine)factory.CreateMapObject(
                             TypeMapObject.Mine,
                             configData

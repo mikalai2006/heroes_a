@@ -143,6 +143,7 @@ public struct Build
 
     public void RunOne(ref Player player, BaseEntity entity)
     {
+        if (Effect.One == null) return;
         foreach (var effect in Effect.One)
         {
             effect.RunOne(ref player, entity);
