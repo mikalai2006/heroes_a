@@ -69,6 +69,8 @@ public class UIGameAside : UILocaleBase
         UITownInfo.onMoveHero += DrawHeroBox;
         UITown.OnExitFromTown += ShowMapButtons;
         UITown.OnInputToTown += HideMapButtons;
+        UIDialogDwellingWindow.OnBuyCreature += ChangeHeroInfo;
+        UIDialogHeroInfo.OnMoveCreature += ChangeHeroInfo;
     }
 
     private void OnDestroy()
@@ -78,6 +80,8 @@ public class UIGameAside : UILocaleBase
         UITownInfo.onMoveHero -= DrawHeroBox;
         UITown.OnExitFromTown -= ShowMapButtons;
         UITown.OnInputToTown -= HideMapButtons;
+        UIDialogDwellingWindow.OnBuyCreature -= ChangeHeroInfo;
+        UIDialogHeroInfo.OnMoveCreature -= ChangeHeroInfo;
     }
 
     private void OnAfterStateChanged(GameState state)

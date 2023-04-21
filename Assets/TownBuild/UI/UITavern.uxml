@@ -20,12 +20,12 @@
                         </ui:VisualElement>
                         <ui:VisualElement class="mt-2 box_shadow" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
                             <ui:VisualElement class="box_bg" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
-                                <ui:Label tabindex="-1" text="#heroinfo" display-tooltip-when-elided="true" name="TextHeroInfo" />
+                                <ui:Label tabindex="-1" text="heroinfo" display-tooltip-when-elided="true" name="TextHeroInfo" />
                             </ui:VisualElement>
                         </ui:VisualElement>
                     </ui:VisualElement>
                     <ui:VisualElement style="background-color: rgba(0, 0, 0, 0); width: 25%;">
-                        <ui:VisualElement style="background-color: rgba(0, 0, 0, 0);" />
+                        <ui:VisualElement name="CostBlok" style="background-color: rgba(0, 0, 0, 0);" />
                         <ui:VisualElement style="background-color: rgba(0, 0, 0, 0);">
                             <ui:Instance template="Button" name="ButtonPrice">
                                 <AttributeOverrides element-name="Btn" text="#price" />

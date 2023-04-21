@@ -351,6 +351,10 @@ MonoBehaviour:
     m_Key: damage
     m_Metadata:
       m_Items: []
+  - m_Id: 9167083192614912
+    m_Key: "\u0441ouncil_hall"
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -10,6 +11,7 @@ public class UIDialogHeroInfo : UIDialogBaseWindow
 {
     [SerializeField] private VisualTreeAsset _templateHeroCreature;
     [SerializeField] private VisualTreeAsset _templateSecondarySkill;
+    public static event Action OnMoveCreature;
     private Button _buttonOk;
     private Button _buttonCancel;
     protected TaskCompletionSource<DataResultDialogHeroInfo> _processCompletionSource;
@@ -65,12 +67,9 @@ public class UIDialogHeroInfo : UIDialogBaseWindow
 
     }
 
-    public async Task<DataResultDialogHeroInfo> ProcessAction(
-        EntityHero hero
-    )
+    public async Task<DataResultDialogHeroInfo> ProcessAction(EntityHero hero)
     {
         base.Init();
-
 
         _dataResultDialog = new DataResultDialogHeroInfo();
         _processCompletionSource = new TaskCompletionSource<DataResultDialogHeroInfo>();
@@ -204,11 +203,11 @@ public class UIDialogHeroInfo : UIDialogBaseWindow
             {
                 if (_startPositionChecked == -1)
                 {
-                    OnChooseCreature(index, _hero.Data.Creatures);
+                    ChooseCreature(index, _hero.Data.Creatures);
                 }
                 else
                 {
-                    OnMoveCreature(index, _hero.Data.Creatures);
+                    MoveCreature(index, _hero.Data.Creatures);
                 };
             });
 
@@ -217,7 +216,7 @@ public class UIDialogHeroInfo : UIDialogBaseWindow
 
     }
 
-    private void OnChooseCreature(int index, SerializableDictionary<int, EntityCreature> creatures)
+    private void ChooseCreature(int index, SerializableDictionary<int, EntityCreature> creatures)
     {
         if (creatures[index] == null) return;
         _buttonSplitCreature.SetEnabled(true);
@@ -235,7 +234,7 @@ public class UIDialogHeroInfo : UIDialogBaseWindow
         _startPositionChecked = index;
     }
 
-    private async void OnMoveCreature(int index, SerializableDictionary<int, EntityCreature> creatures)
+    private async void MoveCreature(int index, SerializableDictionary<int, EntityCreature> creatures)
     {
         if (creatures[index] == _startCheckedCreatures[_startPositionChecked])
         {
@@ -294,6 +293,7 @@ public class UIDialogHeroInfo : UIDialogBaseWindow
                         result.value1,
                         result.value2
                         );
+                    OnMoveCreature?.Invoke();
                 }
             }
             else
@@ -304,6 +304,7 @@ public class UIDialogHeroInfo : UIDialogBaseWindow
                     ref creatures,
                     index
                     );
+                OnMoveCreature?.Invoke();
             }
         }
 

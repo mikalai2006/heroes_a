@@ -8,12 +8,11 @@ using UnityEngine.Localization;
 using System.Collections;
 using System;
 
-public class UITownListBuildWindow : MonoBehaviour
+public class UITownListBuildWindow : UILocaleBase
 {
     [SerializeField] private UIDocument _uiDoc;
     public UIDocument DialogApp => _uiDoc;
     [SerializeField] private VisualTreeAsset _templateBuildItem;
-    private readonly string _nameButtonClose = "ButtonClose";
     private readonly string _nameOverlay = "Overlay";
     private readonly string _nameListBuild = "ListBuild";
     public static event Action OnCloseListBuilds;
@@ -34,13 +33,13 @@ public class UITownListBuildWindow : MonoBehaviour
 
     // private Dictionary<TypeBuild, Build> AllBuilds = new Dictionary<TypeBuild, Build>();
 
-    private void Awake()
+    private void Start()
     {
-        _buttonClose = DialogApp.rootVisualElement.Q<Button>(_nameButtonClose);
+        _buttonClose = DialogApp.rootVisualElement.Q<TemplateContainer>("Cancel").Q<Button>("Btn");
         _buttonClose.clickable.clicked += OnClickClose;
 
         _listBuild = DialogApp.rootVisualElement.Q<VisualElement>(_nameListBuild);
-
+        base.Localize(DialogApp.rootVisualElement);
     }
 
     public async Task<DataResultBuildDialog> ProcessAction(DataDialogMapObject dataDialog)

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -59,6 +60,35 @@ public class EntityDwelling : BaseEntity
     {
         var sdata = SaveUnit(Data);
         data.entity.dwellings.Add(sdata);
+    }
+
+    public EntityCreature BuyCreatures(int level, int count)
+    {
+        ScriptableEntityDwelling configData = (ScriptableEntityDwelling)ScriptableData;
+
+        List<CostEntity> _costEntities = new List<CostEntity>();
+        for (int i = 0; i < configData.Creature[level].CreatureParams.Cost.Count; i++)
+        {
+            var item = configData.Creature[level].CreatureParams.Cost[i];
+            _costEntities.Add(new CostEntity()
+            {
+                Count = count * item.Count,
+                Resource = item.Resource
+            });
+        }
+
+        var newCreature = new EntityCreature(configData.Creature[level]);
+        newCreature.Data.value = count;
+        newCreature.Data.idObject = configData.idObject;
+
+        foreach (var res in _costEntities)
+        {
+            LevelManager.Instance.ActivePlayer.ChangeResource(res.Resource.TypeResource, -res.Count);
+        }
+
+        Data.value -= count;
+
+        return newCreature;
     }
     #endregion
 }

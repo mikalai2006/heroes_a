@@ -16,6 +16,7 @@ public class UIDialogBaseWindow : UILocaleBase
     private VisualElement _generalBlok;
     protected VisualElement Panel;
     protected VisualElement root;
+    protected ScriptableGameSetting GameSetting;
     // protected TaskCompletionSource<DataResultBuildDialog> _processCompletionSource;
     // // public UnityEvent processAction;
     // protected DataResultBuildDialog _dataResultDialog;
@@ -24,6 +25,9 @@ public class UIDialogBaseWindow : UILocaleBase
     public virtual void Start()
     {
         root = DialogApp.rootVisualElement;
+
+        GameSetting = LevelManager.Instance.ConfigGameSettings;
+
         Title = root.Q<Label>(_nameHeaderLabel);
         _generalBlok = root.Q<VisualElement>(_nameGeneralBlok);
 

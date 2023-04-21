@@ -1,0 +1,7 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/Toolkit/Base.uss?fileID=7433441132597879392&amp;guid=fa07b064290e7384d9ad2e26e79f5953&amp;type=3#Base" />
+    <ui:VisualElement name="VisualElement" class="p-05 m-0" style="align-items: center; flex-grow: 0;">
+        <ui:VisualElement name="Sprite" class="m-1" style="width: 83px; height: 80px; background-image: url(&apos;project://database/Assets/UI/Sprites/Resource/ResourceUI.png?fileID=36309692&amp;guid=a4dbc25aa5c0cc543a2d01e118853fe1&amp;type=3#ResourceUI_6&apos;);" />
+        <ui:Label tabindex="-1" text="100" display-tooltip-when-elided="true" name="Value" class="text-primary text_xl font-bold box_bg w-full text-center m-0" />
+    </ui:VisualElement>
+</ui:UXML>
