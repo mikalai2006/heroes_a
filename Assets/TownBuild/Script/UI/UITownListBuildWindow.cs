@@ -137,7 +137,6 @@ public class UITownListBuildWindow : MonoBehaviour
 
     public async void OnClickToBuild(ScriptableBuilding buildConfig, int level)
     {
-        Debug.Log($"Level {level}- {buildConfig.name}");
         List<string> requireBuilds = new List<string>();
         var build = buildConfig.BuildLevels[level];
 

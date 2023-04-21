@@ -147,8 +147,9 @@ public class UIDialogHeroInfo : UIDialogBaseWindow
             newBlok.Q<VisualElement>("Img").style.backgroundImage
                 = new StyleBackground(skillConfigData.Levels[skill.Value].Sprite);
             newBlok.Q<Label>("Type").text = type;
-            newBlok.Q<Label>("Title").text = skillConfigData.name;
+            newBlok.Q<Label>("Title").text = skillConfigData.Text.title.GetLocalizedString();
             _secondSkillBlok.Add(newBlok);
+            newBlok.RegisterCallback<ClickEvent>((ClickEvent evt) => ShowInfoSecondarySkill(skillConfigData, skill.Value));
         }
         for (int i = _hero.Data.SSkills.Count; i < 8; i++)
         {
@@ -159,6 +160,19 @@ public class UIDialogHeroInfo : UIDialogBaseWindow
             _secondSkillBlok.Add(newBlok);
         }
     }
+
+    private async void ShowInfoSecondarySkill(ScriptableAttributeSecondarySkill configData, int level)
+    {
+        var dialogData = new DataDialogHelp()
+        {
+            Header = configData.Levels[level].Title.GetLocalizedString(),
+            Description = configData.Levels[level].Description.GetLocalizedString(),
+        };
+
+        var dialogWindow = new DialogHelpProvider(dialogData);
+        await dialogWindow.ShowAndHide();
+    }
+
     private void FillCreaturesBlok()
     {
         _creaturesBlok.Clear();

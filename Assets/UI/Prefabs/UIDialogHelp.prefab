@@ -45,6 +45,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dc199f61d565e849ad179f43891e76f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _localization:
+    m_TableReference:
+      m_TableCollectionName: GUID:9b6db77d8a0719a4490c3b7aad12567c
   _uiDoc: {fileID: 1005539561634772170}
   _templateHelp: {fileID: 9197481963319205126, guid: 5dec190bbe27f8b44b0d3d66e29676b3, type: 3}
   processAction:

@@ -51,7 +51,6 @@ public class UITavernWindow : UIDialogBaseWindow
 
         EntityTown town = (EntityTown)_activePlayer.ActiveTown;
         var listConfigHero = ResourceSystem.Instance.GetEntityByType<ScriptableEntityHero>(TypeEntity.Hero);
-        Debug.Log($"Count hero=[{_activePlayer.DataPlayer.HeroesInTavern.Count}]");
         if (_activePlayer.DataPlayer.HeroesInTavern.Count > 0)
         {
             foreach (var heroId in _activePlayer.DataPlayer.HeroesInTavern)

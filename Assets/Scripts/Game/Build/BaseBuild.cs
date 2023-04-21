@@ -70,7 +70,7 @@ public abstract class BaseBuild
 
     public void DestroyGameObject()
     {
-        Debug.Log($"Destroy GameObject [{ConfigData.name}]");
+        // Debug.Log($"Destroy GameObject [{ConfigData.name}]");
         ConfigData.Prefab.ReleaseInstance(BuildGameObject.gameObject);
         BuildGameObject = null;
     }

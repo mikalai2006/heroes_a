@@ -70,15 +70,12 @@ public class BuildMonoBehavior : MonoBehaviour, IPointerClickHandler
     public async void OnPointerClick(PointerEventData eventData)
     {
         var b = Build.ConfigData;
-        Debug.Log($"TypeBuild={b.TypeBuild}");
         switch (b.TypeBuild)
         {
             case TypeBuild.Town:
-                Debug.Log("Click town");
                 await OnClickToHall();
                 break;
             case TypeBuild.Tavern:
-                Debug.Log("Click tavern");
                 await OnClickToTavern();
                 break;
         }
