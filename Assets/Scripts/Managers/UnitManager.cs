@@ -104,6 +104,7 @@ public static class UnitManager
         Entities.Add(newEntity.IdEntity, newEntity);
         newEntity.OccupiedNode = node;
         node.SetOcuppiedUnit(newEntity);
+        GameManager.Instance.MapManager.SetColorForTile(node.position, Color.magenta);
         // SpawnEntityToNode(node, newEntity);
         newEntity.CreateMapGameObject(node);
 
@@ -122,7 +123,7 @@ public static class UnitManager
         Entities.Add(entity.IdEntity, entity);
         entity.CreateMapGameObject(node);
 
-        GameManager.Instance.MapManager.SetColorForTile(pos, Color.yellow);
+        // GameManager.Instance.MapManager.SetColorForTile(pos, Color.magenta);
         // node.SetState(TypeStateNode.Disabled);
 
         ScriptableEntityMapObject configData = (ScriptableEntityMapObject)entity.ScriptableData;
@@ -151,7 +152,7 @@ public static class UnitManager
             {
                 foreach (GridTileNode nodex in list)
                 {
-                    GameManager.Instance.MapManager.SetColorForTile(nodex.position, Color.green);
+                    // GameManager.Instance.MapManager.SetColorForTile(nodex.position, Color.green);
                     nodex.SetAsInputPoint(node);
                 }
             }

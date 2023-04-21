@@ -5,21 +5,21 @@
     <Style src="project://database/Assets/UI/Toolkit/Aside/AsideMenu.uss?fileID=7433441132597879392&amp;guid=e55e2feb94a32ea4281de07ce70e415f&amp;type=3#AsideMenu" />
     <Style src="project://database/Assets/UI/Toolkit/Base.uss?fileID=7433441132597879392&amp;guid=fa07b064290e7384d9ad2e26e79f5953&amp;type=3#Base" />
     <Style src="project://database/Assets/UI/Toolkit/Aside/AsideFooter.uss?fileID=7433441132597879392&amp;guid=100acbaeadba496408baf44e6dfd4501&amp;type=3#AsideFooter" />
-    <ui:VisualElement name="MapButtons" style="position: absolute; top: 0; left: 0; display: none;">
+    <ui:VisualElement name="MapButtons" style="position: absolute; top: 0; left: 0; display: flex;">
         <ui:Button display-tooltip-when-elided="true" name="ButtonSettingMenu" class="button button_text button_bg button_bordered p-05 m-px" style="flex-grow: 1; flex-direction: column; align-items: center; justify-content: center;">
             <ui:VisualElement name="img" style="width: 100%; height: 100%; background-image: url(&apos;project://database/Assets/UI/Sprites/Bg.png?fileID=2800000&amp;guid=0641c76439a64674aa800f9e3d79c6a4&amp;type=3#Bg&apos;); position: absolute;" />
             <ui:VisualElement name="Overlay" class="overlay" />
-            <ui:VisualElement name="img" class="aside_menu_buttonimg m-2" style="background-image: url(&apos;project://database/Assets/UI/Sprites/Buttons/Setting%201.png?fileID=2800000&amp;guid=27ae874c69d2c1a40a3e8f8200a846dd&amp;type=3#Setting 1&apos;);" />
+            <ui:VisualElement name="img" class="aside_menu_buttonimg m-4" style="background-image: url(&apos;project://database/Assets/UI/Sprites/Buttons/Setting%201.png?fileID=2800000&amp;guid=27ae874c69d2c1a40a3e8f8200a846dd&amp;type=3#Setting 1&apos;);" />
         </ui:Button>
         <ui:Button display-tooltip-when-elided="true" name="ButtonNextStep" class="button button_text button_bg button_bordered p-05 m-px">
             <ui:VisualElement name="img" style="width: 100%; height: 100%; background-image: url(&apos;project://database/Assets/UI/Sprites/Bg.png?fileID=2800000&amp;guid=0641c76439a64674aa800f9e3d79c6a4&amp;type=3#Bg&apos;); position: absolute;" />
             <ui:VisualElement name="Overlay" class="overlay" />
-            <ui:VisualElement name="img" class="aside_menu_buttonimg m-2" style="background-image: url(&apos;project://database/Assets/UI/Sprites/Buttons/Timer%201.png?fileID=2800000&amp;guid=ee9e504367acda544a50552dea5df343&amp;type=3#Timer 1&apos;);" />
+            <ui:VisualElement name="img" class="aside_menu_buttonimg m-4" style="background-image: url(&apos;project://database/Assets/UI/Sprites/Buttons/Timer%201.png?fileID=2800000&amp;guid=ee9e504367acda544a50552dea5df343&amp;type=3#Timer 1&apos;);" />
         </ui:Button>
         <ui:Button display-tooltip-when-elided="true" name="ButtonGoHero" class="button button_text button_bg button_bordered p-05 m-px">
             <ui:VisualElement name="img" style="width: 100%; height: 100%; background-image: url(&apos;project://database/Assets/UI/Sprites/Bg.png?fileID=2800000&amp;guid=0641c76439a64674aa800f9e3d79c6a4&amp;type=3#Bg&apos;); position: absolute;" />
             <ui:VisualElement name="Overlay" class="overlay" />
-            <ui:VisualElement name="img" class="aside_menu_buttonimg m-2" style="background-image: url(&apos;project://database/Assets/UI/Sprites/Buttons/GoHero.png?fileID=2800000&amp;guid=2732a5281556f7a40b6d9efbdae34d88&amp;type=3#GoHero&apos;);" />
+            <ui:VisualElement name="img" class="aside_menu_buttonimg m-4" style="background-image: url(&apos;project://database/Assets/UI/Sprites/Buttons/GoHero.png?fileID=2800000&amp;guid=2732a5281556f7a40b6d9efbdae34d88&amp;type=3#GoHero&apos;);" />
         </ui:Button>
     </ui:VisualElement>
     <ui:VisualElement name="wrapper" class="aside_wrapper" style="background-image: url(&apos;project://database/Assets/UI/Sprites/Bg.png?fileID=2800000&amp;guid=0641c76439a64674aa800f9e3d79c6a4&amp;type=3#Bg&apos;); display: none; align-self: flex-end;">

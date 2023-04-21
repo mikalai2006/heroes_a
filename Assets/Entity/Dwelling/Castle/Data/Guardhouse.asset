@@ -29,10 +29,10 @@ MonoBehaviour:
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
-  TypeGround: -2050
+  TypeGround: 2046
   TypeWorkAttribute: 0
   Attributes: []
-  listTypeNoPath: 
+  listTypeNoPath: 0c00000007000000
   TypeWorkObject: 3
   TypeMapObject: 7
   listRuleInput: 1100000013000000120000000e000000

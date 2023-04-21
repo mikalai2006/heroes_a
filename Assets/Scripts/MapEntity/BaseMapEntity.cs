@@ -109,12 +109,12 @@ public abstract class BaseMapEntity : MonoBehaviour, IPointerClickHandler
         {
             if (LevelManager.Instance.ActivePlayer.ActiveHero != null)
             {
-                Debug.Log($"" +
-                    $"UnitBase Click \n" +
-                    $"name-{this.name} \n" +
-                    $"pos-[{transform.position}]\n" +
-                    $"ocup-[{MapObjectClass.OccupiedNode.ToString()}]\n"
-                    );
+                // Debug.Log($"" +
+                //     $"UnitBase Click \n" +
+                //     $"name-{this.name} \n" +
+                //     $"pos-[{transform.position}]\n" +
+                //     $"ocup-[{MapObjectClass.OccupiedNode.ToString()}]\n"
+                //     );
                 Vector3 posObject = transform.position;
 
                 if (posObject != null)

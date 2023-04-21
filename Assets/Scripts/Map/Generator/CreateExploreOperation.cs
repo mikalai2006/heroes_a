@@ -53,19 +53,22 @@ public class CreateExploreOperation : ILoadingOperation
                     GridTileNode currentNode = nodes[Random.Range(0, nodes.Count)];
                     GridTileNode nodeWarrior = _root.GetNodeWarrior(currentNode);
 
+                    List<ScriptableEntityMapObject> list = ResourceSystem.Instance
+                        .GetEntityByType<ScriptableEntityMapObject>(TypeEntity.MapObject)
+                        .Where(t => t.TypeMapObject == TypeMapObject.Explore)
+                        .ToList();
+                    ScriptableEntityMapObject configData
+                        = list[UnityEngine.Random.Range(0, list.Count)];
+
                     if (nodeWarrior != null
                         && currentNode.StateNode.HasFlag(StateNode.Empty)
                         // && nodeWarrior.Empty
                         && currentNode != null
-                        && _root.gridTileHelper.CalculateNeighbours(currentNode) == 8
+                        // && _root.gridTileHelper.CalculateNeighbours(currentNode) == 8
+                        && configData != null
+                        && _root.gridTileHelper.GetAllowInsertObjectToNode(currentNode, configData)
                         )
                     {
-                        List<ScriptableEntityMapObject> list = ResourceSystem.Instance
-                            .GetEntityByType<ScriptableEntityMapObject>(TypeEntity.MapObject)
-                            .Where(t => t.TypeMapObject == TypeMapObject.Explore)
-                            .ToList();
-                        ScriptableEntityMapObject configData
-                            = list[UnityEngine.Random.Range(0, list.Count)];
                         EntityExpore entity
                             = (EntityExpore)factory.CreateMapObject(TypeMapObject.Explore, configData);
                         UnitManager.SpawnEntityMapObjectToNode(currentNode, entity);

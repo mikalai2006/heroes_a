@@ -412,7 +412,7 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
 
     public async UniTask NewMap()
     {
-        Application.targetFrameRate = 60;
+        // Application.targetFrameRate = 60;
 
 #if UNITY_EDITOR
         System.Diagnostics.Stopwatch stopWatch = new System.Diagnostics.Stopwatch();
@@ -449,9 +449,9 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
         operations.Enqueue(new CreateSkillSchoolOperation(this));
 
         operations.Enqueue(new CreateResourceEveryWeekOperation(this));
+        operations.Enqueue(new CreateDwellingOperation(this));
         operations.Enqueue(new CreateResourceOperation(this));
         operations.Enqueue(new CreateArtifactOperation(this));
-        operations.Enqueue(new CreateDwellingOperation(this));
         operations.Enqueue(new CreateEdgesOperation(this));
         await GameManager.Instance.LoadingScreenProvider.LoadAndDestroy(operations);
 
@@ -748,7 +748,7 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
 
         }
 
-        // Debug.Log($"Click {clickedTile.ToString()} \n {node.ToString()}");
+        Debug.Log($"Click {clickedTile.ToString()} \n {node.ToString()}");
     }
 
     public void ResetCursor()
