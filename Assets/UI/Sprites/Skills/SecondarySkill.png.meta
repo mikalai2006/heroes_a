@@ -1,0 +1,1984 @@
+fileFormatVersion: 2
+guid: bb3826057700334448fec2c60c7241e3
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: SecondarySkill_0
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 712
+        width: 81
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5bec3af36b022846bd7266925a2a07c
+      internalID: 1516486237
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SecondarySkill_1
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 712
+        width: 81
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b82124545ac0a4f4d9ddf72f1184d158
+      internalID: 1387035426
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SecondarySkill_2
+      rect:
+        serializedVersion: 2
+        x: 179
+        y: 712
+        width: 81
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47bafc10936aa7f4bb51b7bcc393ea82
+      internalID: -1031868634
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SecondarySkill_3
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 712
+        width: 81
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 698c4296586fa16419713ebcdd4d4a8a
+      internalID: 893447211
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SecondarySkill_4
+      rect:
+        serializedVersion: 2
+        x: 353
+        y: 712
+        width: 81
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45ee9e584963e614090eeae7cabdf054
+      internalID: -605404244
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SecondarySkill_5
+      rect:
+        serializedVersion: 2
+        x: 440
+        y: 712
+        width: 81
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f6d556c322aab564a8cfab3adcb6ef2f
+      internalID: -1072281322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SecondarySkill_6
+      rect:
+        serializedVersion: 2
+        x: 527
+        y: 712
+        width: 81
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac71d6ff3c6201d46982ff5104569acb
+      internalID: 311596831
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SecondarySkill_7
+      rect:
+        serializedVersion: 2
+        x: 614
+        y: 712
+        width: 81
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06913061c56ed8c48a08a73ac3ee5b8f
+      internalID: -1457783832
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SecondarySkill_8
+      rect:
+        serializedVersion: 2
+        x: 701
+        y: 712
+        width: 81
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ceb69c2ce6951b043a4fd7cf3937e00a
+      internalID: -1349889754
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SecondarySkill_9
+      rect:
+        serializedVersion: 2
+        x: 788
+        y: 712
+        width: 81
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad2b9ceda671b4a40bbbea91f2c0363a
+      internalID: 355599015
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SecondarySkill_10
+      rect:
+        serializedVersion: 2
+        x: 875
+        y: 712
+        width: 81
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a0a359b66de0a4740a2a005705de623b
+      internalID: -1204555324
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SecondarySkill_11
+      rect:
+        serializedVersion: 2
+        x: 962
+        y: 712
+        width: 81
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5dec69c98e37714cac0560258db1345
+      internalID: -1753145498
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SecondarySkill_12
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 612
+        width: 81
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aefbacdd42ed6f54a986afd722084365
+      internalID: 1474113446
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SecondarySkill_13
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 612
+        width: 81
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 39b0b7a039e1954409a1df3641ceb0c4
+      internalID: -580216416
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SecondarySkill_14
+      rect:
+        serializedVersion: 2
+        x: 179
+        y: 612
+        width: 81
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7085b8dc50b87f4fbd5b4b1a66d0027
+      internalID: -791070158
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SecondarySkill_15
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 612
+        width: 81
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 159202d40a234fb4680563d330d02df2
+      internalID: -1117320432
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SecondarySkill_16
+      rect:
+        serializedVersion: 2
+        x: 353
+        y: 612
+        width: 81
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a4c40f4718fb95449808b6b355972c58
+      internalID: -1269135421
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SecondarySkill_17
+      rect:
+        serializedVersion: 2
+        x: 440
+        y: 612
+        width: 81
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 25560f9f562a13842a468c2f2bbe98cf
+      internalID: 217712799
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SecondarySkill_18
+      rect:
+        serializedVersion: 2
+        x: 527
+        y: 612
+        width: 81
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74be0979ab13fc8488361f3389931031
+      internalID: 1972236025
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SecondarySkill_19
+      rect:
+        serializedVersion: 2
+        x: 614
+        y: 612
+        width: 81
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8066e3bba0ec294c909ce4199073038
+      internalID: 1172166328
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SecondarySkill_20
+      rect:
+        serializedVersion: 2
+        x: 701
+        y: 612
+        width: 81
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d23789aa527ae0d4a8707eda72daf292
+      internalID: 1740081369
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SecondarySkill_21
+      rect:
+        serializedVersion: 2
+        x: 788
+        y: 612
+        width: 81
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75d9a9ca235ae574cbba26c27c207182
+      internalID: -1125019742
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SecondarySkill_22
+      rect:
+        serializedVersion: 2
+        x: 875
+        y: 612
+        width: 81
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c1fb1f5348291c8449676052e158ee03
+      internalID: 2032843442
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SecondarySkill_23
+      rect:
+        serializedVersion: 2
+        x: 962
+        y: 612
+        width: 81
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f481b6959cafff49b40c7d238136d14
+      internalID: 705913595
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SecondarySkill_24
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 512
+        width: 81
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 603b336318b2c4e4582fc3a9c49243cf
+      internalID: -1277321086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SecondarySkill_25
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 512
+        width: 81
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 392783f16e5655a48a438884bb24c9f8
+      internalID: -1643758774
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SecondarySkill_26
+      rect:
+        serializedVersion: 2
+        x: 179
+        y: 512
+        width: 81
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8631ff68d02108c40ad24c2d70fe237c
+      internalID: 1837127338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SecondarySkill_27
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 512
+        width: 81
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: efe336b1d1cf3f241abdcd7831597032
+      internalID: -1501059819
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SecondarySkill_28
+      rect:
+        serializedVersion: 2
+        x: 353
+        y: 512
+        width: 81
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 84ff00a7c780bda43bd196b0d6c289ba
+      internalID: 511651814
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SecondarySkill_29
+      rect:
+        serializedVersion: 2
+        x: 440
+        y: 512
+        width: 81
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e63abee6d98182b4cbf4504943859621
+      internalID: -32017757
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SecondarySkill_30
+      rect:
+        serializedVersion: 2
+        x: 527
+        y: 512
+        width: 81
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 66598d0ddd8552041afcd278dc12adda
+      internalID: 1850979123
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SecondarySkill_31
+      rect:
+        serializedVersion: 2
+        x: 614
+        y: 512
+        width: 81
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd572ab41a304da4e9b75d70f905ce94
+      internalID: 879545799
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SecondarySkill_32
+      rect:
+        serializedVersion: 2
+        x: 701
+        y: 512
+        width: 81
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 04cb65b107f565a4baf874dcfbf7dda8
+      internalID: -1572570336
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SecondarySkill_33
+      rect:
+        serializedVersion: 2
+        x: 788
+        y: 512
+        width: 81
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97a5e9d37372fc04faf17de770df2dbf
+      internalID: -581849722
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SecondarySkill_34
+      rect:
+        serializedVersion: 2
+        x: 875
+        y: 512
+        width: 81
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c7d72817d98bf14ca9e0f0d523d8205
+      internalID: -461556918
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SecondarySkill_35
+      rect:
+        serializedVersion: 2
+        x: 962
+        y: 512
+        width: 81
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 80b55c0757845e6458f1509cc05d8d88
+      internalID: -169039552
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SecondarySkill_36
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 412
+        width: 81
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19ce3b780464dd748a63502067e132e6
+      internalID: -1747516053
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SecondarySkill_37
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 412
+        width: 81
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e194d3159d47344ba22bdf7d35f2035
+      internalID: -64019714
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SecondarySkill_38
+      rect:
+        serializedVersion: 2
+        x: 179
+        y: 412
+        width: 81
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7752c88384b333044ab9fdfef7d5b633
+      internalID: 2143541272
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SecondarySkill_39
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 412
+        width: 81
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2aba6857fe2b84841a009afd32f400fa
+      internalID: -930561773
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SecondarySkill_40
+      rect:
+        serializedVersion: 2
+        x: 353
+        y: 412
+        width: 81
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81ee150bc6b8d4645ae2bd82d6d288c6
+      internalID: -346086016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SecondarySkill_41
+      rect:
+        serializedVersion: 2
+        x: 440
+        y: 412
+        width: 81
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb837daca3aaac649b1ab74b41404d1f
+      internalID: -1595800635
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SecondarySkill_42
+      rect:
+        serializedVersion: 2
+        x: 527
+        y: 412
+        width: 81
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81f78e6f86702274eb73916caa68c724
+      internalID: 1264378748
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SecondarySkill_43
+      rect:
+        serializedVersion: 2
+        x: 614
+        y: 412
+        width: 81
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1871dfdaa36f9694d905649e1ff35e54
+      internalID: 1230857775
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SecondarySkill_44
+      rect:
+        serializedVersion: 2
+        x: 701
+        y: 412
+        width: 81
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d553f30868001c649ba0c2d467e64764
+      internalID: 2098571124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SecondarySkill_45
+      rect:
+        serializedVersion: 2
+        x: 788
+        y: 412
+        width: 81
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c99be1f197a496e4caae7faca765a51c
+      internalID: 1466227811
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SecondarySkill_46
+      rect:
+        serializedVersion: 2
+        x: 875
+        y: 412
+        width: 81
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 514639b8061e1bd49adad0b9fc607253
+      internalID: 807274699
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SecondarySkill_47
+      rect:
+        serializedVersion: 2
+        x: 962
+        y: 412
+        width: 81
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f9c368e198fef344fb90871e565fbffc
+      internalID: -2065747220
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SecondarySkill_48
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 312
+        width: 81
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 851c7672460129d41a12644ad41a0869
+      internalID: -636336220
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SecondarySkill_49
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 312
+        width: 81
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8fa3a6c3e4b4684da41f4dc723ec060
+      internalID: -1529639701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SecondarySkill_50
+      rect:
+        serializedVersion: 2
+        x: 179
+        y: 312
+        width: 81
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47afbb905fb0afe4788538aca279001a
+      internalID: 1824886072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SecondarySkill_51
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 312
+        width: 81
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65f3eb80627498a44a78df69c813d5c2
+      internalID: 813200384
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SecondarySkill_52
+      rect:
+        serializedVersion: 2
+        x: 353
+        y: 312
+        width: 81
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d046dbc26c7b4e45bcb27ef711683b9
+      internalID: 844055329
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SecondarySkill_53
+      rect:
+        serializedVersion: 2
+        x: 440
+        y: 312
+        width: 81
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ef67c28d87147c4e9eae856cd423454
+      internalID: -311600435
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SecondarySkill_54
+      rect:
+        serializedVersion: 2
+        x: 527
+        y: 312
+        width: 81
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b016fe54eb49ff849901f409f58e358a
+      internalID: 1299389899
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SecondarySkill_55
+      rect:
+        serializedVersion: 2
+        x: 614
+        y: 312
+        width: 81
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf58885c78564004385291f40687ffbd
+      internalID: 1999296767
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SecondarySkill_56
+      rect:
+        serializedVersion: 2
+        x: 701
+        y: 312
+        width: 81
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 271fde4eeec7e8e41a258efb840a6a12
+      internalID: -1094687943
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SecondarySkill_57
+      rect:
+        serializedVersion: 2
+        x: 788
+        y: 312
+        width: 81
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14306bf9ecf8cf14f85b951abe1dfc69
+      internalID: -733104413
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SecondarySkill_58
+      rect:
+        serializedVersion: 2
+        x: 875
+        y: 312
+        width: 81
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58608ae4ffd0ee54582ee5e7d3dc27f3
+      internalID: 1049194106
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SecondarySkill_59
+      rect:
+        serializedVersion: 2
+        x: 962
+        y: 312
+        width: 81
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 66d9c12490bb1824c885f9e68ae54797
+      internalID: 741720483
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SecondarySkill_60
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 212
+        width: 81
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c707ddeef4ddebd4c9fdeafc625e9fa8
+      internalID: 40640601
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SecondarySkill_61
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 212
+        width: 81
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc73f338f1bd85c439faaff0a4bb7dd2
+      internalID: 1200833773
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SecondarySkill_62
+      rect:
+        serializedVersion: 2
+        x: 179
+        y: 212
+        width: 81
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb8e23ed4b8461044b0908f8e1789f09
+      internalID: -1154251487
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SecondarySkill_63
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 212
+        width: 81
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e096153d5b4e0ac47b8752e46628c37b
+      internalID: 468283574
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SecondarySkill_64
+      rect:
+        serializedVersion: 2
+        x: 353
+        y: 212
+        width: 81
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 57b2df6ee4b9ae9429a6e1096af5ef0a
+      internalID: -894466421
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SecondarySkill_65
+      rect:
+        serializedVersion: 2
+        x: 440
+        y: 212
+        width: 81
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 212e995871a4913489bb0c96c322610b
+      internalID: -913069711
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SecondarySkill_66
+      rect:
+        serializedVersion: 2
+        x: 527
+        y: 212
+        width: 81
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 118df615fc35d9044809c2cea7cf7661
+      internalID: -347023252
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SecondarySkill_67
+      rect:
+        serializedVersion: 2
+        x: 614
+        y: 212
+        width: 81
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 23bf1017e61be034ca8c97bfe85d2567
+      internalID: -553306794
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SecondarySkill_68
+      rect:
+        serializedVersion: 2
+        x: 701
+        y: 212
+        width: 81
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a541ff3a05fa2c64d9527ed40da3a507
+      internalID: -1710163509
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SecondarySkill_69
+      rect:
+        serializedVersion: 2
+        x: 788
+        y: 212
+        width: 81
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f8d3224ca433ff94c9880c007bbbb4bd
+      internalID: -1990387230
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SecondarySkill_70
+      rect:
+        serializedVersion: 2
+        x: 875
+        y: 212
+        width: 81
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e64b1f9baa4da844e9ef94010883a5ac
+      internalID: -316454934
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SecondarySkill_71
+      rect:
+        serializedVersion: 2
+        x: 962
+        y: 212
+        width: 81
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e6546e1a7b627d4d8d0b0a9f198beaf
+      internalID: 1154188612
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SecondarySkill_72
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 112
+        width: 81
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d72d44d7c7f751b43bda975b3c2c3445
+      internalID: 176396265
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SecondarySkill_73
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 112
+        width: 81
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28eaf305c6612794c8bbc939875a4ab3
+      internalID: -117044942
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SecondarySkill_74
+      rect:
+        serializedVersion: 2
+        x: 179
+        y: 112
+        width: 81
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ac35c8bddfaecc4799c8b01d6aa9b7d
+      internalID: -1375378323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SecondarySkill_75
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 112
+        width: 81
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f1e20c050aeec814f843d88933d39b44
+      internalID: 597149451
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SecondarySkill_76
+      rect:
+        serializedVersion: 2
+        x: 353
+        y: 112
+        width: 81
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d6274cffc29ce042a06fe65b056fabb
+      internalID: -2144216138
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SecondarySkill_77
+      rect:
+        serializedVersion: 2
+        x: 440
+        y: 112
+        width: 81
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ded398d029b03b04aac36e0b45b4d4f2
+      internalID: 176159269
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SecondarySkill_78
+      rect:
+        serializedVersion: 2
+        x: 527
+        y: 112
+        width: 81
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f22ed8b515c390429202f1db2128b69
+      internalID: 1826241532
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SecondarySkill_79
+      rect:
+        serializedVersion: 2
+        x: 614
+        y: 112
+        width: 81
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 967237829404d7a40afeec7a82335913
+      internalID: 1420609012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SecondarySkill_80
+      rect:
+        serializedVersion: 2
+        x: 701
+        y: 112
+        width: 81
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4d349f8b60818a4bb00c51efe39e000
+      internalID: -1450168523
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SecondarySkill_81
+      rect:
+        serializedVersion: 2
+        x: 788
+        y: 112
+        width: 81
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2f9ff8c5214d2304ba5ca7303b6afc33
+      internalID: -82010492
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SecondarySkill_82
+      rect:
+        serializedVersion: 2
+        x: 875
+        y: 112
+        width: 81
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eaea5b7b43df14a43b5c9d131ac568d3
+      internalID: -468305900
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SecondarySkill_83
+      rect:
+        serializedVersion: 2
+        x: 962
+        y: 112
+        width: 81
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a06f6fc2fdc7de1419afe1cf5b08a3eb
+      internalID: 1663323965
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      SecondarySkill_0: 1516486237
+      SecondarySkill_1: 1387035426
+      SecondarySkill_10: -1204555324
+      SecondarySkill_11: -1753145498
+      SecondarySkill_12: 1474113446
+      SecondarySkill_13: -580216416
+      SecondarySkill_14: -791070158
+      SecondarySkill_15: -1117320432
+      SecondarySkill_16: -1269135421
+      SecondarySkill_17: 217712799
+      SecondarySkill_18: 1972236025
+      SecondarySkill_19: 1172166328
+      SecondarySkill_2: -1031868634
+      SecondarySkill_20: 1740081369
+      SecondarySkill_21: -1125019742
+      SecondarySkill_22: 2032843442
+      SecondarySkill_23: 705913595
+      SecondarySkill_24: -1277321086
+      SecondarySkill_25: -1643758774
+      SecondarySkill_26: 1837127338
+      SecondarySkill_27: -1501059819
+      SecondarySkill_28: 511651814
+      SecondarySkill_29: -32017757
+      SecondarySkill_3: 893447211
+      SecondarySkill_30: 1850979123
+      SecondarySkill_31: 879545799
+      SecondarySkill_32: -1572570336
+      SecondarySkill_33: -581849722
+      SecondarySkill_34: -461556918
+      SecondarySkill_35: -169039552
+      SecondarySkill_36: -1747516053
+      SecondarySkill_37: -64019714
+      SecondarySkill_38: 2143541272
+      SecondarySkill_39: -930561773
+      SecondarySkill_4: -605404244
+      SecondarySkill_40: -346086016
+      SecondarySkill_41: -1595800635
+      SecondarySkill_42: 1264378748
+      SecondarySkill_43: 1230857775
+      SecondarySkill_44: 2098571124
+      SecondarySkill_45: 1466227811
+      SecondarySkill_46: 807274699
+      SecondarySkill_47: -2065747220
+      SecondarySkill_48: -636336220
+      SecondarySkill_49: -1529639701
+      SecondarySkill_5: -1072281322
+      SecondarySkill_50: 1824886072
+      SecondarySkill_51: 813200384
+      SecondarySkill_52: 844055329
+      SecondarySkill_53: -311600435
+      SecondarySkill_54: 1299389899
+      SecondarySkill_55: 1999296767
+      SecondarySkill_56: -1094687943
+      SecondarySkill_57: -733104413
+      SecondarySkill_58: 1049194106
+      SecondarySkill_59: 741720483
+      SecondarySkill_6: 311596831
+      SecondarySkill_60: 40640601
+      SecondarySkill_61: 1200833773
+      SecondarySkill_62: -1154251487
+      SecondarySkill_63: 468283574
+      SecondarySkill_64: -894466421
+      SecondarySkill_65: -913069711
+      SecondarySkill_66: -347023252
+      SecondarySkill_67: -553306794
+      SecondarySkill_68: -1710163509
+      SecondarySkill_69: -1990387230
+      SecondarySkill_7: -1457783832
+      SecondarySkill_70: -316454934
+      SecondarySkill_71: 1154188612
+      SecondarySkill_72: 176396265
+      SecondarySkill_73: -117044942
+      SecondarySkill_74: -1375378323
+      SecondarySkill_75: 597149451
+      SecondarySkill_76: -2144216138
+      SecondarySkill_77: 176159269
+      SecondarySkill_78: 1826241532
+      SecondarySkill_79: 1420609012
+      SecondarySkill_8: -1349889754
+      SecondarySkill_80: -1450168523
+      SecondarySkill_81: -82010492
+      SecondarySkill_82: -468305900
+      SecondarySkill_83: 1663323965
+      SecondarySkill_9: 355599015
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

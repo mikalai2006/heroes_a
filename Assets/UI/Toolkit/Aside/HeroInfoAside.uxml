@@ -1,0 +1,36 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/Toolkit/Base.uss?fileID=7433441132597879392&amp;guid=fa07b064290e7384d9ad2e26e79f5953&amp;type=3#Base" />
+    <Style src="project://database/Assets/UI/Toolkit/HeroInfoBox.uss?fileID=7433441132597879392&amp;guid=244c2fc00bdb3364e8ae63d4903d5670&amp;type=3#HeroInfoBox" />
+    <ui:VisualElement name="HeroInfoBox" class="border-color h-full text-secondary">
+        <ui:VisualElement name="Overlay" class="overlay" style="flex-grow: 1; background-image: url(&apos;project://database/Assets/UI/Sprites/Bg.png?fileID=2800000&amp;guid=0641c76439a64674aa800f9e3d79c6a4&amp;type=3#Bg&apos;);" />
+        <ui:VisualElement name="Box" style="height: 30%;">
+            <ui:VisualElement name="HeroInfoHeader" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row;">
+                <ui:VisualElement name="HeroIcon" style="width: 30%;" />
+                <ui:VisualElement name="HeroInfo" style="width: 70%;">
+                    <ui:Label tabindex="-1" text="Label" display-tooltip-when-elided="true" name="HeroName" class="mt-0" style="padding-bottom: 0; padding-top: 0;" />
+                    <ui:VisualElement name="HeroParams" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row;">
+                        <ui:VisualElement name="Force" class="heroinfo_param">
+                            <ui:VisualElement name="img" class="heroinfo_param_img" style="background-image: url(&apos;project://database/Assets/UI/Sprites/Info/Force.png?fileID=2800000&amp;guid=3d19add675f7b4d4aa4312252ee3e3e1&amp;type=3#Force&apos;);" />
+                            <ui:Label tabindex="-1" text="99" display-tooltip-when-elided="true" name="ForceValue" class="heroinfo_param_value" />
+                        </ui:VisualElement>
+                        <ui:VisualElement name="Protection" class="heroinfo_param" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
+                            <ui:VisualElement name="img" class="heroinfo_param_img" style="background-image: url(&apos;project://database/Assets/UI/Sprites/Info/Protection.png?fileID=2800000&amp;guid=ce49763f7c0f7aa429fe9426c7999dc5&amp;type=3#Protection&apos;);" />
+                            <ui:Label tabindex="-1" text="2" display-tooltip-when-elided="true" name="ProtectionValue" class="heroinfo_param_value" />
+                        </ui:VisualElement>
+                        <ui:VisualElement name="MagicPower" class="heroinfo_param" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
+                            <ui:VisualElement name="img" class="heroinfo_param_img" style="background-color: rgba(0, 0, 0, 0); background-image: url(&apos;project://database/Assets/UI/Sprites/Info/MagicPower.png?fileID=2800000&amp;guid=17b09c01bb1235841ae5f54b9ae0881e&amp;type=3#MagicPower&apos;);" />
+                            <ui:Label tabindex="-1" text="2" display-tooltip-when-elided="true" name="MagicPowerValue" class="heroinfo_param_value" />
+                        </ui:VisualElement>
+                        <ui:VisualElement name="MagicValue" class="heroinfo_param" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
+                            <ui:VisualElement name="img" class="heroinfo_param_img" style="background-color: rgba(0, 0, 0, 0); background-image: url(&apos;project://database/Assets/UI/Sprites/Info/MagicValue.png?fileID=2800000&amp;guid=e341dab62e12ac249ab97e113161f7e4&amp;type=3#MagicValue&apos;);" />
+                            <ui:Label tabindex="-1" text="2" display-tooltip-when-elided="true" name="MagicPowerValue" class="heroinfo_param_value" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="HeroForce" style="height: 65%; margin-top: 3px;">
+            <ui:VisualElement name="HeroForceList" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row; flex-wrap: wrap; height: 100%;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

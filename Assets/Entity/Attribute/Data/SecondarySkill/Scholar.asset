@@ -1,0 +1,98 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b94748fd66a1e4498620a2843740b4e, type: 3}
+  m_Name: Scholar
+  m_EditorClassIdentifier: 
+  idObject: attribute.skill.scholar
+  TypeAttribute: 40
+  MenuSprite: {fileID: 0}
+  Text:
+    title:
+      m_TableReference:
+        m_TableCollectionName: GUID:f81d8dede4596554fa6d177e4e16b1bc
+      m_TableEntryReference:
+        m_KeyId: 12564470857728
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    description:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+  TypeTwoSkill: 65
+  Levels:
+  - Sprite: {fileID: 1299389899, guid: bb3826057700334448fec2c60c7241e3, type: 3}
+    Title:
+      m_TableReference:
+        m_TableCollectionName: GUID:f81d8dede4596554fa6d177e4e16b1bc
+      m_TableEntryReference:
+        m_KeyId: 12588898484224
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    Description:
+      m_TableReference:
+        m_TableCollectionName: GUID:f81d8dede4596554fa6d177e4e16b1bc
+      m_TableEntryReference:
+        m_KeyId: 12599266803712
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+  - Sprite: {fileID: 1999296767, guid: bb3826057700334448fec2c60c7241e3, type: 3}
+    Title:
+      m_TableReference:
+        m_TableCollectionName: GUID:f81d8dede4596554fa6d177e4e16b1bc
+      m_TableEntryReference:
+        m_KeyId: 12611921018880
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    Description:
+      m_TableReference:
+        m_TableCollectionName: GUID:f81d8dede4596554fa6d177e4e16b1bc
+      m_TableEntryReference:
+        m_KeyId: 12621844742144
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+  - Sprite: {fileID: -1094687943, guid: bb3826057700334448fec2c60c7241e3, type: 3}
+    Title:
+      m_TableReference:
+        m_TableCollectionName: GUID:f81d8dede4596554fa6d177e4e16b1bc
+      m_TableEntryReference:
+        m_KeyId: 12637451747328
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    Description:
+      m_TableReference:
+        m_TableCollectionName: GUID:f81d8dede4596554fa6d177e4e16b1bc
+      m_TableEntryReference:
+        m_KeyId: 12651070652416
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+  references:
+    version: 2
+    RefIds: []

@@ -35,7 +35,7 @@ public class EntityTown : BaseEntity
             Data.name = ConfigData.name;
             idObject = ScriptableData.idObject;
 
-            Data.Generals = new SerializableDictionary<string, BuildGeneral>();
+            Data.Generals = new SerializableDictionary<string, BuildGeneralBase>();
             Data.Armys = new SerializableDictionary<string, BuildArmy>();
 
             // Data.Creatures = new SerializableDictionary<int, EntityCreature>();
@@ -44,11 +44,6 @@ public class EntityTown : BaseEntity
             //     Data.Creatures.Add(i, null);
             // }
             ResetCreatures();
-
-            foreach (var item in ConfigData.BuildTown.StartProgressBuilds)
-            {
-                var newBuild = CreateBuild(item.Build, item.level);
-            }
         }
         else
         {
@@ -57,7 +52,7 @@ public class EntityTown : BaseEntity
                 .Where(t => t.idObject == saveData.idObject)
                 .First();
             Data = saveData.data;
-            Data.Generals = new SerializableDictionary<string, BuildGeneral>();
+            Data.Generals = new SerializableDictionary<string, BuildGeneralBase>();
             Data.Armys = new SerializableDictionary<string, BuildArmy>();
             foreach (var item in saveData.data.Generals)
             {
@@ -65,7 +60,7 @@ public class EntityTown : BaseEntity
                     .GetAllBuildsForTown()
                     .Where(t => t.idObject == item.Key)
                     .First();
-                var newBuild = CreateBuild(configDataBuild, item.Value.level);
+                var newBuild = CreateBuild(configDataBuild, item.Value.level, _player);
             }
             foreach (var item in saveData.data.Armys)
             {
@@ -73,7 +68,7 @@ public class EntityTown : BaseEntity
                     .GetAllBuildsForTown()
                     .Where(t => t.idObject == item.Key)
                     .First();
-                var newBuild = CreateBuild(configDataBuild, item.Value.level);
+                var newBuild = CreateBuild(configDataBuild, item.Value.level, _player);
             }
 
             var creatures = saveData.data.Creatures;
@@ -108,6 +103,17 @@ public class EntityTown : BaseEntity
         }
 
     }
+
+    private void InitBuilding()
+    {
+        foreach (var item in ConfigData.BuildTown.StartProgressBuilds)
+        {
+            var newBuild = CreateBuild(item.Build, item.level, _player);
+            newBuild.OnRunOneEffect();
+            // ((ScriptableBuilding)newBuild.ConfigData).BuildLevels[newBuild.level].RunOne(ref _player, this);
+        }
+    }
+
     public void ResetCreatures()
     {
         Data.Creatures = new SerializableDictionary<int, EntityCreature>();
@@ -139,6 +145,8 @@ public class EntityTown : BaseEntity
 
         Data.idPlayer = player.DataPlayer.id;
         player.AddTown(this);
+
+        InitBuilding();
     }
 
     #region SaveLoadData
@@ -152,8 +160,9 @@ public class EntityTown : BaseEntity
         data.entity.towns.Add(sdata);
     }
 
-    public BaseBuild CreateBuild(ScriptableBuilding buildConfig, int level)
+    public BaseBuild CreateBuild(ScriptableBuilding buildConfig, int level, Player player)
     {
+        var factory = new BuildFactory();
         if (buildConfig.TypeBuild == TypeBuild.Army)
         {
             BuildArmy build;
@@ -164,22 +173,24 @@ public class EntityTown : BaseEntity
             }
             else
             {
-                build = new BuildArmy(level, (ScriptableBuildingArmy)buildConfig, this);
+                build = new BuildArmy(level, (ScriptableBuildingArmy)buildConfig, this, player);
                 Data.Armys.Add(buildConfig.idObject, build);
             }
             return build;
         }
         else
         {
-            BuildGeneral build;
+            BuildGeneralBase build;
             if (Data.Generals.TryGetValue(buildConfig.idObject, out build))
             {
                 Data.Generals[buildConfig.idObject].level += 1;
-                Data.Generals[buildConfig.idObject].OnRunEffects();
+                Data.Generals[buildConfig.idObject].OnRunOneEffect();
+                // Data.Generals[buildConfig.idObject].ConfigData.BuildLevels[level].RunOne(ref _player, this);
             }
             else
             {
-                build = new BuildGeneral(level, (ScriptableBuildingGeneral)buildConfig, this);
+                build = factory.CreateBuild(level, (ScriptableBuildingGeneral)buildConfig, this, player);
+                // new BuildGeneral(level, (ScriptableBuildingGeneral)buildConfig, this, player);
                 Data.Generals.Add(buildConfig.idObject, build);
             }
             return build;
@@ -202,7 +213,7 @@ public class EntityTown : BaseEntity
             }
             else
             {
-                BuildGeneral isGen;
+                BuildGeneralBase isGen;
                 Data.Generals.TryGetValue(item.Build.idObject, out isGen);
                 if (isGen == null || (isGen != null && isGen.level < item.level))
                 {
@@ -253,7 +264,7 @@ public class EntityTown : BaseEntity
         }
         else
         {
-            BuildGeneral isGen;
+            BuildGeneralBase isGen;
             Data.Generals.TryGetValue(configBuildData.idObject, out isGen);
             if (isGen != null)
             {
@@ -263,17 +274,17 @@ public class EntityTown : BaseEntity
         return result;
     }
 
-    public override void OnAfterStateChanged(GameState newState)
-    {
-        base.OnAfterStateChanged(newState);
-        switch (newState)
-        {
-            case GameState.StepNextPlayer:
-                // OnRunGeneralBuilds();
-                OnRunArmyBuilds();
-                break;
-        }
-    }
+    // public override void OnAfterStateChanged(GameState newState)
+    // {
+    //     base.OnAfterStateChanged(newState);
+    //     switch (newState)
+    //     {
+    //         case GameState.NextWeek:
+    //             // OnRunGeneralBuilds();
+    //             OnRunArmyBuilds();
+    //             break;
+    //     }
+    // }
 
     // private void OnRunGeneralBuilds()
     // {
@@ -286,15 +297,5 @@ public class EntityTown : BaseEntity
     //     };
     // }
 
-    private void OnRunArmyBuilds()
-    {
-        if (Player == LevelManager.Instance.ActivePlayer)
-        {
-            foreach (var build in Data.Armys)
-            {
-                Debug.Log($"OnRunArmyBuilds::: Next day - {build.Value.ConfigData.name}");
-            }
-        };
-    }
     #endregion
 }

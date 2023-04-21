@@ -138,13 +138,36 @@ public struct Build
     [SerializeField] public List<CostEntity> CostResource;
     // public TypeWorkAttribute TypeWorkAttribute;
     // public GroupAttributes Attributes;
-    public List<BaseEffect> Effects;
+    // public List<BaseEffect> Effects;
+    public EffectType Effect;
 
-    public void OnAddEffect(ref Player player, BaseEntity entity)
+    public void RunOne(ref Player player, BaseEntity entity)
     {
-        foreach (var effect in Effects)
+        foreach (var effect in Effect.One)
         {
-            effect.OnAddEffect(ref player, entity);
+            effect.RunOne(ref player, entity);
+        }
+    }
+
+    public void RunEveryDay(ref Player player, BaseEntity entity)
+    {
+        foreach (var effect in Effect.EveryDay)
+        {
+            effect.RunEveryDay(ref player, entity);
+        }
+    }
+    public void RunEveryWeek(ref Player player, BaseEntity entity)
+    {
+        foreach (var effect in Effect.EveryWeek)
+        {
+            effect.RunEveryWeek(ref player, entity);
+        }
+    }
+    public void RunHero(ref Player player, BaseEntity entity)
+    {
+        foreach (var effect in Effect.RunHero)
+        {
+            effect.RunHero(ref player, entity);
         }
     }
 }

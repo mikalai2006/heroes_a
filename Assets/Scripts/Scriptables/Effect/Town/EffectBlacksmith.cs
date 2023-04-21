@@ -1,14 +1,14 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "WarMachineEffect", menuName = "Game/Effect/EffectWarMachine")]
-public class EffectWarMachine : BaseEffect, IEffected
+public class EffectWarMachine : BaseEffect
 {
     public TypeWarMachine TypeWarMachine;
     public int count;
 
-    public override void OnDoHero(ref Player player, BaseEntity entity)
+    public override void RunHero(ref Player player, BaseEntity entity)
     {
-        base.OnDoHero(ref player, entity);
+        base.RunHero(ref player, entity);
         // EntityMonolith monolith = (EntityMonolith)entity;
         // Vector3Int pointToTeleport
         //     = monolith.Data.portalPoints[Random.Range(0, monolith.Data.portalPoints.Count)];
@@ -16,13 +16,13 @@ public class EffectWarMachine : BaseEffect, IEffected
         Debug.Log("EffectWarMachine run!");
     }
 
-    public override void OnAddEffect(ref Player player, BaseEntity entity)
-    {
-        base.OnAddEffect(ref player, entity);
+    // public override void RunOne(ref Player player, BaseEntity entity)
+    // {
+    //     base.RunOne(ref player, entity);
 
-        // ((EntityTown)entity).Data.koofcreature = koofCreature;
-        Debug.Log($"Run EffectWarMachine::: {((EntityTown)entity).Data.goldin}");
-    }
+    //     // ((EntityTown)entity).Data.koofcreature = koofCreature;
+    //     Debug.Log($"Run EffectWarMachine::: {((EntityTown)entity).Data.goldin}");
+    // }
 }
 
 [System.Serializable]

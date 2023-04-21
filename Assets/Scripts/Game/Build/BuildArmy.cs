@@ -1,5 +1,7 @@
 using System;
 
+using UnityEngine;
+
 [Serializable]
 public class BuildArmy : BaseBuild
 {
@@ -9,10 +11,11 @@ public class BuildArmy : BaseBuild
         int level,
         ScriptableBuilding configData,
         EntityTown town,
+        Player player,
         SaveDataBuild<DataBuildArmy> saveData = null
         )
     {
-        base.Init(level, town);
+        base.Init(level, town, player);
         if (saveData == null)
         {
             ConfigData = configData;
@@ -25,12 +28,43 @@ public class BuildArmy : BaseBuild
         }
 
     }
+    // public override void OnAfterStateChanged(GameState newState)
+    // {
+    //     base.OnAfterStateChanged(newState);
+    //     if (Player == LevelManager.Instance.ActivePlayer)
+    //     {
+    //         switch (newState)
+    //         {
+    //             case GameState.NextDay:
+    //                 OnNextDay();
+    //                 break;
+    //             case GameState.NextWeek:
+    //                 OnNextWeek();
+    //                 break;
+    //         }
+    //     }
+    // }
+    // private void OnNextWeek()
+    // {
+    //     OnRunArmyBuilds();
+    // }
+    // private void OnNextDay()
+    // {
 
+    //     Debug.Log($"Army::: Next day - {ConfigData.name}");
 
-    public void OnRunEffects()
-    {
-        ((ScriptableBuildingArmy)ConfigData).BuildLevels[level].OnAddEffect(ref _player, Town);
-    }
+    // }
+
+    // private void OnRunArmyBuilds()
+    // {
+
+    //     Debug.Log($"Army::: Next week - {ConfigData.name}");
+
+    // }
+    // public void OnRunEffects()
+    // {
+    //     ((ScriptableBuildingArmy)ConfigData).BuildLevels[level].RunOne(ref _player, Town);
+    // }
     // public void OnRun()
     // {
     //     var data = ConfigData.BuildLevels[level].Attributes;

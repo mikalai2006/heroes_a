@@ -96,7 +96,7 @@ public class MapEntityHero : BaseMapEntity
 
         switch (newState)
         {
-            case GameState.StepNextPlayer:
+            case GameState.NextDay:
                 entityHero.Data.hit = 100f;
                 var data = (EntityHero)MapObjectClass;
                 data.Data.hit = 100f;

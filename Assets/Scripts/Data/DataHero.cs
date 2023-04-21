@@ -8,11 +8,20 @@ using UnityEngine;
 public struct DataHero
 {
     public int idPlayer;
+    public string name;
+    public string idObject;
+    public int attack;
+    public int defense;
+    public int power;
+    public int knowledge;
+    public int experience;
+    public int level;
+    public SerializableDictionary<TypeSecondarySkill, int> SSkills;
     public Vector3Int nextPosition;
     public float speed;
     public float hit;
     public float mana;
-    public string name;
+
 
     [NonSerialized] public List<EntityArtifact> Artifacts;
     public SerializableDictionary<int, EntityCreature> Creatures;

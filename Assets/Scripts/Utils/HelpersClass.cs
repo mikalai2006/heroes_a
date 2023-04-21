@@ -159,23 +159,77 @@ public static class Helpers
     /// <param name="endCheckedCreatures"></param>
     /// <param name="endPositionChecked"></param>
     public static void MoveUnitBetweenList(
-        SerializableDictionary<int, EntityCreature> startCheckedCreatures,
+        ref SerializableDictionary<int, EntityCreature> startCheckedCreatures,
         int startPositionChecked,
-        SerializableDictionary<int, EntityCreature> endCheckedCreatures,
-        int endPositionChecked)
+        ref SerializableDictionary<int, EntityCreature> endCheckedCreatures,
+        int endPositionChecked,
+        int countStart = -1,
+        int countEnd = -1
+        )
     {
         var startUnit = startCheckedCreatures[startPositionChecked];
         var endUnit = endCheckedCreatures[endPositionChecked];
 
-        if (endUnit != null && startUnit.Data.idObject == endUnit.Data.idObject)
+        if (endUnit != null && startUnit.ConfigData.idObject == endUnit.ConfigData.idObject)
         {
-            endUnit.Data.value += startUnit.Data.value;
-            startUnit = null;
+            if (startCheckedCreatures.Where(t => t.Value != null).Count() == 1)
+            {
+                if (countEnd != -1 && countStart != -1)
+                {
+                    endUnit.Data.value = countStart == 0 ? countEnd - 1 : countEnd;
+                    startUnit.Data.value = countStart == 0 ? 1 : countStart;
+                }
+                else
+                {
+                    endUnit.Data.value += startUnit.Data.value - 1;
+                    startUnit.Data.value = 1;
+                }
+            }
+            else
+            {
+                if (countEnd != -1 && countStart != -1)
+                {
+                    endUnit.Data.value = countEnd;
+                    startUnit.Data.value = countStart;
+                }
+                else
+                {
+                    endUnit.Data.value += startUnit.Data.value;
+                    startUnit = startCheckedCreatures[startPositionChecked] = null;
+                }
+            }
         }
         else
         {
-            startCheckedCreatures[startPositionChecked] = endUnit;
-            endCheckedCreatures[endPositionChecked] = startUnit;
+            if (countEnd != -1 && countStart != -1)
+            {
+                endCheckedCreatures[endPositionChecked] = endUnit = new EntityCreature(startUnit.ConfigData);
+
+                if (startCheckedCreatures.Where(t => t.Value != null).Count() == 1)
+                {
+                    endUnit.Data.value = countStart == 0 ? countEnd - 1 : countEnd;
+                    startUnit.Data.value = countStart == 0 ? 1 : countStart;
+                }
+                else
+                {
+                    endUnit.Data.value = countEnd;
+                    startUnit.Data.value = countStart;
+                }
+            }
+            else
+            {
+                startCheckedCreatures[startPositionChecked] = endUnit;
+                endCheckedCreatures[endPositionChecked] = startUnit;
+            }
+        }
+
+        if (endUnit != null && endUnit.Data.value == 0)
+        {
+            endUnit = endCheckedCreatures[endPositionChecked] = null;
+        }
+        if (startUnit != null && startUnit.Data.value == 0)
+        {
+            startUnit = startCheckedCreatures[startPositionChecked] = null;
         }
     }
 

@@ -53,7 +53,19 @@ public class EntityHero : BaseEntity
             Data.hit = 100f;
             Data.speed = 100;
             Data.State = StateHero.OnMap;
-            Data.name = ScriptableData.name;
+            Data.name = ScriptableData.title.GetLocalizedString();
+            Data.attack = ((ScriptableEntityHero)ScriptableData).ClassHero.startAttack;
+            Data.defense = ((ScriptableEntityHero)ScriptableData).ClassHero.startDefense;
+            Data.power = ((ScriptableEntityHero)ScriptableData).ClassHero.startPower;
+            Data.knowledge = ((ScriptableEntityHero)ScriptableData).ClassHero.startKnowlenge;
+            Data.level = 1;
+            Data.experience = 50;
+            Data.SSkills = new SerializableDictionary<TypeSecondarySkill, int>();
+            foreach (var skill in ((ScriptableEntityHero)ScriptableData).StartSecondarySkill)
+            {
+                Data.SSkills.Add(skill.SecondarySkill.TypeTwoSkill, skill.value);
+            }
+
             idObject = ScriptableData.idObject;
 
             Data.Artifacts = new List<EntityArtifact>();

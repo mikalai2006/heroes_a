@@ -448,6 +448,7 @@ MonoBehaviour:
       koofArtifacts: 0.03
       koofDwelling: 0.0457
   ConfigGameSettings: {fileID: 0}
+  TypePlayers: []
 --- !u!1 &416465639
 GameObject:
   m_ObjectHideFlags: 0

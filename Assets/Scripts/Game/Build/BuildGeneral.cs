@@ -3,7 +3,7 @@ using System;
 using UnityEngine;
 
 [Serializable]
-public class BuildGeneral : BaseBuild
+public class BuildGeneral : BuildGeneralBase
 {
     public DataBuildGeneral Data = new DataBuildGeneral();
 
@@ -11,15 +11,16 @@ public class BuildGeneral : BaseBuild
         int level,
         ScriptableBuilding configData,
         EntityTown town,
+        Player player,
         SaveDataBuild<DataBuildGeneral> saveData = null
         )
     {
-        base.Init(level, town);
+        base.Init(level, town, player);
 
         if (saveData == null)
         {
             ConfigData = configData;
-            OnRunEffects();
+            // OnRunEffects();
         }
         else
         {
@@ -27,8 +28,31 @@ public class BuildGeneral : BaseBuild
             Data = saveData.data;
         }
     }
-    public void OnRunEffects()
-    {
-        ((ScriptableBuilding)ConfigData).BuildLevels[level].OnAddEffect(ref _player, Town);
-    }
+
+    // public override void OnAfterStateChanged(GameState newState)
+    // {
+    //     base.OnAfterStateChanged(newState);
+    //     if (Player != null && Player == LevelManager.Instance.ActivePlayer)
+    //     {
+    //         switch (newState)
+    //         {
+    //             case GameState.NextDay:
+    //                 OnNextDay();
+    //                 break;
+    //             case GameState.NextWeek:
+    //                 OnNextWeek();
+    //                 break;
+    //         }
+    //     }
+    // }
+    // private void OnNextWeek()
+    // {
+    //     Debug.Log($"General::: Next week - {ConfigData.name}");
+    // }
+    // private void OnNextDay()
+    // {
+
+    //     Debug.Log($"General::: Next day - {ConfigData.name}");
+
+    // }
 }

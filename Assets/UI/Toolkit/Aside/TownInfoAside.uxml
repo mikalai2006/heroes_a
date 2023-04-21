@@ -1,0 +1,22 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:Template name="UITownInfoCreature" src="project://database/Assets/TownBuild/UI/UITownInfoCreature.uxml?fileID=9197481963319205126&amp;guid=eb9191393d0e98e4494aafd9d31d00ad&amp;type=3#UITownInfoCreature" />
+    <Style src="project://database/Assets/UI/Toolkit/Base.uss?fileID=7433441132597879392&amp;guid=fa07b064290e7384d9ad2e26e79f5953&amp;type=3#Base" />
+    <ui:VisualElement class="text-secondary bg border-1 border-color" style="flex-grow: 1;">
+        <ui:VisualElement name="Box" style="height: 30%;">
+            <ui:VisualElement name="TownInfoHeader" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row;">
+                <ui:VisualElement class="box_shadow" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); width: 40%;">
+                    <ui:VisualElement name="TownIcon" class="h-full w-full box_bg" style="background-image: url(&apos;project://database/Assets/TownBuild/Faction/Castle/Sprites/itptcas3.png?fileID=2800000&amp;guid=9c566a7b7811219428b08581043b2eac&amp;type=3#itptcas3&apos;);" />
+                </ui:VisualElement>
+                <ui:VisualElement name="TownInfo" class="px-1" style="width: 65%;">
+                    <ui:Label tabindex="-1" text="Minsk" display-tooltip-when-elided="true" name="TownName" class="font-bold" style="padding-bottom: 0; padding-top: 0;" />
+                    <ui:VisualElement name="TownCommerce" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row;" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement class="p-05" style="height: 70%; margin-top: 5px;">
+            <ui:VisualElement name="DwellingList" style="flex-grow: 1; flex-direction: row; flex-wrap: wrap; height: 100%;">
+                <ui:Instance template="UITownInfoCreature" name="UITownInfoCreature" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

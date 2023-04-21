@@ -14,11 +14,11 @@ public class ScriptableEntityMapObject : ScriptableEntityEffect, IEffected
     public List<TypeNoPath> RulesInput => listRuleInput;
     public List<BaseEffect> Effects;
 
-    public virtual void OnDoHero(ref Player player, BaseEntity entity)
+    public virtual void RunHero(ref Player player, BaseEntity entity)
     {
         foreach (var perk in Effects)
         {
-            perk.OnDoHero(ref player, entity);
+            perk.RunHero(ref player, entity);
         }
     }
 }

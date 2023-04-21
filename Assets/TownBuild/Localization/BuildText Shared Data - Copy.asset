@@ -1,0 +1,452 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: BuildText Shared Data - Copy
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: BuildText
+  m_TableCollectionNameGuidString: eccb40f2ef0445e499300535baf5f930
+  m_Entries:
+  - m_Id: 308236419072
+    m_Key: village_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 422912884736
+    m_Key: village_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 648730017792
+    m_Key: town_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 672553664512
+    m_Key: town_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 806402293760
+    m_Key: city_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 829387079680
+    m_Key: city_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 982265266176
+    m_Key: capitol_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1049437044736
+    m_Key: capitol_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3664396845056
+    m_Key: fort_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3703588421632
+    m_Key: fort_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3847536934912
+    m_Key: citadel_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3878646087680
+    m_Key: citadel_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4020447117312
+    m_Key: castle_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4040479113216
+    m_Key: castle_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4530508038144
+    m_Key: tavern_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4557217366016
+    m_Key: tavern_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4768945831936
+    m_Key: blacksmith_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4803406233600
+    m_Key: blacksmith_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4928056754176
+    m_Key: market_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4949535784960
+    m_Key: market_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5194416029696
+    m_Key: resilo_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5222429786112
+    m_Key: resilo_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5551699427328
+    m_Key: mguild1_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5592539365376
+    m_Key: mguild1_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5681085317120
+    m_Key: mguild2_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5705080930304
+    m_Key: mguild2_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5741990805504
+    m_Key: mguild3_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5764568743936
+    m_Key: mguild3_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5783728324608
+    m_Key: mguild4_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5801549922304
+    m_Key: mguild4_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5822018125824
+    m_Key: mguild5_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5845300707328
+    m_Key: mguild5_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6316774031360
+    m_Key: bgriffin_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6365868359680
+    m_Key: bgriffin_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6529043562496
+    m_Key: bgriffin2_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6559741673472
+    m_Key: bgriffin2_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6852776722432
+    m_Key: stables_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6877007216640
+    m_Key: stables_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6989976600576
+    m_Key: guardhouse_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7050743676928
+    m_Key: guardhouse_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7118024507392
+    m_Key: guardhouse2_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7149498564608
+    m_Key: guardhouse2_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7269925421056
+    m_Key: archertower_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7307741265920
+    m_Key: archertower_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7319485317120
+    m_Key: archertower2_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7333439766528
+    m_Key: archertower2_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7501887209472
+    m_Key: griffintower_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7533520650240
+    m_Key: griffintower_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7545302450176
+    m_Key: griffintower2_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7558829080576
+    m_Key: griffintower2_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7785082421248
+    m_Key: barracks_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7815180746752
+    m_Key: barracks_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7825851056128
+    m_Key: barracks2_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7837494444032
+    m_Key: barracks2_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8707929964544
+    m_Key: monastery_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8743128563712
+    m_Key: monastery_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8752989372416
+    m_Key: monastery2_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8764402073600
+    m_Key: monastery2_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9618697912320
+    m_Key: trainingground_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9659940503552
+    m_Key: trainingground_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9671843938304
+    m_Key: trainingground2_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9686108766208
+    m_Key: trainingground2_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10593454161920
+    m_Key: portalofglory_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10627411247104
+    m_Key: portalofglory_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10638949777408
+    m_Key: portalofglory2_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10649527812096
+    m_Key: portalofglory2_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15337908240384
+    m_Key: brothersword_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15396532027392
+    m_Key: brothersword_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16168489484288
+    m_Key: halloofvalhalla_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16219555135488
+    m_Key: halloofvalhalla_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16333317242880
+    m_Key: escapetunnel_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16382059249664
+    m_Key: escapetunnel_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16463697182720
+    m_Key: freeguild_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16494965719040
+    m_Key: freeguild_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16585696903168
+    m_Key: ballistayard_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16615866531840
+    m_Key: ballistayard_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16722196332544
+    m_Key: messhall_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16758472867840
+    m_Key: messhall_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16941378076672
+    m_Key: goblinbarracks_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16997678219264
+    m_Key: goblinbarracks_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17054691393536
+    m_Key: goblinbarracks2_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17070961098752
+    m_Key: goblinbarracks2_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17241124012032
+    m_Key: wolfpen_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17268064026624
+    m_Key: wolfpen_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17279204098048
+    m_Key: wolfpen2_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17293603143680
+    m_Key: wolfpen2_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17486805368832
+    m_Key: orctower_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17517235044352
+    m_Key: orctower_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17530589708288
+    m_Key: orctower2_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17545324298240
+    m_Key: orctower2_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17700983308288
+    m_Key: ogrefort_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17731954049024
+    m_Key: ogrefort_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17742154596352
+    m_Key: ogrefort2_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17754603290624
+    m_Key: ogrefort2_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17902746107904
+    m_Key: cliffnest_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17965962657792
+    m_Key: cliffnest_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17984245628928
+    m_Key: cliffnest2_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17996866289664
+    m_Key: cliffnest2_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18169029885952
+    m_Key: cyclopscave_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18200642355200
+    m_Key: cyclopscave_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18210033401856
+    m_Key: cyclopscave2_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18289658068992
+    m_Key: cyclopscave2_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18419115261952
+    m_Key: behemothlair_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18477265092608
+    m_Key: behemothlair_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18489743147008
+    m_Key: behemothlair2_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18502464471040
+    m_Key: behemothlair2_d
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 1339300894219173888
+  references:
+    version: 2
+    RefIds:
+    - rid: 1339300894219173888
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1680503379084

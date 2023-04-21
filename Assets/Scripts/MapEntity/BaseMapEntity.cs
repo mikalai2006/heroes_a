@@ -9,10 +9,13 @@ public abstract class BaseMapEntity : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField] protected BaseEntity MapObjectClass;
     public BaseEntity GetMapObjectClass => MapObjectClass;
+    private float timeClickPrev;
     public virtual void InitUnit(BaseEntity mapObject)
     {
         MapObjectClass = mapObject;
+        timeClickPrev = Time.realtimeSinceStartup;
     }
+
 
     // public virtual void UpdateAnimate(Vector3Int fromPosition, Vector3Int toPosition) { }
 
@@ -98,13 +101,12 @@ public abstract class BaseMapEntity : MonoBehaviour, IPointerClickHandler
 
     public async virtual void OnPointerClick(PointerEventData eventData)
     {
-        if (eventData.clickCount >= 2)
+        if (Time.realtimeSinceStartup - timeClickPrev < LevelManager.Instance.ConfigGameSettings.deltaDoubleClick)
         {
             GameManager.Instance.ChangeState(GameState.StartMoveHero);
         }
         else
         {
-
             if (LevelManager.Instance.ActivePlayer.ActiveHero != null)
             {
                 Debug.Log($"" +
@@ -132,6 +134,8 @@ public abstract class BaseMapEntity : MonoBehaviour, IPointerClickHandler
                 var dialogWindow = new DialogHelpProvider(dialogData);
                 await dialogWindow.ShowAndHide();
             }
+
+            timeClickPrev = Time.realtimeSinceStartup;
         }
     }
 }

@@ -1,0 +1,812 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: Attributes Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: Attributes
+  m_TableCollectionNameGuidString: f81d8dede4596554fa6d177e4e16b1bc
+  m_Entries:
+  - m_Id: 8163328000
+    m_Key: airmagic
+    m_Metadata:
+      m_Items: []
+  - m_Id: 157983866880
+    m_Key: airmagic_b
+    m_Metadata:
+      m_Items: []
+  - m_Id: 173922222080
+    m_Key: airmagic_b_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 224924958720
+    m_Key: airmagic_a
+    m_Metadata:
+      m_Items: []
+  - m_Id: 249621020672
+    m_Key: airmagic_a_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 286031773696
+    m_Key: airmagic_e
+    m_Metadata:
+      m_Items: []
+  - m_Id: 308643266560
+    m_Key: airmagic_e_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 902523158528
+    m_Key: archery
+    m_Metadata:
+      m_Items: []
+  - m_Id: 928024526848
+    m_Key: archery_b
+    m_Metadata:
+      m_Items: []
+  - m_Id: 942083833856
+    m_Key: archery_b_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 958760386560
+    m_Key: archery_a
+    m_Metadata:
+      m_Items: []
+  - m_Id: 981040529408
+    m_Key: archery_a_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 993220788224
+    m_Key: archery_e
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1030034194432
+    m_Key: archery_e_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1462781509632
+    m_Key: armorer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2162357862400
+    m_Key: armorer_b
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2196918927360
+    m_Key: armorer_b_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2220507693056
+    m_Key: armorer_a
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2242519400448
+    m_Key: armorer_a_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2261645426688
+    m_Key: armorer_e
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2276107386880
+    m_Key: armorer_e_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2797308379136
+    m_Key: artillery
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2821031362560
+    m_Key: artillery_b
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2835258441728
+    m_Key: artillery_b_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2851465232384
+    m_Key: artillery_a
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2880431095808
+    m_Key: artillery_a_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2898038784000
+    m_Key: artillery_e
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2909480845312
+    m_Key: artillery_e_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3297403633664
+    m_Key: ballistics
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3341968113664
+    m_Key: ballistics_b
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3354412613632
+    m_Key: ballistics_b_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3370053173248
+    m_Key: ballistics_a
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3400784838656
+    m_Key: ballistics_a_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3413938176000
+    m_Key: ballistics_e
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3430816055296
+    m_Key: ballistics_e_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3682038087680
+    m_Key: diplomacy
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3952184819712
+    m_Key: diplomacy_b
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3964734177280
+    m_Key: diplomacy_b_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3977484861440
+    m_Key: diplomacy_a
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3990134882304
+    m_Key: diplomacy_a_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4005607669760
+    m_Key: diplomacy_e
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4016877764608
+    m_Key: diplomacy_e_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4409196183552
+    m_Key: eagleeye
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4440804458496
+    m_Key: eagleeye_b
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4459964039168
+    m_Key: eagleeye_b_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4477680779264
+    m_Key: eagleeye_a
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4490028810240
+    m_Key: eagleeye_a_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4504188780544
+    m_Key: eagleeye_e
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4514053783552
+    m_Key: eagleeye_e_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4918619570176
+    m_Key: earthmagic
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5064518434816
+    m_Key: earthmagic_b
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5079479517184
+    m_Key: earthmagic_b_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5094847447040
+    m_Key: earthmagic_a
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5105584865280
+    m_Key: earthmagic_a_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5119648366592
+    m_Key: earthmagic_e
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5137730011136
+    m_Key: earthmagic_e_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5491091734528
+    m_Key: estates
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5515922014208
+    m_Key: estates_b
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5527200497664
+    m_Key: estates_b_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5540483858432
+    m_Key: estates_a
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5559878320128
+    m_Key: estates_a_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5573740494848
+    m_Key: estates_e
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5584314335232
+    m_Key: estates_e_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5934417084416
+    m_Key: firemagic
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5970588762112
+    m_Key: firemagic_b
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5984677429248
+    m_Key: firemagic_b_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5998334083072
+    m_Key: firemagic_a
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6010480787456
+    m_Key: firemagic_a_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6023336329216
+    m_Key: firemagic_e
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6037097840640
+    m_Key: firemagic_e_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6371295789056
+    m_Key: firstaid
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6392934203392
+    m_Key: firstaid_b
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6406666354688
+    m_Key: firstaid_b_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6420213956608
+    m_Key: firstaid_a
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6433774141440
+    m_Key: firstaid_a_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6452661092352
+    m_Key: firstaid_e
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6490250444800
+    m_Key: firstaid_e_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7078216368128
+    m_Key: intelligence
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7101167599616
+    m_Key: intelligence_b
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7112408334336
+    m_Key: intelligence_b_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7125393899520
+    m_Key: intelligence_a
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7136869515264
+    m_Key: intelligence_a_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7151901900800
+    m_Key: intelligence_e
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7164451258368
+    m_Key: intelligence_e_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7509260795904
+    m_Key: leadership
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7550931206144
+    m_Key: leadership_b
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7561232416768
+    m_Key: leadership_b_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7573450424320
+    m_Key: leadership_a
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7583210569728
+    m_Key: leadership_a_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7595088838656
+    m_Key: leadership_e
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7605595570176
+    m_Key: leadership_e_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7950803566592
+    m_Key: learning
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8043711594496
+    m_Key: learning_b
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8060555919360
+    m_Key: learning_b_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8103706918912
+    m_Key: learning_a
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8119582359552
+    m_Key: learning_a_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8131292856320
+    m_Key: learning_e
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8141090750464
+    m_Key: learning_e_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8505823232000
+    m_Key: logistics
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8535120445440
+    m_Key: logistics_b
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8590514618368
+    m_Key: logistics_b_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8605182099456
+    m_Key: logistics_a
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8619946049536
+    m_Key: logistics_a_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8643228631040
+    m_Key: logistics_e
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8654704246784
+    m_Key: logistics_e_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9001657073664
+    m_Key: luck
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9055180587008
+    m_Key: luck_b
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9069474775040
+    m_Key: luck_b_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9083697659904
+    m_Key: luck_a
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9103062761472
+    m_Key: luck_a_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9115272380416
+    m_Key: luck_e
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9134100611072
+    m_Key: luck_e_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9440515489792
+    m_Key: mysticism
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9469913366528
+    m_Key: mysticism_b
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9486124351488
+    m_Key: mysticism_b_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9499944583168
+    m_Key: mysticism_a
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9510749110272
+    m_Key: mysticism_a_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9527253696512
+    m_Key: mysticism_e
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9540042129408
+    m_Key: mysticism_e_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9963293540352
+    m_Key: navigation
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9981249355776
+    m_Key: navigation_b
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9993467363328
+    m_Key: navigation_b_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10034831589376
+    m_Key: navigation_a
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10047586467840
+    m_Key: navigation_a_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10061406699520
+    m_Key: navigation_e
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10071439474688
+    m_Key: navigation_e_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10247868678144
+    m_Key: necromancy
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10412050513920
+    m_Key: necromancy_b
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10450508087296
+    m_Key: necromancy_b_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10462625431552
+    m_Key: necromancy_a
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10479461367808
+    m_Key: necromancy_a_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10498725806080
+    m_Key: necromancy_e
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10509127680000
+    m_Key: necromancy_e_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10870676684800
+    m_Key: offense
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10891476238336
+    m_Key: offense_b
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10909268475904
+    m_Key: offense_b_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10921742336000
+    m_Key: offense_a
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10933016625152
+    m_Key: offense_a_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10950100025344
+    m_Key: offense_e
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10960296378368
+    m_Key: offense_e_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11208402042880
+    m_Key: pathfinding
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11388958441472
+    m_Key: pathfinding_b
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11405098123264
+    m_Key: pathfinding_b_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11421338468352
+    m_Key: pathfinding_a
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11435670405120
+    m_Key: pathfinding_a_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11455501074432
+    m_Key: pathfinding_e
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11466196549632
+    m_Key: pathfinding_e_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11838956929024
+    m_Key: resistance
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11855063056384
+    m_Key: resistance_b
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11870594564096
+    m_Key: resistance_b_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11914185965568
+    m_Key: resistance_a
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11923845447680
+    m_Key: resistance_a_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11937367883776
+    m_Key: resistance_e
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11949820772352
+    m_Key: resistance_e_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12564470857728
+    m_Key: scholar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12588898484224
+    m_Key: scholar_b
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12599266803712
+    m_Key: scholar_b_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12611921018880
+    m_Key: scholar_a
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12621844742144
+    m_Key: scholar_a_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12637451747328
+    m_Key: scholar_e
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12651070652416
+    m_Key: scholar_e_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12950313271296
+    m_Key: scouting
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12997553717248
+    m_Key: scouting_b
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13013601124352
+    m_Key: scouting_b_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13031582105600
+    m_Key: scouting_a
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13042453741568
+    m_Key: scouting_a_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13056311721984
+    m_Key: scouting_e
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13074930237440
+    m_Key: scouting_e_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13361048879104
+    m_Key: sorcery
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13376853016576
+    m_Key: sorcery_b
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13388999720960
+    m_Key: sorcery_b_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13403268743168
+    m_Key: sorcery_a
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13403298103296
+    m_Key: sorcery_a_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13410273230848
+    m_Key: sorcery_e
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13476618731520
+    m_Key: sorcery_e_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13831188414464
+    m_Key: tactics
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13848166957056
+    m_Key: tactics_b
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13864507965440
+    m_Key: tactics_b_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13876252016640
+    m_Key: tactics_a
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13887790546944
+    m_Key: tactics_a_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13899035475968
+    m_Key: tactics_e
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13908598489088
+    m_Key: tactics_e_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14229043314688
+    m_Key: watermagic
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14258650906624
+    m_Key: watermagic_b
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14272093650944
+    m_Key: watermagic_b_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14283640569856
+    m_Key: watermagic_a
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14300149350400
+    m_Key: watermagic_a_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14313197830144
+    m_Key: watermagic_e
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14323067027456
+    m_Key: watermagic_e_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14629146361856
+    m_Key: wisdom
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14648708595712
+    m_Key: wisdom_b
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14662663045120
+    m_Key: wisdom_b_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14676256784384
+    m_Key: wisdom_a
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14686692212736
+    m_Key: wisdom_a_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14698402709504
+    m_Key: wisdom_e
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14708234158080
+    m_Key: wisdom_e_d
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 1339301299856605186
+  references:
+    version: 2
+    RefIds:
+    - rid: 1339301299856605186
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1682051519667

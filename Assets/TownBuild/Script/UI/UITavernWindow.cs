@@ -1,92 +1,57 @@
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UIElements;
-using UnityEngine.Events;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEngine.Localization;
-using System.Collections;
 using System;
+using UnityEngine.Localization;
 
-public class UITavernWindow : MonoBehaviour
+public class UITavernWindow : UIDialogBaseWindow
 {
-    [SerializeField] private UIDocument _uiDoc;
-    public UIDocument DialogApp => _uiDoc;
-    [SerializeField] private VisualTreeAsset _templateTavernBlok;
     [SerializeField] private VisualTreeAsset _templateHeroButton;
     private readonly string _nameButtonClose = "ButtonClose";
     private readonly string _nameButtonPrice = "ButtonPrice";
-    private readonly string _nameHeaderLabel = "HeaderDialog";
-    private readonly string _nameGeneralBlok = "GeneralBlok";
-    private readonly string _nameOverlay = "Overlay";
     private readonly string _nameHeroList = "HeroList";
     private readonly string _nameTextHeroInfo = "TextHeroInfo";
-
     private Button _buttonClose;
     private Button _buttonPrice;
     private VisualElement _heroList;
-    private Label _headerLabel;
     private Label _heroInfoLabel;
-    private VisualElement _generalBlok;
-
-    private TaskCompletionSource<DataResultBuildDialog> _processCompletionSource;
-
-    public UnityEvent processAction;
-
-    private DataResultBuildDialog _dataResultDialog;
-
-    private Player _activePlayer;
-    private ScriptableBuildTown _scriptObjectBuildTown;
     private ScriptableEntityHero _activeHeroData;
     public static event Action onBuyHero;
+    protected TaskCompletionSource<DataResultBuildDialog> _processCompletionSource;
+    protected DataResultBuildDialog _dataResultDialog;
 
-    private void Start()
+    public override void Start()
     {
-        _headerLabel = DialogApp.rootVisualElement.Q<Label>(_nameHeaderLabel);
-        _generalBlok = DialogApp.rootVisualElement.Q<VisualElement>(_nameGeneralBlok);
+        base.Start();
 
-        var panel = DialogApp.rootVisualElement.Q<VisualElement>("Panel");
-        panel.AddToClassList("w-50");
-        // panel.AddToClassList("h-full");
-
-        var panelBlok = DialogApp.rootVisualElement.Q<VisualElement>("PanelBlok");
-        panelBlok.style.flexGrow = 1;
-
-        VisualElement docDialogBlok = _templateTavernBlok.Instantiate();
-        docDialogBlok.style.flexGrow = 1;
-        _generalBlok.Clear();
-        _generalBlok.Add(docDialogBlok);
-
-        _buttonClose = DialogApp.rootVisualElement.Q<Button>(_nameButtonClose);
+        _buttonClose = root.Q<Button>(_nameButtonClose);
         _buttonClose.clickable.clicked += OnClickClose;
 
-        _buttonPrice = DialogApp.rootVisualElement.Q<VisualElement>(_nameButtonPrice).Q<Button>("Btn");
+        _buttonPrice = root.Q<VisualElement>(_nameButtonPrice).Q<Button>("Btn");
         _buttonPrice.clickable.clicked += OnClickBuy;
 
-        _heroList = DialogApp.rootVisualElement.Q<VisualElement>(_nameHeroList);
-        _heroInfoLabel = DialogApp.rootVisualElement.Q<Label>(_nameTextHeroInfo);
+        _heroList = root.Q<VisualElement>(_nameHeroList);
+        _heroInfoLabel = root.Q<Label>(_nameTextHeroInfo);
     }
 
-    public async Task<DataResultBuildDialog> ProcessAction()
+    public async Task<DataResultBuildDialog> ProcessAction(BaseBuild build)
     {
+        base.Init();
+
         _dataResultDialog = new DataResultBuildDialog();
+        _processCompletionSource = new TaskCompletionSource<DataResultBuildDialog>();
 
-        _activePlayer = LevelManager.Instance.ActivePlayer;
-
-        // _headerLabel.text = ;
-
-        UQueryBuilder<VisualElement> builder = new UQueryBuilder<VisualElement>(DialogApp.rootVisualElement);
-        List<VisualElement> list = builder.Name(_nameOverlay).ToList();
-        Color color = _activePlayer.DataPlayer.color;
-        color.a = LevelManager.Instance.ConfigGameSettings.alphaOverlay;
-        foreach (var overlay in list)
-        {
-            overlay.style.backgroundColor = color;
-        }
+        Title.text = build.ConfigData.BuildLevels[build.level].Text.title.GetLocalizedString();
+        root.Q<Label>("description").text
+            = new LocalizedString(Constants.LanguageTable.LANG_TABLE_UILANG, "tavern_cit").GetLocalizedString();
 
         _heroList.Clear();
+
         EntityTown town = (EntityTown)_activePlayer.ActiveTown;
         var listConfigHero = ResourceSystem.Instance.GetEntityByType<ScriptableEntityHero>(TypeEntity.Hero);
+        Debug.Log($"Count hero=[{_activePlayer.DataPlayer.HeroesInTavern.Count}]");
         if (_activePlayer.DataPlayer.HeroesInTavern.Count > 0)
         {
             foreach (var heroId in _activePlayer.DataPlayer.HeroesInTavern)
@@ -103,10 +68,14 @@ public class UITavernWindow : MonoBehaviour
                     ClickHero(currentHeroData);
                 });
                 _heroList.Add(newBoxBtnHero);
+
+                // choose first hero.
+                if (_activeHeroData == null)
+                {
+                    ClickHero(currentHeroData);
+                }
             }
         }
-
-        _processCompletionSource = new TaskCompletionSource<DataResultBuildDialog>();
 
         return await _processCompletionSource.Task;
     }
@@ -134,18 +103,45 @@ public class UITavernWindow : MonoBehaviour
         _heroInfoLabel.text = heroData.title.GetLocalizedString();
     }
 
-    private void OnClickBuy()
+    private async void OnClickBuy()
     {
-        _dataResultDialog.isOk = false;
-        var newHero = UnitManager.CreateHero(
-            TypeFaction.Neutral,
-            _activePlayer.ActiveTown.OccupiedNode,
-            _activeHeroData);
-        newHero.SetPlayer(_activePlayer);
-        // _activePlayer.ActiveTown.Data.HeroinTown = newHero.IdEntity;
+        if (_activePlayer.ActiveTown.OccupiedNode.GuestedUnit != null)
+        {
+            var dialogData = new DataDialogHelp()
+            {
+                Header = new LocalizedString(Constants.LanguageTable.LANG_TABLE_UILANG, "Help").GetLocalizedString(),
+                Description = new LocalizedString(Constants.LanguageTable.LANG_TABLE_UILANG, "nocardhero").GetLocalizedString(),
+            };
+            var dialogWindow = new DialogHelpProvider(dialogData);
+            await dialogWindow.ShowAndHide();
+        }
+        else if (!_activePlayer.IsExistsResource(LevelManager.Instance.ConfigGameSettings.CostHero))
+        {
+            var dialogData = new DataDialogHelp()
+            {
+                Header = new LocalizedString(Constants.LanguageTable.LANG_TABLE_UILANG, "Help").GetLocalizedString(),
+                Description = new LocalizedString(Constants.LanguageTable.LANG_TABLE_UILANG, "nocardhero_cash").GetLocalizedString(),
+            };
+            var dialogWindow = new DialogHelpProvider(dialogData);
+            await dialogWindow.ShowAndHide();
+        }
+        else if (_activePlayer.IsMaxCountHero)
+        {
+            var dialogData = new DataDialogHelp()
+            {
+                Header = new LocalizedString(Constants.LanguageTable.LANG_TABLE_UILANG, "Help").GetLocalizedString(),
+                Description = new LocalizedString(Constants.LanguageTable.LANG_TABLE_UILANG, "maxhero_message").GetLocalizedString(),
+            };
+            var dialogWindow = new DialogHelpProvider(dialogData);
+            await dialogWindow.ShowAndHide();
+        }
+        else
+        {
+            _activePlayer.BuyHero(_activeHeroData);
+            onBuyHero?.Invoke();
+        }
+        _dataResultDialog.isOk = true;
         _processCompletionSource.SetResult(_dataResultDialog);
-        onBuyHero?.Invoke();
-        processAction?.Invoke();
     }
 
     private void OnClickClose()
@@ -153,7 +149,6 @@ public class UITavernWindow : MonoBehaviour
         _dataResultDialog.isOk = false;
         _processCompletionSource.SetResult(_dataResultDialog);
 
-        processAction?.Invoke();
     }
 }
 

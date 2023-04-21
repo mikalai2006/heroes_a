@@ -8,9 +8,9 @@ public class EffectResource : BaseEffect, IEffected
     // [Space(10)]
     // [Header("Options Perk")]
 
-    public override void OnDoHero(ref Player player, BaseEntity entity)
+    public override void RunHero(ref Player player, BaseEntity entity)
     {
-        base.OnDoHero(ref player, entity);
+        base.RunHero(ref player, entity);
         // EntityMonolith monolith = (EntityMonolith)entity;
         // Vector3Int pointToTeleport
         //     = monolith.Data.portalPoints[Random.Range(0, monolith.Data.portalPoints.Count)];

@@ -67,6 +67,21 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e8be015d02d7d1b46834e002c5ebf4e0
+    m_Address: UIInfoCreature
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3a585477fc09ce848a922672071f2bdb
+    m_Address: UIDialogSplitCreature
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 53856501ea73ebe44a316a6717234eae
+    m_Address: UIDialogHeroInfo
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 9a6380555b06f9d46b9bf47dd32221de, type: 2}
   m_SchemaSet:

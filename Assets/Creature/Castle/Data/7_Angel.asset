@@ -37,7 +37,7 @@ MonoBehaviour:
     m_SubObjectType: 
     m_EditorAssetChanged: 0
   CreatureParams:
-    Level: 0
+    Level: 7
     Attack: 0
     Defense: 0
     DamageMin: 0

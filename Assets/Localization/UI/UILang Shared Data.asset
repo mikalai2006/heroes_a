@@ -247,6 +247,90 @@ MonoBehaviour:
     m_Key: cardall
     m_Metadata:
       m_Items: []
+  - m_Id: 8334269937254400
+    m_Key: weekcreature
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8433118315970560
+    m_Key: tavern_cit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8435570469666816
+    m_Key: nocardhero
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8436118216409088
+    m_Key: nocardhero_cash
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8443209240969216
+    m_Key: herotavern
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8443363054485504
+    m_Key: price
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8531898981842944
+    m_Key: maxhero_message
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8538769478287360
+    m_Key: hero_lastcreature
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8539779076620288
+    m_Key: splitcreature
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8732964939792384
+    m_Key: split
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8809244808871936
+    m_Key: kill
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8872920928649216
+    m_Key: experience
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8872952096522240
+    m_Key: power
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8873138059378688
+    m_Key: knowledge
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8873193055092736
+    m_Key: defense
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8873272813977600
+    m_Key: attack
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8874683966586880
+    m_Key: level
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8876842170875904
+    m_Key: manacount
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8881204851015680
+    m_Key: basic
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8881245615456256
+    m_Key: advanced
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8881364129710080
+    m_Key: expert
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

@@ -1,0 +1,98 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b94748fd66a1e4498620a2843740b4e, type: 3}
+  m_Name: Tactics
+  m_EditorClassIdentifier: 
+  idObject: attribute.skill.tactics
+  TypeAttribute: 40
+  MenuSprite: {fileID: 0}
+  Text:
+    title:
+      m_TableReference:
+        m_TableCollectionName: GUID:f81d8dede4596554fa6d177e4e16b1bc
+      m_TableEntryReference:
+        m_KeyId: 13831188414464
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    description:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+  TypeTwoSkill: 71
+  Levels:
+  - Sprite: {fileID: -733104413, guid: bb3826057700334448fec2c60c7241e3, type: 3}
+    Title:
+      m_TableReference:
+        m_TableCollectionName: GUID:f81d8dede4596554fa6d177e4e16b1bc
+      m_TableEntryReference:
+        m_KeyId: 13848166957056
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    Description:
+      m_TableReference:
+        m_TableCollectionName: GUID:f81d8dede4596554fa6d177e4e16b1bc
+      m_TableEntryReference:
+        m_KeyId: 13864507965440
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+  - Sprite: {fileID: 1049194106, guid: bb3826057700334448fec2c60c7241e3, type: 3}
+    Title:
+      m_TableReference:
+        m_TableCollectionName: GUID:f81d8dede4596554fa6d177e4e16b1bc
+      m_TableEntryReference:
+        m_KeyId: 13876252016640
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    Description:
+      m_TableReference:
+        m_TableCollectionName: GUID:f81d8dede4596554fa6d177e4e16b1bc
+      m_TableEntryReference:
+        m_KeyId: 13887790546944
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+  - Sprite: {fileID: 741720483, guid: bb3826057700334448fec2c60c7241e3, type: 3}
+    Title:
+      m_TableReference:
+        m_TableCollectionName: GUID:f81d8dede4596554fa6d177e4e16b1bc
+      m_TableEntryReference:
+        m_KeyId: 13899035475968
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    Description:
+      m_TableReference:
+        m_TableCollectionName: GUID:f81d8dede4596554fa6d177e4e16b1bc
+      m_TableEntryReference:
+        m_KeyId: 13908598489088
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+  references:
+    version: 2
+    RefIds: []

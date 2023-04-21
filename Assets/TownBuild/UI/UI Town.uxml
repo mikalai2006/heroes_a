@@ -4,19 +4,23 @@
     <ui:Template name="Button" src="project://database/Assets/UI/Toolkit/Button.uxml?fileID=9197481963319205126&amp;guid=db5e7d04a42304542a4356b1519364b2&amp;type=3#Button" />
     <Style src="project://database/Assets/UI/Toolkit/Base.uss?fileID=7433441132597879392&amp;guid=fa07b064290e7384d9ad2e26e79f5953&amp;type=3#Base" />
     <Style src="project://database/Assets/TownBuild/UI/Town.uss?fileID=7433441132597879392&amp;guid=3f26a9c7e5fec58498f124f0fded2a87&amp;type=3#Town" />
-    <ui:VisualElement name="TownSide" class="border-color bg p-1" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); width: 25%; align-self: flex-end; margin-bottom: 28px; border-left-width: 2px; flex-direction: row; display: none;">
+    <ui:VisualElement name="TownSide" class="border-color bg p-1" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); width: 25%; align-self: flex-end; margin-bottom: 28px; border-left-width: 2px; flex-direction: row; display: flex;">
         <ui:VisualElement name="Overlay" class="overlay" style="background-color: rgba(255, 0, 0, 0.49);" />
         <ui:VisualElement name="TownHeroSide" style="flex-grow: 1; width: 30%;">
             <ui:VisualElement name="Overlay" class="overlay" style="background-color: rgba(255, 0, 0, 0.49);" />
-            <ui:VisualElement name="TownHeroForce" class="text-secondary border-color bg-black border-1 m-0" style="height: 100%; flex-direction: row; flex-wrap: wrap;">
-                <ui:Instance template="UI TownHeroInfoForce" name="UI TownHeroInfoForce" class="w-33 h-33 w-full h-125" />
-                <ui:Instance template="UI TownHeroInfoForce" name="UI TownHeroInfoForce" class="w-33 h-33 w-full h-125" />
-                <ui:Instance template="UI TownHeroInfoForce" name="UI TownHeroInfoForce" class="w-33 h-33 w-full h-125" />
-                <ui:Instance template="UI TownHeroInfoForce" name="UI TownHeroInfoForce" class="w-33 h-33 w-full h-125" />
-                <ui:Instance template="UI TownHeroInfoForce" name="UI TownHeroInfoForce" class="w-33 h-33 w-full h-125" />
-                <ui:Instance template="UI TownHeroInfoForce" name="UI TownHeroInfoForce" class="w-33 h-33 w-full h-125" />
-                <ui:Instance template="UI TownHeroInfoForce" name="UI TownHeroInfoForce" class="w-33 h-33 w-full h-125" />
-                <ui:Instance template="UI TownHeroInfoForce" name="UI TownHeroInfoForce" class="w-33 h-33 w-full h-125" />
+            <ui:VisualElement class="text-secondary border-color bg-black border-1 m-0" style="height: 100%;">
+                <ui:VisualElement name="TownHero" style="flex-grow: 1; height: 15%;">
+                    <ui:Instance template="UI TownHeroInfoForce" name="UI TownHeroInfoForce" class="w-full h-full" />
+                </ui:VisualElement>
+                <ui:VisualElement name="TownHeroForce" style="height: 85%;">
+                    <ui:Instance template="UI TownHeroInfoForce" name="UI TownHeroInfoForce" class="w-full h-14" />
+                    <ui:Instance template="UI TownHeroInfoForce" name="UI TownHeroInfoForce" class="w-full h-14" />
+                    <ui:Instance template="UI TownHeroInfoForce" name="UI TownHeroInfoForce" class="w-full h-14" />
+                    <ui:Instance template="UI TownHeroInfoForce" name="UI TownHeroInfoForce" class="w-full h-14" />
+                    <ui:Instance template="UI TownHeroInfoForce" name="UI TownHeroInfoForce" class="w-full h-14" />
+                    <ui:Instance template="UI TownHeroInfoForce" name="UI TownHeroInfoForce" class="w-full h-14" />
+                    <ui:Instance template="UI TownHeroInfoForce" name="UI TownHeroInfoForce" class="w-full h-14" />
+                </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); width: 70%;">
@@ -34,6 +38,9 @@
                 <ui:Instance template="UI TownHeroInfoForce" name="UI TownHeroInfoForce" class="w-33 h-33" />
             </ui:VisualElement>
             <ui:VisualElement class="bg-black p-05 border-1 border-color" style="flex-grow: 1; margin-left: 5px; margin-top: 5px; align-items: stretch; justify-content: flex-end;">
+                <ui:Instance template="Button" name="SplitCreature" class="text-sm">
+                    <AttributeOverrides element-name="Btn" text="#splitcreature" />
+                </ui:Instance>
                 <ui:Instance template="Button" name="Button">
                     <AttributeOverrides element-name="Btn" text="#cardall" />
                 </ui:Instance>
@@ -46,17 +53,18 @@
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
-    <ui:VisualElement name="TownHeroVisit" class="town_hero_area border-color p-1" style="width: 75%; position: absolute; bottom: 0; margin-bottom: 28px; display: none;">
+    <ui:VisualElement class="town_hero_area border-color p-1" style="width: 75%; position: absolute; bottom: 0; margin-bottom: 28px; display: flex;">
         <ui:VisualElement name="Overlay" class="overlay" style="background-color: rgba(255, 0, 0, 0.49);" />
-        <ui:VisualElement name="TownHeroVisitForce" class="bg-black p-05 border-1 border-color" style="flex-grow: 1; flex-direction: row;">
-            <ui:Instance template="UI TownHeroInfoForce" name="UI TownHeroInfoForce" class="h-full w-125" />
-            <ui:Instance template="UI TownHeroInfoForce" name="UI TownHeroInfoForce" class="h-full w-125" />
-            <ui:Instance template="UI TownHeroInfoForce" name="UI TownHeroInfoForce" class="h-full w-125" />
+        <ui:VisualElement class="bg-black p-05 border-1 border-color" style="flex-grow: 1; flex-direction: row;">
+            <ui:VisualElement name="TownHeroVisit" style="width: 13%;" />
+            <ui:VisualElement name="TownHeroVisitForce" style="width: 87%; flex-direction: row;">
+                <ui:Instance template="UI TownHeroInfoForce" name="UI TownHeroInfoForce" class="h-full w-125">
+                    <ui:VisualElement name="TownHeroVisitForce" />
+                </ui:Instance>
+                <ui:Instance template="UI TownHeroInfoForce" name="UI TownHeroInfoForce" class="h-full w-125" />
+                <ui:Instance template="UI TownHeroInfoForce" name="UI TownHeroInfoForce" class="h-full w-125" />
+            </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
-    <ui:VisualElement name="TownPanel" class="town_panel" style="display: none;">
-        <ui:VisualElement name="TownBox" class="town_box" style="justify-content: flex-end;">
-            <ui:VisualElement style="flex-grow: 1; display: none;" />
-        </ui:VisualElement>
-    </ui:VisualElement>
+    <ui:VisualElement name="TownPanel" class="town_panel" style="display: none;" />
 </ui:UXML>

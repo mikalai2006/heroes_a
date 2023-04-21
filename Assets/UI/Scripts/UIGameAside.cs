@@ -32,6 +32,8 @@ public class UIGameAside : UILocaleBase
     [SerializeField] private VisualTreeAsset _templateButtonHero;
     [SerializeField] private VisualTreeAsset _templateButtonTown;
     [SerializeField] private VisualTreeAsset _templateHeroInfo;
+    [SerializeField] private VisualTreeAsset _templateTownInfoCreature;
+    [SerializeField] private VisualTreeAsset _templateTownInfo;
     [SerializeField] private VisualTreeAsset _templateHeroForce;
 
     private Player player;
@@ -66,6 +68,7 @@ public class UIGameAside : UILocaleBase
         EntityHero.onChangeParamsActiveHero += ChangeParamsActiveHero;
         UITownInfo.onMoveHero += DrawHeroBox;
         UITown.OnExitFromTown += ShowMapButtons;
+        UITown.OnInputToTown += HideMapButtons;
     }
 
     private void OnDestroy()
@@ -74,15 +77,16 @@ public class UIGameAside : UILocaleBase
         EntityHero.onChangeParamsActiveHero -= ChangeParamsActiveHero;
         UITownInfo.onMoveHero -= DrawHeroBox;
         UITown.OnExitFromTown -= ShowMapButtons;
+        UITown.OnInputToTown -= HideMapButtons;
     }
 
     private void OnAfterStateChanged(GameState state)
     {
         switch (state)
         {
-            case GameState.StepNextPlayer:
+            case GameState.NextDay:
             case GameState.StartGame:
-                DrawHeroButtons();
+                DrawAside();
                 ChangeHeroInfo();
                 break;
             // case GameState.StartMoveHero:
@@ -98,7 +102,7 @@ public class UIGameAside : UILocaleBase
                 OnRedrawResource();
                 break;
             case GameState.ChangeHeroParams:
-                DrawHeroButtons();
+                DrawAside();
                 break;
         }
     }
@@ -125,7 +129,6 @@ public class UIGameAside : UILocaleBase
     private async void ShowTown()
     {
         OnShowTown?.Invoke();
-        HideMapButtons();
         var loadingOperations = new Queue<ILoadingOperation>();
         loadingOperations.Enqueue(new TownLoadOperation(player.ActiveTown));
         await GameManager.Instance.LoadingScreenProvider.LoadAndDestroy(loadingOperations);
@@ -158,14 +161,13 @@ public class UIGameAside : UILocaleBase
             var btnNextStep = _aside.rootVisualElement.Q<Button>(NameBtnNextStep);
             btnNextStep.clickable.clicked += () =>
             {
-                GameManager.Instance.ChangeState(GameState.StepNextPlayer);
+                GameManager.Instance.ChangeState(GameState.NextDay);
                 OnClickNextStep?.Invoke();
             };
 
             _footer = _aside.rootVisualElement.Q<VisualElement>(NameFooter);
 
             boxinfo = _aside.rootVisualElement.Q<VisualElement>(NameAsideBoxInfo);
-
         }
         catch (Exception e)
         {
@@ -177,13 +179,88 @@ public class UIGameAside : UILocaleBase
 
     private void HideMapButtons()
     {
-
         _mapButtons.style.display = DisplayStyle.None;
     }
     private void ShowMapButtons()
     {
-
         _mapButtons.style.display = DisplayStyle.Flex;
+        DrawTownInfo();
+    }
+
+    private void DrawTownInfo()
+    {
+        EntityTown activeTown = player.ActiveTown;
+        if (activeTown == null) return;
+        player.SetActiveHero(null);
+
+        Debug.Log("Change info hero");
+        VisualElement townInfo = _templateTownInfo.Instantiate();
+        townInfo.style.flexGrow = 1;
+
+        var spriteTownEl = townInfo.Q<VisualElement>("TownIcon");
+        spriteTownEl.style.backgroundImage = new StyleBackground(activeTown.ScriptableData.MenuSprite);
+        var nameTownEl = townInfo.Q<Label>("TownName");
+        nameTownEl.text = activeTown.Data.name;
+        var listTownDwellingEl = townInfo.Q<VisualElement>("DwellingList");
+        listTownDwellingEl.Clear();
+
+        // Get hero by id.
+        EntityHero hero = activeTown.Data.HeroinTown != null && activeTown.Data.HeroinTown != ""
+            ? (EntityHero)UnitManager.Entities[activeTown.Data.HeroinTown]
+            : null;
+        SerializableDictionary<int, EntityCreature> creatures = new SerializableDictionary<int, EntityCreature>();
+        if (hero != null)
+        {
+            creatures = hero.Data.Creatures;
+        }
+        else
+        {
+            creatures = activeTown.Data.Creatures;
+        }
+        foreach (var creature in creatures)
+        {
+            var btnCreature = _templateTownInfoCreature.Instantiate();
+            btnCreature.AddToClassList("w-25");
+            btnCreature.AddToClassList("h-50");
+            if (creature.Value != null)
+            {
+                btnCreature.Q<VisualElement>("Img").style.backgroundImage
+                    = new StyleBackground(creature.Value.ConfigData.MenuSprite);
+            }
+            btnCreature.Q<Label>("Value").text = creature.Value != null ? creature.Value.Data.value.ToString() : "";
+            listTownDwellingEl.Add(btnCreature);
+        }
+        // for (int i = activeTown.Data.Armys.Count; i < 7; i++)
+        // {
+        //     var btnCreature = _templateTownInfoCreature.Instantiate();
+        //     btnCreature.AddToClassList("w-25");
+        //     btnCreature.AddToClassList("h-50");
+        //     btnCreature.Q<Label>("Value").text = "";
+        //     listTownDwellingEl.Add(btnCreature);
+        // }
+
+        // foreach (var build in activeTown.Data.Armys
+        //     .OrderBy(t => ((ScriptableBuildingArmy)((BuildArmy)t.Value).ConfigData).Creatures[t.Value.level].CreatureParams.Level))
+        // {
+        //     var btnCreature = _templateTownInfoCreature.Instantiate();
+        //     btnCreature.AddToClassList("w-25");
+        //     btnCreature.AddToClassList("h-50");
+        //     btnCreature.Q<VisualElement>("Img").style.backgroundImage
+        //         = new StyleBackground(((ScriptableBuildingArmy)((BuildArmy)build.Value).ConfigData).Creatures[build.Value.level].MenuSprite);
+        //     btnCreature.Q<Label>("Value").text = "+" + (build.Value.Data.quantity.ToString());
+        //     listTownDwellingEl.Add(btnCreature);
+        // }
+        // for (int i = activeTown.Data.Armys.Count; i < 7; i++)
+        // {
+        //     var btnCreature = _templateTownInfoCreature.Instantiate();
+        //     btnCreature.AddToClassList("w-25");
+        //     btnCreature.AddToClassList("h-50");
+        //     btnCreature.Q<Label>("Value").text = "";
+        //     listTownDwellingEl.Add(btnCreature);
+        // }
+
+        boxinfo.Clear();
+        boxinfo.Add(townInfo);
     }
 
     private void DrawHeroBox()
@@ -242,10 +319,11 @@ public class UIGameAside : UILocaleBase
         await LevelManager.Instance.ActivePlayer.ActiveHero.StartMove();
     }
 
-    private void DrawHeroButtons()
+    private void DrawAside()
     {
         player = LevelManager.Instance.ActivePlayer;
 
+        ShowMapButtons();
         aside.style.display = DisplayStyle.Flex;
         _footer.style.display = DisplayStyle.Flex;
 
@@ -273,24 +351,24 @@ public class UIGameAside : UILocaleBase
                 newButtonTown.Q<VisualElement>("image").style.backgroundImage =
                     new StyleBackground(town.ScriptableData.MenuSprite);
 
-                newButtonTown.Q<Button>(NameAllAsideButton).clickable.clicked += () =>
+                var time = Time.realtimeSinceStartup;
+                newButtonTown.Q<Button>(NameAllAsideButton).RegisterCallback<ClickEvent>((ClickEvent evt) =>
                 {
-                    //Debug.Log($"Click button {town.TownData.position}");
-                    if (player.ActiveTown == town)
+                    if (Time.realtimeSinceStartup - time < LevelManager.Instance.ConfigGameSettings.deltaDoubleClick)
                     {
-                        //Debug.Log($"Go to town");
-                        //UIManager.Instance.ShowTown();
                         ShowTown();
                     }
                     else
                     {
                         town.SetTownAsActive();
+                        time = Time.realtimeSinceStartup;
                     }
                     OnResetFocusButton();
+                    DrawTownInfo();
                     newButtonTown.Q<Button>(NameAllAsideButton).RemoveFromClassList("button_bordered");
                     newButtonTown.Q<Button>(NameAllAsideButton).AddToClassList(NameSelectedButton);
 
-                };
+                }, TrickleDown.NoTrickleDown);
             }
             else
             {
@@ -410,27 +488,22 @@ public class UIGameAside : UILocaleBase
     private void InitHeroBox()
     {
         EntityHero activeHero = player.ActiveHero;
-        //var newHeroInfo = _templateHeroInfo.Instantiate();
-        //newHeroInfo.style.flexGrow = 1;
-        //var InfoBox = aside.Q<VisualElement>("AsideBoxInfo");
-        //InfoBox.Clear();
-        //InfoBox.Add(newHeroInfo);
-
         var _heroForceList = _aside.rootVisualElement.Q<VisualElement>("HeroForceList");
         _heroForceList.Clear();
         for (int i = 0; i < activeHero.Data.Creatures.Count; i++)
         {
             var creature = activeHero.Data.Creatures[i];
-            var newForce = _templateHeroForce.Instantiate();
-            newForce.AddToClassList("heroinfo_force_el");
-            //newForce.style.flexGrow = 1;
-
+            var newForce = _templateTownInfoCreature.Instantiate();
+            newForce.AddToClassList("w-25");
+            newForce.AddToClassList("h-50");
             if (creature != null)
             {
-                newForce.Q<VisualElement>("img").style.backgroundImage
+                newForce.Q<VisualElement>("Img").style.backgroundImage
                     = new StyleBackground(creature.ScriptableData.MenuSprite);
-                newForce.Q<Label>("ForceValue").text = creature.Data.value.ToString();
             }
+            newForce.Q<Label>("Value").text = creature != null
+                ? creature.Data.value.ToString()
+                : "";
 
             _heroForceList.Add(newForce);
 

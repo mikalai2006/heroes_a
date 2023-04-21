@@ -7,7 +7,9 @@ public class ScriptableEntityHero : ScriptableEntity
 {
     [Header("Options Hero")]
     public TypeFaction TypeFaction;
-    public List<ItemPrimarySkill> PrimarySkill;
+    public SOClassHero ClassHero;
+    // public List<ItemPrimarySkill> PrimarySkill;
+    public List<LevelSecondarySkill> StartSecondarySkill;
     public List<StartCreatureItem> StartCreatures;
 
 }
@@ -24,5 +26,12 @@ public struct StartCreatureItem
 public struct ItemPrimarySkill
 {
     public ScriptableAttributePrimarySkill PrimarySkill;
+    public int value;
+}
+
+[System.Serializable]
+public struct LevelSecondarySkill
+{
+    public ScriptableAttributeSecondarySkill SecondarySkill;
     public int value;
 }

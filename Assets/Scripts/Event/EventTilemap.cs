@@ -14,6 +14,7 @@ public class EventTilemap : MonoBehaviour
     private Camera _camera;
 
     private int SizeEmptyEdge = 3;
+    private float timeClickPrev;
     [SerializeField] private Tilemap tileMap;
 
     private void Awake()
@@ -25,7 +26,7 @@ public class EventTilemap : MonoBehaviour
     void Start()
     {
         ResetCamera = _camera.transform.position;
-
+        timeClickPrev = Time.realtimeSinceStartup;
 
 
         EventTrigger trigger = this.GetComponent<EventTrigger>();
@@ -122,8 +123,9 @@ public class EventTilemap : MonoBehaviour
         }
         else
         {
-            Debug.Log($"Count click {data.clickCount}");
-            if (data.clickCount == 2)
+            Debug.Log($"timeDifference {Time.realtimeSinceStartup - timeClickPrev}");
+            // if (data.clickCount == 2)
+            if (Time.realtimeSinceStartup - timeClickPrev < LevelManager.Instance.ConfigGameSettings.deltaDoubleClick)
             {
                 // move active hero.
                 GameManager.Instance.ChangeState(GameState.StartMoveHero);
@@ -132,6 +134,7 @@ public class EventTilemap : MonoBehaviour
             {
                 // find path.
                 GameManager.Instance.MapManager.ChangePath();
+                timeClickPrev = Time.realtimeSinceStartup;
             }
         }
 
