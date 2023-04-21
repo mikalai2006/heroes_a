@@ -21,11 +21,19 @@ public struct DataCreatureParams
     public int DamageMax;
     public int HP;
     public int Speed;
-    public int Ammunition;
+    public int Shoots;
     public int Growth;
+    public int Size;
+    public MovementType Movement;
     public int AI;
-
     public List<CostEntity> Cost;
+}
+
+[System.Serializable]
+public enum MovementType
+{
+    Ground = 0,
+    Flying = 10
 }
 
 [System.Serializable]
