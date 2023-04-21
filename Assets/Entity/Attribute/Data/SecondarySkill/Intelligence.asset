@@ -18,9 +18,9 @@ MonoBehaviour:
   Text:
     title:
       m_TableReference:
-        m_TableCollectionName: 
+        m_TableCollectionName: GUID:f81d8dede4596554fa6d177e4e16b1bc
       m_TableEntryReference:
-        m_KeyId: 0
+        m_KeyId: 7078216368128
         m_Key: 
       m_FallbackState: 0
       m_WaitForCompletion: 0
@@ -35,10 +35,64 @@ MonoBehaviour:
       m_WaitForCompletion: 0
       m_LocalVariables: []
   TypeTwoSkill: 49
-  SpriteLevel:
-  - {fileID: 1474113446, guid: bb3826057700334448fec2c60c7241e3, type: 3}
-  - {fileID: -580216416, guid: bb3826057700334448fec2c60c7241e3, type: 3}
-  - {fileID: -791070158, guid: bb3826057700334448fec2c60c7241e3, type: 3}
+  Levels:
+  - Sprite: {fileID: 176396265, guid: bb3826057700334448fec2c60c7241e3, type: 3}
+    Title:
+      m_TableReference:
+        m_TableCollectionName: GUID:f81d8dede4596554fa6d177e4e16b1bc
+      m_TableEntryReference:
+        m_KeyId: 7101167599616
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    Description:
+      m_TableReference:
+        m_TableCollectionName: GUID:f81d8dede4596554fa6d177e4e16b1bc
+      m_TableEntryReference:
+        m_KeyId: 7112408334336
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+  - Sprite: {fileID: -117044942, guid: bb3826057700334448fec2c60c7241e3, type: 3}
+    Title:
+      m_TableReference:
+        m_TableCollectionName: GUID:f81d8dede4596554fa6d177e4e16b1bc
+      m_TableEntryReference:
+        m_KeyId: 7125393899520
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    Description:
+      m_TableReference:
+        m_TableCollectionName: GUID:f81d8dede4596554fa6d177e4e16b1bc
+      m_TableEntryReference:
+        m_KeyId: 7136869515264
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+  - Sprite: {fileID: -1375378323, guid: bb3826057700334448fec2c60c7241e3, type: 3}
+    Title:
+      m_TableReference:
+        m_TableCollectionName: GUID:f81d8dede4596554fa6d177e4e16b1bc
+      m_TableEntryReference:
+        m_KeyId: 7151901900800
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    Description:
+      m_TableReference:
+        m_TableCollectionName: GUID:f81d8dede4596554fa6d177e4e16b1bc
+      m_TableEntryReference:
+        m_KeyId: 7164451258368
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
   references:
     version: 2
     RefIds: []

@@ -145,7 +145,7 @@ public class UIDialogHeroInfo : UIDialogBaseWindow
             var newBlok = _templateSecondarySkill.Instantiate();
             newBlok.AddToClassList("w-50");
             newBlok.Q<VisualElement>("Img").style.backgroundImage
-                = new StyleBackground(skillConfigData.SpriteLevel[skill.Value]);
+                = new StyleBackground(skillConfigData.Levels[skill.Value].Sprite);
             newBlok.Q<Label>("Type").text = type;
             newBlok.Q<Label>("Title").text = skillConfigData.name;
             _secondSkillBlok.Add(newBlok);

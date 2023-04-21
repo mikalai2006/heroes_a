@@ -1,14 +1,22 @@
 using System.Collections.Generic;
 
 using UnityEngine;
+using UnityEngine.Localization;
 
 [CreateAssetMenu(fileName = "AttributeSecondarySkill", menuName = "Game/Attribute/Secondary Skill")]
 public class ScriptableAttributeSecondarySkill : ScriptableAttribute
 {
     public TypeSecondarySkill TypeTwoSkill;
 
-    public List<Sprite> SpriteLevel;
+    public List<SecondarySkillIem> Levels;
+}
 
+[System.Serializable]
+public struct SecondarySkillIem
+{
+    public Sprite Sprite;
+    public LocalizedString Title;
+    public LocalizedString Description;
 }
 
 [System.Serializable]
