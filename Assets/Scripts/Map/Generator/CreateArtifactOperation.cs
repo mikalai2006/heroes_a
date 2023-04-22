@@ -48,8 +48,8 @@ public class CreateArtifactOperation : ILoadingOperation
                 // && t.Enable
                 // && !t.Protected
                 && t.KeyArea == area.id
-                && _root.gridTileHelper.CalculateNeighbours(t) <= 3
-                && _root.gridTileHelper.GetDisableNeighbours(t).count == 2
+                // && _root.gridTileHelper.CalculateNeighbours(t) <= 3
+                // && _root.gridTileHelper.GetDisableNeighbours(t).count == 2
                 && _root.gridTileHelper.GetDistanceBetweeenPoints(t.position, area.startPosition) > 10
             ).OrderBy(t => Random.value).ToList();
 

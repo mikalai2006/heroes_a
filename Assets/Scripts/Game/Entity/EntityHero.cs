@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 using Cysharp.Threading.Tasks;
 
@@ -12,9 +13,9 @@ using Random = UnityEngine.Random;
 [Serializable]
 public class EntityHero : BaseEntity
 {
+    public static event Action<EntityHero> onChangeParamsActiveHero;
     [SerializeField] public DataHero Data = new DataHero();
     public ScriptableEntityHero ConfigData => (ScriptableEntityHero)ScriptableData;
-    public static event Action<EntityHero> onChangeParamsActiveHero;
 
     public bool IsExistPath
     {
@@ -229,7 +230,7 @@ public class EntityHero : BaseEntity
     {
         if (_path != null)
         {
-            if (_path[0].position == this.Position) _path.RemoveAt(0);
+            // if (_path[0].position == this.Position) _path.RemoveAt(0);
             Data.path = _path;
         }
         else
@@ -295,6 +296,92 @@ public class EntityHero : BaseEntity
         // }
 
         return path;
+    }
+
+    public async UniTask AIFind()
+    {
+        var countProbePath = 5;
+        var countProbe = 0;
+        AIFindResource();
+        while (Data.hit > 0 && countProbe < countProbePath)
+        {
+            if (Data.path.Count == 0)
+            {
+                // // .Where(t =>
+                // //     t.StateNode.HasFlag(StateNode.Occupied)
+                // //     && !t.StateNode.HasFlag(StateNode.Guested)
+                // //     // && !t.StateNode.HasFlag(StateNode.Protected)
+                // //     && !t.StateNode.HasFlag(StateNode.Empty)
+                // //     && (t.OccupiedUnit != null && t.OccupiedUnit.Player != Player)
+                // //     && !t.StateNode.HasFlag(StateNode.Visited)
+                // //     )
+                // // .OrderBy(t => GameManager.Instance
+                // //     .MapManager
+                // //     .gridTileHelper
+                // //     .GetDistanceBetweeenPoints(Position, t.position)
+                // // )
+                // // .ToList();
+                // // // .IsExistExit(hero.OccupiedNode, (StateNode.Occupied | ~StateNode.Guested));
+                // // // .MapManager
+                // // // .gridTileHelper
+                // // // .GetNeighboursAtDistance(hero.OccupiedNode, 10)
+                // // // .Where(t => !t.StateNode.HasFlag(StateNode.Disable))
+                // // // .ToList();
+                // // // var path = GameManager.Instance
+                // // //     .MapManager
+                // // //     .gridTileHelper
+                // // //     .FindPath(
+                // // //         hero.OccupiedNode.position,
+                // // //         potentialPoints[Random.Range(0, potentialPoints.Count)].position,
+                // // //         true
+                // // //         );
+                // // // hero.SetPathHero(path);
+                // // // Debug.Log($"Bot::: Find path [{hero.OccupiedNode.position}]");
+                // // Debug.Log($"Bot::: Move from [{hero.OccupiedNode.ToString()}] to node {path[path.Count - 1].ToString()}");
+                // // var path = FindPathForHero(potentialPoints[0].position, true);
+
+                AIFindResource();
+                countProbe++;
+            }
+
+            await StartMove();
+            Debug.Log($"Data.hit after [hit={Data.hit}, path={Data.path.Count}], countProbe[{countProbe}]");
+        }
+    }
+
+    public void AIFindResource()
+    {
+        //Find
+        var potentialPoints = GameManager.Instance
+            .MapManager
+            .gridTileHelper
+            .GetNeighboursAtDistance(OccupiedNode, 25, true)
+            .OrderBy(t => GameManager.Instance
+                .MapManager
+                .gridTileHelper
+                .GetDistanceBetweeenPoints(Position, t.position)
+            ).ToList();
+
+        for (int i = 0; i < potentialPoints.Count; i++)
+        {
+            var node = potentialPoints[i];
+            if (node.OccupiedUnit != null && node.OccupiedUnit.ScriptableData.TypeEntity == TypeEntity.MapObject)
+            {
+                ScriptableEntityMapObject configData = (ScriptableEntityMapObject)node.OccupiedUnit.ScriptableData;
+                if (
+                    node.StateNode.HasFlag(StateNode.Occupied)
+                    && !node.StateNode.HasFlag(StateNode.Guested)
+                    && !node.StateNode.HasFlag(StateNode.Empty)
+                    && (node.OccupiedUnit != null && node.OccupiedUnit.Player != Player)
+                    && !node.StateNode.HasFlag(StateNode.Visited)
+                    )
+                {
+                    Debug.Log($"::: FindPathForHero for [{node.position}-{configData.name}]");
+                    var path = FindPathForHero(node.position, true);
+                    break;
+                }
+            }
+        }
     }
 
 

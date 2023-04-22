@@ -1,27 +1,41 @@
 using System.Collections.Generic;
 
 using UnityEngine;
+using UnityEngine.Localization;
 
 [CreateAssetMenu(fileName = "NewEntityMapObject", menuName = "Game/Entity/MapObject")]
 public class ScriptableEntityMapObject : ScriptableEntityEffect, IEffected
 {
+    public DialogText DialogText;
+
+    [Space(10)]
     [Header("Options Map Object")]
     public List<TypeNoPath> listTypeNoPath;
     public List<TypeNoPath> RulesDraw => listTypeNoPath;
-    public TypeWorkObject TypeWorkObject;
-    public TypeMapObject TypeMapObject;
     public List<TypeNoPath> listRuleInput;
     public List<TypeNoPath> RulesInput => listRuleInput;
-    public List<BaseEffect> Effects;
+    public TypeWorkObject TypeWorkObject;
+    public TypeMapObject TypeMapObject;
+    public List<ItemProbabiliti<BaseEffect>> Effects;
+    public List<BaseEffect> Effects2;
 
     public virtual void RunHero(ref Player player, BaseEntity entity)
     {
-        foreach (var perk in Effects)
+        foreach (var effect in Effects2)
         {
-            perk.RunHero(ref player, entity);
+            effect.RunHero(ref player, entity);
         }
     }
 }
+
+[System.Serializable]
+public struct DialogText
+{
+    public LocalizedString VisitOk;
+    public LocalizedString VisitNo;
+    public LocalizedString VisitNoResource;
+}
+
 [System.Serializable]
 public enum TypeMapObject
 {

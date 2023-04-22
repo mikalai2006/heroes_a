@@ -35,7 +35,7 @@ public class MapEntityCreature : BaseMapEntity, IDialogMapObjectOperation
 
     private void OnHeroGo(Player player)
     {
-        MapObjectClass.OccupiedNode.DisableProtectedNeigbours(MapObjectClass);
+        MapObjectClass.ProtectedNode.DisableProtectedNeigbours(MapObjectClass);
 
         // TODO ARENA
 
@@ -45,22 +45,23 @@ public class MapEntityCreature : BaseMapEntity, IDialogMapObjectOperation
 
     public async UniTask<DataResultDialog> OnTriggeredHero()
     {
+        var creature = (EntityCreature)MapObjectClass;
+        ScriptableEntityCreature configData = (ScriptableEntityCreature)MapObjectClass.ScriptableData;
 
-        // var creature = (EntityCreature)MapObjectClass;
-        // string nameText = Helpers.GetStringNameCountWarrior(creature.Data.quantity);
-        // LocalizedString stringCountWarriors = new LocalizedString(Constants.LanguageTable.LANG_TABLE_ADVENTURE, nameText);
+        string nameText = Helpers.GetStringNameCountWarrior(creature.Data.value);
+        LocalizedString stringCountWarriors = new LocalizedString(Constants.LanguageTable.LANG_TABLE_ADVENTURE, nameText);
 
-        // var title = MapObjectClass.ScriptableData.Text.title.GetLocalizedString();
-        // LocalizedString message = new LocalizedString(Constants.LanguageTable.LANG_TABLE_ADVENTURE, "army_attack")
-        // {
-        //     { "name", new StringVariable { Value = "<color=#FFFFAB>" + title + "</color>" } },
-        // };
+        var title = !configData.title.IsEmpty ? configData.title.GetLocalizedString() : "No_LANG";
+        LocalizedString message = new LocalizedString(Constants.LanguageTable.LANG_TABLE_ADVENTURE, "army_attack")
+        {
+            { "name", new StringVariable { Value = "<color=#FFFFAB>" + title + "</color>" } },
+        };
 
         var dialogData = new DataDialogMapObject()
         {
-            // Header = string.Format("{0} {1}", stringCountWarriors.GetLocalizedString(), title),
-            // Description = message.GetLocalizedString(),
-            Sprite = MapObjectClass.ScriptableData.MenuSprite,
+            Header = string.Format("{0} {1}", stringCountWarriors.GetLocalizedString(), title),
+            Description = message.GetLocalizedString(),
+            Sprite = configData.MenuSprite,
             TypeCheck = TypeCheck.Default
         };
 

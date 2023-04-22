@@ -765,11 +765,11 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
         float countDistance = hero.Data.hit;
         //Debug.Log($"hero.HeroData.hit.Value={hero.HeroData.hit.Value}");
 
-        if (paths.Count == 1)
-        {
-            _tileMapCursor.SetTile(paths[0].position, _cursorSprites.center);
-            return;
-        }
+        // if (paths.Count == 1)
+        // {
+        //     _tileMapCursor.SetTile(paths[0].position, _cursorSprites.center);
+        //     return;
+        // }
 
         for (int i = 0; i < paths.Count - 1; i++)
         {
@@ -879,12 +879,11 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
             }
 
 
-            if (_tile != null)
+            if (_tile != null && i > 0)
             {
-
                 //_tile.transform = Matrix4x4.Translate(new Vector3(0,0,0)) * Matrix4x4.Scale(new Vector3(0, -1, 0));
                 _tileMapCursor.SetTile(node.position, _tile);
-                if (countDistance < 0)
+                if (countDistance <= 0)
                 {
                     SetColorCursor(node.position, Color.red);
                 }
@@ -910,14 +909,12 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
                     _tileMapCursor.SetTile(nodeNext.position, _cursorSprites.center);
                 }
 
-                if (countDistance < 0)
+                if (countDistance <= 0)
                 {
                     SetColorCursor(nodeNext.position, Color.red);
                 }
                 countDistance -= hero.CalculateHitByNode(node);
             }
-
-
         }
     }
 

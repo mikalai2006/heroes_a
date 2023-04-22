@@ -1,0 +1,20 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:Template name="Button" src="project://database/Assets/UI/Toolkit/Button.uxml?fileID=9197481963319205126&amp;guid=db5e7d04a42304542a4356b1519364b2&amp;type=3#Button" />
+    <ui:VisualElement name="VisualElement" style="flex-grow: 1;">
+        <ui:VisualElement name="Row" class="dialog_box_row">
+            <ui:VisualElement name="Col" class="text-secondary text-lg" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); align-self: center;">
+                <ui:VisualElement name="SpriteObject" style="align-self: center;" />
+                <ui:Label tabindex="-1" text="La belLabelLabelLa belLabelLabelLa belLabelLabelLa belLabelLabelLa belLabelLabelLa belLabelLabelLa belLabelLabelLa belLabelLabelLa belLabelLabelLa belLabel" display-tooltip-when-elided="true" name="Description" enable-rich-text="true" style="white-space: normal; -unity-text-align: upper-center;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="BoxVariants" style="flex-direction: row; justify-content: center;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="Buttons" class="dialog_box_row" style="flex-direction: row; justify-content: center;">
+            <ui:Instance template="Button" name="Cancel">
+                <AttributeOverrides element-name="Btn" text="#cancel" />
+            </ui:Instance>
+            <ui:Instance template="Button" name="Ok">
+                <AttributeOverrides element-name="Btn" text="#ok" />
+            </ui:Instance>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

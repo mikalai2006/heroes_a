@@ -136,9 +136,18 @@ public class EntityMapObject : BaseEntity
         // }
         if (configData.TypeWorkObject == TypeWorkObject.One)
         {
-            //ScriptableData.MapPrefab.ReleaseInstance(gameObject);
+            List<GridTileNode> nodes
+                = GameManager.Instance.MapManager.gridTileHelper.GetNodeListAsNoPath(OccupiedNode, configData.RulesInput);
+            foreach (var node in nodes)
+            {
+                node.RemoveStateNode(StateNode.Input);
+            }
             MapObjectGameObject.DestroyGameObject();
-            DestroyGameObject();
+            DestroyMapGameObject();
+        }
+        else
+        {
+            OccupiedNode.ChangeStatusVisit(true);
         }
     }
 

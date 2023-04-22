@@ -2,30 +2,19 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.Events;
-using System.Collections.Generic;
 
-public class UIDialogMapObjectWindow : MonoBehaviour
+public class UIDialogMapObjectWindow : UIDialogBaseWindow
 {
-    [SerializeField] private UIDocument _uiDoc;
-    public UIDocument DialogApp => _uiDoc;
-    [SerializeField] private VisualTreeAsset _templateItem;
+    [SerializeField] private VisualTreeAsset _templateCostItem;
+    [SerializeField] private VisualTreeAsset _templateButton;
     [SerializeField] private VisualTreeAsset _templateButtonCheckItem;
-    private readonly string _nameButtonOk = "ButtonOk";
-    private readonly string _nameButtonCancel = "ButtonCancel";
     private readonly string _nameSpriteElement = "Sprite";
-    private readonly string _nameDescriptionLabel = "DescriptionDialog";
-    private readonly string _nameHeaderLabel = "HeaderDialog";
     private readonly string _nameValueLabel = "Value";
     private readonly string _nameBoxVariants = "BoxVariants";
-    private readonly string _nameOverlay = "Overlay";
     private readonly string _nameSpriteObject = "SpriteObject";
 
     private Button _buttonOk;
     private Button _buttonCancel;
-    // private VisualElement _spriteElement;
-    private Label _headerLabel;
-    private Label _descriptionLabel;
-    // private Label _valueLabel;
     private VisualElement _boxVariantsElement;
     private VisualElement _boxSpriteObject;
 
@@ -36,21 +25,26 @@ public class UIDialogMapObjectWindow : MonoBehaviour
     private DataDialogMapObject _dataDialog;
     private DataResultDialog _dataResultDialog;
 
-    private void Awake()
+    public override void Start()
     {
-        _buttonOk = DialogApp.rootVisualElement.Q<Button>(_nameButtonOk);
-        _buttonOk.clickable.clicked += OnClickOk;
-        _buttonCancel = DialogApp.rootVisualElement.Q<Button>(_nameButtonCancel);
-        _headerLabel = DialogApp.rootVisualElement.Q<Label>(_nameHeaderLabel);
-        _descriptionLabel = DialogApp.rootVisualElement.Q<Label>(_nameDescriptionLabel);
-        _buttonCancel.clickable.clicked += OnClickCancel;
-        _boxVariantsElement = DialogApp.rootVisualElement.Q<VisualElement>(_nameBoxVariants);
-        _boxSpriteObject = DialogApp.rootVisualElement.Q<VisualElement>(_nameSpriteObject);
+        base.Start();
 
+        _buttonOk = root.Q<VisualElement>("Ok").Q<Button>("Btn");
+        _buttonOk.clickable.clicked += OnClickOk;
+
+        _buttonCancel = root.Q<VisualElement>("Cancel").Q<Button>("Btn");
+        _buttonCancel.clickable.clicked += OnClickCancel;
+
+        _boxVariantsElement = root.Q<VisualElement>(_nameBoxVariants);
+        _boxSpriteObject = root.Q<VisualElement>(_nameSpriteObject);
+
+        // base.Localize(root);
     }
 
     public async Task<DataResultDialog> ProcessAction(DataDialogMapObject dataDialog)
     {
+        base.Init();
+
         _dataDialog = dataDialog;
         _dataResultDialog = new DataResultDialog();
 
@@ -59,8 +53,8 @@ public class UIDialogMapObjectWindow : MonoBehaviour
             _buttonCancel.style.display = DisplayStyle.None;
         }
 
-        _headerLabel.text = _dataDialog.Header;
-        _descriptionLabel.text = _dataDialog.Description;
+        Title.text = _dataDialog.Header;
+        Panel.Q<Label>("Description").text = _dataDialog.Description;
         if (_dataDialog.Sprite != null)
         {
             _boxSpriteObject.style.backgroundImage = new StyleBackground(_dataDialog.Sprite);
@@ -78,10 +72,16 @@ public class UIDialogMapObjectWindow : MonoBehaviour
         {
             for (int j = 0; j < _dataDialog.Groups[i].Values.Count; j++)
             {
-                VisualElement item = _templateItem.Instantiate();
+                VisualElement item = _templateCostItem.Instantiate();
                 if (_dataDialog.TypeWorkAttribute == TypeWorkAttribute.One)
                 {
+                    var index = i;
                     item = _templateButtonCheckItem.Instantiate();
+                    item.RegisterCallback<ClickEvent>((ClickEvent evt) =>
+                    {
+                        Debug.Log($"Var{i}-{index}");
+                        _dataResultDialog.keyVariant = index;
+                    });
                 }
                 var _spriteElement = item.Q<VisualElement>(_nameSpriteElement);
                 var _valueLabel = item.Q<Label>(_nameValueLabel);
@@ -100,16 +100,6 @@ public class UIDialogMapObjectWindow : MonoBehaviour
 
                 _boxVariantsElement.Add(item);
             }
-        }
-
-        Player player = LevelManager.Instance.ActivePlayer;
-
-        UQueryBuilder<VisualElement> builder
-            = new UQueryBuilder<VisualElement>(DialogApp.rootVisualElement);
-        List<VisualElement> list = builder.Name(_nameOverlay).ToList();
-        foreach (var overlay in list)
-        {
-            overlay.style.backgroundColor = player.DataPlayer.color;
         }
 
         _processCompletionSource = new TaskCompletionSource<DataResultDialog>();

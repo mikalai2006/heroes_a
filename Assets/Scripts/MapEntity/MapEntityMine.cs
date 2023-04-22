@@ -52,11 +52,12 @@ public class MapEntityMine : BaseMapEntity, IDialogMapObjectOperation
 
     public async UniTask<DataResultDialog> OnTriggeredHero()
     {
+        ScriptableEntityMine configData = (ScriptableEntityMine)MapObjectClass.ScriptableData;
         var dialogData = new DataDialogMapObject()
         {
-            // Header = MapObjectClass.ScriptableData.Text.title.GetLocalizedString(),
-            // Description = t.Text.visit_ok,
-            Sprite = MapObjectClass.ScriptableData.MenuSprite,
+            Header = configData.title.GetLocalizedString(),
+            Description = configData.DialogText.VisitOk.GetLocalizedString(),
+            Sprite = configData.MenuSprite,
         };
 
         var dialogWindow = new DialogMapObjectProvider(dialogData);

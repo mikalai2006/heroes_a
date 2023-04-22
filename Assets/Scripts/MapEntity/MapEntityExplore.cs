@@ -1,8 +1,4 @@
-using System.Collections.Generic;
-
 using Cysharp.Threading.Tasks;
-
-using UnityEngine;
 
 public class MapEntityExplore : BaseMapEntity, IDialogMapObjectOperation
 {
@@ -14,6 +10,9 @@ public class MapEntityExplore : BaseMapEntity, IDialogMapObjectOperation
     public async override void OnGoHero(Player player)
     {
         base.OnGoHero(player);
+
+        MapObjectClass.OccupiedNode.ChangeStatusVisit(true);
+
         if (LevelManager.Instance.ActivePlayer.DataPlayer.playerType != PlayerType.Bot)
         {
             DataResultDialog result = await OnTriggeredHero();

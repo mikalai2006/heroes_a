@@ -114,7 +114,7 @@ public class MapEntityHero : BaseMapEntity
         _canMove = true;
         if (entityHero.IsExistPath)
         {
-            // if (entityHero.Data.path[0] == entityHero.OccupiedNode) entityHero.Data.path.RemoveAt(0);
+            if (entityHero.Data.path[0] == entityHero.OccupiedNode) entityHero.Data.path.RemoveAt(0);
             cancelTokenSource = new CancellationTokenSource();
             await MoveHero(cancelTokenSource.Token);
         }
@@ -136,7 +136,7 @@ public class MapEntityHero : BaseMapEntity
             Vector3 moveKoof
                 = configNodeData?.RulesInput.Count > 0 || nodeTo.StateNode.HasFlag(StateNode.Input)
                     ? new Vector3(.5f, .0f)
-                    : new Vector3(.5f, .5f);
+                    : new Vector3(.5f, .0f);
 
             if (nodeTo.StateNode.HasFlag(StateNode.Protected))
             {

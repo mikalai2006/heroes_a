@@ -35,9 +35,9 @@ MonoBehaviour:
   listTypeNoPath: 
   TypeWorkObject: 1
   TypeMapObject: 6
-  listRuleInput: 
+  listRuleInput: 08000000090000000e0000001300000012000000110000000c00000007000000
   Effects: []
-  Artifact: {fileID: 0}
+  Artifact: {fileID: 11400000, guid: 170f6a18e7757ad4c9aaed11393ac632, type: 2}
   references:
     version: 2
     RefIds: []

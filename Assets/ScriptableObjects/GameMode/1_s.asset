@@ -27,5 +27,5 @@ MonoBehaviour:
     koofFreeResource: 0.03
     koofExplore: 0.003
     koofSchoolSkills: 0.007
-    koofArtifacts: 0.03
+    koofArtifacts: 0.01
     koofDwelling: 0.0457

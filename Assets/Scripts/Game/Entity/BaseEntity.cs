@@ -59,7 +59,7 @@ public abstract class BaseEntity
         LoadGameObject();
     }
 
-    public void DestroyGameObject()
+    public void DestroyMapGameObject()
     {
         // Debug.Log($"Destroy entity::: {ScriptableData.name}");
         OccupiedNode.SetOcuppiedUnit(null);

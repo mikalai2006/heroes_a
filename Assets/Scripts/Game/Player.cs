@@ -311,57 +311,12 @@ public class Player
     public async UniTask RunBot()
     {
         // Debug.Log($"Bot::: Start - {this.DataPlayer.id}");
-        var countProbePath = 2;
 
         foreach (var hero in _data.PlayerDataReferences.ListHero)
         {
             SetActiveHero(hero);
+            await hero.AIFind();
             // Debug.Log($"Bot::: Set active hero {hero.ScriptableData.name}");
-            var countProbe = 0;
-            while (hero.Data.hit > 0 && countProbe < countProbePath)
-            {
-                if (hero.Data.path.Count == 0)
-                {
-                    var potentialPoints = GameManager.Instance
-                        .MapManager
-                        .gridTileHelper
-                        .GetNeighboursAtDistance(hero.OccupiedNode, 25, true)
-                        .Where(t =>
-                            t.StateNode.HasFlag(StateNode.Occupied)
-                            && !t.StateNode.HasFlag(StateNode.Guested)
-                            // && !t.StateNode.HasFlag(StateNode.Protected)
-                            && !t.StateNode.HasFlag(StateNode.Empty)
-                            && (t.OccupiedUnit != null && t.OccupiedUnit.Player != this)
-                            )
-                        .OrderBy(t => GameManager.Instance
-                            .MapManager
-                            .gridTileHelper
-                            .GetDistanceBetweeenPoints(hero.Position, t.position)
-                        )
-                        .ToList();
-                    // .IsExistExit(hero.OccupiedNode, (StateNode.Occupied | ~StateNode.Guested));
-                    // .MapManager
-                    // .gridTileHelper
-                    // .GetNeighboursAtDistance(hero.OccupiedNode, 10)
-                    // .Where(t => !t.StateNode.HasFlag(StateNode.Disable))
-                    // .ToList();
-                    // var path = GameManager.Instance
-                    //     .MapManager
-                    //     .gridTileHelper
-                    //     .FindPath(
-                    //         hero.OccupiedNode.position,
-                    //         potentialPoints[Random.Range(0, potentialPoints.Count)].position,
-                    //         true
-                    //         );
-                    // hero.SetPathHero(path);
-                    // Debug.Log($"Bot::: Find path [{hero.OccupiedNode.position}]");
-                    var path = hero.FindPathForHero(potentialPoints[0].position, true);
-                    // Debug.Log($"Bot::: Move from [{hero.OccupiedNode.ToString()}] to node {path[path.Count - 1].ToString()}");
-                    countProbe++;
-                }
-
-                await hero.StartMove();
-            }
             // Debug.Log($"Bot::: End Move hero {hero.ScriptableData.name}[hit={hero.Data.hit}]");
             // GameManager.Instance.ChangeState(GameState.StartMoveHero);
         }

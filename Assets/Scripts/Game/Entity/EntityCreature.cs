@@ -68,7 +68,7 @@ public class EntityCreature : BaseEntity
         ScriptableEntityCreature configData = (ScriptableEntityCreature)ScriptableData;
         // configData.OnDoHero(ref player, this);
         MapObjectGameObject.DestroyGameObject();
-        DestroyGameObject();
+        DestroyMapGameObject();
     }
 
     #region SaveLoadData

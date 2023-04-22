@@ -32,11 +32,12 @@ public class MapEntityArtifact : BaseMapEntity, IDialogMapObjectOperation
         //     { "name", new StringVariable { Value = this.ScriptableData.name } },
         // };
         // var t = HelperLanguage.GetLocaleText(this.ScriptableData.Locale);
+        var configData = (ScriptableEntityArtifact)MapObjectClass.ScriptableData;
         var dialogData = new DataDialogMapObject()
         {
-            // Header = MapObjectClass.ScriptableData.Text.title.GetLocalizedString(),
-            // Description = t.Text.visit_ok,
-            Sprite = MapObjectClass.ScriptableData.MenuSprite
+            Header = configData.Artifact.Text.title.GetLocalizedString(),
+            Description = configData.Artifact.textOk.GetLocalizedString(),
+            Sprite = configData.Artifact.MenuSprite
         };
 
         var dialogWindow = new DialogMapObjectProvider(dialogData);
@@ -69,6 +70,6 @@ public class MapEntityArtifact : BaseMapEntity, IDialogMapObjectOperation
     private void OnHeroGo(Player player)
     {
         MapObjectClass.SetPlayer(player);
-        Destroy(gameObject);
+        // Destroy(gameObject);
     }
 }

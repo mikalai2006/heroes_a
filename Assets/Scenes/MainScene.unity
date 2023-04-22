@@ -435,7 +435,7 @@ MonoBehaviour:
       title: S
       width: 50
       height: 50
-      koofSizeArea: 1
+      koofSizeArea: 0.859
       noiseScaleMontain: 0.121
       koofMountains: 0.27
       koofNature: 0.01
@@ -445,7 +445,7 @@ MonoBehaviour:
       koofFreeResource: 0.03
       koofExplore: 0.003
       koofSchoolSkills: 0.007
-      koofArtifacts: 0.03
+      koofArtifacts: 0.01
       koofDwelling: 0.0457
   ConfigGameSettings: {fileID: 0}
   TypePlayers: []

@@ -51,6 +51,18 @@ public class EntityArtifact : BaseEntity
     {
         ScriptableEntityArtifact configData = (ScriptableEntityArtifact)ScriptableData;
         configData.RunHero(ref player, this);
+
+        if (configData.TypeWorkObject == TypeWorkObject.One)
+        {
+            List<GridTileNode> nodes
+                = GameManager.Instance.MapManager.gridTileHelper.GetNodeListAsNoPath(OccupiedNode, configData.RulesInput);
+            foreach (var node in nodes)
+            {
+                node.RemoveStateNode(StateNode.Input);
+            }
+            MapObjectGameObject.DestroyGameObject();
+            DestroyMapGameObject();
+        }
     }
 
     #region InitData

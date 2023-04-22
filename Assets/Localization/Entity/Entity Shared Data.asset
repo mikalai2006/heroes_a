@@ -32,15 +32,15 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 10623745425408
-    m_Key: celestial_t
+    m_Key: celestialnecklaceofbliss_t
     m_Metadata:
       m_Items: []
   - m_Id: 10655924125696
-    m_Key: celestial_d
+    m_Key: celestialnecklaceofbliss_d
     m_Metadata:
       m_Items: []
   - m_Id: 10667806588928
-    m_Key: celestial_ok
+    m_Key: celestialnecklaceofbliss_ok
     m_Metadata:
       m_Items: []
   - m_Id: 1500021049688064
@@ -81,6 +81,18 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 4737672213069824
     m_Key: artifact
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6187881203924992
+    m_Key: helmofheavenlyenlightenment
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6187887386329088
+    m_Key: helmofheavenlyenlightenment_ok
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6189164698697728
+    m_Key: helmofheavenlyenlightenment_d
     m_Metadata:
       m_Items: []
   m_Metadata:

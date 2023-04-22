@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 73ca52b11951f044da29ff97232d0ab2, type: 3}
-  m_Name: ArmorofWonder
+  m_Name: HelmofHeavenlyEnlightenment 1
   m_EditorClassIdentifier: 
-  idObject: attribute.artifact.armorofwonder
+  idObject: attribute.artifact.helmofheavenlyenlightenment
   TypeAttribute: 10
-  MenuSprite: {fileID: -300453719, guid: 490ba0d6e3fee684782c8751fbe7a923, type: 3}
+  MenuSprite: {fileID: 822340653, guid: be9387fb266b97f4bb60bdbf760a8a44, type: 3}
   Text:
     title:
       m_TableReference:
         m_TableCollectionName: GUID:99ee07ddc90ffba41a3d18974d364707
       m_TableEntryReference:
-        m_KeyId: 85510488064
+        m_KeyId: 6187881203924992
         m_Key: 
       m_FallbackState: 0
       m_WaitForCompletion: 0
@@ -29,15 +29,15 @@ MonoBehaviour:
       m_TableReference:
         m_TableCollectionName: GUID:99ee07ddc90ffba41a3d18974d364707
       m_TableEntryReference:
-        m_KeyId: 185469140992
+        m_KeyId: 6189164698697728
         m_Key: 
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
-  spriteMap: {fileID: -1579801575, guid: c12233e7f9e1938489974c1fb7749211, type: 3}
-  Cost: 4000
-  ClassArtifact: 0
-  Slot: 0
+  spriteMap: {fileID: 1663026599, guid: c12233e7f9e1938489974c1fb7749211, type: 3}
+  Cost: 24000
+  ClassArtifact: 3
+  Slot: 3
   PrimarySkills:
   - id: 
     PrimarySkill: {fileID: 11400000, guid: 642756d81958c7d4e8cf4a4f01d6f919, type: 2}
@@ -50,12 +50,13 @@ MonoBehaviour:
     m_TableReference:
       m_TableCollectionName: GUID:99ee07ddc90ffba41a3d18974d364707
     m_TableEntryReference:
-      m_KeyId: 330323623936
+      m_KeyId: 6187887386329088
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []
-  Effects: []
+  Effects:
+  - {fileID: 0}
   references:
     version: 2
     RefIds: []

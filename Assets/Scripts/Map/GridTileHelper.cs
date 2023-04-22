@@ -135,7 +135,7 @@ public class GridTileHelper
                         && !currentNode.StateNode.HasFlag(StateNode.Input)
                         && currentNode.InputNode != endNode)
                         ||
-                        (currentNode.StateNode.HasFlag(StateNode.Input) && currentNode.InputNode != endNode)
+                        (data.RulesInput.Count > 0 && currentNode.StateNode.HasFlag(StateNode.Input) && currentNode.InputNode != endNode)
                         )
                         // Debug.Log(
                         //     $"NO \n" +
@@ -208,7 +208,7 @@ public class GridTileHelper
             }
             prevNode = currentNode;
         }
-        // Debug.Log($"Not found path");
+        Debug.Log($"Not found path");
 
         return null; // CalculatePath(endNode);
     }
@@ -288,6 +288,7 @@ public class GridTileHelper
     {
         List<GridTileNode> allInputNode
             = GameManager.Instance.MapManager.gridTileHelper.GetNodeListAsNoPath(node, configData.RulesInput);
+        var countDisableInputNode = 0;
         for (int i = 0; i < allInputNode.Count; i++)
         {
             var currentNode = allInputNode[i];
@@ -296,9 +297,13 @@ public class GridTileHelper
                 || currentNode.StateNode.HasFlag(StateNode.Input)
                 || currentNode.StateNode.HasFlag(StateNode.Protected))
             {
-                return false;
+                // return false;
+                countDisableInputNode++;
             }
         }
+
+        if (allInputNode.Count == countDisableInputNode) return false;
+
         List<GridTileNode> allDrawNode
             = GameManager.Instance.MapManager.gridTileHelper.GetNodeListAsNoPath(node, configData.RulesDraw);
         for (int i = 0; i < allDrawNode.Count; i++)

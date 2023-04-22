@@ -55,14 +55,6 @@ public struct LangEntity
     public LocalizedString description;
 }
 
-[System.Serializable]
-public struct DialogText
-{
-    public LocalizedString VisitOk;
-    public LocalizedString VisitNo;
-    public LocalizedString VisitNoResource;
-}
-
 
 [System.Serializable]
 public enum TypeNoPath

@@ -55,6 +55,34 @@ MonoBehaviour:
         isOne: 0
       Creature: {fileID: 0}
     probability: 1
+  DialogText:
+    VisitOk:
+      m_TableReference:
+        m_TableCollectionName: GUID:8ed801dac82951d449557e1a63174ac8
+      m_TableEntryReference:
+        m_KeyId: 4485931106205696
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    VisitNo:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    VisitNoResource:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
   listTypeNoPath: 080000000c00000009000000070000000e000000
   TypeWorkObject: 2
   TypeMapObject: 5

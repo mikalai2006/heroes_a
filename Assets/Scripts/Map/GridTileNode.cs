@@ -16,9 +16,9 @@ public enum StateNode
     Cave = 1 << 6,
     Town = 1 << 7,
     Input = 1 << 8,
-    Guested = 1 << 9
+    Guested = 1 << 9,
+    Visited = 1 << 10,
 }
-
 
 [Serializable]
 public class GridTileNode : IHeapItem<GridTileNode>
@@ -134,6 +134,18 @@ public class GridTileNode : IHeapItem<GridTileNode>
         _inputNode = node;
     }
 
+    public void ChangeStatusVisit(bool v)
+    {
+        if (v)
+        {
+            StateNode |= StateNode.Visited;
+        }
+        else
+        {
+            StateNode &= ~(StateNode.Visited);
+        }
+    }
+
     /// <summary>
     /// Set guested.
     /// </summary>
@@ -172,7 +184,11 @@ public class GridTileNode : IHeapItem<GridTileNode>
 
     public void DisableProtectedNeigbours(BaseEntity warriorUnit, GridTileNode protectedNode = null)
     {
-        List<GridTileNode> nodes = _gridHelper.GetNeighbourList(this, true);
+        ScriptableEntityMapObject configData = (ScriptableEntityMapObject)this.OccupiedUnit.ScriptableData;
+        List<GridTileNode> nodes
+            = GameManager.Instance.MapManager.gridTileHelper.GetNodeListAsNoPath(this, configData.RulesInput);
+
+        // List<GridTileNode> nodes = _gridHelper.GetNeighbourList(this, true);
 
         if (nodes != null || nodes.Count > 0)
         {
@@ -244,6 +260,7 @@ public class GridTileNode : IHeapItem<GridTileNode>
             "countNeighbours=" + countRelatedNeighbors + ",\n" +
             "(gCost=" + gCost + ") (hCost=" + hCost + ") (fCost=" + fCost + ")";
     }
+
 #endif
 
 }

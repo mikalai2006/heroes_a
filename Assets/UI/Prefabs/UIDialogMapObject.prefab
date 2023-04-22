@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5519312768165280067}
   - component: {fileID: 1168774379718930049}
-  - component: {fileID: 3883753543271412854}
   m_Layer: 0
   m_Name: UIDialogMapObject
   m_TagString: Untagged
@@ -46,68 +45,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8338b04709f07054a97cd0e3a640fdb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _localization:
+    m_TableReference:
+      m_TableCollectionName: GUID:9b6db77d8a0719a4490c3b7aad12567c
   _uiDoc: {fileID: 5519312768427620860}
-  _templateItem: {fileID: 9197481963319205126, guid: c8d8f5a78bfd96e43994188922617468, type: 3}
+  _templateInsertBlok: {fileID: 9197481963319205126, guid: 0fc88cbbef62c7a41b5d6f2efa5dec23, type: 3}
+  _templateCostItem: {fileID: 9197481963319205126, guid: c8d8f5a78bfd96e43994188922617468, type: 3}
+  _templateButton: {fileID: 9197481963319205126, guid: db5e7d04a42304542a4356b1519364b2, type: 3}
   _templateButtonCheckItem: {fileID: 9197481963319205126, guid: a24b4c164d4a3ed48b8a846bd9e93d8e, type: 3}
   processAction:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &3883753543271412854
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5519312768165280076}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69beb381e244f92449b8c4cf954630e9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_TrackedObjects:
-  - rid: 1339301005619625986
-  references:
-    version: 2
-    RefIds:
-    - rid: 1339301005619625986
-      type: {class: TrackedMonoBehaviourObject, ns: UnityEngine.Localization.PropertyVariants.TrackedObjects, asm: Unity.Localization}
-      data:
-        m_Target: {fileID: 1168774379718930049}
-        m_TrackedProperties:
-          items:
-          - rid: 1339301005619625987
-          - rid: 1339301005619625990
-        m_UpdateType: 1
-        m_Changed:
-          m_PersistentCalls:
-            m_Calls: []
-    - rid: 1339301005619625987
-      type: {class: LocalizedAssetProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
-      data:
-        m_Localized:
-          rid: 1339301005619625988
-        m_PropertyPath: _templateButtonCheckItem
-    - rid: 1339301005619625988
-      type: {class: LocalizedObject, ns: UnityEngine.Localization, asm: Unity.Localization}
-      data:
-        m_TableReference:
-          m_TableCollectionName: GUID:fcaa17c4476cf3a448f5e28b91200fd3
-        m_TableEntryReference:
-          m_KeyId: 4453100795625472
-          m_Key: 
-        m_FallbackState: 0
-        m_WaitForCompletion: 0
-    - rid: 1339301005619625990
-      type: {class: ArraySizeTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
-      data:
-        m_PropertyPath: processAction.m_PersistentCalls.m_Calls.Array.size
-        m_VariantData:
-        - localeIdentifier:
-            m_Code: ru
-          value: 0
-        - localeIdentifier:
-            m_Code: en
-          value: 0
 --- !u!1 &5519312768427620862
 GameObject:
   m_ObjectHideFlags: 0

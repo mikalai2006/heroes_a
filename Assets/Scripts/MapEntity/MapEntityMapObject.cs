@@ -2,6 +2,8 @@ using System.Collections.Generic;
 
 using Cysharp.Threading.Tasks;
 
+using UnityEngine;
+
 public class MapEntityMapObject : BaseMapEntity, IDialogMapObjectOperation
 {
 
@@ -70,6 +72,7 @@ public class MapEntityMapObject : BaseMapEntity, IDialogMapObjectOperation
             DataResultDialog result = await OnTriggeredHero();
             if (result.isOk)
             {
+                Debug.Log($"Status choose={result.keyVariant}");
                 OnHeroGo(player);
             }
             else
@@ -85,6 +88,7 @@ public class MapEntityMapObject : BaseMapEntity, IDialogMapObjectOperation
 
     private void OnHeroGo(Player player)
     {
+        // ScriptableEntityMapObject configData = (ScriptableEntityMapObject)MapObjectClass.ScriptableData;
         MapObjectClass.SetPlayer(player);
     }
 
