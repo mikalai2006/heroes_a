@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 784102457
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 17cb9c399bfd42f44b60cf0789123c37, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d8e4f1ce49416fd49b99e5046efcecb0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -158,7 +158,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3681035251465187759, guid: 74e586b38813f5a4f89bfded10336241, type: 3}
       propertyPath: m_Name
-      value: Castle_Wood_Mine
+      value: GrassWoodMine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d773a3b0f3ae2f84a854f454eac39c5b
+guid: 87b5da9208a419443b2f3990831b3cf8
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -133,8 +133,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: be848a39231f73c45839415d9c6ca07d
-      internalID: 1393826629
+      spriteID: d718c45ac58775a4091963ff25c07e14
+      internalID: -1743802033
       vertices: []
       indices: 
       edges: []
@@ -154,8 +154,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1788c9eda05ed514aab5f5f4bc6a479c
-      internalID: -902138330
+      spriteID: d3374e24e3dc90e41b4efb648b3bf5fc
+      internalID: 1070132090
       vertices: []
       indices: 
       edges: []
@@ -175,8 +175,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9b9390c842c16ec499e5a72cb506df51
-      internalID: -740243297
+      spriteID: f1e8ac0ec6672e744ae3e104a8b078ad
+      internalID: -1547689119
       vertices: []
       indices: 
       edges: []
@@ -196,8 +196,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6271c7143464bc946ab27a035b96cf2b
-      internalID: 1425826582
+      spriteID: 7fbcae91359cbd04ab11535c5b6ef1e6
+      internalID: 757895279
       vertices: []
       indices: 
       edges: []
@@ -217,8 +217,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 10312ddadc40949469bd51fe72903902
-      internalID: 942614265
+      spriteID: 529308987afc0e4448acb965937a8fa0
+      internalID: -1595240645
       vertices: []
       indices: 
       edges: []
@@ -234,11 +234,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Hero1_0: 1393826629
-      Hero1_1: -902138330
-      Hero1_2: -740243297
-      Hero1_3: 1425826582
-      Hero1_4: 942614265
+      Hero1_0: -1743802033
+      Hero1_1: 1070132090
+      Hero1_2: -1547689119
+      Hero1_3: 757895279
+      Hero1_4: -1595240645
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
