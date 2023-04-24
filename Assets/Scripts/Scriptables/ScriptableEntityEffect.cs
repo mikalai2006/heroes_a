@@ -5,7 +5,7 @@ using UnityEngine.Localization;
 public class ScriptableEntityEffect : ScriptableEntity
 {
     [Header("Options attributes")]
-    public TypeWorkAttribute TypeWorkAttribute;
+    public TypeWorkAttribute TypeWorkEffect;
     // public List<ItemProbabiliti<GroupResource>> Resources;
     // public List<ItemProbabiliti<GroupPrimarySkill>> PrimarySkills;
     // public List<ItemProbabiliti<GroupSecondarySkill>> SecondarySkills;

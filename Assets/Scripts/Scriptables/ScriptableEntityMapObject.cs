@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 using UnityEngine;
@@ -6,26 +7,43 @@ using UnityEngine.Localization;
 [CreateAssetMenu(fileName = "NewEntityMapObject", menuName = "Game/Entity/MapObject")]
 public class ScriptableEntityMapObject : ScriptableEntityEffect, IEffected
 {
-    public DialogText DialogText;
-
-    [Space(10)]
-    [Header("Options Map Object")]
+    // public DialogText DialogText;
+    public TypeMapObject TypeMapObject;
     public List<TypeNoPath> listTypeNoPath;
     public List<TypeNoPath> RulesDraw => listTypeNoPath;
     public List<TypeNoPath> listRuleInput;
     public List<TypeNoPath> RulesInput => listRuleInput;
     public TypeWorkObject TypeWorkObject;
-    public TypeMapObject TypeMapObject;
-    public List<ItemProbabiliti<BaseEffect>> Effects;
-    public List<BaseEffect> Effects2;
+    public List<ItemProbabiliti<ItemEffect>> Effects;
 
     public virtual void RunHero(ref Player player, BaseEntity entity)
     {
-        foreach (var effect in Effects2)
+        if (Effects.Count == 0) return;
+
+        foreach (var effect in Effects[entity.DataEffects.index].Item.items)
         {
             effect.RunHero(ref player, entity);
         }
     }
+    public virtual void SetData(BaseEntity entity)
+    {
+        if (Effects.Count == 0) return;
+
+        var variant = Helpers.GetProbabilityItem<ItemEffect>(Effects);
+        entity.DataEffects.index = variant.index;
+        foreach (var effect in variant.Item.items)
+        {
+            effect.SetData(entity);
+        }
+    }
+
+}
+
+[System.Serializable]
+public struct ItemEffect
+{
+    public LocalizedString description;
+    public List<BaseEffect> items;
 }
 
 [System.Serializable]

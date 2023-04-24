@@ -1,5 +1,71 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7836157620683191569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 931c2d9151e1ed949beab9dc2cf5be9e, type: 3}
+  m_Name: EffectResource
+  m_EditorClassIdentifier: 
+  idEffect: TreasureChest6
+  Resource: {fileID: 11400000, guid: 3894d4d068775c343b5c4bf1510dee33, type: 2}
+  min: 1500
+  max: 1500
+  step: 1500
+  Attrs: 
+--- !u!114 &-3121162486690767101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 931c2d9151e1ed949beab9dc2cf5be9e, type: 3}
+  m_Name: EffectResource
+  m_EditorClassIdentifier: 
+  idEffect: TreasureChest5
+  Resource: {fileID: 11400000, guid: 3894d4d068775c343b5c4bf1510dee33, type: 2}
+  min: 2000
+  max: 2000
+  step: 2000
+  Attrs: 
+--- !u!114 &-2619083535311172657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 727de839767f2dd48a948e30d18d2270, type: 3}
+  m_Name: EffectPrimarySkill
+  m_EditorClassIdentifier: 
+  idEffect: TreasureChest3
+  PrimarySkill: {fileID: 11400000, guid: 71fd48291a2040e4b92224f9677707ba, type: 2}
+  value: 500
+--- !u!114 &-2329276225487841507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 727de839767f2dd48a948e30d18d2270, type: 3}
+  m_Name: EffectPrimarySkill
+  m_EditorClassIdentifier: 
+  idEffect: TreasureChest2
+  PrimarySkill: {fileID: 11400000, guid: 71fd48291a2040e4b92224f9677707ba, type: 2}
+  value: 1000
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30,7 +96,7 @@ MonoBehaviour:
     m_SubObjectType: 
     m_EditorAssetChanged: 0
   TypeGround: -1
-  TypeWorkAttribute: 1
+  TypeWorkEffect: 1
   Attributes:
   - Item:
       description:
@@ -55,6 +121,7 @@ MonoBehaviour:
       Artifacts:
         Artifact: []
         isOne: 0
+      Creature: {fileID: 0}
     probability: 0.3199999928474426
   - Item:
       description:
@@ -79,6 +146,7 @@ MonoBehaviour:
       Artifacts:
         Artifact: []
         isOne: 0
+      Creature: {fileID: 0}
     probability: 0.3199999928474426
   - Item:
       description:
@@ -103,6 +171,7 @@ MonoBehaviour:
       Artifacts:
         Artifact: []
         isOne: 0
+      Creature: {fileID: 0}
     probability: 0.3100000023841858
   - Item:
       description:
@@ -123,12 +192,118 @@ MonoBehaviour:
         - {fileID: 11400000, guid: 170f6a18e7757ad4c9aaed11393ac632, type: 2}
         - {fileID: 11400000, guid: 170f6a18e7757ad4c9aaed11393ac632, type: 2}
         isOne: 1
+      Creature: {fileID: 0}
     probability: 0.05000000074505806
-  listTypeNoPath: 
-  TypeWorkObject: 1
   TypeMapObject: 2
+  listTypeNoPath: 
   listRuleInput: 
-  Effects: []
+  TypeWorkObject: 1
+  Effects:
+  - Item:
+      description:
+        m_TableReference:
+          m_TableCollectionName: GUID:8ed801dac82951d449557e1a63174ac8
+        m_TableEntryReference:
+          m_KeyId: 4463993914818560
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      items:
+      - {fileID: 6659812447112571249}
+      - {fileID: -2619083535311172657}
+    probability: 0.32
+  - Item:
+      description:
+        m_TableReference:
+          m_TableCollectionName: GUID:8ed801dac82951d449557e1a63174ac8
+        m_TableEntryReference:
+          m_KeyId: 4463993914818560
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      items:
+      - {fileID: -7836157620683191569}
+      - {fileID: -2329276225487841507}
+    probability: 0.32
+  - Item:
+      description:
+        m_TableReference:
+          m_TableCollectionName: GUID:8ed801dac82951d449557e1a63174ac8
+        m_TableEntryReference:
+          m_KeyId: 4463993914818560
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      items:
+      - {fileID: -3121162486690767101}
+      - {fileID: 8802631379755477566}
+    probability: 0.31
+  - Item:
+      description:
+        m_TableReference:
+          m_TableCollectionName: GUID:8ed801dac82951d449557e1a63174ac8
+        m_TableEntryReference:
+          m_KeyId: 4463545761824768
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      items:
+      - {fileID: 3498748001875693649}
+    probability: 0.05
   references:
     version: 2
     RefIds: []
+--- !u!114 &3498748001875693649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69287b786f0766b4b9b6f7ff0f767eca, type: 3}
+  m_Name: EffectRandomArtifact
+  m_EditorClassIdentifier: 
+  idEffect: TreasureChest4
+  Artifacts:
+  - {fileID: 11400000, guid: 170f6a18e7757ad4c9aaed11393ac632, type: 2}
+  - {fileID: 11400000, guid: d5a53fe4124a83947a53947ea43672ad, type: 2}
+  - {fileID: 11400000, guid: fb155b3ab4fa88340a27dec143295a23, type: 2}
+--- !u!114 &6659812447112571249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 931c2d9151e1ed949beab9dc2cf5be9e, type: 3}
+  m_Name: EffectResource
+  m_EditorClassIdentifier: 
+  idEffect: TreasureChest7
+  Resource: {fileID: 11400000, guid: 3894d4d068775c343b5c4bf1510dee33, type: 2}
+  min: 1000
+  max: 1000
+  step: 1000
+  Attrs: 
+--- !u!114 &8802631379755477566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 727de839767f2dd48a948e30d18d2270, type: 3}
+  m_Name: EffectPrimarySkill
+  m_EditorClassIdentifier: 
+  idEffect: TreasureChest1
+  PrimarySkill: {fileID: 11400000, guid: 71fd48291a2040e4b92224f9677707ba, type: 2}
+  value: 1500

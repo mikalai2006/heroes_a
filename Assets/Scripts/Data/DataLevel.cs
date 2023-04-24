@@ -60,6 +60,10 @@ public class SaveDataUnit<T>
     public string idObject;
     public TypeEntity typeEntity;
     // public TypeMapObject typeMapObject;
+    public DataEntityEffects DataEffects = new DataEntityEffects()
+    {
+        Effects = new List<DataEntityEffectsBase>()
+    };
     public Vector3Int position;
     public T data;
 }

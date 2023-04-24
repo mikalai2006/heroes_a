@@ -339,15 +339,16 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
             GridTileNode currentNode = gridTileHelper.GridTile.GetGridObject(new Vector3Int(item.data.protectedNode.x, item.data.protectedNode.y));
 
             if (item.idObject == "") continue;
-
-            EntityCreature warrior = new EntityCreature(null, item);
-            nodeWarrior.SetProtectedNeigbours(warrior, currentNode);
-            warrior.CreateMapGameObject(nodeWarrior);
-            // UnitManager.SpawnEntityToNode(tileNode, entity);
-            // BaseWarriors warrior = (BaseWarriors)await UnitManager.SpawnUnitToNode(scriptableData, tileNode);
-            // tileNode.SetProtectedNeigbours(entity, protectedNode);
-            // // Hero.OnLoadUnit(unitHero);
-            // // LevelManager.Instance.GetPlayer(unitHero.data.idPlayer).AddHero((Hero)Hero);
+            EntityCreature creature = (EntityCreature)UnitManager.SpawnEntityCreature(nodeWarrior, item);
+            // EntityCreature warrior = new EntityCreature(null, item);
+            // Debug.Log($"currentNode.position={currentNode.position}, creature={warrior.ConfigData.name}");
+            nodeWarrior.SetProtectedNeigbours(creature, currentNode);
+            // warrior.CreateMapGameObject(nodeWarrior);
+            // // UnitManager.SpawnEntityToNode(tileNode, entity);
+            // // BaseWarriors warrior = (BaseWarriors)await UnitManager.SpawnUnitToNode(scriptableData, tileNode);
+            // // tileNode.SetProtectedNeigbours(entity, protectedNode);
+            // // // Hero.OnLoadUnit(unitHero);
+            // // // LevelManager.Instance.GetPlayer(unitHero.data.idPlayer).AddHero((Hero)Hero);
         }
     }
 
@@ -356,7 +357,7 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
 
         // string fullPath = System.IO.Path.Combine(Application.persistentDataPath, "resourcemap.json");
 
-        // ResourceMap loadedData = new();
+        // JSONDataEffect loadedData = new();
 
         // if (System.IO.File.Exists(fullPath))
         // {
@@ -372,7 +373,7 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
         //             }
         //         }
 
-        //         loadedData = JsonUtility.FromJson<ResourceMap>(dataToLoad);
+        //         loadedData = JsonUtility.FromJson<JSONDataEffect>(dataToLoad);
         //         Debug.Log($"{dataToLoad}");
 
         //     }
@@ -385,10 +386,20 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
         //     {
 
         //         Debug.Log($"{loadedData.ToString()}");
-        //         foreach (var it in loadedData.Resourcemap)
+        //         foreach (var it in loadedData.effects)
         //         {
-        //             Debug.Log($"{it.id}");
-
+        //             Debug.Log($"{it.variants.Count}");
+        //             if (it.variants.Count > 0)
+        //             {
+        //                 foreach (var item in it.variants)
+        //                 {
+        //                     foreach (var item2 in item.items)
+        //                     {
+        //                         DataEffectResource dd = (DataEffectResource)item2.data;
+        //                         Debug.Log($"Item2 ::: {item2.idso}");
+        //                     }
+        //                 }
+        //             }
         //         }
         //     }
         // }

@@ -50,7 +50,8 @@ public class CreateResourceOperation : ILoadingOperation
                     GridTileNode currentNode = nodes[Random.Range(0, nodes.Count)];
 
                     List<TypeWorkObject> typeWork = new List<TypeWorkObject>() {
-                            TypeWorkObject.One
+                            TypeWorkObject.One,
+                            TypeWorkObject.FirstVisit
                         };
                     List<ScriptableEntityMapObject> list = ResourceSystem.Instance
                         .GetEntityByType<ScriptableEntityMapObject>(TypeEntity.MapObject)

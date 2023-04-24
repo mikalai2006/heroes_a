@@ -14,8 +14,8 @@ public class ScriptableGameSetting : ScriptableObject
     public List<Color> colors;
     [Range(0.5f, 1f)] public float alphaOverlay;
     public List<ItemPlayerType> TypesPlayer;
-    public List<Complexity> Complexities;
-    public List<StartBonusItem> StartBonuses;
+    public List<SOComplexity> Complexities;
+    public List<SOStartBonus> StartBonuses;
     [SerializeField] public List<CostEntity> CostHero;
     public int maxCountHero = 5;
 
@@ -23,22 +23,6 @@ public class ScriptableGameSetting : ScriptableObject
     [Space(5)]
     [Range(0.3f, 1f)] public float deltaDoubleClick;
 
-}
-
-[System.Serializable]
-public struct StartBonusItem
-{
-    public TypeStartBonus bonus;
-    public Sprite sprite;
-    public LocalizedString title;
-}
-
-
-[System.Serializable]
-public struct Complexity
-{
-    public int value;
-    public Sprite sprite;
 }
 
 [System.Serializable]

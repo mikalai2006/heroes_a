@@ -13,7 +13,7 @@ public class DataDialogMapObject
     public Sprite Sprite;
     public List<DataDialogMapObjectGroup> Groups;
     public TypeCheck TypeCheck;
-    public TypeWorkAttribute TypeWorkAttribute;
+    public TypeWorkAttribute TypeWorkEffect;
     public DataDialogMapObject()
     {
         Groups = new List<DataDialogMapObjectGroup>();

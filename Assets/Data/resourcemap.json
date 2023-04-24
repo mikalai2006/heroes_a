@@ -1,20 +1,30 @@
 {
-  "resourcemap": [
+  "effects": [
     {
-      "id": "entity.map.resource.box",
+      "id": "map.resource.gold",
       "variants": [
         {
-          "list": [
+          "probability": 0.2,
+          "items": [
             {
-              "idso": "entity.resource.gold",
-              "value": 1000
+              "idso": "effect.resource",
+              "data": {
+                "value": 1000,
+                "max": 1000,
+                "min": 500,
+                "step": 500
+              }
             },
             {
-              "idso": "entity.resource.gems",
-              "value": 1000
+              "idso": "effect.resource",
+              "data": {
+                "value": 1000,
+                "max": 1000,
+                "min": 500,
+                "step": 500
+              }
             }
-          ],
-          "probability": 0.23
+          ]
         }
       ]
     }

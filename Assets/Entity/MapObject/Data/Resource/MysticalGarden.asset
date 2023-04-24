@@ -1,5 +1,41 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-6023704472294645171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 931c2d9151e1ed949beab9dc2cf5be9e, type: 3}
+  m_Name: EffectResource
+  m_EditorClassIdentifier: 
+  idEffect: MysticalGarden1
+  Resource: {fileID: 11400000, guid: f02d0b566815eaa47b30b219422c87e5, type: 2}
+  min: 5
+  max: 5
+  step: 5
+  Attrs: 
+--- !u!114 &-1331246440203410640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 931c2d9151e1ed949beab9dc2cf5be9e, type: 3}
+  m_Name: EffectResource
+  m_EditorClassIdentifier: 
+  idEffect: MysticalGarden2
+  Resource: {fileID: 11400000, guid: 3894d4d068775c343b5c4bf1510dee33, type: 2}
+  min: 500
+  max: 500
+  step: 500
+  Attrs: 
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30,7 +66,7 @@ MonoBehaviour:
     m_SubObjectType: 
     m_EditorAssetChanged: 0
   TypeGround: 12
-  TypeWorkAttribute: 1
+  TypeWorkEffect: 0
   Attributes:
   - Item:
       description:
@@ -53,6 +89,7 @@ MonoBehaviour:
       Artifacts:
         Artifact: []
         isOne: 0
+      Creature: {fileID: 0}
     probability: 0.5
   - Item:
       description:
@@ -75,12 +112,39 @@ MonoBehaviour:
       Artifacts:
         Artifact: []
         isOne: 0
+      Creature: {fileID: 0}
     probability: 0.5
-  listTypeNoPath: 0c0000000e000000
-  TypeWorkObject: 3
   TypeMapObject: 2
+  listTypeNoPath: 0c0000000e000000
   listRuleInput: 110000001300000012000000
-  Effects: []
+  TypeWorkObject: 3
+  Effects:
+  - Item:
+      description:
+        m_TableReference:
+          m_TableCollectionName: GUID:8ed801dac82951d449557e1a63174ac8
+        m_TableEntryReference:
+          m_KeyId: 4598291884048384
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      items:
+      - {fileID: -1331246440203410640}
+    probability: 1
+  - Item:
+      description:
+        m_TableReference:
+          m_TableCollectionName: GUID:8ed801dac82951d449557e1a63174ac8
+        m_TableEntryReference:
+          m_KeyId: 4598291884048384
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      items:
+      - {fileID: -6023704472294645171}
+    probability: 1
   references:
     version: 2
     RefIds: []

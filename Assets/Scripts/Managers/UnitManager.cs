@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 
 using UnityEngine;
 
@@ -93,7 +94,16 @@ public static class UnitManager
     //     //node.OccupiedUnit = createdUnit;
     //     return createdUnit;
     // }
-
+    public static BaseEntity SpawnEntityCreature(GridTileNode node, SaveDataUnit<DataCreature> saveData)
+    {
+        EntityCreature newEntity = new EntityCreature(null, saveData);
+        Entities.Add(newEntity.IdEntity, newEntity);
+        node.SetOcuppiedUnit(newEntity);
+        newEntity.SetOccupiedNode(node);
+        GameManager.Instance.MapManager.SetColorForTile(node.position, Color.magenta);
+        newEntity.CreateMapGameObject(node);
+        return newEntity;
+    }
     public static BaseEntity SpawnEntityCreature(GridTileNode node, TypeGround typeGroud = TypeGround.None, int level = 1)
     {
         //if (node == null) return null;
@@ -102,8 +112,8 @@ public static class UnitManager
         ScriptableEntityCreature scriptbaleEntity = listWarriors[Random.Range(0, listWarriors.Count)];
         EntityCreature newEntity = new EntityCreature(scriptbaleEntity);
         Entities.Add(newEntity.IdEntity, newEntity);
-        newEntity.OccupiedNode = node;
         node.SetOcuppiedUnit(newEntity);
+        newEntity.SetOccupiedNode(node);
         GameManager.Instance.MapManager.SetColorForTile(node.position, Color.magenta);
         // SpawnEntityToNode(node, newEntity);
         newEntity.CreateMapGameObject(node);

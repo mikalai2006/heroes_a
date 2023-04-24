@@ -112,11 +112,11 @@ public class UIDialogHeroInfo : UIDialogBaseWindow
 
     private void FillPrimarySkills()
     {
-        _attack.text = _hero.Data.attack.ToString();
-        _defense.text = _hero.Data.defense.ToString();
-        _knowledge.text = _hero.Data.knowledge.ToString();
-        _power.text = _hero.Data.power.ToString();
-        _experience.text = _hero.Data.experience.ToString();
+        _attack.text = _hero.Data.PSkills.GetValueOrDefault(TypePrimarySkill.Attack).ToString();
+        _defense.text = _hero.Data.PSkills.GetValueOrDefault(TypePrimarySkill.Defense).ToString();
+        _knowledge.text = _hero.Data.PSkills.GetValueOrDefault(TypePrimarySkill.Knowledge).ToString();
+        _power.text = _hero.Data.PSkills.GetValueOrDefault(TypePrimarySkill.Power).ToString();
+        _experience.text = _hero.Data.PSkills.GetValueOrDefault(TypePrimarySkill.Experience).ToString();
     }
 
     private void FillSecondarySkills()

@@ -355,6 +355,10 @@ MonoBehaviour:
     m_Key: "\u0441ouncil_hall"
     m_Metadata:
       m_Items: []
+  - m_Id: 10293040574005248
+    m_Key: resources
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

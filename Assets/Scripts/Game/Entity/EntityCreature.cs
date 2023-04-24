@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -71,6 +72,17 @@ public class EntityCreature : BaseEntity
         DestroyMapGameObject();
     }
 
+    public void SetOccupiedNode(GridTileNode node)
+    {
+        OccupiedNode = node;
+    }
+
+    public void SetProtectedNode(GridTileNode protectedNode)
+    {
+        ProtectedNode = protectedNode;
+        Data.protectedNode = protectedNode.position;
+    }
+
     #region SaveLoadData
     // public void LoadDataPlay(DataPlay data)
     // {
@@ -82,5 +94,6 @@ public class EntityCreature : BaseEntity
         var sdata = SaveUnit(Data);
         data.entity.creatures.Add(sdata);
     }
+
     #endregion
 }

@@ -28,6 +28,7 @@ public class EntityMine : BaseEntity
             ScriptableData = configData;
             Data.idPlayer = -1;
             idObject = ScriptableData.idObject;
+            configData.SetData(this);
         }
         else
         {
@@ -53,19 +54,15 @@ public class EntityMine : BaseEntity
     public override void OnAfterStateChanged(GameState newState)
     {
         base.OnAfterStateChanged(newState);
-        if (newState == GameState.NextDay)
+        switch (newState)
         {
-            ScriptableEntityMine configData = (ScriptableEntityMine)ScriptableData;
-            Player player = LevelManager.Instance.ActivePlayer;
-            configData.RunHero(ref player, this);
-            // if (Data.idPlayer == player.DataPlayer.id)
-            // {
-            //     if (ConfigData.Resources.Count > 0)
-            //     {
-            //         var res = ConfigData.Resources[0].ListVariant[0];
-            //         player.ChangeResource(res.Resource.TypeResource, res.maxValue);//res.maxValue
-            //     }
-            // }
+            case GameState.NextDay:
+                if (_player != null && LevelManager.Instance.ActivePlayer == _player)
+                {
+                    ScriptableEntityMine configData = (ScriptableEntityMine)ScriptableData;
+                    configData.RunHero(ref _player, this);
+                }
+                break;
         }
     }
     #endregion

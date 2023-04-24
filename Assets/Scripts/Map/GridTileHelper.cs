@@ -297,8 +297,8 @@ public class GridTileHelper
                 || currentNode.StateNode.HasFlag(StateNode.Input)
                 || currentNode.StateNode.HasFlag(StateNode.Protected))
             {
-                // return false;
-                countDisableInputNode++;
+                return false;
+                // countDisableInputNode++;
             }
         }
 

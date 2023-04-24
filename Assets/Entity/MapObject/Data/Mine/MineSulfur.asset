@@ -30,7 +30,7 @@ MonoBehaviour:
     m_SubObjectType: 
     m_EditorAssetChanged: 0
   TypeGround: 2046
-  TypeWorkAttribute: 0
+  TypeWorkEffect: 0
   Attributes:
   - Item:
       description:
@@ -55,40 +55,43 @@ MonoBehaviour:
         isOne: 0
       Creature: {fileID: 0}
     probability: 1
-  DialogText:
-    VisitOk:
-      m_TableReference:
-        m_TableCollectionName: GUID:8ed801dac82951d449557e1a63174ac8
-      m_TableEntryReference:
-        m_KeyId: 4485814366142464
-        m_Key: 
-      m_FallbackState: 0
-      m_WaitForCompletion: 0
-      m_LocalVariables: []
-    VisitNo:
-      m_TableReference:
-        m_TableCollectionName: 
-      m_TableEntryReference:
-        m_KeyId: 0
-        m_Key: 
-      m_FallbackState: 0
-      m_WaitForCompletion: 0
-      m_LocalVariables: []
-    VisitNoResource:
-      m_TableReference:
-        m_TableCollectionName: 
-      m_TableEntryReference:
-        m_KeyId: 0
-        m_Key: 
-      m_FallbackState: 0
-      m_WaitForCompletion: 0
-      m_LocalVariables: []
-  listTypeNoPath: 0c0000000e000000
-  TypeWorkObject: 2
   TypeMapObject: 5
+  listTypeNoPath: 0c0000000e000000
   listRuleInput: 120000001100000013000000
-  Effects: []
+  TypeWorkObject: 2
+  Effects:
+  - Item:
+      description:
+        m_TableReference:
+          m_TableCollectionName: 
+        m_TableEntryReference:
+          m_KeyId: 0
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      items:
+      - {fileID: 5681960502114343428}
+    probability: 0
   TypeMine: 0
   references:
     version: 2
     RefIds: []
+--- !u!114 &5681960502114343428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 931c2d9151e1ed949beab9dc2cf5be9e, type: 3}
+  m_Name: EffectResource
+  m_EditorClassIdentifier: 
+  idEffect: mine.sulfur1
+  Resource: {fileID: 11400000, guid: 379c734399110d34f9159a31f3e18074, type: 2}
+  min: 1
+  max: 1
+  step: 1
+  Attrs: 

@@ -1,5 +1,20 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-4300958844528184664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 727de839767f2dd48a948e30d18d2270, type: 3}
+  m_Name: EffectPrimarySkill
+  m_EditorClassIdentifier: 
+  idEffect: MercenaryCamp1
+  PrimarySkill: {fileID: 11400000, guid: 642756d81958c7d4e8cf4a4f01d6f919, type: 2}
+  value: 1
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30,7 +45,7 @@ MonoBehaviour:
     m_SubObjectType: 
     m_EditorAssetChanged: 0
   TypeGround: -1
-  TypeWorkAttribute: 0
+  TypeWorkEffect: 0
   Attributes:
   - Item:
       description:
@@ -50,12 +65,26 @@ MonoBehaviour:
       Artifacts:
         Artifact: []
         isOne: 0
+      Creature: {fileID: 0}
     probability: 1
-  listTypeNoPath: 0e0000000c000000
-  TypeWorkObject: 4
   TypeMapObject: 4
+  listTypeNoPath: 0e0000000c000000
   listRuleInput: 110000001300000012000000
-  Effects: []
+  TypeWorkObject: 4
+  Effects:
+  - Item:
+      description:
+        m_TableReference:
+          m_TableCollectionName: GUID:8ed801dac82951d449557e1a63174ac8
+        m_TableEntryReference:
+          m_KeyId: 4633528760434688
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      items:
+      - {fileID: -4300958844528184664}
+    probability: 1
   references:
     version: 2
     RefIds: []

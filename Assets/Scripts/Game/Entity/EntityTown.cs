@@ -35,7 +35,7 @@ public class EntityTown : BaseEntity
             Data.name = ConfigData.name;
             idObject = ScriptableData.idObject;
 
-            Data.Generals = new SerializableDictionary<string, BuildGeneralBase>();
+            Data.Generals = new SerializableDictionary<string, BuildGeneral>();
             Data.Armys = new SerializableDictionary<string, BuildArmy>();
 
             // Data.Creatures = new SerializableDictionary<int, EntityCreature>();
@@ -52,7 +52,7 @@ public class EntityTown : BaseEntity
                 .Where(t => t.idObject == saveData.idObject)
                 .First();
             Data = saveData.data;
-            Data.Generals = new SerializableDictionary<string, BuildGeneralBase>();
+            Data.Generals = new SerializableDictionary<string, BuildGeneral>();
             Data.Armys = new SerializableDictionary<string, BuildArmy>();
             foreach (var item in saveData.data.Generals)
             {
@@ -106,6 +106,11 @@ public class EntityTown : BaseEntity
 
     private void InitBuilding()
     {
+        if (LevelManager.Instance.Level.Settings.compexity < 100 && _player.DataPlayer.playerType == PlayerType.Bot)
+        {
+            return;
+        }
+
         foreach (var item in ConfigData.BuildTown.StartProgressBuilds)
         {
             var newBuild = CreateBuild(item.Build, item.level, _player);
@@ -142,11 +147,26 @@ public class EntityTown : BaseEntity
     public override void SetPlayer(Player player)
     {
         base.SetPlayer(player);
+        var first = false;
+        if (Data.idPlayer == -1)
+        {
+            first = true;
+        }
 
         Data.idPlayer = player.DataPlayer.id;
         player.AddTown(this);
 
-        InitBuilding();
+        var resourceOfComplexityGame
+            = LevelManager.Instance.ConfigGameSettings.Complexities
+            .Find(t => t.value == LevelManager.Instance.Level.Settings.compexity);
+        Data.goldin = player.DataPlayer.playerType == PlayerType.Bot
+            ? resourceOfComplexityGame.Computer.goldin
+            : resourceOfComplexityGame.Player.goldin;
+
+        if (first)
+        {
+            InitBuilding();
+        }
     }
 
     #region SaveLoadData
@@ -162,7 +182,6 @@ public class EntityTown : BaseEntity
 
     public BaseBuild CreateBuild(ScriptableBuilding buildConfig, int level, Player player)
     {
-        var factory = new BuildFactory();
         if (buildConfig.TypeBuild == TypeBuild.Army)
         {
             BuildArmy build;
@@ -180,7 +199,7 @@ public class EntityTown : BaseEntity
         }
         else
         {
-            BuildGeneralBase build;
+            BuildGeneral build;
             if (Data.Generals.TryGetValue(buildConfig.idObject, out build))
             {
                 Data.Generals[buildConfig.idObject].level += 1;
@@ -189,7 +208,7 @@ public class EntityTown : BaseEntity
             }
             else
             {
-                build = factory.CreateBuild(level, (ScriptableBuildingGeneral)buildConfig, this, player);
+                build = new BuildGeneral(level, (ScriptableBuildingGeneral)buildConfig, this, player);
                 // new BuildGeneral(level, (ScriptableBuildingGeneral)buildConfig, this, player);
                 Data.Generals.Add(buildConfig.idObject, build);
             }
@@ -213,7 +232,7 @@ public class EntityTown : BaseEntity
             }
             else
             {
-                BuildGeneralBase isGen;
+                BuildGeneral isGen;
                 Data.Generals.TryGetValue(item.Build.idObject, out isGen);
                 if (isGen == null || (isGen != null && isGen.level < item.level))
                 {
@@ -264,7 +283,7 @@ public class EntityTown : BaseEntity
         }
         else
         {
-            BuildGeneralBase isGen;
+            BuildGeneral isGen;
             Data.Generals.TryGetValue(configBuildData.idObject, out isGen);
             if (isGen != null)
             {
@@ -274,18 +293,29 @@ public class EntityTown : BaseEntity
         return result;
     }
 
-    // public override void OnAfterStateChanged(GameState newState)
-    // {
-    //     base.OnAfterStateChanged(newState);
-    //     switch (newState)
-    //     {
-    //         case GameState.NextWeek:
-    //             // OnRunGeneralBuilds();
-    //             OnRunArmyBuilds();
-    //             break;
-    //     }
-    // }
+    public override void OnAfterStateChanged(GameState newState)
+    {
+        base.OnAfterStateChanged(newState);
+        // if (LevelManager.Instance.ActivePlayer == _player)
+        // {
+        switch (newState)
+        {
+            case GameState.NextDay:
+                NextDay();
+                // OnRunGeneralBuilds();
+                // OnRunArmyBuilds();
+                break;
+        }
+        // }
+    }
 
+    private void NextDay()
+    {
+        if (Player == LevelManager.Instance.ActivePlayer)
+        {
+            _player.ChangeResource(TypeResource.Gold, Data.goldin);
+        };
+    }
     // private void OnRunGeneralBuilds()
     // {
     //     if (Player == LevelManager.Instance.ActivePlayer)

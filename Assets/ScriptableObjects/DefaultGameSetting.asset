@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a65cfdab86604e40a6aaa5b4c21ea31, type: 3}
+  m_Script: {fileID: 11500000, guid: ff94131cd36e44742b33713468bc11fa, type: 3}
   m_Name: DefaultGameSetting
   m_EditorClassIdentifier: 
   idObject: 
@@ -45,42 +45,19 @@ MonoBehaviour:
       m_LocalVariables: []
     TypePlayer: 2
   Complexities:
-  - value: 120
-    sprite: {fileID: -1560610031, guid: c4c05eb8d4f42bb46a51404b3bfd32d7, type: 3}
-  - value: 140
-    sprite: {fileID: -1243349403, guid: c4c05eb8d4f42bb46a51404b3bfd32d7, type: 3}
-  - value: 160
-    sprite: {fileID: 122301707, guid: c4c05eb8d4f42bb46a51404b3bfd32d7, type: 3}
-  - value: 180
-    sprite: {fileID: -864904784, guid: c4c05eb8d4f42bb46a51404b3bfd32d7, type: 3}
-  - value: 200
-    sprite: {fileID: 1770593047, guid: c4c05eb8d4f42bb46a51404b3bfd32d7, type: 3}
+  - {fileID: 11400000, guid: 1fc7c454c1f58de4580ef82e0a999015, type: 2}
+  - {fileID: 11400000, guid: b14de949b7ed70640a03e056c9d93360, type: 2}
+  - {fileID: 11400000, guid: 36d382477902ac449912f455dfb9eb61, type: 2}
+  - {fileID: 11400000, guid: 8870c2d512c696441a1a7816cf77994d, type: 2}
+  - {fileID: 11400000, guid: b4488bff7ee67174e960ab5c9949eb11, type: 2}
   StartBonuses:
-  - bonus: 1
-    sprite: {fileID: 36309692, guid: a4dbc25aa5c0cc543a2d01e118853fe1, type: 3}
-    title:
-      m_TableReference:
-        m_TableCollectionName: GUID:99ee07ddc90ffba41a3d18974d364707
-      m_TableEntryReference:
-        m_KeyId: 1500759150723072
-        m_Key: 
-      m_FallbackState: 0
-      m_WaitForCompletion: 0
-      m_LocalVariables: []
-  - bonus: 2
-    sprite: {fileID: 933523507, guid: 490ba0d6e3fee684782c8751fbe7a923, type: 3}
-    title:
-      m_TableReference:
-        m_TableCollectionName: GUID:99ee07ddc90ffba41a3d18974d364707
-      m_TableEntryReference:
-        m_KeyId: 4737672213069824
-        m_Key: 
-      m_FallbackState: 0
-      m_WaitForCompletion: 0
-      m_LocalVariables: []
+  - {fileID: 11400000, guid: 0de76608d9ef55c40ac872ef034d5452, type: 2}
+  - {fileID: 11400000, guid: 55a7dfbfbad68de4d8944fc81103ba60, type: 2}
+  - {fileID: 11400000, guid: b51253b53a8518241b3d16ace6633e7e, type: 2}
   CostHero:
   - Resource: {fileID: 11400000, guid: 3894d4d068775c343b5c4bf1510dee33, type: 2}
     Count: 2500
+  maxCountHero: 5
   deltaDoubleClick: 0.5
   references:
     version: 2

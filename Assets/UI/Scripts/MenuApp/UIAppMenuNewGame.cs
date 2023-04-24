@@ -364,7 +364,7 @@ public class UIAppMenuNewGame : UILocaleBase
 
             SetBonus(player.StartSetting.bonus, chooserBonus);
             var indexActiveBonus = _configGameSettings.StartBonuses
-                .FindIndex(t => t.bonus == player.StartSetting.bonus);
+                .FindIndex(t => t.TypeBonus == player.StartSetting.bonus);
             chooserBonus.Q<Button>("arrowleft").clickable.clicked += () =>
             {
                 if (indexActiveBonus >= 0)
@@ -377,11 +377,11 @@ public class UIAppMenuNewGame : UILocaleBase
                 }
                 if (indexActiveBonus >= 0 && indexActiveBonus < _configGameSettings.StartBonuses.Count)
                 {
-                    player.StartSetting.bonus = _configGameSettings.StartBonuses[indexActiveBonus].bonus;
+                    player.StartSetting.bonus = _configGameSettings.StartBonuses[indexActiveBonus].TypeBonus;
                 }
                 else
                 {
-                    player.StartSetting.bonus = TypeStartBonus.None;
+                    player.StartSetting.bonus = TypeStartBonus.Random;
                 }
 
                 DrawAdvancedOptions();
@@ -398,11 +398,11 @@ public class UIAppMenuNewGame : UILocaleBase
                 }
                 if (indexActiveBonus >= 0 && indexActiveBonus < _configGameSettings.StartBonuses.Count)
                 {
-                    player.StartSetting.bonus = _configGameSettings.StartBonuses[indexActiveBonus].bonus;
+                    player.StartSetting.bonus = _configGameSettings.StartBonuses[indexActiveBonus].TypeBonus;
                 }
                 else
                 {
-                    player.StartSetting.bonus = TypeStartBonus.None;
+                    player.StartSetting.bonus = TypeStartBonus.Random;
                 }
 
                 DrawAdvancedOptions();
@@ -436,7 +436,7 @@ public class UIAppMenuNewGame : UILocaleBase
 
     private void SetBonus(TypeStartBonus typeBonus, VisualElement chooser)
     {
-        var bonuses = _configGameSettings.StartBonuses.Where(t => t.bonus == typeBonus);
+        var bonuses = _configGameSettings.StartBonuses.Where(t => t.TypeBonus == typeBonus);
         if (bonuses.Count() > 0)
         {
             var bonus = bonuses.First();
@@ -478,7 +478,7 @@ public class UIAppMenuNewGame : UILocaleBase
             ||
             (Level.GameModeData.title == "")
             ||
-            (Level.Settings.compexity < 99)
+            (Level.Settings.compexity < 80)
             )
         {
             _btnNewGame.SetEnabled(false);

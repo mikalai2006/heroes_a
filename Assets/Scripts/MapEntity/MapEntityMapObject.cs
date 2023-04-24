@@ -2,37 +2,46 @@ using System.Collections.Generic;
 
 using Cysharp.Threading.Tasks;
 
-using UnityEngine;
-
 public class MapEntityMapObject : BaseMapEntity, IDialogMapObjectOperation
 {
+    private DataDialogMapObjectGroup _dialogData;
 
     public override void InitUnit(BaseEntity mapObject)
     {
 
         base.InitUnit(mapObject);
 
-        var mapObjectClass = (EntityMapObject)MapObjectClass;
-        mapObjectClass.SetData();
+        // var mapObjectClass = (EntityMapObject)MapObjectClass;
+        //mapObjectClass.SetData();
     }
 
     public async UniTask<DataResultDialog> OnTriggeredHero()
     {
+        _dialogData = new DataDialogMapObjectGroup()
+        {
+            Values = new List<DataDialogMapObjectGroupItem>()
+        };
+
         EntityMapObject entity = (EntityMapObject)MapObjectClass;
         ScriptableEntityMapObject configData = (ScriptableEntityMapObject)MapObjectClass.ScriptableData;
-        var groups = new List<DataDialogMapObjectGroup>();
-        var group = new DataDialogMapObjectGroup();
-        // var group = groups[0].Items;
-        group.Values = new List<DataDialogMapObjectGroupItem>();
-        for (int i = 0; i < entity.Data.AttributeValues.Count; i++)
+
+        foreach (var effect in configData.Effects[entity.DataEffects.index].Item.items)
         {
-            group.Values.Add(new DataDialogMapObjectGroupItem()
-            {
-                Sprite = entity.Data.AttributeValues[i].Attribute.MenuSprite,
-                Value = entity.Data.AttributeValues[i].value
-            });
+            effect.CreateDialogData(ref _dialogData, entity);
         }
-        groups.Add(group);
+        var groups = new List<DataDialogMapObjectGroup>();
+        // var group = new DataDialogMapObjectGroup();
+        // // var group = groups[0].Items;
+        // group.Values = new List<DataDialogMapObjectGroupItem>();
+        // for (int i = 0; i < entity.Data.AttributeValues.Count; i++)
+        // {
+        //     group.Values.Add(new DataDialogMapObjectGroupItem()
+        //     {
+        //         Sprite = entity.Data.AttributeValues[i].Attribute.MenuSprite,
+        //         Value = entity.Data.AttributeValues[i].value
+        //     });
+        // }
+        groups.Add(_dialogData);
 
         // var groupArtifact = new DataDialogMapObjectGroup();
         // groupArtifact.Values = new List<DataDialogMapObjectGroupItem>();
@@ -44,15 +53,17 @@ public class MapEntityMapObject : BaseMapEntity, IDialogMapObjectOperation
         //     });
         // }
         // groups.Add(groupArtifact);
-        var description = configData.Attributes[entity.Data.index].Item.description.IsEmpty ?
-            "" : configData.Attributes[entity.Data.index].Item.description.GetLocalizedString();
+        var description = configData.Effects[entity.DataEffects.index].Item.description.IsEmpty
+            ? ""
+            : configData.Effects[entity.DataEffects.index].Item.description.GetLocalizedString();
+
         var dialogData = new DataDialogMapObject()
         {
             Header = configData.title.GetLocalizedString(),
             Description = description,
             // Sprite = this.ScriptableData.MenuSprite,
             TypeCheck = TypeCheck.OnlyOk,
-            TypeWorkAttribute = configData.TypeWorkAttribute,
+            TypeWorkEffect = configData.TypeWorkEffect,
             Groups = groups
         };
 
@@ -72,8 +83,7 @@ public class MapEntityMapObject : BaseMapEntity, IDialogMapObjectOperation
             DataResultDialog result = await OnTriggeredHero();
             if (result.isOk)
             {
-                Debug.Log($"Status choose={result.keyVariant}");
-                OnHeroGo(player);
+                OnHeroGo(player, result.keyVariant);
             }
             else
             {
@@ -82,14 +92,31 @@ public class MapEntityMapObject : BaseMapEntity, IDialogMapObjectOperation
         }
         else
         {
-            OnHeroGo(player);
+            OnHeroGo(player, 0);
         }
     }
 
-    private void OnHeroGo(Player player)
+    private void OnHeroGo(Player player, int indexVariant)
     {
-        // ScriptableEntityMapObject configData = (ScriptableEntityMapObject)MapObjectClass.ScriptableData;
+        EntityMapObject entity = (EntityMapObject)MapObjectClass;
+        ScriptableEntityMapObject configData = (ScriptableEntityMapObject)MapObjectClass.ScriptableData;
         MapObjectClass.SetPlayer(player);
+        if (indexVariant == -1)
+        {
+            configData.RunHero(ref player, entity);
+        }
+        else
+        {
+            configData.Effects[entity.DataEffects.index].Item.items[indexVariant].RunHero(ref player, entity);
+        }
+        // if (configData.TypeWorkAttribute == TypeWorkAttribute.One) {
+        //     var choosedItem = entity.Data.AttributeValues[];
+        // } else {
+        //     foreach (var res in entity.Data.AttributeValues)
+        //     {
+        //         Debug.Log($"Status choose={res.TypeAttribute}-{res.value}");
+        //     }
+        // }
     }
 
     public override void OnNextDay()

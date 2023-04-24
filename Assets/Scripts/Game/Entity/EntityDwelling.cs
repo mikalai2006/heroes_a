@@ -38,7 +38,15 @@ public class EntityDwelling : BaseEntity
             idUnit = saveData.idUnit;
             idObject = saveData.idObject;
         }
+    }
 
+    public override void OnAfterStateChanged(GameState newState)
+    {
+        ScriptableEntityDwelling scriptData = (ScriptableEntityDwelling)ScriptableData;
+        // if (scriptData.Effects.Count > 0)
+        // {
+        //     scriptData.RunHero(ref _player, this);
+        // }
     }
 
     public void SetData()

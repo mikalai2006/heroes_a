@@ -1,8 +1,25 @@
 using System;
+using System.Collections.Generic;
 
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
+
+[System.Serializable]
+public class DataEntityEffectsBase
+{
+    public string ide;
+    public int value;
+    public string ido;
+    [System.NonSerialized] public BaseEffect Effect;
+}
+
+[System.Serializable]
+public struct DataEntityEffects
+{
+    public List<DataEntityEffectsBase> Effects;
+    public int index;
+}
 
 public abstract class BaseEntity
 {
@@ -11,6 +28,10 @@ public abstract class BaseEntity
     [NonSerialized] public ScriptableEntity ScriptableData;
     [NonSerialized] public Vector3Int Position;
     [NonSerialized] public BaseMapEntity MapObjectGameObject;
+    public DataEntityEffects DataEffects = new DataEntityEffects()
+    {
+        Effects = new List<DataEntityEffectsBase>()
+    };
     protected Player _player;
     public Player Player => _player;
     protected string idUnit;
@@ -101,6 +122,7 @@ public abstract class BaseEntity
         // SaveData.typeMapObject = typeMapObject;
         SaveData.idObject = idObject;
         SaveData.data = Data;
+        SaveData.DataEffects = DataEffects;
 
         return SaveData;
     }
@@ -120,6 +142,7 @@ public abstract class BaseEntity
 
     #endregion
 
+    #region LoadAsset
     private void LoadGameObject()
     {
         if (ScriptableData.MapPrefab.RuntimeKeyIsValid())
@@ -147,6 +170,7 @@ public abstract class BaseEntity
             Debug.LogError($"Error Load prefab::: {handle.Status}");
         }
     }
+    #endregion
 
     // public void SetPlayer(PlayerData data)
     // {

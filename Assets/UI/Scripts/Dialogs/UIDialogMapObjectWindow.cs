@@ -2,6 +2,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.Events;
+using System.Collections.Generic;
 
 public class UIDialogMapObjectWindow : UIDialogBaseWindow
 {
@@ -46,7 +47,10 @@ public class UIDialogMapObjectWindow : UIDialogBaseWindow
         base.Init();
 
         _dataDialog = dataDialog;
-        _dataResultDialog = new DataResultDialog();
+        _dataResultDialog = new DataResultDialog()
+        {
+            keyVariant = -1
+        };
 
         if (_dataDialog.TypeCheck == TypeCheck.OnlyOk)
         {
@@ -73,14 +77,18 @@ public class UIDialogMapObjectWindow : UIDialogBaseWindow
             for (int j = 0; j < _dataDialog.Groups[i].Values.Count; j++)
             {
                 VisualElement item = _templateCostItem.Instantiate();
-                if (_dataDialog.TypeWorkAttribute == TypeWorkAttribute.One)
+                if (_dataDialog.TypeWorkEffect == TypeWorkAttribute.One)
                 {
-                    var index = i;
+                    var index = j;
                     item = _templateButtonCheckItem.Instantiate();
-                    item.RegisterCallback<ClickEvent>((ClickEvent evt) =>
+                    var btn = item.Q<Button>();
+                    btn.RegisterCallback<ClickEvent>((ClickEvent evt) =>
                     {
-                        Debug.Log($"Var{i}-{index}");
                         _dataResultDialog.keyVariant = index;
+                        ResetClassButton();
+                        btn.AddToClassList("button_checked");
+                        btn.AddToClassList("border-color");
+                        btn.RemoveFromClassList("button_bordered");
                     });
                 }
                 var _spriteElement = item.Q<VisualElement>(_nameSpriteElement);
@@ -105,6 +113,19 @@ public class UIDialogMapObjectWindow : UIDialogBaseWindow
         _processCompletionSource = new TaskCompletionSource<DataResultDialog>();
 
         return await _processCompletionSource.Task;
+    }
+
+    private void ResetClassButton()
+    {
+        UQueryBuilder<Button> builder = new UQueryBuilder<Button>(_boxVariantsElement);
+        List<Button> list = builder.Name("Btn").ToList();
+
+        foreach (var btn in list)
+        {
+            btn.RemoveFromClassList("button_checked");
+            btn.RemoveFromClassList("border-color");
+            btn.AddToClassList("button_bordered");
+        }
     }
 
     private void OnClickOk()

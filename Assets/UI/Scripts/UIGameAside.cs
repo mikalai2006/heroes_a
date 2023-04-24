@@ -106,7 +106,8 @@ public class UIGameAside : UILocaleBase
                 OnRedrawResource();
                 break;
             case GameState.ChangeHeroParams:
-                DrawAside();
+                // DrawAside();
+                ChangeHeroInfo();
                 break;
         }
     }
@@ -493,10 +494,10 @@ public class UIGameAside : UILocaleBase
         heroImg.style.backgroundImage = new StyleBackground(activeHero.ScriptableData.MenuSprite);
         Label name = HeroInfo.Q<Label>("HeroName");
         name.text = activeHero.Data.name;
-        HeroInfo.Q<Label>("Attack").text = activeHero.Data.attack.ToString();
-        HeroInfo.Q<Label>("Defense").text = activeHero.Data.defense.ToString();
-        HeroInfo.Q<Label>("Knowledge").text = activeHero.Data.knowledge.ToString();
-        HeroInfo.Q<Label>("Power").text = activeHero.Data.power.ToString();
+        HeroInfo.Q<Label>("Attack").text = activeHero.Data.PSkills.GetValueOrDefault(TypePrimarySkill.Attack).ToString();
+        HeroInfo.Q<Label>("Defense").text = activeHero.Data.PSkills.GetValueOrDefault(TypePrimarySkill.Defense).ToString();
+        HeroInfo.Q<Label>("Knowledge").text = activeHero.Data.PSkills.GetValueOrDefault(TypePrimarySkill.Knowledge).ToString();
+        HeroInfo.Q<Label>("Power").text = activeHero.Data.PSkills.GetValueOrDefault(TypePrimarySkill.Power).ToString();
 
         boxinfo.Clear();
         boxinfo.Add(HeroInfo);

@@ -14,6 +14,6 @@ public enum TypePrimarySkill
     Defense = 20,
     Power = 30,
     Knowledge = 40,
-    // Experience = 50,
+    Experience = 50,
 }
 

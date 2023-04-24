@@ -1,10 +1,9 @@
 using System;
 
 [Serializable]
-public class BuildGeneral : BuildGeneralBase
+public class BuildGeneral : BaseBuild
 {
     public DataBuildGeneral Data = new DataBuildGeneral();
-
     public BuildGeneral(
         int level,
         ScriptableBuilding configData,

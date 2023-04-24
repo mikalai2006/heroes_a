@@ -1,0 +1,51 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
+    <ui:Template name="TypeNoPathTemplate" src="project://database/Assets/Editor/UIEditor/TypeNoPathTemplate.uxml?fileID=9197481963319205126&amp;guid=492755bc662d2054f8bd1238482e3086&amp;type=3#TypeNoPathTemplate" />
+    <Style src="project://database/Assets/Editor/UIEditor/LandscapeManager.uss?fileID=7433441132597879392&amp;guid=74679e381844cfd43b837ecd1ca5cacd&amp;type=3#LandscapeManager" />
+    <Style src="project://database/Assets/UI/Toolkit/Base.uss?fileID=7433441132597879392&amp;guid=fa07b064290e7384d9ad2e26e79f5953&amp;type=3#Base" />
+    <ui:VisualElement name="Side" class="side">
+        <ui:Button text="New nature" display-tooltip-when-elided="true" name="NewNature" />
+        <ui:Button text="Remove" display-tooltip-when-elided="true" name="RemoveNature" />
+    </ui:VisualElement>
+    <ui:VisualElement name="Unit" class="h-full" style="flex-grow: 0; flex-direction: row;">
+        <ui:VisualElement name="UnitListTab" style="width: 25%;">
+            <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);" />
+        </ui:VisualElement>
+        <ui:ScrollView scroll-deceleration-rate="0,135" elasticity="0,1" name="UnitDetails" style="flex-grow: 1;">
+            <ui:VisualElement name="general" class="p-2" style="flex-grow: 1; flex-direction: column; flex-wrap: wrap;">
+                <ui:VisualElement name="details_header" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
+                    <ui:Label tabindex="-1" text="General Nature" display-tooltip-when-elided="true" />
+                    <ui:VisualElement name="ViewBox" style="flex-direction: row;">
+                        <ui:VisualElement name="Sprite" style="background-color: rgba(0, 0, 0, 0); width: 100px; height: 100px;" />
+                        <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
+                            <ui:EnumField label="TypeMapObject" name="TypeMapObject" binding-path="TypeMapObject" class="input m-0" />
+                            <uie:PropertyField name="TypeGround" binding-path="TypeGround" label="TypeGround" class="m-0" />
+                            <ui:EnumField label="TypeWorkObject" name="TypeWorkObject" binding-path="TypeWorkObject" class="input m-0" />
+                            <uie:ObjectField label="Menu Sprite" name="SpriteField" binding-path="MenuSprite" type="UnityEngine.Sprite, UnityEngine.CoreModule" allow-scene-objects="true" class="input m-0" />
+                            <uie:PropertyField binding-path="MapPrefab" label="MapPrefab" usage-hints="-1" />
+                            <ui:EnumField label="TypeWorkEffect" name="TypeWorkEffect" binding-path="TypeWorkEffect" class="input m-0" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="details_body" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
+                    <ui:Label tabindex="-1" text="Rules" display-tooltip-when-elided="true" class="text_xl pt-2" />
+                    <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row;">
+                        <ui:VisualElement name="AddonNoPath" class="w-50" style="flex-direction: column; margin-left: 4px; margin-right: 4px; margin-top: 2px; margin-bottom: 2px;">
+                            <ui:Label tabindex="-1" text="Rule nopath" display-tooltip-when-elided="true" style="width: 20%;" />
+                            <ui:VisualElement name="BoxNoPath" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); position: relative; width: 300px; height: 150px;">
+                                <ui:Instance template="TypeNoPathTemplate" name="listTypeNoPath" binding-path="listTypeNoPath" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:VisualElement class="w-50" style="flex-direction: column; margin-left: 4px; margin-right: 4px; margin-top: 2px; margin-bottom: 2px;">
+                            <ui:Label tabindex="-1" text="Rule input" display-tooltip-when-elided="true" style="width: 20%;" />
+                            <ui:VisualElement name="RulesInput" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); position: relative; width: 300px; height: 150px;">
+                                <ui:Instance template="TypeNoPathTemplate" name="listTypeNoPath" binding-path="listTypeNoPath" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:Label tabindex="-1" text="Effects" display-tooltip-when-elided="true" name="Label" class="text_xl pt-2" />
+                <ui:VisualElement name="EffectList" style="flex-grow: 1;" />
+            </ui:VisualElement>
+        </ui:ScrollView>
+    </ui:VisualElement>
+</ui:UXML>

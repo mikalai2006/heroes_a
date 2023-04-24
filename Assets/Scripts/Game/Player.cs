@@ -18,7 +18,7 @@ public class PlayerData
     public TypeFaction typeFaction = TypeFaction.Neutral;
     public SerializableDictionary<TypeResource, int> Resource;
     public SerializableShortPosition nosky = new SerializableShortPosition();
-    public PlayerDataReferences PlayerDataReferences; // [System.NonSerialized] 
+    [System.NonSerialized] public PlayerDataReferences PlayerDataReferences;
     public List<string> HeroesInTavern;
 
     // public Hero ActiveHero => PlayerDataReferences.ActiveHero;
@@ -67,13 +67,6 @@ public class CurrentPlayerType
     public PlayerType TypePlayer;
 }
 
-[System.Serializable]
-public enum TypeStartBonus
-{
-    None = 0,
-    Gold = 1,
-    Artifact = 2,
-}
 
 [System.Serializable]
 public enum PlayerType
@@ -105,19 +98,40 @@ public class Player
             .Where(t => t.Data.State.HasFlag(StateHero.OnMap))
             .Count() == LevelManager.Instance.ConfigGameSettings.maxCountHero;
 
-    public Player(PlayerData data)
+    public Player()
     {
         _data = new PlayerData();
         StartSetting = new StartSetting();
-        _data = data;
         _data.PlayerDataReferences = new PlayerDataReferences();
+    }
+
+    public void New(PlayerData data)
+    {
+        Load(data);
+        // Set resources.
         _data.Resource = new SerializableDictionary<TypeResource, int>();
-        foreach (TypeResource typeResource in (TypeResource[])Enum.GetValues(typeof(TypeResource)))
+        var gameSetting = LevelManager.Instance.ConfigGameSettings;
+        var resourceOfComplexityGame
+            = gameSetting.Complexities
+            .Find(t => t.value == LevelManager.Instance.Level.Settings.compexity);
+        // (TypeResource[])Enum.GetValues(typeof(TypeResource))
+        var resources = resourceOfComplexityGame.Player.Resources;
+        if (_data.playerType == PlayerType.Bot)
         {
-            _data.Resource.Add(typeResource, typeResource == TypeResource.Gold ? 100000 : 200);
+            resources = resourceOfComplexityGame.Computer.Resources;
+        }
+        foreach (var res in resources)
+        {
+            _data.Resource.Add(res.Resource.TypeResource, res.value);
         }
 
+        // Add events.
         AddEvents();
+    }
+
+    public void Load(PlayerData data)
+    {
+        _data = data;
     }
 
     #region Events GameState
@@ -377,5 +391,4 @@ public class Player
 
         return result;
     }
-
 }

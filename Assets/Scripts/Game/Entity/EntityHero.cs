@@ -55,12 +55,20 @@ public class EntityHero : BaseEntity
             Data.speed = 100;
             Data.State = StateHero.OnMap;
             Data.name = ScriptableData.title.GetLocalizedString();
-            Data.attack = ((ScriptableEntityHero)ScriptableData).ClassHero.startAttack;
-            Data.defense = ((ScriptableEntityHero)ScriptableData).ClassHero.startDefense;
-            Data.power = ((ScriptableEntityHero)ScriptableData).ClassHero.startPower;
-            Data.knowledge = ((ScriptableEntityHero)ScriptableData).ClassHero.startKnowlenge;
+
+            Data.PSkills = new SerializableDictionary<TypePrimarySkill, int>();
+            Data.PSkills.Add(TypePrimarySkill.Attack, ((ScriptableEntityHero)ScriptableData).ClassHero.startAttack);
+            Data.PSkills.Add(TypePrimarySkill.Defense, ((ScriptableEntityHero)ScriptableData).ClassHero.startDefense);
+            Data.PSkills.Add(TypePrimarySkill.Power, ((ScriptableEntityHero)ScriptableData).ClassHero.startPower);
+            Data.PSkills.Add(TypePrimarySkill.Knowledge, ((ScriptableEntityHero)ScriptableData).ClassHero.startKnowlenge);
+            Data.PSkills.Add(TypePrimarySkill.Experience, 50);
+            // Data.attack = ((ScriptableEntityHero)ScriptableData).ClassHero.startAttack;
+            // Data.defense = ((ScriptableEntityHero)ScriptableData).ClassHero.startDefense;
+            // Data.power = ((ScriptableEntityHero)ScriptableData).ClassHero.startPower;
+            // Data.knowledge = ((ScriptableEntityHero)ScriptableData).ClassHero.startKnowlenge;
+            // Data.experience = 50;
             Data.level = 1;
-            Data.experience = 50;
+
             Data.SSkills = new SerializableDictionary<TypeSecondarySkill, int>();
             foreach (var skill in ((ScriptableEntityHero)ScriptableData).StartSecondarySkill)
             {
@@ -132,6 +140,41 @@ public class EntityHero : BaseEntity
         }
     }
 
+    public void ChangePrimarySkill(TypePrimarySkill typePrimarySkill, int value = 0)
+    {
+        Data.PSkills[typePrimarySkill] += value;
+
+        GameManager.Instance.ChangeState(GameState.ChangeHeroParams);
+    }
+
+    public void ChangeSecondarySkill(TypeSecondarySkill typeSecondarySkill, int value = 0)
+    {
+        Data.SSkills[typeSecondarySkill] += value;
+
+        GameManager.Instance.ChangeState(GameState.ChangeHeroParams);
+    }
+
+    public void SetHeroAsActive()
+    {
+        Player.SetActiveHero(this);
+        SetPositionCamera(this.Position);
+        SetClearSky(Position);
+
+        if (Data.path != null)
+        {
+            GameManager.Instance.MapManager.DrawCursor(Data.path, this);
+        }
+        // LevelManager.Instance.ActivePlayer.ActiveHero = this;
+    }
+
+    public override void SetPlayer(Player player)
+    {
+        base.SetPlayer(player);
+        Data.idPlayer = player.DataPlayer.id;
+        player.AddHero(this);
+    }
+
+    #region Move
     public float CalculateHitByNode(GridTileNode node)
     {
         var dataNode = ResourceSystem.Instance.GetLandscape(node.TypeGround);
@@ -151,18 +194,6 @@ public class EntityHero : BaseEntity
         }
     }
 
-    public void SetHeroAsActive()
-    {
-        Player.SetActiveHero(this);
-        SetPositionCamera(this.Position);
-        SetClearSky(Position);
-
-        if (Data.path != null)
-        {
-            GameManager.Instance.MapManager.DrawCursor(Data.path, this);
-        }
-        // LevelManager.Instance.ActivePlayer.ActiveHero = this;
-    }
 
     public void SetPositionHero(Vector3Int newPosition)
     {
@@ -217,14 +248,14 @@ public class EntityHero : BaseEntity
         }
     }
 
-    public void SetPlayer(PlayerData playerData)
-    {
-        Data.idPlayer = playerData.id;
+    // public void SetPlayer(PlayerData playerData)
+    // {
+    //     Data.idPlayer = playerData.id;
 
-        var _player = LevelManager.Instance.GetPlayer(Data.idPlayer);
-        var hero = (MapEntityHero)MapObjectGameObject;
-        // hero.SetPlayer(_player);
-    }
+    //     var _player = LevelManager.Instance.GetPlayer(Data.idPlayer);
+    //     var hero = (MapEntityHero)MapObjectGameObject;
+    //     // hero.SetPlayer(_player);
+    // }
 
     public void SetPathHero(List<GridTileNode> _path = null)
     {
@@ -256,12 +287,6 @@ public class EntityHero : BaseEntity
         }
     }
 
-    public override void SetPlayer(Player player)
-    {
-        base.SetPlayer(player);
-        Data.idPlayer = player.DataPlayer.id;
-        player.AddHero(this);
-    }
 
     public List<GridTileNode> FindPathForHero(Vector3Int endPoint, bool isDiagonal)
     {
@@ -297,7 +322,9 @@ public class EntityHero : BaseEntity
 
         return path;
     }
+    #endregion
 
+    #region AI
     public async UniTask AIFind()
     {
         var countProbePath = 5;
@@ -383,7 +410,7 @@ public class EntityHero : BaseEntity
             }
         }
     }
-
+    #endregion
 
     #region SaveLoadData
     // public void LoadDataPlay(DataPlay data)

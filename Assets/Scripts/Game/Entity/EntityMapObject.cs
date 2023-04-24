@@ -4,12 +4,11 @@ using System.Linq;
 
 using UnityEngine;
 
-using Random = UnityEngine.Random;
-
 [Serializable]
 public class EntityMapObject : BaseEntity
 {
-    [SerializeField] public DataEntityMapObject Data = new DataEntityMapObject();
+    [SerializeField]
+    public DataEntityMapObject Data = new DataEntityMapObject();
     public ScriptableEntityMapObject ConfigData => (ScriptableEntityMapObject)ScriptableData;
     public EntityMapObject(
         ScriptableEntityMapObject configData,
@@ -38,93 +37,86 @@ public class EntityMapObject : BaseEntity
 
     public void SetData()
     {
-        ScriptableEntityMapObject scriptData = (ScriptableEntityMapObject)ScriptableData;
-        // Data.Resources = new List<DataEntityResourceValue>();
-        // Data.Artifacts = new List<DataEntityArtifactValue>();
-        // Data.PrimarySkill = new List<DataEntityPrimarySkillValue>();
-        // Data.SecondarySkill = new List<DataEntitySecondarySkillValue>();
-        Data.AttributeValues = new List<DataEntityResourceValues>();
+        ScriptableEntityMapObject configData = (ScriptableEntityMapObject)ScriptableData;
+        configData.SetData(this);
+        // Data.AttributeValues = new List<DataEntityResourceValues>();
+        // if (scriptData.Attributes.Count > 0)
+        // {
+        //     var group = Helpers.GetProbabilityItem<GroupAttributes>(scriptData.Attributes);
+        //     Data.index = group.index;
+        //     if (group.Item.Artifacts.Artifact.Count > 0)
+        //     {
+        //         if (group.Item.Artifacts.isOne)
+        //         {
+        //             var artifact = group.Item.Artifacts
+        //                 .Artifact[Random.Range(0, group.Item.Artifacts.Artifact.Count)];
+        //             Data.AttributeValues.Add(new DataEntityResourceValues()
+        //             {
+        //                 Attribute = artifact,
+        //                 TypeAttribute = artifact.TypeAttribute,
+        //                 idObject = artifact.idObject,
+        //             });
+        //         }
+        //         else
+        //         {
+        //             foreach (var result in group.Item.Artifacts.Artifact)
+        //             {
+        //                 Data.AttributeValues.Add(new DataEntityResourceValues()
+        //                 {
+        //                     Attribute = result,
+        //                     TypeAttribute = result.TypeAttribute,
+        //                     idObject = result.idObject,
+        //                 });
+        //             }
+        //         }
+        //     }
 
-        // Data.TypeWork = scriptData.TypeWorkPerk;//.TypeWorkMapObject;
-        // Data.TypeWorkAttribute = scriptData.TypeWorkAttribute;
+        //     foreach (var result in group.Item.Resources)
+        //     {
+        //         int stepsValue = (result.maxValue - result.minValue) / result.step;
+        //         int randomIndexValue = Random.Range(1, stepsValue);
 
-        if (scriptData.Attributes.Count > 0)
-        {
-            var group = Helpers.GetProbabilityItem<GroupAttributes>(scriptData.Attributes);
-            Data.index = group.index;
-            if (group.Item.Artifacts.Artifact.Count > 0)
-            {
-                if (group.Item.Artifacts.isOne)
-                {
-                    var artifact = group.Item.Artifacts
-                        .Artifact[Random.Range(0, group.Item.Artifacts.Artifact.Count)];
-                    Data.AttributeValues.Add(new DataEntityResourceValues()
-                    {
-                        Attribute = artifact,
-                        TypeAttribute = artifact.TypeAttribute,
-                        idObject = artifact.idObject,
-                    });
-                }
-                else
-                {
-                    foreach (var result in group.Item.Artifacts.Artifact)
-                    {
-                        Data.AttributeValues.Add(new DataEntityResourceValues()
-                        {
-                            Attribute = result,
-                            TypeAttribute = result.TypeAttribute,
-                            idObject = result.idObject,
-                        });
-                    }
-                }
-            }
+        //         Data.AttributeValues.Add(new DataEntityResourceValues()
+        //         {
+        //             Attribute = result.Resource,
+        //             value = Helpers.GenerateValueByRangeAndStep(
+        //                 result.minValue,
+        //                 result.maxValue,
+        //                 result.step
+        //             ),
+        //             TypeAttribute = result.Resource.TypeAttribute,
+        //             idObject = result.Resource.idObject,
+        //         });
+        //     }
 
-            foreach (var result in group.Item.Resources)
-            {
-                int stepsValue = (result.maxValue - result.minValue) / result.step;
-                int randomIndexValue = Random.Range(1, stepsValue);
+        //     foreach (var result in group.Item.PrimarySkills)
+        //     {
+        //         Data.AttributeValues.Add(new DataEntityResourceValues()
+        //         {
+        //             Attribute = result.Skill,
+        //             TypeAttribute = result.Skill.TypeAttribute,
+        //             value = result.Value,
+        //             idObject = result.Skill.idObject,
+        //         });
+        //     }
 
-                Data.AttributeValues.Add(new DataEntityResourceValues()
-                {
-                    Attribute = result.Resource,
-                    value = Helpers.GenerateValueByRangeAndStep(
-                        result.minValue,
-                        result.maxValue,
-                        result.step
-                    ),
-                    TypeAttribute = result.Resource.TypeAttribute,
-                    idObject = result.Resource.idObject,
-                });
-            }
-
-            foreach (var result in group.Item.PrimarySkills)
-            {
-                Data.AttributeValues.Add(new DataEntityResourceValues()
-                {
-                    Attribute = result.Skill,
-                    TypeAttribute = result.Skill.TypeAttribute,
-                    value = result.Value,
-                    idObject = result.Skill.idObject,
-                });
-            }
-
-            foreach (var result in group.Item.SecondarySkills)
-            {
-                Data.AttributeValues.Add(new DataEntityResourceValues()
-                {
-                    Attribute = result.SecondarySkill,
-                    value = result.value,
-                    TypeAttribute = result.SecondarySkill.TypeAttribute,
-                    idObject = result.SecondarySkill.idObject,
-                });
-            }
-        }
+        //     foreach (var result in group.Item.SecondarySkills)
+        //     {
+        //         Data.AttributeValues.Add(new DataEntityResourceValues()
+        //         {
+        //             Attribute = result.SecondarySkill,
+        //             value = result.value,
+        //             TypeAttribute = result.SecondarySkill.TypeAttribute,
+        //             idObject = result.SecondarySkill.idObject,
+        //         });
+        //     }
+        // }
     }
 
     public override void SetPlayer(Player player)
     {
         ScriptableEntityMapObject configData = (ScriptableEntityMapObject)ScriptableData;
-        configData.RunHero(ref player, this);
+        // configData.RunHero(ref player, this);
         // ScriptableResource dataScriptable = ResourceSystem.Instance.GetUnit<ScriptableResource>(idObject);
 
         // ItemResource dataResource = dataScriptable.ListResource[Random.Range(0, dataScriptable.ListResource.Count)];
@@ -152,15 +144,16 @@ public class EntityMapObject : BaseEntity
     }
 
     #region SaveLoadData
-    // public void LoadDataPlay(DataPlay data)
-    // {
-    //     throw new System.NotImplementedException();
-    // }
-
     public override void SaveEntity(ref DataPlay data)
     {
         var sdata = SaveUnit(Data);
         data.entity.mapObjects.Add(sdata);
+
+        // ScriptableEntityMapObject configData = (ScriptableEntityMapObject)ScriptableData;
+        // foreach (var ef in DataEffects.Effects)
+        // {
+        //     ef.Effect.Save(this, ref data);
+        // }
     }
     #endregion
 }
@@ -168,50 +161,4 @@ public class EntityMapObject : BaseEntity
 [System.Serializable]
 public struct DataEntityMapObject
 {
-    public List<DataEntityResourceValues> AttributeValues;
-    public int index;
-    // public List<DataEntityResourceValue> Resources;
-    // public List<DataEntityArtifactValue> Artifacts;
-    // public List<DataEntityPrimarySkillValue> PrimarySkill;
-    // public List<DataEntitySecondarySkillValue> SecondarySkill;
-    // public TypeWorkPerk TypeWork;
-    // public TypeWorkAttribute TypeWorkAttribute;
-}
-[System.Serializable]
-public struct DataEntityResourceValues
-{
-    public TypeAttribute TypeAttribute;
-    public int value;
-    [System.NonSerialized] public ScriptableAttribute Attribute;
-    public string idObject;
-}
-
-[System.Serializable]
-public struct DataEntityResourceValue
-{
-    public TypeResource typeResource;
-    public int value;
-    [System.NonSerialized] public ScriptableAttributeResource Resource;
-    public string idObject;
-}
-
-[System.Serializable]
-public struct DataEntityArtifactValue
-{
-    [System.NonSerialized] public ScriptableAttributeArtifact Artifact;
-    public string idObject;
-}
-[System.Serializable]
-public struct DataEntityPrimarySkillValue
-{
-    [System.NonSerialized] public ScriptableAttributePrimarySkill PrimarySkill;
-    public int value;
-    public string idObject;
-}
-[System.Serializable]
-public struct DataEntitySecondarySkillValue
-{
-    [System.NonSerialized] public ScriptableAttributeSecondarySkill SecondarySkill;
-    public int value;
-    public string idObject;
 }

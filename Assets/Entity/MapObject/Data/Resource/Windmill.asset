@@ -1,5 +1,27 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-6305447972131860874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b28b51cdbf54cf1499541d850ba89591, type: 3}
+  m_Name: EffectRandomResource
+  m_EditorClassIdentifier: 
+  idEffect: Windmill1
+  Resources:
+  - {fileID: 11400000, guid: 61799bb2485b4684485b146b76ea01d6, type: 2}
+  - {fileID: 11400000, guid: 177478bebb60204468d214efd1fdcc16, type: 2}
+  - {fileID: 11400000, guid: 379c734399110d34f9159a31f3e18074, type: 2}
+  - {fileID: 11400000, guid: 6b8ad83da675426418c328236190e67c, type: 2}
+  - {fileID: 11400000, guid: f02d0b566815eaa47b30b219422c87e5, type: 2}
+  min: 3
+  max: 6
+  step: 1
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30,7 +52,7 @@ MonoBehaviour:
     m_SubObjectType: 
     m_EditorAssetChanged: 0
   TypeGround: -1
-  TypeWorkAttribute: 0
+  TypeWorkEffect: 0
   Attributes:
   - Item:
       description:
@@ -53,6 +75,7 @@ MonoBehaviour:
       Artifacts:
         Artifact: []
         isOne: 0
+      Creature: {fileID: 0}
     probability: 0.30000001192092896
   - Item:
       description:
@@ -75,6 +98,7 @@ MonoBehaviour:
       Artifacts:
         Artifact: []
         isOne: 0
+      Creature: {fileID: 0}
     probability: 0.30000001192092896
   - Item:
       description:
@@ -97,6 +121,7 @@ MonoBehaviour:
       Artifacts:
         Artifact: []
         isOne: 0
+      Creature: {fileID: 0}
     probability: 0.30000001192092896
   - Item:
       description:
@@ -119,12 +144,26 @@ MonoBehaviour:
       Artifacts:
         Artifact: []
         isOne: 0
+      Creature: {fileID: 0}
     probability: 0.30000001192092896
-  listTypeNoPath: 
-  TypeWorkObject: 3
   TypeMapObject: 2
+  listTypeNoPath: 
   listRuleInput: 1100000013000000120000000c0000000e000000
-  Effects: []
+  TypeWorkObject: 3
+  Effects:
+  - Item:
+      description:
+        m_TableReference:
+          m_TableCollectionName: GUID:8ed801dac82951d449557e1a63174ac8
+        m_TableEntryReference:
+          m_KeyId: 4599347003162624
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      items:
+      - {fileID: -6305447972131860874}
+    probability: 1
   references:
     version: 2
     RefIds: []

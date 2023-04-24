@@ -47,8 +47,14 @@ public class ResourceSystem : StaticInstance<ResourceSystem>
     {
         foreach (var location in locations)
         {
-            var output = await Addressables.LoadAssetAsync<T>(location).Task as T;
-            createdObjs.Add(output);
+            if (location.ResourceType.IsSubclassOf(typeof(T)) || location.ResourceType == typeof(T))
+            {
+                var output = await Addressables.LoadAssetAsync<T>(location).Task as T;
+                // Debug.Log($"ResourceType={location.ResourceType}, typeof(T)({typeof(T)})[{location.ResourceType is T}]");
+                // Debug.Log($"IsSubclassOf = {location.ResourceType.IsSubclassOf(typeof(T))}");
+                // Debug.Log($"output is T[{output is T}]");
+                createdObjs.Add(output);
+            }
         }
     }
 

@@ -39,13 +39,17 @@ public class GameManagerEditor : EditorWindow
         //root.Q<VisualElement>("NatureContent").Clear();
         _root.Q<VisualElement>("NatureContent").Add(tabNature);
 
-        var unit = new UnitManagerEditor();
-        var tabUnit = unit.Init();
-        //root.Q<VisualElement>("NatureContent").Clear();
-        _root.Q<VisualElement>("UnitContent").Add(tabUnit);
+        var mapObjectManager = new MapObjectsManagerEditor();
+        var tabMapObjectManager = mapObjectManager.Init();
+        _root.Q<VisualElement>("MapObjectsContent").Add(tabMapObjectManager);
 
-        var townManager = new TownManagerEditor();
-        var tabTownManager = townManager.Init();
-        _root.Q<VisualElement>("TownContent").Add(tabTownManager);
+        // var unit = new UnitManagerEditor();
+        // var tabUnit = unit.Init();
+        // //root.Q<VisualElement>("NatureContent").Clear();
+        // _root.Q<VisualElement>("UnitContent").Add(tabUnit);
+
+        // var townManager = new TownManagerEditor();
+        // var tabTownManager = townManager.Init();
+        // _root.Q<VisualElement>("TownContent").Add(tabTownManager);
     }
 }

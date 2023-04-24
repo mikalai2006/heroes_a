@@ -105,29 +105,31 @@ public class LevelManager : Singleton<LevelManager>, ISaveDataPlay, ISaveDataGam
 
         for (int i = 0; i < Level.Settings.countPlayer + Level.Settings.countBot; i++)
         {
-            var dataPlayer = new PlayerData()
+            Player player = new Player();
+            PlayerData dataPlayer = new PlayerData()
             {
                 id = i,
                 color = ConfigGameSettings.colors[i],
                 playerType = PlayerType.User
             };
+            StartSetting startSetting = new StartSetting();
 
-            Player player = new Player(dataPlayer);
             if (Level.Settings.TypeGame == TypeGame.MultipleOneDevice)
             {
-                player.StartSetting.TypePlayerItem = TypePlayers[i];
+                startSetting.TypePlayerItem = TypePlayers[i];
             }
             else
             {
-                player.StartSetting.TypePlayerItem = i == 0 ? noBotType.First() : botType;
+                startSetting.TypePlayerItem = i == 0 ? noBotType.First() : botType;
             }
-            player.DataPlayer.playerType = player.StartSetting.TypePlayerItem.TypePlayer;
-            Level.listPlayer.Add(player);
+            dataPlayer.playerType = startSetting.TypePlayerItem.TypePlayer;
 
             // Area area = new Area();
             // area.idPlayer = player.DataPlayer.id;
             // area.typeGround =
             // Level.listArea.Add(area);
+            player.New(dataPlayer);
+            Level.listPlayer.Add(player);
         }
 
         // for (int i = Level.Settings.countPlayer; i < (Level.Settings.countPlayer + Level.Settings.countBot); i++)
@@ -305,7 +307,8 @@ public class LevelManager : Singleton<LevelManager>, ISaveDataPlay, ISaveDataGam
         for (int i = 0; i < dataPlay.Level.Settings.countPlayer; i++)
         {
             var data = dataPlay.Level.listPlayer[i];
-            var player = new Player(dataPlay.Level.listPlayer[i].DataPlayer);
+            var player = new Player();
+            player.Load(dataPlay.Level.listPlayer[i].DataPlayer);
             Level.listPlayer.Add(player);
         }
 

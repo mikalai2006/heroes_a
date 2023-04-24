@@ -1,5 +1,22 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-1615490125354480110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69287b786f0766b4b9b6f7ff0f767eca, type: 3}
+  m_Name: EffectRandomArtifact
+  m_EditorClassIdentifier: 
+  idEffect: Corpse1
+  Artifacts:
+  - {fileID: 11400000, guid: 170f6a18e7757ad4c9aaed11393ac632, type: 2}
+  - {fileID: 11400000, guid: d5a53fe4124a83947a53947ea43672ad, type: 2}
+  - {fileID: 11400000, guid: fb155b3ab4fa88340a27dec143295a23, type: 2}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30,8 +47,7 @@ MonoBehaviour:
     m_SubObjectType: 
     m_EditorAssetChanged: 0
   TypeGround: 16
-  typeInput: 1
-  TypeWorkAttribute: 0
+  TypeWorkEffect: 0
   Attributes:
   - Item:
       description:
@@ -50,6 +66,7 @@ MonoBehaviour:
         Artifact:
         - {fileID: 11400000, guid: 170f6a18e7757ad4c9aaed11393ac632, type: 2}
         isOne: 1
+      Creature: {fileID: 0}
     probability: 0.20000000298023224
   - Item:
       description:
@@ -67,11 +84,38 @@ MonoBehaviour:
       Artifacts:
         Artifact: []
         isOne: 1
+      Creature: {fileID: 0}
     probability: 0.800000011920929
-  listTypeNoPath: 
-  TypeWorkObject: 5
   TypeMapObject: 2
-  Effects: []
+  listTypeNoPath: 
+  listRuleInput: 
+  TypeWorkObject: 5
+  Effects:
+  - Item:
+      description:
+        m_TableReference:
+          m_TableCollectionName: GUID:8ed801dac82951d449557e1a63174ac8
+        m_TableEntryReference:
+          m_KeyId: 4480149874704384
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      items:
+      - {fileID: -1615490125354480110}
+    probability: 0.2
+  - Item:
+      description:
+        m_TableReference:
+          m_TableCollectionName: GUID:8ed801dac82951d449557e1a63174ac8
+        m_TableEntryReference:
+          m_KeyId: 4480182154067968
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      items: []
+    probability: 0.8
   references:
     version: 2
     RefIds: []

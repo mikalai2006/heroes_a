@@ -10,12 +10,8 @@ public struct DataHero
     public int idPlayer;
     public string name;
     public string idObject;
-    public int attack;
-    public int defense;
-    public int power;
-    public int knowledge;
-    public int experience;
     public int level;
+    public SerializableDictionary<TypePrimarySkill, int> PSkills;
     public SerializableDictionary<TypeSecondarySkill, int> SSkills;
     public Vector3Int nextPosition;
     public float speed;

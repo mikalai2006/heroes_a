@@ -30,8 +30,7 @@ MonoBehaviour:
     m_SubObjectType: 
     m_EditorAssetChanged: 0
   TypeGround: -1
-  typeInput: 1
-  TypeWorkAttribute: 0
+  TypeWorkEffect: 0
   Attributes:
   - Item:
       description:
@@ -54,11 +53,44 @@ MonoBehaviour:
       Artifacts:
         Artifact: []
         isOne: 0
+      Creature: {fileID: 0}
     probability: 0.5
-  listTypeNoPath: 
-  TypeWorkObject: 1
   TypeMapObject: 2
-  Effects: []
+  listTypeNoPath: 
+  listRuleInput: 
+  TypeWorkObject: 1
+  Effects:
+  - Item:
+      description:
+        m_TableReference:
+          m_TableCollectionName: 
+        m_TableEntryReference:
+          m_KeyId: 0
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      items:
+      - {fileID: 2920745446505430022}
+    probability: 1
   references:
     version: 2
     RefIds: []
+--- !u!114 &2920745446505430022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 931c2d9151e1ed949beab9dc2cf5be9e, type: 3}
+  m_Name: EffectResource
+  m_EditorClassIdentifier: 
+  idEffect: Wood1
+  Resource: {fileID: 11400000, guid: af6fb8015ba018540960794f09d24eea, type: 2}
+  min: 5
+  max: 10
+  step: 1
+  Attrs: 

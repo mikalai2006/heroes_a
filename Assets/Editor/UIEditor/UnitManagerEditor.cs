@@ -135,14 +135,14 @@ public class UnitManagerEditor
     private void LoadAllItems()
     {
         m_UnitDB.Clear();
-        string[] allPaths = Directory.GetFiles("Assets/Units/Scriptables", "*.asset",
-            SearchOption.AllDirectories);
-        foreach (string path in allPaths)
-        {
-            string cleanedPath = path.Replace("\\", "/");
-            m_UnitDB.Add((ScriptableEntity)AssetDatabase.LoadAssetAtPath(cleanedPath,
-                typeof(ScriptableEntity)));
-        }
+        // string[] allPaths = Directory.GetFiles("Assets/Units/Scriptables", "*.asset",
+        //     SearchOption.AllDirectories);
+        // foreach (string path in allPaths)
+        // {
+        //     string cleanedPath = path.Replace("\\", "/");
+        //     m_UnitDB.Add((ScriptableEntity)AssetDatabase.LoadAssetAtPath(cleanedPath,
+        //         typeof(ScriptableEntity)));
+        // }
 
     }
 

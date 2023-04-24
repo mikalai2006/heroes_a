@@ -1,5 +1,20 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-5597868226469096640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69287b786f0766b4b9b6f7ff0f767eca, type: 3}
+  m_Name: EffectRandomArtifact
+  m_EditorClassIdentifier: 
+  idEffect: Wagon1
+  Artifacts:
+  - {fileID: 11400000, guid: 170f6a18e7757ad4c9aaed11393ac632, type: 2}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30,7 +45,7 @@ MonoBehaviour:
     m_SubObjectType: 
     m_EditorAssetChanged: 0
   TypeGround: 16
-  TypeWorkAttribute: 0
+  TypeWorkEffect: 0
   Attributes:
   - Item:
       description:
@@ -48,6 +63,7 @@ MonoBehaviour:
       Artifacts:
         Artifact: []
         isOne: 0
+      Creature: {fileID: 0}
     probability: 0.10000000149011612
   - Item:
       description:
@@ -66,6 +82,7 @@ MonoBehaviour:
         Artifact:
         - {fileID: 11400000, guid: 170f6a18e7757ad4c9aaed11393ac632, type: 2}
         isOne: 1
+      Creature: {fileID: 0}
     probability: 0.20000000298023224
   - Item:
       description:
@@ -85,6 +102,7 @@ MonoBehaviour:
         - {fileID: 11400000, guid: 170f6a18e7757ad4c9aaed11393ac632, type: 2}
         - {fileID: 11400000, guid: 170f6a18e7757ad4c9aaed11393ac632, type: 2}
         isOne: 1
+      Creature: {fileID: 0}
     probability: 0.20000000298023224
   - Item:
       description:
@@ -107,6 +125,7 @@ MonoBehaviour:
       Artifacts:
         Artifact: []
         isOne: 1
+      Creature: {fileID: 0}
     probability: 0.5
   - Item:
       description:
@@ -129,6 +148,7 @@ MonoBehaviour:
       Artifacts:
         Artifact: []
         isOne: 1
+      Creature: {fileID: 0}
     probability: 0.5
   - Item:
       description:
@@ -151,6 +171,7 @@ MonoBehaviour:
       Artifacts:
         Artifact: []
         isOne: 1
+      Creature: {fileID: 0}
     probability: 0.5
   - Item:
       description:
@@ -173,12 +194,74 @@ MonoBehaviour:
       Artifacts:
         Artifact: []
         isOne: 1
+      Creature: {fileID: 0}
     probability: 0.5
-  listTypeNoPath: 
-  TypeWorkObject: 5
   TypeMapObject: 2
+  listTypeNoPath: 
   listRuleInput: 1100000013000000120000000c0000000e000000
-  Effects: []
+  TypeWorkObject: 5
+  Effects:
+  - Item:
+      description:
+        m_TableReference:
+          m_TableCollectionName: GUID:8ed801dac82951d449557e1a63174ac8
+        m_TableEntryReference:
+          m_KeyId: 4481303446716416
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      items: []
+    probability: 0.1
+  - Item:
+      description:
+        m_TableReference:
+          m_TableCollectionName: GUID:8ed801dac82951d449557e1a63174ac8
+        m_TableEntryReference:
+          m_KeyId: 4481280055083008
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      items:
+      - {fileID: -5597868226469096640}
+    probability: 0.2
+  - Item:
+      description:
+        m_TableReference:
+          m_TableCollectionName: GUID:8ed801dac82951d449557e1a63174ac8
+        m_TableEntryReference:
+          m_KeyId: 4481280055083008
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      items:
+      - {fileID: 896715234530874967}
+    probability: 0.5
   references:
     version: 2
     RefIds: []
+--- !u!114 &896715234530874967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b28b51cdbf54cf1499541d850ba89591, type: 3}
+  m_Name: EffectRandomResource
+  m_EditorClassIdentifier: 
+  idEffect: Wagon2
+  Resources:
+  - {fileID: 11400000, guid: af6fb8015ba018540960794f09d24eea, type: 2}
+  - {fileID: 11400000, guid: 61799bb2485b4684485b146b76ea01d6, type: 2}
+  - {fileID: 11400000, guid: 177478bebb60204468d214efd1fdcc16, type: 2}
+  - {fileID: 11400000, guid: 379c734399110d34f9159a31f3e18074, type: 2}
+  - {fileID: 11400000, guid: 6b8ad83da675426418c328236190e67c, type: 2}
+  - {fileID: 11400000, guid: f02d0b566815eaa47b30b219422c87e5, type: 2}
+  min: 2
+  max: 5
+  step: 1

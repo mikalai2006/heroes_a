@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 357042977ee2d7742bc9e8196b3a4025, type: 3}
+  m_Name: 160
+  m_EditorClassIdentifier: 
+  value: 160
+  sprite: {fileID: -426406784, guid: c4c05eb8d4f42bb46a51404b3bfd32d7, type: 3}
+  Player:
+    Resources:
+    - Resource: {fileID: 11400000, guid: 3894d4d068775c343b5c4bf1510dee33, type: 2}
+      value: 10000
+    - Resource: {fileID: 11400000, guid: af6fb8015ba018540960794f09d24eea, type: 2}
+      value: 10
+    - Resource: {fileID: 11400000, guid: 177478bebb60204468d214efd1fdcc16, type: 2}
+      value: 10
+    - Resource: {fileID: 11400000, guid: 61799bb2485b4684485b146b76ea01d6, type: 2}
+      value: 4
+    - Resource: {fileID: 11400000, guid: 379c734399110d34f9159a31f3e18074, type: 2}
+      value: 4
+    - Resource: {fileID: 11400000, guid: 6b8ad83da675426418c328236190e67c, type: 2}
+      value: 4
+    - Resource: {fileID: 11400000, guid: f02d0b566815eaa47b30b219422c87e5, type: 2}
+      value: 4
+    goldin: 500
+  Computer:
+    Resources:
+    - Resource: {fileID: 11400000, guid: 3894d4d068775c343b5c4bf1510dee33, type: 2}
+      value: 10000
+    - Resource: {fileID: 11400000, guid: af6fb8015ba018540960794f09d24eea, type: 2}
+      value: 15
+    - Resource: {fileID: 11400000, guid: 177478bebb60204468d214efd1fdcc16, type: 2}
+      value: 15
+    - Resource: {fileID: 11400000, guid: 61799bb2485b4684485b146b76ea01d6, type: 2}
+      value: 7
+    - Resource: {fileID: 11400000, guid: 379c734399110d34f9159a31f3e18074, type: 2}
+      value: 7
+    - Resource: {fileID: 11400000, guid: 6b8ad83da675426418c328236190e67c, type: 2}
+      value: 7
+    - Resource: {fileID: 11400000, guid: f02d0b566815eaa47b30b219422c87e5, type: 2}
+      value: 7
+    goldin: 500

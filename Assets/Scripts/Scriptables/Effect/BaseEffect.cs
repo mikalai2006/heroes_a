@@ -4,9 +4,10 @@ using UnityEngine;
 
 public abstract class BaseEffect : ScriptableObject
 {
+    public string idEffect;
     public virtual void RunHero(ref Player player, BaseEntity entity)
     {
-        // throw new System.NotImplementedException();
+
     }
 
     public virtual void RunOne(ref Player player, BaseEntity entity)
@@ -18,6 +19,15 @@ public abstract class BaseEffect : ScriptableObject
 
     }
     public virtual void RunEveryWeek(ref Player player, BaseEntity entity)
+    {
+
+    }
+    public virtual void SetData(BaseEntity entity)
+    {
+
+    }
+
+    public virtual void CreateDialogData(ref DataDialogMapObjectGroup dialogData, BaseEntity entity)
     {
 
     }

@@ -1,13 +1,8 @@
-using System.Collections.Generic;
-
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "TeleportEffect", menuName = "Game/Effect/EffectTeleport")]
 public class EffectTeleport : BaseEffect, IEffected
 {
-    // [Space(10)]
-    // [Header("Options Perk")]
-
     public override void RunHero(ref Player player, BaseEntity entity)
     {
         base.RunHero(ref player, entity);
@@ -15,6 +10,6 @@ public class EffectTeleport : BaseEffect, IEffected
         Vector3Int pointToTeleport
             = monolith.Data.portalPoints[Random.Range(0, monolith.Data.portalPoints.Count)];
         player.ActiveHero.SetPositionHero(pointToTeleport);
-        Debug.Log("EffectTeleport run!");
+        Debug.Log("EffectTeleport::: Run!");
     }
 }

@@ -82,7 +82,7 @@ public class MapEntityDwelling : BaseMapEntity, IDialogMapObjectOperation
             Description = description.GetLocalizedString(),
             // Sprite = this.ScriptableData.MenuSprite,
             TypeCheck = TypeCheck.OnlyOk,
-            TypeWorkAttribute = configData.TypeWorkAttribute,
+            TypeWorkEffect = configData.TypeWorkEffect,
         };
 
         var dialogWindow = new DialogMapObjectProvider(dialogData);

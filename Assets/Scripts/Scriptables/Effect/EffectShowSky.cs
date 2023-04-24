@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "ShowSkyEffect", menuName = "Game/Effect/EffectShowSky")]
@@ -16,6 +14,6 @@ public class EffectShowSky : BaseEffect, IEffected
         // Vector3Int pointToTeleport
         //     = monolith.Data.portalPoints[Random.Range(0, monolith.Data.portalPoints.Count)];
         // player.ActiveHero.SetPositionHero(pointToTeleport);
-        Debug.Log("EffectShowSky run!");
+        Debug.Log("EffectShowSky::: Run!");
     }
 }

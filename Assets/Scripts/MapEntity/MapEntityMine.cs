@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 using Cysharp.Threading.Tasks;
 
 using UnityEngine;
@@ -52,11 +54,24 @@ public class MapEntityMine : BaseMapEntity, IDialogMapObjectOperation
 
     public async UniTask<DataResultDialog> OnTriggeredHero()
     {
+        DataDialogMapObjectGroup _dialogData = new DataDialogMapObjectGroup()
+        {
+            Values = new List<DataDialogMapObjectGroupItem>()
+        };
+        EntityMine entity = (EntityMine)MapObjectClass;
         ScriptableEntityMine configData = (ScriptableEntityMine)MapObjectClass.ScriptableData;
+        foreach (var effect in configData.Effects[entity.DataEffects.index].Item.items)
+        {
+            effect.CreateDialogData(ref _dialogData, entity);
+        }
+
+        var description = configData.Attributes[entity.DataEffects.index].Item.description.IsEmpty ?
+            "" : configData.Attributes[entity.DataEffects.index].Item.description.GetLocalizedString();
+
         var dialogData = new DataDialogMapObject()
         {
             Header = configData.title.GetLocalizedString(),
-            Description = configData.DialogText.VisitOk.GetLocalizedString(),
+            Description = description,
             Sprite = configData.MenuSprite,
         };
 

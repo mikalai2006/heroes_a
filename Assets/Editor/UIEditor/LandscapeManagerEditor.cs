@@ -66,10 +66,13 @@ public class LandscapeManagerEditor
 
         Action<VisualElement, int> bindItem = (e, i) =>
         {
-            e.Q<VisualElement>("icon").style.backgroundImage = new StyleBackground(m_ItemDatabase[i].tileRule.m_DefaultSprite);
-            //m_ItemDatabase[i] == null ? m_DefaultItemIcon.texture :
-            //m_ItemDatabase[i].MenuSprite.texture; //.Icon.texture;
-            e.Q<Label>("name").text = m_ItemDatabase[i].name; //.FriendlyName;
+            if (m_ItemDatabase[i] != null)
+            {
+                e.Q<VisualElement>("icon").style.backgroundImage = new StyleBackground(m_ItemDatabase[i].tileRule.m_DefaultSprite);
+                //m_ItemDatabase[i] == null ? m_DefaultItemIcon.texture :
+                //m_ItemDatabase[i].MenuSprite.texture; //.Icon.texture;
+                e.Q<Label>("name").text = m_ItemDatabase[i].name; //.FriendlyName;
+            }
         };
         m_ItemListView = new ListView(m_ItemDatabase, m_ItemHeight, makeItem, bindItem);
         m_ItemListView.style.flexGrow = 1;

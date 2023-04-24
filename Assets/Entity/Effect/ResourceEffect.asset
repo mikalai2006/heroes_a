@@ -12,3 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 931c2d9151e1ed949beab9dc2cf5be9e, type: 3}
   m_Name: ResourceEffect
   m_EditorClassIdentifier: 
+  TypeResource: 0
+  min: 0
+  max: 0
+  step: 0

@@ -30,14 +30,26 @@ MonoBehaviour:
     m_SubObjectType: 
     m_EditorAssetChanged: 0
   TypeGround: 2046
-  TypeWorkAttribute: 0
+  TypeWorkEffect: 0
   Attributes: []
-  listTypeNoPath: 
-  TypeWorkObject: 1
   TypeMapObject: 6
+  listTypeNoPath: 
   listRuleInput: 08000000090000000e0000001300000012000000110000000c00000007000000
-  Effects: []
-  Artifact: {fileID: 11400000, guid: 170f6a18e7757ad4c9aaed11393ac632, type: 2}
+  TypeWorkObject: 1
+  Effects:
+  - Item:
+      description:
+        m_TableReference:
+          m_TableCollectionName: 
+        m_TableEntryReference:
+          m_KeyId: 0
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      items: []
+    probability: 1
+  Artifact: {fileID: 11400000, guid: fb155b3ab4fa88340a27dec143295a23, type: 2}
   references:
     version: 2
     RefIds: []
