@@ -17,9 +17,9 @@ MonoBehaviour:
   MenuSprite: {fileID: -774007964, guid: e7a6d1e198529c44c93ed148f1bf1afe, type: 3}
   title:
     m_TableReference:
-      m_TableCollectionName: GUID:eccb40f2ef0445e499300535baf5f930
+      m_TableCollectionName: GUID:b4e7cd63f22a6d74db78346f658a168b
     m_TableEntryReference:
-      m_KeyId: 17241124012032
+      m_KeyId: 1407061557673984
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
@@ -44,8 +44,10 @@ MonoBehaviour:
     DamageMax: 3
     HP: 10
     Speed: 6
-    Ammunition: 0
+    Shoots: 24
     Growth: 9
+    Size: 1
+    Movement: 0
     AI: 184
     Cost:
     - Resource: {fileID: 11400000, guid: 3894d4d068775c343b5c4bf1510dee33, type: 2}

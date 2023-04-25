@@ -206,12 +206,12 @@ public class GridTileNode : IHeapItem<GridTileNode>
 
     public void SetProtectedNeigbours(BaseEntity warriorUnit, GridTileNode protectedNode = null)
     {
-        if (protectedNode.OccupiedUnit == null)
-        {
-            Debug.LogWarning($"Node {protectedNode.position} not contains entity!");
-            return;
-        }
-        Debug.Log($"Node {protectedNode.position} - entity type {protectedNode.OccupiedUnit.GetType()}!");
+        // if (protectedNode.OccupiedUnit == null)
+        // {
+        //     Debug.LogWarning($"Node {protectedNode.position} not contains entity!");
+        //     return;
+        // }
+        // Debug.Log($"Node {protectedNode.position} - entity type {protectedNode.OccupiedUnit.GetType()}!");
         // List<GridTileNode> nodes = _gridHelper.GetNeighbourList(this, true);
         protectedNode.SetProtectedUnit(warriorUnit);
         ScriptableEntityMapObject configData = (ScriptableEntityMapObject)protectedNode.OccupiedUnit.ScriptableData;
@@ -235,9 +235,9 @@ public class GridTileNode : IHeapItem<GridTileNode>
 
         if (warriorUnit != null)
         {
-            ((EntityCreature)warriorUnit).SetProtectedNode(protectedNode);
             var warrior = (EntityCreature)warriorUnit;
-            warrior.OnChangeQuantityWarrior();
+            warrior.SetProtectedNode(protectedNode);
+            // warrior.SetValueCreature();
         }
     }
 

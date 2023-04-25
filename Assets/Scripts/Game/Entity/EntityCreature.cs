@@ -32,8 +32,8 @@ public class EntityCreature : BaseEntity
             //     ScriptableData = configData;
             // }
 
-            Data.value = 10;
-            OnChangeQuantityWarrior();
+            Data.value = 1;
+            // SetValueCreature();
         }
         else
         {
@@ -50,17 +50,18 @@ public class EntityCreature : BaseEntity
         }
     }
 
-    public void OnChangeQuantityWarrior()
+    public void SetValueCreature(int quantityCreature)
     {
-        //Data.protectedNode = ProtectedNode.position;
-        //if (ProtectedNode != null)
-        //{
-        //    UnitBase protectedUnit = ProtectedNode.OccupiedUnit;
-        //    Data.quantity = protectedUnit.ScriptableData.level + (protectedUnit.ScriptableData.level * 2) - (this.ScriptableData.level * 2);
+        Data.value = quantityCreature;
+        // // Data.protectedNode = ProtectedNode.position;
+        // if (ProtectedNode != null)
+        // {
+        //    BaseEntity protectedUnit = ProtectedNode.OccupiedUnit;
+        //    Data.value = protectedUnit.ScriptableData.level + (protectedUnit.ScriptableData.level * 2) - (this.ScriptableData.level * 2);
 
         //    // Debug.Log($"Warrior {name} protectedNode as :::name[{protectedUnit.ScriptableData.name}]level[{protectedUnit.ScriptableData.level}]");
 
-        //}
+        // }
     }
 
     public override void SetPlayer(Player player)

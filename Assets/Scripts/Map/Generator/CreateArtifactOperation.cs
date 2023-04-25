@@ -90,9 +90,9 @@ public class CreateArtifactOperation : ILoadingOperation
 
                         // Generate protection creature.
 
-                        BaseEntity warrior = UnitManager.SpawnEntityCreature(nodeWarrior);
+                        BaseEntity warrior = UnitManager.SpawnEntityCreature(nodeWarrior, currentNode, 5, artifact.Cost);
 
-                        nodeWarrior.SetProtectedNeigbours(warrior, currentNode);
+                        // nodeWarrior.SetProtectedNeigbours(warrior, currentNode);
                         // currentNode.SetProtectedNode(warrior);
                         // _root.SetColorForTile(nodeWarrior.position, Color.blue);
 

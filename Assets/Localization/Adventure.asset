@@ -16,9 +16,16 @@ MonoBehaviour:
   - name: character
     variable:
       rid: 5790064033013694485
+  - name: value
+    variable:
+      rid: 1339301390647296008
   references:
     version: 2
     RefIds:
+    - rid: 1339301390647296008
+      type: {class: IntVariable, ns: UnityEngine.Localization.SmartFormat.PersistentVariables, asm: Unity.Localization}
+      data:
+        m_Value: 0
     - rid: 5790064033013694485
       type: {class: StringVariable, ns: UnityEngine.Localization.SmartFormat.PersistentVariables, asm: Unity.Localization}
       data:

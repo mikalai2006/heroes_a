@@ -339,10 +339,11 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
             GridTileNode currentNode = gridTileHelper.GridTile.GetGridObject(new Vector3Int(item.data.protectedNode.x, item.data.protectedNode.y));
 
             if (item.idObject == "") continue;
-            EntityCreature creature = (EntityCreature)UnitManager.SpawnEntityCreature(nodeWarrior, item);
+            EntityCreature creature = (EntityCreature)UnitManager
+                .SpawnEntityCreature(nodeWarrior, currentNode, 0, 0, item);
             // EntityCreature warrior = new EntityCreature(null, item);
             // Debug.Log($"currentNode.position={currentNode.position}, creature={warrior.ConfigData.name}");
-            nodeWarrior.SetProtectedNeigbours(creature, currentNode);
+            // nodeWarrior.SetProtectedNeigbours(creature, currentNode);
             // warrior.CreateMapGameObject(nodeWarrior);
             // // UnitManager.SpawnEntityToNode(tileNode, entity);
             // // BaseWarriors warrior = (BaseWarriors)await UnitManager.SpawnUnitToNode(scriptableData, tileNode);
@@ -641,9 +642,9 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
                         // monolith = new EntityMonolith(nodeInputPortal, configData);
                         currentArea.portal = (EntityMonolith)monolith;
 
-                        BaseEntity warrior = UnitManager.SpawnEntityCreature(nodeWarrior);
+                        BaseEntity warrior = UnitManager.SpawnEntityCreature(nodeWarrior, nodeInputPortal);
 
-                        nodeWarrior.SetProtectedNeigbours(warrior, nodeInputPortal);
+                        // nodeWarrior.SetProtectedNeigbours(warrior, nodeInputPortal);
                     }
                     else
                     {
@@ -674,7 +675,7 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
                 GridTileNode nodeWarrior = GetNodeWarrior(nodeExitPortal);
                 if (nodeWarrior != null)
                 {
-                    BaseEntity warrior = UnitManager.SpawnEntityCreature(nodeWarrior);
+                    BaseEntity warrior = UnitManager.SpawnEntityCreature(nodeWarrior, nodeExitPortal);
 
                     nodeWarrior.SetProtectedNeigbours(warrior, nodeExitPortal);
                 }

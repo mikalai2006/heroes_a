@@ -94,29 +94,47 @@ public static class UnitManager
     //     //node.OccupiedUnit = createdUnit;
     //     return createdUnit;
     // }
-    public static BaseEntity SpawnEntityCreature(GridTileNode node, SaveDataUnit<DataCreature> saveData)
-    {
-        EntityCreature newEntity = new EntityCreature(null, saveData);
-        Entities.Add(newEntity.IdEntity, newEntity);
-        node.SetOcuppiedUnit(newEntity);
-        newEntity.SetOccupiedNode(node);
-        GameManager.Instance.MapManager.SetColorForTile(node.position, Color.magenta);
-        newEntity.CreateMapGameObject(node);
-        return newEntity;
-    }
-    public static BaseEntity SpawnEntityCreature(GridTileNode node, TypeGround typeGroud = TypeGround.None, int level = 1)
+    // public static BaseEntity SpawnEntityCreature(GridTileNode node, SaveDataUnit<DataCreature> saveData)
+    // {
+    //     EntityCreature newEntity = new EntityCreature(null, saveData);
+    //     Entities.Add(newEntity.IdEntity, newEntity);
+    //     node.SetOcuppiedUnit(newEntity);
+    //     newEntity.SetOccupiedNode(node);
+    //     GameManager.Instance.MapManager.SetColorForTile(node.position, Color.magenta);
+    //     newEntity.CreateMapGameObject(node);
+    //     return newEntity;
+    // }
+    public static BaseEntity SpawnEntityCreature(GridTileNode nodeCreature, GridTileNode protectedNode, int levelMin = 1, int cost = 1, SaveDataUnit<DataCreature> saveData = null)
     {
         //if (node == null) return null;
-
-        List<ScriptableEntityCreature> listWarriors = ResourceSystem.Instance.GetEntityByType<ScriptableEntityCreature>(TypeEntity.Creature);
-        ScriptableEntityCreature scriptbaleEntity = listWarriors[Random.Range(0, listWarriors.Count)];
-        EntityCreature newEntity = new EntityCreature(scriptbaleEntity);
+        EntityCreature newEntity;
+        ScriptableEntityCreature configNewEntity;
+        if (saveData != null)
+        {
+            newEntity = new EntityCreature(null, saveData);
+            configNewEntity = ResourceSystem.Instance
+                .GetEntityByType<ScriptableEntityCreature>(TypeEntity.Creature)
+                .Where(t => t.idObject == saveData.idObject)
+                .First();
+        }
+        else
+        {
+            List<ScriptableEntityCreature> listWarriors = ResourceSystem.Instance
+                .GetEntityByType<ScriptableEntityCreature>(TypeEntity.Creature)
+                .Where(t => t.CreatureParams.Level >= levelMin)
+                .ToList();
+            configNewEntity = listWarriors[Random.Range(0, listWarriors.Count)];
+            newEntity = new EntityCreature(configNewEntity);
+        }
         Entities.Add(newEntity.IdEntity, newEntity);
-        node.SetOcuppiedUnit(newEntity);
-        newEntity.SetOccupiedNode(node);
-        GameManager.Instance.MapManager.SetColorForTile(node.position, Color.magenta);
+        nodeCreature.SetOcuppiedUnit(newEntity);
+        newEntity.SetOccupiedNode(nodeCreature);
+        GameManager.Instance.MapManager.SetColorForTile(nodeCreature.position, Color.magenta);
         // SpawnEntityToNode(node, newEntity);
-        newEntity.CreateMapGameObject(node);
+        newEntity.CreateMapGameObject(nodeCreature);
+
+        nodeCreature.SetProtectedNeigbours(newEntity, protectedNode);
+        newEntity.SetValueCreature(configNewEntity.CreatureParams.AI > 0 ? cost / configNewEntity.CreatureParams.AI : 10);
 
         // node.OccupiedUnit = createdUnit;
         return newEntity;

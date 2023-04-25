@@ -107,10 +107,10 @@ public class CreateMinesOperation : ILoadingOperation
                         );
                         UnitManager.SpawnEntityMapObjectToNode(currentNode, entity);
 
-                        BaseEntity warrior = UnitManager.SpawnEntityCreature(nodeWarrior);
+                        BaseEntity warrior = UnitManager.SpawnEntityCreature(nodeWarrior, currentNode);
 
                         // currentNode.SetProtectedNode(warrior);
-                        nodeWarrior.SetProtectedNeigbours(warrior, currentNode);
+                        // nodeWarrior.SetProtectedNeigbours(warrior, currentNode);
 
                         nodes.Remove(currentNode);
 

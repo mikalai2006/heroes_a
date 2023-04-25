@@ -14,7 +14,119 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_TableCollectionName: Creature
   m_TableCollectionNameGuidString: b4e7cd63f22a6d74db78346f658a168b
-  m_Entries: []
+  m_Entries:
+  - m_Id: 1406774231072768
+    m_Key: Pikeman
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1406959619309568
+    m_Key: Halberdier
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1407015286112256
+    m_Key: Archer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1407061557673984
+    m_Key: Marksman
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1407104842891264
+    m_Key: Griffin
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1407125646639104
+    m_Key: RoyalGriffin
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1407178931077120
+    m_Key: Swordsman
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1407194496139264
+    m_Key: Crusader
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1407223558471680
+    m_Key: Monk
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1407239467466752
+    m_Key: Zealot
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1407265803501568
+    m_Key: Cavalier
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1407278856175616
+    m_Key: Champion
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1407288884756480
+    m_Key: Angel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1407294962302976
+    m_Key: Archangel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1434730563272704
+    m_Key: Goblin
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1434749152428032
+    m_Key: Hobgoblin
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1434791401652224
+    m_Key: WolfRider
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1434840424677376
+    m_Key: WolfRaider
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1434872599183360
+    m_Key: Orc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1434892639567872
+    m_Key: OrcChieftain
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1434930484772864
+    m_Key: Ogre
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1434940249112576
+    m_Key: OgreMage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1435009669038080
+    m_Key: Roc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1435031148068864
+    m_Key: Thunderbird
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1435053499514880
+    m_Key: Cyclops
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1435072927531008
+    m_Key: CyclopsKing
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1435113624862720
+    m_Key: Behemoth
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1435135967920128
+    m_Key: AncientBehemoth
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

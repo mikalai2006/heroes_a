@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 
 using UnityEngine;
+using UnityEngine.Localization;
 using UnityEngine.Localization.Settings;
 
 /// <summary>
@@ -338,7 +339,29 @@ public static class Helpers
         }
         return ret;
     }
+
+    public static string GetLocalizedPluralString(
+        LocalizedString localizedString,
+        Dictionary<string, int>[] args,
+        Dictionary<string, int> dictionary
+        )
+    {
+        if (localizedString.IsEmpty) return "NO_LANG";
+
+        localizedString.Arguments = args;
+        return localizedString.GetLocalizedString(dictionary);
+    }
+    // public static AsyncOperationHandle<string> LoadLocalizedSmartString(string tableRef, string tableEntryRef, Dictionary<string, string>[] args)
+    // {
+    //     LocalizedString localizedString = new LocalizedString();
+    //     localizedString.TableReference = tableRef;
+    //     localizedString.TableEntryReference = tableEntryRef;
+    //     localizedString.Arguments = args;
+
+    //     return localizedString.GetLocalizedString();
+    // }
 }
+
 // public static class HelperLanguage
 // {
 //     public static LangItem GetLocaleText(this List<LangItem> locale)

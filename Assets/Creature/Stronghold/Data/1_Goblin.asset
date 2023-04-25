@@ -17,9 +17,9 @@ MonoBehaviour:
   MenuSprite: {fileID: 1722126353, guid: e7a6d1e198529c44c93ed148f1bf1afe, type: 3}
   title:
     m_TableReference:
-      m_TableCollectionName: GUID:eccb40f2ef0445e499300535baf5f930
+      m_TableCollectionName: GUID:b4e7cd63f22a6d74db78346f658a168b
     m_TableEntryReference:
-      m_KeyId: 16941378076672
+      m_KeyId: 1434730563272704
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
@@ -37,17 +37,21 @@ MonoBehaviour:
     m_SubObjectType: 
     m_EditorAssetChanged: 0
   CreatureParams:
-    Level: 0
-    Attack: 0
-    Defense: 0
-    DamageMin: 0
-    DamageMax: 0
-    HP: 0
-    Speed: 0
-    Ammunition: 0
-    Growth: 0
-    AI: 0
-    Cost: []
+    Level: 1
+    Attack: 4
+    Defense: 2
+    DamageMin: 1
+    DamageMax: 2
+    HP: 5
+    Speed: 5
+    Shoots: 0
+    Growth: 15
+    Size: 1
+    Movement: 0
+    AI: 60
+    Cost:
+    - Resource: {fileID: 11400000, guid: 3894d4d068775c343b5c4bf1510dee33, type: 2}
+      Count: 40
   references:
     version: 2
     RefIds: []

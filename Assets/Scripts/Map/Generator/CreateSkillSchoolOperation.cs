@@ -80,9 +80,9 @@ public class CreateSkillSchoolOperation : ILoadingOperation
                         // _root.UnitManager
                         //     .SpawnMapObjectAsync(currentNode, TypeMapObject.SkillSchool);
 
-                        BaseEntity warrior = UnitManager.SpawnEntityCreature(nodeWarrior);
+                        BaseEntity warrior = UnitManager.SpawnEntityCreature(nodeWarrior, currentNode);
 
-                        nodeWarrior.SetProtectedNeigbours(warrior, currentNode);
+                        // nodeWarrior.SetProtectedNeigbours(warrior, currentNode);
                         // currentNode.SetProtectedNode(warrior);
 
                         nodes.Remove(currentNode);

@@ -17,7 +17,119 @@ MonoBehaviour:
   m_SharedData: {fileID: 11400000, guid: b4e7cd63f22a6d74db78346f658a168b, type: 2}
   m_Metadata:
     m_Items: []
-  m_TableData: []
+  m_TableData:
+  - m_Id: 1406959619309568
+    m_Localized: Halberdier
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1406774231072768
+    m_Localized: Pikeman
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1407061557673984
+    m_Localized: Marksman
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1407015286112256
+    m_Localized: Archer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1407104842891264
+    m_Localized: Griffin
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1407125646639104
+    m_Localized: Royal Griffin
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1407178931077120
+    m_Localized: Swordsman
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1407194496139264
+    m_Localized: Crusader
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1407223558471680
+    m_Localized: Monk
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1407239467466752
+    m_Localized: Zealot
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1407278856175616
+    m_Localized: Champion
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1407265803501568
+    m_Localized: Cavalier
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1407288884756480
+    m_Localized: Angel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1407294962302976
+    m_Localized: Archangel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1434749152428032
+    m_Localized: Hobgoblin
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1434730563272704
+    m_Localized: Goblin
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1434791401652224
+    m_Localized: Wolf Rider
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1434840424677376
+    m_Localized: Wolf Raider
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1434892639567872
+    m_Localized: Orc Chieftain
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1434872599183360
+    m_Localized: Orc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1434930484772864
+    m_Localized: Ogre
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1434940249112576
+    m_Localized: Ogre Mage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1435009669038080
+    m_Localized: Roc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1435031148068864
+    m_Localized: Thunderbird
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1435053499514880
+    m_Localized: Cyclops
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1435072927531008
+    m_Localized: Cyclops King
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1435113624862720
+    m_Localized: Behemoth
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1435135967920128
+    m_Localized: Ancient Behemoth
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
