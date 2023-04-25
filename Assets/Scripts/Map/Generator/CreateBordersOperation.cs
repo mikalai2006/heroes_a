@@ -63,16 +63,16 @@ public class CreateBordersOperation : ILoadingOperation
 
                 TileLandscape tileData = _root._dataTypeGround[tileNode.TypeGround];
                 List<TileNature> listNature = ResourceSystem.Instance.GetNature().Where(t =>
-                            t.typeGround == tileData.typeGround
+                            t.typeGround.HasFlag(tileData.typeGround)
                             && t.isCorner
                         ).ToList();
-                TileNature cornerTiles = listNature[Random.Range(0, listNature.Count)];
+                TileNature cornerTile = listNature[Random.Range(0, listNature.Count)];
 
-                _root._tileMapNature.SetTile(tileNode.position, cornerTiles);
+                _root._tileMapNature.SetTile(tileNode.position, cornerTile.tile != null ? cornerTile.tile : cornerTile);
 
-                _root._listNatureNode.Add(new GridTileNatureNode(tileNode, cornerTiles.idObject, false, cornerTiles.name));
+                _root._listNatureNode.Add(new GridTileNatureNode(tileNode, cornerTile.idObject, false, cornerTile.name));
 
-                _root.gridTileHelper.SetDisableNode(tileNode, cornerTiles.listTypeNoPath, Color.blue);
+                _root.gridTileHelper.SetDisableNode(tileNode, cornerTile.listTypeNoPath, Color.blue);
 
             }
         }
@@ -101,17 +101,17 @@ public class CreateBordersOperation : ILoadingOperation
             TileLandscape tileData = _root._dataTypeGround[tileNode.TypeGround];
 
             List<TileNature> listNature = ResourceSystem.Instance.GetNature().Where(t =>
-                        t.typeGround == tileData.typeGround
+                        t.typeGround.HasFlag(tileData.typeGround)
                         && t.isCorner
                     ).ToList();
 
-            TileNature cornerTiles = listNature[Random.Range(0, listNature.Count)];
+            TileNature cornerTile = listNature[Random.Range(0, listNature.Count)];
 
-            _root._tileMapNature.SetTile(tileNode.position, cornerTiles);
+            _root._tileMapNature.SetTile(tileNode.position, cornerTile.tile != null ? cornerTile.tile : cornerTile);
 
-            _root._listNatureNode.Add(new GridTileNatureNode(tileNode, cornerTiles.idObject, false, cornerTiles.name));
+            _root._listNatureNode.Add(new GridTileNatureNode(tileNode, cornerTile.idObject, false, cornerTile.name));
 
-            _root.gridTileHelper.SetDisableNode(tileNode, cornerTiles.listTypeNoPath, Color.blue);
+            _root.gridTileHelper.SetDisableNode(tileNode, cornerTile.listTypeNoPath, Color.blue);
 
         }
 
@@ -161,7 +161,7 @@ public class CreateBordersOperation : ILoadingOperation
                     TileLandscape tileData = _root._dataTypeGround[currentNode.TypeGround];
 
                     List<TileNature> listTileForDraw = ResourceSystem.Instance.GetNature().Where(t =>
-                        t.typeGround == tileData.typeGround
+                        t.typeGround.HasFlag(tileData.typeGround)
                         && t.isCorner
                     ).ToList(); //  _tileData.cornerTiles.Concat(_tileData.natureTiles).ToList();
 
@@ -169,7 +169,7 @@ public class CreateBordersOperation : ILoadingOperation
                     // currentNode.Empty && currentNode.Enable
                     if (!currentNode.StateNode.HasFlag(StateNode.Disable))
                     {
-                        _root._tileMapNature.SetTile(currentNode.position, tileForDraw);
+                        _root._tileMapNature.SetTile(currentNode.position, tileForDraw.tile != null ? tileForDraw.tile : tileForDraw);
 
                         _root._listNatureNode.Add(new GridTileNatureNode(currentNode, tileForDraw.idObject, false, tileForDraw.name));
 

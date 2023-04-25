@@ -47,12 +47,12 @@ public class CreateNatureOperation : ILoadingOperation
                     {
                         TileLandscape tileData = _root._dataTypeGround[currentNode.TypeGround];
                         List<TileNature> listNature = ResourceSystem.Instance.GetNature().Where(t =>
-                            t.typeGround == tileData.typeGround
+                            t.typeGround.HasFlag(tileData.typeGround)
                             && !t.isCorner
                         ).ToList().ToList();
                         TileNature tileForDraw = listNature[Random.Range(0, listNature.Count)]; // _tileData.natureTiles[Random.Range(0, _tileData.natureTiles.Count)];
 
-                        _root._tileMapNature.SetTile(currentNode.position, tileForDraw);
+                        _root._tileMapNature.SetTile(currentNode.position, tileForDraw.tile != null ? tileForDraw.tile : tileForDraw);
 
                         _root._listNatureNode.Add(new GridTileNatureNode(currentNode, tileForDraw.idObject, false, tileForDraw.name));
 
