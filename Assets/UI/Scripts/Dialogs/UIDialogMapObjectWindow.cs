@@ -109,6 +109,7 @@ public class UIDialogMapObjectWindow : UIDialogBaseWindow
                 _boxVariantsElement.Add(item);
             }
         }
+        ResetClassButton();
 
         _processCompletionSource = new TaskCompletionSource<DataResultDialog>();
 
@@ -125,6 +126,14 @@ public class UIDialogMapObjectWindow : UIDialogBaseWindow
             btn.RemoveFromClassList("button_checked");
             btn.RemoveFromClassList("border-color");
             btn.AddToClassList("button_bordered");
+        }
+        if (_dataResultDialog.keyVariant == -1 && _dataDialog.TypeWorkEffect == TypeWorkAttribute.One)
+        {
+            _buttonOk.SetEnabled(false);
+        }
+        else
+        {
+            _buttonOk.SetEnabled(true);
         }
     }
 
