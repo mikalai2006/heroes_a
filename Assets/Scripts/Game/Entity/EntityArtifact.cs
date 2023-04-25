@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -8,9 +9,12 @@ public class EntityArtifact : BaseEntity
 {
     private ScriptableEntityArtifact ConfigData => (ScriptableEntityArtifact)ScriptableData;
     [SerializeField] public DataArtifact Data = new DataArtifact();
+    [NonSerialized] private ScriptableAttributeArtifact _configArtifact;
+    public ScriptableAttributeArtifact ConfigArtifact => _configArtifact;
 
     public EntityArtifact(
         ScriptableEntityArtifact configData,
+        ScriptableAttributeArtifact configArtifact,
         SaveDataUnit<DataArtifact> saveData = null)
     {
         base.Init();
@@ -18,8 +22,9 @@ public class EntityArtifact : BaseEntity
         if (saveData == null)
         {
             ScriptableData = configData;
-            SetData();
+            SetData(configArtifact);
             idObject = ScriptableData.idObject;
+            _configArtifact = configArtifact;
         }
         else
         {
@@ -31,20 +36,21 @@ public class EntityArtifact : BaseEntity
                 .GetEntityByType<ScriptableEntityMapObject>(TypeEntity.MapObject)
                 .Where(t => t.TypeMapObject == TypeMapObject.Artifact
                 && t.idObject == saveData.idObject).First();
-            List<ScriptableAttributeArtifact> listArtifacts
-            = ResourceSystem.Instance
-            .GetAttributesByType<ScriptableAttributeArtifact>(TypeAttribute.Artifact)
-            .Where(t => t.idObject == Data.ida)
-            .ToList();
+
+            _configArtifact = ResourceSystem.Instance
+                .GetAttributesByType<ScriptableAttributeArtifact>(TypeAttribute.Artifact)
+                .Where(t => t.idObject == Data.ida)
+                .First();
+
             idUnit = saveData.idUnit;
             idObject = saveData.idObject;
         }
     }
 
-    public void SetData()
+    public void SetData(ScriptableAttributeArtifact configArtifact)
     {
-        ScriptableEntityArtifact configData = (ScriptableEntityArtifact)ScriptableData;
-        Data.ida = configData.Artifact.idObject;
+        // ScriptableEntityArtifact configData = (ScriptableEntityArtifact)ScriptableData;
+        Data.ida = configArtifact.idObject;
     }
 
     public override void SetPlayer(Player player)

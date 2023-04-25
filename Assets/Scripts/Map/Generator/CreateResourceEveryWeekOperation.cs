@@ -79,7 +79,7 @@ public class CreateResourceEveryWeekOperation : ILoadingOperation
 
                         UnitManager.SpawnEntityMapObjectToNode(currentNode, entity);
 
-                        BaseEntity warrior = UnitManager.SpawnEntityCreature(nodeWarrior, currentNode);
+                        BaseEntity warrior = UnitManager.SpawnEntityCreature(nodeWarrior, currentNode, 1, configData.RMGValue);
 
                         // _root.UnitManager.SpawnMapObjectAsync(
                         //     currentNode,

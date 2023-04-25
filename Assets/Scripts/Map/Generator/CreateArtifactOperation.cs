@@ -3,7 +3,6 @@ using Cysharp.Threading.Tasks;
 using Loader;
 
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -29,7 +28,6 @@ public class CreateArtifactOperation : ILoadingOperation
         var factory = new EntityMapObjectFactory();
 
         //Get all attributes artifacts.
-
         List<ScriptableAttributeArtifact> listArtifacts
             = ResourceSystem.Instance
             .GetAttributesByType<ScriptableAttributeArtifact>(TypeAttribute.Artifact)
@@ -66,31 +64,29 @@ public class CreateArtifactOperation : ILoadingOperation
                     GridTileNode currentNode = nodes[Random.Range(0, nodes.Count)];
                     GridTileNode nodeWarrior = _root.GetNodeWarrior(currentNode);
 
-                    ScriptableEntityMapObject configData
+                    ScriptableEntityMapObject configDataArtifact
                         = ResourceSystem.Instance
                         .GetEntityByType<ScriptableEntityMapObject>(TypeEntity.MapObject)
                         .Where(t => t.TypeMapObject == TypeMapObject.Artifact)
                         .First();
-                    ScriptableEntityArtifact configArtifact = (ScriptableEntityArtifact)configData;
+                    ScriptableEntityArtifact configData = (ScriptableEntityArtifact)configDataArtifact;
                     if (
                         nodeWarrior != null
                         && currentNode != null
-                        && _root.gridTileHelper.GetAllowInsertObjectToNode(currentNode, configArtifact)
+                        && _root.gridTileHelper.GetAllowInsertObjectToNode(currentNode, configData)
                         )
                     {
                         // Generate artefact attribute.
-                        ScriptableAttributeArtifact artifact
+                        ScriptableAttributeArtifact configArtifact
                             = listArtifacts[Random.Range(0, listArtifacts.Count)];
-                        configArtifact.Artifact = artifact;
 
-                        EntityArtifact entity = new EntityArtifact(configArtifact);
+                        EntityArtifact entity = new EntityArtifact(configData, configArtifact);
                         // var entityArtifact = (ScriptableEntityArtifact)entity.ScriptableData;
                         UnitManager.SpawnEntityMapObjectToNode(currentNode, entity);
 
-
                         // Generate protection creature.
 
-                        BaseEntity warrior = UnitManager.SpawnEntityCreature(nodeWarrior, currentNode, 5, artifact.Cost);
+                        BaseEntity warrior = UnitManager.SpawnEntityCreature(nodeWarrior, currentNode, 3, configArtifact.RMGValue);
 
                         // nodeWarrior.SetProtectedNeigbours(warrior, currentNode);
                         // currentNode.SetProtectedNode(warrior);

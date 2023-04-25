@@ -30,12 +30,13 @@ MonoBehaviour:
     m_SubObjectType: 
     m_EditorAssetChanged: 0
   TypeGround: 0
-  TypeWorkAttribute: 0
+  TypeWorkEffect: 0
   Attributes: []
-  listTypeNoPath: 
-  TypeWorkObject: 2
   TypeMapObject: 3
+  RMGValue: 2000
+  listTypeNoPath: 
   listRuleInput: 1100000013000000120000000c000000
+  TypeWorkObject: 2
   Effects: []
   Perks:
   - {fileID: 11400000, guid: 087932cd24f436d4f892c0967d8eb3c3, type: 2}

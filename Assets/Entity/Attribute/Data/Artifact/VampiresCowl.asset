@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73ca52b11951f044da29ff97232d0ab2, type: 3}
+  m_Name: VampiresCowl
+  m_EditorClassIdentifier: 
+  idObject: attribute.artifact.vampirescowl
+  TypeAttribute: 10
+  MenuSprite: {fileID: 1699940289, guid: be9387fb266b97f4bb60bdbf760a8a44, type: 3}
+  Text:
+    title:
+      m_TableReference:
+        m_TableCollectionName: GUID:99ee07ddc90ffba41a3d18974d364707
+      m_TableEntryReference:
+        m_KeyId: 7583085270040576
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    description:
+      m_TableReference:
+        m_TableCollectionName: GUID:99ee07ddc90ffba41a3d18974d364707
+      m_TableEntryReference:
+        m_KeyId: 7583103087443968
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+  spriteMap: {fileID: -2063535839, guid: c12233e7f9e1938489974c1fb7749211, type: 3}
+  Cost: 4000
+  RMGValue: 2000
+  ClassArtifact: 1
+  Slot: 1
+  PrimarySkills: []
+  SecondarySkills: []
+  textOk:
+    m_TableReference:
+      m_TableCollectionName: GUID:99ee07ddc90ffba41a3d18974d364707
+    m_TableEntryReference:
+      m_KeyId: 7583114059743232
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  Effects: []
+  references:
+    version: 2
+    RefIds: []

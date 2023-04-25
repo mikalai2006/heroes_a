@@ -19,8 +19,8 @@ namespace Loader
             var t = new LocalizedString(Constants.LanguageTable.LANG_TABLE_UILANG, "loadgameconfig").GetLocalizedString();
             onSetNotify?.Invoke(t);
             onProgress?.Invoke(.3f);
-            await ResourceSystem.Instance.LoadCollectionsAsset<ScriptableGameMode>(Constants.Labels.LABEL_GAMEMODE);
-            await ResourceSystem.Instance.LoadCollectionsAsset<ScriptableGameSetting>(Constants.Labels.LABEL_GAMESETTING);
+            await ResourceSystem.Instance.LoadCollectionsAsset<SOGameMode>(Constants.Labels.LABEL_GAMEMODE);
+            await ResourceSystem.Instance.LoadCollectionsAsset<SOGameSetting>(Constants.Labels.LABEL_GAMESETTING);
             onProgress?.Invoke(.6f);
             await ResourceSystem.Instance.LoadCollectionsAsset<ScriptableEntity>(Constants.Labels.LABEL_ENTITY);
             onProgress?.Invoke(.7f);

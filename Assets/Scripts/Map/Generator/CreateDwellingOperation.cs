@@ -95,7 +95,7 @@ public class CreateDwellingOperation : ILoadingOperation
                                 );
                                 UnitManager.SpawnEntityMapObjectToNode(currentNode, entity);
 
-                                BaseEntity warrior = UnitManager.SpawnEntityCreature(nodeWarrior, currentNode);
+                                BaseEntity warrior = UnitManager.SpawnEntityCreature(nodeWarrior, currentNode, 1, configData.RMGValue);
 
                                 // nodeWarrior.SetProtectedNeigbours(warrior, currentNode);
                                 // currentNode.SetProtectedNode(warrior);

@@ -30,8 +30,8 @@ public class UIAppMenuNewGame : UILocaleBase
     [SerializeField] private VisualTreeAsset _templateColumn;
     private List<ScriptableEntityHero> _listChoosedHero = new List<ScriptableEntityHero>();
     private List<ScriptableEntityHero> _listHeroes = new List<ScriptableEntityHero>();
-    private ScriptableGameSetting _configGameSettings;
-    private List<ScriptableGameMode> _listGameMode;
+    private SOGameSetting _configGameSettings;
+    private List<SOGameMode> _listGameMode;
 
     public void Init()
     {
@@ -471,6 +471,7 @@ public class UIAppMenuNewGame : UILocaleBase
         AddOptionCountCommand();
         AddOptionCountBot();
         AddOptionCountBotCommand();
+        AddOptionStrenghtMonsters();
         AddCompexity();
         DrawAdvancedOptions();
         if (
@@ -562,9 +563,9 @@ public class UIAppMenuNewGame : UILocaleBase
         var NewColBoxBtn = newCol.Q<VisualElement>(nameBoxOption);
         NewColBoxBtn.Clear();
 
-        foreach (ScriptableGameMode mode in _listGameMode)
+        foreach (SOGameMode mode in _listGameMode)
         {
-            ScriptableGameMode currentMode = mode;
+            SOGameMode currentMode = mode;
             var newButtonBox = _templateButton.Instantiate();
             var btn = newButtonBox.Q<Button>("Btn");
             btn.text = currentMode.GameModeData.title;
@@ -675,6 +676,45 @@ public class UIAppMenuNewGame : UILocaleBase
             NewColBoxBtn.Add(newButtonBox);
         }
 
+        _boxOptions.Add(newCol);
+    }
+
+    private void AddOptionStrenghtMonsters()
+    {
+        var Level = LevelManager.Instance.Level;
+        var SettingStrenghtMonsters = LevelManager.Instance.ConfigGameSettings.StrenghtMonsters;
+        var newCol = _templateColumn.Instantiate();
+        newCol.Q<Label>(nameNameOption).text = "#strenghtmonsters";
+
+        var NewColBoxBtn = newCol.Q<VisualElement>(nameBoxOption);
+        NewColBoxBtn.Clear();
+
+        for (int i = 0; i < SettingStrenghtMonsters.Count; i++)
+        {
+            var item = SettingStrenghtMonsters[i];
+            var newButtonBox = _templateButton.Instantiate();
+            var newBtn = newButtonBox.Q<Button>("Btn");
+            newBtn.AddToClassList("m-px");
+            newBtn.text = item.title.GetLocalizedString();
+            newBtn.name = item.strenghtMonster.ToString();
+            var j = i;
+
+            if (Level.Settings.strenghtMonster == item.strenghtMonster)
+            {
+                newBtn.AddToClassList("button_checked");
+                newBtn.RemoveFromClassList("button_bg");
+                newBtn.RemoveFromClassList("button_bordered");
+            }
+            else
+            {
+                newBtn.clickable.clicked += () =>
+                {
+                    Level.Settings.strenghtMonster = item.strenghtMonster;
+                    RefreshOptions();
+                };
+            }
+            NewColBoxBtn.Add(newButtonBox);
+        }
         _boxOptions.Add(newCol);
     }
 

@@ -95,6 +95,42 @@ MonoBehaviour:
     m_Key: helmofheavenlyenlightenment_d
     m_Metadata:
       m_Items: []
+  - m_Id: 7580638581522432
+    m_Key: capeofconjuring_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7580659754369024
+    m_Key: capeofconjuring_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7580688510517248
+    m_Key: capeofconjuring_ok
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7581863989379072
+    m_Key: dragonwingtabard_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7581888513474560
+    m_Key: dragonwingtabard_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7581899926175744
+    m_Key: dragonwingtabard_ok
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7583085270040576
+    m_Key: vampirescowl_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7583103087443968
+    m_Key: vampirescowl_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7583114059743232
+    m_Key: vampirescowl_ok
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

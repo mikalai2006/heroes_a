@@ -424,6 +424,7 @@ MonoBehaviour:
     activePlayer: -1
     Settings:
       compexity: 100
+      strenghtMonster: 2
       countPlayer: 1
       countCommand: 0
       countBot: 1

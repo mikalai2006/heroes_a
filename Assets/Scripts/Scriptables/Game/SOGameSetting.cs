@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Localization;
 
-[CreateAssetMenu(fileName = "NewGameSetting", menuName = "Game/New GameSetting")]
-public class ScriptableGameSetting : ScriptableObject
+[CreateAssetMenu(fileName = "GameSetting", menuName = "HeroesA/GameSetting")]
+public class SOGameSetting : ScriptableObject
 {
     public string idObject;
 
@@ -16,6 +16,8 @@ public class ScriptableGameSetting : ScriptableObject
     public List<ItemPlayerType> TypesPlayer;
     public List<SOComplexity> Complexities;
     public List<SOStartBonus> StartBonuses;
+    public List<SOStrenghtMonsters> StrenghtMonsters;
+    public List<SOProtectionIndex> ProtectionIndices;
     [SerializeField] public List<CostEntity> CostHero;
     public int maxCountHero = 5;
 

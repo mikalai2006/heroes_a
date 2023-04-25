@@ -9,6 +9,7 @@ public class ScriptableEntityMapObject : ScriptableEntityEffect, IEffected
 {
     // public DialogText DialogText;
     public TypeMapObject TypeMapObject;
+    public int RMGValue;
     public List<TypeNoPath> listTypeNoPath;
     public List<TypeNoPath> RulesDraw => listTypeNoPath;
     public List<TypeNoPath> listRuleInput;

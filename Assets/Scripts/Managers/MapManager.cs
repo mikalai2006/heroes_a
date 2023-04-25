@@ -271,7 +271,7 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
             GridTileNode tileNode = gridTileHelper.GridTile.GetGridObject(new Vector3Int(item.position.x, item.position.y));
 
             if (item.idObject == "") continue;
-            EntityArtifact entity = new EntityArtifact(null, item);
+            EntityArtifact entity = new EntityArtifact(null, null, item);
             UnitManager.SpawnEntityMapObjectToNode(tileNode, entity);
         }
 

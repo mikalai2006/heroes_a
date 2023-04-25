@@ -8,6 +8,7 @@ public class ScriptableAttributeArtifact : ScriptableAttribute
 {
     public Sprite spriteMap;
     public int Cost;
+    public int RMGValue;
     public ClassArtifact ClassArtifact;
     public SlotArtifact Slot;
     public List<ArtifactItemSkill> PrimarySkills;

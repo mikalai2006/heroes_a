@@ -19,8 +19,8 @@ public class EntityMapObjectFactory
                 return new EntityMapObject((ScriptableEntityMapObject)configData);
             case TypeMapObject.Resources:
                 return new EntityMapObject((ScriptableEntityMapObject)configData);
-            case TypeMapObject.Artifact:
-                return new EntityArtifact((ScriptableEntityArtifact)configData);
+            // case TypeMapObject.Artifact:
+            //     return new EntityArtifact((ScriptableEntityArtifact)configData);
             default:
                 return null;
         }

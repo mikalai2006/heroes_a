@@ -115,6 +115,7 @@ MonoBehaviour:
       Creature: {fileID: 0}
     probability: 0.5
   TypeMapObject: 2
+  RMGValue: 500
   listTypeNoPath: 0c0000000e000000
   listRuleInput: 110000001300000012000000
   TypeWorkObject: 3

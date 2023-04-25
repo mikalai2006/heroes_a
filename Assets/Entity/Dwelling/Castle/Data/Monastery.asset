@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90ae20973bbe3d743b99280ea6f5fc58, type: 3}
   m_Name: Monastery
   m_EditorClassIdentifier: 
-  idObject: 112b1fb5ac4142ee8a36feca373b9e62
+  idObject: dwelling.monastery
   TypeEntity: 34
   MenuSprite: {fileID: 0}
   title:
@@ -30,12 +30,13 @@ MonoBehaviour:
     m_SubObjectType: 
     m_EditorAssetChanged: 0
   TypeGround: 2046
-  TypeWorkAttribute: 0
+  TypeWorkEffect: 0
   Attributes: []
-  listTypeNoPath: 0c000000
-  TypeWorkObject: 3
   TypeMapObject: 7
+  RMGValue: 5000
+  listTypeNoPath: 0c000000
   listRuleInput: 1100000013000000120000000e000000
+  TypeWorkObject: 3
   Effects: []
   TypeFaction: 0
   Creature:

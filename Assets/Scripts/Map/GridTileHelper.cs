@@ -286,7 +286,7 @@ public class GridTileHelper
         return closedSet.ToList();
     }
 
-    public bool GetAllowInsertObjectToNode(GridTileNode node, ScriptableEntityMapObject configData)
+    public bool GetAllowInsertObjectToNode(GridTileNode node, ScriptableEntityMapObject configData, bool checkRuleDraw = true)
     {
         List<GridTileNode> allInputNode
             = GameManager.Instance.MapManager.gridTileHelper.GetNodeListAsNoPath(node, configData.RulesInput);
@@ -306,17 +306,20 @@ public class GridTileHelper
 
         if (allInputNode.Count == countDisableInputNode) return false;
 
-        List<GridTileNode> allDrawNode
-            = GameManager.Instance.MapManager.gridTileHelper.GetNodeListAsNoPath(node, configData.RulesDraw);
-        for (int i = 0; i < allDrawNode.Count; i++)
+        if (checkRuleDraw)
         {
-            var currentNode = allDrawNode[i];
-            if (!currentNode.StateNode.HasFlag(StateNode.Empty)
-                || currentNode.StateNode.HasFlag(StateNode.Road)
-                || currentNode.StateNode.HasFlag(StateNode.Input)
-                || currentNode.StateNode.HasFlag(StateNode.Protected))
+            List<GridTileNode> allDrawNode
+                = GameManager.Instance.MapManager.gridTileHelper.GetNodeListAsNoPath(node, configData.RulesDraw);
+            for (int i = 0; i < allDrawNode.Count; i++)
             {
-                return false;
+                var currentNode = allDrawNode[i];
+                if (!currentNode.StateNode.HasFlag(StateNode.Empty)
+                    || currentNode.StateNode.HasFlag(StateNode.Road)
+                    || currentNode.StateNode.HasFlag(StateNode.Input)
+                    || currentNode.StateNode.HasFlag(StateNode.Protected))
+                {
+                    return false;
+                }
             }
         }
         return true;

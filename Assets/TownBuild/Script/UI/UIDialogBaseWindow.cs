@@ -16,7 +16,7 @@ public class UIDialogBaseWindow : UILocaleBase
     private VisualElement _generalBlok;
     protected VisualElement Panel;
     protected VisualElement root;
-    protected ScriptableGameSetting GameSetting;
+    protected SOGameSetting GameSetting;
     // protected TaskCompletionSource<DataResultBuildDialog> _processCompletionSource;
     // // public UnityEvent processAction;
     // protected DataResultBuildDialog _dataResultDialog;

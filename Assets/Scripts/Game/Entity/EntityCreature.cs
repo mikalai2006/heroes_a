@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-
 using UnityEngine;
 
 [System.Serializable]
@@ -20,20 +16,7 @@ public class EntityCreature : BaseEntity
         {
             ScriptableData = configData;
             idObject = ScriptableData.idObject;
-            // if (configData == null)
-            // {
-            //     List<ScriptableEntityCreature> list = ResourceSystem.Instance
-            //         .GetEntityByType<ScriptableEntityCreature>(TypeEntity.Creature)
-            //         .ToList();
-            //     ScriptableData = list[UnityEngine.Random.Range(0, list.Count)];
-            // }
-            // else
-            // {
-            //     ScriptableData = configData;
-            // }
-
             Data.value = 1;
-            // SetValueCreature();
         }
         else
         {
@@ -41,8 +24,7 @@ public class EntityCreature : BaseEntity
             {
                 ScriptableData = ResourceSystem.Instance
                     .GetEntityByType<ScriptableEntityCreature>(TypeEntity.Creature)
-                    .Where(t => t.idObject == saveData.idObject)
-                    .First();
+                    .Find(t => t.idObject == saveData.idObject);
             }
             Data = saveData.data;
             idObject = saveData.idObject;
@@ -52,16 +34,14 @@ public class EntityCreature : BaseEntity
 
     public void SetValueCreature(int quantityCreature)
     {
-        Data.value = quantityCreature;
-        // // Data.protectedNode = ProtectedNode.position;
-        // if (ProtectedNode != null)
-        // {
-        //    BaseEntity protectedUnit = ProtectedNode.OccupiedUnit;
-        //    Data.value = protectedUnit.ScriptableData.level + (protectedUnit.ScriptableData.level * 2) - (this.ScriptableData.level * 2);
-
-        //    // Debug.Log($"Warrior {name} protectedNode as :::name[{protectedUnit.ScriptableData.name}]level[{protectedUnit.ScriptableData.level}]");
-
-        // }
+        if (quantityCreature > 0)
+        {
+            Data.value = quantityCreature;
+        }
+        else
+        {
+            Data.value = 10;
+        }
     }
 
     public override void SetPlayer(Player player)
@@ -85,11 +65,6 @@ public class EntityCreature : BaseEntity
     }
 
     #region SaveLoadData
-    // public void LoadDataPlay(DataPlay data)
-    // {
-    //     throw new System.NotImplementedException();
-    // }
-
     public override void SaveEntity(ref DataPlay data)
     {
         var sdata = SaveUnit(Data);

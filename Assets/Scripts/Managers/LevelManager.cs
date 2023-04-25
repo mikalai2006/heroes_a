@@ -8,16 +8,15 @@ public class LevelManager : Singleton<LevelManager>, ISaveDataPlay, ISaveDataGam
     [SerializeField] private Transform _camera;
     public DataLevel Level;
     private DataLevel DefaultSettings;
-    public ScriptableGameSetting ConfigGameSettings;
+    public SOGameSetting ConfigGameSettings;
+    public SOStrenghtMonsters CurrentStrenghtMonsters
+        => ConfigGameSettings.StrenghtMonsters.Find(t => t.strenghtMonster == Level.Settings.strenghtMonster);
+    //protection_index = monsters_strength_zone + monsters_strength_map
+    public SOProtectionIndex CurrentProtectionIndex
+        => ConfigGameSettings.ProtectionIndices
+        .Find(t => t.protectionIndex == CurrentStrenghtMonsters.monstersStrengthZone + CurrentStrenghtMonsters.monstersStrengthMap);
     public List<CurrentPlayerType> TypePlayers = new List<CurrentPlayerType>();
-    // [Header("General")]
-    // [Space(10)]
 
-    // public DataGameMode GameModeData;
-    // public DataGameSetting DataGameSetting;
-
-    // [Header("Setting level")]
-    // [Space(10)]
     public Player ActivePlayer
     {
         get { return Level.listPlayer[Level.activePlayer]; }
@@ -75,7 +74,7 @@ public class LevelManager : Singleton<LevelManager>, ISaveDataPlay, ISaveDataGam
         Level = new DataLevel();
         Level = DefaultSettings;
         ConfigGameSettings = ResourceSystem.Instance
-            .GetAllAssetsByLabel<ScriptableGameSetting>(Constants.Labels.LABEL_GAMESETTING)
+            .GetAllAssetsByLabel<SOGameSetting>(Constants.Labels.LABEL_GAMESETTING)
             .First();
         CreateListTypePlayers();
     }

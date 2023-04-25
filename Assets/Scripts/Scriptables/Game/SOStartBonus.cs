@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Localization;
 
-[CreateAssetMenu(fileName = "SOStartBonus", menuName = "HeroesA/SOStartBonus", order = 0)]
+[CreateAssetMenu(fileName = "StartBonus", menuName = "HeroesA/StartBonus", order = 0)]
 public class SOStartBonus : ScriptableObject
 {
     public int value;

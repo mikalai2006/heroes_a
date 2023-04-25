@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff94131cd36e44742b33713468bc11fa, type: 3}
+  m_Script: {fileID: 11500000, guid: 2bf00e78eb31b3b49a017aa124a856dc, type: 3}
   m_Name: DefaultGameSetting
   m_EditorClassIdentifier: 
-  idObject: 
+  idObject: core.gamesetting
   maxPlayer: 5
   colors:
   - {r: 0.6981132, g: 0.10208259, b: 0.13895053, a: 1}
@@ -54,6 +54,16 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0de76608d9ef55c40ac872ef034d5452, type: 2}
   - {fileID: 11400000, guid: 55a7dfbfbad68de4d8944fc81103ba60, type: 2}
   - {fileID: 11400000, guid: b51253b53a8518241b3d16ace6633e7e, type: 2}
+  StrenghtMonsters:
+  - {fileID: 11400000, guid: 3685088c87d57de44913d7abfa88d1ff, type: 2}
+  - {fileID: 11400000, guid: 7808242317a99df4ba7bade1b1b19efa, type: 2}
+  - {fileID: 11400000, guid: e0262f14fcfea314cb550cbf8a444e94, type: 2}
+  ProtectionIndices:
+  - {fileID: 11400000, guid: d1542efded842a6458cb5811f919a9cc, type: 2}
+  - {fileID: 11400000, guid: 876873d0ba48d584f8cbc239c304d937, type: 2}
+  - {fileID: 11400000, guid: b33265076f58e9d41a42de4657029156, type: 2}
+  - {fileID: 11400000, guid: 0bea44850195e0843ba8a50189e2a14b, type: 2}
+  - {fileID: 11400000, guid: aacfc444ff3778542b8a63f1f0847003, type: 2}
   CostHero:
   - Resource: {fileID: 11400000, guid: 3894d4d068775c343b5c4bf1510dee33, type: 2}
     Count: 2500

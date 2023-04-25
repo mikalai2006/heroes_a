@@ -159,11 +159,11 @@ class GenerateIDTileLandscapeEditor : GenerateIDEditor
 
 // }
 
-[CustomEditor(typeof(ScriptableGameMode))]
-class GenerateIDScriptableGameModeEditor : GenerateIDEditor
-{
+// [CustomEditor(typeof(SOGameMode))]
+// class GenerateIDScriptableGameModeEditor : GenerateIDEditor
+// {
 
-}
+// }
 
 // [CustomEditor(typeof(ScriptableCollectionResource))]
 // class GenerateIDScriptableCollectionResourceEditor : GenerateIDEditor

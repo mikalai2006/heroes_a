@@ -36,6 +36,7 @@ MonoBehaviour:
       m_LocalVariables: []
   spriteMap: {fileID: 1663026599, guid: c12233e7f9e1938489974c1fb7749211, type: 3}
   Cost: 24000
+  RMGValue: 20000
   ClassArtifact: 3
   Slot: 3
   PrimarySkills:

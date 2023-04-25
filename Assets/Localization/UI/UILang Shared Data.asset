@@ -359,6 +359,22 @@ MonoBehaviour:
     m_Key: resources
     m_Metadata:
       m_Items: []
+  - m_Id: 10621881075007488
+    m_Key: strong
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10621916189720576
+    m_Key: normal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10621954169143296
+    m_Key: weak
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10622296961220608
+    m_Key: strenghtmonsters
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

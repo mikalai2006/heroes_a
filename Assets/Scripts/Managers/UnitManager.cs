@@ -104,10 +104,10 @@ public static class UnitManager
     //     newEntity.CreateMapGameObject(node);
     //     return newEntity;
     // }
-    public static BaseEntity SpawnEntityCreature(GridTileNode nodeCreature, GridTileNode protectedNode, int levelMin = 1, int cost = 1, SaveDataUnit<DataCreature> saveData = null)
+    public static BaseEntity SpawnEntityCreature(GridTileNode nodeCreature, GridTileNode protectedNode, int levelMin = 1, int rmgvalue = 0, SaveDataUnit<DataCreature> saveData = null)
     {
         //if (node == null) return null;
-        EntityCreature newEntity;
+        EntityCreature newEntity = null;
         ScriptableEntityCreature configNewEntity;
         if (saveData != null)
         {
@@ -119,24 +119,54 @@ public static class UnitManager
         }
         else
         {
+
+            var protectionIndex = LevelManager.Instance.CurrentProtectionIndex;
+            float totalAIValue
+                = ((rmgvalue > protectionIndex.minimalValue1) ? (rmgvalue - protectionIndex.minimalValue1) * protectionIndex.koof1 : 0)
+                + ((rmgvalue > protectionIndex.minimalValue2) ? (rmgvalue - protectionIndex.minimalValue2) * protectionIndex.koof2 : 0);
+
+
             List<ScriptableEntityCreature> listWarriors = ResourceSystem.Instance
                 .GetEntityByType<ScriptableEntityCreature>(TypeEntity.Creature)
-                .Where(t => t.CreatureParams.Level >= levelMin)
+                .Where(t =>
+                    t.CreatureParams.Level >= levelMin
+                    && t.CreatureParams.AI <= totalAIValue
+                    )
                 .ToList();
-            configNewEntity = listWarriors[Random.Range(0, listWarriors.Count)];
-            newEntity = new EntityCreature(configNewEntity);
+            if (listWarriors.Count > 0)
+            {
+                configNewEntity = listWarriors[Random.Range(0, listWarriors.Count)];
+                newEntity = new EntityCreature(configNewEntity);
+
+                var countCreatures = Mathf.FloorToInt(totalAIValue / configNewEntity.CreatureParams.AI);
+                if (countCreatures > 4)
+                {
+                    countCreatures += Random.Range(0, (countCreatures / 4));
+                }
+                // Debug.Log(
+                //     $"protected entity= {protectedNode.OccupiedUnit.ScriptableData.name}:::"
+                //     + $"\r\n rmgvalue={rmgvalue}::: totalAIValue={totalAIValue},"
+                //     + $"\r\n AI={configNewEntity.CreatureParams.AI}[confName{configNewEntity.name}]"
+                //     + $"\r\n total_AI_Value{totalAIValue} = (rmgvalue{rmgvalue} > protectionIndex.minimalValue1{protectionIndex.minimalValue1} ? (rmgvalue{rmgvalue} - protectionIndex.minimalValue1{protectionIndex.minimalValue1}) * protectionIndex.koof1{protectionIndex.koof1} : 0) + (rmgvalue{rmgvalue} > protectionIndex.minimalValue2{protectionIndex.minimalValue2} ? (rmgvalue{rmgvalue} - protectionIndex.minimalValue2{protectionIndex.minimalValue2}) * protectionIndex.koof2{protectionIndex.koof2} : 0)"
+                //     + $"\r\n countCreatures={countCreatures}");
+                newEntity.SetValueCreature(countCreatures);
+            }
+            else
+            {
+                // Debug.Log($"Not created creature for {protectedNode.OccupiedUnit.ScriptableData.name}, totalAIValue={totalAIValue}, rmgvalue={rmgvalue}");
+            }
         }
-        Entities.Add(newEntity.IdEntity, newEntity);
-        nodeCreature.SetOcuppiedUnit(newEntity);
-        newEntity.SetOccupiedNode(nodeCreature);
-        GameManager.Instance.MapManager.SetColorForTile(nodeCreature.position, Color.magenta);
-        // SpawnEntityToNode(node, newEntity);
-        newEntity.CreateMapGameObject(nodeCreature);
 
-        nodeCreature.SetProtectedNeigbours(newEntity, protectedNode);
-        newEntity.SetValueCreature(configNewEntity.CreatureParams.AI > 0 ? cost / configNewEntity.CreatureParams.AI : 10);
+        if (newEntity != null)
+        {
+            Entities.Add(newEntity.IdEntity, newEntity);
+            nodeCreature.SetOcuppiedUnit(newEntity);
+            newEntity.SetOccupiedNode(nodeCreature);
+            GameManager.Instance.MapManager.SetColorForTile(nodeCreature.position, Color.magenta);
+            newEntity.CreateMapGameObject(nodeCreature);
+            nodeCreature.SetProtectedNeigbours(newEntity, protectedNode);
+        }
 
-        // node.OccupiedUnit = createdUnit;
         return newEntity;
     }
 

@@ -79,18 +79,18 @@ public class CreateMinesOperation : ILoadingOperation
                             t.TypeMapObject == TypeMapObject.Mine
                             && ((ScriptableEntityMine)t).TypeMine == TypeMine.Free
                             && (
-                                (t.TypeGround & currentNode.TypeGround) == currentNode.TypeGround
+                                t.TypeGround.HasFlag(currentNode.TypeGround)
                                 ||
-                                (t.TypeGround & TypeGround.None) == TypeGround.None
+                                t.TypeGround.HasFlag(TypeGround.None)
                                 )
                             )
                         .ToList();
-                    ScriptableEntityMapObject configData = list[UnityEngine.Random.Range(0, list.Count)];
+                    ScriptableEntityMapObject configData = list[Random.Range(0, list.Count)];
 
                     if (
                         currentNode != null
                         && nodeWarrior != null
-                        && _root.gridTileHelper.GetAllowInsertObjectToNode(currentNode, configData)
+                        && _root.gridTileHelper.GetAllowInsertObjectToNode(currentNode, configData, false)
                         // currentNode.StateNode.HasFlag(StateNode.Empty)
                         // && !currentNode.StateNode.HasFlag(StateNode.Road)
                         // && !currentNode.StateNode.HasFlag(StateNode.Protected)
@@ -107,7 +107,7 @@ public class CreateMinesOperation : ILoadingOperation
                         );
                         UnitManager.SpawnEntityMapObjectToNode(currentNode, entity);
 
-                        BaseEntity warrior = UnitManager.SpawnEntityCreature(nodeWarrior, currentNode);
+                        BaseEntity warrior = UnitManager.SpawnEntityCreature(nodeWarrior, currentNode, 1, configData.RMGValue);
 
                         // currentNode.SetProtectedNode(warrior);
                         // nodeWarrior.SetProtectedNeigbours(warrior, currentNode);

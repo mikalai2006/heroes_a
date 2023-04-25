@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18c05d61426f9bd44b78e76e2c6be8b1, type: 3}
+  m_Name: Normal
+  m_EditorClassIdentifier: 
+  title:
+    m_TableReference:
+      m_TableCollectionName: GUID:9b6db77d8a0719a4490c3b7aad12567c
+    m_TableEntryReference:
+      m_KeyId: 10621916189720576
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  sprite: {fileID: 0}
+  strenghtMonster: 2
+  monstersStrengthZone: 0
+  monstersStrengthMap: 3
+  minimalValue1: 15
+  koof1: 0.5
+  minimalValue2: 7500
+  koof2: 0.5
+  references:
+    version: 2
+    RefIds: []

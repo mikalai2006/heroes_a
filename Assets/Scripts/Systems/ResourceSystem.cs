@@ -135,10 +135,10 @@ public class ResourceSystem : StaticInstance<ResourceSystem>
     }
     #endregion
 
-    public List<ScriptableGameMode> GetGameMode()
+    public List<SOGameMode> GetGameMode()
     {
         // ResourceAssets.Values.OfType<ScriptableGameMode>().ToList();
-        return GetAllAssetsByLabel<ScriptableGameMode>("gamemode");
+        return GetAllAssetsByLabel<SOGameMode>("gamemode");
     }
 
     public List<TileNature> GetNature() => GetAllAssetsByLabel<TileNature>("nature");

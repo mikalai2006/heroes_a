@@ -29,6 +29,7 @@ public struct DataGameMode
 public class DataGameSetting
 {
     public int compexity;
+    public StrenghtMonster strenghtMonster;
     public int countPlayer;
     public int countCommand;
     public int countBot;
