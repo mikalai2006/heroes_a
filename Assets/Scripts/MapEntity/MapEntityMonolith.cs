@@ -22,9 +22,9 @@ public class MapEntityMonolith : BaseMapEntity, IDialogMapObjectOperation
         return await dialogWindow.ShowAndHide();
     }
 
-    public async override void OnGoHero(Player player)
+    public async override UniTask OnGoHero(Player player)
     {
-        base.OnGoHero(player);
+        await base.OnGoHero(player);
         if (LevelManager.Instance.ActivePlayer.DataPlayer.playerType != PlayerType.Bot)
         {
             DataResultDialog result = await OnTriggeredHero();

@@ -140,15 +140,18 @@ public class MapEntityHero : BaseMapEntity
 
             if (nodeTo.StateNode.HasFlag(StateNode.Protected))
             {
-                // GameManager.Instance.ChangeState(GameState.StopMoveHero);
-                // _canMove = false;
-                // _animator.SetBool("isWalking", false);
-                entityHero.ChangeHitHero(nodeTo);
-                nodeTo.ProtectedUnit.MapObjectGameObject.OnGoHero(MapObjectClass.Player); // LevelManager.Instance.GetPlayer(heroEntity.Data.idPlayer)
-                entityHero.SetPathHero(null);
+                // // GameManager.Instance.ChangeState(GameState.StopMoveHero);
+                // // _canMove = false;
+                // // _animator.SetBool("isWalking", false);
+                // entityHero.ChangeHitHero(nodeTo);
+                // await nodeTo.ProtectedUnit.MapObjectGameObject.OnGoHero(MapObjectClass.Player); // LevelManager.Instance.GetPlayer(heroEntity.Data.idPlayer)
+                // entityHero.SetPathHero(null);
+                // cancelTokenSource.Cancel();
+                // cancelTokenSource.Dispose();
+                // // break;
+                await DoObject(nodeTo, nodeTo.ProtectedUnit.MapObjectGameObject);
                 cancelTokenSource.Cancel();
                 cancelTokenSource.Dispose();
-                // break;
             }
 
             if (!cancellationToken.IsCancellationRequested && nodeTo.OccupiedUnit != null)
@@ -156,14 +159,17 @@ public class MapEntityHero : BaseMapEntity
                 var maoObj = (ScriptableEntityMapObject)nodeTo.OccupiedUnit.ScriptableData;
                 if (maoObj.TypeWorkObject == TypeWorkObject.One)
                 {
-                    // _canMove = false;
-                    // _animator.SetBool("isWalking", false);
-                    entityHero.ChangeHitHero(nodeTo);
-                    nodeTo.OccupiedUnit.MapObjectGameObject.OnGoHero(MapObjectClass.Player);
-                    entityHero.SetPathHero(null);
+                    // // _canMove = false;
+                    // // _animator.SetBool("isWalking", false);
+                    // entityHero.ChangeHitHero(nodeTo);
+                    // await nodeTo.OccupiedUnit.MapObjectGameObject.OnGoHero(MapObjectClass.Player);
+                    // entityHero.SetPathHero(null);
+                    // cancelTokenSource.Cancel();
+                    // cancelTokenSource.Dispose();
+                    // // break;
+                    await DoObject(nodeTo, nodeTo.OccupiedUnit.MapObjectGameObject);
                     cancelTokenSource.Cancel();
                     cancelTokenSource.Dispose();
-                    // break;
                 }
             }
             if (!cancellationToken.IsCancellationRequested)
@@ -189,15 +195,17 @@ public class MapEntityHero : BaseMapEntity
                 GameManager.Instance.MapManager.DrawCursor(entityHero.Data.path, entityHero);
                 // }
 
+                entityHero.Data.path.RemoveAt(0);
+
                 if (nodeTo.OccupiedUnit != null)
                 {
-                    nodeTo.OccupiedUnit.MapObjectGameObject.OnGoHero(MapObjectClass.Player);
+                    // await nodeTo.OccupiedUnit.MapObjectGameObject.OnGoHero(MapObjectClass.Player);
+                    await DoObject(nodeTo, nodeTo.OccupiedUnit.MapObjectGameObject);
                     cancelTokenSource.Cancel();
                     cancelTokenSource.Dispose();
                     // break;
                 }
 
-                entityHero.Data.path.RemoveAt(0);
             }
         }
         GameManager.Instance.ChangeState(GameState.StopMoveHero);
@@ -205,9 +213,22 @@ public class MapEntityHero : BaseMapEntity
         _animator.SetBool("isWalking", false);
     }
 
+    public async UniTask DoObject(GridTileNode nodeTo, BaseMapEntity mapEntity)
+    {
+        var entityHero = (EntityHero)MapObjectClass;
+
+        GameManager.Instance.ChangeState(GameState.StopMoveHero);
+        _canMove = false;
+        _animator.SetBool("isWalking", false);
+
+        await mapEntity.OnGoHero(MapObjectClass.Player);
+        entityHero.ChangeHitHero(nodeTo);
+        entityHero.SetPathHero(null);
+    }
+
     private async UniTask SmoothLerp(Vector3 startPosition, Vector3 endPosition)
     {
-        float time = LevelManager.Instance.Level.Settings.speedHero;
+        float time = LevelManager.Instance.ConfigGameSettings.speedHero;
         float elapsedTime = 0;
         while (elapsedTime < time)
         {

@@ -29,9 +29,9 @@ public class MapEntityDwelling : BaseMapEntity, IDialogMapObjectOperation
         _flag.color = player.DataPlayer.color;
     }
 
-    public async override void OnGoHero(Player player)
+    public async override UniTask OnGoHero(Player player)
     {
-        base.OnGoHero(player);
+        await base.OnGoHero(player);
 
         if (LevelManager.Instance.ActivePlayer.DataPlayer.playerType != PlayerType.Bot)
         {

@@ -71,9 +71,9 @@ public class MapEntityMapObject : BaseMapEntity, IDialogMapObjectOperation
         return await dialogWindow.ShowAndHide();
     }
 
-    public async override void OnGoHero(Player player)
+    public async override UniTask OnGoHero(Player player)
     {
-        base.OnGoHero(player);
+        await base.OnGoHero(player);
 
         EntityMapObject entity = (EntityMapObject)MapObjectClass;
         if (LevelManager.Instance.ActivePlayer.DataPlayer.playerType != PlayerType.Bot)
@@ -92,6 +92,7 @@ public class MapEntityMapObject : BaseMapEntity, IDialogMapObjectOperation
         }
         else
         {
+            await UniTask.Delay(LevelManager.Instance.ConfigGameSettings.timeDelayDoBot);
             OnHeroGo(player, 0);
         }
     }
@@ -107,7 +108,10 @@ public class MapEntityMapObject : BaseMapEntity, IDialogMapObjectOperation
         }
         else
         {
-            configData.Effects[entity.DataEffects.index].Item.items[indexVariant].RunHero(ref player, entity);
+            if (configData.Effects.Count > 0)
+            {
+                configData.Effects[entity.DataEffects.index].Item.items[indexVariant]?.RunHero(ref player, entity);
+            }
         }
         // if (configData.TypeWorkAttribute == TypeWorkAttribute.One) {
         //     var choosedItem = entity.Data.AttributeValues[];

@@ -150,9 +150,11 @@ public class GridTileHelper
                 {
                     var data = (ScriptableEntityMapObject)currentNode.OccupiedUnit.ScriptableData;
                     if (
-                        !neighbourNode.StateNode.HasFlag(StateNode.Input)
+                        (!neighbourNode.StateNode.HasFlag(StateNode.Input)
                         && data.RulesInput.Count > 0
-                        && neighbourNode.InputNode != startNode
+                        && neighbourNode.InputNode != startNode)
+                        ||
+                        (data.RulesInput.Count > 0 && neighbourNode.StateNode.HasFlag(StateNode.Input) && neighbourNode.InputNode != startNode)
                    )
                     {
                         // Debug.Log(

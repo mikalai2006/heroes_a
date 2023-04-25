@@ -59,6 +59,8 @@ MonoBehaviour:
     Count: 2500
   maxCountHero: 5
   deltaDoubleClick: 0.5
+  timeDelayDoBot: 10
+  speedHero: 0.24
   references:
     version: 2
     RefIds: []

@@ -44,7 +44,7 @@ public class MapEntityArtifact : BaseMapEntity, IDialogMapObjectOperation
         return await dialogWindow.ShowAndHide();
     }
 
-    public override async void OnGoHero(Player player)
+    public override async UniTask OnGoHero(Player player)
     {
         if (LevelManager.Instance.ActivePlayer.DataPlayer.playerType != PlayerType.Bot)
         {
@@ -62,7 +62,7 @@ public class MapEntityArtifact : BaseMapEntity, IDialogMapObjectOperation
         }
         else
         {
-
+            await UniTask.Delay(LevelManager.Instance.ConfigGameSettings.timeDelayDoBot);
             OnHeroGo(player);
         }
     }

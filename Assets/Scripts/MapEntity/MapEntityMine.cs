@@ -28,9 +28,9 @@ public class MapEntityMine : BaseMapEntity, IDialogMapObjectOperation
         _flag.color = player.DataPlayer.color;
     }
 
-    public async override void OnGoHero(Player player)
+    public async override UniTask OnGoHero(Player player)
     {
-        base.OnGoHero(player);
+        await base.OnGoHero(player);
 
         if (LevelManager.Instance.ActivePlayer.DataPlayer.playerType != PlayerType.Bot)
         {
@@ -48,6 +48,7 @@ public class MapEntityMine : BaseMapEntity, IDialogMapObjectOperation
         }
         else
         {
+            await UniTask.Delay(LevelManager.Instance.ConfigGameSettings.timeDelayDoBot);
             OnHeroGo(player);
         }
     }

@@ -43,9 +43,9 @@ public class MapEntityTown : BaseMapEntity
         //_canMove = false;
     }
 
-    public async override void OnGoHero(Player player)
+    public async override UniTask OnGoHero(Player player)
     {
-        base.OnGoHero(player);
+        await base.OnGoHero(player);
 
         if (LevelManager.Instance.ActivePlayer.DataPlayer.playerType != PlayerType.Bot)
         {
@@ -60,14 +60,14 @@ public class MapEntityTown : BaseMapEntity
         }
     }
 
-    public override void OnPointerClick(PointerEventData eventData)
+    public async override void OnPointerClick(PointerEventData eventData)
     {
         if (
             eventData.clickCount >= 2
             && GetMapObjectClass.Player == LevelManager.Instance.ActivePlayer
             )
         {
-            OnGoHero(GetMapObjectClass.Player);
+            await OnGoHero(GetMapObjectClass.Player);
         }
         base.OnPointerClick(eventData);
     }

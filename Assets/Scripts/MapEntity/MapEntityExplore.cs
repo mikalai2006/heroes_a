@@ -7,9 +7,9 @@ public class MapEntityExplore : BaseMapEntity, IDialogMapObjectOperation
         base.InitUnit(mapObject);
     }
 
-    public async override void OnGoHero(Player player)
+    public async override UniTask OnGoHero(Player player)
     {
-        base.OnGoHero(player);
+        await base.OnGoHero(player);
 
         MapObjectClass.OccupiedNode.ChangeStatusVisit(true);
 

@@ -10,9 +10,9 @@ public class MapEntityCreature : BaseMapEntity, IDialogMapObjectOperation
         base.InitUnit(mapObject);
     }
 
-    public async override void OnGoHero(Player player)
+    public async override UniTask OnGoHero(Player player)
     {
-        base.OnGoHero(player);
+        await base.OnGoHero(player);
 
         if (LevelManager.Instance.ActivePlayer.DataPlayer.playerType != PlayerType.Bot)
         {
@@ -29,6 +29,7 @@ public class MapEntityCreature : BaseMapEntity, IDialogMapObjectOperation
         }
         else
         {
+            await UniTask.Delay(LevelManager.Instance.ConfigGameSettings.timeDelayDoBot);
             OnHeroGo(player);
         }
     }

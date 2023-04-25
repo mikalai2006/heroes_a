@@ -22,6 +22,8 @@ public class ScriptableGameSetting : ScriptableObject
     [Header("Setting System")]
     [Space(5)]
     [Range(0.3f, 1f)] public float deltaDoubleClick;
+    [Range(10, 1000)] public int timeDelayDoBot;
+    [Range(.05f, 1f)] public float speedHero;
 
 }
 

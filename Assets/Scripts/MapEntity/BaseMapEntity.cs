@@ -1,5 +1,7 @@
 using System;
 
+using Cysharp.Threading.Tasks;
+
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Localization;
@@ -19,8 +21,9 @@ public abstract class BaseMapEntity : MonoBehaviour, IPointerClickHandler
 
     // public virtual void UpdateAnimate(Vector3Int fromPosition, Vector3Int toPosition) { }
 
-    public virtual void OnGoHero(Player player)
+    public async virtual UniTask OnGoHero(Player player)
     {
+        await UniTask.Delay(1);
     }
 
     public virtual void OnNextDay()
