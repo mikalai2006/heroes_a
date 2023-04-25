@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19cb10a342ed64d48903250df526d9b2, type: 3}
   m_Name: 5_Monk
   m_EditorClassIdentifier: 
-  idObject: 42078ab73c58461eb0885fb7a2aa8db4
+  idObject: creature.monk
   TypeEntity: 10
   MenuSprite: {fileID: 1227858895, guid: e7a6d1e198529c44c93ed148f1bf1afe, type: 3}
   title:

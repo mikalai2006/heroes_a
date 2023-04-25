@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19cb10a342ed64d48903250df526d9b2, type: 3}
   m_Name: 6_CyclopsKing
   m_EditorClassIdentifier: 
-  idObject: fd2fa198dca4429aa80ae8dd50d60f2b
+  idObject: creature.cyclopsking
   TypeEntity: 10
   MenuSprite: {fileID: 1133088098, guid: e7a6d1e198529c44c93ed148f1bf1afe, type: 3}
   title:

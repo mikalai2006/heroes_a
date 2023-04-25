@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19cb10a342ed64d48903250df526d9b2, type: 3}
   m_Name: 6_Cavalier
   m_EditorClassIdentifier: 
-  idObject: 5912878fb4714a97bc681c484092ad26
+  idObject: creature.cavalier
   TypeEntity: 10
-  MenuSprite: {fileID: 21300000, guid: 9f61ee62c6925244ca390d732282f564, type: 3}
+  MenuSprite: {fileID: -867781400, guid: e7a6d1e198529c44c93ed148f1bf1afe, type: 3}
   title:
     m_TableReference:
       m_TableCollectionName: GUID:b4e7cd63f22a6d74db78346f658a168b

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19cb10a342ed64d48903250df526d9b2, type: 3}
   m_Name: 3_Wolf Raider
   m_EditorClassIdentifier: 
-  idObject: d295a44625e04a5b8db499b876dbdff5
+  idObject: creature.wolfraider
   TypeEntity: 10
   MenuSprite: {fileID: 1729365571, guid: e7a6d1e198529c44c93ed148f1bf1afe, type: 3}
   title:

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19cb10a342ed64d48903250df526d9b2, type: 3}
   m_Name: 2_Orc Chieftain
   m_EditorClassIdentifier: 
-  idObject: 927443be0935457ba7dd192a90cf65a4
+  idObject: creature.orcchieftain
   TypeEntity: 10
   MenuSprite: {fileID: -197275812, guid: e7a6d1e198529c44c93ed148f1bf1afe, type: 3}
   title:
