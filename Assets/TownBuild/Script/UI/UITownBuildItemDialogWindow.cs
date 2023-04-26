@@ -126,7 +126,7 @@ public class UITownBuildItemDialogWindow : MonoBehaviour
             _requireBuildBlok.text = new LocalizedString(Constants.LanguageTable.LANG_TABLE_BUILD, "no_resource").GetLocalizedString();
         }
 
-        if (!isExistResource || _buildDialog.isNotBuild)
+        if (!isExistResource || _buildDialog.isNotBuild || _activeTown.Data.isBuild)
         {
             _buttonOk.SetEnabled(false);
         }

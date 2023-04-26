@@ -32,6 +32,7 @@ public class EntityTown : BaseEntity
             }
 
             Data.idPlayer = -1;
+            Data.level = -1;
             Data.name = ConfigData.name;
             idObject = ScriptableData.idObject;
 
@@ -117,6 +118,20 @@ public class EntityTown : BaseEntity
             newBuild.OnRunOneEffect();
             // ((ScriptableBuilding)newBuild.ConfigData).BuildLevels[newBuild.level].RunOne(ref _player, this);
         }
+        Data.isBuild = false;
+    }
+
+    public void ChangeLevel(int level)
+    {
+        Data.level = level;
+        if (MapObjectGameObject != null)
+        {
+            ((MapEntityTown)MapObjectGameObject).RefreshLevelBuild();
+        }
+        else
+        {
+            Debug.Log("Not map object");
+        }
     }
 
     public void ResetCreatures()
@@ -195,6 +210,8 @@ public class EntityTown : BaseEntity
                 build = new BuildArmy(level, (ScriptableBuildingArmy)buildConfig, this, player);
                 Data.Armys.Add(buildConfig.idObject, build);
             }
+
+            Data.isBuild = true;
             return build;
         }
         else
@@ -212,6 +229,16 @@ public class EntityTown : BaseEntity
                 // new BuildGeneral(level, (ScriptableBuildingGeneral)buildConfig, this, player);
                 Data.Generals.Add(buildConfig.idObject, build);
             }
+
+            // Special effect.
+            switch (buildConfig.TypeBuild)
+            {
+                case TypeBuild.Castle:
+                    ChangeLevel(level);
+                    break;
+            }
+
+            Data.isBuild = true;
             return build;
         }
     }
@@ -302,8 +329,9 @@ public class EntityTown : BaseEntity
         {
             case GameState.NextWeek:
                 NextWeek();
-                // OnRunGeneralBuilds();
-                // OnRunArmyBuilds();
+                break;
+            case GameState.NextDay:
+                NextDay();
                 break;
         }
         // }
@@ -314,6 +342,13 @@ public class EntityTown : BaseEntity
         if (Player == LevelManager.Instance.ActivePlayer)
         {
             _player.ChangeResource(TypeResource.Gold, Data.goldin);
+        };
+    }
+    private void NextDay()
+    {
+        if (Player == LevelManager.Instance.ActivePlayer)
+        {
+            Data.isBuild = false;
         };
     }
     // private void OnRunGeneralBuilds()

@@ -91,6 +91,7 @@ public class UITownListBuildWindow : UILocaleBase
                 (_activeTown.GetListNeedNoBuilds(currentBuild.RequireBuilds).Count == 0
                 || currentBuild.RequireBuilds.Count == 0)
                 && _activePlayer.IsExistsResource(currentBuild.CostResource)
+                && !_activeTown.Data.isBuild
                 )
             {
                 item.AddToClassList("town_listbuild_allow");

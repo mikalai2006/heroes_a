@@ -7,6 +7,7 @@ public class ScriptableEntityTown : ScriptableEntityMapObject
 {
     [Header("Options Town")]
     public TypeFaction TypeFaction;
+    public List<Sprite> LevelSprites;
     public ScriptableBuildTown BuildTown; // AssetReferenceT<ScriptableBuildTown>
     // public TypeBuild[] StartProgressBuilds;
     public List<ScriptableEntityHero> heroes;

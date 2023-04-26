@@ -60,6 +60,8 @@ public class UIGameAside : UILocaleBase
 
     private VisualElement _herobox;
 
+    private VisualElement _townbox;
+
     const int countTown = 3;
 
     private SceneInstance _scene;
@@ -69,7 +71,7 @@ public class UIGameAside : UILocaleBase
         GameManager.OnAfterStateChanged += OnAfterStateChanged;
         EntityHero.onChangeParamsActiveHero += ChangeParamsActiveHero;
         UITownInfo.onMoveHero += DrawHeroBox;
-        UITown.OnExitFromTown += ShowMapButtons;
+        UITown.OnExitFromTown += DrawAside;
         UITown.OnInputToTown += HideMapButtons;
         UIDialogDwellingWindow.OnBuyCreature += ChangeHeroInfo;
         UIDialogHeroInfo.OnMoveCreature += ChangeHeroInfo;
@@ -80,7 +82,7 @@ public class UIGameAside : UILocaleBase
         GameManager.OnAfterStateChanged -= OnAfterStateChanged;
         EntityHero.onChangeParamsActiveHero -= ChangeParamsActiveHero;
         UITownInfo.onMoveHero -= DrawHeroBox;
-        UITown.OnExitFromTown -= ShowMapButtons;
+        UITown.OnExitFromTown -= DrawAside;
         UITown.OnInputToTown -= HideMapButtons;
         UIDialogDwellingWindow.OnBuyCreature -= ChangeHeroInfo;
         UIDialogHeroInfo.OnMoveCreature -= ChangeHeroInfo;
@@ -150,6 +152,9 @@ public class UIGameAside : UILocaleBase
             _mapButtons = _aside.rootVisualElement.Q<VisualElement>("MapButtons");
             _timeBlok = _aside.rootVisualElement.Q<Label>("Time");
 
+            _herobox = aside.Q<VisualElement>(NameHeroBox);
+            _townbox = aside.Q<VisualElement>(NameTownBox);
+
             var btnGameMenu = _aside.rootVisualElement.Q<Button>(NameBtnGameMenu);
             btnGameMenu.clickable.clicked += async () =>
             {
@@ -194,7 +199,6 @@ public class UIGameAside : UILocaleBase
         _mapButtons.style.display = DisplayStyle.Flex;
         DrawTownInfo();
     }
-
     private void DrawTimeBlok()
     {
         _timeBlok.Clear();
@@ -221,13 +225,18 @@ public class UIGameAside : UILocaleBase
     {
         EntityTown activeTown = player.ActiveTown;
         if (activeTown == null) return;
+
+        ScriptableEntityTown configDataTown = (ScriptableEntityTown)activeTown.ScriptableData;
         player.SetActiveHero(null);
 
         VisualElement townInfo = _templateTownInfo.Instantiate();
         townInfo.style.flexGrow = 1;
 
         var spriteTownEl = townInfo.Q<VisualElement>("TownIcon");
-        spriteTownEl.style.backgroundImage = new StyleBackground(activeTown.ScriptableData.MenuSprite);
+
+        var activeSprite = configDataTown.LevelSprites.ElementAtOrDefault(activeTown.Data.level + 1);
+        spriteTownEl.style.backgroundImage = new StyleBackground(activeSprite);
+
         var nameTownEl = townInfo.Q<Label>("TownName");
         nameTownEl.text = activeTown.Data.name;
         var listTownDwellingEl = townInfo.Q<VisualElement>("DwellingList");
@@ -292,9 +301,60 @@ public class UIGameAside : UILocaleBase
         boxinfo.Add(townInfo);
     }
 
+    private void DrawTownBox()
+    {
+        _townbox.Clear();
+
+        for (int i = 0; i < countTown; i++)
+        {
+            var newButtonTown = _templateButtonTown.Instantiate();
+
+            newButtonTown.style.flexGrow = 1;
+            newButtonTown.AddToClassList(NameTownButton);
+
+            if (i < player.DataPlayer.PlayerDataReferences.ListTown.Count)
+            {
+                EntityTown town = (EntityTown)player.DataPlayer.PlayerDataReferences.ListTown[i];
+                ScriptableEntityTown configDataTown = (ScriptableEntityTown)town.ScriptableData;
+
+                var activeSprite = configDataTown.LevelSprites.ElementAtOrDefault(town.Data.level + 1);
+
+                newButtonTown.Q<VisualElement>("image").style.backgroundImage =
+                    new StyleBackground(activeSprite);
+
+                var time = Time.realtimeSinceStartup;
+                newButtonTown.Q<Button>(NameAllAsideButton).RegisterCallback<ClickEvent>((ClickEvent evt) =>
+                {
+                    if (Time.realtimeSinceStartup - time < LevelManager.Instance.ConfigGameSettings.deltaDoubleClick)
+                    {
+                        ShowTown();
+                    }
+                    else
+                    {
+                        town.SetTownAsActive();
+                        time = Time.realtimeSinceStartup;
+                    }
+                    OnResetFocusButton();
+                    DrawTownInfo();
+                    newButtonTown.Q<Button>(NameAllAsideButton).RemoveFromClassList("button_bordered");
+                    newButtonTown.Q<Button>(NameAllAsideButton).AddToClassList(NameSelectedButton);
+
+                }, TrickleDown.NoTrickleDown);
+            }
+            else
+            {
+                newButtonTown.SetEnabled(false);
+            }
+
+
+            _townbox.Add(newButtonTown);
+        }
+    }
+
     private void DrawHeroBox()
     {
         _herobox.Clear();
+
         var listHeroOnMap = player.DataPlayer.PlayerDataReferences.ListHero
             .Where(h => h.Data.State.HasFlag(StateHero.OnMap)).ToList();
         for (int i = 0; i < 5; i++)
@@ -368,60 +428,15 @@ public class UIGameAside : UILocaleBase
         DrawTimeBlok();
 
         ShowMapButtons();
+
         aside.style.display = DisplayStyle.Flex;
         _footer.style.display = DisplayStyle.Flex;
-
-        _herobox = aside.Q<VisualElement>(NameHeroBox);
-        _herobox.Clear();
-
-        var townbox = aside.Q<VisualElement>(NameTownBox);
-        townbox.Clear();
 
         OnResetFocusButton();
 
         DrawHeroBox();
 
-        for (int i = 0; i < countTown; i++)
-        {
-            var newButtonTown = _templateButtonTown.Instantiate();
-
-            newButtonTown.style.flexGrow = 1;
-            newButtonTown.AddToClassList(NameTownButton);
-
-            if (i < player.DataPlayer.PlayerDataReferences.ListTown.Count)
-            {
-                EntityTown town = (EntityTown)player.DataPlayer.PlayerDataReferences.ListTown[i];
-
-                newButtonTown.Q<VisualElement>("image").style.backgroundImage =
-                    new StyleBackground(town.ScriptableData.MenuSprite);
-
-                var time = Time.realtimeSinceStartup;
-                newButtonTown.Q<Button>(NameAllAsideButton).RegisterCallback<ClickEvent>((ClickEvent evt) =>
-                {
-                    if (Time.realtimeSinceStartup - time < LevelManager.Instance.ConfigGameSettings.deltaDoubleClick)
-                    {
-                        ShowTown();
-                    }
-                    else
-                    {
-                        town.SetTownAsActive();
-                        time = Time.realtimeSinceStartup;
-                    }
-                    OnResetFocusButton();
-                    DrawTownInfo();
-                    newButtonTown.Q<Button>(NameAllAsideButton).RemoveFromClassList("button_bordered");
-                    newButtonTown.Q<Button>(NameAllAsideButton).AddToClassList(NameSelectedButton);
-
-                }, TrickleDown.NoTrickleDown);
-            }
-            else
-            {
-                newButtonTown.SetEnabled(false);
-            }
-
-
-            townbox.Add(newButtonTown);
-        }
+        DrawTownBox();
 
         OnCalculateArrow();
         // OnToogleEnableBtnGoHero();
@@ -437,6 +452,7 @@ public class UIGameAside : UILocaleBase
         {
             overlay.style.backgroundColor = color;
         }
+
         SetEnableAllButton();
     }
 

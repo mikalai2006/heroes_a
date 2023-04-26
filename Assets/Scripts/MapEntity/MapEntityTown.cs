@@ -10,6 +10,7 @@ using UnityEngine.EventSystems;
 
 public class MapEntityTown : BaseMapEntity
 {
+    [SerializeField] private List<GameObject> levels;
     public override void InitUnit(BaseEntity mapObject)
     {
 
@@ -19,6 +20,7 @@ public class MapEntityTown : BaseMapEntity
         {
             SetPlayer(mapObject.Player);
         }
+        RefreshLevelBuild();
     }
     //private void Awake() => GameManager.OnBeforeStateChanged += OnStateChanged;
 
@@ -70,6 +72,29 @@ public class MapEntityTown : BaseMapEntity
             await OnGoHero(GetMapObjectClass.Player);
         }
         base.OnPointerClick(eventData);
+    }
+
+    public void RefreshLevelBuild()
+    {
+        var level = ((EntityTown)MapObjectClass).Data.level;
+        var activeLevel = level + 1;
+        if (levels.Count == 0) return;
+
+        foreach (var go in levels)
+        {
+            go.gameObject.SetActive(false);
+        }
+
+        if (activeLevel > levels.Count - 1)
+        {
+            activeLevel = levels.Count - 1;
+        }
+
+        var el = levels.ElementAtOrDefault(activeLevel);
+        if (el != null)
+        {
+            el.gameObject.SetActive(true);
+        }
     }
     //public override void OnSaveUnit()
     //{
