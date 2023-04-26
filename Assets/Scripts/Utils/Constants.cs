@@ -59,5 +59,6 @@ public class Constants
     {
         public const string LANG_TABLE_ADVENTURE = "ADVENTURE";
         public const string LANG_TABLE_UILANG = "UILang";
+        public const string LANG_TABLE_BUILD = "BuildText";
     }
 }

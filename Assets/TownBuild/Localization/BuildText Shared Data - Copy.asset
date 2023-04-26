@@ -439,6 +439,10 @@ MonoBehaviour:
     m_Key: behemothlair2_d
     m_Metadata:
       m_Items: []
+  - m_Id: 8337677763117056
+    m_Key: no_resource
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

@@ -120,7 +120,13 @@ public class UITownBuildItemDialogWindow : MonoBehaviour
             _requireResourceBlok.Add(item);
         }
 
-        if (_buildDialog.isNotBuild)
+        var isExistResource = _activePlayer.IsExistsResource(buildDialogData.CostResource);
+        if (!isExistResource && !_buildDialog.isNotBuild)
+        {
+            _requireBuildBlok.text = new LocalizedString(Constants.LanguageTable.LANG_TABLE_BUILD, "no_resource").GetLocalizedString();
+        }
+
+        if (!isExistResource || _buildDialog.isNotBuild)
         {
             _buttonOk.SetEnabled(false);
         }

@@ -88,8 +88,9 @@ public class UITownListBuildWindow : UILocaleBase
             Build currentBuild = parentBuild.Key.BuildLevels[indexNextBuild];
 
             if (
-                _activeTown.GetListNeedNoBuilds(currentBuild.RequireBuilds).Count == 0
-                || currentBuild.RequireBuilds.Count == 0
+                (_activeTown.GetListNeedNoBuilds(currentBuild.RequireBuilds).Count == 0
+                || currentBuild.RequireBuilds.Count == 0)
+                && _activePlayer.IsExistsResource(currentBuild.CostResource)
                 )
             {
                 item.AddToClassList("town_listbuild_allow");
@@ -191,7 +192,7 @@ public class UITownListBuildWindow : UILocaleBase
             CostResource = build.CostResource,
             isNotBuild = _activeTown.GetLevelBuild(buildConfig)
                 == buildConfig.BuildLevels.Count - 1
-                || !_activePlayer.IsExistsResource(build.CostResource)
+                // || !_activePlayer.IsExistsResource(build.CostResource)
                 || _activeTown.GetListNeedNoBuilds(build.RequireBuilds).Count() != 0,
             // _activeTown.Data.ProgressBuilds.Contains(build.TypeBuild)
             //     || !_activePlayer.IsExistsResource(build.CostResource)
