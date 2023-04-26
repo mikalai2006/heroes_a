@@ -29,9 +29,11 @@ public class EntityMapObject : BaseEntity
                 .GetEntityByType<ScriptableEntityMapObject>(TypeEntity.MapObject)
                 .Where(t => t.idObject == saveData.idObject)
                 .First();
+
             Data = saveData.data;
             idUnit = saveData.idUnit;
             idObject = saveData.idObject;
+            DataEffects = saveData.DataEffects;
         }
     }
 
@@ -134,8 +136,7 @@ public class EntityMapObject : BaseEntity
             {
                 node.RemoveStateNode(StateNode.Input);
             }
-            MapObjectGameObject.DestroyGameObject();
-            DestroyMapGameObject();
+            DestroyEntity();
         }
         else
         {
@@ -148,12 +149,6 @@ public class EntityMapObject : BaseEntity
     {
         var sdata = SaveUnit(Data);
         data.entity.mapObjects.Add(sdata);
-
-        // ScriptableEntityMapObject configData = (ScriptableEntityMapObject)ScriptableData;
-        // foreach (var ef in DataEffects.Effects)
-        // {
-        //     ef.Effect.Save(this, ref data);
-        // }
     }
     #endregion
 }

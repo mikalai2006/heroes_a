@@ -38,9 +38,11 @@ public class EntityMonolith : BaseEntity
                 .GetEntityByType<ScriptableEntityMapObject>(TypeEntity.MapObject)
                 .Where(t => t.idObject == saveData.idObject && t.TypeMapObject == TypeMapObject.Portal)
                 .First();
+
             Data = saveData.data;
             idUnit = saveData.idUnit;
             idObject = saveData.idObject;
+            DataEffects = saveData.DataEffects;
         }
     }
 

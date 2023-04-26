@@ -8,6 +8,7 @@ public class LevelManager : Singleton<LevelManager>, ISaveDataPlay, ISaveDataGam
     [SerializeField] private Transform _camera;
     public DataLevel Level;
     private DataLevel DefaultSettings;
+    public GameDate GameDate { get; private set; }
     public SOGameSetting ConfigGameSettings;
     public SOStrenghtMonsters CurrentStrenghtMonsters
         => ConfigGameSettings.StrenghtMonsters.Find(t => t.strenghtMonster == Level.Settings.strenghtMonster);
@@ -77,6 +78,8 @@ public class LevelManager : Singleton<LevelManager>, ISaveDataPlay, ISaveDataGam
             .GetAllAssetsByLabel<SOGameSetting>(Constants.Labels.LABEL_GAMESETTING)
             .First();
         CreateListTypePlayers();
+        GameDate = new GameDate();
+        GameDate.Init(Level.countDay);
     }
 
     public void CreateListTypePlayers()
@@ -171,35 +174,6 @@ public class LevelManager : Singleton<LevelManager>, ISaveDataPlay, ISaveDataGam
         //     Level.listPlayer.Add(player);
         // }
     }
-    public void NewLevel()
-    {
-        // Level.countPlayer = countPlayer;
-        // Level.countBot = countBot;
-        // Level.activePlayer = -1;
-
-        // for (int i = 0; i < countPlayer; i++)
-        // {
-        //     var dataPlayer = new PlayerData();
-        //     dataPlayer.id = i;
-        //     dataPlayer.color = DataGameSetting.colors[i];
-        //     dataPlayer.playerType = PlayerType.User;
-
-        //     var player = new Player(dataPlayer);
-        //     Level.listPlayer.Add(player);
-        // }
-
-        // for (int i = countPlayer; i < (countPlayer + countBot); i++)
-        // {
-        //     var dataPlayer = new PlayerData();
-        //     dataPlayer.id = i;
-        //     dataPlayer.color = colors[i];
-        //     dataPlayer.playerType = PlayerType.Bot;
-        //     var player = new Player(dataPlayer);
-
-        //     Level.listPlayer.Add(player);
-        // }
-
-    }
 
     public async void StepNextPlayer()
     {
@@ -209,6 +183,7 @@ public class LevelManager : Singleton<LevelManager>, ISaveDataPlay, ISaveDataGam
         }
         else
         {
+            GameDate.AddDay();
             Level.activePlayer = 0;
         }
 
@@ -232,6 +207,11 @@ public class LevelManager : Singleton<LevelManager>, ISaveDataPlay, ISaveDataGam
             await ActivePlayer.RunBot();
         }
 
+        GameManager.Instance.ChangeState(GameState.NextDay);
+        if (GameDate.week == 0)
+        {
+            GameManager.Instance.ChangeState(GameState.NextWeek);
+        }
         // if (ActivePlayer.DataPlayer.nosky.Count == 0)
         // {
         //     List<GridTileNode> listNoskyNode = GameManager.Instance

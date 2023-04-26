@@ -30,9 +30,11 @@ public class EntityExpore : BaseEntity
                 .GetEntityByType<ScriptableEntityMapObject>(TypeEntity.MapObject)
                 .Where(t => t.idObject == saveData.idObject && t.TypeMapObject == TypeMapObject.Explore)
                 .First();
+
             Data = saveData.data;
             idUnit = saveData.idUnit;
             idObject = saveData.idObject;
+            DataEffects = saveData.DataEffects;
         }
     }
 

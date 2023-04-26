@@ -80,18 +80,19 @@ public abstract class BaseEntity
         LoadGameObject();
     }
 
-    public void DestroyMapGameObject()
-    {
-        // Debug.Log($"Destroy entity::: {ScriptableData.name}");
-        OccupiedNode.SetOcuppiedUnit(null);
-        RemoveEvents();
-    }
+    // public void DestroyMapGameObject()
+    // {
+    //     // Debug.Log($"Destroy entity::: {ScriptableData.name}");
+    //     OccupiedNode.SetOcuppiedUnit(null);
+    //     RemoveEvents();
+    // }
 
     public void DestroyEntity()
     {
         // Debug.Log($"Destroy entity::: {ScriptableData.name}");
         OccupiedNode.SetOcuppiedUnit(null);
         RemoveEvents();
+        UnitManager.Entities.Remove(IdEntity);
     }
 
     protected void SetPositionCamera(Vector3 pos)

@@ -36,9 +36,11 @@ public class EntityMine : BaseEntity
                 .GetEntityByType<ScriptableEntityMapObject>(TypeEntity.MapObject)
                 .Where(t => t.idObject == saveData.idObject && t.TypeMapObject == TypeMapObject.Mine)
                 .First();
+
             Data = saveData.data;
             idUnit = saveData.idUnit;
             idObject = saveData.idObject;
+            DataEffects = saveData.DataEffects;
         }
     }
 
@@ -48,6 +50,7 @@ public class EntityMine : BaseEntity
         Data.idPlayer = player.DataPlayer.id;
         player.AddMines(this);
         _player = player;
+        // ((MapEntityMine)MapObjectGameObject).SetPlayer(player);
     }
 
     #region Change GameState

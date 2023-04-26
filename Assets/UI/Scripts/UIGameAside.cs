@@ -9,6 +9,7 @@ using Loader;
 
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Localization;
 using UnityEngine.ResourceManagement.ResourceProviders;
 using UnityEngine.UIElements;
 
@@ -55,6 +56,7 @@ public class UIGameAside : UILocaleBase
     private string NameHit = "hit";
     private string NameMana = "mana";
     private string NameOverlay = "Overlay";
+    private Label _timeBlok;
 
     private VisualElement _herobox;
 
@@ -88,7 +90,7 @@ public class UIGameAside : UILocaleBase
     {
         switch (state)
         {
-            case GameState.NextDay:
+            case GameState.NextPlayer:
             case GameState.StartGame:
                 DrawAside();
                 ChangeHeroInfo();
@@ -146,6 +148,7 @@ public class UIGameAside : UILocaleBase
             _scene = scene;
             aside = _aside.rootVisualElement.Q<VisualElement>(NameWrapper);
             _mapButtons = _aside.rootVisualElement.Q<VisualElement>("MapButtons");
+            _timeBlok = _aside.rootVisualElement.Q<Label>("Time");
 
             var btnGameMenu = _aside.rootVisualElement.Q<Button>(NameBtnGameMenu);
             btnGameMenu.clickable.clicked += async () =>
@@ -166,7 +169,7 @@ public class UIGameAside : UILocaleBase
             var btnNextStep = _aside.rootVisualElement.Q<Button>(NameBtnNextStep);
             btnNextStep.clickable.clicked += () =>
             {
-                GameManager.Instance.ChangeState(GameState.NextDay);
+                GameManager.Instance.ChangeState(GameState.NextPlayer);
                 OnClickNextStep?.Invoke();
             };
 
@@ -190,6 +193,28 @@ public class UIGameAside : UILocaleBase
     {
         _mapButtons.style.display = DisplayStyle.Flex;
         DrawTownInfo();
+    }
+
+    private void DrawTimeBlok()
+    {
+        _timeBlok.Clear();
+
+        var date = LevelManager.Instance.GameDate;
+        LocalizedString monthText = new LocalizedString(Constants.LanguageTable.LANG_TABLE_UILANG, "month_short");
+        LocalizedString weekText = new LocalizedString(Constants.LanguageTable.LANG_TABLE_UILANG, "week_short");
+        LocalizedString dayText = new LocalizedString(Constants.LanguageTable.LANG_TABLE_UILANG, "day");
+
+        _timeBlok.text = string.Format(
+            "{0}: {1}, {2}: {3}, {4}: {5}({6})",
+            monthText.GetLocalizedString(),
+            date.month + 1,
+            weekText.GetLocalizedString(),
+            date.week + 1,
+            dayText.GetLocalizedString(),
+            date.day + 1,
+            date.countDay
+            );
+
     }
 
     private void DrawTownInfo()
@@ -340,6 +365,7 @@ public class UIGameAside : UILocaleBase
     private void DrawAside()
     {
         player = LevelManager.Instance.ActivePlayer;
+        DrawTimeBlok();
 
         ShowMapButtons();
         aside.style.display = DisplayStyle.Flex;

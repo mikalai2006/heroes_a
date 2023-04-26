@@ -34,7 +34,6 @@ public class EntityHero : BaseEntity
     {
         base.Init();
 
-
         if (saveData == null)
         {
             if (heroData == null)
@@ -77,7 +76,8 @@ public class EntityHero : BaseEntity
 
             idObject = ScriptableData.idObject;
 
-            Data.Artifacts = new List<EntityArtifact>();
+            Data.artifacts = new List<string>();
+            // Data.Artifacts = new List<EntityArtifact>();
             Data.path = new List<GridTileNode>();
 
             // Generate creatures.
@@ -134,10 +134,26 @@ public class EntityHero : BaseEntity
                 Data.path = FindPathForHero(saveData.data.nextPosition, true);
             }
 
-            // Data.Artifacts = new List<EntityArtifact>();
+            // var artifacts = saveData.data.artifacts;
+            // for (int i = 0; i < artifacts.Count; i++)
+            // {
+            //     var artifact = artifacts[i];
+            //     EntityArtifact newArtifact = null;
+            //     if (artifact.Data.ida != "")
+            //     {
+            //         newArtifact = new EntityArtifact(null, null, new SaveDataUnit<DataArtifact>()
+            //         {
+            //             data = artifact.Data,
+            //             idObject = artifact.Data.ida,
+            //         });
+            //     }
+            //     Data.Artifacts.Add(newArtifact);
+            // }
             idUnit = saveData.idUnit;
             idObject = saveData.idObject;
         }
+        // Create artifacts.
+        Data.Artifacts = new List<EntityArtifact>();
     }
 
     public void ChangePrimarySkill(TypePrimarySkill typePrimarySkill, int value = 0)
@@ -234,6 +250,19 @@ public class EntityHero : BaseEntity
         List<GridTileNode> noskyNode
             = GameManager.Instance.MapManager.DrawSky(startPosition, 4);
         Player.SetNosky(noskyNode);
+    }
+
+    public void AddArtifact(EntityArtifact artifact)
+    {
+        // artifact.Data.idPlayer = _player.DataPlayer.id;
+        Data.artifacts.Add(artifact.Data.ida);
+        Data.Artifacts.Add(artifact);
+    }
+
+    public void RemoveArtifact(EntityArtifact artifact)
+    {
+        Data.artifacts.Remove(artifact.IdObject);
+        Data.Artifacts.Remove(artifact);
     }
 
     public async UniTask StartMove()

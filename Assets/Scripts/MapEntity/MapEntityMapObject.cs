@@ -113,9 +113,12 @@ public class MapEntityMapObject : BaseMapEntity, IDialogMapObjectOperation
                 configData.Effects[entity.DataEffects.index].Item.items[indexVariant]?.RunHero(ref player, entity);
             }
         }
-        // if (configData.TypeWorkAttribute == TypeWorkAttribute.One) {
-        //     var choosedItem = entity.Data.AttributeValues[];
-        // } else {
+
+        if (configData.TypeWorkObject == TypeWorkObject.One)
+        {
+            Destroy(gameObject);
+        }
+        // else {
         //     foreach (var res in entity.Data.AttributeValues)
         //     {
         //         Debug.Log($"Status choose={res.TypeAttribute}-{res.value}");

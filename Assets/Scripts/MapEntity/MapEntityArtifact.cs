@@ -71,6 +71,9 @@ public class MapEntityArtifact : BaseMapEntity, IDialogMapObjectOperation
     private void OnHeroGo(Player player)
     {
         MapObjectClass.SetPlayer(player);
+        // MapObjectClass.DestroyEntity();
         // Destroy(gameObject);
+
+        Destroy(gameObject);
     }
 }

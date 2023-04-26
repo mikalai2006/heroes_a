@@ -300,8 +300,8 @@ public class EntityTown : BaseEntity
         // {
         switch (newState)
         {
-            case GameState.NextDay:
-                NextDay();
+            case GameState.NextWeek:
+                NextWeek();
                 // OnRunGeneralBuilds();
                 // OnRunArmyBuilds();
                 break;
@@ -309,7 +309,7 @@ public class EntityTown : BaseEntity
         // }
     }
 
-    private void NextDay()
+    private void NextWeek()
     {
         if (Player == LevelManager.Instance.ActivePlayer)
         {

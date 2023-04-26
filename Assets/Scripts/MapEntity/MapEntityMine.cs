@@ -9,18 +9,17 @@ public class MapEntityMine : BaseMapEntity, IDialogMapObjectOperation
     private SpriteRenderer _flag;
     public override void InitUnit(BaseEntity mapObject)
     {
-
         base.InitUnit(mapObject);
-
+        if (mapObject.Player != null)
+        {
+            SetPlayer(mapObject.Player);
+        }
     }
+
     protected override void Awake()
     {
         base.Awake();
         _flag = transform.Find("Flag")?.GetComponent<SpriteRenderer>();
-    }
-    protected override void Start()
-    {
-        base.Start();
     }
 
     public void SetPlayer(Player player)

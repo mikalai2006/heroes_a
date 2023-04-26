@@ -49,8 +49,8 @@ public class EntityCreature : BaseEntity
         // ScriptableEntityMapObject configData = (ScriptableEntityMapObject)ScriptableData;
         ScriptableEntityCreature configData = (ScriptableEntityCreature)ScriptableData;
         // configData.OnDoHero(ref player, this);
-        MapObjectGameObject.DestroyGameObject();
-        DestroyMapGameObject();
+        // MapObjectGameObject.DestroyGameObject();
+        DestroyEntity();
     }
 
     public void SetOccupiedNode(GridTileNode node)

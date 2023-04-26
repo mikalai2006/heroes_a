@@ -43,8 +43,9 @@ public class MapEntityCreature : BaseMapEntity, IDialogMapObjectOperation
 
         // TODO ARENA
 
-        Destroy(gameObject);
         MapObjectClass.SetPlayer(player);
+
+        Destroy(gameObject);
     }
 
     public async UniTask<DataResultDialog> OnTriggeredHero()
@@ -55,9 +56,6 @@ public class MapEntityCreature : BaseMapEntity, IDialogMapObjectOperation
         string nameText = Helpers.GetStringNameCountWarrior(creature.Data.value);
         LocalizedString stringCountWarriors = new LocalizedString(Constants.LanguageTable.LANG_TABLE_ADVENTURE, nameText);
 
-        // var title = !configData.title.IsEmpty
-        //     ? configData.title.GetLocalizedString(creature.Data.value)
-        //     : "No_LANG";
         var dataPlural = new Dictionary<string, int> { { "value", 0 } };
         var arguments = new[] { dataPlural };
         var titlePlural = Helpers.GetLocalizedPluralString(

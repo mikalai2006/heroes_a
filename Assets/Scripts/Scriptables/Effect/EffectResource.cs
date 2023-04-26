@@ -15,6 +15,7 @@ public class EffectResource : BaseEffect, IEffected
     {
         base.RunHero(ref player, entity);
 
+        Debug.Log($"entity.DataEffects.Effects={entity.DataEffects.Effects.Count}");
         var currentEffect = entity.DataEffects.Effects.Find(t => t.ide == idEffect);
         player.ChangeResource(Resource.TypeResource, currentEffect.value);
         Debug.Log($"EffectResource::: Run {entity.DataEffects.index}[{entity.ScriptableData.name}-player-{player.DataPlayer.id}]!");

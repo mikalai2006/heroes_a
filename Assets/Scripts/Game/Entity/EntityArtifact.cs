@@ -25,6 +25,7 @@ public class EntityArtifact : BaseEntity
             SetData(configArtifact);
             idObject = ScriptableData.idObject;
             _configArtifact = configArtifact;
+            Data.idPlayer = -1;
         }
         else
         {
@@ -44,6 +45,7 @@ public class EntityArtifact : BaseEntity
 
             idUnit = saveData.idUnit;
             idObject = saveData.idObject;
+            DataEffects = saveData.DataEffects;
         }
     }
 
@@ -56,7 +58,8 @@ public class EntityArtifact : BaseEntity
     public override void SetPlayer(Player player)
     {
         ScriptableEntityArtifact configData = (ScriptableEntityArtifact)ScriptableData;
-        configData.RunHero(ref player, this);
+        // configData.RunHero(ref player, this);
+        LevelManager.Instance.ActivePlayer.ActiveHero.AddArtifact(this);
 
         if (configData.TypeWorkObject == TypeWorkObject.One)
         {
@@ -66,9 +69,11 @@ public class EntityArtifact : BaseEntity
             {
                 node.RemoveStateNode(StateNode.Input);
             }
-            MapObjectGameObject.DestroyGameObject();
-            DestroyMapGameObject();
+            // MapObjectGameObject.DestroyGameObject();
+            DestroyEntity();
         }
+
+        DestroyEntity();
     }
 
     #region InitData
@@ -95,5 +100,6 @@ public class EntityArtifact : BaseEntity
 [System.Serializable]
 public struct DataArtifact
 {
+    public int idPlayer;
     public string ida;
 }

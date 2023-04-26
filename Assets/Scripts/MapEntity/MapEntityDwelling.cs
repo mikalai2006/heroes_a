@@ -12,16 +12,15 @@ public class MapEntityDwelling : BaseMapEntity, IDialogMapObjectOperation
     public override void InitUnit(BaseEntity mapObject)
     {
         base.InitUnit(mapObject);
-        // var mapObjectClass = (EntityDwelling)MapObjectClass;
+        if (mapObject.Player != null)
+        {
+            SetPlayer(mapObject.Player);
+        }
     }
     protected override void Awake()
     {
         base.Awake();
         _flag = transform.Find("Flag")?.GetComponent<SpriteRenderer>();
-    }
-    protected override void Start()
-    {
-        base.Start();
     }
 
     public void SetPlayer(Player player)
@@ -68,12 +67,17 @@ public class MapEntityDwelling : BaseMapEntity, IDialogMapObjectOperation
         EntityDwelling entity = (EntityDwelling)MapObjectClass;
         ScriptableEntityDwelling configData = (ScriptableEntityDwelling)MapObjectClass.ScriptableData;
 
-        var nameCreature = configData.Creature[entity.Data.level].title.IsEmpty ?
-            "" : configData.Creature[entity.Data.level].title.GetLocalizedString();
+        var dataPlural = new Dictionary<string, int> { { "value", 0 } };
+        var arguments = new[] { dataPlural };
+        var titlePlural = Helpers.GetLocalizedPluralString(
+            configData.Creature[entity.Data.level].title,
+            arguments,
+            dataPlural
+            );
 
         LocalizedString description = new LocalizedString(Constants.LanguageTable.LANG_TABLE_ADVENTURE, "dwelling_d")
         {
-            { "name", new StringVariable { Value = "<color=#FFFFAB>" + nameCreature + "</color>" } },
+            { "name", new StringVariable { Value = " <color=#FFFFAB>" + titlePlural + "</color>" } },
         };
 
         var dialogData = new DataDialogMapObject()
@@ -92,8 +96,6 @@ public class MapEntityDwelling : BaseMapEntity, IDialogMapObjectOperation
     public async UniTask<DataResultDialogDwelling> OnShowDialogDwelling()
     {
         EntityDwelling entity = (EntityDwelling)MapObjectClass;
-        // ScriptableEntityDwelling configData = (ScriptableEntityDwelling)MapObjectClass.ScriptableData;
-
         var dialogWindow = new DialogDwellingProvider(entity);
         return await dialogWindow.ShowAndHide();
     }

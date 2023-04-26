@@ -110,8 +110,8 @@
                 <ui:Label tabindex="-1" text="1230" display-tooltip-when-elided="true" name="GemValue" class="footer_box_text" />
             </ui:VisualElement>
         </ui:VisualElement>
-        <ui:VisualElement name="Time" class="border-color" style="flex-grow: 0; width: 20%; background-color: rgba(0, 0, 0, 0.19);">
-            <ui:Label tabindex="-1" text="Month:1, Week: 1, Day: 1" display-tooltip-when-elided="true" class="text" />
+        <ui:VisualElement class="border-color" style="flex-grow: 0; width: 20%; background-color: rgba(0, 0, 0, 0.19);">
+            <ui:Label tabindex="-1" text="Month:1, Week: 1, Day: 1" display-tooltip-when-elided="true" name="Time" class="text pt-0" />
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

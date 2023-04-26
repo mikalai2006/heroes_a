@@ -11,6 +11,7 @@ public class UIDialogHeroInfo : UIDialogBaseWindow
 {
     [SerializeField] private VisualTreeAsset _templateHeroCreature;
     [SerializeField] private VisualTreeAsset _templateSecondarySkill;
+    [SerializeField] private VisualTreeAsset _templateArtifact;
     public static event Action OnMoveCreature;
     private Button _buttonOk;
     private Button _buttonCancel;
@@ -20,6 +21,7 @@ public class UIDialogHeroInfo : UIDialogBaseWindow
     private VisualElement _creaturesBlok;
     private VisualElement _avaHero;
     private VisualElement _secondSkillBlok;
+    private VisualElement _listArtifacts;
     private Label _attack;
     private Label _defense;
     private Label _knowledge;
@@ -55,6 +57,8 @@ public class UIDialogHeroInfo : UIDialogBaseWindow
         _power = root.Q<Label>("Power");
         _experience = root.Q<Label>("Experience");
 
+        _listArtifacts = root.Q<VisualElement>("ListArtifact");
+
         _buttonCancel = root.Q<VisualElement>("Cancel").Q<Button>("Btn");
         _buttonCancel.clickable.clicked += OnClickCancel;
 
@@ -78,6 +82,7 @@ public class UIDialogHeroInfo : UIDialogBaseWindow
         FillPrimarySkills();
         FillSecondarySkills();
         FillCreaturesBlok();
+        FillArtifactsBlok();
 
 
         if (_hero.ConfigData.MenuSprite != null)
@@ -170,6 +175,26 @@ public class UIDialogHeroInfo : UIDialogBaseWindow
 
         var dialogWindow = new DialogHelpProvider(dialogData);
         await dialogWindow.ShowAndHide();
+    }
+    private void FillArtifactsBlok()
+    {
+        _listArtifacts.Clear();
+
+        foreach (var idObject in _hero.Data.artifacts)
+        {
+            var artifact = ResourceSystem.Instance
+                .GetAttributesByType<ScriptableAttributeArtifact>(TypeAttribute.Artifact)
+                .Find(t => t.idObject == idObject);
+            if (artifact != null)
+            {
+                var box = _templateArtifact.Instantiate();
+                box.Q<VisualElement>("img").style.backgroundImage
+                    = new StyleBackground(artifact.MenuSprite);
+
+                _listArtifacts.Add(box);
+            }
+        }
+
     }
 
     private void FillCreaturesBlok()

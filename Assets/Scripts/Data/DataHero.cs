@@ -19,6 +19,7 @@ public struct DataHero
     public float mana;
 
 
+    public List<string> artifacts;
     [NonSerialized] public List<EntityArtifact> Artifacts;
     public SerializableDictionary<int, EntityCreature> Creatures;
     public List<GridTileNode> path; // [NonSerialized]

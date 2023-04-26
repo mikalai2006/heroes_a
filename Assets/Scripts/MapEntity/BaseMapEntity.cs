@@ -1,5 +1,3 @@
-using System;
-
 using Cysharp.Threading.Tasks;
 
 using UnityEngine;
@@ -12,80 +10,36 @@ public abstract class BaseMapEntity : MonoBehaviour, IPointerClickHandler
     [SerializeField] protected BaseEntity MapObjectClass;
     public BaseEntity GetMapObjectClass => MapObjectClass;
     private float timeClickPrev;
+
     public virtual void InitUnit(BaseEntity mapObject)
     {
         MapObjectClass = mapObject;
         timeClickPrev = Time.realtimeSinceStartup;
     }
 
-
-    // public virtual void UpdateAnimate(Vector3Int fromPosition, Vector3Int toPosition) { }
-
-    public async virtual UniTask OnGoHero(Player player)
-    {
-        await UniTask.Delay(1);
-    }
-
+    #region Unity methods + events
     public virtual void OnNextDay()
     {
         // Debug.Log($"OnGoHero::: player[{player.DataPlayer.id}]");
     }
 
-    //public virtual void OnSaveUnit()
-    //{
-    //    // SaveUnit(new object());
-    //}
-    // protected SaveDataUnit<T> SaveUnit<T>(T Data)
-    // {
-    //     var SaveData = new SaveDataUnit<T>();
-
-    //     // SaveData.idUnit = idUnit;
-    //     // SaveData.position = Position;
-    //     // // SaveData.typeEntity = typeEntity;
-    //     // // SaveData.typeMapObject = typeMapObject;
-    //     // SaveData.idObject = idObject;
-    //     // SaveData.data = Data;
-
-    //     return SaveData;
-    // }
-
-    // public virtual void OnLoadUnit<T>(SaveDataUnit<T> Data)
-    // {
-    //     // LoadUnit();
-    // }
-    // protected void LoadUnit<T>(SaveDataUnit<T> Data)
-    // {
-    //     // idUnit = Data.idUnit;
-    //     // Position = Data.position;
-    //     // // typeMapObject = Data.typeMapObject;
-    //     // // typeEntity = Data.typeEntity;
-    //     // idObject = Data.idObject;
-    // }
-
     protected virtual void Awake()
     {
         GameManager.OnBeforeStateChanged += OnBeforeStateChanged;
         GameManager.OnAfterStateChanged += OnAfterStateChanged;
+        //Debug.Log($"Awake {name}");
     }
 
-    protected virtual void OnDestroy()
+    public void OnDestroy()
     {
         // Debug.LogWarning($"object [{MapObjectClass.ScriptableData.name}] - gameObject[{gameObject.name}]");
         MapObjectClass.ScriptableData.MapPrefab.ReleaseInstance(gameObject);
-        MapObjectClass.DestroyEntity();
-        MapObjectClass = null;
+        // MapObjectClass.DestroyEntity();
+        // UnitManager.Entities.Remove(MapObjectClass.IdEntity);
+        // MapObjectClass = null;
 
         GameManager.OnBeforeStateChanged -= OnBeforeStateChanged;
         GameManager.OnAfterStateChanged -= OnAfterStateChanged;
-    }
-
-    protected virtual void Start()
-    {
-        //Debug.Log($"Start {name}");
-    }
-    public void DestroyGameObject()
-    {
-        Destroy(gameObject);
     }
 
     public virtual void OnBeforeStateChanged(GameState newState)
@@ -100,6 +54,12 @@ public abstract class BaseMapEntity : MonoBehaviour, IPointerClickHandler
 
     public virtual void OnAfterStateChanged(GameState newState)
     {
+    }
+    #endregion
+
+    public async virtual UniTask OnGoHero(Player player)
+    {
+        await UniTask.Delay(1);
     }
 
     public async virtual void OnPointerClick(PointerEventData eventData)

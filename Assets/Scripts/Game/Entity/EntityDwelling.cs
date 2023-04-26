@@ -9,6 +9,7 @@ public struct DataEntityDwelling
 {
     public int value;
     public int level;
+    public int idPlayer;
 }
 
 [System.Serializable]
@@ -26,6 +27,7 @@ public class EntityDwelling : BaseEntity
         {
             ScriptableData = configData;
             idObject = ScriptableData.idObject;
+            Data.idPlayer = -1;
             SetData();
         }
         else
@@ -34,9 +36,11 @@ public class EntityDwelling : BaseEntity
                 .GetEntityByType<ScriptableEntityMapObject>(TypeEntity.MapObject)
                 .Where(t => t.idObject == saveData.idObject && t.TypeMapObject == TypeMapObject.Dwelling)
                 .First();
+
             Data = saveData.data;
             idUnit = saveData.idUnit;
             idObject = saveData.idObject;
+            DataEffects = saveData.DataEffects;
         }
     }
 
@@ -61,6 +65,7 @@ public class EntityDwelling : BaseEntity
         ScriptableEntityDwelling configData = (ScriptableEntityDwelling)ScriptableData;
         configData.RunHero(ref player, this);
         _player = player;
+        Data.idPlayer = player.DataPlayer.id;
     }
 
     #region SaveData

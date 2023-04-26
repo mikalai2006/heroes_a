@@ -154,7 +154,7 @@ public class Player
     {
         switch (newState)
         {
-            case GameState.NextDay:
+            case GameState.NextWeek:
                 GenerateHeroForTavern();
                 break;
         }
@@ -380,7 +380,7 @@ public class Player
         }
 
         // Debug.Log($"Bot::: Finish - {this.DataPlayer.id}");
-        GameManager.Instance.ChangeState(GameState.NextDay);
+        GameManager.Instance.ChangeState(GameState.NextPlayer);
     }
 
     public List<GridTileNode> AIPath()

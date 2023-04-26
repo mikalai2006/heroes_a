@@ -62,9 +62,6 @@ public class GameManager : StaticInstance<GameManager>
             case GameState.CreateMap:
                 HandleCreateMap();
                 break;
-            case GameState.NextDay:
-                HandleSetActivePlayer();
-                break;
             case GameState.StartGame:
                 HandleStartGame();
                 break;
@@ -100,9 +97,14 @@ public class GameManager : StaticInstance<GameManager>
             case GameState.SaveGame:
                 HandleSaveGame();
                 break;
+            case GameState.NextDay:
+                break;
             case GameState.NextMonth:
                 break;
             case GameState.NextWeek:
+                break;
+            case GameState.NextPlayer:
+                HandleSetActivePlayer();
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(newState), newState, null);
@@ -113,7 +115,6 @@ public class GameManager : StaticInstance<GameManager>
 
     private async void HandleNewGame()
     {
-        LevelManager.Instance.NewLevel();
 
         var operations = new Queue<ILoadingOperation>();
         operations.Enqueue(new GameInitOperation());
@@ -121,13 +122,14 @@ public class GameManager : StaticInstance<GameManager>
 
         await MapManager.NewMap();
 
-        ChangeState(GameState.NextDay);
+        ChangeState(GameState.NextPlayer);
     }
+
     private void HandleCreateLevel()
     {
-        LevelManager.Instance.NewLevel();
         ChangeState(GameState.CreateMap);
     }
+
     private void HandleCreateMap()
     {
         // await MapManager.NewMap();
@@ -203,6 +205,7 @@ public enum GameState
     NextWeek = 13,
     NextMonth = 14,
     NextDay = 15,
+    NextPlayer = 16,
     ChangeResources = 100,
 
     StartMoveHero = 200,

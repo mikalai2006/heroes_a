@@ -312,6 +312,10 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
             if (item.idObject == "") continue;
             EntityDwelling entity = new EntityDwelling(null, item);
             UnitManager.SpawnEntityMapObjectToNode(tileNode, entity);
+            if (item.data.idPlayer >= 0)
+            {
+                entity.SetPlayer(LevelManager.Instance.GetPlayer(item.data.idPlayer));
+            }
         }
         // foreach (SaveDataUnit<DataSkillSchool> item in dataPlay.entity.skillSchools)
         // {

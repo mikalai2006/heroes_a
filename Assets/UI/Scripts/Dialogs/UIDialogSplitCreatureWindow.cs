@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 using UnityEngine;
@@ -67,8 +68,17 @@ public class UIDialogSplitCreatureWindow : UIDialogBaseWindow
             = (ScriptableEntityCreature)_startCreature.ScriptableData;
 
         LocalizedString textSplit = new LocalizedString(Constants.LanguageTable.LANG_TABLE_UILANG, "split");
-        var title = textSplit.GetLocalizedString() + ": " + _startCreature.ConfigData.title.GetLocalizedString();
-        Title.text = title;
+        // var title = textSplit.GetLocalizedString() + ": " + _startCreature.ConfigData.title.GetLocalizedString();
+
+        var dataPlural = new Dictionary<string, int> { { "value", 0 } };
+        var arguments = new[] { dataPlural };
+        var titlePlural = Helpers.GetLocalizedPluralString(
+            _startCreature.ConfigData.title,
+            arguments,
+            dataPlural
+            );
+
+        Title.text = textSplit.GetLocalizedString() + " " + titlePlural;
 
         if (endCreature != null)
         {

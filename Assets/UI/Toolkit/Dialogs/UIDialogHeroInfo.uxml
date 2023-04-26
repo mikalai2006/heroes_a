@@ -1,6 +1,7 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
     <ui:Template name="InfoSecondarySkill" src="project://database/Assets/UI/Toolkit/Info/InfoSecondarySkill.uxml?fileID=9197481963319205126&amp;guid=fa61937b25def8b4796b509a486ca9c3&amp;type=3#InfoSecondarySkill" />
     <ui:Template name="Button" src="project://database/Assets/UI/Toolkit/Button.uxml?fileID=9197481963319205126&amp;guid=db5e7d04a42304542a4356b1519364b2&amp;type=3#Button" />
+    <ui:Template name="InfoArtifact" src="project://database/Assets/UI/Toolkit/Info/InfoArtifact.uxml?fileID=9197481963319205126&amp;guid=87e1c0034c6af2c4bb199152d99c8172&amp;type=3#InfoArtifact" />
     <Style src="project://database/Assets/UI/Toolkit/Base.uss?fileID=7433441132597879392&amp;guid=fa07b064290e7384d9ad2e26e79f5953&amp;type=3#Base" />
     <Style src="project://database/Assets/UI/Toolkit/UnityBase.uss?fileID=7433441132597879392&amp;guid=c0905c354b5fb524e83bc41ae3debe10&amp;type=3#UnityBase" />
     <ui:VisualElement name="HeroInfo" class="text-secondary" style="flex-grow: 1;">
@@ -149,7 +150,7 @@
                             <ui:VisualElement name="arrow" class="btn_arrow" style="background-image: url(&apos;project://database/Assets/UI/Sprites/Clipart/arrow.png?fileID=2800000&amp;guid=3c373a5e897c27747bd4fe425fe87841&amp;type=3#arrow&apos;); rotate: -180deg;" />
                         </ui:Button>
                         <ui:VisualElement name="ListArtifact" style="flex-grow: 1; flex-direction: row;">
-                            <ui:VisualElement class="border-1 border-color" style="flex-grow: 0; width: 80px; height: 80px; background-color: rgba(51, 40, 18, 0.82);" />
+                            <ui:Instance template="InfoArtifact" name="InfoArtifact" />
                             <ui:VisualElement class="border-1 border-color" style="flex-grow: 0; width: 80px; height: 80px; background-color: rgba(51, 40, 18, 0.82);" />
                             <ui:VisualElement class="border-1 border-color" style="flex-grow: 0; width: 80px; height: 80px; background-color: rgba(51, 40, 18, 0.82);" />
                         </ui:VisualElement>

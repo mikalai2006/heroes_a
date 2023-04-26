@@ -375,6 +375,18 @@ MonoBehaviour:
     m_Key: strenghtmonsters
     m_Metadata:
       m_Items: []
+  - m_Id: 10883853074989056
+    m_Key: month_short
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10883966463803392
+    m_Key: week_short
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10884023107878912
+    m_Key: day
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

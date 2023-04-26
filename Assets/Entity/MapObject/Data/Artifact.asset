@@ -33,22 +33,11 @@ MonoBehaviour:
   TypeWorkEffect: 0
   Attributes: []
   TypeMapObject: 6
+  RMGValue: 0
   listTypeNoPath: 
   listRuleInput: 08000000090000000e0000001300000012000000110000000c00000007000000
   TypeWorkObject: 1
-  Effects:
-  - Item:
-      description:
-        m_TableReference:
-          m_TableCollectionName: 
-        m_TableEntryReference:
-          m_KeyId: 0
-          m_Key: 
-        m_FallbackState: 0
-        m_WaitForCompletion: 0
-        m_LocalVariables: []
-      items: []
-    probability: 1
+  Effects: []
   Artifact: {fileID: 11400000, guid: fb155b3ab4fa88340a27dec143295a23, type: 2}
   references:
     version: 2

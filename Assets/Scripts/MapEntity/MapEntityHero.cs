@@ -25,11 +25,6 @@ public class MapEntityHero : BaseMapEntity
         base.Awake();
         _animator = GetComponentInChildren<Animator>();
         _model = transform.Find("Model");
-        // var entityHero = (EntityHero)MapObjectClass;
-        // Vector3 moveKoof = entityHero.Data.path[0].OccupiedUnit?
-        // transform.position = entityHero.Position + moveKoof;
-        //GameManager.OnBeforeStateChanged += OnChangeGameState;
-
     }
     //private void OnDestroy() => GameManager.OnBeforeStateChanged -= OnChangeGameState;
 
@@ -96,7 +91,7 @@ public class MapEntityHero : BaseMapEntity
 
         switch (newState)
         {
-            case GameState.NextDay:
+            case GameState.NextPlayer:
                 entityHero.Data.hit = 100f;
                 var data = (EntityHero)MapObjectClass;
                 data.Data.hit = 100f;
