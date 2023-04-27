@@ -124,20 +124,6 @@ public class EntityTown : BaseEntity
             newBuild.OnRunOneEffect();
             // ((ScriptableBuilding)newBuild.ConfigData).BuildLevels[newBuild.level].RunOne(ref _player, this);
         }
-        Data.isBuild = false;
-    }
-
-    public void ChangeLevel(int level)
-    {
-        Data.level = level;
-        if (MapObjectGameObject != null)
-        {
-            ((MapEntityTown)MapObjectGameObject).RefreshLevelBuild();
-        }
-        else
-        {
-            Debug.Log("Not map object");
-        }
     }
 
     public void ChangeLevel(int level)
@@ -375,13 +361,6 @@ public class EntityTown : BaseEntity
             {
                 _player.ChangeResource(TypeResource.Gold, res.Value);
             }
-        };
-    }
-    private void NextDay()
-    {
-        if (Player == LevelManager.Instance.ActivePlayer)
-        {
-            Data.isBuild = false;
         };
     }
     // private void OnRunGeneralBuilds()

@@ -5,10 +5,9 @@ public struct DataTown
 {
     public int idPlayer;
     public string name;
-    public int goldin;
+    public int level;
     public int koofcreature;
-    public bool isBuild;
-    // public SerializableDictionary<TypeBuild, BuildItem> LevelsBuilds;
+    public int countBuild;
     public string HeroinTown;
     public SerializableDictionary<TypeResource, int> Resources;
     public SerializableDictionary<int, EntityCreature> Creatures;
