@@ -33,51 +33,37 @@ MonoBehaviour:
   idObject: map.resource.ore
   TypeEntity: 34
   MenuSprite: {fileID: 0}
-  title:
-    m_TableReference:
-      m_TableCollectionName: GUID:99ee07ddc90ffba41a3d18974d364707
-    m_TableEntryReference:
-      m_KeyId: 1500248452268032
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
+  Text:
+    title:
+      m_TableReference:
+        m_TableCollectionName: GUID:99ee07ddc90ffba41a3d18974d364707
+      m_TableEntryReference:
+        m_KeyId: 1500248452268032
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    description:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
   MapPrefab:
     m_AssetGUID: 579f56c565a39ea4f842b664eba3bee4
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
   TypeGround: -1
-  TypeWorkEffect: 0
-  Attributes:
-  - Item:
-      description:
-        m_TableReference:
-          m_TableCollectionName: 
-        m_TableEntryReference:
-          m_KeyId: 0
-          m_Key: 
-        m_FallbackState: 0
-        m_WaitForCompletion: 0
-        m_LocalVariables: []
-      Resources:
-      - Resource: {fileID: 11400000, guid: 177478bebb60204468d214efd1fdcc16, type: 2}
-        value: 4
-        minValue: 5
-        maxValue: 10
-        step: 1
-      PrimarySkills: []
-      SecondarySkills: []
-      Artifacts:
-        Artifact: []
-        isOne: 0
-      Creature: {fileID: 0}
-    probability: 0.5
   TypeMapObject: 2
   RMGValue: 1400
   listTypeNoPath: 
   listRuleInput: 
   TypeWorkObject: 1
+  TypeWorkEffect: 0
   Effects:
   - Item:
       description:

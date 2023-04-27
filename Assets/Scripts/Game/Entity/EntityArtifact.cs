@@ -7,13 +7,12 @@ using UnityEngine;
 [System.Serializable]
 public class EntityArtifact : BaseEntity
 {
-    private ScriptableEntityArtifact ConfigData => (ScriptableEntityArtifact)ScriptableData;
     [SerializeField] public DataArtifact Data = new DataArtifact();
-    [NonSerialized] private ScriptableAttributeArtifact _configArtifact;
-    public ScriptableAttributeArtifact ConfigArtifact => _configArtifact;
+    private ScriptableEntityOther ConfigData => (ScriptableEntityOther)ScriptableData;
+    public ScriptableAttributeArtifact ConfigAttribute => (ScriptableAttributeArtifact)ScriptableDataAttribute;
 
     public EntityArtifact(
-        ScriptableEntityArtifact configData,
+        ScriptableEntityOther configData,
         ScriptableAttributeArtifact configArtifact,
         SaveDataUnit<DataArtifact> saveData = null)
     {
@@ -23,8 +22,8 @@ public class EntityArtifact : BaseEntity
         {
             ScriptableData = configData;
             SetData(configArtifact);
-            idObject = ScriptableData.idObject;
-            _configArtifact = configArtifact;
+            _idObject = ScriptableData.idObject;
+            ScriptableDataAttribute = configArtifact;
             Data.idPlayer = -1;
         }
         else
@@ -38,42 +37,41 @@ public class EntityArtifact : BaseEntity
                 .Where(t => t.TypeMapObject == TypeMapObject.Artifact
                 && t.idObject == saveData.idObject).First();
 
-            _configArtifact = ResourceSystem.Instance
+            ScriptableDataAttribute = ResourceSystem.Instance
                 .GetAttributesByType<ScriptableAttributeArtifact>(TypeAttribute.Artifact)
                 .Where(t => t.idObject == Data.ida)
                 .First();
 
-            idUnit = saveData.idUnit;
-            idObject = saveData.idObject;
-            DataEffects = saveData.DataEffects;
+            _idEntity = saveData.idEntity;
+            _idObject = saveData.idObject;
+            Effects = saveData.Effects;
         }
     }
 
     public void SetData(ScriptableAttributeArtifact configArtifact)
     {
-        // ScriptableEntityArtifact configData = (ScriptableEntityArtifact)ScriptableData;
         Data.ida = configArtifact.idObject;
     }
 
     public override void SetPlayer(Player player)
     {
-        ScriptableEntityArtifact configData = (ScriptableEntityArtifact)ScriptableData;
-        // configData.RunHero(ref player, this);
-        LevelManager.Instance.ActivePlayer.ActiveHero.AddArtifact(this);
+        // ScriptableEntityArtifact configData = (ScriptableEntityArtifact)ScriptableData;
+        // // configData.RunHero(ref player, this);
+        // LevelManager.Instance.ActivePlayer.ActiveHero.AddArtifact(this);
 
-        if (configData.TypeWorkObject == TypeWorkObject.One)
-        {
-            List<GridTileNode> nodes
-                = GameManager.Instance.MapManager.gridTileHelper.GetNodeListAsNoPath(OccupiedNode, configData.RulesInput);
-            foreach (var node in nodes)
-            {
-                node.RemoveStateNode(StateNode.Input);
-            }
-            // MapObjectGameObject.DestroyGameObject();
-            DestroyEntity();
-        }
+        // if (configData.TypeWorkObject == TypeWorkObject.One)
+        // {
+        //     List<GridTileNode> nodes
+        //         = GameManager.Instance.MapManager.gridTileHelper.GetNodeListAsNoPath(OccupiedNode, configData.RulesInput);
+        //     foreach (var node in nodes)
+        //     {
+        //         node.RemoveStateNode(StateNode.Input);
+        //     }
+        //     // MapObjectGameObject.DestroyGameObject();
+        //     DestroyEntity();
+        // }
 
-        DestroyEntity();
+        // DestroyEntity();
     }
 
     #region InitData

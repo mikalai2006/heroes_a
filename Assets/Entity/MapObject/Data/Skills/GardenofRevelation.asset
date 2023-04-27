@@ -30,48 +30,37 @@ MonoBehaviour:
   idObject: map.skills.gardenofrevelation
   TypeEntity: 34
   MenuSprite: {fileID: 0}
-  title:
-    m_TableReference:
-      m_TableCollectionName: GUID:8ed801dac82951d449557e1a63174ac8
-    m_TableEntryReference:
-      m_KeyId: 4631769623199744
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
+  Text:
+    title:
+      m_TableReference:
+        m_TableCollectionName: GUID:8ed801dac82951d449557e1a63174ac8
+      m_TableEntryReference:
+        m_KeyId: 4631769623199744
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    description:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
   MapPrefab:
     m_AssetGUID: 91e9f0d72265ba449bb11209dcf71e70
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
   TypeGround: -1
-  TypeWorkEffect: 0
-  Attributes:
-  - Item:
-      description:
-        m_TableReference:
-          m_TableCollectionName: GUID:8ed801dac82951d449557e1a63174ac8
-        m_TableEntryReference:
-          m_KeyId: 4631957641265152
-          m_Key: 
-        m_FallbackState: 0
-        m_WaitForCompletion: 0
-        m_LocalVariables: []
-      Resources: []
-      PrimarySkills:
-      - Skill: {fileID: 11400000, guid: 5638aca8fa9ac574f84b59d9f4ee07dc, type: 2}
-        Value: 1
-      SecondarySkills: []
-      Artifacts:
-        Artifact: []
-        isOne: 0
-      Creature: {fileID: 0}
-    probability: 1
   TypeMapObject: 4
   RMGValue: 1500
   listTypeNoPath: 
   listRuleInput: 1100000013000000120000000c0000000e000000
   TypeWorkObject: 4
+  TypeWorkEffect: 0
   Effects:
   - Item:
       description:

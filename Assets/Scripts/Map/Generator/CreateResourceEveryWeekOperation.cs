@@ -22,7 +22,7 @@ public class CreateResourceEveryWeekOperation : ILoadingOperation
         var t = new LocalizedString(Constants.LanguageTable.LANG_TABLE_UILANG, "createdgameobject").GetLocalizedString();
         onSetNotify(t + " every week resources ...");
 
-        var factory = new EntityMapObjectFactory();
+        // var factory = new EntityMapObjectFactory();
         List<TypeWorkObject> typeWork = new List<TypeWorkObject>() {
             TypeWorkObject.EveryDay, TypeWorkObject.EveryWeek
         };
@@ -75,11 +75,11 @@ public class CreateResourceEveryWeekOperation : ILoadingOperation
                         && _root.gridTileHelper.GetAllowInsertObjectToNode(currentNode, configData)
                         )
                     {
-                        BaseEntity entity = factory.CreateMapObject(TypeMapObject.Resources, configData);
+                        EntityMapObject entity = new EntityMapObject(configData);
 
                         UnitManager.SpawnEntityMapObjectToNode(currentNode, entity);
 
-                        BaseEntity warrior = UnitManager.SpawnEntityCreature(nodeWarrior, currentNode, 1, configData.RMGValue);
+                        MapObject warrior = UnitManager.SpawnEntityCreature(nodeWarrior, currentNode, 1, configData.RMGValue);
 
                         // _root.UnitManager.SpawnMapObjectAsync(
                         //     currentNode,

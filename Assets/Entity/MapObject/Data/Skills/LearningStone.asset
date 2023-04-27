@@ -30,48 +30,37 @@ MonoBehaviour:
   idObject: map.skills.learningstone
   TypeEntity: 34
   MenuSprite: {fileID: 0}
-  title:
-    m_TableReference:
-      m_TableCollectionName: GUID:8ed801dac82951d449557e1a63174ac8
-    m_TableEntryReference:
-      m_KeyId: 4632390157893632
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
+  Text:
+    title:
+      m_TableReference:
+        m_TableCollectionName: GUID:8ed801dac82951d449557e1a63174ac8
+      m_TableEntryReference:
+        m_KeyId: 4632390157893632
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    description:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
   MapPrefab:
     m_AssetGUID: 866ba363f2e6cc8469fb06dc5ca45e4d
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
   TypeGround: -1
-  TypeWorkEffect: 0
-  Attributes:
-  - Item:
-      description:
-        m_TableReference:
-          m_TableCollectionName: GUID:8ed801dac82951d449557e1a63174ac8
-        m_TableEntryReference:
-          m_KeyId: 4632460961939456
-          m_Key: 
-        m_FallbackState: 0
-        m_WaitForCompletion: 0
-        m_LocalVariables: []
-      Resources: []
-      PrimarySkills:
-      - Skill: {fileID: 11400000, guid: 71fd48291a2040e4b92224f9677707ba, type: 2}
-        Value: 1000
-      SecondarySkills: []
-      Artifacts:
-        Artifact: []
-        isOne: 0
-      Creature: {fileID: 0}
-    probability: 1
   TypeMapObject: 4
   RMGValue: 1500
   listTypeNoPath: 
   listRuleInput: 1100000013000000120000000c0000000e000000
   TypeWorkObject: 4
+  TypeWorkEffect: 0
   Effects:
   - Item:
       description:

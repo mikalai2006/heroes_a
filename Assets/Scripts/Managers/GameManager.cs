@@ -166,7 +166,6 @@ public class GameManager : StaticInstance<GameManager>
     {
 
     }
-
     private async void HandleStartMoveHero()
     {
         await LevelManager.Instance.ActivePlayer.ActiveHero.StartMove();
@@ -183,7 +182,7 @@ public class GameManager : StaticInstance<GameManager>
 
     private void HandleSetActivePlayer()
     {
-        LevelManager.Instance.StepNextPlayer();
+
     }
 
 }

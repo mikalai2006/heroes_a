@@ -21,13 +21,7 @@ MonoBehaviour:
     m_Address: Assets/TownBuild/Faction/Castle/Scriptables/Castle.asset
     m_ReadOnly: 0
     m_SerializedLabels:
-    - build_town
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: d6771147da1a9fc439021716d6c3a6c1
-    m_Address: Assets/TownBuild/Faction/Stronghold/Scriptables/Stronghold.asset
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - build_town
+    - entity
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: eb42eff804e93674d8a6cfa1b7b78866
     m_Address: UITownListBuild
@@ -48,12 +42,6 @@ MonoBehaviour:
     m_Address: Assets/TownBuild/Faction/Castle
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 057859fc3bcedfd4f96999d8c46f3221
-    m_Address: Assets/TownBuild/Faction/Castle/Scriptables/Castle_Town_Entity.asset
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - entity
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: eb55ff1bda00c98489bfe686d6842599
     m_Address: Assets/TownBuild/Faction/Stronghold/Scriptables/Stronghold_Town_Entity.asset

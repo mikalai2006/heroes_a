@@ -223,22 +223,49 @@ public class UIGameAside : UILocaleBase
 
     private void DrawTownInfo()
     {
+        var settings = LevelManager.Instance.ConfigGameSettings;
+        // player.SetActiveHero(null);
+
         EntityTown activeTown = player.ActiveTown;
         if (activeTown == null) return;
-
-        ScriptableEntityTown configDataTown = (ScriptableEntityTown)activeTown.ScriptableData;
-        player.SetActiveHero(null);
 
         VisualElement townInfo = _templateTownInfo.Instantiate();
         townInfo.style.flexGrow = 1;
 
         var spriteTownEl = townInfo.Q<VisualElement>("TownIcon");
-
-        var activeSprite = configDataTown.LevelSprites.ElementAtOrDefault(activeTown.Data.level + 1);
+        var activeSprite = activeTown.ConfigData.LevelSprites.ElementAtOrDefault(activeTown.Data.level + 1);
         spriteTownEl.style.backgroundImage = new StyleBackground(activeSprite);
 
         var nameTownEl = townInfo.Q<Label>("TownName");
         nameTownEl.text = activeTown.Data.name;
+
+        var _townBuildStatus = townInfo.Q<VisualElement>("TownBuildStatus");
+        _townBuildStatus.Clear();
+        // Draw status hall.
+        var hallLevel = activeTown.Data.Generals
+            .Where(t => t.Value.ConfigData.TypeBuild == TypeBuild.Town)
+            .FirstOrDefault();
+        var boxStatusHall = new VisualElement();
+        boxStatusHall.style.backgroundImage
+            = new StyleBackground(settings.SpriteHall[hallLevel.Value.level]);
+        boxStatusHall.AddToClassList("h-full");
+        boxStatusHall.AddToClassList("w-33");
+        boxStatusHall.AddToClassList("p-px");
+        _townBuildStatus.Add(boxStatusHall);
+
+        // Draw status castle;
+        var castleLevel = activeTown.Data.Generals
+            .Where(t => t.Value.ConfigData.TypeBuild == TypeBuild.Castle)
+            .FirstOrDefault();
+        var boxStatusCastle = new VisualElement();
+        var castleIndex = castleLevel.Value == null ? 0 : castleLevel.Value.level + 1;
+        boxStatusCastle.style.backgroundImage
+            = new StyleBackground(settings.SpriteCastle[castleIndex]);
+        boxStatusCastle.AddToClassList("h-full");
+        boxStatusCastle.AddToClassList("w-33");
+        boxStatusHall.AddToClassList("p-px");
+        _townBuildStatus.Add(boxStatusCastle);
+
         var listTownDwellingEl = townInfo.Q<VisualElement>("DwellingList");
         listTownDwellingEl.Clear();
 
@@ -315,9 +342,8 @@ public class UIGameAside : UILocaleBase
             if (i < player.DataPlayer.PlayerDataReferences.ListTown.Count)
             {
                 EntityTown town = (EntityTown)player.DataPlayer.PlayerDataReferences.ListTown[i];
-                ScriptableEntityTown configDataTown = (ScriptableEntityTown)town.ScriptableData;
 
-                var activeSprite = configDataTown.LevelSprites.ElementAtOrDefault(town.Data.level + 1);
+                var activeSprite = town.ConfigData.LevelSprites.ElementAtOrDefault(town.Data.level + 1);
 
                 newButtonTown.Q<VisualElement>("image").style.backgroundImage =
                     new StyleBackground(activeSprite);
@@ -365,7 +391,7 @@ public class UIGameAside : UILocaleBase
             if (i < listHeroOnMap.Count)
             {
                 EntityHero hero = listHeroOnMap[i];
-                MapEntityHero heroGameObject = (MapEntityHero)hero.MapObjectGameObject;
+                MapEntityHero heroGameObject = (MapEntityHero)hero.MapObject.MapObjectGameObject;
                 var hit = newButtonHero.Q<VisualElement>(NameHit);
                 hit.name = hero.IdEntity;
 
@@ -375,7 +401,7 @@ public class UIGameAside : UILocaleBase
                 mana.style.height = new StyleLength(new Length(hero.Data.mana, LengthUnit.Percent));
 
                 newButtonHero.Q<VisualElement>("image").style.backgroundImage =
-                    new StyleBackground(hero.ScriptableData.MenuSprite);
+                    new StyleBackground(hero.ConfigData.MenuSprite);
 
                 var time = Time.realtimeSinceStartup;
                 newButtonHero.Q<Button>(NameAllAsideButton).clickable.clicked += async () =>

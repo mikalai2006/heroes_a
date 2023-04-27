@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee91de32c77554a4eb09c46dff3d7e58, type: 3}
   m_Name: CastleEffectCitadel
   m_EditorClassIdentifier: 
+  idEffect: 
   koofCreature: 50
+  level: 1

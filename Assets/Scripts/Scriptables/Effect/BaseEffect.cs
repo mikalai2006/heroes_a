@@ -1,11 +1,13 @@
 using System.Collections.Generic;
 
+using Cysharp.Threading.Tasks;
+
 using UnityEngine;
 
 public abstract class BaseEffect : ScriptableObject
 {
     public string idEffect;
-    public virtual void RunHero(ref Player player, BaseEntity entity)
+    public virtual void RunHero(Player player, BaseEntity entity)
     {
 
     }

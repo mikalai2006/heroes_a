@@ -98,6 +98,10 @@ public class DataManager : Singleton<DataManager>
         {
             ent.Value.SaveEntity(ref _dataPlay);
         };
+        foreach (var ent in UnitManager.MapObjects)
+        {
+            ent.Value.SaveEntity(ref _dataPlay);
+        };
         _fileDataHandler.SaveDataPlay(_dataPlay);
     }
 

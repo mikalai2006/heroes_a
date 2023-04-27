@@ -9,30 +9,39 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19cb10a342ed64d48903250df526d9b2, type: 3}
+  m_Script: {fileID: 11500000, guid: a859413fb054f5c4797ac09356b08ded, type: 3}
   m_Name: 4_Swordsman
   m_EditorClassIdentifier: 
   idObject: creature.swordsman
-  TypeEntity: 10
+  TypeAttribute: 80
   MenuSprite: {fileID: -1819997241, guid: e7a6d1e198529c44c93ed148f1bf1afe, type: 3}
-  title:
-    m_TableReference:
-      m_TableCollectionName: GUID:b4e7cd63f22a6d74db78346f658a168b
-    m_TableEntryReference:
-      m_KeyId: 1407178931077120
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
+  Text:
+    title:
+      m_TableReference:
+        m_TableCollectionName: GUID:b4e7cd63f22a6d74db78346f658a168b
+      m_TableEntryReference:
+        m_KeyId: 1407178931077120
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    description:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+  TypeFaction: 0
   MapPrefab:
     m_AssetGUID: 9fd056ea483861146bf73872db8dc9a2
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
-  TypeGround: 0
-  TypeFaction: 0
   ArenaModel:
-    m_AssetGUID: 
+    m_AssetGUID: c8675476c797c4d448ffdb9455024dad
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0

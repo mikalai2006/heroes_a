@@ -75,7 +75,8 @@ public class UITavernWindow : UIDialogBaseWindow
         _heroList.Clear();
 
         EntityTown town = (EntityTown)_activePlayer.ActiveTown;
-        var listConfigHero = ResourceSystem.Instance.GetEntityByType<ScriptableEntityHero>(TypeEntity.Hero);
+        var listConfigHero = ResourceSystem.Instance
+            .GetEntityByType<ScriptableEntityHero>(TypeEntity.Hero);
         if (_activePlayer.DataPlayer.HeroesInTavern.Count > 0)
         {
             foreach (var heroId in _activePlayer.DataPlayer.HeroesInTavern)
@@ -124,12 +125,12 @@ public class UITavernWindow : UIDialogBaseWindow
 
         _activeHeroData = heroData;
         // show info hero.
-        _heroInfoLabel.text = heroData.title.GetLocalizedString();
+        _heroInfoLabel.text = heroData.Text.title.GetLocalizedString();
     }
 
     private async void OnClickBuy()
     {
-        if (_activePlayer.ActiveTown.OccupiedNode.GuestedUnit != null)
+        if (_activePlayer.ActiveTown.MapObject.OccupiedNode.GuestedUnit != null)
         {
             var dialogData = new DataDialogHelp()
             {

@@ -23,6 +23,7 @@ public class UITownInfo : MonoBehaviour
     private VisualElement _townInfoHeroVisit;
     private VisualElement _townInfoHeroVisitForce;
     private VisualElement _townInfo;
+    private VisualElement _townBuildStatus;
     private EntityTown _activeTown;
     private Player _activePlayer;
     private EntityHero _chooseHero;
@@ -68,6 +69,8 @@ public class UITownInfo : MonoBehaviour
         _townInfoBox.Clear();
         _townInfoBox.Add(_townInfo);
 
+        _townBuildStatus = _parent.Q<VisualElement>("TownBuildStatus");
+
         _townInfoHero = _parent.Q<VisualElement>("TownHero");
         _townInfoHeroForce = _parent.Q<VisualElement>("TownHeroForce");
 
@@ -90,12 +93,46 @@ public class UITownInfo : MonoBehaviour
 
     private void DrawTownInfo()
     {
-        // _townInfo.Clear();
+        var settings = LevelManager.Instance.ConfigGameSettings;
+        _townBuildStatus.Clear();
+
+        // Draw status hall.
+        var hallLevel = _activeTown.Data.Generals
+            .Where(t => t.Value.ConfigData.TypeBuild == TypeBuild.Town)
+            .FirstOrDefault();
+        var boxStatusHall = new VisualElement();
+        boxStatusHall.style.backgroundImage
+            = new StyleBackground(settings.SpriteHall[hallLevel.Value.level]);
+        boxStatusHall.AddToClassList("h-full");
+        boxStatusHall.AddToClassList("w-33");
+        boxStatusHall.AddToClassList("p-px");
+        _townBuildStatus.Add(boxStatusHall);
+
+        // Draw status castle;
+        var castleLevel = _activeTown.Data.Generals
+            .Where(t => t.Value.ConfigData.TypeBuild == TypeBuild.Castle)
+            .FirstOrDefault();
+        var boxStatusCastle = new VisualElement();
+        var castleIndex = castleLevel.Value == null ? 0 : castleLevel.Value.level + 1;
+        boxStatusCastle.style.backgroundImage
+            = new StyleBackground(settings.SpriteCastle[castleIndex]);
+        boxStatusCastle.AddToClassList("h-full");
+        boxStatusCastle.AddToClassList("w-33");
+        boxStatusHall.AddToClassList("p-px");
+        _townBuildStatus.Add(boxStatusCastle);
+
+        // Draw sprite town.
         var spriteTownEl = _townInfo.Q<VisualElement>("TownIcon");
-        var nameTownEl = _townInfo.Q<VisualElement>("TownName");
+        var activeSprite = _activeTown.ConfigData.LevelSprites.ElementAtOrDefault(_activeTown.Data.level + 1);
+        spriteTownEl.style.backgroundImage = new StyleBackground(activeSprite);
+
+        // Draw name.
+        var nameTownEl = _townInfo.Q<Label>("TownName");
+        nameTownEl.text = _activeTown.Data.name;
+
+        // Draw build armys.
         var listTownDwellingEl = _townInfo.Q<VisualElement>("TownDwellingList");
         listTownDwellingEl.Clear();
-
         foreach (var build in _activeTown.Data.Armys
             .OrderBy(t => ((ScriptableBuildingArmy)((BuildArmy)t.Value).ConfigData).Creatures[t.Value.level].CreatureParams.Level))
         {
@@ -126,10 +163,10 @@ public class UITownInfo : MonoBehaviour
         _btnHeroGuest = heroBlok.Q<Button>("Btn");
         heroBlok.AddToClassList("w-full");
         heroBlok.AddToClassList("h-full");
-        if (_activeTown.OccupiedNode.GuestedUnit != null)
+        if (_activeTown.MapObject.OccupiedNode.GuestedUnit != null)
         {
             heroBlok.Q<VisualElement>("img").style.backgroundImage =
-                new StyleBackground(_activeTown.OccupiedNode.GuestedUnit.ScriptableData.MenuSprite);
+                new StyleBackground(_activeTown.MapObject.OccupiedNode.GuestedUnit.ConfigData.MenuSprite);
         }
         else
         {
@@ -146,11 +183,11 @@ public class UITownInfo : MonoBehaviour
             itemHeroForce.AddToClassList("w-14");
             itemHeroForce.AddToClassList("h-full");
 
-            if (_activeTown.OccupiedNode.GuestedUnit != null)
+            if (_activeTown.MapObject.OccupiedNode.GuestedUnit != null)
             {
                 var index = i;
                 EntityCreature creature;
-                EntityHero entityHero = (EntityHero)_activeTown.OccupiedNode.GuestedUnit;
+                EntityHero entityHero = (EntityHero)_activeTown.MapObject.OccupiedNode.GuestedUnit.Entity;
                 entityHero.Data.Creatures.TryGetValue(i, out creature);
                 if (creature != null)
                 {
@@ -196,35 +233,35 @@ public class UITownInfo : MonoBehaviour
             return;
         }
 
-        var heroGuest = (EntityHero)_activeTown.OccupiedNode.GuestedUnit;
+        var heroGuest = (EntityHero)_activeTown.MapObject.OccupiedNode.GuestedUnit.Entity;
         if (_chooseHero != null)
         {
-            if (_chooseHero != _activeTown.OccupiedNode.GuestedUnit)
+            if (_chooseHero != _activeTown.MapObject.OccupiedNode.GuestedUnit.Entity)
             {
                 // move old guest and destroy GameObject.
                 _activeTown.Data.HeroinTown = heroGuest?.IdEntity;
                 if (heroGuest != null)
                 {
-                    heroGuest.MapObjectGameObject.gameObject.SetActive(false);
+                    heroGuest.MapObject.MapObjectGameObject.gameObject.SetActive(false);
                     heroGuest.Data.State = StateHero.InTown;
                 }
 
                 // create new guest and create GameObject.
-                _activeTown.OccupiedNode.SetAsGuested(_chooseHero);
-                if (_activeTown.OccupiedNode.GuestedUnit != null)
+                _activeTown.MapObject.OccupiedNode.SetAsGuested(_chooseHero.MapObject);
+                if (_activeTown.MapObject.OccupiedNode.GuestedUnit != null)
                 {
                     _chooseHero.Data.State = StateHero.OnMap;
-                    if (_activeTown.OccupiedNode.GuestedUnit.MapObjectGameObject != null)
+                    if (_activeTown.MapObject.OccupiedNode.GuestedUnit.MapObjectGameObject != null)
                     {
-                        _activeTown.OccupiedNode.GuestedUnit.MapObjectGameObject.gameObject.SetActive(true);
+                        _activeTown.MapObject.OccupiedNode.GuestedUnit.MapObjectGameObject.gameObject.SetActive(true);
                     }
                     else
                     {
-                        _activeTown.OccupiedNode.GuestedUnit.CreateMapGameObject(_activeTown.OccupiedNode);
+                        _activeTown.MapObject.OccupiedNode.GuestedUnit.CreateMapGameObject(_activeTown.MapObject.OccupiedNode);
                     }
                 }
 
-                _activePlayer.SetActiveHero((EntityHero)_activeTown.OccupiedNode.GuestedUnit);
+                _activePlayer.SetActiveHero((EntityHero)_activeTown.MapObject.OccupiedNode.GuestedUnit.Entity);
 
             }
             else
@@ -288,34 +325,34 @@ public class UITownInfo : MonoBehaviour
                     else
                     {
                         _chooseHero.Data.Creatures = resultMergeCreatures;
-                        _activeTown.OccupiedNode.SetAsGuested(heroInTown);
+                        _activeTown.MapObject.OccupiedNode.SetAsGuested(heroInTown.MapObject);
                         // create new hero in town and destroy GameObject.
                         _activeTown.Data.HeroinTown = _chooseHero.IdEntity;
-                        _chooseHero.MapObjectGameObject.gameObject.SetActive(false);
+                        _chooseHero.MapObject.MapObjectGameObject.gameObject.SetActive(false);
                         _chooseHero.Data.State = StateHero.InTown;
                         _activeTown.ResetCreatures();
                     }
                 }
                 else
                 {
-                    _activeTown.OccupiedNode.SetAsGuested(heroInTown);
-                    if (_activeTown.OccupiedNode.GuestedUnit != null)
+                    _activeTown.MapObject.OccupiedNode.SetAsGuested(heroInTown.MapObject);
+                    if (_activeTown.MapObject.OccupiedNode.GuestedUnit != null)
                     {
-                        ((EntityHero)_activeTown.OccupiedNode.GuestedUnit).Data.State = StateHero.OnMap;
-                        if (_activeTown.OccupiedNode.GuestedUnit.MapObjectGameObject != null)
+                        ((EntityHero)_activeTown.MapObject.OccupiedNode.GuestedUnit.Entity).Data.State = StateHero.OnMap;
+                        if (_activeTown.MapObject.OccupiedNode.GuestedUnit.MapObjectGameObject != null)
                         {
-                            _chooseHero.MapObjectGameObject.gameObject.SetActive(true);
+                            _chooseHero.MapObject.MapObjectGameObject.gameObject.SetActive(true);
                         }
                         else
                         {
-                            _activeTown.OccupiedNode.GuestedUnit.CreateMapGameObject(_activeTown.OccupiedNode);
+                            _activeTown.MapObject.OccupiedNode.GuestedUnit.CreateMapGameObject(_activeTown.MapObject.OccupiedNode);
                         }
                     }
-                    _activePlayer.SetActiveHero((EntityHero)_activeTown.OccupiedNode.GuestedUnit);
+                    _activePlayer.SetActiveHero((EntityHero)_activeTown.MapObject.OccupiedNode.GuestedUnit.Entity);
 
                     // create new hero in town and destroy GameObject.
                     _activeTown.Data.HeroinTown = _chooseHero.IdEntity;
-                    _chooseHero.MapObjectGameObject.gameObject.SetActive(false);
+                    _chooseHero.MapObject.MapObjectGameObject.gameObject.SetActive(false);
                     _chooseHero.Data.State = StateHero.InTown;
                 }
 
@@ -434,7 +471,7 @@ public class UITownInfo : MonoBehaviour
             item.SetEnabled(true);
         }
 
-        if (_activeTown.OccupiedNode.GuestedUnit != null)
+        if (_activeTown.MapObject.OccupiedNode.GuestedUnit != null)
         {
             UQueryBuilder<VisualElement> builderGuest
                 = new UQueryBuilder<VisualElement>(_townInfoHeroVisitForce);
@@ -454,12 +491,6 @@ public class UITownInfo : MonoBehaviour
     {
         if (creatures[index] == _startCheckedCreatures[_startPositionChecked])
         {
-            // if (_isSplit)
-            // {
-            //     // Show dialog split creatures.
-            // }
-            // else
-            // {
             // Show dialog info creature.
             var dialogWindow = new UIInfoCreatureOperation();
             var result = await dialogWindow.ShowAndHide();
@@ -467,7 +498,6 @@ public class UITownInfo : MonoBehaviour
             {
 
             }
-            // }
         }
         else
         {
@@ -524,7 +554,7 @@ public class UITownInfo : MonoBehaviour
         }
 
         UQueryBuilder<VisualElement> builderGuest
-                = new UQueryBuilder<VisualElement>(_parent);
+            = new UQueryBuilder<VisualElement>(_parent);
         List<VisualElement> listGuestCreature = builderGuest.Name("creature").ToList();
         foreach (var item in listGuestCreature)
         {

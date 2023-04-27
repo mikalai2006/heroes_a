@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 
 using Cysharp.Threading.Tasks;
 
@@ -6,7 +7,7 @@ public class MapEntityMapObject : BaseMapEntity, IDialogMapObjectOperation
 {
     private DataDialogMapObjectGroup _dialogData;
 
-    public override void InitUnit(BaseEntity mapObject)
+    public override void InitUnit(MapObject mapObject)
     {
 
         base.InitUnit(mapObject);
@@ -22,12 +23,11 @@ public class MapEntityMapObject : BaseMapEntity, IDialogMapObjectOperation
             Values = new List<DataDialogMapObjectGroupItem>()
         };
 
-        EntityMapObject entity = (EntityMapObject)MapObjectClass;
-        ScriptableEntityMapObject configData = (ScriptableEntityMapObject)MapObjectClass.ScriptableData;
+        ScriptableEntityMapObject configData = (ScriptableEntityMapObject)_mapObject.ConfigData;
 
-        foreach (var effect in configData.Effects[entity.DataEffects.index].Item.items)
+        foreach (var effect in configData.Effects[_mapObject.Entity.Effects.index].Item.items)
         {
-            effect.CreateDialogData(ref _dialogData, entity);
+            effect.CreateDialogData(ref _dialogData, _mapObject.Entity);
         }
         var groups = new List<DataDialogMapObjectGroup>();
         // var group = new DataDialogMapObjectGroup();
@@ -53,13 +53,13 @@ public class MapEntityMapObject : BaseMapEntity, IDialogMapObjectOperation
         //     });
         // }
         // groups.Add(groupArtifact);
-        var description = configData.Effects[entity.DataEffects.index].Item.description.IsEmpty
+        var description = configData.Effects[_mapObject.Entity.Effects.index].Item.description.IsEmpty
             ? ""
-            : configData.Effects[entity.DataEffects.index].Item.description.GetLocalizedString();
+            : configData.Effects[_mapObject.Entity.Effects.index].Item.description.GetLocalizedString();
 
         var dialogData = new DataDialogMapObject()
         {
-            Header = configData.title.GetLocalizedString(),
+            Header = configData.Text.title.GetLocalizedString(),
             Description = description,
             // Sprite = this.ScriptableData.MenuSprite,
             TypeCheck = TypeCheck.OnlyOk,
@@ -75,11 +75,11 @@ public class MapEntityMapObject : BaseMapEntity, IDialogMapObjectOperation
     {
         await base.OnGoHero(player);
 
-        EntityMapObject entity = (EntityMapObject)MapObjectClass;
+        MapObject entity = (MapObject)_mapObject;
         if (LevelManager.Instance.ActivePlayer.DataPlayer.playerType != PlayerType.Bot)
         {
 
-            ScriptableEntityMapObject configData = (ScriptableEntityMapObject)MapObjectClass.ScriptableData;
+            ScriptableEntityMapObject configData = (ScriptableEntityMapObject)_mapObject.ConfigData;
             DataResultDialog result = await OnTriggeredHero();
             if (result.isOk)
             {
@@ -99,23 +99,26 @@ public class MapEntityMapObject : BaseMapEntity, IDialogMapObjectOperation
 
     private void OnHeroGo(Player player, int indexVariant)
     {
-        EntityMapObject entity = (EntityMapObject)MapObjectClass;
-        ScriptableEntityMapObject configData = (ScriptableEntityMapObject)MapObjectClass.ScriptableData;
-        MapObjectClass.SetPlayer(player);
+        MapObject entity = (MapObject)_mapObject;
+        ScriptableEntityMapObject configData = (ScriptableEntityMapObject)_mapObject.ConfigData;
+        _mapObject.SetPlayer(player);
+
         if (indexVariant == -1)
         {
-            configData.RunHero(ref player, entity);
+            configData.RunHero(player, entity.Entity);
         }
         else
         {
-            if (configData.Effects.Count > 0)
+            var effect = configData.Effects.ElementAt(entity.Entity.Effects.index);
+            if (configData.Effects.Count > 0 && effect.Item.items.Count > 0)
             {
-                configData.Effects[entity.DataEffects.index].Item.items[indexVariant]?.RunHero(ref player, entity);
+                effect.Item.items[indexVariant].RunHero(player, entity.Entity);
             }
         }
 
         if (configData.TypeWorkObject == TypeWorkObject.One)
         {
+            MapObject.Entity.DestroyEntity();
             Destroy(gameObject);
         }
         // else {

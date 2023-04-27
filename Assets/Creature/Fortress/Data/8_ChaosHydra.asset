@@ -9,12 +9,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19cb10a342ed64d48903250df526d9b2, type: 3}
+  m_Script: {fileID: 11500000, guid: a859413fb054f5c4797ac09356b08ded, type: 3}
   m_Name: 8_ChaosHydra
   m_EditorClassIdentifier: 
   idObject: 9050665dd58344179dc4891e30431526
-  TypeEntity: 10
+  TypeAttribute: 80
   MenuSprite: {fileID: 0}
+  MapPrefab:
+    m_AssetGUID: 
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
   Text:
     title:
       m_TableReference:
@@ -34,42 +39,6 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
-  MapPrefab:
-    m_AssetGUID: ca56c2d213473874aa90bbca0c280010
-    m_SubObjectName: 
-    m_SubObjectType: 
-    m_EditorAssetChanged: 0
-  typeGround: 512
-  typeInput: 1
-  listTypeNoPath: 
-  DialogText:
-    VisitOk:
-      m_TableReference:
-        m_TableCollectionName: 
-      m_TableEntryReference:
-        m_KeyId: 0
-        m_Key: 
-      m_FallbackState: 0
-      m_WaitForCompletion: 0
-      m_LocalVariables: []
-    VisitNo:
-      m_TableReference:
-        m_TableCollectionName: 
-      m_TableEntryReference:
-        m_KeyId: 0
-        m_Key: 
-      m_FallbackState: 0
-      m_WaitForCompletion: 0
-      m_LocalVariables: []
-    VisitNoResource:
-      m_TableReference:
-        m_TableCollectionName: 
-      m_TableEntryReference:
-        m_KeyId: 0
-        m_Key: 
-      m_FallbackState: 0
-      m_WaitForCompletion: 0
-      m_LocalVariables: []
   TypeFaction: 30
   ArenaModel:
     m_AssetGUID: 
@@ -77,13 +46,19 @@ MonoBehaviour:
     m_SubObjectType: 
     m_EditorAssetChanged: 0
   CreatureParams:
-    Health: 0
+    Level: 0
     Attack: 0
-    Protection: 0
-    Damage: 0
-    MaxDamage: 0
-    Ammunition: 0
+    Defense: 0
+    DamageMin: 0
+    DamageMax: 0
+    HP: 0
     Speed: 0
+    Shoots: 0
+    Growth: 0
+    Size: 0
+    Movement: 0
+    AI: 0
+    Cost: []
   references:
     version: 2
     RefIds: []

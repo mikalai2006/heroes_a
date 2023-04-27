@@ -81,124 +81,37 @@ MonoBehaviour:
   idObject: map.resource.treasurechest
   TypeEntity: 34
   MenuSprite: {fileID: 0}
-  title:
-    m_TableReference:
-      m_TableCollectionName: GUID:8ed801dac82951d449557e1a63174ac8
-    m_TableEntryReference:
-      m_KeyId: 4463474357993472
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
+  Text:
+    title:
+      m_TableReference:
+        m_TableCollectionName: GUID:8ed801dac82951d449557e1a63174ac8
+      m_TableEntryReference:
+        m_KeyId: 4463474357993472
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    description:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
   MapPrefab:
     m_AssetGUID: 1ff2b6ac40a146842914d5fb9421c236
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
   TypeGround: -1
-  TypeWorkEffect: 1
-  Attributes:
-  - Item:
-      description:
-        m_TableReference:
-          m_TableCollectionName: GUID:8ed801dac82951d449557e1a63174ac8
-        m_TableEntryReference:
-          m_KeyId: 4463993914818560
-          m_Key: 
-        m_FallbackState: 0
-        m_WaitForCompletion: 0
-        m_LocalVariables: []
-      Resources:
-      - Resource: {fileID: 11400000, guid: 3894d4d068775c343b5c4bf1510dee33, type: 2}
-        value: 1000
-        minValue: 0
-        maxValue: 1000
-        step: 1000
-      PrimarySkills:
-      - Skill: {fileID: 11400000, guid: 71fd48291a2040e4b92224f9677707ba, type: 2}
-        Value: 500
-      SecondarySkills: []
-      Artifacts:
-        Artifact: []
-        isOne: 0
-      Creature: {fileID: 0}
-    probability: 0.3199999928474426
-  - Item:
-      description:
-        m_TableReference:
-          m_TableCollectionName: GUID:8ed801dac82951d449557e1a63174ac8
-        m_TableEntryReference:
-          m_KeyId: 4463993914818560
-          m_Key: 
-        m_FallbackState: 0
-        m_WaitForCompletion: 0
-        m_LocalVariables: []
-      Resources:
-      - Resource: {fileID: 11400000, guid: 3894d4d068775c343b5c4bf1510dee33, type: 2}
-        value: 1500
-        minValue: 0
-        maxValue: 1500
-        step: 1500
-      PrimarySkills:
-      - Skill: {fileID: 11400000, guid: 71fd48291a2040e4b92224f9677707ba, type: 2}
-        Value: 1000
-      SecondarySkills: []
-      Artifacts:
-        Artifact: []
-        isOne: 0
-      Creature: {fileID: 0}
-    probability: 0.3199999928474426
-  - Item:
-      description:
-        m_TableReference:
-          m_TableCollectionName: GUID:8ed801dac82951d449557e1a63174ac8
-        m_TableEntryReference:
-          m_KeyId: 4463993914818560
-          m_Key: 
-        m_FallbackState: 0
-        m_WaitForCompletion: 0
-        m_LocalVariables: []
-      Resources:
-      - Resource: {fileID: 11400000, guid: 3894d4d068775c343b5c4bf1510dee33, type: 2}
-        value: 2000
-        minValue: 0
-        maxValue: 2000
-        step: 2000
-      PrimarySkills:
-      - Skill: {fileID: 11400000, guid: 71fd48291a2040e4b92224f9677707ba, type: 2}
-        Value: 1500
-      SecondarySkills: []
-      Artifacts:
-        Artifact: []
-        isOne: 0
-      Creature: {fileID: 0}
-    probability: 0.3100000023841858
-  - Item:
-      description:
-        m_TableReference:
-          m_TableCollectionName: GUID:8ed801dac82951d449557e1a63174ac8
-        m_TableEntryReference:
-          m_KeyId: 4463545761824768
-          m_Key: 
-        m_FallbackState: 0
-        m_WaitForCompletion: 0
-        m_LocalVariables: []
-      Resources: []
-      PrimarySkills: []
-      SecondarySkills: []
-      Artifacts:
-        Artifact:
-        - {fileID: 11400000, guid: 170f6a18e7757ad4c9aaed11393ac632, type: 2}
-        - {fileID: 11400000, guid: 170f6a18e7757ad4c9aaed11393ac632, type: 2}
-        - {fileID: 11400000, guid: 170f6a18e7757ad4c9aaed11393ac632, type: 2}
-        isOne: 1
-      Creature: {fileID: 0}
-    probability: 0.05000000074505806
   TypeMapObject: 2
   RMGValue: 1500
   listTypeNoPath: 
   listRuleInput: 
   TypeWorkObject: 1
+  TypeWorkEffect: 1
   Effects:
   - Item:
       description:

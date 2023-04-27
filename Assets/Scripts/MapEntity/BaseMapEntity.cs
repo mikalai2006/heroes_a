@@ -9,13 +9,13 @@ using UnityEngine.Localization;
 [System.Serializable]
 public abstract class BaseMapEntity : MonoBehaviour, IPointerClickHandler
 {
-    [SerializeField] protected BaseEntity MapObjectClass;
-    public BaseEntity GetMapObjectClass => MapObjectClass;
+    [SerializeField] protected MapObject _mapObject;
+    public MapObject MapObject => _mapObject;
     private float timeClickPrev;
 
-    public virtual void InitUnit(BaseEntity mapObject)
+    public virtual void InitUnit(MapObject mapObject)
     {
-        MapObjectClass = mapObject;
+        _mapObject = mapObject;
         timeClickPrev = Time.realtimeSinceStartup;
     }
 
@@ -34,8 +34,8 @@ public abstract class BaseMapEntity : MonoBehaviour, IPointerClickHandler
 
     public void OnDestroy()
     {
-        // Debug.LogWarning($"object [{MapObjectClass.ScriptableData.name}] - gameObject[{gameObject.name}]");
-        MapObjectClass.ScriptableData.MapPrefab.ReleaseInstance(gameObject);
+        Debug.LogWarning($"Destroy object [{MapObject.ConfigData.name}] - gameObject[{gameObject.name}]");
+        _mapObject.ConfigData.MapPrefab.ReleaseInstance(gameObject);
         // MapObjectClass.DestroyEntity();
         // UnitManager.Entities.Remove(MapObjectClass.IdEntity);
         // MapObjectClass = null;

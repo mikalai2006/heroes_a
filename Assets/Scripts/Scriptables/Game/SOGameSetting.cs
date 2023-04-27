@@ -19,6 +19,8 @@ public class SOGameSetting : ScriptableObject
     public List<SOStrenghtMonsters> StrenghtMonsters;
     public List<SOProtectionIndex> ProtectionIndices;
     [SerializeField] public List<CostEntity> CostHero;
+    [SerializeField] public List<Sprite> SpriteHall;
+    [SerializeField] public List<Sprite> SpriteCastle;
     public int maxCountHero = 5;
 
     [Header("Setting System")]
@@ -26,6 +28,7 @@ public class SOGameSetting : ScriptableObject
     [Range(0.3f, 1f)] public float deltaDoubleClick;
     [Range(10, 1000)] public int timeDelayDoBot;
     [Range(.05f, 1f)] public float speedHero;
+    public int countBuildPerDay;
 
 }
 

@@ -27,7 +27,7 @@ public class EntityMine : BaseEntity
         {
             ScriptableData = configData;
             Data.idPlayer = -1;
-            idObject = ScriptableData.idObject;
+            _idObject = ScriptableData.idObject;
             configData.SetData(this);
         }
         else
@@ -38,9 +38,9 @@ public class EntityMine : BaseEntity
                 .First();
 
             Data = saveData.data;
-            idUnit = saveData.idUnit;
-            idObject = saveData.idObject;
-            DataEffects = saveData.DataEffects;
+            _idEntity = saveData.idEntity;
+            _idObject = saveData.idObject;
+            Effects = saveData.Effects;
         }
     }
 
@@ -54,20 +54,20 @@ public class EntityMine : BaseEntity
     }
 
     #region Change GameState
-    public override void OnAfterStateChanged(GameState newState)
-    {
-        base.OnAfterStateChanged(newState);
-        switch (newState)
-        {
-            case GameState.NextDay:
-                if (_player != null && LevelManager.Instance.ActivePlayer == _player)
-                {
-                    ScriptableEntityMine configData = (ScriptableEntityMine)ScriptableData;
-                    configData.RunHero(ref _player, this);
-                }
-                break;
-        }
-    }
+    // public override void OnAfterStateChanged(GameState newState)
+    // {
+    //     base.OnAfterStateChanged(newState);
+    //     switch (newState)
+    //     {
+    //         case GameState.NextDay:
+    //             if (_player != null && LevelManager.Instance.ActivePlayer == _player)
+    //             {
+    //                 ScriptableEntityMine configData = (ScriptableEntityMine)ScriptableData;
+    //                 configData.RunHero(ref _player, this);
+    //             }
+    //             break;
+    //     }
+    // }
     #endregion
 
     #region SaveLoadData

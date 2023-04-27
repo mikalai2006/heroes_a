@@ -9,7 +9,7 @@ public abstract class ScriptableEntity : ScriptableObject
     public string idObject;
     public TypeEntity TypeEntity;
     public Sprite MenuSprite;
-    public LocalizedString title;
+    public LangEntity Text; // LocalizedString title;
 
     [Header("Map Options")]
     [SerializeField] public AssetReferenceGameObject MapPrefab;
@@ -46,6 +46,7 @@ public enum TypeEntity
     // SkillSchool = 33,
     MapObject = 34,
     Building = 35,
+    Other = 36,
 }
 
 [System.Serializable]

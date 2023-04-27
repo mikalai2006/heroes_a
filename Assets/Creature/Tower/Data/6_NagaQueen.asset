@@ -9,12 +9,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19cb10a342ed64d48903250df526d9b2, type: 3}
+  m_Script: {fileID: 11500000, guid: a859413fb054f5c4797ac09356b08ded, type: 3}
   m_Name: 6_NagaQueen
   m_EditorClassIdentifier: 
   idObject: 328609a00442417db12696a62b136dd4
-  TypeEntity: 10
+  TypeAttribute: 80
   MenuSprite: {fileID: 21300000, guid: 0fd09d42efe038741836932cefd94ac8, type: 3}
+  MapPrefab:
+    m_AssetGUID: 
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
   Text:
     title:
       m_TableReference:
@@ -34,42 +39,6 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
-  MapPrefab:
-    m_AssetGUID: fe8c343c43fef4642bd372f248abf515
-    m_SubObjectName: 
-    m_SubObjectType: 
-    m_EditorAssetChanged: 0
-  typeGround: 256
-  typeInput: 1
-  listTypeNoPath: 
-  DialogText:
-    VisitOk:
-      m_TableReference:
-        m_TableCollectionName: 
-      m_TableEntryReference:
-        m_KeyId: 0
-        m_Key: 
-      m_FallbackState: 0
-      m_WaitForCompletion: 0
-      m_LocalVariables: []
-    VisitNo:
-      m_TableReference:
-        m_TableCollectionName: 
-      m_TableEntryReference:
-        m_KeyId: 0
-        m_Key: 
-      m_FallbackState: 0
-      m_WaitForCompletion: 0
-      m_LocalVariables: []
-    VisitNoResource:
-      m_TableReference:
-        m_TableCollectionName: 
-      m_TableEntryReference:
-        m_KeyId: 0
-        m_Key: 
-      m_FallbackState: 0
-      m_WaitForCompletion: 0
-      m_LocalVariables: []
   TypeFaction: 80
   ArenaModel:
     m_AssetGUID: 
@@ -77,13 +46,19 @@ MonoBehaviour:
     m_SubObjectType: 
     m_EditorAssetChanged: 0
   CreatureParams:
-    Health: 0
+    Level: 0
     Attack: 0
-    Protection: 0
-    Damage: 0
-    MaxDamage: 0
-    Ammunition: 0
+    Defense: 0
+    DamageMin: 0
+    DamageMax: 0
+    HP: 0
     Speed: 0
+    Shoots: 0
+    Growth: 0
+    Size: 0
+    Movement: 0
+    AI: 0
+    Cost: []
   references:
     version: 2
     RefIds: []

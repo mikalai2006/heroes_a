@@ -23,21 +23,39 @@ public struct DataEntityEffects
 
 public abstract class BaseEntity
 {
-    [NonSerialized] public GridTileNode OccupiedNode = null;
-    [NonSerialized] public GridTileNode ProtectedNode = null;
     [NonSerialized] public ScriptableEntity ScriptableData;
-    [NonSerialized] public Vector3Int Position;
-    [NonSerialized] public BaseMapEntity MapObjectGameObject;
-    public DataEntityEffects DataEffects = new DataEntityEffects()
+    [NonSerialized] public ScriptableAttribute ScriptableDataAttribute;
+    public DataEntityEffects Effects = new DataEntityEffects()
     {
         Effects = new List<DataEntityEffectsBase>()
     };
     protected Player _player;
     public Player Player => _player;
-    protected string idUnit;
-    public string IdEntity => idUnit;
-    protected string idObject;
-    public string IdObject => idObject;
+    protected string _idEntity;
+    public string IdEntity => _idEntity;
+    protected string _idObject;
+    public string IdObject => _idObject;
+    public MapObject MapObject { get; protected set; }
+
+
+    public void Init()
+    {
+        _idEntity = System.Guid.NewGuid().ToString("N");
+        AddEvents();
+    }
+    public void DestroyEntity()
+    {
+        RemoveEvents();
+        MapObject.DestroyMapGameObject();
+        UnitManager.Entities.Remove(IdEntity);
+        UnitManager.MapObjects.Remove(MapObject.IdEntity);
+        MapObject = null;
+    }
+
+    public void SetMapObject(MapObject mapObject)
+    {
+        MapObject = mapObject;
+    }
 
     #region Events GameState
     public void AddEvents()
@@ -67,47 +85,6 @@ public abstract class BaseEntity
     #endregion
 
 
-    public void Init()
-    {
-        idUnit = System.Guid.NewGuid().ToString("N");
-        AddEvents();
-    }
-
-    public void CreateMapGameObject(GridTileNode node)
-    {
-        Position = node.position;
-        OccupiedNode = node;
-        LoadGameObject();
-    }
-
-    // public void DestroyMapGameObject()
-    // {
-    //     // Debug.Log($"Destroy entity::: {ScriptableData.name}");
-    //     OccupiedNode.SetOcuppiedUnit(null);
-    //     RemoveEvents();
-    // }
-
-    public void DestroyEntity()
-    {
-        // Debug.Log($"Destroy entity::: {ScriptableData.name}");
-        OccupiedNode.SetOcuppiedUnit(null);
-        RemoveEvents();
-        UnitManager.Entities.Remove(IdEntity);
-    }
-
-    protected void SetPositionCamera(Vector3 pos)
-    {
-        Camera.main.transform.position = pos + new Vector3(0, 0, -10);
-    }
-
-    // #region InitData
-    // public virtual void InitData<T>(SaveDataUnit<T> data)
-    // {
-
-    // }
-    // #endregion
-
-
     #region SaveLoadData
     public virtual void OnSaveUnit()
     {
@@ -117,74 +94,28 @@ public abstract class BaseEntity
     {
         var SaveData = new SaveDataUnit<T>();
 
-        SaveData.idUnit = idUnit;
-        SaveData.position = Position;
-        // SaveData.typeEntity = typeEntity;
-        // SaveData.typeMapObject = typeMapObject;
-        SaveData.idObject = idObject;
+        SaveData.idEntity = _idEntity;
+        SaveData.idObject = _idObject;
         SaveData.data = Data;
-        SaveData.DataEffects = DataEffects;
+        SaveData.Effects = Effects;
 
         return SaveData;
     }
     protected void LoadUnit<T>(SaveDataUnit<T> Data)
     {
-        idUnit = Data.idUnit;
-        Position = Data.position;
-        // typeMapObject = Data.typeMapObject;
-        // typeEntity = Data.typeEntity;
-        idObject = Data.idObject;
+        _idEntity = Data.idEntity;
+        _idObject = Data.idObject;
     }
 
     public virtual void SaveEntity(ref DataPlay data)
     {
 
     }
-
     #endregion
-
-    #region LoadAsset
-    private void LoadGameObject()
-    {
-        if (ScriptableData.MapPrefab.RuntimeKeyIsValid())
-        {
-            Addressables.InstantiateAsync(
-                ScriptableData.MapPrefab,
-                Position,
-                Quaternion.identity,
-                GameManager.Instance.MapManager.BlokUnits.transform
-                ).Completed += LoadedAsset;
-        }
-    }
-
-    public virtual void LoadedAsset(AsyncOperationHandle<GameObject> handle)
-    {
-        if (handle.Status == AsyncOperationStatus.Succeeded)
-        {
-            var r_asset = handle.Result;
-            MapObjectGameObject = r_asset.GetComponent<BaseMapEntity>();
-            // Debug.Log($"Spawn Entity::: {r_asset.name}");
-            MapObjectGameObject.InitUnit(this);
-        }
-        else
-        {
-            Debug.LogError($"Error Load prefab::: {handle.Status}");
-        }
-    }
-    #endregion
-
-    // public void SetPlayer(PlayerData data)
-    // {
-    //     //Debug.Log($"Town SetPlayer::: id{data.id}-idArea{data.idArea}");
-    //     Data.idPlayer = data.id;
-
-    //     Player player = LevelManager.Instance.GetPlayer(Data.idPlayer);
-    //     Transform flag = transform.Find("Flag");
-    //     flag.GetComponent<SpriteRenderer>().color = player.DataPlayer.color;
-    // }
 
     public virtual void SetPlayer(Player player)
     {
         _player = player;
     }
+
 }

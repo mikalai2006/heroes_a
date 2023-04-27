@@ -67,10 +67,21 @@ MonoBehaviour:
   CostHero:
   - Resource: {fileID: 11400000, guid: 3894d4d068775c343b5c4bf1510dee33, type: 2}
     Count: 2500
+  SpriteHall:
+  - {fileID: 21300000, guid: 54868ddfb50eb9f4d87716f4f8eb73f6, type: 3}
+  - {fileID: 21300000, guid: adb45ff1249a2934d9e2d7e22ce87396, type: 3}
+  - {fileID: 21300000, guid: 9f5982655c321414d84c2ee74daf89dd, type: 3}
+  - {fileID: 21300000, guid: 109ade91d2853204a8bb1e65f39fbd2c, type: 3}
+  SpriteCastle:
+  - {fileID: 21300000, guid: 2eb833f6ee0d21645b902bf962cb6f07, type: 3}
+  - {fileID: 21300000, guid: 626ef0f949f41a34783ae40fb4879a9e, type: 3}
+  - {fileID: 21300000, guid: 172a0974005dde84094bbdca5eda6923, type: 3}
+  - {fileID: 21300000, guid: e0dc16f7d4c92af4e8a9e1173979128d, type: 3}
   maxCountHero: 5
   deltaDoubleClick: 0.5
   timeDelayDoBot: 10
-  speedHero: 0.24
+  speedHero: 0.278
+  countBuildPerDay: 1
   references:
     version: 2
     RefIds: []

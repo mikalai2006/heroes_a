@@ -33,51 +33,37 @@ MonoBehaviour:
   idObject: rough.mine.wood
   TypeEntity: 34
   MenuSprite: {fileID: 21300000, guid: 4792d5366fba1384b972de1dd8170bd5, type: 3}
-  title:
-    m_TableReference:
-      m_TableCollectionName: GUID:8ed801dac82951d449557e1a63174ac8
-    m_TableEntryReference:
-      m_KeyId: 4485538418688000
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
+  Text:
+    title:
+      m_TableReference:
+        m_TableCollectionName: GUID:8ed801dac82951d449557e1a63174ac8
+      m_TableEntryReference:
+        m_KeyId: 4485538418688000
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    description:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
   MapPrefab:
     m_AssetGUID: 60758689452de944fa37e65e7a1492e9
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
   TypeGround: 16
-  TypeWorkEffect: 0
-  Attributes:
-  - Item:
-      description:
-        m_TableReference:
-          m_TableCollectionName: GUID:8ed801dac82951d449557e1a63174ac8
-        m_TableEntryReference:
-          m_KeyId: 4485682161680384
-          m_Key: 
-        m_FallbackState: 0
-        m_WaitForCompletion: 0
-        m_LocalVariables: []
-      Resources:
-      - Resource: {fileID: 11400000, guid: af6fb8015ba018540960794f09d24eea, type: 2}
-        value: 0
-        minValue: 2
-        maxValue: 2
-        step: 2
-      PrimarySkills: []
-      SecondarySkills: []
-      Artifacts:
-        Artifact: []
-        isOne: 0
-      Creature: {fileID: 0}
-    probability: 1
   TypeMapObject: 5
   RMGValue: 1500
   listTypeNoPath: 0c0000000b00000008000000090000000e000000
   listRuleInput: 120000001100000013000000
   TypeWorkObject: 2
+  TypeWorkEffect: 0
   Effects:
   - Item:
       description:

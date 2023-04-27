@@ -1,11 +1,13 @@
 using System;
 using System.Collections.Generic;
 
+using Cysharp.Threading.Tasks;
+
 using UnityEngine;
 using UnityEngine.Localization;
 
 [CreateAssetMenu(fileName = "NewEntityMapObject", menuName = "Game/Entity/MapObject")]
-public class ScriptableEntityMapObject : ScriptableEntityEffect, IEffected
+public class ScriptableEntityMapObject : ScriptableEntity, IEffected
 {
     // public DialogText DialogText;
     public TypeMapObject TypeMapObject;
@@ -15,15 +17,16 @@ public class ScriptableEntityMapObject : ScriptableEntityEffect, IEffected
     public List<TypeNoPath> listRuleInput;
     public List<TypeNoPath> RulesInput => listRuleInput;
     public TypeWorkObject TypeWorkObject;
+    public TypeWorkAttribute TypeWorkEffect;
     public List<ItemProbabiliti<ItemEffect>> Effects;
 
-    public virtual void RunHero(ref Player player, BaseEntity entity)
+    public virtual void RunHero(Player player, BaseEntity entity)
     {
         if (Effects.Count == 0) return;
 
-        foreach (var effect in Effects[entity.DataEffects.index].Item.items)
+        foreach (var effect in Effects[entity.Effects.index].Item.items)
         {
-            effect.RunHero(ref player, entity);
+            effect.RunHero(player, entity);
         }
     }
     public virtual void SetData(BaseEntity entity)
@@ -31,13 +34,20 @@ public class ScriptableEntityMapObject : ScriptableEntityEffect, IEffected
         if (Effects.Count == 0) return;
 
         var variant = Helpers.GetProbabilityItem<ItemEffect>(Effects);
-        entity.DataEffects.index = variant.index;
+        entity.Effects.index = variant.index;
         foreach (var effect in variant.Item.items)
         {
             effect.SetData(entity);
         }
     }
 
+}
+
+[System.Serializable]
+public enum TypeWorkAttribute
+{
+    All = 0,
+    One = 1,
 }
 
 [System.Serializable]
@@ -65,6 +75,7 @@ public enum TypeMapObject
     Mine = 5,
     Artifact = 6,
     Dwelling = 7,
+    Hero = 8,
 }
 [System.Serializable]
 public enum TypeWorkObject

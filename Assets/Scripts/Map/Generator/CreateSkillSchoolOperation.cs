@@ -72,15 +72,15 @@ public class CreateSkillSchoolOperation : ILoadingOperation
                         // && _root.gridTileHelper.CalculateNeighbours(currentNode) == 8
                         )
                     {
-                        var factory = new EntityMapObjectFactory();
+                        // var factory = new EntityMapObjectFactory();
 
-                        BaseEntity entity = factory.CreateMapObject(TypeMapObject.Skills, configData);
+                        EntityMapObject entity = new EntityMapObject(configData);
 
                         UnitManager.SpawnEntityMapObjectToNode(currentNode, entity);
                         // _root.UnitManager
                         //     .SpawnMapObjectAsync(currentNode, TypeMapObject.SkillSchool);
 
-                        BaseEntity warrior = UnitManager.SpawnEntityCreature(nodeWarrior, currentNode, 1, configData.RMGValue);
+                        MapObject warrior = UnitManager.SpawnEntityCreature(nodeWarrior, currentNode, 1, configData.RMGValue);
 
                         // nodeWarrior.SetProtectedNeigbours(warrior, currentNode);
                         // currentNode.SetProtectedNode(warrior);

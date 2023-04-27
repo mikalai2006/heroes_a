@@ -22,8 +22,6 @@ public class CreateExploreOperation : ILoadingOperation
         var t = new LocalizedString(Constants.LanguageTable.LANG_TABLE_UILANG, "createdgameobject").GetLocalizedString();
         onSetNotify(t + " explore ...");
 
-        var factory = new EntityMapObjectFactory();
-
         for (int x = 0; x < LevelManager.Instance.Level.listArea.Count; x++)
         {
             Area area = LevelManager.Instance.Level.listArea[x];
@@ -57,8 +55,8 @@ public class CreateExploreOperation : ILoadingOperation
                         .GetEntityByType<ScriptableEntityMapObject>(TypeEntity.MapObject)
                         .Where(t => t.TypeMapObject == TypeMapObject.Explore)
                         .ToList();
-                    ScriptableEntityMapObject configData
-                        = list[UnityEngine.Random.Range(0, list.Count)];
+                    ScriptableEntityExplore configData
+                        = (ScriptableEntityExplore)list[UnityEngine.Random.Range(0, list.Count)];
 
                     if (nodeWarrior != null
                         && currentNode.StateNode.HasFlag(StateNode.Empty)
@@ -69,11 +67,10 @@ public class CreateExploreOperation : ILoadingOperation
                         && _root.gridTileHelper.GetAllowInsertObjectToNode(currentNode, configData)
                         )
                     {
-                        EntityExpore entity
-                            = (EntityExpore)factory.CreateMapObject(TypeMapObject.Explore, configData);
+                        EntityExpore entity = new EntityExpore(configData);
                         UnitManager.SpawnEntityMapObjectToNode(currentNode, entity);
 
-                        BaseEntity warrior = UnitManager.SpawnEntityCreature(nodeWarrior, currentNode);
+                        MapObject warrior = UnitManager.SpawnEntityCreature(nodeWarrior, currentNode);
 
                         // nodeWarrior.SetProtectedNeigbours(warrior, currentNode);
                         // currentNode.SetProtectedNode(warrior);

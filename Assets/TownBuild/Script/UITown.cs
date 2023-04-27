@@ -29,8 +29,8 @@ public class UITown : UILocaleBase
     private string NameOverlay = "Overlay";
 
     private Camera _cameraMain;
-    public ScriptableBuildTown _activeBuildTown;
-    private AsyncOperationHandle<ScriptableBuildTown> _asset;
+    public ScriptableEntityTown _activeBuildTown;
+    private AsyncOperationHandle<ScriptableEntityTown> _asset;
 
     public void Init(SceneInstance townScene)
     {
@@ -42,8 +42,7 @@ public class UITown : UILocaleBase
         _activeTown = _activePlayer.ActiveTown;
 
         // Init town prefab.
-        ScriptableEntityTown scriptDataTown = (ScriptableEntityTown)_activeTown.ScriptableData;
-        _activeBuildTown = scriptDataTown.BuildTown;
+        _activeBuildTown = _activeTown.ConfigData;
 
         _bgImage.sprite = _activeBuildTown.Bg;
         _box = _uiDoc.rootVisualElement;

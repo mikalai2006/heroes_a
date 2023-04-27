@@ -1,3 +1,5 @@
+using Cysharp.Threading.Tasks;
+
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "WarMachineEffect", menuName = "Game/Effect/EffectWarMachine")]
@@ -6,9 +8,9 @@ public class EffectWarMachine : BaseEffect
     public TypeWarMachine TypeWarMachine;
     public int count;
 
-    public override void RunHero(ref Player player, BaseEntity entity)
+    public override void RunHero(Player player, BaseEntity entity)
     {
-        base.RunHero(ref player, entity);
+        // base.RunHero(player, entity);
         // EntityMonolith monolith = (EntityMonolith)entity;
         // Vector3Int pointToTeleport
         //     = monolith.Data.portalPoints[Random.Range(0, monolith.Data.portalPoints.Count)];

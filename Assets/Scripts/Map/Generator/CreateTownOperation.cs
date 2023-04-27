@@ -51,7 +51,15 @@ public class CreateTownOperation : ILoadingOperation
                 Player player = LevelManager.Instance.GetPlayer(area.idPlayer);
 
                 //Create town.
-                var entityTown = new EntityTown(node.TypeGround, player != null ? player.StartSetting.town : null);
+                ScriptableEntityTown configData
+                    = ResourceSystem.Instance
+                    .GetEntityByType<ScriptableEntityTown>(TypeEntity.Town)
+                    // .Where(t => t.ty)
+                    .First();
+                var entityTown = new EntityTown(
+                    node.TypeGround,
+                    player != null ? player.StartSetting.town : null
+                    );
                 UnitManager.SpawnEntityMapObjectToNode(node, entityTown);
 
                 node.AddStateNode(StateNode.Town);
@@ -62,13 +70,11 @@ public class CreateTownOperation : ILoadingOperation
                     entityTown.SetPlayer(player);
                 }
 
-                ScriptableEntityTown configTown = (ScriptableEntityTown)entityTown.ScriptableData;
-
                 // Spawn hero.
                 if (player != null)
                 {
                     var hero = UnitManager.CreateHero(
-                        configTown.TypeFaction,
+                        entityTown.ConfigData.TypeFaction,
                         node,
                         player.StartSetting.hero
                     );
@@ -83,7 +89,7 @@ public class CreateTownOperation : ILoadingOperation
                 area.startPosition = node.position;
 
                 // Spawn mines.
-                for (int i = 0; i < configTown.mines.Count; i++)
+                for (int i = 0; i < entityTown.ConfigData.mines.Count; i++)
                 {
                     var listNodes = _root.gridTileHelper.GetAllGridNodes().Where(t =>
                     t.KeyArea == area.id
@@ -96,15 +102,12 @@ public class CreateTownOperation : ILoadingOperation
                    ).ToList();
                     if (listNodes.Count > 0)
                     {
-                        var factory = new EntityMapObjectFactory();
+                        // var factory = new EntityMapObjectFactory();
                         GridTileNode nodeForSpawn = listNodes.OrderBy(t => Random.value).First();
 
                         if (nodeForSpawn != null)
                         {
-                            EntityMine newmine = (EntityMine)factory.CreateMapObject(
-                                TypeMapObject.Mine,
-                                configTown.mines[i]
-                                );
+                            EntityMine newmine = new EntityMine(entityTown.ConfigData.mines[i]);
                             UnitManager.SpawnEntityMapObjectToNode(nodeForSpawn, newmine);
                         }
                     }

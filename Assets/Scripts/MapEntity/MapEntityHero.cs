@@ -47,18 +47,18 @@ public class MapEntityHero : BaseMapEntity
 
     #endregion
 
-    public override void InitUnit(BaseEntity mapObject)
+    public override void InitUnit(MapObject mapObject)
     {
 
         base.InitUnit(mapObject);
-        MapObjectClass = (EntityHero)mapObject;
+        // MapObjectClass = (EntityHero)mapObject;
         // Data.hit = 100f;
         // Data.speed = 100;
         // Data.name = MapObjectClass.ScriptableData.name;
 
-        if (mapObject.Player != null)
+        if (mapObject.Entity.Player != null)
         {
-            SetPlayer(mapObject.Player);
+            SetPlayer(mapObject.Entity.Player);
         }
     }
 
@@ -79,7 +79,7 @@ public class MapEntityHero : BaseMapEntity
 
     private void OnChangeGameState(GameState newState)
     {
-        var entityHero = (EntityHero)MapObjectClass;
+        var entityHero = (EntityHero)_mapObject.Entity;
         // _canMove = newState == GameState.StartMoveHero && this.MapObjectClass ==
         //     LevelManager.Instance.ActivePlayer.DataPlayer.PlayerDataReferences.ActiveHero;
         // if (_canMove && entityHero.IsExistPath)
@@ -93,7 +93,7 @@ public class MapEntityHero : BaseMapEntity
         {
             case GameState.NextPlayer:
                 entityHero.Data.hit = 100f;
-                var data = (EntityHero)MapObjectClass;
+                var data = (EntityHero)_mapObject.Entity;
                 data.Data.hit = 100f;
                 data.Data.mana = 100f;
                 break;
@@ -102,14 +102,14 @@ public class MapEntityHero : BaseMapEntity
 
     public async UniTask StartMove()
     {
-        var entityHero = (EntityHero)MapObjectClass;
+        var entityHero = (EntityHero)_mapObject.Entity;
         // _canMove = this.MapObjectClass ==
         //     LevelManager.Instance.ActivePlayer.DataPlayer.PlayerDataReferences.ActiveHero;
         //     _canMove &&
         _canMove = true;
         if (entityHero.IsExistPath)
         {
-            if (entityHero.Data.path[0] == entityHero.OccupiedNode) entityHero.Data.path.RemoveAt(0);
+            if (entityHero.Data.path[0] == _mapObject.OccupiedNode) entityHero.Data.path.RemoveAt(0);
             cancelTokenSource = new CancellationTokenSource();
             await MoveHero(cancelTokenSource.Token);
         }
@@ -117,7 +117,7 @@ public class MapEntityHero : BaseMapEntity
 
     private async UniTask MoveHero(CancellationToken cancellationToken)
     {
-        var entityHero = (EntityHero)MapObjectClass;
+        var entityHero = (EntityHero)_mapObject.Entity;
         while (
             entityHero.Data.path.Count > 0
             && _canMove
@@ -127,7 +127,7 @@ public class MapEntityHero : BaseMapEntity
         {
             var nodeTo = entityHero.Data.path[0];
             ScriptableEntityMapObject configNodeData
-                = (ScriptableEntityMapObject)nodeTo.OccupiedUnit?.ScriptableData;
+                = (ScriptableEntityMapObject)nodeTo.OccupiedUnit?.ConfigData;
             Vector3 moveKoof
                 = configNodeData?.RulesInput.Count > 0 || nodeTo.StateNode.HasFlag(StateNode.Input)
                     ? new Vector3(.5f, .0f)
@@ -151,7 +151,7 @@ public class MapEntityHero : BaseMapEntity
 
             if (!cancellationToken.IsCancellationRequested && nodeTo.OccupiedUnit != null)
             {
-                var maoObj = (ScriptableEntityMapObject)nodeTo.OccupiedUnit.ScriptableData;
+                var maoObj = (ScriptableEntityMapObject)nodeTo.OccupiedUnit.ConfigData;
                 if (maoObj.TypeWorkObject == TypeWorkObject.One)
                 {
                     // // _canMove = false;
@@ -169,7 +169,7 @@ public class MapEntityHero : BaseMapEntity
             }
             if (!cancellationToken.IsCancellationRequested)
             {
-                UpdateAnimate(MapObjectClass.Position, nodeTo.position);
+                UpdateAnimate(_mapObject.Position, nodeTo.position);
                 _animator.SetBool("isWalking", true);
 
                 // yield return StartCoroutine(
@@ -210,13 +210,13 @@ public class MapEntityHero : BaseMapEntity
 
     public async UniTask DoObject(GridTileNode nodeTo, BaseMapEntity mapEntity)
     {
-        var entityHero = (EntityHero)MapObjectClass;
+        var entityHero = (EntityHero)_mapObject.Entity;
 
         GameManager.Instance.ChangeState(GameState.StopMoveHero);
         _canMove = false;
         _animator.SetBool("isWalking", false);
 
-        await mapEntity.OnGoHero(MapObjectClass.Player);
+        await mapEntity.OnGoHero(_mapObject.Entity.Player);
         entityHero.ChangeHitHero(nodeTo);
         entityHero.SetPathHero(null);
     }
@@ -263,7 +263,7 @@ public class MapEntityHero : BaseMapEntity
 
     public void ChangeHit(GridTileNode node, float _hit)
     {
-        var data = (EntityHero)MapObjectClass;
+        var data = (EntityHero)_mapObject.Entity;
         data.Data.hit += _hit * data.Data.speed;
     }
 
@@ -282,10 +282,10 @@ public class MapEntityHero : BaseMapEntity
 
         //Debug.Log("Unit clicked");
 
-        if (LevelManager.Instance.ActivePlayer.DataPlayer.PlayerDataReferences.ListHero.Contains((EntityHero)this.GetMapObjectClass))
+        if (LevelManager.Instance.ActivePlayer.DataPlayer.PlayerDataReferences.ListHero.Contains((EntityHero)this.MapObject.Entity))
         {
             //LevelManager.Instance.GetActivePlayer().SetActiveHero(this);
-            EntityHero entityHero = (EntityHero)MapObjectClass;
+            EntityHero entityHero = (EntityHero)_mapObject.Entity;
             entityHero.SetHeroAsActive();
             Debug.Log($"Check My hero {name}");
         }

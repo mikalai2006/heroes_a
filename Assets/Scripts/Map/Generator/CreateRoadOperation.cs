@@ -38,16 +38,16 @@ public class CreateRoadOperation : ILoadingOperation
             if (listArea[i].portal != null && listArea[i].town != null)
             {
                 await _root.OnDrawRoad(
-                    new Vector3Int(listArea[i].town.Position.x, listArea[i].town.Position.y, 0),
-                    new Vector3Int(listArea[i].portal.Position.x, listArea[i].portal.Position.y, 0)
+                    new Vector3Int(listArea[i].town.MapObject.Position.x, listArea[i].town.MapObject.Position.y, 0),
+                    new Vector3Int(listArea[i].portal.MapObject.Position.x, listArea[i].portal.MapObject.Position.y, 0)
                 );
             }
             if (listArea[i + 1].portal != null && listArea[i + 1].town != null)
             {
                 // TODO None town.
                 await _root.OnDrawRoad(
-                    new Vector3Int(listArea[i + 1].town.Position.x, listArea[i + 1].town.Position.y, 0),
-                    new Vector3Int(listArea[i + 1].portal.Position.x, listArea[i + 1].portal.Position.y, 0)
+                    new Vector3Int(listArea[i + 1].town.MapObject.Position.x, listArea[i + 1].town.MapObject.Position.y, 0),
+                    new Vector3Int(listArea[i + 1].portal.MapObject.Position.x, listArea[i + 1].portal.MapObject.Position.y, 0)
                 );
             }
         }
@@ -61,8 +61,8 @@ public class CreateRoadOperation : ILoadingOperation
         if (listArea[0].portal != null && listArea[0].town != null)
         {
             await _root.OnDrawRoad(
-                new Vector3Int(listArea[0].town.Position.x, listArea[0].town.Position.y, 0),
-                new Vector3Int(listArea[0].portal.Position.x, listArea[0].portal.Position.y, 0)
+                new Vector3Int(listArea[0].town.MapObject.Position.x, listArea[0].town.MapObject.Position.y, 0),
+                new Vector3Int(listArea[0].portal.MapObject.Position.x, listArea[0].portal.MapObject.Position.y, 0)
             );
         }
 

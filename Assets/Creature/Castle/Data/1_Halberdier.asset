@@ -9,30 +9,39 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19cb10a342ed64d48903250df526d9b2, type: 3}
+  m_Script: {fileID: 11500000, guid: a859413fb054f5c4797ac09356b08ded, type: 3}
   m_Name: 1_Halberdier
   m_EditorClassIdentifier: 
   idObject: creature.halberdier
-  TypeEntity: 10
+  TypeAttribute: 80
   MenuSprite: {fileID: 896504227, guid: e7a6d1e198529c44c93ed148f1bf1afe, type: 3}
-  title:
-    m_TableReference:
-      m_TableCollectionName: GUID:b4e7cd63f22a6d74db78346f658a168b
-    m_TableEntryReference:
-      m_KeyId: 1406959619309568
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
+  Text:
+    title:
+      m_TableReference:
+        m_TableCollectionName: GUID:b4e7cd63f22a6d74db78346f658a168b
+      m_TableEntryReference:
+        m_KeyId: 1406959619309568
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    description:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+  TypeFaction: 0
   MapPrefab:
     m_AssetGUID: 0ea752b7eda2afe4283598735d44b787
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
-  TypeGround: 0
-  TypeFaction: 0
   ArenaModel:
-    m_AssetGUID: 
+    m_AssetGUID: 4a99ad6cda2456e45bad9ecf5d10c919
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0

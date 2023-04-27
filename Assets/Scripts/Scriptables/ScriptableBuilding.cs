@@ -168,7 +168,7 @@ public struct Build
     {
         foreach (var effect in Effect.RunHero)
         {
-            effect.RunHero(ref player, entity);
+            effect.RunHero(player, entity);
         }
     }
 }

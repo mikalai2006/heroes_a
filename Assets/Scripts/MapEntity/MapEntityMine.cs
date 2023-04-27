@@ -7,12 +7,12 @@ using UnityEngine;
 public class MapEntityMine : BaseMapEntity, IDialogMapObjectOperation
 {
     private SpriteRenderer _flag;
-    public override void InitUnit(BaseEntity mapObject)
+    public override void InitUnit(MapObject mapObject)
     {
         base.InitUnit(mapObject);
-        if (mapObject.Player != null)
+        if (mapObject.Entity.Player != null)
         {
-            SetPlayer(mapObject.Player);
+            SetPlayer(mapObject.Entity.Player);
         }
     }
 
@@ -58,19 +58,19 @@ public class MapEntityMine : BaseMapEntity, IDialogMapObjectOperation
         {
             Values = new List<DataDialogMapObjectGroupItem>()
         };
-        EntityMine entity = (EntityMine)MapObjectClass;
-        ScriptableEntityMine configData = (ScriptableEntityMine)MapObjectClass.ScriptableData;
-        foreach (var effect in configData.Effects[entity.DataEffects.index].Item.items)
+        EntityMine entity = (EntityMine)_mapObject.Entity;
+        ScriptableEntityMine configData = (ScriptableEntityMine)_mapObject.ConfigData;
+        foreach (var effect in configData.Effects[entity.Effects.index].Item.items)
         {
             effect.CreateDialogData(ref _dialogData, entity);
         }
 
-        var description = configData.Attributes[entity.DataEffects.index].Item.description.IsEmpty ?
-            "" : configData.Attributes[entity.DataEffects.index].Item.description.GetLocalizedString();
+        var description = configData.Effects[entity.Effects.index].Item.description.IsEmpty ?
+            "" : configData.Effects[entity.Effects.index].Item.description.GetLocalizedString();
 
         var dialogData = new DataDialogMapObject()
         {
-            Header = configData.title.GetLocalizedString(),
+            Header = configData.Text.title.GetLocalizedString(),
             Description = description,
             Sprite = configData.MenuSprite,
         };
@@ -81,7 +81,7 @@ public class MapEntityMine : BaseMapEntity, IDialogMapObjectOperation
 
     private void OnHeroGo(Player player)
     {
-        var entity = (EntityMine)MapObjectClass;
+        var entity = (EntityMine)_mapObject.Entity;
         entity.SetPlayer(player);
         SetPlayer(player);
     }

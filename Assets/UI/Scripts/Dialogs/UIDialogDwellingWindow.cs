@@ -34,7 +34,7 @@ public class UIDialogDwellingWindow : UIDialogBaseWindow
 
     private EntityDwelling _dwelling;
     private DataResultDialogDwelling _dataResultDialog;
-    private ScriptableEntityCreature _creature;
+    private ScriptableAttributeCreature _creature;
     private Dictionary<Label, int> _labelsTotalCost = new Dictionary<Label, int>();
     private List<CostEntity> _costEntities = new List<CostEntity>();
 
@@ -172,14 +172,14 @@ public class UIDialogDwellingWindow : UIDialogBaseWindow
         _creature = configData.Creature[_dwelling.Data.level];
         _dataResultDialog = new DataResultDialogDwelling();
 
-        var nameCreature = configData.Creature[_dwelling.Data.level].title.IsEmpty ?
-            "" : configData.Creature[_dwelling.Data.level].title.GetLocalizedString();
+        var nameCreature = configData.Creature[_dwelling.Data.level].Text.title.IsEmpty ?
+            "" : configData.Creature[_dwelling.Data.level].Text.title.GetLocalizedString();
 
         _availableCountLabel.text = _dwelling.Data.value.ToString();
         _sliderValue.highValue = _dwelling.Data.value;
         _sliderValue.lowValue = _sliderValue.value = 0;
 
-        var title = _creature.title.GetLocalizedString();
+        var title = _creature.Text.title.GetLocalizedString();
         LocalizedString textHire = new LocalizedString(Constants.LanguageTable.LANG_TABLE_UILANG, "hire");
         Title.text = textHire.GetLocalizedString() + "<color=#FFFFAB>" + title + "</color>";
 

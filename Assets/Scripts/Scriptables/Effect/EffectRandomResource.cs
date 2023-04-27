@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 
+using Cysharp.Threading.Tasks;
+
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "RandomResourceEffect", menuName = "Game/Effect/EffectRandomResource")]
@@ -10,10 +12,11 @@ public class EffectRandomResource : BaseEffect, IEffected
     public int max;
     public int step;
 
-    public override void RunHero(ref Player player, BaseEntity entity)
+    public override void RunHero(Player player, BaseEntity entity)
     {
-        base.RunHero(ref player, entity);
-        var currentEffectData = entity.DataEffects.Effects.Find(t => t.ide == idEffect);
+        // base.RunHero(player, entity);
+
+        var currentEffectData = entity.Effects.Effects.Find(t => t.ide == idEffect);
         var currentResource = ResourceSystem.Instance
             .GetAttributesByType<ScriptableAttributeResource>(TypeAttribute.Resource)
             .Find(t => t.idObject == currentEffectData.ido);
@@ -25,7 +28,7 @@ public class EffectRandomResource : BaseEffect, IEffected
         base.SetData(entity);
         var randomResource = Resources[Random.Range(0, Resources.Count)];
         var index = Helpers.GenerateValueByRangeAndStep(min, max, step);
-        entity.DataEffects.Effects.Add(new DataEntityEffectsBase()
+        entity.Effects.Effects.Add(new DataEntityEffectsBase()
         {
             value = index,
             Effect = this,
@@ -38,7 +41,7 @@ public class EffectRandomResource : BaseEffect, IEffected
     public override void CreateDialogData(ref DataDialogMapObjectGroup dialogData, BaseEntity entity)
     {
         base.CreateDialogData(ref dialogData, entity);
-        var currentEffect = (DataEntityEffectsBase)entity.DataEffects.Effects.Find(t => t.ide == idEffect);
+        var currentEffect = (DataEntityEffectsBase)entity.Effects.Effects.Find(t => t.ide == idEffect);
         var randomResource = ResourceSystem.Instance
             .GetAttributesByType<ScriptableAttributeResource>(TypeAttribute.Resource)
             .Find(t => t.idObject == currentEffect.ido);

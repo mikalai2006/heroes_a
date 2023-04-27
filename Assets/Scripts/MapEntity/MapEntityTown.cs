@@ -11,14 +11,14 @@ using UnityEngine.EventSystems;
 public class MapEntityTown : BaseMapEntity
 {
     [SerializeField] private List<GameObject> levels;
-    public override void InitUnit(BaseEntity mapObject)
+    public override void InitUnit(MapObject mapObject)
     {
 
         base.InitUnit(mapObject);
 
-        if (mapObject.Player != null)
+        if (mapObject.Entity.Player != null)
         {
-            SetPlayer(mapObject.Player);
+            SetPlayer(mapObject.Entity.Player);
         }
         RefreshLevelBuild();
     }
@@ -54,7 +54,7 @@ public class MapEntityTown : BaseMapEntity
             var loadingOperations = new Queue<ILoadingOperation>();
 
             // GameManager.Instance.AssetProvider.UnloadAdditiveScene(_scene);
-            var town = (EntityTown)GetMapObjectClass;
+            var town = (EntityTown)MapObject.Entity;
             player.SetActiveTown(town);
             // player.ActiveTown.SetGuest(player.ActiveHero);
             loadingOperations.Enqueue(new TownLoadOperation(town));
@@ -66,17 +66,17 @@ public class MapEntityTown : BaseMapEntity
     {
         if (
             eventData.clickCount >= 2
-            && GetMapObjectClass.Player == LevelManager.Instance.ActivePlayer
+            && MapObject.Entity.Player == LevelManager.Instance.ActivePlayer
             )
         {
-            await OnGoHero(GetMapObjectClass.Player);
+            await OnGoHero(MapObject.Entity.Player);
         }
         base.OnPointerClick(eventData);
     }
 
     public void RefreshLevelBuild()
     {
-        var level = ((EntityTown)MapObjectClass).Data.level;
+        var level = ((EntityTown)_mapObject.Entity).Data.level;
         var activeLevel = level + 1;
         if (levels.Count == 0) return;
 

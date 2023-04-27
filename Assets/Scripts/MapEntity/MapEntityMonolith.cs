@@ -3,7 +3,7 @@ using Cysharp.Threading.Tasks;
 
 public class MapEntityMonolith : BaseMapEntity, IDialogMapObjectOperation
 {
-    public override void InitUnit(BaseEntity mapObject)
+    public override void InitUnit(MapObject mapObject)
     {
         base.InitUnit(mapObject);
     }
@@ -15,7 +15,7 @@ public class MapEntityMonolith : BaseMapEntity, IDialogMapObjectOperation
         {
             // Header = MapObjectClass.ScriptableData.Text.title.GetLocalizedString(),
             // Description = t.Text.visit_ok,
-            Sprite = MapObjectClass.ScriptableData.MenuSprite,
+            Sprite = _mapObject.ConfigData.MenuSprite,
         };
 
         var dialogWindow = new DialogMapObjectProvider(dialogData);
@@ -30,7 +30,7 @@ public class MapEntityMonolith : BaseMapEntity, IDialogMapObjectOperation
             DataResultDialog result = await OnTriggeredHero();
             if (result.isOk)
             {
-                MapObjectClass.SetPlayer(player);
+                _mapObject.SetPlayer(player);
             }
             else
             {

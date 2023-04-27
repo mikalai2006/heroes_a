@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewEntityMine", menuName = "Game/Entity/MapObject/Mine")]
+[CreateAssetMenu(fileName = "NewEntityMine", menuName = "Game/Entity/Mine")]
 public class ScriptableEntityMine : ScriptableEntityMapObject, IEffected
 {
     [Header("Options Mine")]
@@ -11,18 +11,18 @@ public class ScriptableEntityMine : ScriptableEntityMapObject, IEffected
     // [Header("Options Perk")]
     // public List<EntityMinePerk> Resources;
 
-    public override void RunHero(ref Player player, BaseEntity entity)
-    {
-        base.RunHero(ref player, entity);
-    }
-    // public MapObjectType TypeMapObject;
-    // public TypeWorkMapObject TypeWork;
-    // public List<GroupResource> Resources;
-    // public List<GroupSkill> Skills;
-    // public List<GroupTwoSkill> TwoSkills;
-    // public List<GroupArtifact> Artifacts;
-    // public MapObjectType TypeMapObject;
-    // public TypeWorkPerk TypeWorkMapObject;
+    // public override UniTask RunHero(Player player, BaseEntity entity)
+    // {
+    //     base.RunHero(player, entity);
+    // }
+    // // public MapObjectType TypeMapObject;
+    // // public TypeWorkMapObject TypeWork;
+    // // public List<GroupResource> Resources;
+    // // public List<GroupSkill> Skills;
+    // // public List<GroupTwoSkill> TwoSkills;
+    // // public List<GroupArtifact> Artifacts;
+    // // public MapObjectType TypeMapObject;
+    // // public TypeWorkPerk TypeWorkMapObject;
 }
 
 [System.Serializable]

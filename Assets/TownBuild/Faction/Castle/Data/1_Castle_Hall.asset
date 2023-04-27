@@ -173,7 +173,8 @@ MonoBehaviour:
     - Resource: {fileID: 11400000, guid: 3894d4d068775c343b5c4bf1510dee33, type: 2}
       Count: 10000
     Effect:
-      One: []
+      One:
+      - {fileID: 11400000, guid: 165a36eccbe052a4e886b4400369f3dd, type: 2}
       EveryDay: []
       EveryWeek: []
       RunHero: []

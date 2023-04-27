@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 
+using Cysharp.Threading.Tasks;
+
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "DwellingEffect", menuName = "Game/Effect/EffectDwelling")]
@@ -9,12 +11,12 @@ public class EffectDwelling : BaseEffect, IEffected
     // [Header("Options Effect")]
     // public TypeWorkObject TypeWorkObject;
 
-    public override void RunHero(ref Player player, BaseEntity entity)
+    public override void RunHero(Player player, BaseEntity entity)
     {
-        base.RunHero(ref player, entity);
+        // base.RunHero(player, entity);
 
         var _enity = (EntityDwelling)entity;
-        var configData = (ScriptableEntityDwelling)entity.ScriptableData;
+        var configData = (ScriptableEntityDwelling)_enity.ConfigData;
 
         Debug.Log($"EffectDwelling run {_enity.Data.level}-{configData.name}!");
     }

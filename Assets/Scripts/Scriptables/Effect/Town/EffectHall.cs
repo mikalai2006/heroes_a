@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "HallEffect", menuName = "Game/Effect/EffectHall")]
@@ -8,7 +10,8 @@ public class EffectHall : BaseEffect
     {
         // base.RunOne(ref player, entity);
 
-        ((EntityTown)entity).Data.goldin = goldin;
-        Debug.Log($"Run EffectHall::: {((EntityTown)entity).Data.goldin}");
+        var res = ((EntityTown)entity).Data.Resources.GetValueOrDefault(TypeResource.Gold);
+        res = goldin;
+        Debug.Log($"Run EffectHall::: value={goldin}");
     }
 }

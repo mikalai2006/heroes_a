@@ -84,13 +84,12 @@ public class UIDialogHeroInfo : UIDialogBaseWindow
         FillCreaturesBlok();
         FillArtifactsBlok();
 
+        ScriptableEntityHero configDataHero = _hero.ConfigData;
 
-        if (_hero.ConfigData.MenuSprite != null)
+        if (configDataHero.MenuSprite != null)
         {
-            _avaHero.style.backgroundImage = new StyleBackground(_hero.ConfigData.MenuSprite);
+            _avaHero.style.backgroundImage = new StyleBackground(configDataHero.MenuSprite);
         }
-        ScriptableEntityHero configDataHero
-            = (ScriptableEntityHero)_hero.ScriptableData;
         Title.style.display = DisplayStyle.None;
 
         _nameHero.text = _hero.Data.name;

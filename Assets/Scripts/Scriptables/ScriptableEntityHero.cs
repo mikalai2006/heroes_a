@@ -1,9 +1,11 @@
 using System.Collections.Generic;
 
+using Cysharp.Threading.Tasks;
+
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "NewEntityHero", menuName = "Game/Entity/Hero")]
-public class ScriptableEntityHero : ScriptableEntity
+public class ScriptableEntityHero : ScriptableEntityMapObject, IEffected
 {
     [Header("Options Hero")]
     public TypeFaction TypeFaction;
@@ -12,12 +14,21 @@ public class ScriptableEntityHero : ScriptableEntity
     public List<LevelSecondarySkill> StartSecondarySkill;
     public List<StartCreatureItem> StartCreatures;
 
+    // public override UniTask RunHero(Player player, BaseEntity entity)
+    // {
+    //     // base.RunHero(player, entity);
+    //     // foreach (var primarySkill in Skills)
+    //     // {
+    //     //     Debug.Log($"Increment hero skills {primarySkill.PrimarySkill.name}[{primarySkill.value}]");
+    //     // }
+
+    // }
 }
 
 [System.Serializable]
 public struct StartCreatureItem
 {
-    public ScriptableEntityCreature creature;
+    public ScriptableAttributeCreature creature;
     public int min;
     public int max;
 }

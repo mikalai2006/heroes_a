@@ -9,12 +9,12 @@ using UnityEngine.Localization.SmartFormat.PersistentVariables;
 public class MapEntityDwelling : BaseMapEntity, IDialogMapObjectOperation
 {
     private SpriteRenderer _flag;
-    public override void InitUnit(BaseEntity mapObject)
+    public override void InitUnit(MapObject mapObject)
     {
         base.InitUnit(mapObject);
-        if (mapObject.Player != null)
+        if (mapObject.Entity.Player != null)
         {
-            SetPlayer(mapObject.Player);
+            SetPlayer(mapObject.Entity.Player);
         }
     }
     protected override void Awake()
@@ -58,19 +58,19 @@ public class MapEntityDwelling : BaseMapEntity, IDialogMapObjectOperation
 
     private void OnHeroGo(Player player)
     {
-        MapObjectClass.SetPlayer(player);
+        _mapObject.SetPlayer(player);
         SetPlayer(player);
     }
 
     public async UniTask<DataResultDialog> OnTriggeredHero()
     {
-        EntityDwelling entity = (EntityDwelling)MapObjectClass;
-        ScriptableEntityDwelling configData = (ScriptableEntityDwelling)MapObjectClass.ScriptableData;
+        EntityDwelling entity = (EntityDwelling)_mapObject.Entity;
+        ScriptableEntityDwelling configData = (ScriptableEntityDwelling)_mapObject.ConfigData;
 
         var dataPlural = new Dictionary<string, int> { { "value", 0 } };
         var arguments = new[] { dataPlural };
         var titlePlural = Helpers.GetLocalizedPluralString(
-            configData.Creature[entity.Data.level].title,
+            configData.Creature[entity.Data.level].Text.title,
             arguments,
             dataPlural
             );
@@ -82,7 +82,7 @@ public class MapEntityDwelling : BaseMapEntity, IDialogMapObjectOperation
 
         var dialogData = new DataDialogMapObject()
         {
-            Header = configData.title.GetLocalizedString(),
+            Header = configData.Text.title.GetLocalizedString(),
             Description = description.GetLocalizedString(),
             // Sprite = this.ScriptableData.MenuSprite,
             TypeCheck = TypeCheck.OnlyOk,
@@ -95,7 +95,7 @@ public class MapEntityDwelling : BaseMapEntity, IDialogMapObjectOperation
 
     public async UniTask<DataResultDialogDwelling> OnShowDialogDwelling()
     {
-        EntityDwelling entity = (EntityDwelling)MapObjectClass;
+        EntityDwelling entity = (EntityDwelling)_mapObject.Entity;
         var dialogWindow = new DialogDwellingProvider(entity);
         return await dialogWindow.ShowAndHide();
     }

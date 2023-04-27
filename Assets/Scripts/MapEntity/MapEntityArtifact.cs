@@ -12,16 +12,16 @@ public class MapEntityArtifact : BaseMapEntity, IDialogMapObjectOperation
         _model = transform.Find("Model");
     }
 
-    public override void InitUnit(BaseEntity mapObject)
+    public override void InitUnit(MapObject mapObject)
     {
         base.InitUnit(mapObject);
 
-        ScriptableEntityArtifact dataArtifact = (ScriptableEntityArtifact)MapObjectClass.ScriptableData;
-        EntityArtifact entityArtifact = (EntityArtifact)MapObjectClass;
+        ScriptableEntityOther dataArtifact = (ScriptableEntityOther)_mapObject.ConfigData;
+        EntityArtifact entityArtifact = (EntityArtifact)_mapObject.Entity;
 
-        if (entityArtifact.ConfigArtifact != null)
+        if (entityArtifact.ConfigAttribute != null)
         {
-            _model.GetComponent<SpriteRenderer>().sprite = entityArtifact.ConfigArtifact.spriteMap;
+            _model.GetComponent<SpriteRenderer>().sprite = entityArtifact.ConfigAttribute.spriteMap;
         }
 
     }
@@ -33,12 +33,12 @@ public class MapEntityArtifact : BaseMapEntity, IDialogMapObjectOperation
         //     { "name", new StringVariable { Value = this.ScriptableData.name } },
         // };
         // var t = HelperLanguage.GetLocaleText(this.ScriptableData.Locale);
-        var configData = (ScriptableEntityArtifact)MapObjectClass.ScriptableData;
+        var configData = (EntityArtifact)_mapObject.Entity;
         var dialogData = new DataDialogMapObject()
         {
-            Header = configData.Artifact.Text.title.GetLocalizedString(),
-            Description = configData.Artifact.textOk.GetLocalizedString(),
-            Sprite = configData.Artifact.MenuSprite
+            Header = configData.ConfigAttribute.Text.title.GetLocalizedString(),
+            Description = configData.ConfigAttribute.textOk.GetLocalizedString(),
+            Sprite = configData.ConfigAttribute.MenuSprite
         };
 
         var dialogWindow = new DialogMapObjectProvider(dialogData);
@@ -70,7 +70,7 @@ public class MapEntityArtifact : BaseMapEntity, IDialogMapObjectOperation
 
     private void OnHeroGo(Player player)
     {
-        MapObjectClass.SetPlayer(player);
+        _mapObject.SetPlayer(player);
         // MapObjectClass.DestroyEntity();
         // Destroy(gameObject);
 

@@ -15,11 +15,11 @@ public class ScriptableAttributeArtifact : ScriptableAttribute
     public List<ArtifactItemSkill> SecondarySkills;
     public LocalizedString textOk;
     public List<BaseEffect> Effects;
-    public virtual void RunHero(ref Player player, BaseEntity entity)
+    public virtual void RunHero(Player player, BaseEntity entity)
     {
         foreach (var perk in Effects)
         {
-            perk.RunHero(ref player, entity);
+            perk.RunHero(player, entity);
         }
     }
 }

@@ -73,7 +73,7 @@ public class UIDialogSplitCreatureWindow : UIDialogBaseWindow
         var dataPlural = new Dictionary<string, int> { { "value", 0 } };
         var arguments = new[] { dataPlural };
         var titlePlural = Helpers.GetLocalizedPluralString(
-            _startCreature.ConfigData.title,
+            _startCreature.ConfigData.Text.title,
             arguments,
             dataPlural
             );

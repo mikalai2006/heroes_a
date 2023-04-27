@@ -4,7 +4,6 @@ using UnityEngine.UIElements;
 using UnityEngine.Events;
 using System.Collections.Generic;
 using UnityEngine.Localization;
-using System.Linq;
 
 public class UITownBuildItemDialogWindow : MonoBehaviour
 {
@@ -126,7 +125,10 @@ public class UITownBuildItemDialogWindow : MonoBehaviour
             _requireBuildBlok.text = new LocalizedString(Constants.LanguageTable.LANG_TABLE_BUILD, "no_resource").GetLocalizedString();
         }
 
-        if (!isExistResource || _buildDialog.isNotBuild || _activeTown.Data.isBuild)
+        if (
+            !isExistResource
+            || _buildDialog.isNotBuild
+            || _activeTown.Data.countBuild >= LevelManager.Instance.ConfigGameSettings.countBuildPerDay)
         {
             _buttonOk.SetEnabled(false);
         }

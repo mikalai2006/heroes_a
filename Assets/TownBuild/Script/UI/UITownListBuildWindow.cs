@@ -29,7 +29,7 @@ public class UITownListBuildWindow : UILocaleBase
 
     private EntityTown _activeTown;
     private Player _activePlayer;
-    private ScriptableBuildTown _scriptObjectBuildTown;
+    private ScriptableEntityTown _scriptObjectBuildTown;
 
     // private Dictionary<TypeBuild, Build> AllBuilds = new Dictionary<TypeBuild, Build>();
 
@@ -61,8 +61,8 @@ public class UITownListBuildWindow : UILocaleBase
         }
 
         _listBuild.Clear();
-        ScriptableEntityTown scriptDataTown = (ScriptableEntityTown)_activeTown.ScriptableData;
-        _scriptObjectBuildTown = scriptDataTown.BuildTown; // ResourceSystem.Instance.GetBuildTowns().Where(t => t.TypeFaction == scriptDataTown.TypeFaction).First();
+        // ScriptableEntityTown scriptDataTown = (ScriptableEntityTown)_activeTown.ScriptableData;
+        _scriptObjectBuildTown = _activeTown.ConfigData; // ResourceSystem.Instance.GetBuildTowns().Where(t => t.TypeFaction == scriptDataTown.TypeFaction).First();
 
         var allowBuilds = _activeTown.GetLisNextLevelBuilds(_scriptObjectBuildTown);
 
@@ -91,7 +91,7 @@ public class UITownListBuildWindow : UILocaleBase
                 (_activeTown.GetListNeedNoBuilds(currentBuild.RequireBuilds).Count == 0
                 || currentBuild.RequireBuilds.Count == 0)
                 && _activePlayer.IsExistsResource(currentBuild.CostResource)
-                && !_activeTown.Data.isBuild
+                && _activeTown.Data.countBuild < LevelManager.Instance.ConfigGameSettings.countBuildPerDay
                 )
             {
                 item.AddToClassList("town_listbuild_allow");

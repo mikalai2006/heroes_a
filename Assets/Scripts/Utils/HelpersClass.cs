@@ -204,7 +204,9 @@ public static class Helpers
         {
             if (countEnd != -1 && countStart != -1)
             {
-                endCheckedCreatures[endPositionChecked] = endUnit = new EntityCreature(startUnit.ConfigData);
+                endCheckedCreatures[endPositionChecked]
+                    = endUnit
+                    = new EntityCreature(startUnit.ConfigAttribute);
 
                 if (startCheckedCreatures.Where(t => t.Value != null).Count() == 1)
                 {

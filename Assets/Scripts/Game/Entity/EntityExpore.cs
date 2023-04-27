@@ -22,7 +22,7 @@ public class EntityExpore : BaseEntity
         if (saveData == null)
         {
             ScriptableData = configData;
-            idObject = ScriptableData.idObject;
+            _idObject = ScriptableData.idObject;
         }
         else
         {
@@ -32,21 +32,21 @@ public class EntityExpore : BaseEntity
                 .First();
 
             Data = saveData.data;
-            idUnit = saveData.idUnit;
-            idObject = saveData.idObject;
-            DataEffects = saveData.DataEffects;
+            _idEntity = saveData.idEntity;
+            _idObject = saveData.idObject;
+            Effects = saveData.Effects;
         }
     }
 
     public override void SetPlayer(Player player)
     {
-        base.SetPlayer(player);
+        // base.SetPlayer(player);
 
-        // TODO PERK
-        List<GridTileNode> noskyNodes
-            = GameManager.Instance.MapManager.DrawSky(OccupiedNode.position, 10);
+        // // TODO PERK
+        // List<GridTileNode> noskyNodes
+        //     = GameManager.Instance.MapManager.DrawSky(OccupiedNode.position, 10);
 
-        player.SetNosky(noskyNodes);
+        // player.SetNosky(noskyNodes);
     }
 
     #region SaveLoadData

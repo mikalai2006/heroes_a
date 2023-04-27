@@ -8,6 +8,7 @@ using UnityEngine;
 public struct DataHero
 {
     public int idPlayer;
+    public string ide;
     public string name;
     public string idObject;
     public int level;

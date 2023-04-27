@@ -57,6 +57,7 @@ public class StartSetting
 
     public StartSetting()
     {
+        // TypePlayerItem = new CurrentPlayerType();
     }
 }
 
@@ -157,23 +158,21 @@ public class Player
             case GameState.NextWeek:
                 GenerateHeroForTavern();
                 break;
+                // case GameState.StartMoveHero:
+                //     await ActiveHero.StartMove();
+                //     break;
         }
     }
     #endregion
 
     public void SetActiveHero(EntityHero entityHero)
     {
-        // GameManager.Instance.ChangeState(GameState.ChooseHero);
-
         _data.PlayerDataReferences.ActiveHero = entityHero;
     }
 
     public void SetActiveTown(EntityTown entityTown)
     {
-        // GameManager.Instance.ChangeState(GameState.ChooseHero);
-
         _data.PlayerDataReferences.ActiveTown = entityTown;
-
     }
 
     public void AddHero(EntityHero hero)
@@ -228,7 +227,7 @@ public class Player
     {
         var newHero = UnitManager.CreateHero(
             TypeFaction.Neutral,
-            ActiveTown.OccupiedNode,
+            ActiveTown.MapObject.OccupiedNode,
             configData);
         newHero.SetPlayer(this);
         _data.HeroesInTavern.Remove(configData.idObject);
@@ -310,8 +309,8 @@ public class Player
         // _town.SetPlayer(DataPlayer);
         if (_data.typeFaction == TypeFaction.Neutral)
         {
-            ScriptableEntityTown townConfig = (ScriptableEntityTown)town.ScriptableData;
-            _data.typeFaction = townConfig.TypeFaction;
+            // ScriptableEntityTown townConfig = (ScriptableEntityTown)((EntityTown)town).ConfigData;
+            _data.typeFaction = ((EntityTown)town).ConfigData.TypeFaction;
         }
         DataPlayer.PlayerDataReferences.ListTown.Add((EntityTown)town);
 
@@ -325,22 +324,16 @@ public class Player
     public async UniTask RunBot()
     {
         // Debug.Log($"Bot::: Start - {this.DataPlayer.id}");
-
         foreach (var hero in _data.PlayerDataReferences.ListHero)
         {
-            SetActiveHero(hero);
+            hero.SetHeroAsActive();
             await hero.AIFind();
-            // Debug.Log($"Bot::: Set active hero {hero.ScriptableData.name}");
-            // Debug.Log($"Bot::: End Move hero {hero.ScriptableData.name}[hit={hero.Data.hit}]");
-            // GameManager.Instance.ChangeState(GameState.StartMoveHero);
         }
 
         // AI Make building.
         foreach (var town in _data.PlayerDataReferences.ListTown)
         {
-            ScriptableEntityTown entityTown = (ScriptableEntityTown)town.ScriptableData;
-            ScriptableBuildTown configBuildTown = (ScriptableBuildTown)entityTown.BuildTown;
-            var allCurrentLevelsBuilding = town.GetLisNextLevelBuilds(configBuildTown);
+            var allCurrentLevelsBuilding = town.GetLisNextLevelBuilds(town.ConfigData);
             Dictionary<ScriptableBuilding, int> allowBulding = new Dictionary<ScriptableBuilding, int>();
             foreach (var parentBuild in allCurrentLevelsBuilding)
             {

@@ -9,16 +9,45 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b683f785db006d44cb8e5ff14e6cded5, type: 3}
+  m_Script: {fileID: 11500000, guid: 0f947fec9b979d14a9eb6ab3859f5102, type: 3}
   m_Name: Stronghold
   m_EditorClassIdentifier: 
-  idObject: 2
-  TypeFaction: 1
-  Prefab:
-    m_AssetGUID: 38439e2bbd9ed8146be8394887145ef1
+  idObject: town.stronghold
+  TypeEntity: 80
+  MenuSprite: {fileID: 21300000, guid: 340488d12d6e4ac49ac03e4dea176590, type: 3}
+  Text:
+    title:
+      m_TableReference:
+        m_TableCollectionName: GUID:99ee07ddc90ffba41a3d18974d364707
+      m_TableEntryReference:
+        m_KeyId: 4674787021586432
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    description:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+  MapPrefab:
+    m_AssetGUID: 6a1b4cdbc76adae4a8d4ad518229a293
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
+  TypeGround: 16
+  TypeMapObject: 0
+  RMGValue: 0
+  listTypeNoPath: 0c0000000b000000060000000700000008000000030000000e0000000f000000090000000a0000000400000002000000
+  listRuleInput: 120000001100000013000000
+  TypeWorkObject: 0
+  TypeWorkEffect: 0
+  Effects: []
+  TypeFaction: 1
   Bg: {fileID: 21300000, guid: 8dde1a09cf9bdbd4b9a34a111564da93, type: 3}
   Builds:
   - {fileID: 11400000, guid: 901e42e66d4695b4ca23d066dbfe2877, type: 2}
@@ -40,7 +69,21 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1dbe3da8bc400f643ba5668058b373a7, type: 2}
   - {fileID: 11400000, guid: c742ca2ca7fd4da43a0a7b0898fe4fb8, type: 2}
   StartProgressBuilds:
-  - Build: {fileID: 11400000, guid: 901e42e66d4695b4ca23d066dbfe2877, type: 2}
-    level: 0
   - Build: {fileID: 11400000, guid: 8725e54349f74644fbbbffa322dd2be1, type: 2}
     level: 0
+  - Build: {fileID: 11400000, guid: 901e42e66d4695b4ca23d066dbfe2877, type: 2}
+    level: 0
+  TownNames:
+  - "\u0414\u0435\u043D\u0432\u0443\u0434"
+  - "\u0425\u0440\u0435\u043D\u044C"
+  LevelSprites:
+  - {fileID: 21300000, guid: 340488d12d6e4ac49ac03e4dea176590, type: 3}
+  - {fileID: 21300000, guid: d14b7e728cfb4094da073cdad76727ff, type: 3}
+  - {fileID: 21300000, guid: d14b7e728cfb4094da073cdad76727ff, type: 3}
+  - {fileID: 21300000, guid: d14b7e728cfb4094da073cdad76727ff, type: 3}
+  mines:
+  - {fileID: 11400000, guid: eb2794684cfb9bc4eb3e342e33ed9b2f, type: 2}
+  - {fileID: 11400000, guid: 67823b77ad812a94398ac2979a01ebc7, type: 2}
+  references:
+    version: 2
+    RefIds: []

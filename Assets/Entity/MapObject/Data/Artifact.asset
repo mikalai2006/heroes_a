@@ -9,36 +9,44 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 128dffce0ec47ce45913bdac58139aab, type: 3}
+  m_Script: {fileID: 11500000, guid: 3fa465b5255fcde46a4806896b048f98, type: 3}
   m_Name: Artifact
   m_EditorClassIdentifier: 
-  idObject: map.artifact
-  TypeEntity: 34
+  idObject: entity.other
+  TypeEntity: 36
   MenuSprite: {fileID: 0}
-  title:
-    m_TableReference:
-      m_TableCollectionName: 
-    m_TableEntryReference:
-      m_KeyId: 0
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
+  Text:
+    title:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    description:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
   MapPrefab:
-    m_AssetGUID: 78bbccad427da0540bc178662a38e3a5
+    m_AssetGUID: 
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
-  TypeGround: 2046
-  TypeWorkEffect: 0
-  Attributes: []
-  TypeMapObject: 6
+  TypeGround: 0
+  TypeMapObject: 0
   RMGValue: 0
   listTypeNoPath: 
-  listRuleInput: 08000000090000000e0000001300000012000000110000000c00000007000000
-  TypeWorkObject: 1
+  listRuleInput: 
+  TypeWorkObject: 0
+  TypeWorkEffect: 0
   Effects: []
-  Artifact: {fileID: 11400000, guid: fb155b3ab4fa88340a27dec143295a23, type: 2}
   references:
     version: 2
     RefIds: []

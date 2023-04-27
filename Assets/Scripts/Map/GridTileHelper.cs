@@ -128,7 +128,7 @@ public class GridTileHelper
                     // {
                     //     continue;
                     // }
-                    var data = endNode.OccupiedUnit.ScriptableData as ScriptableEntityMapObject;
+                    var data = endNode.OccupiedUnit.ConfigData as ScriptableEntityMapObject;
                     if (data == null) continue;
                     if (
                         (data.RulesInput.Count > 0
@@ -148,7 +148,7 @@ public class GridTileHelper
                 // Exit point processing.
                 if (currentNode == startNode && currentNode.OccupiedUnit != null)
                 {
-                    var data = (ScriptableEntityMapObject)currentNode.OccupiedUnit.ScriptableData;
+                    var data = (ScriptableEntityMapObject)currentNode.OccupiedUnit.ConfigData;
                     if (
                         (!neighbourNode.StateNode.HasFlag(StateNode.Input)
                         && data.RulesInput.Count > 0

@@ -2,7 +2,7 @@ using Cysharp.Threading.Tasks;
 
 public class MapEntityExplore : BaseMapEntity, IDialogMapObjectOperation
 {
-    public override void InitUnit(BaseEntity mapObject)
+    public override void InitUnit(MapObject mapObject)
     {
         base.InitUnit(mapObject);
     }
@@ -11,7 +11,7 @@ public class MapEntityExplore : BaseMapEntity, IDialogMapObjectOperation
     {
         await base.OnGoHero(player);
 
-        MapObjectClass.OccupiedNode.ChangeStatusVisit(true);
+        _mapObject.OccupiedNode.ChangeStatusVisit(true);
 
         if (LevelManager.Instance.ActivePlayer.DataPlayer.playerType != PlayerType.Bot)
         {
@@ -19,7 +19,7 @@ public class MapEntityExplore : BaseMapEntity, IDialogMapObjectOperation
 
             if (result.isOk)
             {
-                MapObjectClass.SetPlayer(player);
+                _mapObject.SetPlayer(player);
             }
             else
             {
@@ -39,7 +39,7 @@ public class MapEntityExplore : BaseMapEntity, IDialogMapObjectOperation
         {
             // Header = MapObjectClass.ScriptableData.Text.title.GetLocalizedString(),
             // Description = t.Text.visit_ok,
-            Sprite = MapObjectClass.ScriptableData.MenuSprite,
+            Sprite = _mapObject.ConfigData.MenuSprite,
         };
 
         var dialogWindow = new DialogMapObjectProvider(dialogData);

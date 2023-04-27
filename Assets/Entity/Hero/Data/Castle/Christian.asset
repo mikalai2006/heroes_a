@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87c649b364422834e97e3024a32c0ffe, type: 3}
+  m_Name: Christian
+  m_EditorClassIdentifier: 
+  idObject: hero.Christian
+  TypeEntity: 90
+  MenuSprite: {fileID: 21300000, guid: 06ca68bf693bcae4a81347afdfae3be4, type: 3}
+  Text:
+    title:
+      m_TableReference:
+        m_TableCollectionName: GUID:20373cbdea5ac9c418c19cbf0eaabc21
+      m_TableEntryReference:
+        m_KeyId: 340129906688
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    description:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+  MapPrefab:
+    m_AssetGUID: 52fce51bdbef874408a0a5c7bfeedc69
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  TypeGround: 0
+  TypeMapObject: 0
+  RMGValue: 0
+  listTypeNoPath: 
+  listRuleInput: 
+  TypeWorkObject: 0
+  TypeWorkEffect: 0
+  Effects: []
+  TypeFaction: 0
+  ClassHero: {fileID: 11400000, guid: c02e87e99f31f1049a67742ce7944233, type: 2}
+  StartSecondarySkill: []
+  StartCreatures: []
+  references:
+    version: 2
+    RefIds: []

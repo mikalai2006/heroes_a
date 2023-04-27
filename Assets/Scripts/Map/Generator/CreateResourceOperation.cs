@@ -65,11 +65,8 @@ public class CreateResourceOperation : ILoadingOperation
                     var configData = list[UnityEngine.Random.Range(0, list.Count)];
                     if (configData != null)
                     {
-                        var factory = new EntityMapObjectFactory();
-                        BaseEntity entity = factory.CreateMapObject(
-                            TypeMapObject.Resources,
-                            configData
-                        );
+                        // var factory = new EntityMapObjectFactory();
+                        BaseEntity entity = new EntityMapObject(configData);
                         UnitManager.SpawnEntityMapObjectToNode(currentNode, entity);
                         // _root.UnitManager
                         //     .SpawnMapObjectAsync(currentNode, TypeMapObject.Resource, new List<TypeWorkPerk>() { TypeWorkPerk.One });

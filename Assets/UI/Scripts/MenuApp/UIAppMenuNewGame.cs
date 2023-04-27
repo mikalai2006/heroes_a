@@ -166,7 +166,7 @@ public class UIAppMenuNewGame : UILocaleBase
         player.DataPlayer.playerType = allTypes[currentIndex].TypePlayer;
 
         var listBots = LevelManager.Instance.Level.listPlayer
-            .Where(t => t.StartSetting.TypePlayerItem.TypePlayer == PlayerType.Bot);
+            .Where(t => t.StartSetting.TypePlayerItem != null && t.StartSetting.TypePlayerItem.TypePlayer == PlayerType.Bot);
 
         if (listBots.Count() == LevelManager.Instance.Level.listPlayer.Count())
         {
@@ -415,16 +415,16 @@ public class UIAppMenuNewGame : UILocaleBase
         base.Localize(_box);
     }
 
-    private void SetImg(ScriptableEntity entity, VisualElement chooser)
+    private void SetImg(ScriptableEntity entityData, VisualElement chooser)
     {
-        if (entity != null)
+        if (entityData != null)
         {
             var img = chooser.Q<VisualElement>("img");
             img.style.backgroundImage
-                = new StyleBackground(entity.MenuSprite);
+                = new StyleBackground(entityData.MenuSprite);
             chooser.Q<VisualElement>("img").style.display = DisplayStyle.Flex;
             var text = chooser.Q<Label>("text");
-            text.text = entity.title.GetLocalizedString();
+            text.text = entityData.Text.title.GetLocalizedString();
         }
         else
         {

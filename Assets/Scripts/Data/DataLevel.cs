@@ -25,7 +25,8 @@ public class DataLevel
 [System.Serializable]
 public class DataUnit
 {
-    public List<SaveDataUnit<DataEntityMapObject>> mapObjects;
+    public List<SaveDataMapObject<DataMapObject>> mapObjects;
+    public List<SaveDataUnit<DataEntityMapObject>> entityMapObjects;
     public List<SaveDataUnit<DataTown>> towns;
     public List<SaveDataUnit<DataHero>> heroes;
     public List<SaveDataUnit<DataCreature>> creatures;
@@ -39,31 +40,39 @@ public class DataUnit
 
     public DataUnit()
     {
+        mapObjects = new List<SaveDataMapObject<DataMapObject>>();
         towns = new List<SaveDataUnit<DataTown>>();
         heroes = new List<SaveDataUnit<DataHero>>();
         monoliths = new List<SaveDataUnit<DataMonolith>>();
         creatures = new List<SaveDataUnit<DataCreature>>();
         mines = new List<SaveDataUnit<DataMine>>();
-        mapObjects = new List<SaveDataUnit<DataEntityMapObject>>();
         artifacts = new List<SaveDataUnit<DataArtifact>>();
         explorers = new List<SaveDataUnit<DataExplore>>();
         // skillSchools = new List<SaveDataUnit<DataSkillSchool>>();
         resourcesmap = new List<SaveDataUnit<DataEntityMapObject>>();
         dwellings = new List<SaveDataUnit<DataEntityDwelling>>();
+        entityMapObjects = new List<SaveDataUnit<DataEntityMapObject>>();
     }
 }
 
 [System.Serializable]
 public class SaveDataUnit<T>
 {
-    public string idUnit;
+    public string idEntity;
     public string idObject;
     public TypeEntity typeEntity;
     // public TypeMapObject typeMapObject;
-    public DataEntityEffects DataEffects = new DataEntityEffects()
+    public DataEntityEffects Effects = new DataEntityEffects()
     {
         Effects = new List<DataEntityEffectsBase>()
     };
-    public Vector3Int position;
+    // public Vector3Int position;
+    public T data;
+}
+
+[System.Serializable]
+public class SaveDataMapObject<T>
+{
+    public string idEntity;
     public T data;
 }

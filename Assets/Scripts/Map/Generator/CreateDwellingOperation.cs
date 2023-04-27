@@ -21,15 +21,13 @@ public class CreateDwellingOperation : ILoadingOperation
         var t = new LocalizedString(Constants.LanguageTable.LANG_TABLE_UILANG, "createdgameobject").GetLocalizedString();
         onSetNotify(t + " dwellings ...");
 
-        var factory = new EntityMapObjectFactory();
-
         for (int keyArea = 0; keyArea < LevelManager.Instance.Level.listArea.Count; keyArea++)
         {
             Area area = LevelManager.Instance.Level.listArea[keyArea];
 
             if (area.town != null)
             {
-                ScriptableEntityTown townArea = (ScriptableEntityTown)area.town.ScriptableData;
+                EntityTown townArea = (EntityTown)area.town;
 
                 List<GridTileNode> nodes = _root.gridTileHelper.GetAllGridNodes().Where(t =>
                     t.StateNode.HasFlag(StateNode.Empty)
@@ -54,7 +52,7 @@ public class CreateDwellingOperation : ILoadingOperation
                         .GetEntityByType<ScriptableEntityMapObject>(TypeEntity.MapObject)
                         .Where(t =>
                             t.TypeMapObject == TypeMapObject.Dwelling
-                            && ((ScriptableEntityDwelling)t).TypeFaction == townArea.TypeFaction
+                            && ((ScriptableEntityDwelling)t).TypeFaction == townArea.ConfigData.TypeFaction
                             // && (
                             //     (t.TypeGround & currentNode.TypeGround) == currentNode.TypeGround
                             //     ||
@@ -75,8 +73,8 @@ public class CreateDwellingOperation : ILoadingOperation
 
                             GridTileNode nodeWarrior = _root.GetNodeWarrior(currentNode);
 
-                            ScriptableEntityMapObject configData
-                                = list[UnityEngine.Random.Range(0, list.Count)];
+                            ScriptableEntityDwelling configData
+                                = (ScriptableEntityDwelling)list[UnityEngine.Random.Range(0, list.Count)];
 
                             if (
                                 currentNode != null
@@ -89,13 +87,10 @@ public class CreateDwellingOperation : ILoadingOperation
                                 )
                             {
 
-                                EntityDwelling entity = (EntityDwelling)factory.CreateMapObject(
-                                    TypeMapObject.Dwelling,
-                                    configData
-                                );
+                                EntityDwelling entity = new EntityDwelling(configData);
                                 UnitManager.SpawnEntityMapObjectToNode(currentNode, entity);
 
-                                BaseEntity warrior = UnitManager.SpawnEntityCreature(nodeWarrior, currentNode, 1, configData.RMGValue);
+                                MapObject warrior = UnitManager.SpawnEntityCreature(nodeWarrior, currentNode, 1, configData.RMGValue);
 
                                 // nodeWarrior.SetProtectedNeigbours(warrior, currentNode);
                                 // currentNode.SetProtectedNode(warrior);

@@ -31,13 +31,13 @@ MonoBehaviour:
     m_Address: Assets/Faction/Stronghold/Data
     m_ReadOnly: 0
     m_SerializedLabels:
-    - entity
+    - attribute
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b0627836ab50dc1498baca89bc10d461
     m_Address: Assets/Faction/Castle/Data
     m_ReadOnly: 0
     m_SerializedLabels:
-    - entity
+    - attribute
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: aa031ca49617e4b4e99abd47da14b679
     m_Address: Assets/Faction/Conflux
@@ -53,13 +53,13 @@ MonoBehaviour:
     m_Address: Assets/Faction/Conflux/Data
     m_ReadOnly: 0
     m_SerializedLabels:
-    - entity
+    - attribute
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 0427f2ce1f62a8b4c9033e3edde93482
     m_Address: Assets/Faction/Neutral/Data
     m_ReadOnly: 0
     m_SerializedLabels:
-    - entity
+    - attribute
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: bbe5fb22307dd5f45876373146172eb3
     m_Address: Assets/Creature/Fortress
@@ -70,7 +70,7 @@ MonoBehaviour:
     m_Address: Assets/Creature/Fortress/Data
     m_ReadOnly: 0
     m_SerializedLabels:
-    - entity
+    - attribute
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 05cf60c181849224aa671314d9912f43
     m_Address: Assets/Creature/Dungeon
@@ -81,7 +81,7 @@ MonoBehaviour:
     m_Address: Assets/Creature/Dungeon/Data
     m_ReadOnly: 0
     m_SerializedLabels:
-    - entity
+    - attribute
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8fb4e2e3cee98cc4882873a53728673f
     m_Address: Assets/Creature/Inferno
@@ -92,7 +92,7 @@ MonoBehaviour:
     m_Address: Assets/Creature/Inferno/Data
     m_ReadOnly: 0
     m_SerializedLabels:
-    - entity
+    - attribute
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7c1305e68d9abe54795a88272e125146
     m_Address: Assets/Creature/Necropolis
@@ -103,7 +103,7 @@ MonoBehaviour:
     m_Address: Assets/Creature/Necropolis/Data
     m_ReadOnly: 0
     m_SerializedLabels:
-    - entity
+    - attribute
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 6bb9466fe1fe4294ebb589f6ed05fd3d
     m_Address: Assets/Creature/Rampart
@@ -114,7 +114,7 @@ MonoBehaviour:
     m_Address: Assets/Creature/Rampart/Data
     m_ReadOnly: 0
     m_SerializedLabels:
-    - entity
+    - attribute
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e636309e4d4fafe48a2b9da8c43e6b29
     m_Address: Assets/Creature/Tower
@@ -125,7 +125,7 @@ MonoBehaviour:
     m_Address: Assets/Creature/Tower/Data
     m_ReadOnly: 0
     m_SerializedLabels:
-    - entity
+    - attribute
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 9a6380555b06f9d46b9bf47dd32221de, type: 2}

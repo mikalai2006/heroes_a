@@ -8,7 +8,7 @@ using UnityEngine.Localization.SmartFormat.PersistentVariables;
 
 public class MapEntityCreature : BaseMapEntity, IDialogMapObjectOperation
 {
-    public override void InitUnit(BaseEntity mapObject)
+    public override void InitUnit(MapObject mapObject)
     {
         base.InitUnit(mapObject);
     }
@@ -39,19 +39,18 @@ public class MapEntityCreature : BaseMapEntity, IDialogMapObjectOperation
 
     private void OnHeroGo(Player player)
     {
-        MapObjectClass.ProtectedNode.DisableProtectedNeigbours(MapObjectClass);
+        _mapObject.ProtectedNode.DisableProtectedNeigbours(_mapObject);
 
         // TODO ARENA
 
-        MapObjectClass.SetPlayer(player);
+        _mapObject.SetPlayer(player);
 
         Destroy(gameObject);
     }
 
     public async UniTask<DataResultDialog> OnTriggeredHero()
     {
-        var creature = (EntityCreature)MapObjectClass;
-        ScriptableEntityCreature configData = (ScriptableEntityCreature)MapObjectClass.ScriptableData;
+        var creature = (EntityCreature)_mapObject.Entity;
 
         string nameText = Helpers.GetStringNameCountWarrior(creature.Data.value);
         LocalizedString stringCountWarriors = new LocalizedString(Constants.LanguageTable.LANG_TABLE_ADVENTURE, nameText);
@@ -59,7 +58,7 @@ public class MapEntityCreature : BaseMapEntity, IDialogMapObjectOperation
         var dataPlural = new Dictionary<string, int> { { "value", 0 } };
         var arguments = new[] { dataPlural };
         var titlePlural = Helpers.GetLocalizedPluralString(
-            configData.title,
+            creature.ConfigAttribute.Text.title,
             arguments,
             dataPlural
             );
@@ -73,7 +72,7 @@ public class MapEntityCreature : BaseMapEntity, IDialogMapObjectOperation
         {
             Header = title,
             Description = message.GetLocalizedString(),
-            Sprite = configData.MenuSprite,
+            Sprite = creature.ConfigAttribute.MenuSprite,
             TypeCheck = TypeCheck.Default
         };
 

@@ -1,3 +1,5 @@
+using Cysharp.Threading.Tasks;
+
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "ShowSkyEffect", menuName = "Game/Effect/EffectShowSky")]
@@ -7,9 +9,9 @@ public class EffectShowSky : BaseEffect, IEffected
     [Header("Options Effect")]
     public int countShowCell;
 
-    public override void RunHero(ref Player player, BaseEntity entity)
+    public override void RunHero(Player player, BaseEntity entity)
     {
-        base.RunHero(ref player, entity);
+        // base.RunHero(player, entity);
         // EntityMonolith monolith = (EntityMonolith)entity;
         // Vector3Int pointToTeleport
         //     = monolith.Data.portalPoints[Random.Range(0, monolith.Data.portalPoints.Count)];

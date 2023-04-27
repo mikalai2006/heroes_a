@@ -10,16 +10,19 @@ public class EntityTown : BaseEntity
 {
     [SerializeField] public DataTown Data = new DataTown();
     public ScriptableEntityTown ConfigData => (ScriptableEntityTown)ScriptableData;
-
-    public EntityTown(TypeGround typeGround, ScriptableEntityTown configData = null, SaveDataUnit<DataTown> saveData = null)
+    public EntityTown(
+        TypeGround typeGround,
+        ScriptableEntityTown configData = null,
+        SaveDataUnit<DataTown> saveData = null
+    )
     {
         base.Init();
 
         if (saveData == null)
         {
+
             if (configData == null)
             {
-
                 List<ScriptableEntityTown> list = ResourceSystem.Instance
                     .GetEntityByType<ScriptableEntityTown>(TypeEntity.Town)
                     .Where(t => t.TypeGround == typeGround)
@@ -33,11 +36,12 @@ public class EntityTown : BaseEntity
 
             Data.idPlayer = -1;
             Data.level = -1;
-            Data.name = ConfigData.name;
-            idObject = ScriptableData.idObject;
+            Data.name = ConfigData.TownNames[UnityEngine.Random.Range(0, ConfigData.TownNames.Count)];
+            _idObject = ScriptableData.idObject;
 
             Data.Generals = new SerializableDictionary<string, BuildGeneral>();
             Data.Armys = new SerializableDictionary<string, BuildArmy>();
+            Data.Resources = new SerializableDictionary<TypeResource, int>();
 
             // Data.Creatures = new SerializableDictionary<int, EntityCreature>();
             // for (int i = 0; i < 7; i++)
@@ -45,6 +49,7 @@ public class EntityTown : BaseEntity
             //     Data.Creatures.Add(i, null);
             // }
             ResetCreatures();
+            Data.countBuild = 0;
         }
         else
         {
@@ -94,8 +99,9 @@ public class EntityTown : BaseEntity
                 Data.Creatures[i] = newCreature;
             }
 
-            idUnit = saveData.idUnit;
-            idObject = saveData.idObject;
+            _idEntity = saveData.idEntity;
+            _idObject = saveData.idObject;
+            Data.countBuild = saveData.data.countBuild;
 
             // Data.HeroinTown = new EntityHero(TypeFaction.Neutral, new SaveDataUnit<DataHero>(){
             //     data = saveData.data.HeroinTown.Data,
@@ -112,7 +118,7 @@ public class EntityTown : BaseEntity
             return;
         }
 
-        foreach (var item in ConfigData.BuildTown.StartProgressBuilds)
+        foreach (var item in ConfigData.StartProgressBuilds)
         {
             var newBuild = CreateBuild(item.Build, item.level, _player);
             newBuild.OnRunOneEffect();
@@ -134,6 +140,19 @@ public class EntityTown : BaseEntity
         }
     }
 
+    public void ChangeLevel(int level)
+    {
+        Data.level = level;
+        if (MapObject.MapObjectGameObject != null)
+        {
+            ((MapEntityTown)MapObject.MapObjectGameObject).RefreshLevelBuild();
+        }
+        else
+        {
+            Debug.Log("Not map object");
+        }
+    }
+
     public void ResetCreatures()
     {
         Data.Creatures = new SerializableDictionary<int, EntityCreature>();
@@ -145,7 +164,7 @@ public class EntityTown : BaseEntity
 
     public void SetTownAsActive()
     {
-        SetPositionCamera(this.Position);
+        MapObject.SetPositionCamera(MapObject.Position);
         Player.SetActiveTown(this);
     }
     // public void SetPlayer(PlayerData data)
@@ -171,15 +190,15 @@ public class EntityTown : BaseEntity
         Data.idPlayer = player.DataPlayer.id;
         player.AddTown(this);
 
-        var resourceOfComplexityGame
-            = LevelManager.Instance.ConfigGameSettings.Complexities
-            .Find(t => t.value == LevelManager.Instance.Level.Settings.compexity);
-        Data.goldin = player.DataPlayer.playerType == PlayerType.Bot
-            ? resourceOfComplexityGame.Computer.goldin
-            : resourceOfComplexityGame.Player.goldin;
-
         if (first)
         {
+            var resourceOfComplexityGame
+                = LevelManager.Instance.ConfigGameSettings.Complexities
+                .Find(t => t.value == LevelManager.Instance.Level.Settings.compexity);
+            Data.Resources.Add(TypeResource.Gold, player.DataPlayer.playerType == PlayerType.Bot
+                ? resourceOfComplexityGame.Computer.goldin
+                : resourceOfComplexityGame.Player.goldin);
+
             InitBuilding();
         }
     }
@@ -211,7 +230,7 @@ public class EntityTown : BaseEntity
                 Data.Armys.Add(buildConfig.idObject, build);
             }
 
-            Data.isBuild = true;
+            Data.countBuild += 1;
             return build;
         }
         else
@@ -227,6 +246,7 @@ public class EntityTown : BaseEntity
             {
                 build = new BuildGeneral(level, (ScriptableBuildingGeneral)buildConfig, this, player);
                 // new BuildGeneral(level, (ScriptableBuildingGeneral)buildConfig, this, player);
+                build.OnRunOneEffect();
                 Data.Generals.Add(buildConfig.idObject, build);
             }
 
@@ -238,7 +258,7 @@ public class EntityTown : BaseEntity
                     break;
             }
 
-            Data.isBuild = true;
+            Data.countBuild += 1;
             return build;
         }
     }
@@ -270,7 +290,7 @@ public class EntityTown : BaseEntity
         return result;
     }
 
-    public Dictionary<ScriptableBuilding, int> GetLisNextLevelBuilds(ScriptableBuildTown configBuildTown)
+    public Dictionary<ScriptableBuilding, int> GetLisNextLevelBuilds(ScriptableEntityTown configBuildTown)
     {
         var result = new Dictionary<ScriptableBuilding, int>();
         foreach (var parentBuild in configBuildTown.Builds)
@@ -341,7 +361,20 @@ public class EntityTown : BaseEntity
     {
         if (Player == LevelManager.Instance.ActivePlayer)
         {
-            _player.ChangeResource(TypeResource.Gold, Data.goldin);
+        };
+    }
+    private void NextDay()
+    {
+        if (Player == LevelManager.Instance.ActivePlayer)
+        {
+            // refresh count build.
+            Data.countBuild = 0;
+
+            // set resources.
+            foreach (var res in Data.Resources)
+            {
+                _player.ChangeResource(TypeResource.Gold, res.Value);
+            }
         };
     }
     private void NextDay()

@@ -1,3 +1,5 @@
+using System;
+
 using UnityEngine;
 
 [System.Serializable]
@@ -5,30 +7,39 @@ public class EntityCreature : BaseEntity
 {
     [SerializeField] public DataCreature Data = new DataCreature();
     public ScriptableEntityCreature ConfigData => (ScriptableEntityCreature)ScriptableData;
+    public ScriptableAttributeCreature ConfigAttribute => (ScriptableAttributeCreature)ScriptableDataAttribute;
+    // [NonSerialized] private ScriptableAttributeCreature _configCreature;
+    // public ScriptableAttributeCreature ConfigCreature => _configCreature;
 
     public EntityCreature(
-        ScriptableEntityCreature configData,
+        // ScriptableEntityCreature configData,
+        ScriptableAttributeCreature configCreature,
         SaveDataUnit<DataCreature> saveData = null)
     {
         base.Init();
 
+        ScriptableData = ResourceSystem.Instance
+            .GetEntityByType<ScriptableEntityCreature>(TypeEntity.Creature)[0];
+
         if (saveData == null)
         {
-            ScriptableData = configData;
-            idObject = ScriptableData.idObject;
+            ScriptableDataAttribute = configCreature;
+            // ScriptableData = configData;
+            _idObject = ScriptableData.idObject;
             Data.value = 1;
+            Data.idc = ScriptableDataAttribute.idObject;
         }
         else
         {
             if (saveData.idObject != "")
             {
-                ScriptableData = ResourceSystem.Instance
-                    .GetEntityByType<ScriptableEntityCreature>(TypeEntity.Creature)
-                    .Find(t => t.idObject == saveData.idObject);
+                ScriptableDataAttribute = ResourceSystem.Instance
+                    .GetAttributesByType<ScriptableAttributeCreature>(TypeAttribute.Creature)
+                    .Find(t => t.idObject == saveData.data.idc);
             }
             Data = saveData.data;
-            idObject = saveData.idObject;
-            idUnit = saveData.idUnit;
+            _idObject = saveData.idObject;
+            _idEntity = saveData.idEntity;
         }
     }
 
@@ -46,23 +57,23 @@ public class EntityCreature : BaseEntity
 
     public override void SetPlayer(Player player)
     {
-        // ScriptableEntityMapObject configData = (ScriptableEntityMapObject)ScriptableData;
-        ScriptableEntityCreature configData = (ScriptableEntityCreature)ScriptableData;
-        // configData.OnDoHero(ref player, this);
-        // MapObjectGameObject.DestroyGameObject();
-        DestroyEntity();
+        // // ScriptableEntityMapObject configData = (ScriptableEntityMapObject)ScriptableData;
+        // ScriptableEntityCreature configData = (ScriptableEntityCreature)ScriptableData;
+        // // configData.OnDoHero(ref player, this);
+        // // MapObjectGameObject.DestroyGameObject();
+        // DestroyEntity();
     }
 
-    public void SetOccupiedNode(GridTileNode node)
-    {
-        OccupiedNode = node;
-    }
+    // public void SetOccupiedNode(GridTileNode node)
+    // {
+    //     OccupiedNode = node;
+    // }
 
-    public void SetProtectedNode(GridTileNode protectedNode)
-    {
-        ProtectedNode = protectedNode;
-        Data.protectedNode = protectedNode.position;
-    }
+    // public void SetProtectedNode(GridTileNode protectedNode)
+    // {
+    //     ProtectedNode = protectedNode;
+    //     Data.protectedNode = protectedNode.position;
+    // }
 
     #region SaveLoadData
     public override void SaveEntity(ref DataPlay data)

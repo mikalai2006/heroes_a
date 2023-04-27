@@ -23,8 +23,8 @@ MonoBehaviour:
     m_SerializedLabels:
     - entity
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 8d1df899201bfb843807dc03d5863616
-    m_Address: Assets/Entity/Hero
+  - m_GUID: da6f66d477a4151429a3f46c23443eef
+    m_Address: Assets/Entity/Attribute/Hero
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -37,18 +37,6 @@ MonoBehaviour:
     m_Address: Assets/Entity/MapObject
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: bffe1f3893b9d8b46a3ff35dc041bc20
-    m_Address: Assets/Entity/Hero/Stronghold/Data
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - entity
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 2d476a4a1a9f0a34e909159ba3d08526
-    m_Address: Assets/Entity/Hero/Castle/Data
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - entity
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 839676ea1ce8b174cb64706923c84b49
     m_Address: Assets/Entity/Attribute/Data
@@ -72,6 +60,17 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - entity
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f86a7737091006f44bc93ced45a355ee
+    m_Address: Assets/Entity/Hero/Data
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - entity
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 126b63c4bb556d9449ebba78d313ded1
+    m_Address: Assets/Entity/Hero
+    m_ReadOnly: 0
+    m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 9a6380555b06f9d46b9bf47dd32221de, type: 2}

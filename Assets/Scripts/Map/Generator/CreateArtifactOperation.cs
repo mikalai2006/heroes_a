@@ -25,8 +25,6 @@ public class CreateArtifactOperation : ILoadingOperation
         var t = new LocalizedString(Constants.LanguageTable.LANG_TABLE_UILANG, "createdgameobject").GetLocalizedString();
         onSetNotify(t + " artifacts ...");
 
-        var factory = new EntityMapObjectFactory();
-
         //Get all attributes artifacts.
         List<ScriptableAttributeArtifact> listArtifacts
             = ResourceSystem.Instance
@@ -66,10 +64,9 @@ public class CreateArtifactOperation : ILoadingOperation
 
                     ScriptableEntityMapObject configDataArtifact
                         = ResourceSystem.Instance
-                        .GetEntityByType<ScriptableEntityMapObject>(TypeEntity.MapObject)
-                        .Where(t => t.TypeMapObject == TypeMapObject.Artifact)
+                        .GetEntityByType<ScriptableEntityMapObject>(TypeEntity.Other)
                         .First();
-                    ScriptableEntityArtifact configData = (ScriptableEntityArtifact)configDataArtifact;
+                    ScriptableEntityOther configData = (ScriptableEntityOther)configDataArtifact;
                     if (
                         nodeWarrior != null
                         && currentNode != null
@@ -86,7 +83,7 @@ public class CreateArtifactOperation : ILoadingOperation
 
                         // Generate protection creature.
 
-                        BaseEntity warrior = UnitManager.SpawnEntityCreature(nodeWarrior, currentNode, 3, configArtifact.RMGValue);
+                        MapObject warrior = UnitManager.SpawnEntityCreature(nodeWarrior, currentNode, 3, configArtifact.RMGValue);
 
                         // nodeWarrior.SetProtectedNeigbours(warrior, currentNode);
                         // currentNode.SetProtectedNode(warrior);

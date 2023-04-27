@@ -26,7 +26,7 @@ public class EntityDwelling : BaseEntity
         if (saveData == null)
         {
             ScriptableData = configData;
-            idObject = ScriptableData.idObject;
+            _idObject = ScriptableData.idObject;
             Data.idPlayer = -1;
             SetData();
         }
@@ -38,20 +38,20 @@ public class EntityDwelling : BaseEntity
                 .First();
 
             Data = saveData.data;
-            idUnit = saveData.idUnit;
-            idObject = saveData.idObject;
-            DataEffects = saveData.DataEffects;
+            _idEntity = saveData.idEntity;
+            _idObject = saveData.idObject;
+            Effects = saveData.Effects;
         }
     }
 
-    public override void OnAfterStateChanged(GameState newState)
-    {
-        ScriptableEntityDwelling scriptData = (ScriptableEntityDwelling)ScriptableData;
-        // if (scriptData.Effects.Count > 0)
-        // {
-        //     scriptData.RunHero(ref _player, this);
-        // }
-    }
+    // public override void OnAfterStateChanged(GameState newState)
+    // {
+    //     ScriptableEntityDwelling scriptData = (ScriptableEntityDwelling)ScriptableData;
+    //     // if (scriptData.Effects.Count > 0)
+    //     // {
+    //     //     scriptData.RunHero(ref _player, this);
+    //     // }
+    // }
 
     public void SetData()
     {
@@ -63,7 +63,7 @@ public class EntityDwelling : BaseEntity
     public override void SetPlayer(Player player)
     {
         ScriptableEntityDwelling configData = (ScriptableEntityDwelling)ScriptableData;
-        configData.RunHero(ref player, this);
+        configData.RunHero(player, this);
         _player = player;
         Data.idPlayer = player.DataPlayer.id;
     }

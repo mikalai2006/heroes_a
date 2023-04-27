@@ -22,7 +22,6 @@ public class CreateMinesOperation : ILoadingOperation
         var t = new LocalizedString(Constants.LanguageTable.LANG_TABLE_UILANG, "createdgameobject").GetLocalizedString();
         onSetNotify(t + " mines ...");
 
-        var factory = new EntityMapObjectFactory();
         List<GridTileNode> allNodes = _root.gridTileHelper.GetAllGridNodes();
 
         for (int keyArea = 0; keyArea < LevelManager.Instance.Level.listArea.Count; keyArea++)
@@ -85,7 +84,7 @@ public class CreateMinesOperation : ILoadingOperation
                                 )
                             )
                         .ToList();
-                    ScriptableEntityMapObject configData = list[Random.Range(0, list.Count)];
+                    ScriptableEntityMine configData = (ScriptableEntityMine)list[Random.Range(0, list.Count)];
 
                     if (
                         currentNode != null
@@ -101,13 +100,10 @@ public class CreateMinesOperation : ILoadingOperation
                         // && _root.gridTileHelper.CalculateNeighbours(currentNode) >= 5
                         )
                     {
-                        EntityMine entity = (EntityMine)factory.CreateMapObject(
-                            TypeMapObject.Mine,
-                            configData
-                        );
+                        EntityMine entity = new EntityMine(configData);
                         UnitManager.SpawnEntityMapObjectToNode(currentNode, entity);
 
-                        BaseEntity warrior = UnitManager.SpawnEntityCreature(nodeWarrior, currentNode, 1, configData.RMGValue);
+                        MapObject warrior = UnitManager.SpawnEntityCreature(nodeWarrior, currentNode, 1, configData.RMGValue);
 
                         // currentNode.SetProtectedNode(warrior);
                         // nodeWarrior.SetProtectedNeigbours(warrior, currentNode);

@@ -31,43 +31,26 @@ public class LevelManager : Singleton<LevelManager>, ISaveDataPlay, ISaveDataGam
         DefaultSettings = Level;
     }
 
-    // public LevelManager()
-    // {
-    //     GameModeData = new DataGameMode();
-    // }
+    protected override void Awake()
+    {
+        base.Awake();
+        GameManager.OnAfterStateChanged += OnAfterStateChanged;
+    }
 
-    //protected override void Awake()
-    //{
-    //    base.Awake();
-    //    GameManager.OnBeforeStateChanged += OnBeforeStateChanged;
-    //    GameManager.OnAfterStateChanged += OnAfterStateChanged;
-    //}
+    private void OnDestroy()
+    {
+        GameManager.OnAfterStateChanged -= OnAfterStateChanged;
+    }
 
-    //private void OnDestroy()
-    //{
-    //    GameManager.OnBeforeStateChanged -= OnBeforeStateChanged;
-    //    GameManager.OnAfterStateChanged -= OnAfterStateChanged;
-    //}
-
-    //public void OnBeforeStateChanged(GameState newState)
-    //{
-    //    switch (newState)
-    //    {
-    //        case GameState.SaveGame:
-    //            SaveSystem.SaveLevel(level);
-    //            //UnitManager.Instance.SaveUnits();
-    //            break;
-    //    }
-    //}
-    //public void OnAfterStateChanged(GameState newState)
-    //{
-    //    switch (newState)
-    //    {
-    //        case GameState.SaveGame:
-
-    //            break;
-    //    }
-    //}
+    public void OnAfterStateChanged(GameState newState)
+    {
+        switch (newState)
+        {
+            case GameState.NextPlayer:
+                StepNextPlayer();
+                break;
+        }
+    }
 
     public void Init()
     {
@@ -133,46 +116,6 @@ public class LevelManager : Singleton<LevelManager>, ISaveDataPlay, ISaveDataGam
             player.New(dataPlayer);
             Level.listPlayer.Add(player);
         }
-
-        // for (int i = Level.Settings.countPlayer; i < (Level.Settings.countPlayer + Level.Settings.countBot); i++)
-        // {
-        //     var dataPlayer = new PlayerData()
-        //     {
-        //         id = i,
-        //         color = ConfigGameSettings.colors[i],
-        //         // playerType = PlayerType.Bot
-        //     };
-
-        //     var player = new Player(dataPlayer);
-        //     player.StartSetting.TypePlayerItem = botType;
-        //     Level.listPlayer.Add(player);
-        // }
-
-        // Level.countPlayer = countPlayer;
-        // Level.countBot = countBot;
-        // Level.activePlayer = -1;
-
-        // for (int i = 0; i < countPlayer; i++)
-        // {
-        //     var dataPlayer = new PlayerData();
-        //     dataPlayer.id = i;
-        //     dataPlayer.color = DataGameSetting.colors[i];
-        //     dataPlayer.playerType = PlayerType.User;
-
-        //     var player = new Player(dataPlayer);
-        //     Level.listPlayer.Add(player);
-        // }
-
-        // for (int i = countPlayer; i < (countPlayer + countBot); i++)
-        // {
-        //     var dataPlayer = new PlayerData();
-        //     dataPlayer.id = i;
-        //     dataPlayer.color = colors[i];
-        //     dataPlayer.playerType = PlayerType.Bot;
-        //     var player = new Player(dataPlayer);
-
-        //     Level.listPlayer.Add(player);
-        // }
     }
 
     public async void StepNextPlayer()
@@ -187,13 +130,10 @@ public class LevelManager : Singleton<LevelManager>, ISaveDataPlay, ISaveDataGam
             Level.activePlayer = 0;
         }
 
-        //level.activePlayer = level.activePlayer < (countPlayer + countEnemies + 1) ? level.activePlayer++ : 0;
         // GameManager.Instance.MapManager.ResetSky(ActivePlayer.DataPlayer.nosky);
 
         if (ActivePlayer.ActiveHero == null)
         {
-            //GetActivePlayer().SetActiveHero(GetActivePlayer().GetActiveHero());
-            // ActivePlayer.ActiveHero = ActivePlayer.DataPlayer.PlayerDataReferences.ListHero[0];
             if (ActivePlayer.DataPlayer.PlayerDataReferences.ListHero.Count > 0)
                 ActivePlayer.DataPlayer.PlayerDataReferences.ListHero[0].SetHeroAsActive();
         }
@@ -202,24 +142,16 @@ public class LevelManager : Singleton<LevelManager>, ISaveDataPlay, ISaveDataGam
             ActivePlayer.ActiveHero.SetHeroAsActive();
         }
 
-        if (ActivePlayer.DataPlayer.playerType == PlayerType.Bot)
-        {
-            await ActivePlayer.RunBot();
-        }
-
         GameManager.Instance.ChangeState(GameState.NextDay);
         if (GameDate.week == 0)
         {
             GameManager.Instance.ChangeState(GameState.NextWeek);
         }
-        // if (ActivePlayer.DataPlayer.nosky.Count == 0)
-        // {
-        //     List<GridTileNode> listNoskyNode = GameManager.Instance
-        //         .MapManager.DrawSky(ActivePlayer.ActiveHero.OccupiedNode, 5);
-        //     ActivePlayer.SetNosky(listNoskyNode);
-        // }
 
-        // //Debug.Log($" Active Hero {level.activePlayer}");
+        if (ActivePlayer.DataPlayer.playerType == PlayerType.Bot)
+        {
+            await ActivePlayer.RunBot();
+        }
     }
 
     public void AddArea(int id, TileLandscape landscape, int idPlayer = -1)
@@ -241,11 +173,6 @@ public class LevelManager : Singleton<LevelManager>, ISaveDataPlay, ISaveDataGam
         List<Area> listArea = Level.listArea.Where(t => t.id == id).ToList();
         return listArea.Count > 0 ? listArea[0] : null;
     }
-
-    //public void AddPlayer(Player player)
-    //{
-    //    listPlayer.Add(player.data.id, player);
-    //}
 
     public Player GetPlayer(int id)
     {

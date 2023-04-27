@@ -36,12 +36,12 @@ public class GridTileNode : IHeapItem<GridTileNode>
     [NonSerialized] private GridTileNode _inputNode = null;
     public GridTileNode InputNode => _inputNode;
 
-    [NonSerialized] private BaseEntity _ocuppiedUnit = null;
-    public BaseEntity OccupiedUnit => _ocuppiedUnit;
-    [NonSerialized] private BaseEntity _protectedUnit = null;
-    public BaseEntity ProtectedUnit => _protectedUnit;
-    [NonSerialized] private BaseEntity _guestedUnit = null;
-    public BaseEntity GuestedUnit => _guestedUnit;
+    [NonSerialized] private MapObject _ocuppiedUnit = null;
+    public MapObject OccupiedUnit => _ocuppiedUnit;
+    [NonSerialized] private MapObject _protectedUnit = null;
+    public MapObject ProtectedUnit => _protectedUnit;
+    [NonSerialized] private MapObject _guestedUnit = null;
+    public MapObject GuestedUnit => _guestedUnit;
     public bool Protected => _protectedUnit != null;
     public bool IsAllowSpawn =>
         (StateNode.Empty | ~StateNode.Protected | ~StateNode.Occupied) == (StateNode.Empty | ~StateNode.Protected | ~StateNode.Occupied);
@@ -105,7 +105,7 @@ public class GridTileNode : IHeapItem<GridTileNode>
     ///  Mark node as protected.
     /// </summary>
     /// <param name="entity">Entity or null</param>
-    public void SetProtectedUnit(BaseEntity entity)
+    public void SetProtectedUnit(MapObject entity)
     {
         _protectedUnit = entity;
         if (entity == null)
@@ -150,7 +150,7 @@ public class GridTileNode : IHeapItem<GridTileNode>
     /// Set guested.
     /// </summary>
     /// <param name="entity">Entity or null</param>
-    public void SetAsGuested(BaseEntity entity)
+    public void SetAsGuested(MapObject entity)
     {
         if (entity == null)
         {
@@ -167,7 +167,7 @@ public class GridTileNode : IHeapItem<GridTileNode>
     /// Set occupied entity for node.
     /// </summary>
     /// <param name="entity">Entity or null</param>
-    public void SetOcuppiedUnit(BaseEntity entity)
+    public void SetOcuppiedUnit(MapObject entity)
     {
         _ocuppiedUnit = entity;
         if (entity == null)
@@ -182,9 +182,9 @@ public class GridTileNode : IHeapItem<GridTileNode>
         }
     }
 
-    public void DisableProtectedNeigbours(BaseEntity warriorUnit, GridTileNode protectedNode = null)
+    public void DisableProtectedNeigbours(MapObject warriorUnit, GridTileNode protectedNode = null)
     {
-        ScriptableEntityMapObject configData = (ScriptableEntityMapObject)this.OccupiedUnit.ScriptableData;
+        ScriptableEntityMapObject configData = (ScriptableEntityMapObject)this.OccupiedUnit.ConfigData;
         List<GridTileNode> nodes
             = GameManager.Instance.MapManager.gridTileHelper.GetNodeListAsNoPath(this, configData.RulesInput);
 
@@ -204,7 +204,7 @@ public class GridTileNode : IHeapItem<GridTileNode>
         SetProtectedUnit(null);
     }
 
-    public void SetProtectedNeigbours(BaseEntity warriorUnit, GridTileNode protectedNode = null)
+    public void SetProtectedNeigbours(MapObject warriorUnit, GridTileNode protectedNode = null)
     {
         // if (protectedNode.OccupiedUnit == null)
         // {
@@ -214,7 +214,7 @@ public class GridTileNode : IHeapItem<GridTileNode>
         // Debug.Log($"Node {protectedNode.position} - entity type {protectedNode.OccupiedUnit.GetType()}!");
         // List<GridTileNode> nodes = _gridHelper.GetNeighbourList(this, true);
         protectedNode.SetProtectedUnit(warriorUnit);
-        ScriptableEntityMapObject configData = (ScriptableEntityMapObject)protectedNode.OccupiedUnit.ScriptableData;
+        ScriptableEntityMapObject configData = (ScriptableEntityMapObject)protectedNode.OccupiedUnit.ConfigData;
         List<GridTileNode> nodes
             = GameManager.Instance.MapManager.gridTileHelper.GetNodeListAsNoPath(protectedNode, configData.RulesInput);
         if (nodes != null || nodes.Count > 0)
@@ -235,8 +235,8 @@ public class GridTileNode : IHeapItem<GridTileNode>
 
         if (warriorUnit != null)
         {
-            var warrior = (EntityCreature)warriorUnit;
-            warrior.SetProtectedNode(protectedNode);
+            // var warrior = (EntityCreature)warriorUnit;
+            warriorUnit.SetProtectedNode(protectedNode);
             // warrior.SetValueCreature();
         }
     }

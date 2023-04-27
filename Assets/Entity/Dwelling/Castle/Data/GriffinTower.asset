@@ -15,28 +15,37 @@ MonoBehaviour:
   idObject: dwelling.griffintower
   TypeEntity: 34
   MenuSprite: {fileID: 0}
-  title:
-    m_TableReference:
-      m_TableCollectionName: GUID:eccb40f2ef0445e499300535baf5f930
-    m_TableEntryReference:
-      m_KeyId: 6316774031360
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
+  Text:
+    title:
+      m_TableReference:
+        m_TableCollectionName: GUID:eccb40f2ef0445e499300535baf5f930
+      m_TableEntryReference:
+        m_KeyId: 7501887209472
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    description:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
   MapPrefab:
     m_AssetGUID: e67b00d2f88ac5141b063f1ac622cf39
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
   TypeGround: 2046
-  TypeWorkEffect: 0
-  Attributes: []
   TypeMapObject: 7
   RMGValue: 5000
   listTypeNoPath: 0c000000
   listRuleInput: 1100000013000000120000000e000000
   TypeWorkObject: 3
+  TypeWorkEffect: 0
   Effects: []
   TypeFaction: 0
   Creature:

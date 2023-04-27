@@ -25,31 +25,4 @@ public class BuildGeneral : BaseBuild
             Data = saveData.data;
         }
     }
-
-    // public override void OnAfterStateChanged(GameState newState)
-    // {
-    //     base.OnAfterStateChanged(newState);
-    //     if (Player != null && Player == LevelManager.Instance.ActivePlayer)
-    //     {
-    //         switch (newState)
-    //         {
-    //             case GameState.NextDay:
-    //                 OnNextDay();
-    //                 break;
-    //             case GameState.NextWeek:
-    //                 OnNextWeek();
-    //                 break;
-    //         }
-    //     }
-    // }
-    // private void OnNextWeek()
-    // {
-    //     Debug.Log($"General::: Next week - {ConfigData.name}");
-    // }
-    // private void OnNextDay()
-    // {
-
-    //     Debug.Log($"General::: Next day - {ConfigData.name}");
-
-    // }
 }

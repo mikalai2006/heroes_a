@@ -30,7 +30,7 @@ public class EntityMonolith : BaseEntity
             //     .ToList();
             // ScriptableData = list[UnityEngine.Random.Range(0, list.Count)];
             ScriptableData = configData;
-            idObject = ScriptableData.idObject;
+            _idObject = ScriptableData.idObject;
         }
         else
         {
@@ -40,16 +40,16 @@ public class EntityMonolith : BaseEntity
                 .First();
 
             Data = saveData.data;
-            idUnit = saveData.idUnit;
-            idObject = saveData.idObject;
-            DataEffects = saveData.DataEffects;
+            _idEntity = saveData.idEntity;
+            _idObject = saveData.idObject;
+            Effects = saveData.Effects;
         }
     }
 
     public override void SetPlayer(Player player)
     {
         ScriptableEntityPortal configData = (ScriptableEntityPortal)ScriptableData;
-        configData.RunHero(ref player, this);
+        configData.RunHero(player, this);
         // Debug.Log($"Teleport to position::: {Data.portalPoints[0]}");
     }
 

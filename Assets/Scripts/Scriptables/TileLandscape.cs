@@ -34,6 +34,7 @@ public class TileLandscape : ScriptableObject
     //public List<CornerTiles> cornerTiles;
 
     public TypeGround typeGround;
+    public TypeFaction typeFaction;
 
     //public List<TileNature> natureTiles;
 }

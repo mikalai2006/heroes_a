@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 
+using Cysharp.Threading.Tasks;
+
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "ResourceEffect", menuName = "Game/Effect/EffectResource")]
@@ -11,28 +13,31 @@ public class EffectResource : BaseEffect, IEffected
     public int step;
     public List<TypeAttribute> Attrs;
 
-    public override void RunHero(ref Player player, BaseEntity entity)
+    public override void RunHero(Player player, BaseEntity entity)
     {
-        base.RunHero(ref player, entity);
+        // base.RunHero(player, entity);
 
-        Debug.Log($"entity.DataEffects.Effects={entity.DataEffects.Effects.Count}");
-        var currentEffect = entity.DataEffects.Effects.Find(t => t.ide == idEffect);
+        var _entity = (MapObject)entity.MapObject;
+        Debug.Log($"entity.DataEffects.Effects={entity.Effects.Effects.Count}");
+        var currentEffect = entity.Effects.Effects.Find(t => t.ide == idEffect);
         player.ChangeResource(Resource.TypeResource, currentEffect.value);
-        Debug.Log($"EffectResource::: Run {entity.DataEffects.index}[{entity.ScriptableData.name}-player-{player.DataPlayer.id}]!");
+        Debug.Log($"EffectResource::: Run {entity.Effects.index}[{_entity.ConfigData.name}-player-{player.DataPlayer.id}]!");
     }
     public override void SetData(BaseEntity entity)
     {
         base.SetData(entity);
+        var _entity = (MapObject)entity.MapObject;
 
         var index = Helpers.GenerateValueByRangeAndStep(min, max, step);
 
-        entity.DataEffects.Effects.Add(new DataEntityEffectsBase()
+        entity.Effects.Effects.Add(new DataEntityEffectsBase()
         {
             value = index,
             Effect = this,
-            ide = idEffect
+            ide = idEffect,
+            ido = Resource.idObject
         });
-        Debug.Log($"EffectResource::: Set data {entity.DataEffects.index}[{entity.ScriptableData.name}]!");
+        // Debug.Log($"EffectResource::: Set data {entity.Effects.index}[{_entity.ConfigData.name}]!");
     }
     public override void CreateDialogData(ref DataDialogMapObjectGroup dialogData, BaseEntity entity)
     {
@@ -40,7 +45,7 @@ public class EffectResource : BaseEffect, IEffected
 
         dialogData.TypeEntity = TypeEntity.MapObject;
 
-        var currentEffect = entity.DataEffects.Effects.Find(t => t.ide == idEffect);
+        var currentEffect = entity.Effects.Effects.Find(t => t.ide == idEffect);
 
         if (currentEffect == null) return;
 
