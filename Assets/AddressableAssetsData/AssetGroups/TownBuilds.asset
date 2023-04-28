@@ -61,6 +61,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - build_base
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 67141cb8dce7b9a4db31cb4a75026253
+    m_Address: Assets/TownBuild/Faction/Tower/Tower.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - entity
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 9a6380555b06f9d46b9bf47dd32221de, type: 2}
   m_SchemaSet:

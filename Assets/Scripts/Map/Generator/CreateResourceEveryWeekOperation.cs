@@ -61,7 +61,7 @@ public class CreateResourceEveryWeekOperation : ILoadingOperation
                         .GetEntityByType<ScriptableEntityMapObject>(TypeEntity.MapObject)
                         .Where(t =>
                             t.TypeMapObject == TypeMapObject.Resources
-                            && (t.TypeGround & currentNode.TypeGround) == currentNode.TypeGround
+                            && (t.TypeGround).HasFlag(currentNode.TypeGround)
                             && typeWork.Contains(t.TypeWorkObject)
                             )
                         .ToList();

@@ -74,6 +74,22 @@ MonoBehaviour:
     m_Localized: Oris
     m_Metadata:
       m_Items: []
+  - m_Id: 4556537029885952
+    m_Localized: "\u0424\u0430\u0444\u043D\u0435\u0440"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4556629195522048
+    m_Localized: "\u0418\u043E\u043D\u0430"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4556775312490496
+    m_Localized: "\u0416\u043E\u0437\u0435\u0444\u0438\u043D\u0430"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4557135351545856
+    m_Localized: "\u041D\u0438\u043B\u0430"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

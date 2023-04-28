@@ -90,6 +90,9 @@ public class UIGameAside : UILocaleBase
 
     private void OnAfterStateChanged(GameState state)
     {
+        player = LevelManager.Instance.ActivePlayer;
+        // if (player.DataPlayer.command == ) return;
+
         switch (state)
         {
             case GameState.NextPlayer:
@@ -450,7 +453,6 @@ public class UIGameAside : UILocaleBase
 
     private void DrawAside()
     {
-        player = LevelManager.Instance.ActivePlayer;
         DrawTimeBlok();
 
         ShowMapButtons();

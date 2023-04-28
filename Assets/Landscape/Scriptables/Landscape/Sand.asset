@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3cff73568744154cb466614101c87c9, type: 3}
   m_Name: Sand
   m_EditorClassIdentifier: 
-  idObject: 233d516b155e48bd945ace5815e304f2
+  idObject: ead2493d4abc45e2ba7aeabcdedc9dcc
   objectName: Sand
   tileRule: {fileID: 11400000, guid: e07c3a3723c6f3b45a0ce30362224c55, type: 2}
   dataNode:
@@ -21,3 +21,4 @@ MonoBehaviour:
   isWalkable: 1
   isFraction: 0
   typeGround: 128
+  typeFaction: 0

@@ -25,7 +25,7 @@ public class EntityTown : BaseEntity
             {
                 List<ScriptableEntityTown> list = ResourceSystem.Instance
                     .GetEntityByType<ScriptableEntityTown>(TypeEntity.Town)
-                    .Where(t => t.TypeGround == typeGround)
+                    .Where(t => t.TypeGround.HasFlag(typeGround))
                     .ToList();
                 ScriptableData = list[UnityEngine.Random.Range(0, list.Count)];
             }

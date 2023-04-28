@@ -1,0 +1,89 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f947fec9b979d14a9eb6ab3859f5102, type: 3}
+  m_Name: Tower
+  m_EditorClassIdentifier: 
+  idObject: town.tower
+  TypeEntity: 80
+  MenuSprite: {fileID: 21300000, guid: d103e423de8ce3b49a18e53008ece8d5, type: 3}
+  Text:
+    title:
+      m_TableReference:
+        m_TableCollectionName: GUID:99ee07ddc90ffba41a3d18974d364707
+      m_TableEntryReference:
+        m_KeyId: 4674787021586432
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    description:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+  MapPrefab:
+    m_AssetGUID: 6a1b4cdbc76adae4a8d4ad518229a293
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  TypeGround: 256
+  TypeMapObject: 0
+  RMGValue: 0
+  listTypeNoPath: 0c0000000b000000060000000700000008000000030000000e0000000f000000090000000a0000000400000002000000
+  listRuleInput: 120000001100000013000000
+  TypeWorkObject: 0
+  TypeWorkEffect: 0
+  Effects: []
+  TypeFaction: 80
+  Bg: {fileID: 21300000, guid: 9f32752a0a9300743a8262d0de17d79c, type: 3}
+  Builds:
+  - {fileID: 11400000, guid: 901e42e66d4695b4ca23d066dbfe2877, type: 2}
+  - {fileID: 11400000, guid: e58d2eb9212ae3e40b71115a6a9e06b8, type: 2}
+  - {fileID: 11400000, guid: 8725e54349f74644fbbbffa322dd2be1, type: 2}
+  - {fileID: 11400000, guid: c4009eba3617a6c44be95baf6ad16f01, type: 2}
+  - {fileID: 11400000, guid: 99924d3dc371aee41982d617977d665e, type: 2}
+  - {fileID: 11400000, guid: 67301e89dc06415468cdeed22400d7c7, type: 2}
+  - {fileID: 11400000, guid: a76991c88825d184ba73e39ed41d460b, type: 2}
+  - {fileID: 11400000, guid: 4da87f95fdd8f6e4cb4858cacb703bfb, type: 2}
+  - {fileID: 11400000, guid: 5d162aac6bb8f2643abc28187e55e35d, type: 2}
+  - {fileID: 11400000, guid: 0c9c1452862bc8941b2f13007c444a8d, type: 2}
+  - {fileID: 11400000, guid: 08d3caa47f196ec42b45f54efaf3ecd9, type: 2}
+  - {fileID: 11400000, guid: 7f0991f7e084c5d44a118a7e1ece96f5, type: 2}
+  - {fileID: 11400000, guid: 8c414d4cf71f36a4cb7c3eef9d9bfb57, type: 2}
+  - {fileID: 11400000, guid: 95e103e71544c034c8023c97e8ca75e7, type: 2}
+  - {fileID: 11400000, guid: 2bbbd984b24b6db45b9a3133d4e95958, type: 2}
+  - {fileID: 11400000, guid: e415ac95d35ab1f458a85098f58bfb8b, type: 2}
+  - {fileID: 11400000, guid: 1dbe3da8bc400f643ba5668058b373a7, type: 2}
+  - {fileID: 11400000, guid: c742ca2ca7fd4da43a0a7b0898fe4fb8, type: 2}
+  StartProgressBuilds:
+  - Build: {fileID: 11400000, guid: 8725e54349f74644fbbbffa322dd2be1, type: 2}
+    level: 0
+  - Build: {fileID: 11400000, guid: 901e42e66d4695b4ca23d066dbfe2877, type: 2}
+    level: 0
+  TownNames:
+  - "\u0414\u0435\u043D\u0432\u0443\u0434"
+  - "\u0425\u0440\u0435\u043D\u044C"
+  LevelSprites:
+  - {fileID: 21300000, guid: 312d0914fbed3cd49b6e044318dafa49, type: 3}
+  - {fileID: 21300000, guid: d103e423de8ce3b49a18e53008ece8d5, type: 3}
+  - {fileID: 21300000, guid: d103e423de8ce3b49a18e53008ece8d5, type: 3}
+  - {fileID: 21300000, guid: d103e423de8ce3b49a18e53008ece8d5, type: 3}
+  mines:
+  - {fileID: 11400000, guid: ff2aa9c87b6ba604fa18b73f45488b1f, type: 2}
+  - {fileID: 11400000, guid: ae82e766647ad764da37449fa32b4b39, type: 2}
+  references:
+    version: 2
+    RefIds: []

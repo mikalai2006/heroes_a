@@ -12,6 +12,7 @@ public class PlayerData
     public int id;
     public Color color;
     public PlayerType playerType;
+    public int command;
     // public TypePlayerItem playerType2;
     // public string name;
     // public int idArea;

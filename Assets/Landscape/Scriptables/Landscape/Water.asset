@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3cff73568744154cb466614101c87c9, type: 3}
   m_Name: Water
   m_EditorClassIdentifier: 
-  idObject: 9c5883b3eecf45c3b878530232476c96
+  idObject: a51e7b50b22d433fbd4ab6bce2e6f5c3
   objectName: Water
   tileRule: {fileID: 11400000, guid: 4c8189fefff514f44a44fc829d389c40, type: 2}
   dataNode:
@@ -21,3 +21,4 @@ MonoBehaviour:
   isWalkable: 0
   isFraction: 0
   typeGround: 2048
+  typeFaction: 0

@@ -57,7 +57,7 @@ MonoBehaviour:
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
-  TypeGround: 2046
+  TypeGround: 1790
   TypeMapObject: 5
   RMGValue: 3500
   listTypeNoPath: 0c000000080000000e000000

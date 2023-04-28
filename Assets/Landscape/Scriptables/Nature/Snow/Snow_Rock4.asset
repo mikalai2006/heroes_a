@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16429bf882a319a4fa6cb0590513cfee, type: 3}
+  m_Name: Snow_Rock4
+  m_EditorClassIdentifier: 
+  m_DefaultSprite: {fileID: 21300000, guid: f0f83f55cd36dad42b3af789a0887674, type: 3}
+  m_DefaultGameObject: {fileID: 0}
+  m_DefaultColliderType: 1
+  m_TilingRules: []
+  idObject: d9d3fa61abfb4cacbdceb6901369ef2c
+  typeGround: 256
+  tile: {fileID: 0}
+  dataNode:
+    speed: 0
+  isWalkable: 0
+  isCorner: 1
+  listTypeNoPath: 0e00000012000000

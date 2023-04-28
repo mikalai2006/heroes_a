@@ -212,8 +212,7 @@ public class MapEntityHero : BaseMapEntity
     {
         var entityHero = (EntityHero)_mapObject.Entity;
 
-        GameManager.Instance.ChangeState(GameState.StopMoveHero);
-        _canMove = false;
+        // _canMove = false;
         _animator.SetBool("isWalking", false);
 
         await mapEntity.OnGoHero(_mapObject.Entity.Player);

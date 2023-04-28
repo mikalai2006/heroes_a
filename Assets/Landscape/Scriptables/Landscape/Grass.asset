@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3cff73568744154cb466614101c87c9, type: 3}
   m_Name: Grass
   m_EditorClassIdentifier: 
-  idObject: 0a31a61f22bc41a1ab2c174c590aa608
+  idObject: 169ee6169dd7414ab6761b22da71619e
   objectName: Grass
   tileRule: {fileID: 11400000, guid: 3b54c8ae1870146439158180ba9ba305, type: 2}
   dataNode:
@@ -21,3 +21,4 @@ MonoBehaviour:
   isWalkable: 1
   isFraction: 1
   typeGround: 4
+  typeFaction: 0
