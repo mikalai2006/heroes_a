@@ -23,4 +23,4 @@ MonoBehaviour:
     speed: 0
   isWalkable: 0
   isCorner: 0
-  listTypeNoPath: 0e000000
+  listTypeNoPath: 0e0000001200000011000000

@@ -249,7 +249,7 @@ public class GridTileNode : IHeapItem<GridTileNode>
 
     public void SetAsRoad()
     {
-        koofPath = 9;
+        koofPath = 5;
         StateNode |= StateNode.Road;
     }
 

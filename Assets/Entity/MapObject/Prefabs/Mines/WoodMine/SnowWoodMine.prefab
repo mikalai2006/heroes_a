@@ -136,9 +136,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2833722278812260305, guid: 74e586b38813f5a4f89bfded10336241, type: 3}
+      propertyPath: m_Size.x
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3681035251465187759, guid: 74e586b38813f5a4f89bfded10336241, type: 3}
       propertyPath: m_Name
-      value: WoodMineSnow
+      value: SnowWoodMine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
