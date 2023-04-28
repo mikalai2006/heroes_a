@@ -1,21 +1,27 @@
+using System.Threading.Tasks;
+
 using Cysharp.Threading.Tasks;
 
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "PrimarySkillEffect", menuName = "Game/Effect/EffectPrimarySkill")]
-public class EffectPrimarySkill : BaseEffect, IEffected
+public class EffectPrimarySkill : BaseEffect
 {
     public ScriptableAttributePrimarySkill PrimarySkill;
     public int value;
 
-    public override void RunHero(Player player, BaseEntity entity)
+    public async override UniTask<EffectResult> RunHero(Player player, BaseEntity entity)
     {
-        // base.RunHero(player, entity);
+        var result = new EffectResult();
+
         Debug.Log($"Start effect skill - {LevelManager.Instance.ActivePlayer.ActiveHero}");
 
         var currentEffectData = entity.Effects.Effects.Find(t => t.ide == idEffect);
 
         player.ActiveHero.ChangePrimarySkill(PrimarySkill.TypeSkill, currentEffectData.value);
+
+        await UniTask.Delay(1);
+        return result;
     }
 
     public override void SetData(BaseEntity entity)

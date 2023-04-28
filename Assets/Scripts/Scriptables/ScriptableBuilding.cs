@@ -164,11 +164,11 @@ public struct Build
             effect.RunEveryWeek(ref player, entity);
         }
     }
-    public void RunHero(ref Player player, BaseEntity entity)
+    public async void RunHero(Player player, BaseEntity entity)
     {
         foreach (var effect in Effect.RunHero)
         {
-            effect.RunHero(player, entity);
+            await effect.RunHero(player, entity);
         }
     }
 }

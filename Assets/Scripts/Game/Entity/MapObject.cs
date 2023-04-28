@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
+using Cysharp.Threading.Tasks;
+
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
@@ -71,19 +73,39 @@ public class MapObject
         Data.idEntity = entity.Id;
     }
 
-    public void SetPlayer(Player player)
+    public void DoHero(Player player)
     {
         ScriptableEntityMapObject configData = (ScriptableEntityMapObject)ConfigData;
-        // configData.RunHero(ref player, this);
-        // ScriptableResource dataScriptable = ResourceSystem.Instance.GetUnit<ScriptableResource>(idObject);
 
-        // ItemResource dataResource = dataScriptable.ListResource[Random.Range(0, dataScriptable.ListResource.Count)];
-        // int value = dataResource.listValue[Random.Range(0, dataResource.listValue.Length)];
-        // player.ChangeResource(dataResource.TypeResource, value);
-        // for (int i = 0; i < Data.Value.Count; i++)
+        // if (configData.Effects != null)
         // {
-        //     player.ChangeResource(Data.Value[i].typeResource, Data.Value[i].value);
+        //     if (result.keyVariant == -1)
+        //     {
+        //         await configData.RunHero(player, Entity);
+        //     }
+        //     else
+        //     {
+        //         var effect = configData.Effects.ElementAt(Entity.Effects.index);
+        //         if (configData.Effects.Count > 0 && effect.Item.items.Count > 0)
+        //         {
+        //             await effect.Item.items[result.keyVariant].RunHero(player, Entity);
+        //         }
+        //     }
         // }
+
+        // if (configData.TypeWorkObject == TypeWorkObject.One)
+        // {
+        //     Entity.DestroyEntity();
+        //     // Destroy(gameObject);
+        // }
+
+        // // Destroy protected node if creature.
+        // if (configData.TypeEntity == TypeEntity.Creature)
+        // {
+        //     ProtectedNode.DisableProtectedNeigbours(this);
+        // }
+
+
         if (configData.TypeWorkObject == TypeWorkObject.One)
         {
             List<GridTileNode> nodes
@@ -93,6 +115,11 @@ public class MapObject
                 node.RemoveStateNode(StateNode.Input);
             }
             // DestroyEntity();
+
+            OccupiedNode.SetOcuppiedUnit(null);
+            // MapObjectGameObject.DestroyMapObject();
+            UnitManager.MapObjects.Remove(IdMapObject);
+            Entity.DestroyEntity();
         }
         else
         {
@@ -110,12 +137,6 @@ public class MapObject
         ProtectedNode = protectedNode;
         Data.idProtMapObj = protectedNode.OccupiedUnit.IdMapObject;
         // ((EntityCreature)Entity).Data.protectedNode = protectedNode.position;
-    }
-
-    public void DestroyMapGameObject()
-    {
-        OccupiedNode.SetOcuppiedUnit(null);
-        // OccupiedNode = null;
     }
 
     public void CreateMapGameObject(GridTileNode node)

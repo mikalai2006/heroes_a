@@ -189,16 +189,6 @@ public class EntityTown : BaseEntity
         }
     }
 
-    #region SaveLoadData
-    // public void LoadDataPlay(DataPlay data)
-    // {
-    //     throw new System.NotImplementedException();
-    // }
-    public override void SaveEntity(ref DataPlay data)
-    {
-        var sdata = SaveUnit(Data);
-        data.entity.towns.Add(sdata);
-    }
 
     public BaseBuild CreateBuild(ScriptableBuilding buildConfig, int level, Player player)
     {
@@ -326,6 +316,7 @@ public class EntityTown : BaseEntity
         return result;
     }
 
+    #region Event GameState
     public override void OnAfterStateChanged(GameState newState)
     {
         base.OnAfterStateChanged(newState);
@@ -373,6 +364,13 @@ public class EntityTown : BaseEntity
     //         }
     //     };
     // }
+    #endregion
 
+    #region SaveData
+    public override void SaveEntity(ref DataPlay data)
+    {
+        var sdata = SaveUnit(Data);
+        data.entity.towns.Add(sdata);
+    }
     #endregion
 }

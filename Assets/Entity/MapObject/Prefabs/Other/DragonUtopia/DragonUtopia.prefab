@@ -136,6 +136,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5346542484924629052, guid: 7541b77c900221941b0cf525cfaa48a0, type: 3}
+      propertyPath: m_Size.x
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5346542484924629052, guid: 7541b77c900221941b0cf525cfaa48a0, type: 3}
+      propertyPath: m_Size.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5346542484924629052, guid: 7541b77c900221941b0cf525cfaa48a0, type: 3}
+      propertyPath: m_Offset.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8933532190770530875, guid: 7541b77c900221941b0cf525cfaa48a0, type: 3}
       propertyPath: m_Name
       value: DragonUtopia
@@ -146,8 +158,34 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3120311895671511334, guid: 7541b77c900221941b0cf525cfaa48a0, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3610358984746584160}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8933532190770530875, guid: 7541b77c900221941b0cf525cfaa48a0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8313626805226157883}
   m_SourcePrefab: {fileID: 100100000, guid: 7541b77c900221941b0cf525cfaa48a0, type: 3}
+--- !u!1 &817609587818737032 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8933532190770530875, guid: 7541b77c900221941b0cf525cfaa48a0, type: 3}
+  m_PrefabInstance: {fileID: 8116317366365104051}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8313626805226157883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 817609587818737032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48179460821b9744aba3502e6493c80b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _mapObject:
+    Data:
+      idEntity: 
+      position: {x: 0, y: 0, z: 0}
+      idProtMapObj: 
+    _configData: {fileID: 0}
 --- !u!4 &6624619712295452309 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3120311895671511334, guid: 7541b77c900221941b0cf525cfaa48a0, type: 3}

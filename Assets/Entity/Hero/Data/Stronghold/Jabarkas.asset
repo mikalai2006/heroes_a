@@ -49,8 +49,21 @@ MonoBehaviour:
   Effects: []
   TypeFaction: 1
   ClassHero: {fileID: 11400000, guid: 2506fee5f50b951438df247c0d7427e0, type: 2}
-  StartSecondarySkill: []
-  StartCreatures: []
+  StartSecondarySkill:
+  - SecondarySkill: {fileID: 11400000, guid: dc0c8987aed0b2d4cbe3bb0e396a233b, type: 2}
+    value: 0
+  - SecondarySkill: {fileID: 11400000, guid: 901384e2bd5925a458fe52bc9e2e9d14, type: 2}
+    value: 0
+  StartCreatures:
+  - creature: {fileID: 11400000, guid: 9f3b6d3f88186174ea86b4e0f01dc676, type: 2}
+    min: 15
+    max: 25
+  - creature: {fileID: 11400000, guid: 4fd41ea386a0ace4abad0946d8860497, type: 2}
+    min: 4
+    max: 6
+  - creature: {fileID: 11400000, guid: 4fd41ea386a0ace4abad0946d8860497, type: 2}
+    min: 4
+    max: 6
   references:
     version: 2
     RefIds: []

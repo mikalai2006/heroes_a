@@ -9,6 +9,12 @@ using UnityEngine.Localization.SmartFormat.PersistentVariables;
 public class MapEntityDwelling : BaseMapEntity, IDialogMapObjectOperation
 {
     private SpriteRenderer _flag;
+    protected override void Awake()
+    {
+        base.Awake();
+        _flag = transform.Find("Flag")?.GetComponent<SpriteRenderer>();
+    }
+
     public override void InitUnit(MapObject mapObject)
     {
         base.InitUnit(mapObject);
@@ -17,49 +23,10 @@ public class MapEntityDwelling : BaseMapEntity, IDialogMapObjectOperation
             SetPlayer(mapObject.Entity.Player);
         }
     }
-    protected override void Awake()
-    {
-        base.Awake();
-        _flag = transform.Find("Flag")?.GetComponent<SpriteRenderer>();
-    }
 
     public void SetPlayer(Player player)
     {
         _flag.color = player.DataPlayer.color;
-    }
-
-    public async override UniTask OnGoHero(Player player)
-    {
-        await base.OnGoHero(player);
-
-        if (LevelManager.Instance.ActivePlayer.DataPlayer.playerType != PlayerType.Bot)
-        {
-            DataResultDialog result = await OnTriggeredHero();
-
-            if (result.isOk)
-            {
-                OnHeroGo(player);
-                DataResultDialogDwelling resultDwelling = await OnShowDialogDwelling();
-                if (resultDwelling.isOk)
-                {
-
-                }
-            }
-            else
-            {
-                // Click cancel.
-            }
-        }
-        else
-        {
-            OnHeroGo(player);
-        }
-    }
-
-    private void OnHeroGo(Player player)
-    {
-        _mapObject.SetPlayer(player);
-        SetPlayer(player);
     }
 
     public async UniTask<DataResultDialog> OnTriggeredHero()
@@ -92,6 +59,40 @@ public class MapEntityDwelling : BaseMapEntity, IDialogMapObjectOperation
         var dialogWindow = new DialogMapObjectProvider(dialogData);
         return await dialogWindow.ShowAndHide();
     }
+    public async override UniTask OnGoHero(Player player)
+    {
+        await base.OnGoHero(player);
+
+        if (LevelManager.Instance.ActivePlayer.DataPlayer.playerType != PlayerType.Bot)
+        {
+            DataResultDialog result = await OnTriggeredHero();
+
+            if (result.isOk)
+            {
+                OnHeroGo(player);
+                DataResultDialogDwelling resultDwelling = await OnShowDialogDwelling();
+                if (resultDwelling.isOk)
+                {
+
+                }
+            }
+            else
+            {
+                // Click cancel.
+            }
+        }
+        else
+        {
+            OnHeroGo(player);
+        }
+    }
+
+    private void OnHeroGo(Player player)
+    {
+        _mapObject.DoHero(player);
+        SetPlayer(player);
+    }
+
 
     public async UniTask<DataResultDialogDwelling> OnShowDialogDwelling()
     {

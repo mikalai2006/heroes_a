@@ -19,7 +19,7 @@ public class MapEntityExplore : BaseMapEntity, IDialogMapObjectOperation
 
             if (result.isOk)
             {
-                _mapObject.SetPlayer(player);
+                _mapObject.DoHero(player);
             }
             else
             {

@@ -1,0 +1,79 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7163061970194982629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de70df6598f42d14cbf908f7512ff10f, type: 3}
+  m_Name: EffectSpell
+  m_EditorClassIdentifier: 
+  idEffect: shrine3
+  levelSpell: 3
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28f893db958f10a46a0e59d54d9b29d0, type: 3}
+  m_Name: Shrine3
+  m_EditorClassIdentifier: 
+  idObject: map.skills.shrine3
+  TypeEntity: 34
+  MenuSprite: {fileID: 0}
+  Text:
+    title:
+      m_TableReference:
+        m_TableCollectionName: GUID:8ed801dac82951d449557e1a63174ac8
+      m_TableEntryReference:
+        m_KeyId: 11691231974424576
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    description:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+  MapPrefab:
+    m_AssetGUID: 95334d18c8a303d4e81b621501aef74b
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  TypeGround: -1
+  TypeMapObject: 4
+  RMGValue: 0
+  listTypeNoPath: 
+  listRuleInput: 1100000013000000120000000c0000000e000000
+  TypeWorkObject: 5
+  TypeWorkEffect: 0
+  Effects:
+  - Item:
+      description:
+        m_TableReference:
+          m_TableCollectionName: GUID:8ed801dac82951d449557e1a63174ac8
+        m_TableEntryReference:
+          m_KeyId: 11691282251546624
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      items:
+      - {fileID: -7163061970194982629}
+    probability: 1
+  references:
+    version: 2
+    RefIds: []

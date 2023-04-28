@@ -132,6 +132,7 @@ public class LevelManager : Singleton<LevelManager>, ISaveDataPlay, ISaveDataGam
         }
 
         // GameManager.Instance.MapManager.ResetSky(Level.nosky);
+        GameManager.Instance.ChangeState(GameState.NextDay);
 
         if (ActivePlayer.ActiveHero == null)
         {
@@ -143,7 +144,6 @@ public class LevelManager : Singleton<LevelManager>, ISaveDataPlay, ISaveDataGam
             ActivePlayer.ActiveHero.SetHeroAsActive();
         }
 
-        GameManager.Instance.ChangeState(GameState.NextDay);
         if (GameDate.week == 0)
         {
             GameManager.Instance.ChangeState(GameState.NextWeek);

@@ -1,0 +1,100 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-5267830563447862525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c46b1163701238469191912da7e84d9, type: 3}
+  m_Name: EffectCreatureBank
+  m_EditorClassIdentifier: 
+  idEffect: Crypt2
+  creatures:
+  - creature: {fileID: 11400000, guid: b770f4df671795844af7854c6469b998, type: 2}
+    value: 5
+  - creature: {fileID: 11400000, guid: b770f4df671795844af7854c6469b998, type: 2}
+    value: 5
+  resources:
+  - Resource: {fileID: 11400000, guid: 3894d4d068775c343b5c4bf1510dee33, type: 2}
+    value: 1500
+  artifacts: []
+  primarySkills: []
+  textWin:
+    m_TableReference:
+      m_TableCollectionName: GUID:8ed801dac82951d449557e1a63174ac8
+    m_TableEntryReference:
+      m_KeyId: 11690280744026112
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  references:
+    version: 2
+    RefIds: []
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28f893db958f10a46a0e59d54d9b29d0, type: 3}
+  m_Name: CryptSnow
+  m_EditorClassIdentifier: 
+  idObject: map.creaturebanks.cryptsnow
+  TypeEntity: 34
+  MenuSprite: {fileID: 0}
+  Text:
+    title:
+      m_TableReference:
+        m_TableCollectionName: GUID:8ed801dac82951d449557e1a63174ac8
+      m_TableEntryReference:
+        m_KeyId: 11683106659663872
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    description:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+  MapPrefab:
+    m_AssetGUID: 479f93cc45f758e49bbf2c316a08ce18
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  TypeGround: 256
+  TypeMapObject: 9
+  RMGValue: 1000
+  listTypeNoPath: 0c0000000e000000
+  listRuleInput: 130000001200000011000000
+  TypeWorkObject: 5
+  TypeWorkEffect: 0
+  Effects:
+  - Item:
+      description:
+        m_TableReference:
+          m_TableCollectionName: GUID:8ed801dac82951d449557e1a63174ac8
+        m_TableEntryReference:
+          m_KeyId: 11683135680053248
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      items:
+      - {fileID: -5267830563447862525}
+    probability: 0.3
+  references:
+    version: 2
+    RefIds: []

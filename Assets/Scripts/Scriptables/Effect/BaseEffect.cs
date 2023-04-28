@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 using Cysharp.Threading.Tasks;
 
@@ -7,9 +8,11 @@ using UnityEngine;
 public abstract class BaseEffect : ScriptableObject
 {
     public string idEffect;
-    public virtual void RunHero(Player player, BaseEntity entity)
+    public async virtual UniTask<EffectResult> RunHero(Player player, BaseEntity entity)
     {
-
+        var result = new EffectResult();
+        await UniTask.Delay(1);
+        return result;
     }
 
     public virtual void RunOne(ref Player player, BaseEntity entity)
@@ -33,6 +36,13 @@ public abstract class BaseEffect : ScriptableObject
     {
 
     }
+}
+
+[System.Serializable]
+public struct EffectResult
+{
+    public bool ok;
+    public bool no;
 }
 
 [System.Serializable]

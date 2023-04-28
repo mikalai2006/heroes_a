@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 
+using Cysharp.Threading.Tasks;
+
 using UnityEngine;
 using UnityEngine.Localization;
 
@@ -15,11 +17,11 @@ public class ScriptableAttributeArtifact : ScriptableAttribute
     public List<ArtifactItemSkill> SecondarySkills;
     public LocalizedString textOk;
     public List<BaseEffect> Effects;
-    public virtual void RunHero(Player player, BaseEntity entity)
+    public async virtual UniTask RunHero(Player player, BaseEntity entity)
     {
-        foreach (var perk in Effects)
+        foreach (var effect in Effects)
         {
-            perk.RunHero(player, entity);
+            await effect.RunHero(player, entity);
         }
     }
 }

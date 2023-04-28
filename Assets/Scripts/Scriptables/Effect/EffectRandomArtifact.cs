@@ -1,20 +1,27 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 using Cysharp.Threading.Tasks;
 
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "RandomArtifactEffect", menuName = "Game/Effect/EffectRandomArtifact")]
-public class EffectRandomArtifact : BaseEffect, IEffected
+public class EffectRandomArtifact : BaseEffect
 {
     public List<ScriptableAttributeArtifact> Artifacts;
 
-    public override void RunHero(Player player, BaseEntity entity)
+    public async override UniTask<EffectResult> RunHero(Player player, BaseEntity entity)
     {
+        var result = new EffectResult();
+
         var RandomArtifact = Artifacts[Random.Range(0, Artifacts.Count)];
 
         Debug.Log($"EffectRandomArtifact::: Run {RandomArtifact.name} run!");
+
+        await UniTask.Delay(1);
+        return result;
     }
+
     public override void SetData(BaseEntity entity)
     {
         base.SetData(entity);

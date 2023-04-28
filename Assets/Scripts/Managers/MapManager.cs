@@ -498,6 +498,8 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
         operations.Enqueue(new CreateRoadOperation(this));
 
         operations.Enqueue(new CreateMinesOperation(this));
+        operations.Enqueue(new CreateCreatureBanksOperation(this));
+
         operations.Enqueue(new CreateExploreOperation(this));
         operations.Enqueue(new CreateSkillSchoolOperation(this));
 

@@ -1,3 +1,5 @@
+using System.Threading.Tasks;
+
 using Cysharp.Threading.Tasks;
 
 using UnityEngine;
@@ -8,14 +10,17 @@ public class EffectWarMachine : BaseEffect
     public TypeWarMachine TypeWarMachine;
     public int count;
 
-    public override void RunHero(Player player, BaseEntity entity)
+    public async override UniTask<EffectResult> RunHero(Player player, BaseEntity entity)
     {
+        var _processCompletionSource = new TaskCompletionSource<EffectResult>();
         // base.RunHero(player, entity);
         // EntityMonolith monolith = (EntityMonolith)entity;
         // Vector3Int pointToTeleport
         //     = monolith.Data.portalPoints[Random.Range(0, monolith.Data.portalPoints.Count)];
         // player.ActiveHero.SetPositionHero(pointToTeleport);
         Debug.Log("EffectWarMachine run!");
+
+        return await _processCompletionSource.Task;
     }
 
     // public override void RunOne(ref Player player, BaseEntity entity)

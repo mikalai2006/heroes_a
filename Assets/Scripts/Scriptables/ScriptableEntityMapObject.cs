@@ -20,14 +20,16 @@ public class ScriptableEntityMapObject : ScriptableEntity, IEffected
     public TypeWorkAttribute TypeWorkEffect;
     public List<ItemProbabiliti<ItemEffect>> Effects;
 
-    public virtual void RunHero(Player player, BaseEntity entity)
+    public async virtual UniTask RunHero(Player player, BaseEntity entity)
     {
         if (Effects.Count == 0) return;
 
         foreach (var effect in Effects[entity.Effects.index].Item.items)
         {
-            effect.RunHero(player, entity);
+            await effect.RunHero(player, entity);
         }
+
+        await UniTask.Delay(1);
     }
     public virtual void SetData(BaseEntity entity)
     {
@@ -56,6 +58,7 @@ public struct ItemEffect
     public LocalizedString description;
     public List<BaseEffect> items;
 }
+
 
 [System.Serializable]
 public struct DialogText

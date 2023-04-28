@@ -27,8 +27,8 @@ public abstract class BaseMapEntity : MonoBehaviour, IPointerClickHandler
 
     protected virtual void Awake()
     {
-        GameManager.OnBeforeStateChanged += OnBeforeStateChanged;
-        GameManager.OnAfterStateChanged += OnAfterStateChanged;
+        // GameManager.OnBeforeStateChanged += OnBeforeStateChanged;
+        // GameManager.OnAfterStateChanged += OnAfterStateChanged;
         //Debug.Log($"Awake {name}");
     }
 
@@ -36,27 +36,24 @@ public abstract class BaseMapEntity : MonoBehaviour, IPointerClickHandler
     {
         Debug.LogWarning($"Destroy object [{MapObject.ConfigData.name}] - gameObject[{gameObject.name}]");
         _mapObject.ConfigData.MapPrefab.ReleaseInstance(gameObject);
-        // MapObjectClass.DestroyEntity();
-        // UnitManager.Entities.Remove(MapObjectClass.IdEntity);
-        // MapObjectClass = null;
 
-        GameManager.OnBeforeStateChanged -= OnBeforeStateChanged;
-        GameManager.OnAfterStateChanged -= OnAfterStateChanged;
+        // GameManager.OnBeforeStateChanged -= OnBeforeStateChanged;
+        // GameManager.OnAfterStateChanged -= OnAfterStateChanged;
     }
 
-    public virtual void OnBeforeStateChanged(GameState newState)
-    {
-        switch (newState)
-        {
-            case GameState.SaveGame:
-                // OnSaveUnit();
-                break;
-        }
-    }
+    // public virtual void OnBeforeStateChanged(GameState newState)
+    // {
+    //     switch (newState)
+    //     {
+    //         case GameState.SaveGame:
+    //             // OnSaveUnit();
+    //             break;
+    //     }
+    // }
 
-    public virtual void OnAfterStateChanged(GameState newState)
-    {
-    }
+    // public virtual void OnAfterStateChanged(GameState newState)
+    // {
+    // }
     #endregion
 
     public async virtual UniTask OnGoHero(Player player)

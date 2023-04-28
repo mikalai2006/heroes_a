@@ -13,41 +13,6 @@ public class MapEntityCreature : BaseMapEntity, IDialogMapObjectOperation
         base.InitUnit(mapObject);
     }
 
-    public async override UniTask OnGoHero(Player player)
-    {
-        await base.OnGoHero(player);
-
-        if (LevelManager.Instance.ActivePlayer.DataPlayer.playerType != PlayerType.Bot)
-        {
-            DataResultDialog result = await OnTriggeredHero();
-
-            if (result.isOk)
-            {
-                OnHeroGo(player);
-            }
-            else
-            {
-                // Click cancel.
-            }
-        }
-        else
-        {
-            await UniTask.Delay(LevelManager.Instance.ConfigGameSettings.timeDelayDoBot);
-            OnHeroGo(player);
-        }
-    }
-
-    private void OnHeroGo(Player player)
-    {
-        _mapObject.ProtectedNode.DisableProtectedNeigbours(_mapObject);
-
-        // TODO ARENA
-
-        _mapObject.SetPlayer(player);
-
-        Destroy(gameObject);
-    }
-
     public async UniTask<DataResultDialog> OnTriggeredHero()
     {
         var creature = (EntityCreature)_mapObject.Entity;
@@ -80,4 +45,39 @@ public class MapEntityCreature : BaseMapEntity, IDialogMapObjectOperation
         return await dialogWindow.ShowAndHide();
     }
 
+
+    public async override UniTask OnGoHero(Player player)
+    {
+        await base.OnGoHero(player);
+
+        if (LevelManager.Instance.ActivePlayer.DataPlayer.playerType != PlayerType.Bot)
+        {
+            DataResultDialog result = await OnTriggeredHero();
+
+            if (result.isOk)
+            {
+                OnHeroGo(player);
+            }
+            else
+            {
+                // Click cancel.
+            }
+        }
+        else
+        {
+            await UniTask.Delay(LevelManager.Instance.ConfigGameSettings.timeDelayDoBot);
+            OnHeroGo(player);
+        }
+    }
+
+    private void OnHeroGo(Player player)
+    {
+        MapObject.ProtectedNode.DisableProtectedNeigbours(_mapObject);
+
+        // TODO ARENA
+
+        MapObject.DoHero(player);
+
+        Destroy(gameObject);
+    }
 }

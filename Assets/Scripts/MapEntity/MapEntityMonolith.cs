@@ -1,3 +1,5 @@
+using System.Linq;
+
 using Cysharp.Threading.Tasks;
 
 
@@ -30,7 +32,7 @@ public class MapEntityMonolith : BaseMapEntity, IDialogMapObjectOperation
             DataResultDialog result = await OnTriggeredHero();
             if (result.isOk)
             {
-                _mapObject.SetPlayer(player);
+                await OnHeroGo(player, result);
             }
             else
             {
@@ -39,8 +41,27 @@ public class MapEntityMonolith : BaseMapEntity, IDialogMapObjectOperation
         }
         else
         {
-
+            await OnHeroGo(player, default);
         }
     }
+    private async UniTask OnHeroGo(Player player, DataResultDialog result)
+    {
+        MapObject MapObject = (MapObject)_mapObject;
+        ScriptableEntityMapObject configData = (ScriptableEntityMapObject)_mapObject.ConfigData;
 
+        if (result.keyVariant == -1)
+        {
+            await configData.RunHero(player, MapObject.Entity);
+        }
+        else
+        {
+            var effect = configData.Effects.ElementAt(MapObject.Entity.Effects.index);
+            if (configData.Effects.Count > 0 && effect.Item.items.Count > 0)
+            {
+                await effect.Item.items[result.keyVariant].RunHero(player, MapObject.Entity);
+            }
+        }
+
+        _mapObject.DoHero(player);
+    }
 }

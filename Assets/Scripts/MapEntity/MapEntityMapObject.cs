@@ -7,14 +7,11 @@ public class MapEntityMapObject : BaseMapEntity, IDialogMapObjectOperation
 {
     private DataDialogMapObjectGroup _dialogData;
 
-    public override void InitUnit(MapObject mapObject)
-    {
+    // public override void InitUnit(MapObject mapObject)
+    // {
 
-        base.InitUnit(mapObject);
-
-        // var mapObjectClass = (EntityMapObject)MapObjectClass;
-        //mapObjectClass.SetData();
-    }
+    //     base.InitUnit(mapObject);
+    // }
 
     public async UniTask<DataResultDialog> OnTriggeredHero()
     {
@@ -30,29 +27,9 @@ public class MapEntityMapObject : BaseMapEntity, IDialogMapObjectOperation
             effect.CreateDialogData(ref _dialogData, _mapObject.Entity);
         }
         var groups = new List<DataDialogMapObjectGroup>();
-        // var group = new DataDialogMapObjectGroup();
-        // // var group = groups[0].Items;
-        // group.Values = new List<DataDialogMapObjectGroupItem>();
-        // for (int i = 0; i < entity.Data.AttributeValues.Count; i++)
-        // {
-        //     group.Values.Add(new DataDialogMapObjectGroupItem()
-        //     {
-        //         Sprite = entity.Data.AttributeValues[i].Attribute.MenuSprite,
-        //         Value = entity.Data.AttributeValues[i].value
-        //     });
-        // }
+
         groups.Add(_dialogData);
 
-        // var groupArtifact = new DataDialogMapObjectGroup();
-        // groupArtifact.Values = new List<DataDialogMapObjectGroupItem>();
-        // for (int i = 0; i < entity.Data.Artifacts.Count; i++)
-        // {
-        //     groupArtifact.Values.Add(new DataDialogMapObjectGroupItem()
-        //     {
-        //         Sprite = entity.Data.Artifacts[i].Artifact.spriteMap,
-        //     });
-        // }
-        // groups.Add(groupArtifact);
         var description = configData.Effects[_mapObject.Entity.Effects.index].Item.description.IsEmpty
             ? ""
             : configData.Effects[_mapObject.Entity.Effects.index].Item.description.GetLocalizedString();
@@ -83,7 +60,7 @@ public class MapEntityMapObject : BaseMapEntity, IDialogMapObjectOperation
             DataResultDialog result = await OnTriggeredHero();
             if (result.isOk)
             {
-                OnHeroGo(player, result.keyVariant);
+                await OnHeroGo(player, result);
             }
             else
             {
@@ -93,32 +70,32 @@ public class MapEntityMapObject : BaseMapEntity, IDialogMapObjectOperation
         else
         {
             await UniTask.Delay(LevelManager.Instance.ConfigGameSettings.timeDelayDoBot);
-            OnHeroGo(player, 0);
+            await OnHeroGo(player, default);
         }
     }
 
-    private void OnHeroGo(Player player, int indexVariant)
+    private async UniTask OnHeroGo(Player player, DataResultDialog result)
     {
-        MapObject entity = (MapObject)_mapObject;
+        MapObject MapObject = (MapObject)_mapObject;
         ScriptableEntityMapObject configData = (ScriptableEntityMapObject)_mapObject.ConfigData;
-        _mapObject.SetPlayer(player);
 
-        if (indexVariant == -1)
+        if (result.keyVariant == -1)
         {
-            configData.RunHero(player, entity.Entity);
+            await configData.RunHero(player, MapObject.Entity);
         }
         else
         {
-            var effect = configData.Effects.ElementAt(entity.Entity.Effects.index);
+            var effect = configData.Effects.ElementAt(MapObject.Entity.Effects.index);
             if (configData.Effects.Count > 0 && effect.Item.items.Count > 0)
             {
-                effect.Item.items[indexVariant].RunHero(player, entity.Entity);
+                await effect.Item.items[result.keyVariant].RunHero(player, MapObject.Entity);
             }
         }
 
+        _mapObject.DoHero(player);
         if (configData.TypeWorkObject == TypeWorkObject.One)
         {
-            MapObject.Entity.DestroyEntity();
+            // base.MapObject.Entity.DestroyEntity();
             Destroy(gameObject);
         }
         // else {
@@ -127,13 +104,6 @@ public class MapEntityMapObject : BaseMapEntity, IDialogMapObjectOperation
         //         Debug.Log($"Status choose={res.TypeAttribute}-{res.value}");
         //     }
         // }
-    }
-
-    public override void OnNextDay()
-    {
-        base.OnNextDay();
-        // var mapObjectClass = (EntityResource)MapObjectClass;
-        // mapObjectClass.SetData();
     }
 
 }

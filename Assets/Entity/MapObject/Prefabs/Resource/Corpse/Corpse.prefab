@@ -140,6 +140,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5587595646941519812, guid: d0ff865bb06701e4e8477be3ebaf015a, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5587595646941519812, guid: d0ff865bb06701e4e8477be3ebaf015a, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -2290629519354129263, guid: d0ff865bb06701e4e8477be3ebaf015a, type: 3}
     m_RemovedGameObjects: []
@@ -169,6 +177,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48179460821b9744aba3502e6493c80b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _mapObject:
+    Data:
+      idEntity: 
+      position: {x: 0, y: 0, z: 0}
+      idProtMapObj: 
+    _configData: {fileID: 0}
 --- !u!4 &2164147759222582388 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4801796740062103124, guid: d0ff865bb06701e4e8477be3ebaf015a, type: 3}

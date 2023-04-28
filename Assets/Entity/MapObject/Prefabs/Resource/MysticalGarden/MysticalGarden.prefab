@@ -74,12 +74,12 @@ SpriteRenderer:
   m_SortingLayerID: 784102457
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 725d6f33f9908d14c9639a2221d6d467, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 562e3b01453d6944d971621026e032ed, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.5, y: 1}
+  m_Size: {x: 3, y: 2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -115,7 +115,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4659698308293948353, guid: d0ff865bb06701e4e8477be3ebaf015a, type: 3}
       propertyPath: m_Name
-      value: Garden
+      value: MysticalGarden
       objectReference: {fileID: 0}
     - target: {fileID: 4801796740062103124, guid: d0ff865bb06701e4e8477be3ebaf015a, type: 3}
       propertyPath: m_RootOrder
@@ -211,3 +211,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48179460821b9744aba3502e6493c80b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _mapObject:
+    Data:
+      idEntity: 
+      position: {x: 0, y: 0, z: 0}
+      idProtMapObj: 
+    _configData: {fileID: 0}

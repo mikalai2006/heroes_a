@@ -331,6 +331,46 @@ MonoBehaviour:
     m_Key: novacantplace
     m_Metadata:
       m_Items: []
+  - m_Id: 11614702170963968
+    m_Key: dragonutopia_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11637496149606400
+    m_Key: dragonutopia_before
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11683106659663872
+    m_Key: crypt_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11683135680053248
+    m_Key: crypt_before
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11690126280392704
+    m_Key: crypt_no
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11690280744026112
+    m_Key: crypt_yes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11691231974424576
+    m_Key: shrine_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11691282251546624
+    m_Key: shrine_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11691461952307200
+    m_Key: shrine_nobook
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11691538263474176
+    m_Key: shrine_noskill
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

@@ -46,9 +46,8 @@ public abstract class BaseEntity
     public void DestroyEntity()
     {
         RemoveEvents();
-        MapObject.DestroyMapGameObject();
+        // MapObject.DestroyMapGameObject();
         UnitManager.Entities.Remove(Id);
-        UnitManager.MapObjects.Remove(MapObject.IdMapObject);
         MapObject = null;
     }
 

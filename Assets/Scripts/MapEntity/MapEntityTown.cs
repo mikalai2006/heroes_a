@@ -22,27 +22,11 @@ public class MapEntityTown : BaseMapEntity
         }
         RefreshLevelBuild();
     }
-    //private void Awake() => GameManager.OnBeforeStateChanged += OnStateChanged;
-
-    //private void OnDestroy() => GameManager.OnBeforeStateChanged -= OnStateChanged;
-
-    public override void OnAfterStateChanged(GameState newState)
-    {
-        //if (newState == GameState.HeroTurn) _canMove = true;
-        base.OnAfterStateChanged(newState);
-    }
 
     private void SetPlayer(Player player)
     {
         Transform flag = transform.Find("Flag");
         flag.GetComponent<SpriteRenderer>().color = player.DataPlayer.color;
-    }
-
-    public virtual void ExecuteMove()
-    {
-        // Override this to do some hero-specific logic, then call this base method to clean up the turn
-
-        //_canMove = false;
     }
 
     public async override UniTask OnGoHero(Player player)
@@ -96,18 +80,4 @@ public class MapEntityTown : BaseMapEntity
             el.gameObject.SetActive(true);
         }
     }
-    //public override void OnSaveUnit()
-    //{
-    //    // SaveUnit(Data);
-    //}
-
-    // public void LoadDataPlay(DataPlay data)
-    // {
-    //     //throw new System.NotImplementedException();
-    // }
-    // public void SaveDataPlay(ref DataPlay data)
-    // {
-    //     var sdata = SaveUnit(Data);
-    //     data.Units.towns.Add(sdata);
-    // }
 }

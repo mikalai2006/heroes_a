@@ -28,15 +28,15 @@ public class MapEntityHero : BaseMapEntity
     }
     //private void OnDestroy() => GameManager.OnBeforeStateChanged -= OnChangeGameState;
 
-    public override void OnBeforeStateChanged(GameState newState)
-    {
-        base.OnBeforeStateChanged(newState);
-        OnChangeGameState(newState);
-    }
-    public override void OnAfterStateChanged(GameState newState)
-    {
-        base.OnAfterStateChanged(newState);
-    }
+    // public override void OnBeforeStateChanged(GameState newState)
+    // {
+    //     base.OnBeforeStateChanged(newState);
+    //     OnChangeGameState(newState);
+    // }
+    // public override void OnAfterStateChanged(GameState newState)
+    // {
+    //     base.OnAfterStateChanged(newState);
+    // }
 
     //protected override void Start()
     //{
@@ -77,28 +77,28 @@ public class MapEntityHero : BaseMapEntity
     //}
 
 
-    private void OnChangeGameState(GameState newState)
-    {
-        var entityHero = (EntityHero)_mapObject.Entity;
-        // _canMove = newState == GameState.StartMoveHero && this.MapObjectClass ==
-        //     LevelManager.Instance.ActivePlayer.DataPlayer.PlayerDataReferences.ActiveHero;
-        // if (_canMove && entityHero.IsExistPath)
-        // {
-        //     entityHero.Data.path.RemoveAt(0);
-        //     StartCoroutine(MoveHero());
+    // private void OnChangeGameState(GameState newState)
+    // {
+    //     var entityHero = (EntityHero)_mapObject.Entity;
+    //     // _canMove = newState == GameState.StartMoveHero && this.MapObjectClass ==
+    //     //     LevelManager.Instance.ActivePlayer.DataPlayer.PlayerDataReferences.ActiveHero;
+    //     // if (_canMove && entityHero.IsExistPath)
+    //     // {
+    //     //     entityHero.Data.path.RemoveAt(0);
+    //     //     StartCoroutine(MoveHero());
 
-        // }
+    //     // }
 
-        switch (newState)
-        {
-            case GameState.NextPlayer:
-                entityHero.Data.hit = 100f;
-                var data = (EntityHero)_mapObject.Entity;
-                data.Data.hit = 100f;
-                data.Data.mana = 100f;
-                break;
-        }
-    }
+    //     switch (newState)
+    //     {
+    //         case GameState.NextPlayer:
+    //             entityHero.Data.hit = 100f;
+    //             var data = (EntityHero)_mapObject.Entity;
+    //             data.Data.hit = 100f;
+    //             data.Data.mana = 100f;
+    //             break;
+    //     }
+    // }
 
     public async UniTask StartMove()
     {

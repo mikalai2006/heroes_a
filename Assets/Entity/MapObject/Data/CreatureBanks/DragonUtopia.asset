@@ -1,5 +1,34 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-5267830563447862525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c46b1163701238469191912da7e84d9, type: 3}
+  m_Name: EffectCreatureBank
+  m_EditorClassIdentifier: 
+  idEffect: CreatureBank1
+  creatures:
+  - creature: {fileID: 11400000, guid: b770f4df671795844af7854c6469b998, type: 2}
+    value: 5
+  - creature: {fileID: 11400000, guid: b770f4df671795844af7854c6469b998, type: 2}
+    value: 5
+  resources:
+  - Resource: {fileID: 11400000, guid: 3894d4d068775c343b5c4bf1510dee33, type: 2}
+    value: 10000
+  artifacts:
+  - classArtifact: 3
+    value: 1
+  - classArtifact: 1
+    value: 2
+  primarySkills:
+  - PrimarySkill: {fileID: 11400000, guid: 71fd48291a2040e4b92224f9677707ba, type: 2}
+    value: 5000
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18,9 +47,9 @@ MonoBehaviour:
   Text:
     title:
       m_TableReference:
-        m_TableCollectionName: 
+        m_TableCollectionName: GUID:8ed801dac82951d449557e1a63174ac8
       m_TableEntryReference:
-        m_KeyId: 0
+        m_KeyId: 11614702170963968
         m_Key: 
       m_FallbackState: 0
       m_WaitForCompletion: 0
@@ -39,14 +68,27 @@ MonoBehaviour:
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
-  TypeGround: 0
+  TypeGround: 2046
   TypeMapObject: 9
-  RMGValue: 0
-  listTypeNoPath: 
-  listRuleInput: 
+  RMGValue: 10000
+  listTypeNoPath: 080000000c0000000b0000000300000007000000050000000400000002000000090000000a000000
+  listRuleInput: 0e0000001300000012000000
   TypeWorkObject: 5
   TypeWorkEffect: 0
-  Effects: []
+  Effects:
+  - Item:
+      description:
+        m_TableReference:
+          m_TableCollectionName: GUID:8ed801dac82951d449557e1a63174ac8
+        m_TableEntryReference:
+          m_KeyId: 11637496149606400
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      items:
+      - {fileID: -5267830563447862525}
+    probability: 0.3
   references:
     version: 2
     RefIds: []

@@ -162,6 +162,23 @@ public class EntityHero : BaseEntity
         Data.Artifacts = new List<EntityArtifact>();
     }
 
+    #region Events GameState
+    public override void OnAfterStateChanged(GameState newState)
+    {
+        // base.OnBeforeStateChanged(newState);
+        switch (newState)
+        {
+            case GameState.NextDay:
+                if (LevelManager.Instance.ActivePlayer == Player)
+                {
+                    Data.hit = 100f;
+                    Data.mana = 100f;
+                }
+                break;
+        }
+    }
+    #endregion
+
     public void ChangePrimarySkill(TypePrimarySkill typePrimarySkill, int value = 0)
     {
         Data.PSkills[typePrimarySkill] += value;
@@ -227,6 +244,22 @@ public class EntityHero : BaseEntity
             // GameManager.Instance.MapManager.SetColorForTile(newPosition, Color.cyan);
             SetClearSky(newPosition);
         }
+    }
+
+    public void FastMoveHero(Vector3Int newPosition)
+    {
+        SetPositionHero(newPosition);
+
+        var newNode = GameManager.Instance
+            .MapManager
+            .GridTileHelper()
+            .GetNode(newPosition);
+
+        SetGuestForNode(newNode);
+        MapObject.SetPositionCamera(newPosition);
+        //Move GameObject.
+        MapObject.MapObjectGameObject.gameObject.transform.position = newPosition;
+
     }
 
     public void SetGuestForNode(GridTileNode newNode)
