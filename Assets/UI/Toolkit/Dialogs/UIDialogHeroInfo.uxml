@@ -1,7 +1,7 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
     <ui:Template name="InfoSecondarySkill" src="project://database/Assets/UI/Toolkit/Info/InfoSecondarySkill.uxml?fileID=9197481963319205126&amp;guid=fa61937b25def8b4796b509a486ca9c3&amp;type=3#InfoSecondarySkill" />
-    <ui:Template name="Button" src="project://database/Assets/UI/Toolkit/Button.uxml?fileID=9197481963319205126&amp;guid=db5e7d04a42304542a4356b1519364b2&amp;type=3#Button" />
     <ui:Template name="InfoArtifact" src="project://database/Assets/UI/Toolkit/Info/InfoArtifact.uxml?fileID=9197481963319205126&amp;guid=87e1c0034c6af2c4bb199152d99c8172&amp;type=3#InfoArtifact" />
+    <ui:Template name="Button" src="project://database/Assets/UI/Toolkit/Button.uxml?fileID=9197481963319205126&amp;guid=db5e7d04a42304542a4356b1519364b2&amp;type=3#Button" />
     <Style src="project://database/Assets/UI/Toolkit/Base.uss?fileID=7433441132597879392&amp;guid=fa07b064290e7384d9ad2e26e79f5953&amp;type=3#Base" />
     <Style src="project://database/Assets/UI/Toolkit/UnityBase.uss?fileID=7433441132597879392&amp;guid=c0905c354b5fb524e83bc41ae3debe10&amp;type=3#UnityBase" />
     <ui:VisualElement name="HeroInfo" class="text-secondary" style="flex-grow: 1;">
@@ -9,11 +9,11 @@
         <ui:VisualElement name="VisualElement" style="flex-direction: row; flex-grow: 1;">
             <ui:VisualElement name="VisualElement" class="bg" style="max-width: 35%; width: 35%;">
                 <ui:VisualElement class="mx-1" style="flex-direction: row; flex-grow: 0; align-items: center;">
-                    <ui:VisualElement name="Ava" class="m-1" style="width: 68px; height: 74px; background-image: url(&apos;project://database/Assets/Entity/Hero/Castle/Sprites/Adela.png?fileID=2800000&amp;guid=87e9d6d6cf3f38345b4698f52613a8a9&amp;type=3#Adela&apos;);" />
+                    <ui:VisualElement name="Ava" style="width: 58px; height: 64px; background-image: url(&apos;project://database/Assets/Entity/Hero/Sprites/Castle/Sprites/Sorsha.png?fileID=21300000&amp;guid=0af1b5b0a79024e44afdf4418cf6e796&amp;type=3#Sorsha&apos;); margin-left: 3px; margin-right: 3px; margin-top: 3px; margin-bottom: 0;" />
                     <ui:VisualElement class="box_shadow text-center" style="flex-grow: 1;">
                         <ui:VisualElement class="box_bg p-1">
-                            <ui:Label tabindex="-1" text="Label" display-tooltip-when-elided="true" name="Name" class="text-primary text_xl p-0" />
-                            <ui:Label tabindex="-1" text="Label" display-tooltip-when-elided="true" name="Description" class="text-secondary text_md p-0" />
+                            <ui:Label tabindex="-1" text="Label" display-tooltip-when-elided="true" name="Name" class="text-primary p-0 text_md" />
+                            <ui:Label tabindex="-1" text="Label" display-tooltip-when-elided="true" name="Description" class="text-secondary p-0" />
                         </ui:VisualElement>
                     </ui:VisualElement>
                 </ui:VisualElement>
@@ -21,27 +21,27 @@
                     <ui:VisualElement class="box_bg" style="flex-direction: row; justify-content: center;">
                         <ui:VisualElement class="text-center px-1" style="align-items: center;">
                             <ui:Label tabindex="-1" text="#attack" display-tooltip-when-elided="true" class="m-0 text-sm p-0" />
-                            <ui:VisualElement name="VisualElement" style="background-color: rgba(0, 0, 0, 0); background-image: url(&apos;project://database/Assets/UI/Sprites/Skills/Skills.png?fileID=1012035812&amp;guid=e1af65ad3ff49484580e9cf541eddcc1&amp;type=3#Skills_0&apos;); width: 50px; height: 60px;" />
+                            <ui:VisualElement name="VisualElement" style="background-color: rgba(0, 0, 0, 0); background-image: url(&apos;project://database/Assets/UI/Sprites/Skills/Skills.png?fileID=1012035812&amp;guid=e1af65ad3ff49484580e9cf541eddcc1&amp;type=3#Skills_0&apos;); width: 40px; height: 50px;" />
                             <ui:Label tabindex="-1" text="1" display-tooltip-when-elided="true" name="Attack" class="m-0 p-0 text_md" />
                         </ui:VisualElement>
                         <ui:VisualElement class="text-center px-1" style="align-items: center;">
                             <ui:Label tabindex="-1" text="#defense" display-tooltip-when-elided="true" class="m-0 text-sm p-0" />
-                            <ui:VisualElement style="background-color: rgba(0, 0, 0, 0); background-image: url(&apos;project://database/Assets/UI/Sprites/Skills/Skills.png?fileID=-2116456493&amp;guid=e1af65ad3ff49484580e9cf541eddcc1&amp;type=3#Skills_1&apos;); width: 50px; height: 60px;" />
+                            <ui:VisualElement style="background-color: rgba(0, 0, 0, 0); background-image: url(&apos;project://database/Assets/UI/Sprites/Skills/Skills.png?fileID=-2116456493&amp;guid=e1af65ad3ff49484580e9cf541eddcc1&amp;type=3#Skills_1&apos;); width: 40px; height: 50px;" />
                             <ui:Label tabindex="-1" text="1" display-tooltip-when-elided="true" name="Defense" class="m-0 p-0 text_md" />
                         </ui:VisualElement>
                         <ui:VisualElement class="text-center px-1" style="align-items: center;">
                             <ui:Label tabindex="-1" text="#knowledge" display-tooltip-when-elided="true" class="m-0 text-sm p-0" />
-                            <ui:VisualElement style="background-color: rgba(0, 0, 0, 0); background-image: url(&apos;project://database/Assets/UI/Sprites/Skills/Skills.png?fileID=-281471967&amp;guid=e1af65ad3ff49484580e9cf541eddcc1&amp;type=3#Skills_2&apos;); width: 50px; height: 60px;" />
+                            <ui:VisualElement style="background-color: rgba(0, 0, 0, 0); background-image: url(&apos;project://database/Assets/UI/Sprites/Skills/Skills.png?fileID=-281471967&amp;guid=e1af65ad3ff49484580e9cf541eddcc1&amp;type=3#Skills_2&apos;); width: 40px; height: 50px;" />
                             <ui:Label tabindex="-1" text="1" display-tooltip-when-elided="true" name="Knowledge" class="m-0 p-0 text_md" />
                         </ui:VisualElement>
                         <ui:VisualElement class="text-center px-1" style="align-items: center;">
                             <ui:Label tabindex="-1" text="#power" display-tooltip-when-elided="true" class="m-0 text-sm p-0" />
-                            <ui:VisualElement style="background-color: rgba(0, 0, 0, 0); background-image: url(&apos;project://database/Assets/UI/Sprites/Skills/Skills.png?fileID=816660840&amp;guid=e1af65ad3ff49484580e9cf541eddcc1&amp;type=3#Skills_3&apos;); width: 50px; height: 60px;" />
+                            <ui:VisualElement style="background-color: rgba(0, 0, 0, 0); background-image: url(&apos;project://database/Assets/UI/Sprites/Skills/Skills.png?fileID=816660840&amp;guid=e1af65ad3ff49484580e9cf541eddcc1&amp;type=3#Skills_3&apos;); width: 40px; height: 50px;" />
                             <ui:Label tabindex="-1" text="1" display-tooltip-when-elided="true" name="Power" class="m-0 p-0 text_md" />
                         </ui:VisualElement>
                         <ui:VisualElement class="text-center px-1" style="align-items: center;">
                             <ui:Label tabindex="-1" text="#experience" display-tooltip-when-elided="true" class="m-0 text-sm p-0" />
-                            <ui:VisualElement style="background-color: rgba(0, 0, 0, 0); background-image: url(&apos;project://database/Assets/UI/Sprites/Skills/Skills.png?fileID=-2144967423&amp;guid=e1af65ad3ff49484580e9cf541eddcc1&amp;type=3#Skills_4&apos;); width: 50px; height: 60px;" />
+                            <ui:VisualElement style="background-color: rgba(0, 0, 0, 0); background-image: url(&apos;project://database/Assets/UI/Sprites/Skills/Skills.png?fileID=-2144967423&amp;guid=e1af65ad3ff49484580e9cf541eddcc1&amp;type=3#Skills_4&apos;); width: 40px; height: 50px;" />
                             <ui:Label tabindex="-1" text="1" display-tooltip-when-elided="true" name="Experience" class="m-0 p-0 text_md" />
                         </ui:VisualElement>
                     </ui:VisualElement>
@@ -49,14 +49,14 @@
                 <ui:VisualElement name="AuraBox" class="box_shadow mx-1">
                     <ui:VisualElement class="box_bg" style="flex-direction: row;">
                         <ui:VisualElement style="flex-direction: row;">
-                            <ui:VisualElement name="Morale" style="background-color: rgba(0, 0, 0, 0); background-image: url(&apos;project://database/Assets/UI/Sprites/Skills/Morale.png?fileID=-522759415&amp;guid=8b41d968105e45646a465f065ffa4a8e&amp;type=3#Morale_7&apos;); width: 63px; height: 72px;" />
-                            <ui:VisualElement name="Morale" style="background-color: rgba(0, 0, 0, 0); background-image: url(&apos;project://database/Assets/UI/Sprites/Skills/Morale.png?fileID=-1930167123&amp;guid=8b41d968105e45646a465f065ffa4a8e&amp;type=3#Morale_10&apos;); width: 63px; height: 72px;" />
-                            <ui:VisualElement name="Morale" style="background-color: rgba(0, 0, 0, 0); background-image: url(&apos;project://database/Assets/UI/Sprites/Skills/Morale.png?fileID=-1930167123&amp;guid=8b41d968105e45646a465f065ffa4a8e&amp;type=3#Morale_10&apos;); width: 63px; height: 72px;" />
-                            <ui:VisualElement name="Aura" style="background-color: rgba(0, 0, 0, 0); background-image: url(&apos;project://database/Assets/UI/Sprites/Skills/Morale.png?fileID=-1731180482&amp;guid=8b41d968105e45646a465f065ffa4a8e&amp;type=3#Morale_0&apos;); width: 63px; height: 72px;" />
+                            <ui:VisualElement name="Morale" class="m-1" style="background-color: rgba(0, 0, 0, 0); background-image: url(&apos;project://database/Assets/UI/Sprites/Skills/Morale.png?fileID=-522759415&amp;guid=8b41d968105e45646a465f065ffa4a8e&amp;type=3#Morale_7&apos;); width: 40px; height: 50px;" />
+                            <ui:VisualElement name="Morale" class="m-1" style="background-color: rgba(0, 0, 0, 0); background-image: url(&apos;project://database/Assets/UI/Sprites/Skills/Morale.png?fileID=-1930167123&amp;guid=8b41d968105e45646a465f065ffa4a8e&amp;type=3#Morale_10&apos;); width: 40px; height: 50px;" />
+                            <ui:VisualElement name="Morale" class="m-1" style="background-color: rgba(0, 0, 0, 0); background-image: url(&apos;project://database/Assets/UI/Sprites/Skills/Morale.png?fileID=-1930167123&amp;guid=8b41d968105e45646a465f065ffa4a8e&amp;type=3#Morale_10&apos;); width: 40px; height: 50px;" />
+                            <ui:VisualElement name="Aura" class="m-1" style="background-color: rgba(0, 0, 0, 0); background-image: url(&apos;project://database/Assets/UI/Sprites/Skills/Morale.png?fileID=-1731180482&amp;guid=8b41d968105e45646a465f065ffa4a8e&amp;type=3#Morale_0&apos;); width: 40px; height: 50px;" />
                         </ui:VisualElement>
-                        <ui:VisualElement name="VisualElement">
+                        <ui:VisualElement name="VisualElement" class="m-1">
                             <ui:VisualElement class="text-center p-05" style="align-items: center; flex-direction: row;">
-                                <ui:VisualElement name="VisualElement" style="background-color: rgba(0, 0, 0, 0); background-image: url(&apos;project://database/Assets/UI/Sprites/Skills/Skills.png?fileID=-182454630&amp;guid=e1af65ad3ff49484580e9cf541eddcc1&amp;type=3#Skills_5&apos;); width: 63px; height: 72px;" />
+                                <ui:VisualElement name="VisualElement" style="background-color: rgba(0, 0, 0, 0); background-image: url(&apos;project://database/Assets/UI/Sprites/Skills/Skills.png?fileID=-182454630&amp;guid=e1af65ad3ff49484580e9cf541eddcc1&amp;type=3#Skills_5&apos;); width: 40px; height: 50px;" />
                                 <ui:VisualElement style="background-color: rgba(0, 0, 0, 0);">
                                     <ui:Label tabindex="-1" text="#manacount" display-tooltip-when-elided="true" />
                                     <ui:Label tabindex="-1" text="100/101" display-tooltip-when-elided="true" name="Mana" class="m-0 p-0 text_md" />

@@ -106,7 +106,7 @@ public class MapObject
         // }
 
 
-        if (configData.TypeWorkObject == TypeWorkObject.One)
+        if (configData.TypeWorkObject == TypeWorkObject.One || Entity.ScriptableData.TypeEntity == TypeEntity.Creature)
         {
             List<GridTileNode> nodes
                 = GameManager.Instance.MapManager.gridTileHelper.GetNodeListAsNoPath(OccupiedNode, configData.RulesInput);

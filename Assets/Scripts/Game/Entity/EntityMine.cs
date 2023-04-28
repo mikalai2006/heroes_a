@@ -54,20 +54,20 @@ public class EntityMine : BaseEntity
     }
 
     #region Change GameState
-    // public override void OnAfterStateChanged(GameState newState)
-    // {
-    //     base.OnAfterStateChanged(newState);
-    //     switch (newState)
-    //     {
-    //         case GameState.NextDay:
-    //             if (_player != null && LevelManager.Instance.ActivePlayer == _player)
-    //             {
-    //                 ScriptableEntityMine configData = (ScriptableEntityMine)ScriptableData;
-    //                 configData.RunHero(ref _player, this);
-    //             }
-    //             break;
-    //     }
-    // }
+    public async override void OnAfterStateChanged(GameState newState)
+    {
+        base.OnAfterStateChanged(newState);
+        switch (newState)
+        {
+            case GameState.NextDay:
+                if (_player != null && LevelManager.Instance.ActivePlayer == _player)
+                {
+                    ScriptableEntityMine configData = (ScriptableEntityMine)ScriptableData;
+                    await configData.RunHero(_player, this);
+                }
+                break;
+        }
+    }
     #endregion
 
     #region SaveLoadData

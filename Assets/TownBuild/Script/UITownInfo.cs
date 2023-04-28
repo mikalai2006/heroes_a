@@ -192,7 +192,7 @@ public class UITownInfo : MonoBehaviour
                 if (creature != null)
                 {
                     itemHeroForce.Q<VisualElement>("img").style.backgroundImage =
-                        new StyleBackground(creature.ScriptableData.MenuSprite);
+                        new StyleBackground(creature.ConfigAttribute.MenuSprite);
                     itemHeroForce.Q<Label>("ForceValue").text = creature.Data.value.ToString();
                 }
                 itemHeroForce.RegisterCallback<ClickEvent>((ClickEvent evt) =>
@@ -432,7 +432,7 @@ public class UITownInfo : MonoBehaviour
             if (creature != null)
             {
                 itemHeroForce.Q<VisualElement>("img").style.backgroundImage
-                    = new StyleBackground(creature.ScriptableData.MenuSprite);
+                    = new StyleBackground(creature.ConfigAttribute.MenuSprite);
                 itemHeroForce.Q<Label>("ForceValue").text = creature.Data.value.ToString();
             }
             itemHeroForce.RegisterCallback<ClickEvent>((ClickEvent evt) =>

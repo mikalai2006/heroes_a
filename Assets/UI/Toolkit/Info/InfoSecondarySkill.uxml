@@ -2,7 +2,7 @@
     <Style src="project://database/Assets/UI/Toolkit/Base.uss?fileID=7433441132597879392&amp;guid=fa07b064290e7384d9ad2e26e79f5953&amp;type=3#Base" />
     <ui:VisualElement class="p-05 box_shadow">
         <ui:VisualElement class="box_bg" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row;">
-            <ui:VisualElement name="Img" class="box_bg mr-1" style="width: 50px; height: 60px;" />
+            <ui:VisualElement name="Img" class="box_bg mr-1" style="width: 50px; height: 55px;" />
             <ui:VisualElement style="background-color: rgba(0, 0, 0, 0); justify-content: center;">
                 <ui:Label tabindex="-1" display-tooltip-when-elided="true" name="Type" class="m-0 p-0 text_md text-primary" />
                 <ui:Label tabindex="-1" text="secondarySkill" display-tooltip-when-elided="true" name="Title" class="m-0 p-0 text_md" />

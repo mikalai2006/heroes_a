@@ -129,7 +129,7 @@ public class EntityTown : BaseEntity
     public void ChangeLevel(int level)
     {
         Data.level = level;
-        if (MapObject.MapObjectGameObject != null)
+        if (MapObject != null && MapObject.MapObjectGameObject != null)
         {
             ((MapEntityTown)MapObject.MapObjectGameObject).RefreshLevelBuild();
         }

@@ -473,9 +473,10 @@ public class EntityHero : BaseEntity
                     && !node.StateNode.HasFlag(StateNode.Empty)
                     && (node.OccupiedUnit != null && node.OccupiedUnit.Entity.Player != Player)
                     && !node.StateNode.HasFlag(StateNode.Visited)
+                    && node.position != MapObject.Position
                     )
                 {
-                    // Debug.Log($"::: FindPathForHero for [{node.position}-{configData.name}]");
+                    Debug.Log($"::: FindPathForHero for [{node.position}-{configData.name}]");
                     var path = FindPathForHero(node.position, true);
                     break;
                 }

@@ -293,7 +293,7 @@ public class UIGameAside : UILocaleBase
             if (creature.Value != null)
             {
                 btnCreature.Q<VisualElement>("Img").style.backgroundImage
-                    = new StyleBackground(creature.Value.ConfigData.MenuSprite);
+                    = new StyleBackground(creature.Value.ConfigAttribute.MenuSprite);
             }
             btnCreature.Q<Label>("Value").text = creature.Value != null ? creature.Value.Data.value.ToString() : "";
             listTownDwellingEl.Add(btnCreature);
@@ -590,7 +590,7 @@ public class UIGameAside : UILocaleBase
             if (creature != null)
             {
                 newForce.Q<VisualElement>("Img").style.backgroundImage
-                    = new StyleBackground(creature.ScriptableData.MenuSprite);
+                    = new StyleBackground(creature.ConfigAttribute.MenuSprite);
             }
             newForce.Q<Label>("Value").text = creature != null
                 ? creature.Data.value.ToString()
