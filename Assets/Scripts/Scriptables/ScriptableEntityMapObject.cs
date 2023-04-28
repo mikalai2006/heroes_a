@@ -76,6 +76,7 @@ public enum TypeMapObject
     Artifact = 6,
     Dwelling = 7,
     Hero = 8,
+    CreatureBanks = 9,
 }
 [System.Serializable]
 public enum TypeWorkObject
