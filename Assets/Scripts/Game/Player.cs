@@ -18,7 +18,7 @@ public class PlayerData
     // public int idArea;
     public TypeFaction typeFaction = TypeFaction.Neutral;
     public SerializableDictionary<TypeResource, int> Resource;
-    public SerializableShortPosition nosky = new SerializableShortPosition();
+    // public SerializableShortPosition nosky = new SerializableShortPosition();
     [System.NonSerialized] public PlayerDataReferences PlayerDataReferences;
     public List<string> HeroesInTavern;
 
@@ -184,13 +184,26 @@ public class Player
 
     public void SetNosky(List<GridTileNode> listNode)
     {
+        var val = ((NoskyMask)(1 << LevelManager.Instance.ActivePlayer.DataPlayer.id));
         for (int i = 0; i < listNode.Count; i++)
         {
-            if (!_data.nosky.ContainsKey(listNode[i].position))
+            var nosky = LevelManager.Instance.Level.nosky;
+            if (!nosky.ContainsKey(listNode[i].position))
             {
-                _data.nosky.Add(listNode[i].position, true);
+                nosky.Add(listNode[i].position, val);
+            }
+            else
+            {
+                nosky[listNode[i].position] |= val;
             }
         }
+        // for (int i = 0; i < listNode.Count; i++)
+        // {
+        //     if (!_data.nosky.ContainsKey(listNode[i].position))
+        //     {
+        //         _data.nosky.Add(listNode[i].position, true);
+        //     }
+        // }
     }
 
     public void AddMines(EntityMine mine)

@@ -37,7 +37,7 @@ public class EntityTown : BaseEntity
             Data.idPlayer = -1;
             Data.level = -1;
             Data.name = ConfigData.TownNames[UnityEngine.Random.Range(0, ConfigData.TownNames.Count)];
-            _idObject = ScriptableData.idObject;
+            _idEntity = ScriptableData.idObject;
 
             Data.Generals = new SerializableDictionary<string, BuildGeneral>();
             Data.Armys = new SerializableDictionary<string, BuildArmy>();
@@ -55,7 +55,7 @@ public class EntityTown : BaseEntity
         {
             ScriptableData = ResourceSystem.Instance
                 .GetEntityByType<ScriptableEntityTown>(TypeEntity.Town)
-                .Where(t => t.idObject == saveData.idObject)
+                .Where(t => t.idObject == saveData.idEntity)
                 .First();
             Data = saveData.data;
             Data.Generals = new SerializableDictionary<string, BuildGeneral>();
@@ -93,14 +93,14 @@ public class EntityTown : BaseEntity
                     newCreature = new EntityCreature(null, new SaveDataUnit<DataCreature>()
                     {
                         data = creature.Data,
-                        idObject = creature.Data.idObject,
+                        idEntity = creature.Data.idObject,
                     });
                 }
                 Data.Creatures[i] = newCreature;
             }
 
+            _id = saveData.id;
             _idEntity = saveData.idEntity;
-            _idObject = saveData.idObject;
             Data.countBuild = saveData.data.countBuild;
 
             // Data.HeroinTown = new EntityHero(TypeFaction.Neutral, new SaveDataUnit<DataHero>(){

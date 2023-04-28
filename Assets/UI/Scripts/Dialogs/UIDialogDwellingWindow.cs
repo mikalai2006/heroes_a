@@ -238,7 +238,7 @@ public class UIDialogDwellingWindow : UIDialogBaseWindow
                 {
                     if (
                         _activePlayer.ActiveHero.Data.Creatures.GetValueOrDefault(i) == null
-                        || _activePlayer.ActiveHero.Data.Creatures.GetValueOrDefault(i).IdObject
+                        || _activePlayer.ActiveHero.Data.Creatures.GetValueOrDefault(i).IdEntity
                             == _dwelling.ConfigData.Creature[_dwelling.Data.level].idObject)
                     {
                         indexVacantCreature = i;

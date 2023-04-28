@@ -25,21 +25,21 @@ public class EntityCreature : BaseEntity
         {
             ScriptableDataAttribute = configCreature;
             // ScriptableData = configData;
-            _idObject = ScriptableData.idObject;
+            _idEntity = ScriptableData.idObject;
             Data.value = 1;
-            Data.idc = ScriptableDataAttribute.idObject;
+            Data.idObject = ScriptableDataAttribute.idObject;
         }
         else
         {
-            if (saveData.idObject != "")
+            if (saveData.idEntity != "")
             {
                 ScriptableDataAttribute = ResourceSystem.Instance
                     .GetAttributesByType<ScriptableAttributeCreature>(TypeAttribute.Creature)
-                    .Find(t => t.idObject == saveData.data.idc);
+                    .Find(t => t.idObject == saveData.data.idObject);
             }
             Data = saveData.data;
-            _idObject = saveData.idObject;
             _idEntity = saveData.idEntity;
+            _id = saveData.id;
         }
     }
 

@@ -31,24 +31,24 @@ public abstract class BaseEntity
     };
     protected Player _player;
     public Player Player => _player;
+    protected string _id;
+    public string Id => _id;
     protected string _idEntity;
     public string IdEntity => _idEntity;
-    protected string _idObject;
-    public string IdObject => _idObject;
     public MapObject MapObject { get; protected set; }
 
 
     public void Init()
     {
-        _idEntity = System.Guid.NewGuid().ToString("N");
+        _id = System.Guid.NewGuid().ToString("N");
         AddEvents();
     }
     public void DestroyEntity()
     {
         RemoveEvents();
         MapObject.DestroyMapGameObject();
-        UnitManager.Entities.Remove(IdEntity);
-        UnitManager.MapObjects.Remove(MapObject.IdEntity);
+        UnitManager.Entities.Remove(Id);
+        UnitManager.MapObjects.Remove(MapObject.IdMapObject);
         MapObject = null;
     }
 
@@ -94,8 +94,8 @@ public abstract class BaseEntity
     {
         var SaveData = new SaveDataUnit<T>();
 
+        SaveData.id = _id;
         SaveData.idEntity = _idEntity;
-        SaveData.idObject = _idObject;
         SaveData.data = Data;
         SaveData.Effects = Effects;
 
@@ -103,8 +103,8 @@ public abstract class BaseEntity
     }
     protected void LoadUnit<T>(SaveDataUnit<T> Data)
     {
+        _id = Data.id;
         _idEntity = Data.idEntity;
-        _idObject = Data.idObject;
     }
 
     public virtual void SaveEntity(ref DataPlay data)

@@ -26,7 +26,7 @@ public class EntityDwelling : BaseEntity
         if (saveData == null)
         {
             ScriptableData = configData;
-            _idObject = ScriptableData.idObject;
+            _idEntity = ScriptableData.idObject;
             Data.idPlayer = -1;
             SetData();
         }
@@ -34,12 +34,12 @@ public class EntityDwelling : BaseEntity
         {
             ScriptableData = ResourceSystem.Instance
                 .GetEntityByType<ScriptableEntityMapObject>(TypeEntity.MapObject)
-                .Where(t => t.idObject == saveData.idObject && t.TypeMapObject == TypeMapObject.Dwelling)
+                .Where(t => t.idObject == saveData.idEntity && t.TypeMapObject == TypeMapObject.Dwelling)
                 .First();
 
             Data = saveData.data;
+            _id = saveData.id;
             _idEntity = saveData.idEntity;
-            _idObject = saveData.idObject;
             Effects = saveData.Effects;
         }
     }

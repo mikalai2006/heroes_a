@@ -22,7 +22,7 @@ public class EntityArtifact : BaseEntity
         {
             ScriptableData = configData;
             SetData(configArtifact);
-            _idObject = ScriptableData.idObject;
+            _idEntity = ScriptableData.idObject;
             ScriptableDataAttribute = configArtifact;
             Data.idPlayer = -1;
         }
@@ -35,15 +35,15 @@ public class EntityArtifact : BaseEntity
             ScriptableData = ResourceSystem.Instance
                 .GetEntityByType<ScriptableEntityMapObject>(TypeEntity.MapObject)
                 .Where(t => t.TypeMapObject == TypeMapObject.Artifact
-                && t.idObject == saveData.idObject).First();
+                && t.idObject == saveData.idEntity).First();
 
             ScriptableDataAttribute = ResourceSystem.Instance
                 .GetAttributesByType<ScriptableAttributeArtifact>(TypeAttribute.Artifact)
                 .Where(t => t.idObject == Data.ida)
                 .First();
 
+            _id = saveData.id;
             _idEntity = saveData.idEntity;
-            _idObject = saveData.idObject;
             Effects = saveData.Effects;
         }
     }

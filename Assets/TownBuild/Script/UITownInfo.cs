@@ -239,7 +239,7 @@ public class UITownInfo : MonoBehaviour
             if (_chooseHero != _activeTown.MapObject.OccupiedNode.GuestedUnit.Entity)
             {
                 // move old guest and destroy GameObject.
-                _activeTown.Data.HeroinTown = heroGuest?.IdEntity;
+                _activeTown.Data.HeroinTown = heroGuest?.Id;
                 if (heroGuest != null)
                 {
                     heroGuest.MapObject.MapObjectGameObject.gameObject.SetActive(false);
@@ -308,7 +308,7 @@ public class UITownInfo : MonoBehaviour
 
         if (_chooseHero != null)
         {
-            if (_chooseHero.IdEntity != _activeTown.Data.HeroinTown)
+            if (_chooseHero.Id != _activeTown.Data.HeroinTown)
             {
                 // merge creatures.
                 if (_activeTown.Data.Creatures.Where(t => t.Value != null).Count() > 0)
@@ -327,7 +327,7 @@ public class UITownInfo : MonoBehaviour
                         _chooseHero.Data.Creatures = resultMergeCreatures;
                         _activeTown.MapObject.OccupiedNode.SetAsGuested(heroInTown.MapObject);
                         // create new hero in town and destroy GameObject.
-                        _activeTown.Data.HeroinTown = _chooseHero.IdEntity;
+                        _activeTown.Data.HeroinTown = _chooseHero.Id;
                         _chooseHero.MapObject.MapObjectGameObject.gameObject.SetActive(false);
                         _chooseHero.Data.State = StateHero.InTown;
                         _activeTown.ResetCreatures();
@@ -351,7 +351,7 @@ public class UITownInfo : MonoBehaviour
                     _activePlayer.SetActiveHero((EntityHero)_activeTown.MapObject.OccupiedNode.GuestedUnit.Entity);
 
                     // create new hero in town and destroy GameObject.
-                    _activeTown.Data.HeroinTown = _chooseHero.IdEntity;
+                    _activeTown.Data.HeroinTown = _chooseHero.Id;
                     _chooseHero.MapObject.MapObjectGameObject.gameObject.SetActive(false);
                     _chooseHero.Data.State = StateHero.InTown;
                 }
@@ -520,7 +520,7 @@ public class UITownInfo : MonoBehaviour
                 _isSplit
                 && (
                     creatures[index] == null
-                    || creatures[index].IdObject == _startCheckedCreatures[_startPositionChecked].IdObject
+                    || creatures[index].IdEntity == _startCheckedCreatures[_startPositionChecked].IdEntity
                     )
                 )
             {

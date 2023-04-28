@@ -30,18 +30,18 @@ public class EntityMonolith : BaseEntity
             //     .ToList();
             // ScriptableData = list[UnityEngine.Random.Range(0, list.Count)];
             ScriptableData = configData;
-            _idObject = ScriptableData.idObject;
+            _idEntity = ScriptableData.idObject;
         }
         else
         {
             ScriptableData = ResourceSystem.Instance
                 .GetEntityByType<ScriptableEntityMapObject>(TypeEntity.MapObject)
-                .Where(t => t.idObject == saveData.idObject && t.TypeMapObject == TypeMapObject.Portal)
+                .Where(t => t.idObject == saveData.idEntity && t.TypeMapObject == TypeMapObject.Portal)
                 .First();
 
             Data = saveData.data;
+            _id = saveData.id;
             _idEntity = saveData.idEntity;
-            _idObject = saveData.idObject;
             Effects = saveData.Effects;
         }
     }

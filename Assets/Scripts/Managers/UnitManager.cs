@@ -19,7 +19,7 @@ public static class UnitManager
             newEntity = new EntityCreature(null, saveData);
             configNewEntity = ResourceSystem.Instance
                 .GetAttributesByType<ScriptableAttributeCreature>(TypeAttribute.Creature)
-                .Where(t => t.idObject == saveData.idObject)
+                .Where(t => t.idObject == saveData.data.idObject)
                 .First();
         }
         else
@@ -84,7 +84,7 @@ public static class UnitManager
     #region Spawn entity
     public static void SpawnEnity(BaseEntity entity)
     {
-        Entities.Add(entity.IdEntity, entity);
+        Entities.Add(entity.Id, entity);
     }
 
     public static MapObject SpawnEntityMapObjectToNode(GridTileNode node, BaseEntity entity, MapObject mapObject = null)
@@ -144,7 +144,7 @@ public static class UnitManager
             }
         }
 
-        MapObjects.Add(newMapObject.IdEntity, newMapObject);
+        MapObjects.Add(newMapObject.IdMapObject, newMapObject);
         return newMapObject;
     }
 
@@ -161,9 +161,9 @@ public static class UnitManager
         // var entity = new EntityHero(TypeFaction.Neutral, activeHeroData);
         EntityHero newEntity = new EntityHero(typeFaction, heroData);
 
-        Entities.Add(newEntity.IdEntity, newEntity);
+        Entities.Add(newEntity.Id, newEntity);
         var entityMapObject = new MapObject();
-        MapObjects.Add(entityMapObject.IdEntity, entityMapObject);
+        MapObjects.Add(entityMapObject.IdMapObject, entityMapObject);
 
         entityMapObject.SetEntity(newEntity, node);
         node.SetAsGuested(entityMapObject);

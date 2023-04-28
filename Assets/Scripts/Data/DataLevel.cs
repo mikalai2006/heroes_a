@@ -11,6 +11,7 @@ public class DataLevel
     [SerializeField] public int activePlayer;
     [SerializeField] public DataGameSetting Settings;
     [SerializeField] public DataGameMode GameModeData;
+    [SerializeField] public SerializableNoSky nosky = new SerializableNoSky();
 
     public DataLevel()
     {
@@ -35,7 +36,7 @@ public class DataUnit
     public List<SaveDataUnit<DataArtifact>> artifacts;
     public List<SaveDataUnit<DataExplore>> explorers;
     // public List<SaveDataUnit<DataSkillSchool>> skillSchools;
-    public List<SaveDataUnit<DataEntityMapObject>> resourcesmap;
+    // public List<SaveDataUnit<DataEntityMapObject>> resourcesmap;
     public List<SaveDataUnit<DataEntityDwelling>> dwellings;
 
     public DataUnit()
@@ -49,7 +50,7 @@ public class DataUnit
         artifacts = new List<SaveDataUnit<DataArtifact>>();
         explorers = new List<SaveDataUnit<DataExplore>>();
         // skillSchools = new List<SaveDataUnit<DataSkillSchool>>();
-        resourcesmap = new List<SaveDataUnit<DataEntityMapObject>>();
+        // resourcesmap = new List<SaveDataUnit<DataEntityMapObject>>();
         dwellings = new List<SaveDataUnit<DataEntityDwelling>>();
         entityMapObjects = new List<SaveDataUnit<DataEntityMapObject>>();
     }
@@ -58,9 +59,9 @@ public class DataUnit
 [System.Serializable]
 public class SaveDataUnit<T>
 {
+    public string id;
     public string idEntity;
-    public string idObject;
-    public TypeEntity typeEntity;
+    // public TypeEntity typeEntity;
     // public TypeMapObject typeMapObject;
     public DataEntityEffects Effects = new DataEntityEffects()
     {
@@ -73,6 +74,6 @@ public class SaveDataUnit<T>
 [System.Serializable]
 public class SaveDataMapObject<T>
 {
-    public string idEntity;
+    public string idMapObject;
     public T data;
 }

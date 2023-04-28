@@ -20,19 +20,19 @@ public class EntityMapObject : BaseEntity
         if (saveData == null)
         {
             ScriptableData = configData;
-            _idObject = ScriptableData.idObject;
+            _idEntity = ScriptableData.idObject;
             SetData();
         }
         else
         {
             ScriptableData = ResourceSystem.Instance
                 .GetEntityByType<ScriptableEntityMapObject>(TypeEntity.MapObject)
-                .Where(t => t.idObject == saveData.idObject)
+                .Where(t => t.idObject == saveData.idEntity)
                 .First();
 
             Data = saveData.data;
+            _id = saveData.id;
             _idEntity = saveData.idEntity;
-            _idObject = saveData.idObject;
             Effects = saveData.Effects;
         }
     }

@@ -27,19 +27,19 @@ public class EntityMine : BaseEntity
         {
             ScriptableData = configData;
             Data.idPlayer = -1;
-            _idObject = ScriptableData.idObject;
+            _idEntity = ScriptableData.idObject;
             configData.SetData(this);
         }
         else
         {
             ScriptableData = ResourceSystem.Instance
                 .GetEntityByType<ScriptableEntityMapObject>(TypeEntity.MapObject)
-                .Where(t => t.idObject == saveData.idObject && t.TypeMapObject == TypeMapObject.Mine)
+                .Where(t => t.idObject == saveData.idEntity && t.TypeMapObject == TypeMapObject.Mine)
                 .First();
 
             Data = saveData.data;
+            _id = saveData.id;
             _idEntity = saveData.idEntity;
-            _idObject = saveData.idObject;
             Effects = saveData.Effects;
         }
     }

@@ -77,7 +77,7 @@ public class EntityHero : BaseEntity
                 Data.SSkills.Add(skill.SecondarySkill.TypeTwoSkill, skill.value);
             }
 
-            _idObject = ScriptableData.idObject;
+            _idEntity = ScriptableData.idObject;
 
             Data.artifacts = new List<string>();
             // Data.Artifacts = new List<EntityArtifact>();
@@ -106,7 +106,7 @@ public class EntityHero : BaseEntity
             // Find config data.
             ScriptableData = ResourceSystem.Instance
                 .GetEntityByType<ScriptableEntityHero>(TypeEntity.Hero)
-                .Where(t => t.idObject == saveData.idObject)
+                .Where(t => t.idObject == saveData.idEntity)
                 .First();
             // ScriptableDataAttribute = ResourceSystem.Instance
             //     .GetAttributesByType<ScriptableAttributeHero>(TypeAttribute.Hero)
@@ -127,7 +127,7 @@ public class EntityHero : BaseEntity
                     newCreature = new EntityCreature(null, new SaveDataUnit<DataCreature>()
                     {
                         data = creature.Data,
-                        idObject = creature.Data.idObject,
+                        idEntity = creature.Data.idObject,
                     });
                 }
                 Data.Creatures[i] = newCreature;
@@ -155,8 +155,8 @@ public class EntityHero : BaseEntity
             //     }
             //     Data.Artifacts.Add(newArtifact);
             // }
+            _id = saveData.id;
             _idEntity = saveData.idEntity;
-            _idObject = saveData.idObject;
         }
         // Create artifacts.
         Data.Artifacts = new List<EntityArtifact>();
@@ -267,7 +267,7 @@ public class EntityHero : BaseEntity
 
     public void RemoveArtifact(EntityArtifact artifact)
     {
-        Data.artifacts.Remove(artifact.IdObject);
+        Data.artifacts.Remove(artifact.IdEntity);
         Data.Artifacts.Remove(artifact);
     }
 

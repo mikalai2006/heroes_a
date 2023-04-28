@@ -4,8 +4,8 @@ using UnityEngine;
 public struct DataCreature
 {
     public string idObject;
-    public string idc;
+    // public string idc;
     public int value;
-    public Vector3Int protectedNode;
+    // public Vector3Int protectedNode;
 
 }

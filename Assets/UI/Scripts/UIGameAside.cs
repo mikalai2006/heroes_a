@@ -121,7 +121,7 @@ public class UIGameAside : UILocaleBase
 
     private void ChangeParamsActiveHero(EntityHero hero)
     {
-        VisualElement heroHit = _herobox.Q<VisualElement>(hero.IdEntity);
+        VisualElement heroHit = _herobox.Q<VisualElement>(hero.Id);
         if (heroHit != null)
         {
             heroHit.style.height = new StyleLength(new Length(hero.Data.hit, LengthUnit.Percent));
@@ -396,7 +396,7 @@ public class UIGameAside : UILocaleBase
                 EntityHero hero = listHeroOnMap[i];
                 MapEntityHero heroGameObject = (MapEntityHero)hero.MapObject.MapObjectGameObject;
                 var hit = newButtonHero.Q<VisualElement>(NameHit);
-                hit.name = hero.IdEntity;
+                hit.name = hero.Id;
 
                 hit.style.height = new StyleLength(new Length(hero.Data.hit, LengthUnit.Percent));
 

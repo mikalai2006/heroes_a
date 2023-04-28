@@ -297,7 +297,7 @@ public class UIDialogHeroInfo : UIDialogBaseWindow
                 _isSplit
                 && (
                     creatures[index] == null
-                    || creatures[index].IdObject == _startCheckedCreatures[_startPositionChecked].IdObject
+                    || creatures[index].IdEntity == _startCheckedCreatures[_startPositionChecked].IdEntity
                     )
                 )
             {

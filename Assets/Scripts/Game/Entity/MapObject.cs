@@ -11,6 +11,7 @@ public struct DataMapObject
 {
     public string idEntity;
     public Vector3Int position;
+    public string idProtMapObj;
 }
 
 [Serializable]
@@ -25,8 +26,8 @@ public class MapObject
     public Vector3Int Position => Data.position;
     [NonSerialized] public BaseMapEntity MapObjectGameObject;
     public BaseEntity Entity { get; private set; }
-    protected string _idEntity;
-    public string IdEntity => _idEntity;
+    protected string _idMapObject;
+    public string IdMapObject => _idMapObject;
 
     public MapObject(
         // ScriptableEntityMapObject configData,
@@ -37,7 +38,7 @@ public class MapObject
 
         if (saveData == null)
         {
-            _idEntity = System.Guid.NewGuid().ToString("N");
+            _idMapObject = System.Guid.NewGuid().ToString("N");
             // ScriptableData = configData;
             // _idObject = ScriptableData.idObject;
             // SetData();
@@ -51,7 +52,7 @@ public class MapObject
             //     .First();
 
             Data = saveData.data;
-            _idEntity = saveData.idEntity;
+            _idMapObject = saveData.idMapObject;
             // _idObject = saveData.idObject;
             // Effects = saveData.DataEffects;
             // Data.position = saveData.position;
@@ -67,7 +68,7 @@ public class MapObject
         Entity = entity;
         OccupiedNode = node;
         _configData = Entity.ScriptableData;
-        Data.idEntity = entity.IdEntity;
+        Data.idEntity = entity.Id;
     }
 
     public void SetPlayer(Player player)
@@ -107,7 +108,8 @@ public class MapObject
     public void SetProtectedNode(GridTileNode protectedNode)
     {
         ProtectedNode = protectedNode;
-        ((EntityCreature)Entity).Data.protectedNode = protectedNode.position;
+        Data.idProtMapObj = protectedNode.OccupiedUnit.IdMapObject;
+        // ((EntityCreature)Entity).Data.protectedNode = protectedNode.position;
     }
 
     public void DestroyMapGameObject()
@@ -176,7 +178,7 @@ public class MapObject
     {
         var sdata = new SaveDataMapObject<DataMapObject>();
         sdata.data = Data;
-        sdata.idEntity = IdEntity;
+        sdata.idMapObject = IdMapObject;
 
         data.entity.mapObjects.Add(sdata);
     }

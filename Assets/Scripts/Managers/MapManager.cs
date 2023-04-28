@@ -206,7 +206,7 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
         {
             // GridTileNode tileNode = gridTileHelper.GridTile.GetGridObject(new Vector3Int(unitTown.position.x, unitTown.position.y));
 
-            if (unitTown.idObject == "") continue;
+            if (unitTown.idEntity == "") continue;
 
             EntityTown entity = new EntityTown(TypeGround.None, null, unitTown);
             UnitManager.SpawnEnity(entity);
@@ -221,7 +221,7 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
         {
             // GridTileNode tileNode = gridTileHelper.GridTile.GetGridObject(new Vector3Int(unitHero.position.x, unitHero.position.y));
 
-            if (unitHero.idObject == "") continue;
+            if (unitHero.idEntity == "") continue;
 
             EntityHero entity = new EntityHero(TypeFaction.Neutral, null, unitHero);
             // UnitManager.SpawnEntityMapObjectToNode(tileNode, hero);
@@ -244,7 +244,7 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
         {
             // GridTileNode tileNode = gridTileHelper.GridTile.GetGridObject(new Vector3Int(item.position.x, item.position.y));
 
-            if (item.idObject == "") continue;
+            if (item.idEntity == "") continue;
 
             EntityMapObject entity = new EntityMapObject(
                 null,
@@ -258,7 +258,7 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
         {
             // GridTileNode tileNode = gridTileHelper.GridTile.GetGridObject(new Vector3Int(item.position.x, item.position.y));
 
-            if (item.idObject == "") continue;
+            if (item.idEntity == "") continue;
 
             EntityMine entity = new EntityMine(null, item);
             UnitManager.SpawnEnity(entity);
@@ -273,7 +273,7 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
         {
             // GridTileNode tileNode = gridTileHelper.GridTile.GetGridObject(new Vector3Int(item.position.x, item.position.y));
 
-            if (item.idObject == "") continue;
+            if (item.idEntity == "") continue;
             EntityArtifact entity = new EntityArtifact(null, null, item);
             UnitManager.SpawnEnity(entity);
             // UnitManager.SpawnEntityMapObjectToNode(tileNode, entity);
@@ -304,7 +304,7 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
         {
             // GridTileNode tileNode = gridTileHelper.GridTile.GetGridObject(new Vector3Int(item.position.x, item.position.y));
 
-            if (item.idObject == "") continue;
+            if (item.idEntity == "") continue;
             EntityExpore entity = new EntityExpore(null, item);
             UnitManager.SpawnEnity(entity);
             // UnitManager.SpawnEntityMapObjectToNode(tileNode, entity);
@@ -314,7 +314,7 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
         {
             // GridTileNode tileNode = gridTileHelper.GridTile.GetGridObject(new Vector3Int(item.position.x, item.position.y));
 
-            if (item.idObject == "") continue;
+            if (item.idEntity == "") continue;
             EntityDwelling entity = new EntityDwelling(null, item);
             UnitManager.SpawnEnity(entity);
             // UnitManager.SpawnEntityMapObjectToNode(tileNode, entity);
@@ -337,7 +337,7 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
         {
             // GridTileNode tileNode = gridTileHelper.GridTile.GetGridObject(new Vector3Int(item.position.x, item.position.y));
 
-            if (item.idObject == "") continue;
+            if (item.idEntity == "") continue;
             EntityMonolith entity = new EntityMonolith(null, item);
             UnitManager.SpawnEnity(entity);
             // UnitManager.SpawnEntityMapObjectToNode(tileNode, entity);
@@ -349,7 +349,7 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
             // GridTileNode nodeWarrior = gridTileHelper.GridTile.GetGridObject(new Vector3Int(item.position.x, item.position.y));
             // GridTileNode currentNode = gridTileHelper.GridTile.GetGridObject(new Vector3Int(item.data.protectedNode.x, item.data.protectedNode.y));
 
-            if (item.idObject == "") continue;
+            if (item.idEntity == "") continue;
             EntityCreature entity = new EntityCreature(null, item);
             UnitManager.SpawnEnity(entity);
             // (EntityCreature)UnitManager
@@ -372,15 +372,21 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
                 .GridTile
                 .GetGridObject(new Vector3Int(dataMapObject.data.position.x, dataMapObject.data.position.y));
 
-            if (dataMapObject.idEntity == "") continue;
+            if (dataMapObject.idMapObject == "") continue;
 
             BaseEntity entity = UnitManager.Entities
-                .Where(t => t.Value.IdEntity == dataMapObject.data.idEntity)
+                .Where(t => t.Value.Id == dataMapObject.data.idEntity)
                 .First()
                 .Value;
 
+
             MapObject mapObject = new MapObject(dataMapObject);
             UnitManager.SpawnEntityMapObjectToNode(node, entity, mapObject);
+            if (dataMapObject.data.idProtMapObj != "")
+            {
+                var protectedMapObject = UnitManager.MapObjects.GetValueOrDefault(dataMapObject.data.idProtMapObj);
+                mapObject.OccupiedNode.SetProtectedNeigbours(mapObject, protectedMapObject.OccupiedNode);
+            }
             // if (dataMapObject.data.idPlayer >= 0)
             // {
             //     town.SetPlayer(LevelManager.Instance.GetPlayer(unitTown.data.idPlayer));
@@ -1004,14 +1010,21 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
         return listNode;
     }
 
-    public void ResetSky(SerializableShortPosition positions)
+    public void ResetSky(SerializableNoSky positions)
     {
+        var flag = (NoskyMask)(1 << LevelManager.Instance.ActivePlayer.DataPlayer.id);
         for (int x = -1; x < gameModeData.width + 1; x++)
         {
             for (int y = -1; y < gameModeData.height + 3; y++)
             {
                 Vector3Int position = new Vector3Int(x, y);
-                if (positions.ContainsKey(position))
+                if (!positions.ContainsKey(position))
+                {
+                    _tileMapSky.SetTile(position, _tileSky);
+                    continue;
+                }
+
+                if (positions[position].HasFlag(flag))
                 {
                     _tileMapSky.SetTile(position, null);
                 }

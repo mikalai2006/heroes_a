@@ -3,7 +3,7 @@
     <ui:VisualElement name="Loader" class="loader">
         <ui:VisualElement name="OverBG" style="background-color: rgb(0, 0, 0); flex-grow: 1;" />
         <ui:VisualElement name="ProgressBarSection" class="progress-bar__section" style="font-size: 20px;">
-            <ui:Label tabindex="-1" text="Create map" display-tooltip-when-elided="true" name="ProgressBarText" class="text_big" />
+            <ui:Label tabindex="-1" display-tooltip-when-elided="true" name="ProgressBarText" class="text_big" />
             <ui:VisualElement name="ProgressBarBox" class="progress-bar__box">
                 <ui:VisualElement name="ProgressBar" class="progress-bar" />
             </ui:VisualElement>
