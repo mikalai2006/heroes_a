@@ -20,7 +20,7 @@ public enum TypeAttribute
     PrimarySkill = 30,
     SecondarySkill = 40,
     Spell = 60,
-    Hero = 70,
+    // Hero = 70,
     Creature = 80,
-    Town = 100,
+    // Town = 100,
 }

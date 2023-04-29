@@ -80,6 +80,7 @@ public enum TypeMapObject
     Dwelling = 7,
     Hero = 8,
     CreatureBanks = 9,
+    Creature = 10,
 }
 [System.Serializable]
 public enum TypeWorkObject

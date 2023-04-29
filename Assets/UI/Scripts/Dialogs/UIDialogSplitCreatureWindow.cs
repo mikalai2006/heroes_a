@@ -64,8 +64,8 @@ public class UIDialogSplitCreatureWindow : UIDialogBaseWindow
 
         _startCreature = startCreature;
         _endCreature = endCreature;
-        ScriptableEntityCreature configDataValue1
-            = (ScriptableEntityCreature)_startCreature.ScriptableData;
+        ScriptableAttributeCreature configDataValue1
+            = (ScriptableAttributeCreature)_startCreature.ConfigAttribute;
 
         LocalizedString textSplit = new LocalizedString(Constants.LanguageTable.LANG_TABLE_UILANG, "split");
         // var title = textSplit.GetLocalizedString() + ": " + _startCreature.ConfigData.title.GetLocalizedString();
@@ -82,8 +82,8 @@ public class UIDialogSplitCreatureWindow : UIDialogBaseWindow
 
         if (endCreature != null)
         {
-            ScriptableEntityCreature configDataValue2
-                = (ScriptableEntityCreature)_endCreature.ScriptableData;
+            ScriptableAttributeCreature configDataValue2
+                = (ScriptableAttributeCreature)_endCreature.ConfigAttribute;
         }
 
         var _spriteLevel1 = root.Q<VisualElement>("Creature1");

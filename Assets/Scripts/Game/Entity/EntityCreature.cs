@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 
 using UnityEngine;
 
@@ -6,25 +7,23 @@ using UnityEngine;
 public class EntityCreature : BaseEntity
 {
     [SerializeField] public DataCreature Data = new DataCreature();
-    public ScriptableEntityCreature ConfigData => (ScriptableEntityCreature)ScriptableData;
+    public ScriptableEntityMapObject ConfigData => (ScriptableEntityMapObject)ScriptableData;
     public ScriptableAttributeCreature ConfigAttribute => (ScriptableAttributeCreature)ScriptableDataAttribute;
-    // [NonSerialized] private ScriptableAttributeCreature _configCreature;
-    // public ScriptableAttributeCreature ConfigCreature => _configCreature;
 
     public EntityCreature(
-        // ScriptableEntityCreature configData,
         ScriptableAttributeCreature configCreature,
         SaveDataUnit<DataCreature> saveData = null)
     {
         base.Init();
 
         ScriptableData = ResourceSystem.Instance
-            .GetEntityByType<ScriptableEntityCreature>(TypeEntity.Creature)[0];
+            .GetEntityByType<ScriptableEntityMapObject>(TypeEntity.MapObject)
+            .Where(t => t.TypeMapObject == TypeMapObject.Creature)
+            .First();
 
         if (saveData == null)
         {
             ScriptableDataAttribute = configCreature;
-            // ScriptableData = configData;
             _idEntity = ScriptableData.idObject;
             Data.value = 1;
             Data.idObject = ScriptableDataAttribute.idObject;

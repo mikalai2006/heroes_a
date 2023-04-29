@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
-[CreateAssetMenu(fileName = "NewAttributeCreature", menuName = "Game/Attribute/Creature")]
+[CreateAssetMenu(fileName = "NewAttributeCreature", menuName = "Game/Creature")]
 public class ScriptableAttributeCreature : ScriptableAttribute
 {
     [Header("Options Creature")]

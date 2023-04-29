@@ -72,6 +72,9 @@ public class MapEntityArtifact : BaseMapEntity, IDialogMapObjectOperation
     {
         MapObject.DoHero(player);
 
+        player.ActiveHero.AddArtifact((EntityArtifact)MapObject.Entity);
+
+
         Destroy(gameObject);
     }
 }
