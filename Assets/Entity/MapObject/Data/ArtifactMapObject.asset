@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3fa465b5255fcde46a4806896b048f98, type: 3}
-  m_Name: Artifact
+  m_Script: {fileID: 11500000, guid: 28f893db958f10a46a0e59d54d9b29d0, type: 3}
+  m_Name: ArtifactMapObject
   m_EditorClassIdentifier: 
-  idObject: entity.other
-  TypeEntity: 36
+  idObject: artifactmapobject
+  TypeEntity: 34
   MenuSprite: {fileID: 0}
   Text:
     title:
@@ -35,12 +35,12 @@ MonoBehaviour:
       m_WaitForCompletion: 0
       m_LocalVariables: []
   MapPrefab:
-    m_AssetGUID: 
+    m_AssetGUID: 78bbccad427da0540bc178662a38e3a5
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
   TypeGround: 0
-  TypeMapObject: 0
+  TypeMapObject: 6
   RMGValue: 0
   listTypeNoPath: 
   listRuleInput: 

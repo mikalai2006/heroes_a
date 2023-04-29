@@ -39,7 +39,7 @@ public class MapEntityMapObject : BaseMapEntity, IDialogMapObjectOperation
             Header = configData.Text.title.GetLocalizedString(),
             Description = description,
             // Sprite = this.ScriptableData.MenuSprite,
-            TypeCheck = TypeCheck.OnlyOk,
+            TypeCheck = TypeCheck.Default,
             TypeWorkEffect = configData.TypeWorkEffect,
             Groups = groups
         };

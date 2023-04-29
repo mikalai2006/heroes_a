@@ -62,22 +62,16 @@ public class CreateArtifactOperation : ILoadingOperation
                     GridTileNode currentNode = nodes[Random.Range(0, nodes.Count)];
                     GridTileNode nodeWarrior = _root.GetNodeWarrior(currentNode);
 
-                    ScriptableEntityMapObject configDataArtifact
-                        = ResourceSystem.Instance
-                        .GetEntityByType<ScriptableEntityMapObject>(TypeEntity.Other)
-                        .First();
-                    ScriptableEntityOther configData = (ScriptableEntityOther)configDataArtifact;
                     if (
                         nodeWarrior != null
                         && currentNode != null
-                        && _root.gridTileHelper.GetAllowInsertObjectToNode(currentNode, configData)
                         )
                     {
                         // Generate artefact attribute.
                         ScriptableAttributeArtifact configArtifact
                             = listArtifacts[Random.Range(0, listArtifacts.Count)];
 
-                        EntityArtifact entity = new EntityArtifact(configData, configArtifact);
+                        EntityArtifact entity = new EntityArtifact(configArtifact);
                         // var entityArtifact = (ScriptableEntityArtifact)entity.ScriptableData;
                         UnitManager.SpawnEntityMapObjectToNode(currentNode, entity);
 

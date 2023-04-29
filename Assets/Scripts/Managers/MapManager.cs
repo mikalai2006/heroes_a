@@ -274,7 +274,7 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
             // GridTileNode tileNode = gridTileHelper.GridTile.GetGridObject(new Vector3Int(item.position.x, item.position.y));
 
             if (item.idEntity == "") continue;
-            EntityArtifact entity = new EntityArtifact(null, null, item);
+            EntityArtifact entity = new EntityArtifact(null, item);
             UnitManager.SpawnEnity(entity);
             // UnitManager.SpawnEntityMapObjectToNode(tileNode, entity);
         }
@@ -650,6 +650,8 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
 
             if (monolith == null)
             {
+                var configData = listConfigPortals[UnityEngine.Random.Range(0, listConfigPortals.Count)];
+
                 List<GridTileNode> listAroundTownNodes = gridTileHelper.IsExistExit(townNode);
                 List<GridTileNode> listPotentialAroundTownNodes = listAroundTownNodes.Where(t =>
                     t != node
@@ -660,6 +662,7 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
                     // && t.Enable
                     // && !t.Protected
                     && t != townNode
+                    && gridTileHelper.GetAllowInsertObjectToNode(t, configData, false)
                     && gridTileHelper.GetDistanceBetweeenPoints(t.position, townNode.position) > 4
                 ).ToList();
 
@@ -671,9 +674,6 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
                     GridTileNode nodeWarrior = GetNodeWarrior(nodeInputPortal);
                     if (nodeWarrior != null)
                     {
-                        var configData
-                            = listConfigPortals[UnityEngine.Random.Range(0, listConfigPortals.Count)];
-
                         // var factory = new EntityMapObjectFactory();
                         monolith = new EntityMonolith((ScriptableEntityPortal)configData);
                         UnitManager.SpawnEntityMapObjectToNode(nodeInputPortal, monolith);

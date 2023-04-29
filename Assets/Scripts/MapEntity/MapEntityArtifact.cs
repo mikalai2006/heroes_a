@@ -16,7 +16,7 @@ public class MapEntityArtifact : BaseMapEntity, IDialogMapObjectOperation
     {
         base.InitUnit(mapObject);
 
-        ScriptableEntityOther dataArtifact = (ScriptableEntityOther)_mapObject.ConfigData;
+        ScriptableEntityMapObject dataArtifact = (ScriptableEntityMapObject)_mapObject.ConfigData;
         EntityArtifact entityArtifact = (EntityArtifact)_mapObject.Entity;
 
         if (entityArtifact.ConfigAttribute != null)

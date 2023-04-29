@@ -48,7 +48,7 @@ public class MapEntityMine : BaseMapEntity, IDialogMapObjectOperation
         {
             Header = configData.Text.title.GetLocalizedString(),
             Description = description,
-            Sprite = configData.MenuSprite,
+            // Sprite = configData.MenuSprite,
         };
 
         var dialogWindow = new DialogMapObjectProvider(dialogData);

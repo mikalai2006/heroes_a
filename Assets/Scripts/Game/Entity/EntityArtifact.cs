@@ -8,22 +8,25 @@ using UnityEngine;
 public class EntityArtifact : BaseEntity
 {
     [SerializeField] public DataArtifact Data = new DataArtifact();
-    private ScriptableEntityOther ConfigData => (ScriptableEntityOther)ScriptableData;
+    private ScriptableEntityMapObject ConfigData => (ScriptableEntityMapObject)ScriptableData;
     public ScriptableAttributeArtifact ConfigAttribute => (ScriptableAttributeArtifact)ScriptableDataAttribute;
 
     public EntityArtifact(
-        ScriptableEntityOther configData,
         ScriptableAttributeArtifact configArtifact,
         SaveDataUnit<DataArtifact> saveData = null)
     {
         base.Init();
 
+        ScriptableData = ResourceSystem.Instance
+            .GetEntityByType<ScriptableEntityMapObject>(TypeEntity.MapObject)
+            .Where(t => t.TypeMapObject == TypeMapObject.Artifact)
+            .First();
+
         if (saveData == null)
         {
-            ScriptableData = configData;
+            ScriptableDataAttribute = configArtifact;
             SetData(configArtifact);
             _idEntity = ScriptableData.idObject;
-            ScriptableDataAttribute = configArtifact;
             Data.idPlayer = -1;
         }
         else
@@ -32,10 +35,10 @@ public class EntityArtifact : BaseEntity
             //     .GetEntityByType<ScriptableEntityArtifact>(TypeEntity.MapObject)
             //     .Where(t => t.idObject == saveData.idObject && t.TypeMapObject == TypeMapObject.Artifact)
             Data = saveData.data;
-            ScriptableData = ResourceSystem.Instance
-                .GetEntityByType<ScriptableEntityMapObject>(TypeEntity.MapObject)
-                .Where(t => t.TypeMapObject == TypeMapObject.Artifact
-                && t.idObject == saveData.idEntity).First();
+            // ScriptableData = ResourceSystem.Instance
+            //     .GetEntityByType<ScriptableEntityMapObject>(TypeEntity.MapObject)
+            //     .Where(t => t.TypeMapObject == TypeMapObject.Artifact
+            //     && t.idObject == saveData.idEntity).First();
 
             ScriptableDataAttribute = ResourceSystem.Instance
                 .GetAttributesByType<ScriptableAttributeArtifact>(TypeAttribute.Artifact)

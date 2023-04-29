@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 using Cysharp.Threading.Tasks;
@@ -14,9 +15,14 @@ public class EffectRandomArtifact : BaseEffect
     {
         var result = new EffectResult();
 
-        var RandomArtifact = Artifacts[Random.Range(0, Artifacts.Count)];
+        var currentEffect = entity.Effects.Effects.Find(t => t.ide == idEffect);
+        var configArtifact = ResourceSystem.Instance
+            .GetAttributesByType<ScriptableAttributeArtifact>(TypeAttribute.Artifact)
+            .Find(t => t.idObject == currentEffect.ido);
+        var newArtifact = new EntityArtifact(configArtifact);
 
-        Debug.Log($"EffectRandomArtifact::: Run {RandomArtifact.name} run!");
+        player.ActiveHero.AddArtifact(newArtifact);
+        Debug.Log($"EffectRandomArtifact::: Run {configArtifact.name} run!");
 
         await UniTask.Delay(1);
         return result;

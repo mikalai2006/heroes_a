@@ -70,9 +70,6 @@ public class EffectCreatureBank : BaseEffect
             // Add Artifacts.
             if (artifacts.Count > 0)
             {
-                var entityArtifactConfig = ResourceSystem.Instance
-                    .GetEntityByType<ScriptableEntityOther>(TypeEntity.Other)
-                    .First();
                 foreach (var art in artifacts)
                 {
                     var artifact = ResourceSystem.Instance
@@ -84,7 +81,7 @@ public class EffectCreatureBank : BaseEffect
                     {
                         if (artifact.Count() < i)
                         {
-                            EntityArtifact newArt = new EntityArtifact(entityArtifactConfig, artifact[i]);
+                            EntityArtifact newArt = new EntityArtifact(artifact[i]);
                             _activePlayer.ActiveHero.AddArtifact(newArt);
                         }
                     }
