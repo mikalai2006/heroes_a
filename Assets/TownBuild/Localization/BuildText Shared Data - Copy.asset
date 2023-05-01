@@ -443,6 +443,158 @@ MonoBehaviour:
     m_Key: no_resource
     m_Metadata:
       m_Items: []
+  - m_Id: 10139348013056000
+    m_Key: workshop_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10139433899819008
+    m_Key: workshop_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10139695800549376
+    m_Key: workshop2_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10139734245539840
+    m_Key: workshop2_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10139825400348672
+    m_Key: parapet_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10139859328073728
+    m_Key: parapet_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10139888654647296
+    m_Key: parapet2_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10139917142360064
+    m_Key: parapet2_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10139940731125760
+    m_Key: golemfabric_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10139970779119616
+    m_Key: golemfabric_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10139996196601856
+    m_Key: golemfabric2_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10140035748888576
+    m_Key: golemfabric2_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10140057576046592
+    m_Key: magetower_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10140090945929216
+    m_Key: magetower_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10140123766358016
+    m_Key: magetower2_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10140144230367232
+    m_Key: magetower2_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10140161666088960
+    m_Key: altarofwishes_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10140191122685952
+    m_Key: altarofwishes2_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10140217546801152
+    m_Key: altarofwishes2_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10140239315238912
+    m_Key: goldenpavillion_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10140259879911424
+    m_Key: goldenpavillion_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10140390977077248
+    m_Key: goldenpavillion2_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10140423067697152
+    m_Key: goldenpavillion2_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10140440272732160
+    m_Key: coludtemple_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10140462791950336
+    m_Key: coludtemple_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10140480999424000
+    m_Key: coludtemple2_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10140501627011072
+    m_Key: coludtemple2_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10140977030397952
+    m_Key: altarofwishes_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10143490072805376
+    m_Key: sculptorwings_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10143570691522560
+    m_Key: sculptorwings_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10143761574297600
+    m_Key: looktower_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10143835855421440
+    m_Key: looktower_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10144412588998656
+    m_Key: library_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10144443685568512
+    m_Key: library_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10144640272596992
+    m_Key: wallofknowledge_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10144687894724608
+    m_Key: wallofknowledge_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10144912956882944
+    m_Key: artifactmerchants_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10144981063991296
+    m_Key: artifactmerchants_d
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

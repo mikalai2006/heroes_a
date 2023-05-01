@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b06948112444bc04bb8a2304b5eece5a, type: 3}
+  m_Name: 3_Tower_Tavern
+  m_EditorClassIdentifier: 
+  idObject: build.tower.tavern
+  TypeFaction: 80
+  Prefab:
+    m_AssetGUID: 5a9ae3a89e081fd458a7b7666509b60d
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  TypeBuild: 2
+  BuildLevels:
+  - MenuSprite: {fileID: 21300000, guid: 2564f2f0352381d48a7631ca2fb042ea, type: 3}
+    UpdatePrefab:
+      m_AssetGUID: 
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    Text:
+      title:
+        m_TableReference:
+          m_TableCollectionName: GUID:eccb40f2ef0445e499300535baf5f930
+        m_TableEntryReference:
+          m_KeyId: 4530508038144
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      description:
+        m_TableReference:
+          m_TableCollectionName: GUID:eccb40f2ef0445e499300535baf5f930
+        m_TableEntryReference:
+          m_KeyId: 4557217366016
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+    RequireBuilds: []
+    CostResource:
+    - Resource: {fileID: 11400000, guid: 3894d4d068775c343b5c4bf1510dee33, type: 2}
+      Count: 500
+    - Resource: {fileID: 11400000, guid: af6fb8015ba018540960794f09d24eea, type: 2}
+      Count: 5
+    Effect:
+      One: []
+      EveryDay: []
+      EveryWeek: []
+      RunHero: []
+  references:
+    version: 2
+    RefIds: []

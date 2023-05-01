@@ -1,0 +1,109 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc9580e1f67cc4343ab8e2981a25f527, type: 3}
+  m_Name: 14_GolemFactory
+  m_EditorClassIdentifier: 
+  idObject: build.tower.golemfactory
+  TypeFaction: 80
+  Prefab:
+    m_AssetGUID: e035a19f3198cab418e28d4e4194e904
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  TypeBuild: 10
+  BuildLevels:
+  - MenuSprite: {fileID: 21300000, guid: f9404e45c75d8bc43867a982018102e3, type: 3}
+    UpdatePrefab:
+      m_AssetGUID: 
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    Text:
+      title:
+        m_TableReference:
+          m_TableCollectionName: GUID:eccb40f2ef0445e499300535baf5f930
+        m_TableEntryReference:
+          m_KeyId: 10139940731125760
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      description:
+        m_TableReference:
+          m_TableCollectionName: GUID:eccb40f2ef0445e499300535baf5f930
+        m_TableEntryReference:
+          m_KeyId: 10139970779119616
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+    RequireBuilds:
+    - Build: {fileID: 11400000, guid: b5f2421602c57ec47b974d061a421f2c, type: 2}
+      level: 0
+    CostResource:
+    - Resource: {fileID: 11400000, guid: 3894d4d068775c343b5c4bf1510dee33, type: 2}
+      Count: 2000
+    - Resource: {fileID: 11400000, guid: af6fb8015ba018540960794f09d24eea, type: 2}
+      Count: 5
+    - Resource: {fileID: 11400000, guid: 177478bebb60204468d214efd1fdcc16, type: 2}
+      Count: 5
+    Effect:
+      One: []
+      EveryDay: []
+      EveryWeek: []
+      RunHero: []
+  - MenuSprite: {fileID: 21300000, guid: c2c5698aefb4213418be648abcfcc90e, type: 3}
+    UpdatePrefab:
+      m_AssetGUID: 
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    Text:
+      title:
+        m_TableReference:
+          m_TableCollectionName: GUID:eccb40f2ef0445e499300535baf5f930
+        m_TableEntryReference:
+          m_KeyId: 10139996196601856
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      description:
+        m_TableReference:
+          m_TableCollectionName: GUID:eccb40f2ef0445e499300535baf5f930
+        m_TableEntryReference:
+          m_KeyId: 10140035748888576
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+    RequireBuilds:
+    - Build: {fileID: 11400000}
+      level: 0
+    CostResource:
+    - Resource: {fileID: 11400000, guid: 3894d4d068775c343b5c4bf1510dee33, type: 2}
+      Count: 2000
+    - Resource: {fileID: 11400000, guid: af6fb8015ba018540960794f09d24eea, type: 2}
+      Count: 5
+    - Resource: {fileID: 11400000, guid: 61799bb2485b4684485b146b76ea01d6, type: 2}
+      Count: 5
+    - Resource: {fileID: 11400000, guid: 177478bebb60204468d214efd1fdcc16, type: 2}
+      Count: 5
+    Effect:
+      One: []
+      EveryDay: []
+      EveryWeek: []
+      RunHero: []
+  Creatures: []
+  references:
+    version: 2
+    RefIds: []

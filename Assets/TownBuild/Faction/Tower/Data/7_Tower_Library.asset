@@ -1,0 +1,76 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b06948112444bc04bb8a2304b5eece5a, type: 3}
+  m_Name: 7_Tower_Library
+  m_EditorClassIdentifier: 
+  idObject: build.tower.library
+  TypeFaction: 80
+  Prefab:
+    m_AssetGUID: 603c2c5a3ad954e4892822f8bf569133
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  TypeBuild: 19
+  BuildLevels:
+  - MenuSprite: {fileID: 21300000, guid: 72cd2eb094460434c91aceedb5a49564, type: 3}
+    UpdatePrefab:
+      m_AssetGUID: 
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    Text:
+      title:
+        m_TableReference:
+          m_TableCollectionName: GUID:eccb40f2ef0445e499300535baf5f930
+        m_TableEntryReference:
+          m_KeyId: 10144412588998656
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      description:
+        m_TableReference:
+          m_TableCollectionName: GUID:eccb40f2ef0445e499300535baf5f930
+        m_TableEntryReference:
+          m_KeyId: 10144443685568512
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+    RequireBuilds:
+    - Build: {fileID: 11400000, guid: 3aab40c5d7d0ff94482092d655cef26e, type: 2}
+      level: 0
+    - Build: {fileID: 11400000, guid: 2664b94079ad68c47b8dc933a7ace45c, type: 2}
+      level: 0
+    CostResource:
+    - Resource: {fileID: 11400000, guid: 3894d4d068775c343b5c4bf1510dee33, type: 2}
+      Count: 1500
+    - Resource: {fileID: 11400000, guid: 177478bebb60204468d214efd1fdcc16, type: 2}
+      Count: 5
+    - Resource: {fileID: 11400000, guid: 61799bb2485b4684485b146b76ea01d6, type: 2}
+      Count: 5
+    - Resource: {fileID: 11400000, guid: af6fb8015ba018540960794f09d24eea, type: 2}
+      Count: 5
+    - Resource: {fileID: 11400000, guid: 379c734399110d34f9159a31f3e18074, type: 2}
+      Count: 5
+    - Resource: {fileID: 11400000, guid: 6b8ad83da675426418c328236190e67c, type: 2}
+      Count: 5
+    - Resource: {fileID: 11400000, guid: f02d0b566815eaa47b30b219422c87e5, type: 2}
+      Count: 5
+    Effect:
+      One: []
+      EveryDay: []
+      EveryWeek: []
+      RunHero: []
+  references:
+    version: 2
+    RefIds: []

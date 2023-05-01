@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b06948112444bc04bb8a2304b5eece5a, type: 3}
+  m_Name: 9_Tower_ArtifactMerchants
+  m_EditorClassIdentifier: 
+  idObject: build.tower.artifactsmerchants
+  TypeFaction: 80
+  Prefab:
+    m_AssetGUID: 87e0ec36ba948ab42b8839fcf7de36e1
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  TypeBuild: 19
+  BuildLevels:
+  - MenuSprite: {fileID: 21300000, guid: ef8efee304baa43499fc0877c7df7d35, type: 3}
+    UpdatePrefab:
+      m_AssetGUID: 
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    Text:
+      title:
+        m_TableReference:
+          m_TableCollectionName: GUID:eccb40f2ef0445e499300535baf5f930
+        m_TableEntryReference:
+          m_KeyId: 10144912956882944
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      description:
+        m_TableReference:
+          m_TableCollectionName: GUID:eccb40f2ef0445e499300535baf5f930
+        m_TableEntryReference:
+          m_KeyId: 10144981063991296
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+    RequireBuilds:
+    - Build: {fileID: 11400000, guid: 3aab40c5d7d0ff94482092d655cef26e, type: 2}
+      level: 0
+    - Build: {fileID: 11400000, guid: 62968ef792f49524ea76b8611683423a, type: 2}
+      level: 0
+    CostResource:
+    - Resource: {fileID: 11400000, guid: 3894d4d068775c343b5c4bf1510dee33, type: 2}
+      Count: 10000
+    Effect:
+      One: []
+      EveryDay: []
+      EveryWeek: []
+      RunHero: []
+  references:
+    version: 2
+    RefIds: []

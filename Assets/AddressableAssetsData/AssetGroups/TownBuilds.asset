@@ -67,6 +67,17 @@ MonoBehaviour:
     m_SerializedLabels:
     - entity
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1ac7dbe97a55c5d4e9656498663f7f76
+    m_Address: Assets/TownBuild/Faction/Tower/Data
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - build_base
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f6628e59a8e9b2c49bdf395723ded6ca
+    m_Address: Assets/TownBuild/Faction/Tower
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 9a6380555b06f9d46b9bf47dd32221de, type: 2}
   m_SchemaSet:

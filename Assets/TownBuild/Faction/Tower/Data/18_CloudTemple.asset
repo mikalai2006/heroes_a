@@ -1,0 +1,113 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc9580e1f67cc4343ab8e2981a25f527, type: 3}
+  m_Name: 18_CloudTemple
+  m_EditorClassIdentifier: 
+  idObject: build.tower.cloudtemple
+  TypeFaction: 80
+  Prefab:
+    m_AssetGUID: 55ffcc8180e999946a0fe81e0a951ae3
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  TypeBuild: 10
+  BuildLevels:
+  - MenuSprite: {fileID: 21300000, guid: 0ca3ad9404977f24ea9fff491ceb32dd, type: 3}
+    UpdatePrefab:
+      m_AssetGUID: 
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    Text:
+      title:
+        m_TableReference:
+          m_TableCollectionName: GUID:eccb40f2ef0445e499300535baf5f930
+        m_TableEntryReference:
+          m_KeyId: 10140440272732160
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      description:
+        m_TableReference:
+          m_TableCollectionName: GUID:eccb40f2ef0445e499300535baf5f930
+        m_TableEntryReference:
+          m_KeyId: 10140462791950336
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+    RequireBuilds:
+    - Build: {fileID: 11400000, guid: 4256c4213c19c024ea45cb57bdd2c964, type: 2}
+      level: 0
+    - Build: {fileID: 11400000, guid: b90905cac83e00442982493fc3f94665, type: 2}
+      level: 0
+    CostResource:
+    - Resource: {fileID: 11400000, guid: 3894d4d068775c343b5c4bf1510dee33, type: 2}
+      Count: 5000
+    - Resource: {fileID: 11400000, guid: af6fb8015ba018540960794f09d24eea, type: 2}
+      Count: 5
+    - Resource: {fileID: 11400000, guid: 177478bebb60204468d214efd1fdcc16, type: 2}
+      Count: 5
+    - Resource: {fileID: 11400000, guid: f02d0b566815eaa47b30b219422c87e5, type: 2}
+      Count: 10
+    Effect:
+      One: []
+      EveryDay: []
+      EveryWeek: []
+      RunHero: []
+  - MenuSprite: {fileID: 21300000, guid: f5fcbdcb048262847b471811979e6dfd, type: 3}
+    UpdatePrefab:
+      m_AssetGUID: 
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    Text:
+      title:
+        m_TableReference:
+          m_TableCollectionName: GUID:eccb40f2ef0445e499300535baf5f930
+        m_TableEntryReference:
+          m_KeyId: 10140480999424000
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      description:
+        m_TableReference:
+          m_TableCollectionName: GUID:eccb40f2ef0445e499300535baf5f930
+        m_TableEntryReference:
+          m_KeyId: 10140501627011072
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+    RequireBuilds:
+    - Build: {fileID: 11400000}
+      level: 0
+    CostResource:
+    - Resource: {fileID: 11400000, guid: 3894d4d068775c343b5c4bf1510dee33, type: 2}
+      Count: 25000
+    - Resource: {fileID: 11400000, guid: af6fb8015ba018540960794f09d24eea, type: 2}
+      Count: 5
+    - Resource: {fileID: 11400000, guid: 177478bebb60204468d214efd1fdcc16, type: 2}
+      Count: 5
+    - Resource: {fileID: 11400000, guid: f02d0b566815eaa47b30b219422c87e5, type: 2}
+      Count: 30
+    Effect:
+      One: []
+      EveryDay: []
+      EveryWeek: []
+      RunHero: []
+  Creatures: []
+  references:
+    version: 2
+    RefIds: []

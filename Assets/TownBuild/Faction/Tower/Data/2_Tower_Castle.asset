@@ -1,0 +1,147 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b06948112444bc04bb8a2304b5eece5a, type: 3}
+  m_Name: 2_Tower_Castle
+  m_EditorClassIdentifier: 
+  idObject: build.tower.castle
+  TypeFaction: 80
+  Prefab:
+    m_AssetGUID: 2a31a0132c45b25448e09bd6b0c69b3b
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  TypeBuild: 4
+  BuildLevels:
+  - MenuSprite: {fileID: 21300000, guid: d195b0e0003de0a44893b0b1edef98db, type: 3}
+    UpdatePrefab:
+      m_AssetGUID: 
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    Text:
+      title:
+        m_TableReference:
+          m_TableCollectionName: GUID:eccb40f2ef0445e499300535baf5f930
+        m_TableEntryReference:
+          m_KeyId: 3664396845056
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      description:
+        m_TableReference:
+          m_TableCollectionName: GUID:eccb40f2ef0445e499300535baf5f930
+        m_TableEntryReference:
+          m_KeyId: 3703588421632
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+    RequireBuilds:
+    - Build: {fileID: 11400000, guid: 3aab40c5d7d0ff94482092d655cef26e, type: 2}
+      level: 0
+    CostResource:
+    - Resource: {fileID: 11400000, guid: 3894d4d068775c343b5c4bf1510dee33, type: 2}
+      Count: 5000
+    - Resource: {fileID: 11400000, guid: 177478bebb60204468d214efd1fdcc16, type: 2}
+      Count: 20
+    - Resource: {fileID: 11400000, guid: af6fb8015ba018540960794f09d24eea, type: 2}
+      Count: 20
+    Effect:
+      One:
+      - {fileID: 11400000, guid: 819d95a8225ed9a4d9c1d1e5a4ceca4e, type: 2}
+      EveryDay: []
+      EveryWeek: []
+      RunHero: []
+  - MenuSprite: {fileID: 21300000, guid: 66856d018f6afec4f96c0adf6923f5bb, type: 3}
+    UpdatePrefab:
+      m_AssetGUID: 
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    Text:
+      title:
+        m_TableReference:
+          m_TableCollectionName: GUID:eccb40f2ef0445e499300535baf5f930
+        m_TableEntryReference:
+          m_KeyId: 3847536934912
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      description:
+        m_TableReference:
+          m_TableCollectionName: GUID:eccb40f2ef0445e499300535baf5f930
+        m_TableEntryReference:
+          m_KeyId: 3878646087680
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+    RequireBuilds:
+    - Build: {fileID: 11400000}
+      level: 0
+    CostResource:
+    - Resource: {fileID: 11400000, guid: 3894d4d068775c343b5c4bf1510dee33, type: 2}
+      Count: 2500
+    - Resource: {fileID: 11400000, guid: 177478bebb60204468d214efd1fdcc16, type: 2}
+      Count: 5
+    Effect:
+      One:
+      - {fileID: 11400000, guid: 4fe010df0f11bd846a78548a47305258, type: 2}
+      EveryDay: []
+      EveryWeek: []
+      RunHero: []
+  - MenuSprite: {fileID: 21300000, guid: 4c8b458fcf95e794ea939d8a5fdc2ad3, type: 3}
+    UpdatePrefab:
+      m_AssetGUID: 
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    Text:
+      title:
+        m_TableReference:
+          m_TableCollectionName: GUID:eccb40f2ef0445e499300535baf5f930
+        m_TableEntryReference:
+          m_KeyId: 4020447117312
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      description:
+        m_TableReference:
+          m_TableCollectionName: GUID:eccb40f2ef0445e499300535baf5f930
+        m_TableEntryReference:
+          m_KeyId: 4040479113216
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+    RequireBuilds:
+    - Build: {fileID: 11400000}
+      level: 1
+    CostResource:
+    - Resource: {fileID: 11400000, guid: 3894d4d068775c343b5c4bf1510dee33, type: 2}
+      Count: 5000
+    - Resource: {fileID: 11400000, guid: 177478bebb60204468d214efd1fdcc16, type: 2}
+      Count: 10
+    - Resource: {fileID: 11400000, guid: af6fb8015ba018540960794f09d24eea, type: 2}
+      Count: 10
+    Effect:
+      One:
+      - {fileID: 11400000, guid: ecca841e3e6a0d14bb2beee15eafcd31, type: 2}
+      EveryDay: []
+      EveryWeek: []
+      RunHero: []
+  references:
+    version: 2
+    RefIds: []

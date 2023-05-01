@@ -131,6 +131,10 @@ MonoBehaviour:
     m_Key: vampirescowl_ok
     m_Metadata:
       m_Items: []
+  - m_Id: 9616652015665152
+    m_Key: town_tower
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
