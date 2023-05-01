@@ -396,6 +396,103 @@ public class EntityHero : BaseEntity
     }
     #endregion
 
+    public void InputHeroInTown(EntityTown activeTown)
+    {
+        var heroInTown = activeTown.Data.HeroinTown != null && activeTown.Data.HeroinTown != ""
+            ? UnitManager.Entities[activeTown.Data.HeroinTown].MapObject
+            : null;
+        // merge creatures.
+        if (activeTown.Data.Creatures.Where(t => t.Value != null).Count() > 0)
+        {
+            var resultMergeCreatures = Helpers.SummUnitBetweenList(
+                this.Data.Creatures,
+                activeTown.Data.Creatures
+                );
+            if (resultMergeCreatures.Count > 7)
+            {
+                // Show dialog No move.
+
+            }
+            else
+            {
+                this.Data.Creatures = resultMergeCreatures;
+                activeTown.MapObject.OccupiedNode.SetAsGuested(heroInTown);
+
+                // create new hero in town and destroy GameObject.
+                activeTown.Data.HeroinTown = this.Id;
+                // this.MapObject.MapObjectGameObject.gameObject.SetActive(false);
+                this.MapObject.DestroyMapObject();
+
+                this.Data.State = StateHero.InTown;
+
+                // Set default slots for town.
+                activeTown.ResetCreatures();
+            }
+        }
+        else
+        {
+            activeTown.MapObject.OccupiedNode.SetAsGuested(heroInTown);
+
+            // Create map object for old hero guest.
+            if (activeTown.MapObject.OccupiedNode.GuestedUnit != null)
+            {
+                var oldHeroInTown = ((EntityHero)activeTown.MapObject.OccupiedNode.GuestedUnit.Entity);
+                oldHeroInTown.Data.State = StateHero.OnMap;
+
+                var newMapObject = new MapObject();
+                oldHeroInTown.MapObject = newMapObject;
+                UnitManager.MapObjects.Add(newMapObject.IdMapObject, newMapObject);
+
+                newMapObject.SetEntity(oldHeroInTown, activeTown.MapObject.OccupiedNode);
+                oldHeroInTown.MapObject.CreateMapGameObject(activeTown.MapObject.OccupiedNode);
+
+                Player.SetActiveHero((EntityHero)activeTown.MapObject.OccupiedNode.GuestedUnit?.Entity);
+            }
+            else
+            {
+                Player.SetActiveHero(null);
+            }
+
+
+            // create new hero in town and destroy GameObject.
+            activeTown.Data.HeroinTown = this.Id;
+            MapObject.DestroyMapObject();
+            Data.State = StateHero.InTown;
+        }
+    }
+
+    public void OutputHeroFromTown(EntityTown activeTown)
+    {
+        var heroGuest = activeTown.MapObject.OccupiedNode.GuestedUnit != null
+            ? (EntityHero)activeTown.MapObject.OccupiedNode.GuestedUnit.Entity
+            : null;
+
+        // move old guest and destroy GameObject.
+        if (heroGuest != null)
+        {
+            activeTown.Data.HeroinTown = heroGuest.Id;
+            heroGuest.Data.State = StateHero.InTown;
+            heroGuest.MapObject.DestroyMapObject();
+        }
+        else
+        {
+            activeTown.Data.HeroinTown = "";
+        }
+
+        // create new guest and create GameObject.
+        Data.State = StateHero.OnMap;
+
+        var newMapObject = new MapObject();
+        MapObject = newMapObject;
+        UnitManager.MapObjects.Add(newMapObject.IdMapObject, newMapObject);
+        newMapObject.SetEntity(this, activeTown.MapObject.OccupiedNode);
+
+        MapObject.CreateMapGameObject(activeTown.MapObject.OccupiedNode);
+        activeTown.MapObject.OccupiedNode.SetAsGuested(MapObject);
+
+        Player.SetActiveHero(this);
+    }
+
     #region AI
     public async UniTask AIFind()
     {

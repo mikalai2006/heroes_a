@@ -218,7 +218,6 @@ public class UITownInfo : MonoBehaviour
 
     private async void OnClickHeroGuest(ClickEvent evt)
     {
-
         if (_chooseHero != null && _activePlayer.IsMaxCountHero)
         {
             var dialogData = new DataDialogHelp()
@@ -233,36 +232,16 @@ public class UITownInfo : MonoBehaviour
             return;
         }
 
-        var heroGuest = (EntityHero)_activeTown.MapObject.OccupiedNode.GuestedUnit.Entity;
+        var heroGuestMapObject = _activeTown.MapObject.OccupiedNode.GuestedUnit;
+        var heroGuest = heroGuestMapObject != null
+            ? (EntityHero)heroGuestMapObject.Entity
+            : null;
+
         if (_chooseHero != null)
         {
-            if (_chooseHero != _activeTown.MapObject.OccupiedNode.GuestedUnit.Entity)
+            if (_chooseHero != heroGuest)
             {
-                // move old guest and destroy GameObject.
-                _activeTown.Data.HeroinTown = heroGuest?.Id;
-                if (heroGuest != null)
-                {
-                    heroGuest.MapObject.MapObjectGameObject.gameObject.SetActive(false);
-                    heroGuest.Data.State = StateHero.InTown;
-                }
-
-                // create new guest and create GameObject.
-                _activeTown.MapObject.OccupiedNode.SetAsGuested(_chooseHero.MapObject);
-                if (_activeTown.MapObject.OccupiedNode.GuestedUnit != null)
-                {
-                    _chooseHero.Data.State = StateHero.OnMap;
-                    if (_activeTown.MapObject.OccupiedNode.GuestedUnit.MapObjectGameObject != null)
-                    {
-                        _activeTown.MapObject.OccupiedNode.GuestedUnit.MapObjectGameObject.gameObject.SetActive(true);
-                    }
-                    else
-                    {
-                        _activeTown.MapObject.OccupiedNode.GuestedUnit.CreateMapGameObject(_activeTown.MapObject.OccupiedNode);
-                    }
-                }
-
-                _activePlayer.SetActiveHero((EntityHero)_activeTown.MapObject.OccupiedNode.GuestedUnit.Entity);
-
+                _chooseHero.OutputHeroFromTown(_activeTown);
             }
             else
             {
@@ -310,52 +289,7 @@ public class UITownInfo : MonoBehaviour
         {
             if (_chooseHero.Id != _activeTown.Data.HeroinTown)
             {
-                // merge creatures.
-                if (_activeTown.Data.Creatures.Where(t => t.Value != null).Count() > 0)
-                {
-                    var resultMergeCreatures = Helpers.SummUnitBetweenList(
-                        _chooseHero.Data.Creatures,
-                        _activeTown.Data.Creatures
-                        );
-                    if (resultMergeCreatures.Count > 7)
-                    {
-                        // Show dialog No move.
-
-                    }
-                    else
-                    {
-                        _chooseHero.Data.Creatures = resultMergeCreatures;
-                        _activeTown.MapObject.OccupiedNode.SetAsGuested(heroInTown.MapObject);
-                        // create new hero in town and destroy GameObject.
-                        _activeTown.Data.HeroinTown = _chooseHero.Id;
-                        _chooseHero.MapObject.MapObjectGameObject.gameObject.SetActive(false);
-                        _chooseHero.Data.State = StateHero.InTown;
-                        _activeTown.ResetCreatures();
-                    }
-                }
-                else
-                {
-                    _activeTown.MapObject.OccupiedNode.SetAsGuested(heroInTown.MapObject);
-                    if (_activeTown.MapObject.OccupiedNode.GuestedUnit != null)
-                    {
-                        ((EntityHero)_activeTown.MapObject.OccupiedNode.GuestedUnit.Entity).Data.State = StateHero.OnMap;
-                        if (_activeTown.MapObject.OccupiedNode.GuestedUnit.MapObjectGameObject != null)
-                        {
-                            _chooseHero.MapObject.MapObjectGameObject.gameObject.SetActive(true);
-                        }
-                        else
-                        {
-                            _activeTown.MapObject.OccupiedNode.GuestedUnit.CreateMapGameObject(_activeTown.MapObject.OccupiedNode);
-                        }
-                    }
-                    _activePlayer.SetActiveHero((EntityHero)_activeTown.MapObject.OccupiedNode.GuestedUnit.Entity);
-
-                    // create new hero in town and destroy GameObject.
-                    _activeTown.Data.HeroinTown = _chooseHero.Id;
-                    _chooseHero.MapObject.MapObjectGameObject.gameObject.SetActive(false);
-                    _chooseHero.Data.State = StateHero.InTown;
-                }
-
+                _chooseHero.InputHeroInTown(_activeTown);
             }
             else
             {

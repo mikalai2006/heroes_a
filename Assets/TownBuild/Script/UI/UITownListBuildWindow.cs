@@ -66,6 +66,8 @@ public class UITownListBuildWindow : UILocaleBase
 
         var allowBuilds = _activeTown.GetLisNextLevelBuilds(_scriptObjectBuildTown);
 
+        var rows = new List<VisualElement>();
+        int index = 0;
         foreach (var parentBuild in allowBuilds)
         {
             var item = _templateBuildItem.Instantiate();
@@ -108,8 +110,11 @@ public class UITownListBuildWindow : UILocaleBase
             var label = item.Q<Label>("Title");
             label.text = currentBuild.Text.title.GetLocalizedString();
 
-            item.style.width = new StyleLength(new Length(25, LengthUnit.Percent));
-            item.style.height = new StyleLength(new Length(20, LengthUnit.Percent));
+            item.AddToClassList("w-25");
+            item.AddToClassList("h-full");
+
+            // item.style.width = new StyleLength(new Length(25, LengthUnit.Percent));
+            // item.style.height = new StyleLength(new Length(20, LengthUnit.Percent));
 
             item.Q<Button>("TownBuildItem").clickable.clicked += () =>
             {
@@ -119,7 +124,22 @@ public class UITownListBuildWindow : UILocaleBase
             // if (_activeTown.Data.ProgressBuilds.Intersect(currentBuild.RequiredBuilds).Count()
             //         == currentBuild.RequiredBuilds.Count()
             //     || currentBuild.RequiredBuilds.Length == 0)
-            _listBuild.Add(item);
+
+            rows.Add(item);
+            index++;
+            if (index % 4 == 0 || index == allowBuilds.Count)
+            {
+                var row = new VisualElement();
+                row.AddToClassList("w-full");
+                row.style.height = new StyleLength(new Length(150, LengthUnit.Pixel));
+                row.style.flexDirection = FlexDirection.Row;
+                for (int i = 0; i < rows.Count; i++)
+                {
+                    row.Add(rows[i]);
+                }
+                _listBuild.Add(row);
+                rows.Clear();
+            }
         }
 
         _processCompletionSource = new TaskCompletionSource<DataResultBuildDialog>();

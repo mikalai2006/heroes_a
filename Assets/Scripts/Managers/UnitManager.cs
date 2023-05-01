@@ -154,11 +154,6 @@ public static class UnitManager
         ScriptableEntityHero heroData = null
     )
     {
-        // ScriptableEntityHero configData
-        //     = ResourceSystem.Instance
-        //     .GetEntityByType<ScriptableEntityHero>(TypeEntity.Hero)
-        //     .First();
-        // var entity = new EntityHero(TypeFaction.Neutral, activeHeroData);
         EntityHero newEntity = new EntityHero(typeFaction, heroData);
 
         Entities.Add(newEntity.Id, newEntity);

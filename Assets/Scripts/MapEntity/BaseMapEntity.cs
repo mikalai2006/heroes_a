@@ -32,6 +32,10 @@ public abstract class BaseMapEntity : MonoBehaviour, IPointerClickHandler
         //Debug.Log($"Awake {name}");
     }
 
+    public void DestroyGameObject()
+    {
+        Destroy(gameObject);
+    }
     public void OnDestroy()
     {
         UnitManager.MapObjects.Remove(MapObject.Entity.IdEntity);

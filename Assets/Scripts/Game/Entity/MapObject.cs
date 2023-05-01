@@ -116,15 +116,32 @@ public class MapObject
             }
             // DestroyEntity();
 
-            OccupiedNode.SetOcuppiedUnit(null);
-            // MapObjectGameObject.DestroyMapObject();
-            UnitManager.MapObjects.Remove(IdMapObject);
+            // OccupiedNode.SetOcuppiedUnit(null);
+            // // MapObjectGameObject.DestroyMapObject();
+            // UnitManager.MapObjects.Remove(IdMapObject);
+            DestroyMapObject();
             Entity.DestroyEntity();
         }
         else
         {
             OccupiedNode.ChangeStatusVisit(true);
         }
+    }
+
+    public void DestroyMapObject()
+    {
+        OccupiedNode.SetOcuppiedUnit(null);
+        MapObjectGameObject.DestroyGameObject();
+        // MapObjectGameObject.DestroyMapObject();
+        UnitManager.MapObjects.Remove(IdMapObject);
+    }
+    public void CreateMapGameObject(GridTileNode node)
+    {
+        Debug.LogWarning($"CreateMapGameObject::: {Entity.ScriptableData.name}");
+        Data.position = node.position;
+        OccupiedNode = node;
+        Entity.SetMapObject(this);
+        LoadGameObject();
     }
 
     public void SetPositionCamera(Vector3 pos)
@@ -139,13 +156,6 @@ public class MapObject
         // ((EntityCreature)Entity).Data.protectedNode = protectedNode.position;
     }
 
-    public void CreateMapGameObject(GridTileNode node)
-    {
-        Data.position = node.position;
-        OccupiedNode = node;
-        Entity.SetMapObject(this);
-        LoadGameObject();
-    }
     public void SetPosition(Vector3Int newPosition)
     {
         Data.position = newPosition;
