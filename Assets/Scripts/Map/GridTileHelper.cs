@@ -185,7 +185,11 @@ public class GridTileHelper
                     && neighbourNode.OccupiedUnit == endNode.OccupiedUnit // TODO
                     )
                     || ignoreNotWalkable;
-                if ((!walk || neighbourNode.StateNode.HasFlag(StateNode.Disable)) && !ignoreNotWalkable)
+                if ((
+                    !walk
+                    || neighbourNode.StateNode.HasFlag(StateNode.Disable)
+                    || neighbourNode.StateNode.HasFlag(StateNode.Guested)
+                    ) && !ignoreNotWalkable)
                 {
                     closedSet.Add(neighbourNode);
                     continue;
