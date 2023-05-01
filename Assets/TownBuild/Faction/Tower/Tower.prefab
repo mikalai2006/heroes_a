@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2506468944654125997}
   m_Layer: 0
-  m_Name: Town
+  m_Name: Tower
   m_TagString: Town
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
