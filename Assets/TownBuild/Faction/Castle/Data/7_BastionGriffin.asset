@@ -46,41 +46,18 @@ MonoBehaviour:
         m_FallbackState: 0
         m_WaitForCompletion: 0
         m_LocalVariables: []
-    RequireBuilds: []
+    RequireBuilds:
+    - Build: {fileID: 11400000, guid: 7982044bcc8631a4cb1b643545a8a4e0, type: 2}
+      level: 0
     CostResource:
     - Resource: {fileID: 11400000, guid: 3894d4d068775c343b5c4bf1510dee33, type: 2}
       Count: 1000
-    Effects: []
-  - MenuSprite: {fileID: 21300000, guid: 30e8a386215a9614586171a8eb3200c3, type: 3}
-    UpdatePrefab:
-      m_AssetGUID: 
-      m_SubObjectName: 
-      m_SubObjectType: 
-      m_EditorAssetChanged: 0
-    Text:
-      title:
-        m_TableReference:
-          m_TableCollectionName: GUID:eccb40f2ef0445e499300535baf5f930
-        m_TableEntryReference:
-          m_KeyId: 6529043562496
-          m_Key: 
-        m_FallbackState: 0
-        m_WaitForCompletion: 0
-        m_LocalVariables: []
-      description:
-        m_TableReference:
-          m_TableCollectionName: GUID:eccb40f2ef0445e499300535baf5f930
-        m_TableEntryReference:
-          m_KeyId: 6559741673472
-          m_Key: 
-        m_FallbackState: 0
-        m_WaitForCompletion: 0
-        m_LocalVariables: []
-    RequireBuilds: []
-    CostResource:
-    - Resource: {fileID: 11400000, guid: 3894d4d068775c343b5c4bf1510dee33, type: 2}
-      Count: 1000
-    Effects: []
+    Effect:
+      One:
+      - {fileID: 11400000, guid: ddf5633ae49ea984381d81ea9878689d, type: 2}
+      EveryDay: []
+      EveryWeek: []
+      RunHero: []
   references:
     version: 2
     RefIds: []

@@ -107,6 +107,11 @@ public static class UnitManager
         // Debug.Log($"add entity {entity.ScriptableData.name}");
         newMapObject.CreateMapGameObject(node);
 
+        if (entity.ScriptableData.TypeEntity == TypeEntity.Hero)
+        {
+            node.SetAsGuested(newMapObject);
+        }
+
         // GameManager.Instance.MapManager.SetColorForTile(pos, Color.magenta);
         // node.SetState(TypeStateNode.Disabled);
         // Debug.Log($"entity.ScriptableData={entity.ScriptableData.name}");
@@ -154,16 +159,17 @@ public static class UnitManager
     {
         EntityHero newEntity = new EntityHero(typeFaction, heroData);
 
-        Entities.Add(newEntity.Id, newEntity);
-        var entityMapObject = new MapObject();
-        MapObjects.Add(entityMapObject.IdMapObject, entityMapObject);
+        SpawnEntityMapObjectToNode(node, newEntity);
+        // Entities.Add(newEntity.Id, newEntity);
+        // var entityMapObject = new MapObject();
+        // MapObjects.Add(entityMapObject.IdMapObject, entityMapObject);
 
-        entityMapObject.SetEntity(newEntity, node);
-        node.SetAsGuested(entityMapObject);
-        entityMapObject.CreateMapGameObject(node);
+        // entityMapObject.SetEntity(newEntity, node);
+        // node.SetAsGuested(entityMapObject);
+        // entityMapObject.CreateMapGameObject(node);
 
-        // UnitManager.IdsExistsHeroes.Add(heroData.idObject);
-        // LevelManager.Instance.GetArea(area.id).hero = newEntity;
+        // // UnitManager.IdsExistsHeroes.Add(heroData.idObject);
+        // // LevelManager.Instance.GetArea(area.id).hero = newEntity;
         return newEntity;
     }
 

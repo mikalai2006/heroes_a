@@ -221,12 +221,10 @@ public class EntityTown : BaseEntity
             {
                 Data.Generals[buildConfig.idObject].level += 1;
                 Data.Generals[buildConfig.idObject].OnRunOneEffect();
-                // Data.Generals[buildConfig.idObject].ConfigData.BuildLevels[level].RunOne(ref _player, this);
             }
             else
             {
                 build = new BuildGeneral(level, (ScriptableBuildingGeneral)buildConfig, this, player);
-                // new BuildGeneral(level, (ScriptableBuildingGeneral)buildConfig, this, player);
                 build.OnRunOneEffect();
                 Data.Generals.Add(buildConfig.idObject, build);
             }

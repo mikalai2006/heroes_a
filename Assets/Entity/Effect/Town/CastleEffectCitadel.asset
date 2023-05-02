@@ -13,5 +13,4 @@ MonoBehaviour:
   m_Name: CastleEffectCitadel
   m_EditorClassIdentifier: 
   idEffect: 
-  koofCreature: 50
-  level: 1
+  koofCreature: 75

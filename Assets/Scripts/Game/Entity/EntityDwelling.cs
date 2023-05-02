@@ -10,6 +10,8 @@ public struct DataEntityDwelling
     public int value;
     public int level;
     public int idPlayer;
+    public int growth;
+    public int dopGrowth;
 }
 
 [System.Serializable]
@@ -56,8 +58,9 @@ public class EntityDwelling : BaseEntity
     public void SetData()
     {
         ScriptableEntityDwelling scriptData = (ScriptableEntityDwelling)ScriptableData;
-        Data.value = 75;
         Data.level = 0;
+        Data.growth = ConfigData.Creature[Data.level].CreatureParams.Growth;
+        Data.value = Data.growth;
     }
 
     public override void SetPlayer(Player player)
@@ -117,6 +120,13 @@ public class EntityDwelling : BaseEntity
             }
         }
         return indexCreature;
+    }
+
+    public int GetGrowth()
+    {
+        var growth = Data.growth;
+        var dopGrowth = Data.dopGrowth;
+        return growth + dopGrowth;
     }
     #endregion
 }

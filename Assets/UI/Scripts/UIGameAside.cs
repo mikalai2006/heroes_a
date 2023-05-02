@@ -285,6 +285,12 @@ public class UIGameAside : UILocaleBase
         {
             creatures = activeTown.Data.Creatures;
         }
+
+        var btnTownInfo = _templateTownInfoCreature.Instantiate();
+        btnTownInfo.AddToClassList("w-125");
+        btnTownInfo.AddToClassList("h-50");
+        listTownDwellingEl.Add(btnTownInfo);
+
         foreach (var creature in creatures)
         {
             var btnCreature = _templateTownInfoCreature.Instantiate();

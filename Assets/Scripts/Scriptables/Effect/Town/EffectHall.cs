@@ -10,8 +10,14 @@ public class EffectHall : BaseEffect
     {
         // base.RunOne(ref player, entity);
 
-        var res = ((EntityTown)entity).Data.Resources.GetValueOrDefault(TypeResource.Gold);
-        res = goldin;
-        Debug.Log($"Run EffectHall::: value={goldin}");
+        var resources = ((EntityTown)entity).Data.Resources;
+        if (resources.ContainsKey(TypeResource.Gold))
+        {
+            resources[TypeResource.Gold] = goldin;
+        }
+        else
+        {
+            resources.Add(TypeResource.Gold, goldin);
+        }
     }
 }

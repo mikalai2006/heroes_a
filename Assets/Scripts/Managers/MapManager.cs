@@ -315,7 +315,6 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
             // GridTileNode tileNode = gridTileHelper.GridTile.GetGridObject(new Vector3Int(item.position.x, item.position.y));
 
             if (item.idEntity == "" || UnitManager.Entities.ContainsKey(item.id)) continue;
-            Debug.Log($"Add dwelling2 {item.id}[{UnitManager.Entities.ContainsKey(item.id)}]");
             EntityDwelling entity = new EntityDwelling(null, item);
             UnitManager.SpawnEnity(entity);
             // UnitManager.SpawnEntityMapObjectToNode(tileNode, entity);

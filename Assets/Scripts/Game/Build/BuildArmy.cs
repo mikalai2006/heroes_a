@@ -28,6 +28,7 @@ public class BuildArmy : BaseBuild
             Dwelling.Data.value = ((ScriptableBuildingArmy)configData).Creatures[0].CreatureParams.Growth;
             Dwelling.Data.level = level;
             Data.idEntity = Dwelling.Id;
+            Dwelling.Data.idPlayer = Town.Data.idPlayer;
             UnitManager.Entities.Add(Dwelling.Id, Dwelling);
         }
         else
@@ -43,11 +44,9 @@ public class BuildArmy : BaseBuild
                 .First();
             Dwelling = new EntityDwelling(null, DwellingData);
             UnitManager.Entities.Add(DwellingData.id, Dwelling);
-            Debug.Log($"Add dwelling1 {DwellingData.id}");
             // Dwelling.Data.value = saveData.data.quantity;
             // Dwelling.Data.level = level;
         }
-
     }
 
     public void RunGrowth()
@@ -57,7 +56,7 @@ public class BuildArmy : BaseBuild
 
     public int GetGrowth()
     {
-        var growth = ((ScriptableBuildingArmy)ConfigData).Creatures[level].CreatureParams.Growth;
-        return growth + (int)Mathf.Round(growth * Town.Data.koofcreature * 0.01f);
+        var growth = Dwelling.GetGrowth();
+        return growth + Mathf.FloorToInt(Dwelling.Data.growth * Town.Data.koofcreature * 0.01f);
     }
 }
