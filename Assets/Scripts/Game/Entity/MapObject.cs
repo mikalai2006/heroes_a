@@ -137,7 +137,7 @@ public class MapObject
     }
     public void CreateMapGameObject(GridTileNode node)
     {
-        Debug.LogWarning($"CreateMapGameObject::: {Entity.ScriptableData.name}");
+        // Debug.LogWarning($"CreateMapGameObject::: {Entity.ScriptableData.name}");
         Data.position = node.position;
         OccupiedNode = node;
         Entity.SetMapObject(this);

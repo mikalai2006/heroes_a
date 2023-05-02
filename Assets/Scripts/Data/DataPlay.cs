@@ -2,6 +2,7 @@
 public class DataPlay
 {
     public DataLevel Level;
+    public GameDate GameDate;
     public DataUnit entity;
 
     public DataPlay()

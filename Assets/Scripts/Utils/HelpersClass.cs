@@ -171,7 +171,7 @@ public static class Helpers
         var startUnit = startCheckedCreatures[startPositionChecked];
         var endUnit = endCheckedCreatures[endPositionChecked];
 
-        if (endUnit != null && startUnit.ConfigData.idObject == endUnit.ConfigData.idObject)
+        if (endUnit != null && startUnit.ConfigAttribute.idObject == endUnit.ConfigAttribute.idObject)
         {
             if (startCheckedCreatures.Where(t => t.Value != null).Count() == 1)
             {

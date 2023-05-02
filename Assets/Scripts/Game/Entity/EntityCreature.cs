@@ -30,6 +30,7 @@ public class EntityCreature : BaseEntity
         }
         else
         {
+
             if (saveData.idEntity != "")
             {
                 ScriptableDataAttribute = ResourceSystem.Instance

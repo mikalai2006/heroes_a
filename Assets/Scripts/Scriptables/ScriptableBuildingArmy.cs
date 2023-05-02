@@ -5,4 +5,5 @@ using System.Collections.Generic;
 public class ScriptableBuildingArmy : ScriptableBuilding
 {
     [SerializeField] public List<ScriptableAttributeCreature> Creatures;
+    [SerializeField] public ScriptableEntityDwelling Dwelling;
 }

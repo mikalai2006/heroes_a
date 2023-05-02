@@ -96,8 +96,12 @@ public class MapEntityDwelling : BaseMapEntity, IDialogMapObjectOperation
 
     public async UniTask<DataResultDialogDwelling> OnShowDialogDwelling()
     {
-        EntityDwelling entity = (EntityDwelling)_mapObject.Entity;
-        var dialogWindow = new DialogDwellingProvider(entity);
+        EntityDwelling dwelling = (EntityDwelling)_mapObject.Entity;
+        var dialogWindow = new DialogDwellingProvider(new DataDialogDwelling()
+        {
+            Creatures = LevelManager.Instance.ActivePlayer.ActiveHero.Data.Creatures,
+            dwelling = dwelling
+        });
         return await dialogWindow.ShowAndHide();
     }
 }

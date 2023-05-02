@@ -41,18 +41,26 @@ public class UITownInfo : MonoBehaviour
     {
         UITavernWindow.onBuyHero += onBuyHero;
         UITownListBuildWindow.OnCloseListBuilds += DrawTownInfo;
+        UIDialogDwellingWindow.OnBuyCreature += BuyCreatures;
     }
 
     private void OnDestroy()
     {
         UITavernWindow.onBuyHero -= onBuyHero;
         UITownListBuildWindow.OnCloseListBuilds -= DrawTownInfo;
+        UIDialogDwellingWindow.OnBuyCreature -= BuyCreatures;
     }
 
     private void onBuyHero()
     {
         DrawHeroAsGuest();
         onMoveHero?.Invoke();
+    }
+
+    private void BuyCreatures()
+    {
+        DrawHeroAsGuest();
+        DrawHeroInTown();
     }
 
     public void Init(VisualElement parent)
@@ -137,11 +145,12 @@ public class UITownInfo : MonoBehaviour
             .OrderBy(t => ((ScriptableBuildingArmy)((BuildArmy)t.Value).ConfigData).Creatures[t.Value.level].CreatureParams.Level))
         {
             var btnCreature = _templateTownInfoCreature.Instantiate();
+            var creature = ((ScriptableBuildingArmy)((BuildArmy)build.Value).ConfigData).Creatures[build.Value.level];
             btnCreature.AddToClassList("w-25");
             btnCreature.AddToClassList("h-50");
             btnCreature.Q<VisualElement>("Img").style.backgroundImage
-                = new StyleBackground(((ScriptableBuildingArmy)((BuildArmy)build.Value).ConfigData).Creatures[build.Value.level].MenuSprite);
-            btnCreature.Q<Label>("Value").text = "+" + (build.Value.Data.quantity.ToString());
+                = new StyleBackground(creature.MenuSprite);
+            btnCreature.Q<Label>("Value").text = "+" + build.Value.GetGrowth(); //(build.Value.Data.quantity.ToString());
             listTownDwellingEl.Add(btnCreature);
         }
         for (int i = _activeTown.Data.Armys.Count; i < 7; i++)

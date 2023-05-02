@@ -40,7 +40,7 @@ public abstract class BaseMapEntity : MonoBehaviour, IPointerClickHandler
     {
         UnitManager.MapObjects.Remove(MapObject.Entity.IdEntity);
 
-        Debug.LogWarning($"Destroy object [{MapObject.ConfigData.name}] - gameObject[{gameObject.name}]");
+        // Debug.LogWarning($"Destroy object [{MapObject.ConfigData.name}] - gameObject[{gameObject.name}]");
         _mapObject.ConfigData.MapPrefab.ReleaseInstance(gameObject);
 
         _mapObject = null;

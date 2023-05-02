@@ -19,6 +19,8 @@ public class UIDialogDwellingWindow : UIDialogBaseWindow
 
     private Button _buttonOk;
     private Button _buttonCancel;
+    private Button _plus;
+    private Button _minus;
     private VisualElement _costBlok;
     private VisualElement _totalCostBlok;
     private VisualElement _level1;
@@ -32,7 +34,7 @@ public class UIDialogDwellingWindow : UIDialogBaseWindow
 
     public UnityEvent processAction;
 
-    private EntityDwelling _dwelling;
+    private DataDialogDwelling _dataDialog;
     private DataResultDialogDwelling _dataResultDialog;
     private ScriptableAttributeCreature _creature;
     private Dictionary<Label, int> _labelsTotalCost = new Dictionary<Label, int>();
@@ -63,6 +65,18 @@ public class UIDialogDwellingWindow : UIDialogBaseWindow
         _costBlok.Clear();
         _totalCostBlok = root.Q<VisualElement>(_nameTotalCostBlok);
         _totalCostBlok.Clear();
+
+        _plus = root.Q<VisualElement>("Plus").Q<Button>("Btn");
+        _plus.clickable.clicked += () =>
+        {
+            IncrementValue(1);
+        };
+        _minus = root.Q<VisualElement>("Minus").Q<Button>("Btn");
+        _minus.clickable.clicked += () =>
+        {
+            IncrementValue(-1);
+        };
+        _minus.SetEnabled(false);
 
         _hireCountLabel = root.Q<Label>("HireCount");
         _availableCountLabel = root.Q<Label>("AvailableCount");
@@ -139,10 +153,33 @@ public class UIDialogDwellingWindow : UIDialogBaseWindow
     {
         _hireCount = changeEvent.newValue;
         _hireCountLabel.text = _hireCount.ToString();
-        _availableCountLabel.text = (_dwelling.Data.value - _hireCount).ToString();
+        _availableCountLabel.text = (_dataDialog.dwelling.Data.value - _hireCount).ToString();
         UpdateTotalCost();
     }
+    private void IncrementValue(int increment)
+    {
 
+        _hireCount = _hireCount + increment;
+        _hireCountLabel.text = _hireCount.ToString();
+        _availableCountLabel.text = (_dataDialog.dwelling.Data.value - _hireCount).ToString();
+        UpdateTotalCost();
+        if (_hireCount <= 0)
+        {
+            _minus.SetEnabled(false);
+        }
+        else
+        {
+            _minus.SetEnabled(true);
+        };
+        if (_hireCount >= _dataDialog.dwelling.Data.value)
+        {
+            _plus.SetEnabled(false);
+        }
+        else
+        {
+            _plus.SetEnabled(true);
+        };
+    }
     private void ChooseLevel(int level)
     {
         switch (level)
@@ -162,26 +199,37 @@ public class UIDialogDwellingWindow : UIDialogBaseWindow
         }
     }
 
-    public async Task<DataResultDialogDwelling> ProcessAction(EntityDwelling dwelling)
+    public async Task<DataResultDialogDwelling> ProcessAction(DataDialogDwelling _data)
     {
         base.Init();
 
-        _dwelling = dwelling;
+        _dataDialog = _data;
+        var _dwelling = _dataDialog.dwelling;
         ScriptableEntityDwelling configData
-            = (ScriptableEntityDwelling)_dwelling.ScriptableData;
+            = (ScriptableEntityDwelling)_dwelling.ConfigData;
         _creature = configData.Creature[_dwelling.Data.level];
         _dataResultDialog = new DataResultDialogDwelling();
 
-        var nameCreature = configData.Creature[_dwelling.Data.level].Text.title.IsEmpty ?
-            "" : configData.Creature[_dwelling.Data.level].Text.title.GetLocalizedString();
+        // var nameCreature = configData.Creature[_dwelling.Data.level].Text.title.IsEmpty ?
+        //     "" : configData.Creature[_dwelling.Data.level].Text.title.GetLocalizedString();
 
         _availableCountLabel.text = _dwelling.Data.value.ToString();
         _sliderValue.highValue = _dwelling.Data.value;
         _sliderValue.lowValue = _sliderValue.value = 0;
 
-        var title = _creature.Text.title.GetLocalizedString();
+        // var title = _creature.Text.title.GetLocalizedString();
+        var dataPlural = new Dictionary<string, int> { { "value", 0 } };
+        var arguments = new[] { dataPlural };
+        var titlePlural = Helpers.GetLocalizedPluralString(
+            _creature.Text.title,
+            arguments,
+            dataPlural
+            );
+
         LocalizedString textHire = new LocalizedString(Constants.LanguageTable.LANG_TABLE_UILANG, "hire");
-        Title.text = textHire.GetLocalizedString() + "<color=#FFFFAB>" + title + "</color>";
+        var title = string.Format("{0}: <color=#FFFFAB>{1}</color>", textHire.GetLocalizedString(), titlePlural);
+
+        Title.text = title; //textHire.GetLocalizedString() + "<color=#FFFFAB>" + title + "</color>";
 
         root.Q<Label>("TitleHire").text = textHire.GetLocalizedString();
         _buttonOk.text = textHire.GetLocalizedString();
@@ -221,10 +269,10 @@ public class UIDialogDwellingWindow : UIDialogBaseWindow
     {
         if (_hireCount > 0)
         {
-            foreach (var res in _costEntities)
-            {
-                Debug.Log($"res {res.Resource.TypeResource}->{res.Count}");
-            }
+            // foreach (var res in _costEntities)
+            // {
+            //     Debug.Log($"res {res.Resource.TypeResource}->{res.Count}");
+            // }
             if (!_activePlayer.IsExistsResource(_costEntities))
             {
                 // Show dialog no resources.
@@ -233,18 +281,22 @@ public class UIDialogDwellingWindow : UIDialogBaseWindow
             else
             {
 
-                var indexVacantCreature = -1;
-                for (var i = 0; i < _activePlayer.ActiveHero.Data.Creatures.Count; i++)
-                {
-                    if (
-                        _activePlayer.ActiveHero.Data.Creatures.GetValueOrDefault(i) == null
-                        || _activePlayer.ActiveHero.Data.Creatures.GetValueOrDefault(i).IdEntity
-                            == _dwelling.ConfigData.Creature[_dwelling.Data.level].idObject)
-                    {
-                        indexVacantCreature = i;
-                        break;
-                    }
-                }
+                var indexVacantCreature
+                    = _dataDialog.dwelling.GetIndexCreature(
+                        _dataDialog.Creatures,
+                        _dataDialog.dwelling.ConfigData.Creature[_dataDialog.dwelling.Data.level]
+                        );
+                // for (var i = 0; i < _dataDialog.Creatures.Count; i++)
+                // {
+                //     if (
+                //         _dataDialog.Creatures.GetValueOrDefault(i) == null
+                //         || _dataDialog.Creatures.GetValueOrDefault(i).Data.idObject
+                //             == _dataDialog.dwelling.ConfigData.Creature[_dataDialog.dwelling.Data.level].idObject)
+                //     {
+                //         indexVacantCreature = i;
+                //         break;
+                //     }
+                // }
                 if (indexVacantCreature == -1)
                 {
                     // Show dialog - not place.
@@ -259,8 +311,12 @@ public class UIDialogDwellingWindow : UIDialogBaseWindow
                 }
                 else
                 {
-                    var newCreature = _dwelling.BuyCreatures(_dwelling.Data.level, _hireCount);
-                    _activePlayer.ActiveHero.Data.Creatures[indexVacantCreature] = newCreature;
+                    var newCreature = _dataDialog.dwelling.BuyCreatures(_dataDialog.dwelling.Data.level, _hireCount, _dataDialog.Creatures);
+                    if (_dataDialog.Creatures[indexVacantCreature] != null)
+                    {
+                        newCreature.Data.value += _dataDialog.Creatures[indexVacantCreature].Data.value;
+                    }
+                    _dataDialog.Creatures[indexVacantCreature] = newCreature;
                     OnBuyCreature?.Invoke();
                 }
             }

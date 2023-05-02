@@ -74,7 +74,7 @@ public class EntityTown : BaseEntity
                     .GetAllBuildsForTown()
                     .Where(t => t.idObject == item.Key)
                     .First();
-                var newBuild = CreateBuild(configDataBuild, item.Value.level, _player);
+                var newBuild = CreateBuild(configDataBuild, item.Value.level, _player, item.Value);
             }
 
             var creatures = saveData.data.Creatures;
@@ -110,6 +110,7 @@ public class EntityTown : BaseEntity
         }
 
     }
+
 
     private void InitBuilding()
     {
@@ -190,7 +191,11 @@ public class EntityTown : BaseEntity
     }
 
 
-    public BaseBuild CreateBuild(ScriptableBuilding buildConfig, int level, Player player)
+    public BaseBuild CreateBuild(
+        ScriptableBuilding buildConfig,
+        int level,
+        Player player,
+        BuildArmy saveBuild = null)
     {
         if (buildConfig.TypeBuild == TypeBuild.Army)
         {
@@ -202,7 +207,7 @@ public class EntityTown : BaseEntity
             }
             else
             {
-                build = new BuildArmy(level, (ScriptableBuildingArmy)buildConfig, this, player);
+                build = new BuildArmy(level, (ScriptableBuildingArmy)buildConfig, this, player, saveBuild);
                 Data.Armys.Add(buildConfig.idObject, build);
             }
 
@@ -340,6 +345,7 @@ public class EntityTown : BaseEntity
         {
         };
     }
+
     private void NextDay()
     {
         if (Player == LevelManager.Instance.ActivePlayer)
@@ -352,8 +358,14 @@ public class EntityTown : BaseEntity
             {
                 _player.ChangeResource(TypeResource.Gold, res.Value);
             }
+
+            foreach (var build in Data.Armys)
+            {
+                build.Value.RunGrowth();
+            }
         };
     }
+
     // private void OnRunGeneralBuilds()
     // {
     //     if (Player == LevelManager.Instance.ActivePlayer)

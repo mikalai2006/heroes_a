@@ -32,7 +32,7 @@ public class MapEntityTown : BaseMapEntity
     public async override UniTask OnGoHero(Player player)
     {
         await base.OnGoHero(player);
-
+        Debug.Log("On hero in town");
         if (LevelManager.Instance.ActivePlayer.DataPlayer.playerType != PlayerType.Bot)
         {
             var loadingOperations = new Queue<ILoadingOperation>();

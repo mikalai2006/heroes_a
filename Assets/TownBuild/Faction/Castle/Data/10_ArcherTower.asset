@@ -56,7 +56,11 @@ MonoBehaviour:
       Count: 5
     - Resource: {fileID: 11400000, guid: 177478bebb60204468d214efd1fdcc16, type: 2}
       Count: 5
-    Effects: []
+    Effect:
+      One: []
+      EveryDay: []
+      EveryWeek: []
+      RunHero: []
   - MenuSprite: {fileID: 21300000, guid: e8073e8d315003a4f9da8030d16c368d, type: 3}
     UpdatePrefab:
       m_AssetGUID: 
@@ -92,10 +96,15 @@ MonoBehaviour:
       Count: 5
     - Resource: {fileID: 11400000, guid: 177478bebb60204468d214efd1fdcc16, type: 2}
       Count: 5
-    Effects: []
+    Effect:
+      One: []
+      EveryDay: []
+      EveryWeek: []
+      RunHero: []
   Creatures:
   - {fileID: 11400000, guid: 4b11b20843aa1e44c8e834d76d7feba6, type: 2}
   - {fileID: 11400000, guid: d6c05d15cb4a7664387a7a4caa681702, type: 2}
+  Dwelling: {fileID: 11400000, guid: 5744001c54c92c845a6115026fc5459e, type: 2}
   references:
     version: 2
     RefIds: []

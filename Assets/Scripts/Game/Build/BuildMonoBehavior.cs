@@ -81,6 +81,9 @@ public class BuildMonoBehavior : MonoBehaviour, IPointerClickHandler
             case TypeBuild.Tavern:
                 await OnClickToTavern();
                 break;
+            case TypeBuild.Army:
+                await OnClickArmy();
+                break;
         }
     }
 
@@ -93,6 +96,20 @@ public class BuildMonoBehavior : MonoBehaviour, IPointerClickHandler
     public async UniTask<DataResultBuildDialog> OnClickToTavern()
     {
         var dialogWindow = new UITavernOperation(Build);
+        return await dialogWindow.ShowAndHide();
+    }
+
+    public async UniTask<DataResultDialogDwelling> OnClickArmy()
+    {
+        var dwelling = ((BuildArmy)Build).Dwelling;
+        var creatures = GetBuild.Town.Data.HeroinTown != ""
+            ? ((EntityHero)UnitManager.Entities[GetBuild.Town.Data.HeroinTown]).Data.Creatures
+            : GetBuild.Town.Data.Creatures;
+        var dialogWindow = new DialogDwellingProvider(new DataDialogDwelling()
+        {
+            Creatures = creatures,
+            dwelling = dwelling
+        });
         return await dialogWindow.ShowAndHide();
     }
 

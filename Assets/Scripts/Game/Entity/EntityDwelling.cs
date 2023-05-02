@@ -75,14 +75,12 @@ public class EntityDwelling : BaseEntity
         data.entity.dwellings.Add(sdata);
     }
 
-    public EntityCreature BuyCreatures(int level, int count)
+    public EntityCreature BuyCreatures(int level, int count, SerializableDictionary<int, EntityCreature> creatures)
     {
-        ScriptableEntityDwelling configData = (ScriptableEntityDwelling)ScriptableData;
-
         List<CostEntity> _costEntities = new List<CostEntity>();
-        for (int i = 0; i < configData.Creature[level].CreatureParams.Cost.Count; i++)
+        for (int i = 0; i < ConfigData.Creature[level].CreatureParams.Cost.Count; i++)
         {
-            var item = configData.Creature[level].CreatureParams.Cost[i];
+            var item = ConfigData.Creature[level].CreatureParams.Cost[i];
             _costEntities.Add(new CostEntity()
             {
                 Count = count * item.Count,
@@ -90,9 +88,9 @@ public class EntityDwelling : BaseEntity
             });
         }
 
-        var newCreature = new EntityCreature(configData.Creature[level]);
+        var newCreature = new EntityCreature(ConfigData.Creature[level]);
         newCreature.Data.value = count;
-        newCreature.Data.idObject = configData.idObject;
+        newCreature.Data.idObject = ConfigData.Creature[level].idObject;//configData.idObject;
 
         foreach (var res in _costEntities)
         {
@@ -102,6 +100,23 @@ public class EntityDwelling : BaseEntity
         Data.value -= count;
 
         return newCreature;
+    }
+
+    public int GetIndexCreature(SerializableDictionary<int, EntityCreature> creatures, ScriptableAttributeCreature creature)
+    {
+        var indexCreature = creatures.Values.ToList().FindIndex(t => t != null && t.Data.idObject == creature.idObject);
+
+        if (indexCreature != -1) return indexCreature;
+
+        for (var i = 0; i < creatures.Count; i++)
+        {
+            if (creatures.GetValueOrDefault(i) == null)
+            {
+                indexCreature = i;
+                break;
+            }
+        }
+        return indexCreature;
     }
     #endregion
 }

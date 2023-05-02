@@ -62,7 +62,7 @@ public class LevelManager : Singleton<LevelManager>, ISaveDataPlay, ISaveDataGam
             .First();
         CreateListTypePlayers();
         GameDate = new GameDate();
-        GameDate.Init(Level.countDay);
+        GameDate.Init(0);
     }
 
     public void CreateListTypePlayers()
@@ -208,6 +208,9 @@ public class LevelManager : Singleton<LevelManager>, ISaveDataPlay, ISaveDataGam
     {
         Level.GameModeData = dataGame.dataMap.GameModeData;
 
+        GameDate = new GameDate();
+        GameDate.Init(dataPlay.GameDate.countDay);
+
         Level = new DataLevel();
         Level = dataPlay.Level;
         Level.Settings.countPlayer = dataPlay.Level.Settings.countPlayer;
@@ -234,6 +237,7 @@ public class LevelManager : Singleton<LevelManager>, ISaveDataPlay, ISaveDataGam
     public void SaveDataPlay(ref DataPlay data)
     {
         data.Level = Level;
+        data.GameDate = GameDate;
     }
 
     // public void LoadDataGame(DataGame data)

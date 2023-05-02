@@ -89,8 +89,6 @@ public static class UnitManager
 
     public static MapObject SpawnEntityMapObjectToNode(GridTileNode node, BaseEntity entity, MapObject mapObject = null)
     {
-        // Entities.Add(entity.IdEntity, entity);
-
         Vector3Int pos = node.position;
 
         MapObject newMapObject;
@@ -105,7 +103,7 @@ public static class UnitManager
         }
         newMapObject.SetEntity(entity, node);
         // entity.OccupiedNode = node;
-        node.SetOcuppiedUnit(newMapObject);
+        if (node.OccupiedUnit == null) node.SetOcuppiedUnit(newMapObject);
         // Debug.Log($"add entity {entity.ScriptableData.name}");
         newMapObject.CreateMapGameObject(node);
 

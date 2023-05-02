@@ -9,30 +9,42 @@
             <ui:VisualElement name="Level2" class="border-color w-25 border-1" />
         </ui:VisualElement>
         <ui:VisualElement name="PriceBlok" style="height: 35%; flex-direction: row; justify-content: center; flex-grow: 1;">
-            <ui:VisualElement class="border-color m-1 w-33 border-1" style="flex-grow: 1;">
+            <ui:VisualElement class="border-color m-1 border-1 w-25" style="flex-grow: 1;">
                 <ui:Label tabindex="-1" text="#cost" display-tooltip-when-elided="true" name="TitleCostBlok" class="box_bg m-0 px-2" />
                 <ui:VisualElement name="CostBlok" class="border-primary text-center" style="flex-grow: 1; flex-direction: row;">
                     <ui:Instance template="DialogCostItem" name="DialogCostItem" />
                     <ui:Instance template="DialogCostItem" name="DialogCostItem" />
                 </ui:VisualElement>
             </ui:VisualElement>
-            <ui:VisualElement class="m-1 w-33 px-4" style="flex-grow: 1;">
+            <ui:VisualElement class="m-1 px-4 w-50" style="flex-grow: 1;">
                 <ui:VisualElement class="text-center" style="flex-grow: 1; flex-direction: row;">
-                    <ui:VisualElement name="Available" class="border-color w-50 p-1 border-1" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); margin-right: 5px;">
-                        <ui:Label tabindex="-1" text="#available" display-tooltip-when-elided="true" name="TitleAvailable" class="p-2" />
-                        <ui:Label tabindex="-1" text="1" display-tooltip-when-elided="true" name="AvailableCount" class="text_xl font-bold" />
+                    <ui:VisualElement name="Available" class="border-color w-50 border-1" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); margin-right: 5px;">
+                        <ui:Label tabindex="-1" text="#available" display-tooltip-when-elided="true" name="TitleAvailable" />
+                        <ui:Label tabindex="-1" text="1" display-tooltip-when-elided="true" name="AvailableCount" class="font-bold p-0" />
                     </ui:VisualElement>
-                    <ui:VisualElement name="Hire" class="border-color w-50 p-1 border-1" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
-                        <ui:Label tabindex="-1" text="#hire" display-tooltip-when-elided="true" name="TitleHire" class="p-2" />
-                        <ui:Label tabindex="-1" text="1" display-tooltip-when-elided="true" name="HireCount" class="text_xl font-bold" />
+                    <ui:VisualElement name="Hire" class="border-color w-50 border-1" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
+                        <ui:Label tabindex="-1" text="#hire" display-tooltip-when-elided="true" name="TitleHire" />
+                        <ui:Label tabindex="-1" text="1" display-tooltip-when-elided="true" name="HireCount" class="font-bold p-0" />
                     </ui:VisualElement>
                 </ui:VisualElement>
-                <ui:VisualElement style="background-color: rgba(0, 0, 0, 0); margin-top: 20px; margin-bottom: 20px;">
-                    <ui:SliderInt picking-mode="Ignore" value="42" high-value="100" name="SliderValue" class="w-full" />
+                <ui:VisualElement class="pt-1" style="background-color: rgba(0, 0, 0, 0); flex-direction: row; align-items: center;">
+                    <ui:VisualElement name="VisualElement">
+                        <ui:Instance template="Button" name="Minus">
+                            <AttributeOverrides element-name="Btn" text="-" />
+                        </ui:Instance>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="VisualElement" class="px-4" style="flex-grow: 1;">
+                        <ui:SliderInt picking-mode="Ignore" value="42" high-value="100" name="SliderValue" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="VisualElement">
+                        <ui:Instance template="Button" name="Plus">
+                            <AttributeOverrides element-name="Btn" text="+" />
+                        </ui:Instance>
+                    </ui:VisualElement>
                 </ui:VisualElement>
             </ui:VisualElement>
-            <ui:VisualElement class="border-color m-1 w-33 border-1" style="flex-grow: 1;">
-                <ui:Label tabindex="-1" text="#cost" display-tooltip-when-elided="true" name="TitleTotalCostBlok" class="p-2 box_bg m-0" />
+            <ui:VisualElement class="border-color m-1 border-1 w-25" style="flex-grow: 1;">
+                <ui:Label tabindex="-1" text="#totalcost" display-tooltip-when-elided="true" name="TitleTotalCostBlok" class="p-2 box_bg m-0" />
                 <ui:VisualElement name="TotalCostBlok" class="border-primary text-center" style="flex-grow: 1; flex-direction: row;">
                     <ui:Instance template="DialogCostItem" name="DialogCostItem" />
                     <ui:Instance template="DialogCostItem" name="DialogCostItem" />

@@ -7,7 +7,6 @@ public class DataLevel
 {
     [SerializeField] public List<Player> listPlayer;
     [SerializeField] public List<Area> listArea;
-    [SerializeField] public int countDay;
     [SerializeField] public int activePlayer;
     [SerializeField] public DataGameSetting Settings;
     [SerializeField] public DataGameMode GameModeData;

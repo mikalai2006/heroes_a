@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 using Assets;
 
 using Cysharp.Threading.Tasks;
@@ -9,19 +11,26 @@ public struct DataResultDialogDwelling
     public int keyVariant;
 }
 
+public struct DataDialogDwelling
+{
+    public EntityDwelling dwelling;
+
+    public SerializableDictionary<int, EntityCreature> Creatures;
+}
+
 public class DialogDwellingProvider : LocalAssetLoader
 {
-    private EntityDwelling _dwelling;
+    private DataDialogDwelling _dataDialog;
 
-    public DialogDwellingProvider(EntityDwelling dwelling)
+    public DialogDwellingProvider(DataDialogDwelling dataDialog)
     {
-        _dwelling = dwelling;
+        _dataDialog = dataDialog;
     }
 
     public async UniTask<DataResultDialogDwelling> ShowAndHide()
     {
         var window = await Load();
-        var result = await window.ProcessAction(_dwelling);
+        var result = await window.ProcessAction(_dataDialog);
         Unload();
         return result;
     }

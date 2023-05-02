@@ -26,7 +26,8 @@ public class SaveDataBuild<T>
 [System.Serializable]
 public struct DataBuildArmy
 {
-    public int quantity;
+    // public int quantity;
+    public string idEntity;
 }
 
 [System.Serializable]

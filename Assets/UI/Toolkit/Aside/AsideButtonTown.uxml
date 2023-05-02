@@ -1,7 +1,10 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
-    <Style src="project://database/Assets/UI/Toolkit/ButtonTown.uss?fileID=7433441132597879392&amp;guid=d05629c3164d1fb409e9066695c98926&amp;type=3#ButtonTown" />
+    <Style src="project://database/Assets/UI/Toolkit/Aside/AsideButtonTown.uss?fileID=7433441132597879392&amp;guid=d05629c3164d1fb409e9066695c98926&amp;type=3#AsideButtonTown" />
     <Style src="project://database/Assets/UI/Toolkit/Base.uss?fileID=7433441132597879392&amp;guid=fa07b064290e7384d9ad2e26e79f5953&amp;type=3#Base" />
     <ui:Button text="Button" display-tooltip-when-elided="true" name="ButtonAside" class="button_bg button_unit button_bordered m-px" style="flex-grow: 1;">
         <ui:VisualElement name="image" class="button_town_img" style="background-image: url(&apos;project://database/Assets/UI/Sprites/Bg.png?fileID=2800000&amp;guid=0641c76439a64674aa800f9e3d79c6a4&amp;type=3#Bg&apos;);" />
+        <ui:VisualElement class="inset-0" style="position: absolute; align-items: flex-end; justify-content: flex-end;">
+            <ui:VisualElement name="Nobuild" style="width: 32px; height: 32px; display: none; background-image: url(&apos;project://database/Assets/UI/Sprites/Town/nobuild.png?fileID=2800000&amp;guid=29a0d1387a31ba841a748bed47215bec&amp;type=3#nobuild&apos;);" />
+        </ui:VisualElement>
     </ui:Button>
 </ui:UXML>
