@@ -97,7 +97,7 @@ public class UIDialogHeroLevel : UIDialogBaseWindow
 
         root.Q<VisualElement>("ImgPrimarySkill").style.backgroundImage
             = new StyleBackground(_data.PrimarySkill.MenuSprite);
-        root.Q<Label>("NamePrimarySkill").text = _data.PrimarySkill.Text.title.GetLocalizedString();
+        root.Q<Label>("NamePrimarySkill").text = _data.PrimarySkill.Text.title.GetLocalizedString() + " +1";
 
         return await _processCompletionSource.Task;
     }
@@ -133,6 +133,7 @@ public class UIDialogHeroLevel : UIDialogBaseWindow
 
             var blok = _templateSecondarySkill.Instantiate();
             var btnInBlok = blok.Q<Button>("Btn");
+            var time = Time.realtimeSinceStartup;
             btnInBlok.RegisterCallback<ClickEvent>((ClickEvent evt) =>
             {
                 _dataResultDialog.typeSecondarySkill = skill.Key;
@@ -141,6 +142,14 @@ public class UIDialogHeroLevel : UIDialogBaseWindow
                 btnInBlok.AddToClassList("border-color");
                 btnInBlok.RemoveFromClassList("button_bordered");
                 _buttonOk.SetEnabled(true);
+                if (Time.realtimeSinceStartup - time < LevelManager.Instance.ConfigGameSettings.deltaDoubleClick)
+                {
+                    ShowInfoSecondarySkill(skillConfigData, skill.Value);
+                }
+                else
+                {
+                    time = Time.realtimeSinceStartup;
+                }
             });
             btnInBlok.AddToClassList("w-33");
             btnInBlok.Q<VisualElement>("Img").style.backgroundImage

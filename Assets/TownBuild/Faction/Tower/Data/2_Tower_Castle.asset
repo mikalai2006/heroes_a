@@ -62,7 +62,7 @@ MonoBehaviour:
       EveryDay: []
       EveryWeek: []
       RunHero: []
-  - MenuSprite: {fileID: 21300000, guid: 66856d018f6afec4f96c0adf6923f5bb, type: 3}
+  - MenuSprite: {fileID: 21300000, guid: 0f4550bb0d2cb804288dd9df8e0afb3d, type: 3}
     UpdatePrefab:
       m_AssetGUID: 
       m_SubObjectName: 
@@ -101,7 +101,7 @@ MonoBehaviour:
       EveryDay: []
       EveryWeek: []
       RunHero: []
-  - MenuSprite: {fileID: 21300000, guid: 4c8b458fcf95e794ea939d8a5fdc2ad3, type: 3}
+  - MenuSprite: {fileID: 21300000, guid: dc201ee0c3431ce489fdacc99f22d9f9, type: 3}
     UpdatePrefab:
       m_AssetGUID: 
       m_SubObjectName: 

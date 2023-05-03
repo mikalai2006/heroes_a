@@ -98,6 +98,7 @@ MonoBehaviour:
       EveryWeek: []
       RunHero: []
   Creatures: []
+  Dwelling: {fileID: 11400000, guid: a77bf682ca6f27e4d9691242a9ff1cdc, type: 2}
   references:
     version: 2
     RefIds: []

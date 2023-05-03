@@ -39,7 +39,7 @@ public class EffectRandomResource : BaseEffect
             ido = randomResource.idObject,
             ide = idEffect
         });
-        Debug.Log($"EffectRandomResource::: Set data {randomResource.idObject}");
+        // Debug.Log($"EffectRandomResource::: Set data {randomResource.idObject}");
     }
 
     public override void CreateDialogData(ref DataDialogMapObjectGroup dialogData, BaseEntity entity)

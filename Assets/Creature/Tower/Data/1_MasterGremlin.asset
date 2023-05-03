@@ -14,18 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   idObject: 80e4a54fd65d4e08a44207ac56fa7185
   TypeAttribute: 80
-  MenuSprite: {fileID: 21300000, guid: 071447c2892a0304aba123655b5fb967, type: 3}
+  MenuSprite: {fileID: 378523155, guid: e7a6d1e198529c44c93ed148f1bf1afe, type: 3}
   MapPrefab:
-    m_AssetGUID: 
+    m_AssetGUID: 16c25911a8824514a99619c02359680e
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
   Text:
     title:
       m_TableReference:
-        m_TableCollectionName: 
+        m_TableCollectionName: GUID:b4e7cd63f22a6d74db78346f658a168b
       m_TableEntryReference:
-        m_KeyId: 0
+        m_KeyId: 4294511808380928
         m_Key: 
       m_FallbackState: 0
       m_WaitForCompletion: 0
@@ -46,19 +46,21 @@ MonoBehaviour:
     m_SubObjectType: 
     m_EditorAssetChanged: 0
   CreatureParams:
-    Level: 0
-    Attack: 0
-    Defense: 0
-    DamageMin: 0
-    DamageMax: 0
-    HP: 0
-    Speed: 0
-    Shoots: 0
-    Growth: 0
-    Size: 0
+    Level: 1
+    Attack: 4
+    Defense: 4
+    DamageMin: 1
+    DamageMax: 2
+    HP: 4
+    Speed: 5
+    Shoots: 8
+    Growth: 16
+    Size: 1
     Movement: 0
-    AI: 0
-    Cost: []
+    AI: 66
+    Cost:
+    - Resource: {fileID: 11400000, guid: 3894d4d068775c343b5c4bf1510dee33, type: 2}
+      Count: 40
   references:
     version: 2
     RefIds: []

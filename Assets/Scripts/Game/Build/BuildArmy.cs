@@ -25,7 +25,7 @@ public class BuildArmy : BaseBuild
             ConfigData = configData;
             Dwelling = new EntityDwelling(((ScriptableBuildingArmy)configData).Dwelling);
             // Data.quantity =
-            Dwelling.Data.value = ((ScriptableBuildingArmy)configData).Creatures[0].CreatureParams.Growth;
+            Dwelling.Data.value = ((ScriptableBuildingArmy)configData).Dwelling.Creature[0].CreatureParams.Growth;
             Dwelling.Data.level = level;
             Data.idEntity = Dwelling.Id;
             Dwelling.Data.idPlayer = Town.Data.idPlayer;

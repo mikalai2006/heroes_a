@@ -28,6 +28,7 @@ public class CreateDwellingOperation : ILoadingOperation
             if (area.town != null)
             {
                 EntityTown townArea = (EntityTown)area.town;
+                Debug.Log($"townArea.ConfigData.TypeFaction={townArea.ConfigData.TypeFaction}");
 
                 List<GridTileNode> nodes = _root.gridTileHelper.GetAllGridNodes().Where(t =>
                     t.StateNode.HasFlag(StateNode.Empty)
@@ -79,7 +80,7 @@ public class CreateDwellingOperation : ILoadingOperation
                             if (
                                 currentNode != null
                                 && nodeWarrior != null
-                                && disableNeighbours.bottom.Count == 0
+                                // && disableNeighbours.bottom.Count == 0
                                 // && disableNeighbours.top.Count >= 2
                                 // && _root.gridTileHelper.CalculateNeighbours(currentNode) >= 5
                                 && configData != null

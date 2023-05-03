@@ -142,10 +142,10 @@ public class UITownInfo : MonoBehaviour
         var listTownDwellingEl = _townInfo.Q<VisualElement>("TownDwellingList");
         listTownDwellingEl.Clear();
         foreach (var build in _activeTown.Data.Armys
-            .OrderBy(t => ((ScriptableBuildingArmy)((BuildArmy)t.Value).ConfigData).Creatures[t.Value.level].CreatureParams.Level))
+            .OrderBy(t => ((ScriptableBuildingArmy)((BuildArmy)t.Value).ConfigData).Dwelling.Creature[t.Value.level].CreatureParams.Level))
         {
             var btnCreature = _templateTownInfoCreature.Instantiate();
-            var creature = ((ScriptableBuildingArmy)((BuildArmy)build.Value).ConfigData).Creatures[build.Value.level];
+            var creature = ((ScriptableBuildingArmy)((BuildArmy)build.Value).ConfigData).Dwelling.Creature[build.Value.level];
             btnCreature.AddToClassList("w-25");
             btnCreature.AddToClassList("h-50");
             btnCreature.Q<VisualElement>("Img").style.backgroundImage

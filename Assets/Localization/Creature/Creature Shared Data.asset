@@ -127,6 +127,62 @@ MonoBehaviour:
     m_Key: AncientBehemoth
     m_Metadata:
       m_Items: []
+  - m_Id: 4294304286801920
+    m_Key: 1_Gremlin
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4294511808380928
+    m_Key: 1_MasterGremlin
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4294604863209472
+    m_Key: 2_ObsidianGargoyle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4294626606481408
+    m_Key: 2_StoneGargoyle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4294647959683072
+    m_Key: 3_IronGolem
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4294669262553088
+    m_Key: 3_StoneGolem
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4294691752411136
+    m_Key: 4_ArchMage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4294729819914240
+    m_Key: 4_Mage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4295052303171584
+    m_Key: 5_Genie
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4295074331656192
+    m_Key: 5_MasterGenie
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4295089389207552
+    m_Key: 6_Naga
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4295102395744256
+    m_Key: 6_NagaQueen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4295114806689792
+    m_Key: 7_Giant
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4295135006457856
+    m_Key: 7_Titan
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

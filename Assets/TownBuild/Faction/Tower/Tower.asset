@@ -73,6 +73,14 @@ MonoBehaviour:
     level: 0
   - Build: {fileID: 11400000, guid: 3aab40c5d7d0ff94482092d655cef26e, type: 2}
     level: 0
+  - Build: {fileID: 11400000, guid: 7e2fca9028b2f4640833a946e0687408, type: 2}
+    level: 0
+  - Build: {fileID: 11400000, guid: b5f2421602c57ec47b974d061a421f2c, type: 2}
+    level: 0
+  - Build: {fileID: 11400000, guid: 83438ec44151c814c9e9f5803328a174, type: 2}
+    level: 0
+  - Build: {fileID: 11400000, guid: 014f951edf8eee445a8709295733772f, type: 2}
+    level: 0
   TownNames:
   - "\u041A\u043B\u043E\u0443\u0434\u0441\u043F\u0438\u0440"
   - "\u0421\u043D\u043E\u0443"
