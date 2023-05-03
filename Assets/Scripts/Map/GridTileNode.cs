@@ -44,7 +44,10 @@ public class GridTileNode : IHeapItem<GridTileNode>
     public MapObject GuestedUnit => _guestedUnit;
     public bool Protected => _protectedUnit != null;
     public bool IsAllowSpawn =>
-        (StateNode.Empty | ~StateNode.Protected | ~StateNode.Occupied) == (StateNode.Empty | ~StateNode.Protected | ~StateNode.Occupied);
+        StateNode.HasFlag(StateNode.Empty)
+        && !StateNode.HasFlag(StateNode.Protected)
+        && !StateNode.HasFlag(StateNode.Occupied);
+    // (StateNode.Empty | ~StateNode.Protected | ~StateNode.Occupied) == (StateNode.Empty | ~StateNode.Protected | ~StateNode.Occupied);
 
     private int heapIndex;
     public int HeapIndex

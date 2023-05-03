@@ -43,7 +43,7 @@ MonoBehaviour:
   TypeMapObject: 6
   RMGValue: 0
   listTypeNoPath: 
-  listRuleInput: 08000000090000000e0000001300000012000000110000000c00000007000000
+  listRuleInput: 
   TypeWorkObject: 1
   TypeWorkEffect: 0
   Effects: []

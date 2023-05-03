@@ -73,6 +73,7 @@ public class MapEntityCreature : BaseMapEntity, IDialogMapObjectOperation
     private async UniTask OnHeroGo(Player player)
     {
         MapObject.ProtectedNode.DisableProtectedNeigbours(_mapObject);
+        MapObject.OccupiedNode.DisableProtectedNeigbours(_mapObject);
 
         // TODO ARENA
         var entityCreature = (EntityCreature)MapObject.Entity;
