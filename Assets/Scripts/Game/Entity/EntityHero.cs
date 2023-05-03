@@ -63,13 +63,15 @@ public class EntityHero : BaseEntity
             Data.PSkills.Add(TypePrimarySkill.Defense, ConfigData.ClassHero.startDefense);
             Data.PSkills.Add(TypePrimarySkill.Power, ConfigData.ClassHero.startPower);
             Data.PSkills.Add(TypePrimarySkill.Knowledge, ConfigData.ClassHero.startKnowlenge);
-            Data.PSkills.Add(TypePrimarySkill.Experience, 50);
+            Data.PSkills.Add(TypePrimarySkill.Experience, Random.Range(40, 90));
+            Data.nextLevel = 1000;
             // Data.attack = ((ScriptableEntityHero)ScriptableData).ClassHero.startAttack;
             // Data.defense = ((ScriptableEntityHero)ScriptableData).ClassHero.startDefense;
             // Data.power = ((ScriptableEntityHero)ScriptableData).ClassHero.startPower;
             // Data.knowledge = ((ScriptableEntityHero)ScriptableData).ClassHero.startKnowlenge;
             // Data.experience = 50;
             Data.level = 1;
+            Data.nextLevel = 1000;
 
             Data.SSkills = new SerializableDictionary<TypeSecondarySkill, int>();
             foreach (var skill in ConfigData.StartSecondarySkill)
@@ -179,20 +181,6 @@ public class EntityHero : BaseEntity
     }
     #endregion
 
-    public void ChangePrimarySkill(TypePrimarySkill typePrimarySkill, int value = 0)
-    {
-        Data.PSkills[typePrimarySkill] += value;
-
-        GameManager.Instance.ChangeState(GameState.ChangeHeroParams);
-    }
-
-    public void ChangeSecondarySkill(TypeSecondarySkill typeSecondarySkill, int value = 0)
-    {
-        Data.SSkills[typeSecondarySkill] += value;
-
-        GameManager.Instance.ChangeState(GameState.ChangeHeroParams);
-    }
-
     public void SetHeroAsActive()
     {
         Player.SetActiveHero(this);
@@ -232,7 +220,113 @@ public class EntityHero : BaseEntity
             onChangeParamsActiveHero?.Invoke(this);
         }
     }
+    public async UniTask ChangeExperience(int value = 0)
+    {
+        Data.PSkills[TypePrimarySkill.Experience] += value;
 
+        var quantityExperience = Data.PSkills[TypePrimarySkill.Experience];
+        while (quantityExperience >= Data.nextLevel)
+        {
+            Data.level++;
+            await UpdateLevel();
+        }
+
+        GameManager.Instance.ChangeState(GameState.ChangeHeroParams);
+    }
+
+    public async UniTask ChangePrimarySkill(TypePrimarySkill typePrimarySkill, int value = 0)
+    {
+        Data.PSkills[typePrimarySkill] += value;
+        await UniTask.Delay(1);
+        GameManager.Instance.ChangeState(GameState.ChangeHeroParams);
+    }
+
+    public void ChangeSecondarySkill(TypeSecondarySkill typeSecondarySkill, int value = 0)
+    {
+        // Debug.Log($"ChangeSecondarySkill::: {typeSecondarySkill}:{value}");
+        if (Data.SSkills.ContainsKey(typeSecondarySkill))
+        {
+            Data.SSkills[typeSecondarySkill] = value;
+        }
+        else
+        {
+            Data.SSkills[typeSecondarySkill] = value;
+        }
+
+        GameManager.Instance.ChangeState(GameState.ChangeHeroParams);
+    }
+
+    public async UniTask UpdateLevel()
+    {
+        var a = LevelManager.Instance.ConfigGameSettings.probabilityExperience.Evaluate(Data.level * 0.01f);
+
+        var newNextLevel = Data.nextLevel + (int)(a * Data.nextLevel);
+        Data.nextLevel = newNextLevel;
+        // Debug.Log($"NextLevel::: [[level={Data.level}]|key={Data.level * 0.01f}]| NextLevel={Data.nextLevel} (keyValue={a})");
+
+        // Generate secondary skills.
+        var listSkills = GenerateSecondSkills();
+
+        // Show dialog.
+        var dialogData = new DataDialogLevelHero()
+        {
+            sprite = this.ConfigData.MenuSprite,
+            name = Data.name,
+            gender = ConfigData.TypeGender.ToString(),
+            level = string.Format("{0}, {1}", Data.level, ConfigData.ClassHero.name),
+            SecondarySkills = listSkills,
+            PrimarySkill = GeneratePrimarySkill()
+        };
+        var dialogHeroInfo = new DialogHeroLevelOperation(dialogData);
+        var result = await dialogHeroInfo.ShowAndHide();
+        if (result.isOk)
+        {
+            await ChangePrimarySkill(dialogData.PrimarySkill.TypeSkill, 1);
+
+            var chooseSSkill = listSkills.Where(t => t.Key == result.typeSecondarySkill).First();
+
+            ChangeSecondarySkill(result.typeSecondarySkill, chooseSSkill.Value);
+        }
+    }
+
+    private ScriptableAttributePrimarySkill GeneratePrimarySkill()
+    {
+        var potentialSkills = ConfigData.ClassHero.ChancesPrimarySkill
+            .Where(t => t.minlevel <= Data.level && t.maxlevel >= Data.level)
+            .Select(t => t.Item)
+            .ToList();
+        return Helpers.GetProbabilityItem<ScriptableAttributePrimarySkill>(potentialSkills).Item;
+    }
+
+    private SerializableDictionary<TypeSecondarySkill, int> GenerateSecondSkills()
+    {
+        var result = new SerializableDictionary<TypeSecondarySkill, int>();
+
+        // Find new secondary skill.
+        var potentialSkills = ConfigData.ClassHero.ChancesSecondarySkill
+            .Where(t => !Data.SSkills.Keys.Contains(t.Item.TypeTwoSkill))
+            .ToList();
+        var firstSkill = Helpers.GetProbabilityItem<ScriptableAttributeSecondarySkill>(potentialSkills);
+        result.Add(firstSkill.Item.TypeTwoSkill, 0);
+        potentialSkills.RemoveAt(firstSkill.index);
+
+        // Find not expert exist secondary skill.
+        var notExpertSSkills = Data.SSkills
+            .Where(t => t.Value < 2)
+            .ToList();
+        if (notExpertSSkills.Count > 0)
+        {
+            var secondarySkill = notExpertSSkills[Random.Range(0, notExpertSSkills.Count)];
+            result.Add(secondarySkill.Key, secondarySkill.Value + 1);
+        }
+        else
+        {
+            var secondSkill = Helpers.GetProbabilityItem<ScriptableAttributeSecondarySkill>(potentialSkills);
+            result.Add(secondSkill.Item.TypeTwoSkill, 0);
+        }
+
+        return result;
+    }
 
     public void SetPositionHero(Vector3Int newPosition)
     {
@@ -558,9 +652,9 @@ public class EntityHero : BaseEntity
                 .GetDistanceBetweeenPoints(MapObject.Position, t.position)
             ).ToList();
 
-        for (int i = 0; i < potentialPoints.Count; i++)
+        while (potentialPoints.Count > 0)
         {
-            var node = potentialPoints[i];
+            var node = potentialPoints[0];
             if (node.OccupiedUnit != null && node.OccupiedUnit.ConfigData.TypeEntity == TypeEntity.MapObject)
             {
                 ScriptableEntityMapObject configData = (ScriptableEntityMapObject)node.OccupiedUnit.ConfigData;
@@ -575,8 +669,23 @@ public class EntityHero : BaseEntity
                 {
                     Debug.Log($"::: FindPathForHero for [{node.position}-{configData.name}]");
                     var path = FindPathForHero(node.position, true);
-                    break;
+                    if (path != null)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        potentialPoints.RemoveAt(0);
+                    }
                 }
+                else
+                {
+                    potentialPoints.RemoveAt(0);
+                }
+            }
+            else
+            {
+                potentialPoints.RemoveAt(0);
             }
         }
     }
@@ -598,6 +707,5 @@ public class EntityHero : BaseEntity
         var sdata = SaveUnit(Data);
         data.entity.heroes.Add(sdata);
     }
-
     #endregion
 }

@@ -50,7 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   idEffect: TreasureChest3
   PrimarySkill: {fileID: 11400000, guid: 71fd48291a2040e4b92224f9677707ba, type: 2}
-  value: 500
+  value: 5000
 --- !u!114 &-2329276225487841507
 MonoBehaviour:
   m_ObjectHideFlags: 0

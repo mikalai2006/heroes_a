@@ -1,0 +1,37 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:Template name="InfoSecondarySkillVertical" src="project://database/Assets/UI/Toolkit/Info/InfoSecondarySkillVertical.uxml?fileID=9197481963319205126&amp;guid=5556ef89f7956dc44b9864f482c3e299&amp;type=3#InfoSecondarySkillVertical" />
+    <ui:Template name="Button" src="project://database/Assets/UI/Toolkit/Button.uxml?fileID=9197481963319205126&amp;guid=db5e7d04a42304542a4356b1519364b2&amp;type=3#Button" />
+    <Style src="project://database/Assets/UI/Toolkit/Base.uss?fileID=7433441132597879392&amp;guid=fa07b064290e7384d9ad2e26e79f5953&amp;type=3#Base" />
+    <ui:VisualElement class="text-secondary text-lg">
+        <ui:VisualElement class="box_shadow">
+            <ui:Label tabindex="-1" text="Label" display-tooltip-when-elided="true" name="TitleLevel" class="box_bg p-05 m-0 text-center" />
+        </ui:VisualElement>
+        <ui:VisualElement class="p-2" style="flex-direction: row;">
+            <ui:VisualElement style="align-items: center; justify-content: center;">
+                <ui:VisualElement style="background-image: url(&apos;project://database/Assets/UI/Sprites/Skills/Skills.png?fileID=-2144967423&amp;guid=e1af65ad3ff49484580e9cf541eddcc1&amp;type=3#Skills_4&apos;); width: 83px; height: 92px;" />
+            </ui:VisualElement>
+            <ui:VisualElement class="p-2" style="justify-content: center; flex-direction: row; align-items: center; flex-grow: 1;">
+                <ui:VisualElement name="Ava" style="background-image: url(&apos;project://database/Assets/Entity/Hero/Sprites/Castle/Sprites/Adela.png?fileID=2800000&amp;guid=c459d9edbf7536443b51115663b80ab4&amp;type=3#Adela&apos;); width: 58px; height: 64px;" />
+            </ui:VisualElement>
+            <ui:VisualElement style="align-items: center; flex-direction: row;">
+                <ui:Label tabindex="-1" text="Label" display-tooltip-when-elided="true" name="NamePrimarySkill" />
+                <ui:VisualElement name="ImgPrimarySkill" style="background-image: url(&apos;project://database/Assets/UI/Sprites/Skills/Skills.png?fileID=-2144967423&amp;guid=e1af65ad3ff49484580e9cf541eddcc1&amp;type=3#Skills_4&apos;); width: 83px; height: 92px;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement>
+            <ui:VisualElement class="box_shadow">
+                <ui:Label tabindex="-1" text="Label" display-tooltip-when-elided="true" name="TextCurrentLevel" class="box_bg p-05 m-0 text-center" />
+            </ui:VisualElement>
+            <ui:Label tabindex="-1" text="Label" display-tooltip-when-elided="true" name="TextMybeLernen" class="p-05 text-center pt-2 mt-2" style="flex-wrap: wrap; white-space: normal;" />
+            <ui:VisualElement name="SecondSkills" class="p-2" style="align-items: center; flex-direction: row; justify-content: center;">
+                <ui:Instance template="InfoSecondarySkillVertical" name="InfoSecondarySkillVertical" />
+                <ui:Instance template="InfoSecondarySkillVertical" name="InfoSecondarySkillVertical" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="VisualElement" style="align-items: flex-end;">
+            <ui:Instance template="Button" name="Ok">
+                <AttributeOverrides element-name="Btn" text="#ok" />
+            </ui:Instance>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

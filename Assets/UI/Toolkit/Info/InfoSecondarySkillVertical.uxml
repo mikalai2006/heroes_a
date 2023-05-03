@@ -1,0 +1,13 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/Toolkit/Base.uss?fileID=7433441132597879392&amp;guid=fa07b064290e7384d9ad2e26e79f5953&amp;type=3#Base" />
+    <ui:Button display-tooltip-when-elided="true" name="Btn" class="button p-0 button_bordered bg p-1">
+        <ui:VisualElement class="p-05" />
+        <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); align-items: center;">
+            <ui:VisualElement name="Img" class="box_bg" style="width: 81px; height: 91px; background-image: url(&apos;project://database/Assets/UI/Sprites/Skills/SecondarySkill.png?fileID=311596831&amp;guid=bb3826057700334448fec2c60c7241e3&amp;type=3#SecondarySkill_6&apos;);" />
+            <ui:VisualElement class="text-lg text-secondary text-center" style="background-color: rgba(0, 0, 0, 0); justify-content: center;">
+                <ui:Label tabindex="-1" display-tooltip-when-elided="true" name="Type" text="basic" class="m-0 p-0 text-primary" />
+                <ui:Label tabindex="-1" text="secondarySkill" display-tooltip-when-elided="true" name="Title" class="m-0 p-0" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:Button>
+</ui:UXML>

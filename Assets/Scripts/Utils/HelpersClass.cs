@@ -342,16 +342,21 @@ public static class Helpers
         return ret;
     }
 
-    public static string GetLocalizedPluralString(
+    public static string GetLocalizedPluralString<T>(
         LocalizedString localizedString,
-        Dictionary<string, int>[] args,
-        Dictionary<string, int> dictionary
+        Dictionary<string, T>[] args,
+        Dictionary<string, T> dictionary
         )
     {
         if (localizedString.IsEmpty) return "NO_LANG";
 
         localizedString.Arguments = args;
         return localizedString.GetLocalizedString(dictionary);
+    }
+
+    public static string GetColorString(string str)
+    {
+        return " <color=#FFFFAB>" + str + "</color>";
     }
     // public static AsyncOperationHandle<string> LoadLocalizedSmartString(string tableRef, string tableEntryRef, Dictionary<string, string>[] args)
     // {

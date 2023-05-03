@@ -9,6 +9,7 @@ public class ScriptableEntityHero : ScriptableEntityMapObject, IEffected
 {
     [Header("Options Hero")]
     public TypeFaction TypeFaction;
+    public TypeGender TypeGender;
     public SOClassHero ClassHero;
     // public List<ItemPrimarySkill> PrimarySkill;
     public List<LevelSecondarySkill> StartSecondarySkill;
@@ -23,6 +24,13 @@ public class ScriptableEntityHero : ScriptableEntityMapObject, IEffected
     //     // }
 
     // }
+}
+
+[System.Serializable]
+public enum TypeGender
+{
+    Male = 0,
+    Female = 1,
 }
 
 [System.Serializable]

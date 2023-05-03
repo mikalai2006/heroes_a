@@ -56,7 +56,7 @@ public class MapEntityCreature : BaseMapEntity, IDialogMapObjectOperation
 
             if (result.isOk)
             {
-                OnHeroGo(player);
+                await OnHeroGo(player);
             }
             else
             {
@@ -66,15 +66,17 @@ public class MapEntityCreature : BaseMapEntity, IDialogMapObjectOperation
         else
         {
             await UniTask.Delay(LevelManager.Instance.ConfigGameSettings.timeDelayDoBot);
-            OnHeroGo(player);
+            await OnHeroGo(player);
         }
     }
 
-    private void OnHeroGo(Player player)
+    private async UniTask OnHeroGo(Player player)
     {
         MapObject.ProtectedNode.DisableProtectedNeigbours(_mapObject);
 
         // TODO ARENA
+        var entityCreature = (EntityCreature)MapObject.Entity;
+        await player.ActiveHero.ChangeExperience(entityCreature.ConfigAttribute.CreatureParams.HP * entityCreature.Data.value);
 
         MapObject.DoHero(player);
 

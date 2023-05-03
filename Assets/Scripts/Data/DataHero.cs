@@ -12,6 +12,7 @@ public struct DataHero
     public string name;
     public string idObject;
     public int level;
+    public int nextLevel;
     public SerializableDictionary<TypePrimarySkill, int> PSkills;
     public SerializableDictionary<TypeSecondarySkill, int> SSkills;
     public Vector3Int nextPosition;

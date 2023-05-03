@@ -24,7 +24,7 @@ MonoBehaviour:
     koofMines: 0.08
     koofMinTown: 0.07
     koofResource: 0.005
-    koofFreeResource: 0.03
+    koofFreeResource: 0.05
     koofExplore: 0.003
     koofSchoolSkills: 0.007
     koofArtifacts: 0.03

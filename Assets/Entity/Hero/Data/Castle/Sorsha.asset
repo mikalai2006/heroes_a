@@ -48,6 +48,7 @@ MonoBehaviour:
   TypeWorkEffect: 0
   Effects: []
   TypeFaction: 0
+  TypeGender: 1
   ClassHero: {fileID: 11400000, guid: 2506fee5f50b951438df247c0d7427e0, type: 2}
   StartSecondarySkill:
   - SecondarySkill: {fileID: 11400000, guid: c15b97f4d81bf8048962e3ccb2d08f4f, type: 2}

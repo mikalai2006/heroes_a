@@ -16,7 +16,8 @@ MonoBehaviour:
     m_Code: ru
   m_SharedData: {fileID: 11400000, guid: 9b6db77d8a0719a4490c3b7aad12567c, type: 2}
   m_Metadata:
-    m_Items: []
+    m_Items:
+    - rid: 4227538717603004418
   m_TableData:
   - m_Id: 15599828992
     m_Localized: "\u0421\u043E\u0445\u0440\u0430\u043D\u0438\u0442\u044C"
@@ -426,6 +427,29 @@ MonoBehaviour:
     m_Localized: "\u0414\u0435\u043D\u044C"
     m_Metadata:
       m_Items: []
+  - m_Id: 13234093178388480
+    m_Localized: "{name} \u043F\u043E\u0434\u043D\u044F\u043B{gender:choose(Male|Female):\u0441\u044F|\u0430\u0441\u044C|\u043E\u0441\u044C}
+      \u043D\u0430 \u0441\u043B\u0435\u0434\u0443\u044E\u0449\u0438\u0439 \u0443\u0440\u043E\u0432\u0435\u043D\u044C."
+    m_Metadata:
+      m_Items:
+      - rid: 4227538717603004418
+  - m_Id: 13234241304428544
+    m_Localized: "{name} \u0442\u0435\u043F\u0435\u0440\u044C \u043D\u0430 \u0443\u0440\u043E\u0432\u043D\u0435
+      {level}"
+    m_Metadata:
+      m_Items:
+      - rid: 4227538717603004418
+  - m_Id: 13398285218906112
+    m_Localized: "\u0412\u0430\u0448 \u0433\u0435\u0440\u043E\u0439 \u043C\u043E\u0436\u0435\u0442
+      \u0432\u044B\u0443\u0447\u0438\u0442\u044C: \u043B\u0438\u0431\u043E {skill1}
+      \u043B\u0438\u0431\u043E  {skill2}"
+    m_Metadata:
+      m_Items:
+      - rid: 4227538717603004418
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 4227538717603004418
+      type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries: 0080d26e56042f000080d2eb78042f000080125fab992f00

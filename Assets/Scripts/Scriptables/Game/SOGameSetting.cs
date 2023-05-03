@@ -28,6 +28,7 @@ public class SOGameSetting : ScriptableObject
     [Range(0.3f, 1f)] public float deltaDoubleClick;
     [Range(10, 1000)] public int timeDelayDoBot;
     [Range(.05f, 1f)] public float speedHero;
+    public AnimationCurve probabilityExperience;
     public int countBuildPerDay;
 
 }

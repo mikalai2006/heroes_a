@@ -387,6 +387,18 @@ MonoBehaviour:
     m_Key: day
     m_Metadata:
       m_Items: []
+  - m_Id: 13234093178388480
+    m_Key: nextlevel_run
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13234241304428544
+    m_Key: nextlevel_current
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13398285218906112
+    m_Key: nextlevel_sskils
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

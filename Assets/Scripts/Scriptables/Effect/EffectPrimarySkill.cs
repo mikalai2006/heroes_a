@@ -13,12 +13,20 @@ public class EffectPrimarySkill : BaseEffect
     public async override UniTask<EffectResult> RunHero(Player player, BaseEntity entity)
     {
         var result = new EffectResult();
+        var activeHero = player.ActiveHero;
 
-        Debug.Log($"Start effect skill - {LevelManager.Instance.ActivePlayer.ActiveHero}");
+        Debug.Log($"Start effect skill - {activeHero.Data.name}");
 
         var currentEffectData = entity.Effects.Effects.Find(t => t.ide == idEffect);
 
-        player.ActiveHero.ChangePrimarySkill(PrimarySkill.TypeSkill, currentEffectData.value);
+        if (PrimarySkill.TypeSkill == TypePrimarySkill.Experience)
+        {
+            await player.ActiveHero.ChangeExperience(currentEffectData.value);
+        }
+        else
+        {
+            await player.ActiveHero.ChangePrimarySkill(PrimarySkill.TypeSkill, currentEffectData.value);
+        }
 
         await UniTask.Delay(1);
         return result;

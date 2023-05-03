@@ -15,12 +15,17 @@ MonoBehaviour:
   idObject: attribute.skill.knowledge
   TypeAttribute: 30
   MenuSprite: {fileID: 816660840, guid: e1af65ad3ff49484580e9cf541eddcc1, type: 3}
+  MapPrefab:
+    m_AssetGUID: 
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
   Text:
     title:
       m_TableReference:
-        m_TableCollectionName: 
+        m_TableCollectionName: GUID:9b6db77d8a0719a4490c3b7aad12567c
       m_TableEntryReference:
-        m_KeyId: 0
+        m_KeyId: 8873138059378688
         m_Key: 
       m_FallbackState: 0
       m_WaitForCompletion: 0
