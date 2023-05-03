@@ -1,0 +1,172 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: SpellBook Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: SpellBook
+  m_TableCollectionNameGuidString: d70741e361221cc41926374ef28f7c49
+  m_Entries:
+  - m_Id: 10637967360
+    m_Key: magicarrow_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30334247927808
+    m_Key: magicarrow_b_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30349339033600
+    m_Key: magicarrow_b_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30380519489536
+    m_Key: magicarrow_a_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30403428777984
+    m_Key: magicarrow_a_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30421476868096
+    m_Key: magicarrow_e_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30456235065344
+    m_Key: magicarrow_e_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31544791171072
+    m_Key: disruptingray_b_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31617985970176
+    m_Key: disruptingray_b_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31634268258304
+    m_Key: disruptingray_a_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31649741045760
+    m_Key: disruptingray_a_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31674244169728
+    m_Key: disruptingray_e_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31694116782080
+    m_Key: disruptingray_e_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31949143048192
+    m_Key: disruptingray_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 33930481926144
+    m_Key: airshield_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 33996693209088
+    m_Key: airshield_b_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34015198478336
+    m_Key: airshield_b_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34028486033408
+    m_Key: airshield_a_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34053563777024
+    m_Key: airshield_a_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34066532564992
+    m_Key: airshield_e_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34089899032576
+    m_Key: airshield_e_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 35781793185792
+    m_Key: counterstrike_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 35809131659264
+    m_Key: counterstrike_b_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 35827829866496
+    m_Key: counterstrike_b_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 35843860496384
+    m_Key: counterstrike_a_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 35867096940544
+    m_Key: counterstrike_a_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 35880384495616
+    m_Key: counterstrike_e_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 35893806268416
+    m_Key: counterstrike_e_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36870693224448
+    m_Key: dimensiondoor_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37469950214144
+    m_Key: dimensiondoor_b_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37487545319424
+    m_Key: dimensiondoor_b_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37500417638400
+    m_Key: dimensiondoor_a_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37514195927040
+    m_Key: dimensiondoor_a_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37526699147264
+    m_Key: dimensiondoor_e_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37542893355008
+    m_Key: dimensiondoor_e_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37803124752384
+    m_Key: dimensiondoor_d
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 4227538719867666438
+  references:
+    version: 2
+    RefIds:
+    - rid: 4227538719867666438
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1683122154035

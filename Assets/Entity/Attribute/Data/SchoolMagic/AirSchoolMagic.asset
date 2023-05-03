@@ -9,12 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14d91db6ddbb6e346a9b5746589643a9, type: 3}
-  m_Name: SpellTest2
+  m_Script: {fileID: 11500000, guid: c6a1d646066b1ca46a98cdbf4d79bfbc, type: 3}
+  m_Name: AirSchoolMagic
   m_EditorClassIdentifier: 
-  idObject: spell.2
-  TypeAttribute: 60
-  MenuSprite: {fileID: -1789483383, guid: c12233e7f9e1938489974c1fb7749211, type: 3}
+  idObject: schoolmagic.air
+  TypeAttribute: 100
+  MenuSprite: {fileID: 0}
   MapPrefab:
     m_AssetGUID: 
     m_SubObjectName: 
@@ -39,7 +39,12 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
-  level: 2
+  typeSchoolMagic: 0
+  Sp:
+  - {fileID: 21300000, guid: 7d5a9e957374c94449d1a2dbc9c7eca0, type: 3}
+  - {fileID: 21300000, guid: 3a406df0b70ad8c48a616d377796c1c1, type: 3}
+  - {fileID: 21300000, guid: 967708e7c77bc454ca98b2a5a5454176, type: 3}
+  - {fileID: 21300000, guid: 1cb29816fcc855c448afe3ea01f8e3c4, type: 3}
   references:
     version: 2
     RefIds: []

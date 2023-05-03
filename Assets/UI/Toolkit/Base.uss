@@ -205,6 +205,10 @@
     -unity-font-style: bold;
 }
 
+.text-xs {
+    font-size: 12px;
+}
+
 .text-sm {
 }
 
@@ -409,16 +413,24 @@
     width: 100%;
 }
 
-.h-50 {
-    height: 50%;
-}
-
-.h-14 {
-    height: 14.3%;
+.h-25 {
+    height: 25%;
 }
 
 .h-33 {
     height: 33.333%;
+}
+
+.h-50 {
+    height: 50%;
+}
+
+.h-75 {
+    height: 75%;
+}
+
+.h-14 {
+    height: 14.3%;
 }
 
 .h-125 {

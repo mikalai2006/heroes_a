@@ -103,7 +103,7 @@ public class BuildMonoBehavior : MonoBehaviour, IPointerClickHandler
     {
         var dwelling = ((BuildArmy)Build).Dwelling;
         Debug.Log($"GetBuild.Town.Data.HeroinTown={GetBuild.Town.Data.HeroinTown != null}");
-        var creatures = GetBuild.Town.Data.HeroinTown != null
+        var creatures = GetBuild.Town.Data.HeroinTown != null && GetBuild.Town.Data.HeroinTown != ""
             ? ((EntityHero)UnitManager.Entities[GetBuild.Town.Data.HeroinTown]).Data.Creatures
             : GetBuild.Town.Data.Creatures;
         var dialogWindow = new DialogDwellingProvider(new DataDialogDwelling()

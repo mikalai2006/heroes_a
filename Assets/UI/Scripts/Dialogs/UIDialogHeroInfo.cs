@@ -22,6 +22,7 @@ public class UIDialogHeroInfo : UIDialogBaseWindow
     private VisualElement _avaHero;
     private VisualElement _secondSkillBlok;
     private VisualElement _listArtifacts;
+    private VisualElement _spellBook;
     private Label _attack;
     private Label _defense;
     private Label _knowledge;
@@ -58,6 +59,17 @@ public class UIDialogHeroInfo : UIDialogBaseWindow
         _experience = root.Q<Label>("Experience");
 
         _listArtifacts = root.Q<VisualElement>("ListArtifact");
+
+        _spellBook = root.Q<VisualElement>("SpellBook");
+        _spellBook.RegisterCallback<ClickEvent>(async (ClickEvent evt) =>
+        {
+            var dialogWindow = new DialogSpellBookOperation(new DataDialogSpellBook());
+            var result = await dialogWindow.ShowAndHide();
+            if (result.isOk)
+            {
+
+            }
+        });
 
         _buttonCancel = root.Q<VisualElement>("Cancel").Q<Button>("Btn");
         _buttonCancel.clickable.clicked += OnClickCancel;

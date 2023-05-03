@@ -63,6 +63,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Locale-en
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 030e543daa22292419ff5503b77403c4
+    m_Address: SpellBook_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: 9a6380555b06f9d46b9bf47dd32221de, type: 2}
   m_SchemaSet:

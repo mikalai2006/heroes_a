@@ -1,0 +1,57 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:Template name="UIItemSpell" src="project://database/Assets/UI/Toolkit/SpellBook/UIItemSpell.uxml?fileID=9197481963319205126&amp;guid=87a5660745fefb64c99e6173acb5563b&amp;type=3#UIItemSpell" />
+    <Style src="project://database/Assets/UI/Toolkit/Base.uss?fileID=7433441132597879392&amp;guid=fa07b064290e7384d9ad2e26e79f5953&amp;type=3#Base" />
+    <Style src="project://database/Assets/UI/Toolkit/SpellBook/SpellBook.uss?fileID=7433441132597879392&amp;guid=7ee2609214168344296806e5eed16b43&amp;type=3#SpellBook" />
+    <ui:VisualElement class="text-secondary text-lg" style="flex-grow: 1;">
+        <ui:VisualElement style="flex-grow: 1; background-image: url(&apos;project://database/Assets/UI/Sprites/Spell/SpelBack.png?fileID=2800000&amp;guid=37a78e1824353a4449fd96be24868920&amp;type=3#SpelBack&apos;); -unity-background-scale-mode: stretch-to-fill; -unity-slice-left: 50; -unity-slice-top: 50; -unity-slice-right: 50; -unity-slice-bottom: 50;">
+            <ui:VisualElement name="SpellBlok" style="flex-grow: 1; margin-left: 10%; margin-top: 3%; margin-bottom: 7%; margin-right: 53%; flex-direction: row; flex-wrap: wrap;">
+                <ui:VisualElement class="h-33 w-33">
+                    <ui:Instance template="UIItemSpell" name="UIItemSpell" style="flex-grow: 1;" />
+                </ui:VisualElement>
+                <ui:Instance template="UIItemSpell" name="UIItemSpell" class="w-33 h-25 h-33" />
+                <ui:Instance template="UIItemSpell" name="UIItemSpell" class="w-33 h-25 h-33" />
+                <ui:Instance template="UIItemSpell" name="UIItemSpell" class="w-33 h-25 h-33" />
+                <ui:Instance template="UIItemSpell" name="UIItemSpell" class="w-33 h-25 h-33" />
+                <ui:Instance template="UIItemSpell" name="UIItemSpell" class="w-33 h-25 h-33" />
+                <ui:Instance template="UIItemSpell" name="UIItemSpell" class="w-33 h-25 h-33" />
+                <ui:Instance template="UIItemSpell" name="UIItemSpell" class="w-33 h-25 h-33" />
+                <ui:Instance template="UIItemSpell" name="UIItemSpell" class="w-33 h-25 h-33" />
+            </ui:VisualElement>
+            <ui:VisualElement style="position: absolute; right: 0; flex-grow: 1; bottom: 0; top: 0; width: 7%;">
+                <ui:VisualElement style="background-color: rgba(0, 0, 0, 0); align-items: flex-start;">
+                    <ui:Button display-tooltip-when-elided="true" name="Air" class="button button_right" style="background-image: url(&apos;project://database/Assets/UI/Sprites/Spell/SpelTabA.png?fileID=-609960167&amp;guid=8003a1244c748dc45b0ea5b804c953f2&amp;type=3#SpelTabA_0&apos;); margin-left: 8px;" />
+                </ui:VisualElement>
+                <ui:VisualElement style="background-color: rgba(0, 0, 0, 0); align-items: flex-start;">
+                    <ui:Button display-tooltip-when-elided="true" name="Earth" class="button button_right" style="background-image: url(&apos;project://database/Assets/UI/Sprites/Spell/SpelTabA.png?fileID=-1500317608&amp;guid=8003a1244c748dc45b0ea5b804c953f2&amp;type=3#SpelTabA_1&apos;); margin-left: 12px;" />
+                </ui:VisualElement>
+                <ui:VisualElement style="background-color: rgba(0, 0, 0, 0); align-items: flex-start;">
+                    <ui:Button display-tooltip-when-elided="true" name="Fire" class="button button_right" style="background-image: url(&apos;project://database/Assets/UI/Sprites/Spell/SpelTabA.png?fileID=-1793664191&amp;guid=8003a1244c748dc45b0ea5b804c953f2&amp;type=3#SpelTabA_2&apos;); margin-left: 15px;" />
+                </ui:VisualElement>
+                <ui:VisualElement style="background-color: rgba(0, 0, 0, 0); align-items: flex-start;">
+                    <ui:Button display-tooltip-when-elided="true" name="Water" class="button button_right" style="background-image: url(&apos;project://database/Assets/UI/Sprites/Spell/SpelTabA.png?fileID=766600659&amp;guid=8003a1244c748dc45b0ea5b804c953f2&amp;type=3#SpelTabA_3&apos;); margin-left: 20px;" />
+                </ui:VisualElement>
+                <ui:VisualElement style="background-color: rgba(0, 0, 0, 0); align-items: flex-start;">
+                    <ui:Button display-tooltip-when-elided="true" name="All" class="button button_right button_right_active" style="background-image: url(&apos;project://database/Assets/UI/Sprites/Spell/SpelTabA.png?fileID=-1509050772&amp;guid=8003a1244c748dc45b0ea5b804c953f2&amp;type=3#SpelTabA_4&apos;); margin-left: 30px;" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement style="position: absolute; bottom: 0; right: 0; left: 0; height: 11%; flex-direction: row;">
+                <ui:VisualElement class="w-50" style="align-items: flex-end;">
+                    <ui:VisualElement class="w-25" style="background-color: rgba(0, 0, 0, 0); align-items: flex-start;">
+                        <ui:Button display-tooltip-when-elided="true" name="War" class="button_bottom button" style="background-image: url(&apos;project://database/Assets/UI/Sprites/Spell/SpellBookWar.png?fileID=2800000&amp;guid=95abeb2420a40ff4fb8ed705033d7dc5&amp;type=3#SpellBookWar&apos;); background-color: rgba(255, 255, 255, 0);" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement class="w-50" style="align-items: flex-start; flex-direction: row;">
+                    <ui:VisualElement class="w-25" style="background-color: rgba(0, 0, 0, 0); align-items: flex-end;">
+                        <ui:Button display-tooltip-when-elided="true" name="Adv" class="button_bottom button" style="background-image: url(&apos;project://database/Assets/UI/Sprites/Spell/SpellBookAdv.png?fileID=2800000&amp;guid=6d8c40b76eda41e47852470e3a4a88f5&amp;type=3#SpellBookAdv&apos;); background-color: rgba(255, 255, 255, 0);" />
+                    </ui:VisualElement>
+                    <ui:VisualElement class="w-25" style="background-color: rgba(0, 0, 0, 0); align-items: flex-end;">
+                        <ui:Button display-tooltip-when-elided="true" name="Mana" class="button_bottom button" style="background-image: url(&apos;project://database/Assets/UI/Sprites/Spell/SpellBookMana.png?fileID=2800000&amp;guid=a1da983190f0bd4478b46380369507d5&amp;type=3#SpellBookMana&apos;); background-color: rgba(255, 255, 255, 0);" />
+                    </ui:VisualElement>
+                    <ui:VisualElement class="w-25" style="background-color: rgba(0, 0, 0, 0); align-items: flex-end;">
+                        <ui:Button display-tooltip-when-elided="true" name="Close" class="button_bottom button" style="background-image: url(&apos;project://database/Assets/UI/Sprites/Spell/SpellBookClose.png?fileID=2800000&amp;guid=1a9eed4349b80cd4c8b13853f36f19e1&amp;type=3#SpellBookClose&apos;); background-color: rgba(255, 255, 255, 0);" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

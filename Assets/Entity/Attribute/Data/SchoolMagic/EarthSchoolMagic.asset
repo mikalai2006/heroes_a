@@ -9,12 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14d91db6ddbb6e346a9b5746589643a9, type: 3}
-  m_Name: SpellTest3
+  m_Script: {fileID: 11500000, guid: c6a1d646066b1ca46a98cdbf4d79bfbc, type: 3}
+  m_Name: EarthSchoolMagic
   m_EditorClassIdentifier: 
-  idObject: spell.3
-  TypeAttribute: 60
-  MenuSprite: {fileID: -1789483383, guid: c12233e7f9e1938489974c1fb7749211, type: 3}
+  idObject: schoolmagic.earth
+  TypeAttribute: 100
+  MenuSprite: {fileID: 0}
   MapPrefab:
     m_AssetGUID: 
     m_SubObjectName: 
@@ -39,7 +39,12 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
-  level: 3
+  typeSchoolMagic: 3
+  Sp:
+  - {fileID: 21300000, guid: f74aa521c1fc9e14e9521d1b6d81743c, type: 3}
+  - {fileID: 21300000, guid: fceaf3368916b654a9e627b3447f139e, type: 3}
+  - {fileID: 21300000, guid: ba1ae601147ce614c967d8ed85e0cc36, type: 3}
+  - {fileID: 21300000, guid: c741a7fbf7ce8ef4db15697718829a3f, type: 3}
   references:
     version: 2
     RefIds: []

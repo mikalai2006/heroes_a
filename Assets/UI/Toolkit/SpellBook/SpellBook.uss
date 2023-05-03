@@ -1,0 +1,41 @@
+.button_bottom {
+    width: 45px;
+    height: 57px;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top-width: 0;
+    border-bottom-width: 0;
+}
+
+.button_right {
+    width: 60px;
+    height: 50px;
+    background-color: rgba(255, 255, 255, 0);
+    margin-top: 25%;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top-width: 0;
+    border-bottom-width: 0;
+}
+
+.button_right_active {
+    margin-left: 0;
+}
+
+.spell_item_img {
+    width: 100%;
+    height: 100%;
+    background-image: url('project://database/Assets/UI/Sprites/Spell/Spell_book.png?fileID=740670611&guid=ed47d99f325775447b80057e6e6406ea&type=3#Spell_book_9');
+}
