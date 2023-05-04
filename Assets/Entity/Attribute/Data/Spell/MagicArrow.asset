@@ -41,12 +41,12 @@ MonoBehaviour:
       m_LocalVariables: []
   SchoolMagic: {fileID: 11400000, guid: 31a94fbbb40b1054c9afac5eb9ba992f, type: 2}
   level: 1
+  typeSpell: 0
   typeSpellDuration: 0
   LevelData:
-  - level: 0
+  - cost: 5
     Effect: 10
     AI: 10
-    cost: 5
     Text:
       title:
         m_TableReference:
@@ -66,10 +66,9 @@ MonoBehaviour:
         m_FallbackState: 0
         m_WaitForCompletion: 0
         m_LocalVariables: []
-  - level: 1
+  - cost: 4
     Effect: 10
     AI: 10
-    cost: 4
     Text:
       title:
         m_TableReference:
@@ -89,10 +88,9 @@ MonoBehaviour:
         m_FallbackState: 0
         m_WaitForCompletion: 0
         m_LocalVariables: []
-  - level: 2
+  - cost: 4
     Effect: 20
     AI: 10
-    cost: 4
     Text:
       title:
         m_TableReference:
@@ -112,10 +110,9 @@ MonoBehaviour:
         m_FallbackState: 0
         m_WaitForCompletion: 0
         m_LocalVariables: []
-  - level: 3
+  - cost: 4
     Effect: 30
     AI: 10
-    cost: 4
     Text:
       title:
         m_TableReference:

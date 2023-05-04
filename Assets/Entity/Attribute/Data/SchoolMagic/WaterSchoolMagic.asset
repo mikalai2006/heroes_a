@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   idObject: schoolmagic.water
   TypeAttribute: 100
-  MenuSprite: {fileID: 0}
+  MenuSprite: {fileID: 1014880560, guid: 80e7c14205b6ffb4380c6bc5c705fd86, type: 3}
   MapPrefab:
     m_AssetGUID: 
     m_SubObjectName: 

@@ -5,15 +5,25 @@ using UnityEngine.Events;
 using System.Collections.Generic;
 using UnityEngine.Localization;
 
+
 public class UIDialogSpellBook : UIDialogBaseWindow
 {
     [SerializeField] private VisualTreeAsset _templateSpellItem;
     [SerializeField] private VisualTreeAsset _templateButton;
 
     private Button _buttonOk;
+    private Button _buttonAir;
+    private Button _buttonWater;
+    private Button _buttonFire;
+    private Button _buttonEarth;
+    private Button _buttonAll;
+    private Button _buttonCombat;
+    private Button _buttonAdv;
+    private Button _buttonPrev;
+    private Button _buttonNext;
     private VisualElement _spellList1;
+    private Label _mana;
     private VisualElement _spellList2;
-
     private TaskCompletionSource<DataResultDialogSpellBook> _processCompletionSource;
 
     public UnityEvent processAction;
@@ -29,27 +39,161 @@ public class UIDialogSpellBook : UIDialogBaseWindow
         Panel.AddToClassList("h-full");
         Title.style.display = DisplayStyle.None;
 
+        _buttonPrev = root.Q<Button>("Prev");
+        _buttonPrev.clickable.clicked += () =>
+        {
+            ChangePage(-1);
+        };
+        _buttonNext = root.Q<Button>("Next");
+        _buttonNext.clickable.clicked += () =>
+        {
+            ChangePage(1);
+        };
+
         _buttonOk = root.Q<Button>("Close");
         _buttonOk.clickable.clicked += OnClickClose;
 
         _spellList1 = root.Q<VisualElement>("SpellList1");
-        _spellList1.Clear();
-        // _spellList2 = root.Q<VisualElement>("SpellList2");
+        _spellList2 = root.Q<VisualElement>("SpellList2");
+
+        _buttonAir = root.Q<Button>("Air");
+        _buttonAir.clickable.clicked += () =>
+        {
+            ClickRightButtons();
+            _hero.Data.SpellBook.SetSchoolMagic(TypeSchoolMagic.SchoolofAirMagic);
+            _buttonAir.style.marginLeft = new StyleLength(new Length(0, LengthUnit.Pixel));
+            // Draw spells for current type.
+            DrawSpells();
+        };
+        _buttonFire = root.Q<Button>("Fire");
+        _buttonFire.clickable.clicked += () =>
+        {
+            ClickRightButtons();
+            _hero.Data.SpellBook.SetSchoolMagic(TypeSchoolMagic.SchoolofFireMagic);
+            _buttonFire.style.marginLeft = new StyleLength(new Length(0, LengthUnit.Pixel));
+            // Draw spells for current type.
+            DrawSpells();
+        };
+        _buttonWater = root.Q<Button>("Water");
+        _buttonWater.clickable.clicked += () =>
+        {
+            ClickRightButtons();
+            _hero.Data.SpellBook.SetSchoolMagic(TypeSchoolMagic.SchoolofWaterMagic);
+            _buttonWater.style.marginLeft = new StyleLength(new Length(0, LengthUnit.Pixel));
+            // Draw spells for current type.
+            DrawSpells();
+        };
+        _buttonEarth = root.Q<Button>("Earth");
+        _buttonEarth.clickable.clicked += () =>
+        {
+            ClickRightButtons();
+            _hero.Data.SpellBook.SetSchoolMagic(TypeSchoolMagic.SchoolofEarthMagic);
+            _buttonEarth.style.marginLeft = new StyleLength(new Length(0, LengthUnit.Pixel));
+            // Draw spells for current type.
+            DrawSpells();
+        };
+        _buttonAll = root.Q<Button>("All");
+        _buttonAll.clickable.clicked += () =>
+        {
+            ClickRightButtons();
+            _hero.Data.SpellBook.SetSchoolMagic(TypeSchoolMagic.AllSchools);
+            _buttonAll.style.marginLeft = new StyleLength(new Length(0, LengthUnit.Pixel));
+            // Draw spells for current type.
+            DrawSpells();
+        };
+        _buttonCombat = root.Q<Button>("Combat");
+        _buttonCombat.clickable.clicked += () =>
+        {
+            _hero.Data.SpellBook.SetTypeSpell(TypeSpell.Combat);
+            DrawSpells();
+        };
+        _buttonAdv = root.Q<Button>("Adv");
+        _buttonAdv.clickable.clicked += () =>
+        {
+            _hero.Data.SpellBook.SetTypeSpell(TypeSpell.Adventure);
+            DrawSpells();
+        };
+
+        _mana = root.Q<Label>("Mana");
 
         // base.Localize(root);
     }
 
-    public async Task<DataResultDialogSpellBook> ProcessAction(EntityHero hero)
+    private void ChangePage(int page)
     {
-        base.Init();
+        _hero.Data.SpellBook.ChangePage(page);
+        DrawSpells();
+    }
 
-        _hero = hero;
+    private void ClickRightButtons()
+    {
+        UQueryBuilder<Button> builder = new UQueryBuilder<Button>(root);
+        List<Button> list = builder.Class("button_right").ToList();
+
+        foreach (var btn in list)
+        {
+            btn.style.marginLeft = StyleKeyword.Null;
+        }
+
+    }
+
+    private void DrawSpells()
+    {
+        var spellBook = _hero.Data.SpellBook;
+        Debug.Log(spellBook.ToString());
         _dataResultDialog = new DataResultDialogSpellBook()
         {
         };
 
-        foreach (var spellData in _hero.Data.SpellBook.Data.Spells)
+        // Clear spells bloks.
+        _spellList1.Clear();
+        _spellList2.Clear();
+
+        // Set status button prev.
+        if (spellBook.Pagination.page == 0)
         {
+            _buttonPrev.style.display = DisplayStyle.None;
+        }
+        else
+        {
+            _buttonPrev.style.display = DisplayStyle.Flex;
+        }
+
+        // Set status button next.
+        if (spellBook.Pagination.end >= spellBook.Pagination.total)
+        {
+            _buttonNext.style.display = DisplayStyle.None;
+        }
+        else
+        {
+            _buttonNext.style.display = DisplayStyle.Flex;
+        }
+
+        var _boxForSpell = _spellList1;
+        int index = 0;
+
+        // Draw school magic banner.
+        if (spellBook.ActiveSchoolMagic != TypeSchoolMagic.AllSchools && spellBook.Pagination.page == 0)
+        {
+            var activeSchool = ResourceSystem.Instance
+                .GetAttributesByType<ScriptableAttributeSchoolMagic>(TypeAttribute.SchoolMagic)
+                .Find(t => t.typeSchoolMagic == spellBook.ActiveSchoolMagic);
+            if (activeSchool != null)
+            {
+                var bannerSchool = new VisualElement();
+                bannerSchool.AddToClassList("w-67");
+                bannerSchool.AddToClassList("h-33");
+                bannerSchool.style.backgroundImage
+                    = new StyleBackground(activeSchool.MenuSprite);
+
+                _boxForSpell.Add(bannerSchool);
+            }
+            index = 2;
+        }
+
+        for (int i = spellBook.Pagination.start; i < spellBook.Pagination.end; i++)
+        {
+            var spellData = spellBook.ActiveSpells[i];
             var schoolSpell = spellData.SchoolMagic;
             var levelSpell = -1;
             if (_hero.Data.SSkills.ContainsKey(schoolSpell.BaseSecondarySkill.TypeTwoSkill))
@@ -93,8 +237,25 @@ public class UIDialogSpellBook : UIDialogBaseWindow
             var manaText = new LocalizedString(Constants.LanguageTable.LANG_TABLE_UILANG, "mana");
             newBlokSpell.Q<Label>("Mana").text
                 = string.Format("{0}: {1}", manaText.GetLocalizedString(), spellData.LevelData[0].cost);
-            _spellList1.Add(newNodeElementSpell);
+
+            _boxForSpell.Add(newNodeElementSpell);
+            index++;
+            if (index % 9 == 0)
+            {
+                _boxForSpell = _spellList2;
+            }
         }
+    }
+
+    public async Task<DataResultDialogSpellBook> ProcessAction(EntityHero hero)
+    {
+        base.Init();
+
+        _hero = hero;
+
+        _mana.text = _hero.Data.mana.ToString();
+
+        DrawSpells();
 
         _processCompletionSource = new TaskCompletionSource<DataResultDialogSpellBook>();
 

@@ -16,5 +16,6 @@ public enum TypeSchoolMagic
     SchoolofAirMagic = 0,
     SchoolofWaterMagic = 1,
     SchoolofFireMagic = 2,
-    SchoolofEarthMagic = 3
+    SchoolofEarthMagic = 3,
+    AllSchools = 4,
 }

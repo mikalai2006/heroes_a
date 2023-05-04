@@ -14,27 +14,27 @@
                     <ui:Instance template="UIItemSpell" name="UIItemSpell" style="flex-grow: 1;" />
                 </ui:VisualElement>
             </ui:VisualElement>
-            <ui:VisualElement style="position: absolute; right: 0; flex-grow: 1; bottom: 0; top: 0; width: 7%;">
+            <ui:VisualElement style="position: absolute; right: 0; flex-grow: 1; bottom: 0; top: 0; width: 8%;">
                 <ui:VisualElement style="background-color: rgba(0, 0, 0, 0); align-items: flex-start;">
-                    <ui:Button display-tooltip-when-elided="true" name="Air" class="button button_right" style="background-image: url(&apos;project://database/Assets/UI/Sprites/Spell/SpelTabA.png?fileID=-609960167&amp;guid=8003a1244c748dc45b0ea5b804c953f2&amp;type=3#SpelTabA_0&apos;); margin-left: 8px;" />
+                    <ui:Button display-tooltip-when-elided="true" name="Air" class="button button_right button_right_air" style="background-image: url(&apos;project://database/Assets/UI/Sprites/Spell/SpelTabA.png?fileID=-609960167&amp;guid=8003a1244c748dc45b0ea5b804c953f2&amp;type=3#SpelTabA_0&apos;);" />
                 </ui:VisualElement>
                 <ui:VisualElement style="background-color: rgba(0, 0, 0, 0); align-items: flex-start;">
-                    <ui:Button display-tooltip-when-elided="true" name="Earth" class="button button_right" style="background-image: url(&apos;project://database/Assets/UI/Sprites/Spell/SpelTabA.png?fileID=-1500317608&amp;guid=8003a1244c748dc45b0ea5b804c953f2&amp;type=3#SpelTabA_1&apos;); margin-left: 12px;" />
+                    <ui:Button display-tooltip-when-elided="true" name="Earth" class="button button_right button_right_earth" style="background-image: url(&apos;project://database/Assets/UI/Sprites/Spell/SpelTabA.png?fileID=-1500317608&amp;guid=8003a1244c748dc45b0ea5b804c953f2&amp;type=3#SpelTabA_1&apos;);" />
                 </ui:VisualElement>
                 <ui:VisualElement style="background-color: rgba(0, 0, 0, 0); align-items: flex-start;">
-                    <ui:Button display-tooltip-when-elided="true" name="Fire" class="button button_right" style="background-image: url(&apos;project://database/Assets/UI/Sprites/Spell/SpelTabA.png?fileID=-1793664191&amp;guid=8003a1244c748dc45b0ea5b804c953f2&amp;type=3#SpelTabA_2&apos;); margin-left: 15px;" />
+                    <ui:Button display-tooltip-when-elided="true" name="Fire" class="button button_right button_right_fire" style="background-image: url(&apos;project://database/Assets/UI/Sprites/Spell/SpelTabA.png?fileID=-1793664191&amp;guid=8003a1244c748dc45b0ea5b804c953f2&amp;type=3#SpelTabA_2&apos;);" />
                 </ui:VisualElement>
                 <ui:VisualElement style="background-color: rgba(0, 0, 0, 0); align-items: flex-start;">
-                    <ui:Button display-tooltip-when-elided="true" name="Water" class="button button_right" style="background-image: url(&apos;project://database/Assets/UI/Sprites/Spell/SpelTabA.png?fileID=766600659&amp;guid=8003a1244c748dc45b0ea5b804c953f2&amp;type=3#SpelTabA_3&apos;); margin-left: 20px;" />
+                    <ui:Button display-tooltip-when-elided="true" name="Water" class="button button_right button_right_water" style="background-image: url(&apos;project://database/Assets/UI/Sprites/Spell/SpelTabA.png?fileID=766600659&amp;guid=8003a1244c748dc45b0ea5b804c953f2&amp;type=3#SpelTabA_3&apos;);" />
                 </ui:VisualElement>
                 <ui:VisualElement style="background-color: rgba(0, 0, 0, 0); align-items: flex-start;">
-                    <ui:Button display-tooltip-when-elided="true" name="All" class="button button_right button_right_active" style="background-image: url(&apos;project://database/Assets/UI/Sprites/Spell/SpelTabA.png?fileID=-1509050772&amp;guid=8003a1244c748dc45b0ea5b804c953f2&amp;type=3#SpelTabA_4&apos;); margin-left: 30px;" />
+                    <ui:Button display-tooltip-when-elided="true" name="All" class="button button_right button_right_active button_right_all" style="background-image: url(&apos;project://database/Assets/UI/Sprites/Spell/SpelTabA.png?fileID=-1509050772&amp;guid=8003a1244c748dc45b0ea5b804c953f2&amp;type=3#SpelTabA_4&apos;);" />
                 </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement style="position: absolute; bottom: 0; right: 0; left: 0; height: 11%; flex-direction: row;">
                 <ui:VisualElement class="w-50" style="align-items: flex-end;">
                     <ui:VisualElement class="w-25" style="background-color: rgba(0, 0, 0, 0); align-items: flex-start;">
-                        <ui:Button display-tooltip-when-elided="true" name="War" class="button_bottom button" style="background-image: url(&apos;project://database/Assets/UI/Sprites/Spell/SpellBookWar.png?fileID=2800000&amp;guid=95abeb2420a40ff4fb8ed705033d7dc5&amp;type=3#SpellBookWar&apos;); background-color: rgba(255, 255, 255, 0);" />
+                        <ui:Button display-tooltip-when-elided="true" name="Combat" class="button_bottom button" style="background-image: url(&apos;project://database/Assets/UI/Sprites/Spell/SpellBookWar.png?fileID=2800000&amp;guid=95abeb2420a40ff4fb8ed705033d7dc5&amp;type=3#SpellBookWar&apos;); background-color: rgba(255, 255, 255, 0);" />
                     </ui:VisualElement>
                 </ui:VisualElement>
                 <ui:VisualElement class="w-50" style="align-items: flex-start; flex-direction: row;">
@@ -42,7 +42,9 @@
                         <ui:Button display-tooltip-when-elided="true" name="Adv" class="button_bottom button" style="background-image: url(&apos;project://database/Assets/UI/Sprites/Spell/SpellBookAdv.png?fileID=2800000&amp;guid=6d8c40b76eda41e47852470e3a4a88f5&amp;type=3#SpellBookAdv&apos;); background-color: rgba(255, 255, 255, 0);" />
                     </ui:VisualElement>
                     <ui:VisualElement class="w-25" style="background-color: rgba(0, 0, 0, 0); align-items: flex-end;">
-                        <ui:Button display-tooltip-when-elided="true" name="Mana" class="button_bottom button" style="background-image: url(&apos;project://database/Assets/UI/Sprites/Spell/SpellBookMana.png?fileID=2800000&amp;guid=a1da983190f0bd4478b46380369507d5&amp;type=3#SpellBookMana&apos;); background-color: rgba(255, 255, 255, 0);" />
+                        <ui:VisualElement class="button_bottom" style="background-image: url(&apos;project://database/Assets/UI/Sprites/Spell/SpellBookMana.png?fileID=21300000&amp;guid=a1da983190f0bd4478b46380369507d5&amp;type=3#SpellBookMana&apos;);">
+                            <ui:Label tabindex="-1" text="1000" display-tooltip-when-elided="true" name="Mana" style="font-size: 15px; -unity-text-align: upper-center; align-items: center;" />
+                        </ui:VisualElement>
                     </ui:VisualElement>
                     <ui:VisualElement class="w-25" style="background-color: rgba(0, 0, 0, 0); align-items: flex-end;">
                         <ui:Button display-tooltip-when-elided="true" name="Close" class="button_bottom button" style="background-image: url(&apos;project://database/Assets/UI/Sprites/Spell/SpellBookClose.png?fileID=2800000&amp;guid=1a9eed4349b80cd4c8b13853f36f19e1&amp;type=3#SpellBookClose&apos;); background-color: rgba(255, 255, 255, 0);" />
@@ -51,4 +53,6 @@
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
+    <ui:Button display-tooltip-when-elided="true" name="Prev" class="bg-transparent m-0 p-0 button border-0" style="position: absolute; left: 8%; top: 2%; background-image: url(&apos;project://database/Assets/UI/Sprites/Spell/SpellPage.png?fileID=-1940903760&amp;guid=c1d8fef378989c5428f8c428eec5f93b&amp;type=3#SpellPage_0&apos;); width: 50px; height: 55px;" />
+    <ui:Button display-tooltip-when-elided="true" name="Next" class="bg-transparent m-0 p-0 button border-0" style="position: absolute; top: 2%; background-image: url(&apos;project://database/Assets/UI/Sprites/Spell/SpellPage.png?fileID=1378494359&amp;guid=c1d8fef378989c5428f8c428eec5f93b&amp;type=3#SpellPage_1&apos;); width: 50px; height: 55px; right: 8%;" />
 </ui:UXML>
