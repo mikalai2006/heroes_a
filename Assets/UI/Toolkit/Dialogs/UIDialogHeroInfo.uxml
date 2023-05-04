@@ -143,7 +143,11 @@
                     <ui:VisualElement name="Cape" class="border-1 border-color" style="flex-grow: 1; position: absolute; left: 68%; top: 70%; width: 80px; height: 80px; background-color: rgba(51, 40, 18, 0.82);" />
                     <ui:VisualElement name="Feet" class="border-1 border-color" style="flex-grow: 1; position: absolute; left: 49%; top: 83%; width: 80px; height: 80px; background-color: rgba(51, 40, 18, 0.82);" />
                     <ui:VisualElement name="Helm" class="border-1 border-color" style="flex-grow: 1; position: absolute; left: 47%; top: 3%; width: 80px; height: 80px; background-color: rgba(51, 40, 18, 0.82);" />
-                    <ui:VisualElement name="SpellBook" class="border-1 border-color" style="flex-grow: 1; position: absolute; left: 83%; top: 84%; width: 80px; height: 80px; background-color: rgba(51, 40, 18, 0.82);" />
+                    <ui:VisualElement name="SpellBookBlok" class="border-1 border-color" style="flex-grow: 1; position: absolute; left: 83%; top: 84%; width: 80px; height: 80px; background-color: rgba(51, 40, 18, 0.82);">
+                        <ui:Button display-tooltip-when-elided="true" name="SpellBook" class="button bg-transparent p-0 border-0" style="flex-grow: 1; align-items: stretch;">
+                            <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); background-image: url(&apos;project://database/Assets/Entity/MapObject/Prefabs/Artifact/ArtifactMap.png?fileID=274441678&amp;guid=c12233e7f9e1938489974c1fb7749211&amp;type=3#ArtifactMap_0&apos;);" />
+                        </ui:Button>
+                    </ui:VisualElement>
                 </ui:VisualElement>
                 <ui:VisualElement name="VisualElement" class="bg">
                     <ui:VisualElement name="Artifacts" class="bg-black p-05 border-1 border-color mx-1" style="flex-direction: row;">

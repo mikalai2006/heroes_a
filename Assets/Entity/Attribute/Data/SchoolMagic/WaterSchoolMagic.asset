@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6a1d646066b1ca46a98cdbf4d79bfbc, type: 3}
+  m_Name: WaterSchoolMagic
+  m_EditorClassIdentifier: 
+  idObject: schoolmagic.water
+  TypeAttribute: 100
+  MenuSprite: {fileID: 0}
+  MapPrefab:
+    m_AssetGUID: 
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  Text:
+    title:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    description:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+  typeSchoolMagic: 1
+  Sp:
+  - {fileID: 21300000, guid: e4548728e16233c4da3cb3e842a964e7, type: 3}
+  - {fileID: 21300000, guid: 290c523dd580816428689f57231f3603, type: 3}
+  - {fileID: 21300000, guid: 0b3a1f40115300c4d9e73f2cfe507afc, type: 3}
+  - {fileID: 21300000, guid: 08c56c8d08c809e4191a5b2d67e9b092, type: 3}
+  BaseSecondarySkill: {fileID: 11400000, guid: fa3203a5ee7c3ff4ebb5cca62988acab, type: 2}
+  references:
+    version: 2
+    RefIds: []

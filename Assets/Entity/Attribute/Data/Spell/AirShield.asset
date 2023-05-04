@@ -41,6 +41,7 @@ MonoBehaviour:
       m_LocalVariables: []
   SchoolMagic: {fileID: 11400000, guid: 31a94fbbb40b1054c9afac5eb9ba992f, type: 2}
   level: 3
+  typeSpell: 0
   typeSpellDuration: 1
   LevelData:
   - cost: 12

@@ -65,6 +65,12 @@ MonoBehaviour:
   - creature: {fileID: 11400000, guid: 9f3b6d3f88186174ea86b4e0f01dc676, type: 2}
     min: 15
     max: 25
+  StartSpells:
+  - {fileID: 11400000, guid: f0b6ce2de2ab0db4ea5d460c4e7461df, type: 2}
+  - {fileID: 11400000, guid: 515d3db2680d394429b02901c28441d2, type: 2}
+  - {fileID: 11400000, guid: cefa35a9086fcc346bae095dcc8fac63, type: 2}
+  - {fileID: 11400000, guid: 6ea98df9624d2e34188a22eb56f9b7c0, type: 2}
+  - {fileID: 11400000, guid: 08c84490596087042ad4ccae387cb166, type: 2}
   references:
     version: 2
     RefIds: []

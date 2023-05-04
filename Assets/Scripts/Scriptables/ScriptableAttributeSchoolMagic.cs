@@ -7,6 +7,7 @@ public class ScriptableAttributeSchoolMagic : ScriptableAttribute
 {
     public TypeSchoolMagic typeSchoolMagic;
     public List<Sprite> Sp;
+    public ScriptableAttributeSecondarySkill BaseSecondarySkill;
 }
 
 [System.Serializable]

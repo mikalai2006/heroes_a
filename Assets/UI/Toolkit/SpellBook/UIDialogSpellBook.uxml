@@ -3,19 +3,16 @@
     <Style src="project://database/Assets/UI/Toolkit/Base.uss?fileID=7433441132597879392&amp;guid=fa07b064290e7384d9ad2e26e79f5953&amp;type=3#Base" />
     <Style src="project://database/Assets/UI/Toolkit/SpellBook/SpellBook.uss?fileID=7433441132597879392&amp;guid=7ee2609214168344296806e5eed16b43&amp;type=3#SpellBook" />
     <ui:VisualElement class="text-secondary text-lg" style="flex-grow: 1;">
-        <ui:VisualElement style="flex-grow: 1; background-image: url(&apos;project://database/Assets/UI/Sprites/Spell/SpelBack.png?fileID=2800000&amp;guid=37a78e1824353a4449fd96be24868920&amp;type=3#SpelBack&apos;); -unity-background-scale-mode: stretch-to-fill; -unity-slice-left: 50; -unity-slice-top: 50; -unity-slice-right: 50; -unity-slice-bottom: 50;">
-            <ui:VisualElement name="SpellList1" style="flex-grow: 1; margin-left: 10%; margin-top: 3%; margin-bottom: 7%; margin-right: 53%; flex-direction: row; flex-wrap: wrap;">
+        <ui:VisualElement style="flex-grow: 1; background-image: url(&apos;project://database/Assets/UI/Sprites/Spell/SpelBack.png?fileID=2800000&amp;guid=37a78e1824353a4449fd96be24868920&amp;type=3#SpelBack&apos;); -unity-background-scale-mode: stretch-to-fill; -unity-slice-left: 50; -unity-slice-top: 50; -unity-slice-right: 50; -unity-slice-bottom: 50; flex-direction: row;">
+            <ui:VisualElement name="SpellList1" class="w-50" style="flex-grow: 1; margin-left: 10%; margin-top: 3%; margin-bottom: 7%; margin-right: 3%; flex-direction: row; flex-wrap: wrap;">
                 <ui:VisualElement class="h-33 w-33">
                     <ui:Instance template="UIItemSpell" name="UIItemSpell" style="flex-grow: 1;" />
                 </ui:VisualElement>
-                <ui:Instance template="UIItemSpell" name="UIItemSpell" class="w-33 h-25 h-33" />
-                <ui:Instance template="UIItemSpell" name="UIItemSpell" class="w-33 h-25 h-33" />
-                <ui:Instance template="UIItemSpell" name="UIItemSpell" class="w-33 h-25 h-33" />
-                <ui:Instance template="UIItemSpell" name="UIItemSpell" class="w-33 h-25 h-33" />
-                <ui:Instance template="UIItemSpell" name="UIItemSpell" class="w-33 h-25 h-33" />
-                <ui:Instance template="UIItemSpell" name="UIItemSpell" class="w-33 h-25 h-33" />
-                <ui:Instance template="UIItemSpell" name="UIItemSpell" class="w-33 h-25 h-33" />
-                <ui:Instance template="UIItemSpell" name="UIItemSpell" class="w-33 h-25 h-33" />
+            </ui:VisualElement>
+            <ui:VisualElement name="SpellList2" class="w-50" style="flex-grow: 1; margin-left: 3%; margin-top: 3%; margin-bottom: 7%; margin-right: 10%; flex-direction: row; flex-wrap: wrap;">
+                <ui:VisualElement class="h-33 w-33">
+                    <ui:Instance template="UIItemSpell" name="UIItemSpell" style="flex-grow: 1;" />
+                </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement style="position: absolute; right: 0; flex-grow: 1; bottom: 0; top: 0; width: 7%;">
                 <ui:VisualElement style="background-color: rgba(0, 0, 0, 0); align-items: flex-start;">

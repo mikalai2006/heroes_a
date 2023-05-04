@@ -446,6 +446,10 @@ MonoBehaviour:
     m_Metadata:
       m_Items:
       - rid: 4227538717603004418
+  - m_Id: 13596345421168640
+    m_Localized: "\u041C\u0430\u043D\u0430"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:

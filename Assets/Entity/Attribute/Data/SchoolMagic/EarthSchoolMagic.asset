@@ -45,6 +45,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: fceaf3368916b654a9e627b3447f139e, type: 3}
   - {fileID: 21300000, guid: ba1ae601147ce614c967d8ed85e0cc36, type: 3}
   - {fileID: 21300000, guid: c741a7fbf7ce8ef4db15697718829a3f, type: 3}
+  BaseSecondarySkill: {fileID: 11400000, guid: 7f7e8be60bed4304a92c4341542e5e5e, type: 2}
   references:
     version: 2
     RefIds: []

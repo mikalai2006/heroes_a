@@ -101,6 +101,14 @@ public class EntityHero : BaseEntity
                 newCreature.Data.idObject = creature.creature.idObject;
                 Data.Creatures[i] = newCreature;
             }
+
+            // Create book if exists start spells.
+            if (ConfigData.StartSpells.Count > 0)
+            {
+                Data.isBook = true;
+                Data.spells = ConfigData.StartSpells.Select(t => t.idObject).ToList();
+            }
+
             UnitManager.IdsExistsHeroes.Add(ScriptableData.idObject);
         }
         else
@@ -162,6 +170,12 @@ public class EntityHero : BaseEntity
         }
         // Create artifacts.
         Data.Artifacts = new List<EntityArtifact>();
+
+        // Create SpellBook.
+        if (Data.isBook)
+        {
+            Data.SpellBook = new EntityBook(this);
+        }
     }
 
     #region Events GameState

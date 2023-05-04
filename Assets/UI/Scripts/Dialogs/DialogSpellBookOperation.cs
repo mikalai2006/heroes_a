@@ -7,16 +7,16 @@ public struct DataResultDialogSpellBook
     public int value1;
     public int value2;
 }
-public struct DataDialogSpellBook
-{
-    public bool isOk;
-    public int value1;
-    public int value2;
-}
+// public struct DataDialogSpellBook
+// {
+//     public bool isOk;
+//     public int value1;
+//     public int value2;
+// }
 public class DialogSpellBookOperation : LocalAssetLoader
 {
-    private DataDialogSpellBook _dataDialog;
-    public DialogSpellBookOperation(DataDialogSpellBook dataDialog)
+    private EntityHero _dataDialog;
+    public DialogSpellBookOperation(EntityHero dataDialog)
     {
         _dataDialog = dataDialog;
     }

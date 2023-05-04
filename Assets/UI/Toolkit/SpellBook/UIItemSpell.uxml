@@ -1,14 +1,17 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/Toolkit/Base.uss?fileID=7433441132597879392&amp;guid=fa07b064290e7384d9ad2e26e79f5953&amp;type=3#Base" />
     <Style src="project://database/Assets/UI/Toolkit/SpellBook/SpellBook.uss?fileID=7433441132597879392&amp;guid=7ee2609214168344296806e5eed16b43&amp;type=3#SpellBook" />
-    <ui:VisualElement name="VisualElement" class="w-full h-full" style="flex-grow: 1;">
+    <ui:VisualElement name="VisualElement" class="w-full h-full p-1" style="flex-grow: 1;">
         <ui:VisualElement class="h-75" style="align-items: center; flex-grow: 1;">
             <ui:VisualElement name="Img" class="spell_item_img" />
+            <ui:VisualElement class="inset-0" style="position: absolute;">
+                <ui:VisualElement name="Lavra" class="spel_lavr inset-0" style="background-image: url(&apos;project://database/Assets/UI/Sprites/Spell/Sp/SpLevA0.png?fileID=21300000&amp;guid=7d5a9e957374c94449d1a2dbc9c7eca0&amp;type=3#SpLevA0&apos;);" />
+            </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement class="text-center">
-            <ui:Label tabindex="-1" text="Label" display-tooltip-when-elided="true" class="text-primary p-0 m-0 text-xs" />
-            <ui:Label tabindex="-1" text="Label" display-tooltip-when-elided="true" class="text-secondary p-0 m-0 text-xs" />
-            <ui:Label tabindex="-1" text="Label" display-tooltip-when-elided="true" class="text-secondary p-0 m-0 text-xs" />
+            <ui:Label tabindex="-1" text="Label" display-tooltip-when-elided="true" name="Name" class="p-0 m-0 spell_color_title text-sm" />
+            <ui:Label tabindex="-1" text="Label" display-tooltip-when-elided="true" name="Level" class="text-secondary p-0 m-0 text-xs" />
+            <ui:Label tabindex="-1" text="Label" display-tooltip-when-elided="true" name="Mana" class="text-secondary p-0 m-0 text-sm" />
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

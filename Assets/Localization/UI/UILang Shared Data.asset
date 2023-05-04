@@ -399,6 +399,10 @@ MonoBehaviour:
     m_Key: nextlevel_sskils
     m_Metadata:
       m_Items: []
+  - m_Id: 13596345421168640
+    m_Key: mana
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

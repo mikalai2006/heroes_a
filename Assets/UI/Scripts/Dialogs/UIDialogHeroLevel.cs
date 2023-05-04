@@ -11,7 +11,6 @@ using UnityEngine.UIElements;
 public class UIDialogHeroLevel : UIDialogBaseWindow
 {
     [SerializeField] private VisualTreeAsset _templateSecondarySkill;
-    public static event Action OnMoveCreature;
     private Button _buttonOk;
     protected TaskCompletionSource<DataResultDialogLevelHero> _processCompletionSource;
     protected DataResultDialogLevelHero _dataResultDialog;

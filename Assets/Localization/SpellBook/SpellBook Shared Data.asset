@@ -159,6 +159,182 @@ MonoBehaviour:
     m_Key: dimensiondoor_d
     m_Metadata:
       m_Items: []
+  - m_Id: 59896495243264
+    m_Key: levelshort
+    m_Metadata:
+      m_Items: []
+  - m_Id: 66212806688768
+    m_Key: levelsskilshort
+    m_Metadata:
+      m_Items: []
+  - m_Id: 238188103892992
+    m_Key: bless_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 238220588777472
+    m_Key: bless_b_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 238243506454528
+    m_Key: bless_b_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 238261676179456
+    m_Key: bless_a_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 238292453982208
+    m_Key: bless_a_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 238307033382912
+    m_Key: bless_e_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 238322485198848
+    m_Key: bless_e_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 238987550818304
+    m_Key: bloodlust_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 239012917968896
+    m_Key: bloodlust_b_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 239029519024128
+    m_Key: bloodlust_b_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 239043515416576
+    m_Key: bloodlust_a_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 239055540486144
+    m_Key: bloodlust_a_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 239106379644928
+    m_Key: bloodlust_e_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 239120040493056
+    m_Key: bloodlust_e_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 240548674961408
+    m_Key: cure_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 240587799429120
+    m_Key: cure_b_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 240604304015360
+    m_Key: cure_b_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 240630770073600
+    m_Key: cure_a_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 240651011784704
+    m_Key: cure_a_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 240667050803200
+    m_Key: cure_e_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 240681722478592
+    m_Key: cure_e_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 241795943530496
+    m_Key: curse_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 241822095015936
+    m_Key: curse_b_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 241837873987584
+    m_Key: curse_b_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 241852763766784
+    m_Key: curse_a_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 241868731482112
+    m_Key: curse_a_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 241880764940288
+    m_Key: curse_e_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 241898171301888
+    m_Key: curse_e_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 243318140338176
+    m_Key: dispel_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 243346699354112
+    m_Key: dispel_b_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 243369482813440
+    m_Key: dispel_b_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 243383592452096
+    m_Key: dispel_a_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 243400705212416
+    m_Key: dispel_a_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 243416970723328
+    m_Key: dispel_e_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 243431441072128
+    m_Key: dispel_e_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 244242653020160
+    m_Key: haste_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 244274584256512
+    m_Key: haste_b_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 244287657902080
+    m_Key: haste_b_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 244301054509056
+    m_Key: haste_a_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 244320599965696
+    m_Key: haste_a_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 244332826361856
+    m_Key: haste_e_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 244344255840256
+    m_Key: haste_e_d
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

@@ -98,9 +98,8 @@ MonoBehaviour:
       m_TableCollectionName: GUID:9b6db77d8a0719a4490c3b7aad12567c
   _uiDoc: {fileID: 6576243703473316342}
   _templateInsertBlok: {fileID: 9197481963319205126, guid: 7f7246b871f94224ebe9a4a892b59492, type: 3}
-  _templateCostItem: {fileID: 0}
-  _templateButton: {fileID: 0}
-  _templateButtonCheckItem: {fileID: 0}
+  _templateSpellItem: {fileID: 9197481963319205126, guid: 87a5660745fefb64c99e6173acb5563b, type: 3}
+  _templateButton: {fileID: 9197481963319205126, guid: db5e7d04a42304542a4356b1519364b2, type: 3}
   processAction:
     m_PersistentCalls:
       m_Calls: []

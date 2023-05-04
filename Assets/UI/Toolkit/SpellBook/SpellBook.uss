@@ -38,4 +38,15 @@
     width: 100%;
     height: 100%;
     background-image: url('project://database/Assets/UI/Sprites/Spell/Spell_book.png?fileID=740670611&guid=ed47d99f325775447b80057e6e6406ea&type=3#Spell_book_9');
+    margin-top: 5%;
+    margin-right: 5%;
+}
+
+.spell_color_title {
+    color: rgb(253, 244, 99);
+}
+
+.spel_lavr {
+    width: 100%;
+    height: 100%;
 }

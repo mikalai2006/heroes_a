@@ -9,6 +9,7 @@ public class ScriptableAttributeSpell : ScriptableAttribute
 {
     public ScriptableAttributeSchoolMagic SchoolMagic;
     public int level;
+    public TypeSpell typeSpell;
     public TypeSpellDuration typeSpellDuration;
     public List<SpellItem> LevelData;
     public int power;
@@ -24,6 +25,12 @@ public enum TypeSpellDuration
     Instant = 0,
     Round = 1,
     EndCombat = 2,
+}
+[System.Serializable]
+public enum TypeSpell
+{
+    Combat = 0,
+    Adventure = 1,
 }
 
 [System.Serializable]
