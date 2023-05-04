@@ -195,6 +195,18 @@ public class EntityHero : BaseEntity
     }
     #endregion
 
+    #region Getters
+    public int GetLevelSSkil(TypeSecondarySkill typeSecondarySkill)
+    {
+        int result = -1;
+        if (Data.SSkills.ContainsKey(typeSecondarySkill))
+        {
+            result = Data.SSkills[typeSecondarySkill];
+        }
+        return result;
+    }
+    #endregion
+
     public void SetHeroAsActive()
     {
         Player.SetActiveHero(this);

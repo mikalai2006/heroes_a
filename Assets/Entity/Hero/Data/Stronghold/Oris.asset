@@ -49,7 +49,7 @@ MonoBehaviour:
   Effects: []
   TypeFaction: 1
   TypeGender: 1
-  ClassHero: {fileID: 11400000, guid: 2506fee5f50b951438df247c0d7427e0, type: 2}
+  ClassHero: {fileID: 11400000, guid: e748d21172ee56f4694c865be6ada6a4, type: 2}
   StartSecondarySkill:
   - SecondarySkill: {fileID: 11400000, guid: 4427fef17b08d0f4b89ed9ffedaf6a4f, type: 2}
     value: 0
@@ -66,10 +66,6 @@ MonoBehaviour:
     min: 4
     max: 6
   StartSpells:
-  - {fileID: 11400000, guid: f0b6ce2de2ab0db4ea5d460c4e7461df, type: 2}
-  - {fileID: 11400000, guid: 515d3db2680d394429b02901c28441d2, type: 2}
-  - {fileID: 11400000, guid: cefa35a9086fcc346bae095dcc8fac63, type: 2}
-  - {fileID: 11400000, guid: 6ea98df9624d2e34188a22eb56f9b7c0, type: 2}
   - {fileID: 11400000, guid: 08c84490596087042ad4ccae387cb166, type: 2}
   references:
     version: 2

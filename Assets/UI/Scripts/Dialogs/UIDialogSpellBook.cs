@@ -195,6 +195,8 @@ public class UIDialogSpellBook : UIDialogBaseWindow
         {
             var spellData = spellBook.ActiveSpells[i];
             var schoolSpell = spellData.SchoolMagic;
+
+            var levelSSkill = _hero.GetLevelSSkil(spellData.SchoolMagic.BaseSecondarySkill.TypeTwoSkill);
             var levelSpell = -1;
             if (_hero.Data.SSkills.ContainsKey(schoolSpell.BaseSecondarySkill.TypeTwoSkill))
             {
@@ -236,7 +238,11 @@ public class UIDialogSpellBook : UIDialogBaseWindow
 
             var manaText = new LocalizedString(Constants.LanguageTable.LANG_TABLE_UILANG, "mana");
             newBlokSpell.Q<Label>("Mana").text
-                = string.Format("{0}: {1}", manaText.GetLocalizedString(), spellData.LevelData[0].cost);
+                = string.Format(
+                    "{0}: {1}",
+                    manaText.GetLocalizedString(),
+                    spellData.LevelData[levelSSkill + 1].cost
+                );
 
             _boxForSpell.Add(newNodeElementSpell);
             index++;

@@ -87,6 +87,30 @@ MonoBehaviour:
     m_Key: Neela
     m_Metadata:
       m_Items: []
+  - m_Id: 6824364482920448
+    m_Key: Alchemist
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6826719035162624
+    m_Key: Wizard
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6828055084564480
+    m_Key: Barbarian
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6829323265933312
+    m_Key: BattleMage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6830335653478400
+    m_Key: Cleric
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6830361452642304
+    m_Key: knight
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

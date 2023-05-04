@@ -13,6 +13,25 @@ MonoBehaviour:
   m_Name: Cleric
   m_EditorClassIdentifier: 
   idObject: hero.class.cleric
+  Text:
+    title:
+      m_TableReference:
+        m_TableCollectionName: GUID:20373cbdea5ac9c418c19cbf0eaabc21
+      m_TableEntryReference:
+        m_KeyId: 6830335653478400
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    description:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
   levelAgression: 0.8
   startAttack: 1
   startDefense: 0
@@ -116,3 +135,6 @@ MonoBehaviour:
     probability: 0.4000000059604645
   - Item: {fileID: 11400000, guid: 4427fef17b08d0f4b89ed9ffedaf6a4f, type: 2}
     probability: 0.699999988079071
+  references:
+    version: 2
+    RefIds: []

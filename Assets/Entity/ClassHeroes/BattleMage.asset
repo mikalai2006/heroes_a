@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a4c110b5e65630245b3f1cdf28b433a6, type: 3}
-  m_Name: Knight
+  m_Name: BattleMage
   m_EditorClassIdentifier: 
-  idObject: hero.class.knight
+  idObject: hero.class.battlemage
   Text:
     title:
       m_TableReference:
         m_TableCollectionName: GUID:20373cbdea5ac9c418c19cbf0eaabc21
       m_TableEntryReference:
-        m_KeyId: 6830361452642304
+        m_KeyId: 6829323265933312
         m_Key: 
       m_FallbackState: 0
       m_WaitForCompletion: 0
@@ -32,9 +32,9 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
-  levelAgression: 1
+  levelAgression: 1.1
   startAttack: 2
-  startDefense: 2
+  startDefense: 1
   startPower: 1
   startKnowlenge: 1
   ChancesPrimarySkill:
@@ -42,99 +42,99 @@ MonoBehaviour:
     maxlevel: 9
     Item:
       Item: {fileID: 11400000, guid: 642756d81958c7d4e8cf4a4f01d6f919, type: 2}
-      probability: 0.3499999940395355
+      probability: 0.30000001192092896
   - minlevel: 2
     maxlevel: 9
     Item:
       Item: {fileID: 11400000, guid: 59f8140e6c3547348b0623ced1853e18, type: 2}
-      probability: 0.44999998807907104
+      probability: 0.20000000298023224
   - minlevel: 2
     maxlevel: 9
     Item:
       Item: {fileID: 11400000, guid: c421eccad76028043ba7ead38940457f, type: 2}
-      probability: 0.10000000149011612
+      probability: 0.25
   - minlevel: 2
     maxlevel: 9
     Item:
       Item: {fileID: 11400000, guid: 5638aca8fa9ac574f84b59d9f4ee07dc, type: 2}
-      probability: 0.10000000149011612
+      probability: 0.25
   - minlevel: 10
     maxlevel: 100
     Item:
       Item: {fileID: 11400000, guid: 642756d81958c7d4e8cf4a4f01d6f919, type: 2}
-      probability: 0.30000001192092896
+      probability: 0.25
   - minlevel: 10
     maxlevel: 100
     Item:
       Item: {fileID: 11400000, guid: 59f8140e6c3547348b0623ced1853e18, type: 2}
-      probability: 0.30000001192092896
+      probability: 0.25
   - minlevel: 10
     maxlevel: 100
     Item:
       Item: {fileID: 11400000, guid: c421eccad76028043ba7ead38940457f, type: 2}
-      probability: 0.20000000298023224
+      probability: 0.25
   - minlevel: 10
     maxlevel: 100
     Item:
       Item: {fileID: 11400000, guid: 5638aca8fa9ac574f84b59d9f4ee07dc, type: 2}
-      probability: 0.20000000298023224
+      probability: 0.25
   ChancesSecondarySkill:
   - Item: {fileID: 11400000, guid: 2c060e15242dcbd45808ada6fa521278, type: 2}
     probability: 0.30000001192092896
   - Item: {fileID: 11400000, guid: 901384e2bd5925a458fe52bc9e2e9d14, type: 2}
-    probability: 0.5
-  - Item: {fileID: 11400000, guid: f1a7e964b63ebca439cf2a5541a6719b, type: 2}
-    probability: 0.5
-  - Item: {fileID: 11400000, guid: 75f4fc7d8a73dbf40afbcad79987193c, type: 2}
-    probability: 0.5
-  - Item: {fileID: 11400000, guid: b3653fec31423044eabbe48c254a0dc7, type: 2}
-    probability: 0.800000011920929
-  - Item: {fileID: 11400000, guid: 1d1748c1f68aa4a46b72dc60507f14b6, type: 2}
     probability: 0.4000000059604645
-  - Item: {fileID: 11400000, guid: 0ae481169a28e984d98c9992a7ae218b, type: 2}
-    probability: 0.20000000298023224
-  - Item: {fileID: 11400000, guid: 7f7e8be60bed4304a92c4341542e5e5e, type: 2}
-    probability: 0.20000000298023224
-  - Item: {fileID: 11400000, guid: 75c0333d35730504aa785f535122ac99, type: 2}
+  - Item: {fileID: 11400000, guid: f1a7e964b63ebca439cf2a5541a6719b, type: 2}
+    probability: 0.4000000059604645
+  - Item: {fileID: 11400000, guid: 75f4fc7d8a73dbf40afbcad79987193c, type: 2}
+    probability: 0.4000000059604645
+  - Item: {fileID: 11400000, guid: b3653fec31423044eabbe48c254a0dc7, type: 2}
     probability: 0.6000000238418579
+  - Item: {fileID: 11400000, guid: 1d1748c1f68aa4a46b72dc60507f14b6, type: 2}
+    probability: 0.30000001192092896
+  - Item: {fileID: 11400000, guid: 0ae481169a28e984d98c9992a7ae218b, type: 2}
+    probability: 0.5
+  - Item: {fileID: 11400000, guid: 7f7e8be60bed4304a92c4341542e5e5e, type: 2}
+    probability: 0.30000001192092896
+  - Item: {fileID: 11400000, guid: 75c0333d35730504aa785f535122ac99, type: 2}
+    probability: 0.10000000149011612
   - Item: {fileID: 11400000, guid: f2d574356e14eb74f89ac88c56b5df18, type: 2}
-    probability: 0.10000000149011612
+    probability: 0.30000001192092896
   - Item: {fileID: 11400000, guid: 2cbdf2de5831fc144b37408fd9ee6e8d, type: 2}
-    probability: 0.20000000298023224
+    probability: 0.4000000059604645
   - Item: {fileID: 11400000, guid: c948e391be432df4ba6045310fcfe5dc, type: 2}
-    probability: 0.10000000149011612
+    probability: 0.5
   - Item: {fileID: 11400000, guid: c15b97f4d81bf8048962e3ccb2d08f4f, type: 2}
-    probability: 1
+    probability: 0.4000000059604645
   - Item: {fileID: 11400000, guid: d933b47acd8e2fa4daf7df86bf56bda8, type: 2}
     probability: 0.4000000059604645
   - Item: {fileID: 11400000, guid: 470e94f5e23819448ac29936897125d9, type: 2}
-    probability: 0.5
+    probability: 0.8999999761581421
   - Item: {fileID: 11400000, guid: 873af494513012e4887082d7805b47c9, type: 2}
-    probability: 0.30000001192092896
-  - Item: {fileID: 11400000, guid: cb02e83a41f24fe408c650a8be226e5d, type: 2}
     probability: 0.20000000298023224
+  - Item: {fileID: 11400000, guid: cb02e83a41f24fe408c650a8be226e5d, type: 2}
+    probability: 0.4000000059604645
   - Item: {fileID: 11400000, guid: 33e0570c3639c2b4a8adbcf4f5c21729, type: 2}
-    probability: 0.800000011920929
+    probability: 0
   - Item: {fileID: 11400000, guid: e7aef3bffe5872047bd81b284817e5c6, type: 2}
     probability: 0
   - Item: {fileID: 11400000, guid: dc0c8987aed0b2d4cbe3bb0e396a233b, type: 2}
-    probability: 0.699999988079071
+    probability: 0.800000011920929
   - Item: {fileID: 11400000, guid: d7f6bb8e866d47b48b016c9525f7243e, type: 2}
     probability: 0.4000000059604645
   - Item: {fileID: 11400000, guid: ca2e21ed12fa7f34a87a51dc1a1091dd, type: 2}
-    probability: 0.5
+    probability: 0.4000000059604645
   - Item: {fileID: 11400000, guid: d266bef1716ee3948abd2c0d97fc99c8, type: 2}
-    probability: 0.10000000149011612
+    probability: 0.4000000059604645
   - Item: {fileID: 11400000, guid: a5a6f7166a0b39c43b0ab3b00b913ec0, type: 2}
     probability: 0.4000000059604645
   - Item: {fileID: 11400000, guid: e8cda6926708a1249b85fb9accbc02d0, type: 2}
-    probability: 0.10000000149011612
+    probability: 0.6000000238418579
   - Item: {fileID: 11400000, guid: 77ace1190e8c72d4489f8d130d69d976, type: 2}
-    probability: 0.699999988079071
+    probability: 0.5
   - Item: {fileID: 11400000, guid: fa3203a5ee7c3ff4ebb5cca62988acab, type: 2}
-    probability: 0.4000000059604645
-  - Item: {fileID: 11400000, guid: 4427fef17b08d0f4b89ed9ffedaf6a4f, type: 2}
     probability: 0.30000001192092896
+  - Item: {fileID: 11400000, guid: 4427fef17b08d0f4b89ed9ffedaf6a4f, type: 2}
+    probability: 0.6000000238418579
   references:
     version: 2
     RefIds: []

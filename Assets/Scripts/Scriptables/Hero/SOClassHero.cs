@@ -6,6 +6,7 @@ using UnityEngine;
 public class SOClassHero : ScriptableObject
 {
     public string idObject;
+    [SerializeField] public LangEntity Text;
     [Range(0.8f, 1.2f)] public float levelAgression; // Aggression ≥ Neutral_army_strength ÷ Hero_army_strength
     public int startAttack;
     public int startDefense;
@@ -24,9 +25,3 @@ public struct ProbabilityPrimaryAttribute
     public int maxlevel;
     public ItemProbabiliti<ScriptableAttributePrimarySkill> Item;
 }
-
-// [System.Serializable]
-// public struct ProbabilitySecondarySkillClassHero
-// {
-//     public ItemProbabiliti<List<ItemTwoSkill>> SecondarySkills;
-// }

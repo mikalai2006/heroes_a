@@ -116,7 +116,7 @@ public class UIDialogHeroInfo : UIDialogBaseWindow
         _descriptionHero.text
             = textLevel.GetLocalizedString()
             + " " + _hero.Data.level
-            + ", " + configDataHero.ClassHero.name;
+            + ", " + configDataHero.ClassHero.Text.title.GetLocalizedString();
 
         return await _processCompletionSource.Task;
     }
