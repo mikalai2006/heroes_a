@@ -1,8 +1,5 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-
-using UnityEngine;
 
 [System.Serializable]
 public class EntityBook
@@ -51,10 +48,6 @@ public class EntityBook
         CreateSpellsByTypeAndSchool();
         Pagination.total = ActiveSpells.Count;
         Pagination.limit = GetLimit();
-
-        // Pagination.end = Pagination.limit;
-        // Pagination.totalPage = (int)Math.Ceiling(Pagination.total / (double)Pagination.limit);
-
     }
 
     public void ChangePage(int page)
@@ -104,11 +97,6 @@ public class EntityBook
             limit = LIMITPERPAGE;
         };
 
-        // if ((limit * Pagination.page + limit) >= Pagination.total)
-        // {
-        //     limit = Pagination.total - (limit * Pagination.page);
-        // }
-
         return limit;
     }
 
@@ -125,9 +113,6 @@ public class EntityBook
         }
 
         _activeSpells = result.OrderBy(t => t.level).ToList();
-        _activeSpells = _activeSpells.Concat(_activeSpells).ToList();
-        _activeSpells = _activeSpells.Concat(_activeSpells).ToList();
-        _activeSpells = _activeSpells.Concat(_activeSpells).ToList();
     }
 
     public override string ToString()
