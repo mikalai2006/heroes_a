@@ -22,7 +22,7 @@ public class EntityHero : BaseEntity
     {
         get
         {
-            return Data.path.Count() > 0 && Data.hit > 0;
+            return Data.path.Count() > 0 && Data.mp > 0;
         }
         private set { }
     }
@@ -53,7 +53,7 @@ public class EntityHero : BaseEntity
             }
 
             Data.ide = ConfigData.idObject;
-            Data.hit = 100f;
+            // Data.hit = 100f;
             Data.speed = 100;
             Data.State = StateHero.OnMap;
             Data.name = !ConfigData.Text.title.IsEmpty ? ConfigData.Text.title.GetLocalizedString() : "No_LANg";
@@ -74,9 +74,12 @@ public class EntityHero : BaseEntity
             Data.nextLevel = 1000;
 
             Data.SSkills = new SerializableDictionary<TypeSecondarySkill, int>();
+            // Data.SecondarySkills = new SerializableDictionary<ScriptableAttributeSecondarySkill, int>();
             foreach (var skill in ConfigData.StartSecondarySkill)
             {
                 Data.SSkills.Add(skill.SecondarySkill.TypeTwoSkill, skill.value);
+                skill.SecondarySkill.RunEffect(Player, this);
+                // Data.SecondarySkills.Add(skill.SecondarySkill, skill.value);
             }
 
             _idEntity = ScriptableData.idObject;
@@ -108,6 +111,9 @@ public class EntityHero : BaseEntity
                 Data.isBook = true;
                 Data.spells = ConfigData.StartSpells.Select(t => t.idObject).ToList();
             }
+
+            // Create movement data.
+            Data.mp = GetMoveMentPoints();
 
             UnitManager.IdsExistsHeroes.Add(ScriptableData.idObject);
         }
@@ -178,6 +184,39 @@ public class EntityHero : BaseEntity
         }
     }
 
+    private float GetMoveMentPoints()
+    {
+        var baseMp = LevelManager.Instance.ConfigGameSettings.baseMovementValue;
+        float result = baseMp;
+        var tableDependicy = LevelManager.Instance.ConfigGameSettings.DependencyCreatureOnMove;
+        var slowCreature = Data.Creatures
+            .Where(t => t.Value != null)
+            .OrderBy(t => t.Value.ConfigAttribute.CreatureParams.Speed)
+            .First()
+            .Value;
+        var valueSpeedCreature = slowCreature.ConfigAttribute.CreatureParams.Speed;
+        var itemMovement = tableDependicy.Find(t => t.levelCreature == valueSpeedCreature);
+        if (valueSpeedCreature > 2 && valueSpeedCreature < 12)
+        {
+            result = itemMovement.movementValue;
+        }
+        if (valueSpeedCreature >= 12)
+        {
+            result = tableDependicy[tableDependicy.Count - 1].movementValue;
+        }
+
+        // add bonus secondarySkill.
+        var mpSSkil = ((result * Data.Qualities.mp) / 100f);
+
+        // bonus special = mpSSkil * (0.05f * Data.level + 1) in %
+        // result = result + (((mpSSkil * (Data.level * 0.05f + 1)) / 100f) * result);
+        // Debug.Log($"GetMoveMentPoints ::: result={result}[r={((int)((mpSSkil * Data.level * 1.05f) / 100f) * result)}][valueSpeedCreature={valueSpeedCreature}][itemMovement.movementValue={itemMovement.movementValue}]");
+
+        result = result + mpSSkil;
+        Debug.Log($"GetMoveMentPoints ::: result={result}[ssk={mpSSkil}]");
+        return result;
+    }
+
     #region Events GameState
     public override void OnAfterStateChanged(GameState newState)
     {
@@ -187,7 +226,7 @@ public class EntityHero : BaseEntity
             case GameState.NextDay:
                 if (LevelManager.Instance.ActivePlayer == Player)
                 {
-                    Data.hit = 100f;
+                    Data.mp = GetMoveMentPoints();
                     Data.mana = 100f;
                 }
                 break;
@@ -228,17 +267,47 @@ public class EntityHero : BaseEntity
     }
 
     #region Move
-    public float CalculateHitByNode(GridTileNode node)
+    public float CalculateHitByNode(GridTileNode node, bool isDiagonal)
     {
+        float moveCost = isDiagonal ? 141 : 100;
+        float penaltie = 0;
+        var nativeHeroGround = ConfigData.TypeGround;
         var dataNode = ResourceSystem.Instance.GetLandscape(node.TypeGround);
-        float val = (100 - dataNode.dataNode.speed + (100 - Data.speed + 10));
+
+        // Calculate penalti.
+        if (dataNode.Penalties > 100 && !dataNode.typeGround.HasFlag(nativeHeroGround))
+        {
+            penaltie = (dataNode.Penalties * moveCost) / 100;
+        }
+
+        // check creatures.
+        if (penaltie > 0)
+        {
+            var allCreatures = Data.Creatures.Where(t => t.Value != null);
+            var creaturesNodeGround = allCreatures.Where(t => t.Value.ConfigAttribute.TypeGround.HasFlag(node.TypeGround));
+            if (creaturesNodeGround.Count() == allCreatures.Count())
+            {
+                penaltie = 0;
+            }
+        }
+
+        // Use bonus cancel penaltie.
+        if (penaltie > 0)
+        {
+            penaltie = penaltie - Data.Qualities.movepen;
+        }
+
+        float val = penaltie == 0 ? moveCost : penaltie;
+        // Debug.Log($"MoveCost=[{val}]/penaltie={penaltie}/dataNode.typeGround={dataNode.typeGround}/nativeHeroGround={nativeHeroGround}/{dataNode.typeGround.HasFlag(nativeHeroGround)}");
         return val;
     }
 
-    public void ChangeHitHero(GridTileNode node)
+    public void ChangeHitHero(GridTileNode node, GridTileNode prevNode)
     {
-        var val = CalculateHitByNode(node);
-        Data.hit -= val;
+        var isDiagonal = node.position.x != prevNode.position.x
+            && node.position.y != prevNode.position.y;
+        var val = CalculateHitByNode(node, isDiagonal);
+        Data.mp -= val;
 
         // Debug.Log($"ChangeHitHero:::[node {node.position}]{ScriptableData.name}-{Data.hit}");
         if (Player != null && Player.DataPlayer.playerType != PlayerType.Bot)
@@ -278,6 +347,11 @@ public class EntityHero : BaseEntity
         {
             Data.SSkills[typeSecondarySkill] = value;
         }
+
+        var skill = ResourceSystem.Instance
+            .GetAttributesByType<ScriptableAttributeSecondarySkill>(TypeAttribute.SecondarySkill)
+            .Find(t => t.TypeTwoSkill == typeSecondarySkill);
+        skill.RunEffect(Player, this);
 
         GameManager.Instance.ChangeState(GameState.ChangeHeroParams);
     }
@@ -407,7 +481,7 @@ public class EntityHero : BaseEntity
     public void SetClearSky(Vector3Int startPosition)
     {
         List<GridTileNode> noskyNode
-            = GameManager.Instance.MapManager.DrawSky(startPosition, 4);
+            = GameManager.Instance.MapManager.DrawSky(startPosition, Data.Qualities.scout);
         Player.SetNosky(noskyNode);
     }
 
@@ -426,7 +500,7 @@ public class EntityHero : BaseEntity
 
     public async UniTask StartMove()
     {
-        if (Data.path.Count > 0 && Data.hit > 0)
+        if (Data.path.Count > 0 && Data.mp > 0)
         {
             await ((MapEntityHero)MapObject.MapObjectGameObject).StartMove();
         }
@@ -619,7 +693,7 @@ public class EntityHero : BaseEntity
         var countProbePath = 5;
         var countProbe = 0;
         AIFindResource();
-        while (Data.hit > 0 && countProbe < countProbePath)
+        while (Data.mp > 0 && countProbe < countProbePath)
         {
             if (Data.path.Count == 0)
             {

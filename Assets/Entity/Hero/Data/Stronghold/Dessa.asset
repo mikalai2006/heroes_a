@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87c649b364422834e97e3024a32c0ffe, type: 3}
   m_Name: Dessa
   m_EditorClassIdentifier: 
-  idObject: hero.Dessa
+  idObject: hero.dessa
   TypeEntity: 90
   MenuSprite: {fileID: 21300000, guid: c211c860884dcb344ad72e73580e6fae, type: 3}
   Text:
@@ -39,8 +39,8 @@ MonoBehaviour:
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
-  TypeGround: 0
-  TypeMapObject: 0
+  TypeGround: 16
+  TypeMapObject: 8
   RMGValue: 0
   listTypeNoPath: 
   listRuleInput: 
@@ -66,7 +66,7 @@ MonoBehaviour:
     min: 4
     max: 6
   StartSpells:
-  - {fileID: 11400000, guid: 08c84490596087042ad4ccae387cb166, type: 2}
+  - {fileID: 11400000, guid: 8cfccb94b2d3ce143a2c87b3ae6f6985, type: 2}
   references:
     version: 2
     RefIds: []

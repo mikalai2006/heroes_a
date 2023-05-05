@@ -12,13 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3cff73568744154cb466614101c87c9, type: 3}
   m_Name: Snow
   m_EditorClassIdentifier: 
-  idObject: 3f1c439e5bab4cf0981dce73fc7f15a7
-  objectName: Snow
+  idObject: snow
   tileRule: {fileID: 11400000, guid: 7a827a656fab9cd4da059fdcf2c977ad, type: 2}
-  dataNode:
-    speed: 100
-  speed: 100
   isWalkable: 1
   isFraction: 1
   typeGround: 256
   typeFaction: 80
+  Penalties: 150

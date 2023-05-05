@@ -15,6 +15,11 @@ MonoBehaviour:
   idObject: creature.monk
   TypeAttribute: 80
   MenuSprite: {fileID: 1227858895, guid: e7a6d1e198529c44c93ed148f1bf1afe, type: 3}
+  MapPrefab:
+    m_AssetGUID: b2d52339c77fd364cbfddc2dafaadf72
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
   Text:
     title:
       m_TableReference:
@@ -35,11 +40,7 @@ MonoBehaviour:
       m_WaitForCompletion: 0
       m_LocalVariables: []
   TypeFaction: 0
-  MapPrefab:
-    m_AssetGUID: b2d52339c77fd364cbfddc2dafaadf72
-    m_SubObjectName: 
-    m_SubObjectType: 
-    m_EditorAssetChanged: 0
+  TypeGround: 4
   ArenaModel:
     m_AssetGUID: 8b634039c58359a43b7ef98aec5fa104
     m_SubObjectName: 

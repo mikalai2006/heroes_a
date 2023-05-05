@@ -15,6 +15,11 @@ MonoBehaviour:
   idObject: creature.archer
   TypeAttribute: 80
   MenuSprite: {fileID: -978595862, guid: e7a6d1e198529c44c93ed148f1bf1afe, type: 3}
+  MapPrefab:
+    m_AssetGUID: 76c3e9366d2603c45b36de6573ad5924
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
   Text:
     title:
       m_TableReference:
@@ -35,11 +40,7 @@ MonoBehaviour:
       m_WaitForCompletion: 0
       m_LocalVariables: []
   TypeFaction: 0
-  MapPrefab:
-    m_AssetGUID: 76c3e9366d2603c45b36de6573ad5924
-    m_SubObjectName: 
-    m_SubObjectType: 
-    m_EditorAssetChanged: 0
+  TypeGround: 4
   ArenaModel:
     m_AssetGUID: 607237c9b57da7442a8d083095e6aa5e
     m_SubObjectName: 

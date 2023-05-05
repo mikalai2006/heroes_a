@@ -12,13 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3cff73568744154cb466614101c87c9, type: 3}
   m_Name: Rough
   m_EditorClassIdentifier: 
-  idObject: c037936ea652400596efbb8514b35d1f
-  objectName: Rough
+  idObject: rough
   tileRule: {fileID: 11400000, guid: 3da55c029735350478b5af137d14f539, type: 2}
-  dataNode:
-    speed: 90
-  speed: 100
   isWalkable: 1
   isFraction: 1
   typeGround: 16
   typeFaction: 0
+  Penalties: 100

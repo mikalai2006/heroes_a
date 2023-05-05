@@ -196,6 +196,27 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   countBuildPerDay: 1
+  baseMovementValue: 1900
+  DependencyCreatureOnMove:
+  - levelCreature: 3
+    movementValue: 1500
+  - levelCreature: 4
+    movementValue: 1560
+  - levelCreature: 5
+    movementValue: 1630
+  - levelCreature: 6
+    movementValue: 1700
+  - levelCreature: 7
+    movementValue: 1760
+  - levelCreature: 8
+    movementValue: 1830
+  - levelCreature: 9
+    movementValue: 1900
+  - levelCreature: 10
+    movementValue: 1960
+  - levelCreature: 11
+    movementValue: 2000
+  countCellClearSky: 4
   references:
     version: 2
     RefIds: []

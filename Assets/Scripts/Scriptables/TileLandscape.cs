@@ -14,29 +14,13 @@ public struct DataNode
 public class TileLandscape : ScriptableObject
 {
     [SerializeField] public string idObject;
-
-    public string objectName;
-
     public RuleTile tileRule;
-
-    public DataNode dataNode;
-
-    public float speed;
-
+    // public DataNode dataNode;
     public bool isWalkable;
-
     public bool isFraction;
-
-    //public RuleTile noiseRule;
-
-    //public List<Tile> tiles;
-
-    //public List<CornerTiles> cornerTiles;
-
     public TypeGround typeGround;
-    public TypeFaction typeFaction;
-
-    //public List<TileNature> natureTiles;
+    // public TypeFaction typeFaction;
+    public int Penalties;
 }
 
 [System.Serializable]

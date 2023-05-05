@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 
+using Cysharp.Threading.Tasks;
+
 using UnityEngine;
 using UnityEngine.Localization;
 
@@ -9,6 +11,14 @@ public class ScriptableAttributeSecondarySkill : ScriptableAttribute
     public TypeSecondarySkill TypeTwoSkill;
 
     public List<SecondarySkillIem> Levels;
+    public List<BaseEffectSkill> Effects;
+    public virtual void RunEffect(Player player, BaseEntity entity)
+    {
+        foreach (var effect in Effects)
+        {
+            effect.RunEffect(player, entity);
+        }
+    }
 }
 
 [System.Serializable]
@@ -17,6 +27,7 @@ public struct SecondarySkillIem
     public Sprite Sprite;
     public LocalizedString Title;
     public LocalizedString Description;
+    public int value;
 }
 
 [System.Serializable]

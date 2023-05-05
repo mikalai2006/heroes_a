@@ -140,11 +140,11 @@ class GenerateIDTileNatureEditor : GenerateIDEditor
 
 }
 
-[CustomEditor(typeof(TileLandscape))]
-class GenerateIDTileLandscapeEditor : GenerateIDEditor
-{
+// [CustomEditor(typeof(TileLandscape))]
+// class GenerateIDTileLandscapeEditor : GenerateIDEditor
+// {
 
-}
+// }
 
 
 // [CustomEditor(typeof(ScriptableSkillSchool))]

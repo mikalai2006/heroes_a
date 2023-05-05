@@ -1,13 +1,14 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
-    <Style src="project://database/Assets/UI/Toolkit/ButtonHero.uss?fileID=7433441132597879392&amp;guid=338317b2fb9014c42b7f5257d06503a4&amp;type=3#ButtonHero" />
+    <Style src="project://database/Assets/UI/Toolkit/Aside/AsideButtonHero.uss?fileID=7433441132597879392&amp;guid=338317b2fb9014c42b7f5257d06503a4&amp;type=3#AsideButtonHero" />
     <Style src="project://database/Assets/UI/Toolkit/Base.uss?fileID=7433441132597879392&amp;guid=fa07b064290e7384d9ad2e26e79f5953&amp;type=3#Base" />
     <ui:Button display-tooltip-when-elided="true" name="ButtonAside" class="button_bg button_unit button_bordered m-px" style="flex-grow: 1;">
-        <ui:VisualElement name="bar" class="button_bar">
-            <ui:VisualElement name="hit" class="button_bar_value button_bar_hit" />
+        <ui:VisualElement name="BarHit" class="button_bar">
+            <ui:VisualElement name="Hit" class="button_bar_value button_bar_hit" style="background-color: rgb(16, 154, 9);" />
+            <ui:VisualElement name="Plus" style="position: absolute;" />
         </ui:VisualElement>
         <ui:VisualElement name="image" class="button_img" />
-        <ui:VisualElement name="bar" class="button_bar">
-            <ui:VisualElement name="mana" class="button_bar_value button_bar_mana" />
+        <ui:VisualElement name="BarMana" class="button_bar">
+            <ui:VisualElement name="Mana" class="button_bar_value button_bar_mana" style="background-color: rgb(0, 55, 195);" />
         </ui:VisualElement>
     </ui:Button>
 </ui:UXML>

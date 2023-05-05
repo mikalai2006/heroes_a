@@ -15,6 +15,11 @@ MonoBehaviour:
   idObject: attribute.skill.logistics
   TypeAttribute: 40
   MenuSprite: {fileID: 0}
+  MapPrefab:
+    m_AssetGUID: 
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
   Text:
     title:
       m_TableReference:
@@ -55,6 +60,7 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
+    value: 10
   - Sprite: {fileID: 1172166328, guid: bb3826057700334448fec2c60c7241e3, type: 3}
     Title:
       m_TableReference:
@@ -74,6 +80,7 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
+    value: 20
   - Sprite: {fileID: 1740081369, guid: bb3826057700334448fec2c60c7241e3, type: 3}
     Title:
       m_TableReference:
@@ -93,6 +100,9 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
+    value: 30
+  Effects:
+  - {fileID: 11400000, guid: 7ee19f32970e51140bc1aed8a8568ad8, type: 2}
   references:
     version: 2
     RefIds: []

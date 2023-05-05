@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87c649b364422834e97e3024a32c0ffe, type: 3}
   m_Name: Jabarkas
   m_EditorClassIdentifier: 
-  idObject: hero.Jabarkas
+  idObject: hero.jabarkas
   TypeEntity: 90
   MenuSprite: {fileID: 21300000, guid: 600c464143569f34c80daf7fa8194c36, type: 3}
   Text:
@@ -39,8 +39,8 @@ MonoBehaviour:
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
-  TypeGround: 0
-  TypeMapObject: 0
+  TypeGround: 16
+  TypeMapObject: 8
   RMGValue: 0
   listTypeNoPath: 
   listRuleInput: 

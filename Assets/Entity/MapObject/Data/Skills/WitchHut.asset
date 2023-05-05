@@ -15,47 +15,51 @@ MonoBehaviour:
   idObject: map.skills.witchhut
   TypeEntity: 34
   MenuSprite: {fileID: 0}
-  title:
-    m_TableReference:
-      m_TableCollectionName: GUID:8ed801dac82951d449557e1a63174ac8
-    m_TableEntryReference:
-      m_KeyId: 4634953448062976
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
+  Text:
+    title:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    description:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
   MapPrefab:
     m_AssetGUID: 8c479348234692d42ad53cc89eb2bbd7
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
   TypeGround: -1
-  TypeWorkAttribute: 0
-  Attributes:
+  Faction: {fileID: 0}
+  TypeMapObject: 4
+  RMGValue: 0
+  listTypeNoPath: 
+  listRuleInput: 1100000013000000120000000c0000000e000000
+  TypeWorkObject: 4
+  TypeWorkEffect: 0
+  Effects:
   - Item:
       description:
         m_TableReference:
-          m_TableCollectionName: GUID:8ed801dac82951d449557e1a63174ac8
+          m_TableCollectionName: 
         m_TableEntryReference:
-          m_KeyId: 4634989988839424
+          m_KeyId: 0
           m_Key: 
         m_FallbackState: 0
         m_WaitForCompletion: 0
         m_LocalVariables: []
-      Resources: []
-      PrimarySkills: []
-      SecondarySkills:
-      - SecondarySkill: {fileID: 11400000, guid: 2c060e15242dcbd45808ada6fa521278, type: 2}
-        value: 0
-      Artifacts:
-        Artifact: []
-        isOne: 0
-    probability: 1
-  listTypeNoPath: 
-  TypeWorkObject: 4
-  TypeMapObject: 4
-  listRuleInput: 1100000013000000120000000c0000000e000000
-  Effects: []
+      items: []
+    probability: 0
   references:
     version: 2
     RefIds: []

@@ -31,6 +31,19 @@ public class SOGameSetting : ScriptableObject
     public AnimationCurve probabilityExperience;
     public int countBuildPerDay;
 
+    [Header("Setting Movement")]
+    [Space(5)]
+    public int baseMovementValue;
+    public List<ItemDependencyCreatureOnMove> DependencyCreatureOnMove;
+    public int countCellClearSky;
+
+}
+
+[System.Serializable]
+public class ItemDependencyCreatureOnMove
+{
+    public int levelCreature;
+    public int movementValue;
 }
 
 [System.Serializable]

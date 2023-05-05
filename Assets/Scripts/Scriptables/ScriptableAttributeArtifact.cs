@@ -16,14 +16,6 @@ public class ScriptableAttributeArtifact : ScriptableAttribute
     public List<ArtifactItemSkill> PrimarySkills;
     public List<ArtifactItemSkill> SecondarySkills;
     public LocalizedString textOk;
-    public List<BaseEffect> Effects;
-    public async virtual UniTask RunHero(Player player, BaseEntity entity)
-    {
-        foreach (var effect in Effects)
-        {
-            await effect.RunHero(player, entity);
-        }
-    }
 }
 
 [System.Serializable]

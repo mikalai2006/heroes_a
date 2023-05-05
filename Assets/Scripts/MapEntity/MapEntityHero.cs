@@ -118,10 +118,11 @@ public class MapEntityHero : BaseMapEntity
     private async UniTask MoveHero(CancellationToken cancellationToken)
     {
         var entityHero = (EntityHero)_mapObject.Entity;
+        GridTileNode prevNode = MapObject.OccupiedNode;
         while (
             entityHero.Data.path.Count > 0
             && _canMove
-            && entityHero.Data.hit >= 1
+            && entityHero.Data.mp >= 1
             && !cancellationToken.IsCancellationRequested
             )
         {
@@ -144,7 +145,7 @@ public class MapEntityHero : BaseMapEntity
                 // cancelTokenSource.Cancel();
                 // cancelTokenSource.Dispose();
                 // // break;
-                await DoObject(nodeTo, nodeTo.ProtectedUnit.MapObjectGameObject);
+                await DoObject(nodeTo, nodeTo.ProtectedUnit.MapObjectGameObject, prevNode);
                 cancelTokenSource.Cancel();
                 cancelTokenSource.Dispose();
             }
@@ -162,7 +163,7 @@ public class MapEntityHero : BaseMapEntity
                     // cancelTokenSource.Cancel();
                     // cancelTokenSource.Dispose();
                     // // break;
-                    await DoObject(nodeTo, nodeTo.OccupiedUnit.MapObjectGameObject);
+                    await DoObject(nodeTo, nodeTo.OccupiedUnit.MapObjectGameObject, prevNode);
                     cancelTokenSource.Cancel();
                     cancelTokenSource.Dispose();
                 }
@@ -182,7 +183,7 @@ public class MapEntityHero : BaseMapEntity
                 // await UniTask.Yield();
                 // entityHero.SetPositionHero(nodeTo.position);
 
-                entityHero.ChangeHitHero(nodeTo);
+                entityHero.ChangeHitHero(nodeTo, prevNode);
                 entityHero.SetGuestForNode(nodeTo);
 
                 // if (MapObjectClass.Player.DataPlayer.playerType != PlayerType.Bot)
@@ -195,20 +196,21 @@ public class MapEntityHero : BaseMapEntity
                 if (nodeTo.OccupiedUnit != null)
                 {
                     // await nodeTo.OccupiedUnit.MapObjectGameObject.OnGoHero(MapObjectClass.Player);
-                    await DoObject(nodeTo, nodeTo.OccupiedUnit.MapObjectGameObject);
+                    await DoObject(nodeTo, nodeTo.OccupiedUnit.MapObjectGameObject, prevNode);
                     cancelTokenSource.Cancel();
                     cancelTokenSource.Dispose();
                     // break;
                 }
 
             }
+            prevNode = nodeTo;
         }
         GameManager.Instance.ChangeState(GameState.StopMoveHero);
         _canMove = false;
         _animator.SetBool("isWalking", false);
     }
 
-    public async UniTask DoObject(GridTileNode nodeTo, BaseMapEntity mapEntity)
+    public async UniTask DoObject(GridTileNode nodeTo, BaseMapEntity mapEntity, GridTileNode nodePrev)
     {
         var entityHero = (EntityHero)_mapObject.Entity;
 
@@ -216,7 +218,7 @@ public class MapEntityHero : BaseMapEntity
         _animator.SetBool("isWalking", false);
 
         await mapEntity.OnGoHero(_mapObject.Entity.Player);
-        entityHero.ChangeHitHero(nodeTo);
+        entityHero.ChangeHitHero(nodeTo, nodePrev);
         entityHero.SetPathHero(null);
     }
 
@@ -260,11 +262,11 @@ public class MapEntityHero : BaseMapEntity
         }
     }
 
-    public void ChangeHit(GridTileNode node, float _hit)
-    {
-        var data = (EntityHero)_mapObject.Entity;
-        data.Data.hit += _hit * data.Data.speed;
-    }
+    // public void ChangeHit(GridTileNode node, float _hit)
+    // {
+    //     var data = (EntityHero)_mapObject.Entity;
+    //     data.Data.hit += _hit * data.Data.speed;
+    // }
 
     private void OnMouseDown()
     {

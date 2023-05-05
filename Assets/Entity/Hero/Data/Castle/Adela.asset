@@ -39,7 +39,7 @@ MonoBehaviour:
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
-  TypeGround: 0
+  TypeGround: 12
   TypeMapObject: 8
   RMGValue: 0
   listTypeNoPath: 
@@ -55,12 +55,12 @@ MonoBehaviour:
     value: 0
   - SecondarySkill: {fileID: 11400000, guid: 1d1748c1f68aa4a46b72dc60507f14b6, type: 2}
     value: 0
-  - SecondarySkill: {fileID: 11400000, guid: 2c060e15242dcbd45808ada6fa521278, type: 2}
-    value: 1
-  - SecondarySkill: {fileID: 11400000, guid: 7f7e8be60bed4304a92c4341542e5e5e, type: 2}
+  - SecondarySkill: {fileID: 11400000, guid: d7f6bb8e866d47b48b016c9525f7243e, type: 2}
     value: 2
-  - SecondarySkill: {fileID: 11400000, guid: fa3203a5ee7c3ff4ebb5cca62988acab, type: 2}
-    value: 0
+  - SecondarySkill: {fileID: 11400000, guid: 470e94f5e23819448ac29936897125d9, type: 2}
+    value: 2
+  - SecondarySkill: {fileID: 11400000, guid: a5a6f7166a0b39c43b0ab3b00b913ec0, type: 2}
+    value: 2
   StartCreatures:
   - creature: {fileID: 11400000, guid: 45a286b764d7a864683d354b9e7d65fb, type: 2}
     min: 10

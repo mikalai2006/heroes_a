@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 14d91db6ddbb6e346a9b5746589643a9, type: 3}
-  m_Name: Haste
+  m_Name: 1_Bless
   m_EditorClassIdentifier: 
-  idObject: spell.haste
+  idObject: spell.bless
   TypeAttribute: 60
-  MenuSprite: {fileID: -487404147, guid: ed47d99f325775447b80057e6e6406ea, type: 3}
+  MenuSprite: {fileID: 957966622, guid: ed47d99f325775447b80057e6e6406ea, type: 3}
   MapPrefab:
     m_AssetGUID: 
     m_SubObjectName: 
@@ -25,7 +25,7 @@ MonoBehaviour:
       m_TableReference:
         m_TableCollectionName: GUID:d70741e361221cc41926374ef28f7c49
       m_TableEntryReference:
-        m_KeyId: 244242653020160
+        m_KeyId: 238188103892992
         m_Key: 
       m_FallbackState: 0
       m_WaitForCompletion: 0
@@ -39,64 +39,20 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
-  SchoolMagic: {fileID: 11400000, guid: 31a94fbbb40b1054c9afac5eb9ba992f, type: 2}
+  SchoolMagic: {fileID: 11400000, guid: 4d98384254a7e794eb2b1cd4b94312ff, type: 2}
   level: 1
   typeSpell: 0
   typeSpellDuration: 1
   LevelData:
-  - cost: 6
-    Effect: 3
-    AI: 5
-    Text:
-      title:
-        m_TableReference:
-          m_TableCollectionName: GUID:d70741e361221cc41926374ef28f7c49
-        m_TableEntryReference:
-          m_KeyId: 244242653020160
-          m_Key: 
-        m_FallbackState: 0
-        m_WaitForCompletion: 0
-        m_LocalVariables: []
-      description:
-        m_TableReference:
-          m_TableCollectionName: GUID:d70741e361221cc41926374ef28f7c49
-        m_TableEntryReference:
-          m_KeyId: 244287657902080
-          m_Key: 
-        m_FallbackState: 0
-        m_WaitForCompletion: 0
-        m_LocalVariables: []
   - cost: 5
-    Effect: 3
-    AI: 5
-    Text:
-      title:
-        m_TableReference:
-          m_TableCollectionName: GUID:d70741e361221cc41926374ef28f7c49
-        m_TableEntryReference:
-          m_KeyId: 244274584256512
-          m_Key: 
-        m_FallbackState: 0
-        m_WaitForCompletion: 0
-        m_LocalVariables: []
-      description:
-        m_TableReference:
-          m_TableCollectionName: GUID:d70741e361221cc41926374ef28f7c49
-        m_TableEntryReference:
-          m_KeyId: 244287657902080
-          m_Key: 
-        m_FallbackState: 0
-        m_WaitForCompletion: 0
-        m_LocalVariables: []
-  - cost: 5
-    Effect: 5
+    Effect: 0
     AI: 10
     Text:
       title:
         m_TableReference:
           m_TableCollectionName: GUID:d70741e361221cc41926374ef28f7c49
         m_TableEntryReference:
-          m_KeyId: 244301054509056
+          m_KeyId: 238188103892992
           m_Key: 
         m_FallbackState: 0
         m_WaitForCompletion: 0
@@ -105,20 +61,20 @@ MonoBehaviour:
         m_TableReference:
           m_TableCollectionName: GUID:d70741e361221cc41926374ef28f7c49
         m_TableEntryReference:
-          m_KeyId: 244320599965696
+          m_KeyId: 238243506454528
           m_Key: 
         m_FallbackState: 0
         m_WaitForCompletion: 0
         m_LocalVariables: []
-  - cost: 5
-    Effect: 5
+  - cost: 4
+    Effect: 0
     AI: 10
     Text:
       title:
         m_TableReference:
           m_TableCollectionName: GUID:d70741e361221cc41926374ef28f7c49
         m_TableEntryReference:
-          m_KeyId: 244332826361856
+          m_KeyId: 238220588777472
           m_Key: 
         m_FallbackState: 0
         m_WaitForCompletion: 0
@@ -127,7 +83,51 @@ MonoBehaviour:
         m_TableReference:
           m_TableCollectionName: GUID:d70741e361221cc41926374ef28f7c49
         m_TableEntryReference:
-          m_KeyId: 244344255840256
+          m_KeyId: 238243506454528
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+  - cost: 4
+    Effect: 1
+    AI: 11
+    Text:
+      title:
+        m_TableReference:
+          m_TableCollectionName: GUID:d70741e361221cc41926374ef28f7c49
+        m_TableEntryReference:
+          m_KeyId: 238261676179456
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      description:
+        m_TableReference:
+          m_TableCollectionName: GUID:d70741e361221cc41926374ef28f7c49
+        m_TableEntryReference:
+          m_KeyId: 238292453982208
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+  - cost: 4
+    Effect: 1
+    AI: 11
+    Text:
+      title:
+        m_TableReference:
+          m_TableCollectionName: GUID:d70741e361221cc41926374ef28f7c49
+        m_TableEntryReference:
+          m_KeyId: 238307033382912
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      description:
+        m_TableReference:
+          m_TableCollectionName: GUID:d70741e361221cc41926374ef28f7c49
+        m_TableEntryReference:
+          m_KeyId: 238322485198848
           m_Key: 
         m_FallbackState: 0
         m_WaitForCompletion: 0
@@ -135,23 +135,23 @@ MonoBehaviour:
   power: 0
   ChanceToGain:
   - Item: 0
-    probability: 0.05000000074505806
-  - Item: 70
     probability: 0.10000000149011612
+  - Item: 70
+    probability: 0.05000000074505806
   - Item: 80
     probability: 0.05000000074505806
   - Item: 50
-    probability: 0.05000000074505806
+    probability: 0
   - Item: 60
-    probability: 0.05000000074505806
+    probability: 0
   - Item: 40
-    probability: 0.10000000149011612
+    probability: 0.029999999329447746
   - Item: 1
-    probability: 0.05000000074505806
+    probability: 0.029999999329447746
   - Item: 30
-    probability: 0.10000000149011612
+    probability: 0.05000000074505806
   - Item: 20
-    probability: 0.10000000149011612
+    probability: 0.05000000074505806
   unAvailability: 
   Effect: {fileID: 0}
   references:

@@ -30,6 +30,7 @@ public class UIGameAside : UILocaleBase
     private VisualElement aside;
     private VisualElement _footer;
     private VisualElement _mapButtons;
+    [SerializeField] private VisualTreeAsset _templatePlus;
     [SerializeField] private VisualTreeAsset _templateButtonHero;
     [SerializeField] private VisualTreeAsset _templateButtonTown;
     [SerializeField] private VisualTreeAsset _templateHeroInfo;
@@ -121,10 +122,29 @@ public class UIGameAside : UILocaleBase
 
     private void ChangeParamsActiveHero(EntityHero hero)
     {
-        VisualElement heroHit = _herobox.Q<VisualElement>(hero.Id);
-        if (heroHit != null)
+        if (hero == null) return;
+
+        var baseMp = LevelManager.Instance.ConfigGameSettings.baseMovementValue;
+        var valueHit = (hero.Data.mp * 100) / baseMp;
+
+
+        VisualElement BtnHero = _herobox.Q<VisualElement>(hero.Id);
+        if (BtnHero != null)
         {
-            heroHit.style.height = new StyleLength(new Length(hero.Data.hit, LengthUnit.Percent));
+            var plusBlok = BtnHero.Q<VisualElement>("BarHit").Q<VisualElement>("Plus");
+            plusBlok.Clear();
+            if (valueHit > 100)
+            {
+                var countPlus = Math.Ceiling((hero.Data.mp - baseMp) / 1000f);
+                Debug.Log($"countPlus={countPlus}[{(hero.Data.mp - baseMp) / 1000f}]");
+                for (int i = 0; i < countPlus; i++)
+                {
+                    plusBlok.Add(_templatePlus.Instantiate());
+                }
+            }
+            BtnHero.Q<VisualElement>("Hit").style.height = new StyleLength(new Length(valueHit, LengthUnit.Percent));
+
+            BtnHero.Q<VisualElement>("Mana").style.height = new StyleLength(new Length(hero.Data.mana, LengthUnit.Percent));
         }
     }
 
@@ -400,20 +420,16 @@ public class UIGameAside : UILocaleBase
             .Where(h => h.Data.State.HasFlag(StateHero.OnMap)).ToList();
         for (int i = 0; i < 5; i++)
         {
+            EntityHero hero = listHeroOnMap.ElementAtOrDefault(i);
             var newButtonHero = _templateButtonHero.Instantiate();
             newButtonHero.AddToClassList(NameHeroButton);
 
-            if (i < listHeroOnMap.Count)
+            if (hero != null && i < listHeroOnMap.Count)
             {
-                EntityHero hero = listHeroOnMap[i];
+                newButtonHero.name = hero.Id;
                 MapEntityHero heroGameObject = (MapEntityHero)hero.MapObject.MapObjectGameObject;
                 var hit = newButtonHero.Q<VisualElement>(NameHit);
-                hit.name = hero.Id;
-
-                hit.style.height = new StyleLength(new Length(hero.Data.hit, LengthUnit.Percent));
-
                 var mana = newButtonHero.Q<VisualElement>(NameMana);
-                mana.style.height = new StyleLength(new Length(hero.Data.mana, LengthUnit.Percent));
 
                 newButtonHero.Q<VisualElement>("image").style.backgroundImage =
                     new StyleBackground(hero.ConfigData.MenuSprite);
@@ -446,6 +462,7 @@ public class UIGameAside : UILocaleBase
                     newButtonHero.Q<Button>(NameAllAsideButton).AddToClassList(NameSelectedButton);
                     newButtonHero.Q<Button>(NameAllAsideButton).RemoveFromClassList(NameBorderedButton);
                 }
+
             }
             else
             {
@@ -453,6 +470,7 @@ public class UIGameAside : UILocaleBase
             }
 
             _herobox.Add(newButtonHero);
+            ChangeParamsActiveHero(hero);
         }
     }
 

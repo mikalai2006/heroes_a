@@ -335,6 +335,202 @@ MonoBehaviour:
     m_Key: haste_e_d
     m_Metadata:
       m_Items: []
+  - m_Id: 608603284340736
+    m_Key: protectionfromfire_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 608634468990976
+    m_Key: protectionfromfire_b_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 608652655493120
+    m_Key: protectionfromfire_b_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 608665758498816
+    m_Key: protectionfromfire_a_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 608677980700672
+    m_Key: protectionfromfire_a_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 608689875746816
+    m_Key: protectionfromfire_e_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 608701158424576
+    m_Key: protectionfromfire_e_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 609565734502400
+    m_Key: protectionfromwater_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 609585779081216
+    m_Key: protectionfromwater_b_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 609602203975680
+    m_Key: protectionfromwater_b_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 609619081854976
+    m_Key: protectionfromwater_a_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 609636916035584
+    m_Key: protectionfromwater_a_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 609648777527296
+    m_Key: protectionfromwater_e_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 609661939253248
+    m_Key: protectionfromwater_e_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 610216803729408
+    m_Key: shield_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 610233069240320
+    m_Key: shield_b_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 610249720627200
+    m_Key: shield_b_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 610263213703168
+    m_Key: shield_a_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 610275725312000
+    m_Key: shield_a_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 610286605336576
+    m_Key: shield_e_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 610335057936384
+    m_Key: shield_e_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 611245884604416
+    m_Key: slow_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 611262049452032
+    m_Key: slow_b_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 611276104564736
+    m_Key: slow_b_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 611289589252096
+    m_Key: slow_a_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 611313605836800
+    m_Key: slow_a_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 611325442162688
+    m_Key: slow_e_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 611340432605184
+    m_Key: slow_e_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 612822087270400
+    m_Key: stoneskin_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 613319993098240
+    m_Key: stoneskin_b_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 613334169845760
+    m_Key: stoneskin_b_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 613348380147712
+    m_Key: stoneskin_a_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 613365585182720
+    m_Key: stoneskin_a_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 613376205160448
+    m_Key: stoneskin_e_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 613386695114752
+    m_Key: stoneskin_e_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 614284196478976
+    m_Key: viewair_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 614338126839808
+    m_Key: viewair_b_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 614351104016384
+    m_Key: viewair_b_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 614367059148800
+    m_Key: viewair_a_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 614379482677248
+    m_Key: viewair_a_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 614391864262656
+    m_Key: viewair_e_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 614410143039488
+    m_Key: viewair_e_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 615271137181696
+    m_Key: viewearh_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 615292184199168
+    m_Key: viewearh_b_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 615306331586560
+    m_Key: viewearh_b_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 615319468146688
+    m_Key: viewearh_a_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 615333057691648
+    m_Key: viewearh_a_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 615344390701056
+    m_Key: viewearh_e_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 615355245559808
+    m_Key: viewearh_e_d
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

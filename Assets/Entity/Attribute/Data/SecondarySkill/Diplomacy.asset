@@ -15,6 +15,11 @@ MonoBehaviour:
   idObject: attribute.skill.diplomacy
   TypeAttribute: 40
   MenuSprite: {fileID: 0}
+  MapPrefab:
+    m_AssetGUID: 
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
   Text:
     title:
       m_TableReference:
@@ -55,6 +60,7 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
+    value: 20
   - Sprite: {fileID: -1457783832, guid: bb3826057700334448fec2c60c7241e3, type: 3}
     Title:
       m_TableReference:
@@ -74,6 +80,7 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
+    value: 40
   - Sprite: {fileID: -1349889754, guid: bb3826057700334448fec2c60c7241e3, type: 3}
     Title:
       m_TableReference:
@@ -93,6 +100,8 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
+    value: 60
+  Effects: []
   references:
     version: 2
     RefIds: []

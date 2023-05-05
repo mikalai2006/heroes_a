@@ -39,7 +39,8 @@ MonoBehaviour:
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
-  TypeGround: 0
+  TypeGround: 12
+  Faction: {fileID: 0}
   TypeMapObject: 8
   RMGValue: 0
   listTypeNoPath: 

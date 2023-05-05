@@ -40,6 +40,7 @@ MonoBehaviour:
       m_WaitForCompletion: 0
       m_LocalVariables: []
   TypeFaction: 0
+  TypeGround: 4
   ArenaModel:
     m_AssetGUID: e9300e6e52e7a96418461649e715e02d
     m_SubObjectName: 

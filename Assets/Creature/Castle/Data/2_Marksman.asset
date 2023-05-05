@@ -15,6 +15,11 @@ MonoBehaviour:
   idObject: creature.marksman
   TypeAttribute: 80
   MenuSprite: {fileID: -774007964, guid: e7a6d1e198529c44c93ed148f1bf1afe, type: 3}
+  MapPrefab:
+    m_AssetGUID: 42cdbd3ae5a3d5741b61ec42d4e91521
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
   Text:
     title:
       m_TableReference:
@@ -35,11 +40,7 @@ MonoBehaviour:
       m_WaitForCompletion: 0
       m_LocalVariables: []
   TypeFaction: 0
-  MapPrefab:
-    m_AssetGUID: 42cdbd3ae5a3d5741b61ec42d4e91521
-    m_SubObjectName: 
-    m_SubObjectType: 
-    m_EditorAssetChanged: 0
+  TypeGround: 4
   ArenaModel:
     m_AssetGUID: 708a20eebe71676468f95c77f2b7375e
     m_SubObjectName: 

@@ -1,0 +1,4 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/Toolkit/Base.uss?fileID=7433441132597879392&amp;guid=fa07b064290e7384d9ad2e26e79f5953&amp;type=3#Base" />
+    <ui:Label tabindex="-1" text="+" display-tooltip-when-elided="true" class="m-0 text-secondary p-0" style="height: 15px; -unity-font-style: bold; font-size: 16px;" />
+</ui:UXML>

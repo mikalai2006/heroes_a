@@ -15,6 +15,11 @@ MonoBehaviour:
   idObject: creature.crusader
   TypeAttribute: 80
   MenuSprite: {fileID: -521883785, guid: e7a6d1e198529c44c93ed148f1bf1afe, type: 3}
+  MapPrefab:
+    m_AssetGUID: 3332d2f242dc0a545bbf19ffe62ab593
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
   Text:
     title:
       m_TableReference:
@@ -35,11 +40,7 @@ MonoBehaviour:
       m_WaitForCompletion: 0
       m_LocalVariables: []
   TypeFaction: 0
-  MapPrefab:
-    m_AssetGUID: 3332d2f242dc0a545bbf19ffe62ab593
-    m_SubObjectName: 
-    m_SubObjectType: 
-    m_EditorAssetChanged: 0
+  TypeGround: 4
   ArenaModel:
     m_AssetGUID: 299c696859711724ebe053f0e1deb1e4
     m_SubObjectName: 

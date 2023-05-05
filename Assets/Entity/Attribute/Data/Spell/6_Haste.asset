@@ -1,0 +1,159 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14d91db6ddbb6e346a9b5746589643a9, type: 3}
+  m_Name: 6_Haste
+  m_EditorClassIdentifier: 
+  idObject: spell.haste
+  TypeAttribute: 60
+  MenuSprite: {fileID: -487404147, guid: ed47d99f325775447b80057e6e6406ea, type: 3}
+  MapPrefab:
+    m_AssetGUID: 
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  Text:
+    title:
+      m_TableReference:
+        m_TableCollectionName: GUID:d70741e361221cc41926374ef28f7c49
+      m_TableEntryReference:
+        m_KeyId: 244242653020160
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    description:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+  SchoolMagic: {fileID: 11400000, guid: 31a94fbbb40b1054c9afac5eb9ba992f, type: 2}
+  level: 1
+  typeSpell: 0
+  typeSpellDuration: 1
+  LevelData:
+  - cost: 6
+    Effect: 3
+    AI: 5
+    Text:
+      title:
+        m_TableReference:
+          m_TableCollectionName: GUID:d70741e361221cc41926374ef28f7c49
+        m_TableEntryReference:
+          m_KeyId: 244242653020160
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      description:
+        m_TableReference:
+          m_TableCollectionName: GUID:d70741e361221cc41926374ef28f7c49
+        m_TableEntryReference:
+          m_KeyId: 244287657902080
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+  - cost: 5
+    Effect: 3
+    AI: 5
+    Text:
+      title:
+        m_TableReference:
+          m_TableCollectionName: GUID:d70741e361221cc41926374ef28f7c49
+        m_TableEntryReference:
+          m_KeyId: 244274584256512
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      description:
+        m_TableReference:
+          m_TableCollectionName: GUID:d70741e361221cc41926374ef28f7c49
+        m_TableEntryReference:
+          m_KeyId: 244287657902080
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+  - cost: 5
+    Effect: 5
+    AI: 10
+    Text:
+      title:
+        m_TableReference:
+          m_TableCollectionName: GUID:d70741e361221cc41926374ef28f7c49
+        m_TableEntryReference:
+          m_KeyId: 244301054509056
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      description:
+        m_TableReference:
+          m_TableCollectionName: GUID:d70741e361221cc41926374ef28f7c49
+        m_TableEntryReference:
+          m_KeyId: 244320599965696
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+  - cost: 5
+    Effect: 5
+    AI: 10
+    Text:
+      title:
+        m_TableReference:
+          m_TableCollectionName: GUID:d70741e361221cc41926374ef28f7c49
+        m_TableEntryReference:
+          m_KeyId: 244332826361856
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      description:
+        m_TableReference:
+          m_TableCollectionName: GUID:d70741e361221cc41926374ef28f7c49
+        m_TableEntryReference:
+          m_KeyId: 244344255840256
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+  power: 0
+  ChanceToGain:
+  - Item: 0
+    probability: 0.05000000074505806
+  - Item: 70
+    probability: 0.10000000149011612
+  - Item: 80
+    probability: 0.05000000074505806
+  - Item: 50
+    probability: 0.05000000074505806
+  - Item: 60
+    probability: 0.05000000074505806
+  - Item: 40
+    probability: 0.10000000149011612
+  - Item: 1
+    probability: 0.05000000074505806
+  - Item: 30
+    probability: 0.10000000149011612
+  - Item: 20
+    probability: 0.10000000149011612
+  unAvailability: 
+  Effect: {fileID: 0}
+  references:
+    version: 2
+    RefIds: []

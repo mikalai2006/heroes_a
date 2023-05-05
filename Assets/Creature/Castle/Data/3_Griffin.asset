@@ -15,6 +15,11 @@ MonoBehaviour:
   idObject: creature.griffin
   TypeAttribute: 80
   MenuSprite: {fileID: 313318845, guid: e7a6d1e198529c44c93ed148f1bf1afe, type: 3}
+  MapPrefab:
+    m_AssetGUID: 05ce74c5d57416b41b9309218eb89671
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
   Text:
     title:
       m_TableReference:
@@ -35,11 +40,7 @@ MonoBehaviour:
       m_WaitForCompletion: 0
       m_LocalVariables: []
   TypeFaction: 0
-  MapPrefab:
-    m_AssetGUID: 05ce74c5d57416b41b9309218eb89671
-    m_SubObjectName: 
-    m_SubObjectType: 
-    m_EditorAssetChanged: 0
+  TypeGround: 4
   ArenaModel:
     m_AssetGUID: ac192a6b5678ddd47b54a3abc83950a7
     m_SubObjectName: 

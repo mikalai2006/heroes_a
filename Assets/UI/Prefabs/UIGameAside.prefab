@@ -65,6 +65,7 @@ MonoBehaviour:
     m_TableReference:
       m_TableCollectionName: GUID:9b6db77d8a0719a4490c3b7aad12567c
   _aside: {fileID: 884500699009012167}
+  _templatePlus: {fileID: 9197481963319205126, guid: 8d4b4d2b0ec6f354f9a098dbe44346bb, type: 3}
   _templateButtonHero: {fileID: 9197481963319205126, guid: f48f1348bc1d8904d9e98008b8bbc067, type: 3}
   _templateButtonTown: {fileID: 9197481963319205126, guid: b88a51368884639478bf9ce1cc9de318, type: 3}
   _templateHeroInfo: {fileID: 9197481963319205126, guid: 51eec4db8f30b6c41bd719323f42bd13, type: 3}

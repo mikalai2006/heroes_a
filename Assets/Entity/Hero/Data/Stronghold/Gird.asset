@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87c649b364422834e97e3024a32c0ffe, type: 3}
   m_Name: Gird
   m_EditorClassIdentifier: 
-  idObject: hero.Gird
+  idObject: hero.gird
   TypeEntity: 90
   MenuSprite: {fileID: 21300000, guid: 023abf0157c2f994fa268d5b9d31a3f6, type: 3}
   Text:
@@ -39,8 +39,8 @@ MonoBehaviour:
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
-  TypeGround: 0
-  TypeMapObject: 0
+  TypeGround: 16
+  TypeMapObject: 8
   RMGValue: 0
   listTypeNoPath: 
   listRuleInput: 

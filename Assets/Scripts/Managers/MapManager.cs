@@ -811,7 +811,7 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
         if (paths == null) { return; }
         if (paths.Count == 0) { return; }
 
-        float countDistance = hero.Data.hit;
+        float countDistance = hero.Data.mp;
         //Debug.Log($"hero.HeroData.hit.Value={hero.HeroData.hit.Value}");
 
         // if (paths.Count == 1)
@@ -936,8 +936,9 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
                 {
                     SetColorCursor(node.position, Color.red);
                 }
-
-                countDistance -= hero.CalculateHitByNode(node);
+                var isDiagonal = node.position.x != nodeNext.position.x
+                    && node.position.y != nodeNext.position.y;
+                countDistance -= hero.CalculateHitByNode(node, isDiagonal);
             }
 
             if (i == paths.Count - 2)
@@ -962,7 +963,10 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
                 {
                     SetColorCursor(nodeNext.position, Color.red);
                 }
-                countDistance -= hero.CalculateHitByNode(node);
+
+                var isDiagonal = node.position.x != nodeNext.position.x
+                    && node.position.y != nodeNext.position.y;
+                countDistance -= hero.CalculateHitByNode(node, isDiagonal);
             }
         }
     }
@@ -1002,9 +1006,10 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
     }
     public List<GridTileNode> DrawSky(Vector3Int startPosition, int distance)
     {
+        int countClearSky = LevelManager.Instance.ConfigGameSettings.countCellClearSky;
         GridTileNode startNode
             = gridTileHelper.GridTile.GetGridObject(startPosition);
-        List<GridTileNode> listNode = gridTileHelper.GetNeighboursAtDistance(startNode, distance);
+        List<GridTileNode> listNode = gridTileHelper.GetNeighboursAtDistance(startNode, distance + countClearSky);
         for (int i = 0; i < listNode.Count; i++)
         {
             _tileMapSky.SetTile(listNode[i].position, null);

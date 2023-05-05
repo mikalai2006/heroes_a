@@ -40,6 +40,7 @@ MonoBehaviour:
     m_SubObjectType: 
     m_EditorAssetChanged: 0
   TypeGround: 2046
+  Faction: {fileID: 11400000, guid: 021986cf2e7642b4f8955a12beacc027, type: 2}
   TypeMapObject: 5
   RMGValue: 3500
   listTypeNoPath: 0c0000000e000000

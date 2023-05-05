@@ -8,6 +8,7 @@ public class ScriptableAttributeCreature : ScriptableAttribute
 {
     [Header("Options Creature")]
     public TypeFaction TypeFaction;
+    public TypeGround TypeGround;
     // [SerializeField] public new AssetReferenceGameObject MapPrefab;
     [SerializeField] public AssetReferenceGameObject ArenaModel;
     [SerializeField] public DataCreatureParams CreatureParams;

@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 14d91db6ddbb6e346a9b5746589643a9, type: 3}
-  m_Name: Dispel
+  m_Name: 12_StoneSkin
   m_EditorClassIdentifier: 
-  idObject: spell.dispel
+  idObject: spell.stoneskin
   TypeAttribute: 60
-  MenuSprite: {fileID: -196738009, guid: ed47d99f325775447b80057e6e6406ea, type: 3}
+  MenuSprite: {fileID: 1460231396, guid: b07b1c1afdc21314e88a7a2e04cae4b9, type: 3}
   MapPrefab:
     m_AssetGUID: 
     m_SubObjectName: 
@@ -25,7 +25,7 @@ MonoBehaviour:
       m_TableReference:
         m_TableCollectionName: GUID:d70741e361221cc41926374ef28f7c49
       m_TableEntryReference:
-        m_KeyId: 243318140338176
+        m_KeyId: 612822087270400
         m_Key: 
       m_FallbackState: 0
       m_WaitForCompletion: 0
@@ -39,20 +39,20 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
-  SchoolMagic: {fileID: 11400000, guid: 4d98384254a7e794eb2b1cd4b94312ff, type: 2}
+  SchoolMagic: {fileID: 11400000, guid: 3c19e31280a96cb4f9d6d12af46e376d, type: 2}
   level: 1
   typeSpell: 0
-  typeSpellDuration: 0
+  typeSpellDuration: 1
   LevelData:
   - cost: 5
-    Effect: 0
-    AI: 3
+    Effect: 3
+    AI: 7
     Text:
       title:
         m_TableReference:
           m_TableCollectionName: GUID:d70741e361221cc41926374ef28f7c49
         m_TableEntryReference:
-          m_KeyId: 243318140338176
+          m_KeyId: 612822087270400
           m_Key: 
         m_FallbackState: 0
         m_WaitForCompletion: 0
@@ -61,20 +61,20 @@ MonoBehaviour:
         m_TableReference:
           m_TableCollectionName: GUID:d70741e361221cc41926374ef28f7c49
         m_TableEntryReference:
-          m_KeyId: 243369482813440
+          m_KeyId: 613334169845760
           m_Key: 
         m_FallbackState: 0
         m_WaitForCompletion: 0
         m_LocalVariables: []
   - cost: 4
-    Effect: 0
-    AI: 3
+    Effect: 3
+    AI: 7
     Text:
       title:
         m_TableReference:
           m_TableCollectionName: GUID:d70741e361221cc41926374ef28f7c49
         m_TableEntryReference:
-          m_KeyId: 243346699354112
+          m_KeyId: 613319993098240
           m_Key: 
         m_FallbackState: 0
         m_WaitForCompletion: 0
@@ -83,20 +83,20 @@ MonoBehaviour:
         m_TableReference:
           m_TableCollectionName: GUID:d70741e361221cc41926374ef28f7c49
         m_TableEntryReference:
-          m_KeyId: 243369482813440
+          m_KeyId: 613334169845760
           m_Key: 
         m_FallbackState: 0
         m_WaitForCompletion: 0
         m_LocalVariables: []
   - cost: 4
-    Effect: 0
-    AI: 3
+    Effect: 6
+    AI: 15
     Text:
       title:
         m_TableReference:
           m_TableCollectionName: GUID:d70741e361221cc41926374ef28f7c49
         m_TableEntryReference:
-          m_KeyId: 243383592452096
+          m_KeyId: 613348380147712
           m_Key: 
         m_FallbackState: 0
         m_WaitForCompletion: 0
@@ -105,20 +105,20 @@ MonoBehaviour:
         m_TableReference:
           m_TableCollectionName: GUID:d70741e361221cc41926374ef28f7c49
         m_TableEntryReference:
-          m_KeyId: 243400705212416
+          m_KeyId: 613365585182720
           m_Key: 
         m_FallbackState: 0
         m_WaitForCompletion: 0
         m_LocalVariables: []
   - cost: 4
-    Effect: 0
-    AI: 3
+    Effect: 6
+    AI: 15
     Text:
       title:
         m_TableReference:
           m_TableCollectionName: GUID:d70741e361221cc41926374ef28f7c49
         m_TableEntryReference:
-          m_KeyId: 243416970723328
+          m_KeyId: 613376205160448
           m_Key: 
         m_FallbackState: 0
         m_WaitForCompletion: 0
@@ -127,31 +127,31 @@ MonoBehaviour:
         m_TableReference:
           m_TableCollectionName: GUID:d70741e361221cc41926374ef28f7c49
         m_TableEntryReference:
-          m_KeyId: 243431441072128
+          m_KeyId: 613376205160448
           m_Key: 
         m_FallbackState: 0
         m_WaitForCompletion: 0
         m_LocalVariables: []
-  power: 5
+  power: 0
   ChanceToGain:
   - Item: 0
-    probability: 0.10000000149011612
+    probability: 0.5
   - Item: 70
-    probability: 0.10000000149011612
+    probability: 0.5
   - Item: 80
-    probability: 0.10000000149011612
+    probability: 1
   - Item: 50
-    probability: 0.10000000149011612
+    probability: 0.5
   - Item: 60
-    probability: 0.10000000149011612
+    probability: 1
   - Item: 40
-    probability: 0.10000000149011612
+    probability: 0.5
   - Item: 1
-    probability: 0.10000000149011612
+    probability: 1
   - Item: 30
-    probability: 0.10000000149011612
+    probability: 0.5
   - Item: 20
-    probability: 0.10000000149011612
+    probability: 0.5
   unAvailability: 
   Effect: {fileID: 0}
   references:
