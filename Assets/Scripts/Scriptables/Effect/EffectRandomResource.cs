@@ -54,7 +54,7 @@ public class EffectRandomResource : BaseEffect
         dialogData.Values.Add(new DataDialogMapObjectGroupItem()
         {
             Sprite = randomResource.MenuSprite,
-            Value = currentEffect.value
+            value = currentEffect.value
         });
     }
 }

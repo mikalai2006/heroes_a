@@ -43,7 +43,7 @@
                     </ui:VisualElement>
                     <ui:VisualElement class="w-25" style="background-color: rgba(0, 0, 0, 0); align-items: flex-end;">
                         <ui:VisualElement class="button_bottom" style="background-image: url(&apos;project://database/Assets/UI/Sprites/Spell/SpellBookMana.png?fileID=21300000&amp;guid=a1da983190f0bd4478b46380369507d5&amp;type=3#SpellBookMana&apos;);">
-                            <ui:Label tabindex="-1" text="1000" display-tooltip-when-elided="true" name="Mana" style="font-size: 15px; -unity-text-align: upper-center; align-items: center;" />
+                            <ui:Label tabindex="-1" text="1000" display-tooltip-when-elided="true" name="ManaValue" style="font-size: 15px; -unity-text-align: upper-center; align-items: center;" />
                         </ui:VisualElement>
                     </ui:VisualElement>
                     <ui:VisualElement class="w-25" style="background-color: rgba(0, 0, 0, 0); align-items: flex-end;">

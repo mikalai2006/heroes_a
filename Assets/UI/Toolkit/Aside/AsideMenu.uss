@@ -30,10 +30,10 @@
     flex-grow: 0;
     flex-direction: row;
     min-height: auto;
-    border-left-width: 2px;
-    border-right-width: 2px;
-    border-top-width: 2px;
-    border-bottom-width: 2px;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
     background-color: rgb(0, 0, 0);
 }
 
@@ -61,8 +61,8 @@
     flex-grow: 0;
     flex-direction: row;
     min-height: auto;
-    border-left-width: 2px;
-    border-right-width: 2px;
+    border-left-width: 1px;
+    border-right-width: 1px;
     border-top-width: 0;
     border-bottom-width: 0;
 }

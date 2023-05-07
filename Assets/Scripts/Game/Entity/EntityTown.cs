@@ -10,6 +10,12 @@ public class EntityTown : BaseEntity
 {
     [SerializeField] public DataTown Data = new DataTown();
     public ScriptableEntityTown ConfigData => (ScriptableEntityTown)ScriptableData;
+    public EntityHero HeroInTown => Data.HeroinTown != "" && Data.HeroinTown != null ?
+        (EntityHero)UnitManager.Entities.Where(t => t.Key == Data.HeroinTown).First().Value
+        : null;
+    public EntityHero HeroGuest => Data.HeroGuest != "" && Data.HeroGuest != null ?
+        (EntityHero)UnitManager.Entities.Where(t => t.Key == Data.HeroGuest).First().Value
+        : null;
     public EntityTown(
         TypeGround typeGround,
         ScriptableEntityTown configData = null,
@@ -341,6 +347,11 @@ public class EntityTown : BaseEntity
     {
         if (Player == LevelManager.Instance.ActivePlayer)
         {
+            // Add creatures.
+            foreach (var build in Data.Armys)
+            {
+                build.Value.RunGrowth();
+            }
         };
     }
 
@@ -348,18 +359,19 @@ public class EntityTown : BaseEntity
     {
         if (Player == LevelManager.Instance.ActivePlayer)
         {
-            // refresh count build.
+            // Refresh count build.
             Data.countBuild = 0;
 
-            // set resources.
+            // Set resources.
             foreach (var res in Data.Resources)
             {
                 _player.ChangeResource(TypeResource.Gold, res.Value);
             }
 
-            foreach (var build in Data.Armys)
+            // Add creatures.
+            foreach (var build in Data.Generals)
             {
-                build.Value.RunGrowth();
+                build.Value.RunEffectEveryDay();
             }
         };
     }

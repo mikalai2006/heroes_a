@@ -8,6 +8,5 @@
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:Button>
-    <ui:Label tabindex="-1" display-tooltip-when-elided="true" name="Quantity" text="100" class="m-0 text-center text-primary p-0 text-sm" />
     <ui:Label tabindex="-1" display-tooltip-when-elided="true" name="Value" text="+100" class="text-secondary m-0 p-05 text-center" />
 </ui:UXML>

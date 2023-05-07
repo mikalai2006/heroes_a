@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -13,10 +14,13 @@ public class EntityBook
     private List<ScriptableAttributeSpell> _activeSpells;
     public List<ScriptableAttributeSpell> ActiveSpells => _activeSpells;
 
+    private EntityHero _hero;
+
     private const int LIMITPERPAGE = 18;
 
     public EntityBook(EntityHero hero)
     {
+        _hero = hero;
         Data.idPlayer = hero.Data.idPlayer;
         Data.Spells = new List<ScriptableAttributeSpell>();
 
@@ -115,6 +119,31 @@ public class EntityBook
         _activeSpells = result.OrderBy(t => t.level).ToList();
     }
 
+    public void AddSpell(ScriptableAttributeSpell spellData)
+    {
+        _hero.Data.spells.Add(spellData.idObject);
+        Data.Spells.Add(spellData);
+    }
+
+    public List<ScriptableAttributeSpell> GenerateSpells(TypeSpell typeSpell, int maxLevel, int countSpell)
+    {
+        List<ScriptableAttributeSpell> allSpells = ResourceSystem.Instance
+            .GetAttributesByType<ScriptableAttributeSpell>(TypeAttribute.Spell)
+            .Where(t =>
+                t.typeSpell == typeSpell
+                && t.level <= maxLevel
+                && !Data.Spells.Contains(t))
+            .OrderBy(t => UnityEngine.Random.value)
+            .ToList();
+
+        var result = new List<ScriptableAttributeSpell>();
+        if (allSpells.Count >= countSpell)
+        {
+            result = allSpells.GetRange(0, countSpell);
+        }
+        return result;
+    }
+
     public override string ToString()
     {
         return "SpellBook:::" +
@@ -127,6 +156,7 @@ public class EntityBook
             "Pagination.total=" + Pagination.total + ",\n" +
             "Pagination.totalPage=" + Pagination.totalPage;
     }
+
 }
 
 [System.Serializable]

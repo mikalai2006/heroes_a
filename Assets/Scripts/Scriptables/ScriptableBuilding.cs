@@ -152,9 +152,11 @@ public struct Build
 
     public void RunEveryDay(ref Player player, BaseEntity entity)
     {
+        if (Effect.EveryDay == null) return;
+
         foreach (var effect in Effect.EveryDay)
         {
-            effect.RunEveryDay(ref player, entity);
+            effect.RunEveryDay(player, entity);
         }
     }
     public void RunEveryWeek(ref Player player, BaseEntity entity)

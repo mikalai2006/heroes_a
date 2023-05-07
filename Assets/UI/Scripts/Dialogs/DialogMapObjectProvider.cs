@@ -38,7 +38,8 @@ public struct DataDialogMapObjectGroup
 public struct DataDialogMapObjectGroupItem
 {
     public Sprite Sprite;
-    public int Value;
+    public int value;
+    public string title;
 }
 // public struct DataDialogMapObjectGroupItemArtifact
 // {

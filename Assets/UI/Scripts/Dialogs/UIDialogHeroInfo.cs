@@ -27,6 +27,7 @@ public class UIDialogHeroInfo : UIDialogBaseWindow
     private Label _defense;
     private Label _knowledge;
     private Label _power;
+    private Label _mana;
     private Label _experience;
     private Label _nameHero;
     private Label _descriptionHero;
@@ -56,6 +57,7 @@ public class UIDialogHeroInfo : UIDialogBaseWindow
         _defense = root.Q<Label>("Defense");
         _knowledge = root.Q<Label>("Knowledge");
         _power = root.Q<Label>("Power");
+        _mana = root.Q<Label>("Mana");
         _experience = root.Q<Label>("Experience");
 
         _listArtifacts = root.Q<VisualElement>("ListArtifact");
@@ -97,6 +99,7 @@ public class UIDialogHeroInfo : UIDialogBaseWindow
             _spellBook.style.display = DisplayStyle.None;
         }
 
+        _mana.text = string.Format("{0}/{1}", _hero.Data.mana, _hero.GetMana());
 
         FillPrimarySkills();
         FillSecondarySkills();
@@ -152,7 +155,7 @@ public class UIDialogHeroInfo : UIDialogBaseWindow
                 .Where(t => t.TypeTwoSkill == skill.Key).First();
 
             string type = "";
-            switch (skill.Value)
+            switch (skill.Value.level)
             {
                 case 0:
                     type = new LocalizedString(Constants.LanguageTable.LANG_TABLE_UILANG, "basic").GetLocalizedString();
@@ -167,11 +170,11 @@ public class UIDialogHeroInfo : UIDialogBaseWindow
             var newBlok = _templateSecondarySkill.Instantiate();
             newBlok.AddToClassList("w-50");
             newBlok.Q<VisualElement>("Img").style.backgroundImage
-                = new StyleBackground(skillConfigData.Levels[skill.Value].Sprite);
+                = new StyleBackground(skillConfigData.Levels[skill.Value.level].Sprite);
             newBlok.Q<Label>("Type").text = type;
             newBlok.Q<Label>("Title").text = skillConfigData.Text.title.GetLocalizedString();
             _secondSkillBlok.Add(newBlok);
-            newBlok.RegisterCallback<ClickEvent>((ClickEvent evt) => ShowInfoSecondarySkill(skillConfigData, skill.Value));
+            newBlok.RegisterCallback<ClickEvent>((ClickEvent evt) => ShowInfoSecondarySkill(skillConfigData, skill.Value.level));
         }
         for (int i = _hero.Data.SSkills.Count; i < 8; i++)
         {
@@ -288,7 +291,7 @@ public class UIDialogHeroInfo : UIDialogBaseWindow
             // else
             // {
             // Show dialog info creature.
-            var dialogWindow = new UIInfoCreatureOperation();
+            var dialogWindow = new UIInfoCreatureOperation(_startCheckedCreatures[_startPositionChecked]);
             var result = await dialogWindow.ShowAndHide();
             if (result.isOk)
             {

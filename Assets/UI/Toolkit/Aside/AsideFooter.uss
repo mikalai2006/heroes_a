@@ -2,7 +2,7 @@
     height: 30px;
     background-image: url('project://database/Assets/UI/Sprites/Bg.png?fileID=2800000&guid=0641c76439a64674aa800f9e3d79c6a4&type=3#Bg');
     -unity-background-scale-mode: scale-and-crop;
-    border-top-width: 2px;
+    border-top-width: 1px;
     flex-direction: row;
     justify-content: space-around;
     align-self: stretch;
@@ -31,10 +31,12 @@
     margin-top: 1px;
     margin-bottom: 1px;
     -unity-font-style: bold;
-    color: rgb(209, 178, 101);
+    color: rgb(255, 255, 255);
 }
 
 .footer_box_img {
-    width: 30px;
+    width: 32px;
     margin-right: 10px;
+    height: 33px;
+    align-self: center;
 }

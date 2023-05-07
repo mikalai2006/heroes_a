@@ -2,6 +2,7 @@
     <Style src="project://database/Assets/UI/Toolkit/Base.uss?fileID=7433441132597879392&amp;guid=fa07b064290e7384d9ad2e26e79f5953&amp;type=3#Base" />
     <ui:Button display-tooltip-when-elided="true" name="Btn" class="p-2 button bg-transparent button_bordered" style="align-items: center; flex-direction: column;">
         <ui:VisualElement name="Sprite" style="width: 40px; height: 40px;" />
+        <ui:Label tabindex="-1" text="title" display-tooltip-when-elided="true" name="Title" class="text-secondary text-sm" style="white-space: normal;" />
         <ui:Label tabindex="-1" text="100" display-tooltip-when-elided="true" name="Value" class="text-primary text_xl font-bold" />
     </ui:Button>
 </ui:UXML>

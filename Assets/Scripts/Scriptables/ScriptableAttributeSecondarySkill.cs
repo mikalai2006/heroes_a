@@ -12,11 +12,11 @@ public class ScriptableAttributeSecondarySkill : ScriptableAttribute
 
     public List<SecondarySkillIem> Levels;
     public List<BaseEffectSkill> Effects;
-    public virtual void RunEffect(Player player, BaseEntity entity)
+    public async virtual UniTask RunEffects(Player player, BaseEntity entity)
     {
         foreach (var effect in Effects)
         {
-            effect.RunEffect(player, entity);
+            await effect.RunEffect(player, entity);
         }
     }
 }

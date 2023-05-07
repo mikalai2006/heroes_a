@@ -57,7 +57,15 @@ public class UIDialogMapObjectWindow : UIDialogBaseWindow
             _buttonCancel.style.display = DisplayStyle.None;
         }
 
-        Title.text = _dataDialog.Header;
+        if (_dataDialog.Header != null && _dataDialog.Header != "")
+        {
+            Title.text = _dataDialog.Header;
+            Title.style.display = DisplayStyle.Flex;
+        }
+        else
+        {
+            Title.style.display = DisplayStyle.None;
+        }
         Panel.Q<Label>("Description").text = _dataDialog.Description;
         if (_dataDialog.Sprite != null)
         {
@@ -81,6 +89,7 @@ public class UIDialogMapObjectWindow : UIDialogBaseWindow
                 {
                     var index = j;
                     item = _templateButtonCheckItem.Instantiate();
+                    item.AddToClassList("w-33");
                     var btn = item.Q<Button>();
                     btn.RegisterCallback<ClickEvent>((ClickEvent evt) =>
                     {
@@ -92,7 +101,6 @@ public class UIDialogMapObjectWindow : UIDialogBaseWindow
                     });
                 }
                 var _spriteElement = item.Q<VisualElement>(_nameSpriteElement);
-                var _valueLabel = item.Q<Label>(_nameValueLabel);
                 var sprite = _dataDialog.Groups[i].Values[j].Sprite;
 
                 _spriteElement.style.backgroundImage = new StyleBackground(sprite);
@@ -103,9 +111,33 @@ public class UIDialogMapObjectWindow : UIDialogBaseWindow
                     new Length(sprite.bounds.size.y * sprite.pixelsPerUnit, LengthUnit.Pixel)
                 );
 
-                var val = _dataDialog.Groups[i].Values[j].Value;
-                _valueLabel.text = val != 0 ? val.ToString() : "";
+                var _valueLabel = item.Q<Label>(_nameValueLabel);
+                var val = _dataDialog.Groups[i].Values[j].value;
+                if (val > 0)
+                {
+                    _valueLabel.text = val != 0 ? val.ToString() : "";
+                    _valueLabel.style.display = DisplayStyle.Flex;
+                }
+                else
+                {
+                    _valueLabel.style.display = DisplayStyle.None;
+                }
 
+                var title = _dataDialog.Groups[i].Values[j].title;
+                var _titleLabel = item.Q<Label>("Title");
+                if (_titleLabel != null)
+                {
+
+                    if (title != "" && title != null)
+                    {
+                        _titleLabel.text = title;
+                        _titleLabel.style.display = DisplayStyle.Flex;
+                    }
+                    else
+                    {
+                        _titleLabel.style.display = DisplayStyle.None;
+                    }
+                }
                 _boxVariantsElement.Add(item);
             }
         }

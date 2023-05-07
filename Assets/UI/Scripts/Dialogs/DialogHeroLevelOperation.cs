@@ -9,7 +9,7 @@ using UnityEngine;
 public struct DataResultDialogLevelHero
 {
     public bool isOk;
-    public TypeSecondarySkill typeSecondarySkill;
+    public int keySecondarySkill;
 }
 public struct DataDialogLevelHero
 {

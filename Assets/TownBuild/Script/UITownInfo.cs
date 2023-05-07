@@ -104,6 +104,9 @@ public class UITownInfo : MonoBehaviour
         var settings = LevelManager.Instance.ConfigGameSettings;
         _townBuildStatus.Clear();
 
+        // Draw Gold
+        _parent.Q<Label>("GoldPerDay").text = string.Format("+{0}", _activeTown.Data.Resources[TypeResource.Gold]);
+
         // Draw status hall.
         var hallLevel = _activeTown.Data.Generals
             .Where(t => t.Value.ConfigData.TypeBuild == TypeBuild.Town)
@@ -150,8 +153,14 @@ public class UITownInfo : MonoBehaviour
             btnCreature.AddToClassList("h-50");
             btnCreature.Q<VisualElement>("Img").style.backgroundImage
                 = new StyleBackground(creature.MenuSprite);
+            btnCreature.Q<Label>("Quantity").text = string.Format("({0})", build.Value.Dwelling.Data.value);
             btnCreature.Q<Label>("Value").text = "+" + build.Value.GetGrowth(); //(build.Value.Data.quantity.ToString());
+            btnCreature.Q<Button>().clickable.clicked += () =>
+            {
+                build.Value.BuildGameObject.OnPointerClick();
+            };
             listTownDwellingEl.Add(btnCreature);
+
         }
         for (int i = _activeTown.Data.Armys.Count; i < 7; i++)
         {
@@ -159,6 +168,7 @@ public class UITownInfo : MonoBehaviour
             btnCreature.AddToClassList("w-25");
             btnCreature.AddToClassList("h-50");
             btnCreature.Q<Label>("Value").text = "";
+            btnCreature.Q<Label>("Quantity").text = "";
             listTownDwellingEl.Add(btnCreature);
         }
     }
@@ -435,7 +445,7 @@ public class UITownInfo : MonoBehaviour
         if (creatures[index] == _startCheckedCreatures[_startPositionChecked])
         {
             // Show dialog info creature.
-            var dialogWindow = new UIInfoCreatureOperation();
+            var dialogWindow = new UIInfoCreatureOperation(_startCheckedCreatures[_startPositionChecked]);
             var result = await dialogWindow.ShowAndHide();
             if (result.isOk)
             {

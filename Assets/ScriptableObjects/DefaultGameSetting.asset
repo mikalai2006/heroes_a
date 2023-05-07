@@ -196,6 +196,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   countBuildPerDay: 1
+  countRecoveryManaPerDay: 1
   baseMovementValue: 1900
   DependencyCreatureOnMove:
   - levelCreature: 3

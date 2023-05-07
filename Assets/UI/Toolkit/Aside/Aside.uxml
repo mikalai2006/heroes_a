@@ -22,7 +22,7 @@
             <ui:VisualElement name="img" class="aside_menu_buttonimg m-4" style="background-image: url(&apos;project://database/Assets/UI/Sprites/Buttons/GoHero.png?fileID=2800000&amp;guid=2732a5281556f7a40b6d9efbdae34d88&amp;type=3#GoHero&apos;);" />
         </ui:Button>
     </ui:VisualElement>
-    <ui:VisualElement name="wrapper" class="aside_wrapper" style="background-image: url(&apos;project://database/Assets/UI/Sprites/Bg.png?fileID=2800000&amp;guid=0641c76439a64674aa800f9e3d79c6a4&amp;type=3#Bg&apos;); display: none; align-self: flex-end;">
+    <ui:VisualElement name="wrapper" class="aside_wrapper" style="background-image: url(&apos;project://database/Assets/UI/Sprites/Bg.png?fileID=2800000&amp;guid=0641c76439a64674aa800f9e3d79c6a4&amp;type=3#Bg&apos;); display: none; align-self: flex-end; margin-bottom: 30px;">
         <ui:VisualElement name="unitlist" class="aside_unitlist border-color">
             <ui:VisualElement name="heroes" class="heroesblok aside_blok">
                 <ui:VisualElement name="Overlay" class="overlay" />
@@ -78,35 +78,35 @@
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
-    <ui:VisualElement name="Footer" class="footer border-color" style="display: none;">
+    <ui:VisualElement name="Footer" class="footer border-color" style="display: none; position: absolute; bottom: 0; left: 0; right: 0;">
         <ui:VisualElement name="Overlay" class="overlay" />
         <ui:VisualElement name="Resources" style="flex-direction: row; flex-grow: 1; padding-left: 3px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px;">
             <ui:VisualElement name="Gold" class="footer_box">
-                <ui:VisualElement name="img" class="footer_box_img" style="background-image: url(&apos;project://database/Assets/UI/Sprites/Buttons/GoldFooter.png?fileID=2800000&amp;guid=c653c1c477aa34243b96933c4005f426&amp;type=3#GoldFooter&apos;);" />
+                <ui:VisualElement name="img" class="footer_box_img" style="background-image: url(&apos;project://database/Assets/UI/Sprites/Resource/ResourceMini.png?fileID=-1176589009&amp;guid=002e33c44411cd74196cf066f7d1f2de&amp;type=3#ResourceMini_6&apos;);" />
                 <ui:Label tabindex="-1" text="1222333444" display-tooltip-when-elided="true" name="GoldValue" class="footer_box_text" />
             </ui:VisualElement>
             <ui:VisualElement name="Wood" class="footer_box">
-                <ui:VisualElement name="img" class="footer_box_img" style="background-image: url(&apos;project://database/Assets/UI/Sprites/Buttons/WoodFooter.png?fileID=2800000&amp;guid=77d1d861921fef4419b52dbdb0b92c37&amp;type=3#WoodFooter&apos;);" />
+                <ui:VisualElement name="img" class="footer_box_img" style="background-image: url(&apos;project://database/Assets/UI/Sprites/Resource/ResourceMini.png?fileID=1430126739&amp;guid=002e33c44411cd74196cf066f7d1f2de&amp;type=3#ResourceMini_0&apos;);" />
                 <ui:Label tabindex="-1" text="1230" display-tooltip-when-elided="true" name="WoodValue" class="footer_box_text" />
             </ui:VisualElement>
-            <ui:VisualElement name="Iron" class="footer_box">
-                <ui:VisualElement name="img" class="footer_box_img" style="background-image: url(&apos;project://database/Assets/UI/Sprites/Buttons/IronFooter.png?fileID=2800000&amp;guid=c6e0642dacf757f40918b00c1d020bb2&amp;type=3#IronFooter&apos;);" />
-                <ui:Label tabindex="-1" text="1230" display-tooltip-when-elided="true" name="IronValue" class="footer_box_text" />
-            </ui:VisualElement>
             <ui:VisualElement name="Mercury" class="footer_box">
-                <ui:VisualElement name="img" class="footer_box_img" style="background-image: url(&apos;project://database/Assets/UI/Sprites/Buttons/MercuryFooter.png?fileID=2800000&amp;guid=1e2e171936576a34f83cb8f6ce9f2528&amp;type=3#MercuryFooter&apos;);" />
+                <ui:VisualElement name="img" class="footer_box_img" style="background-image: url(&apos;project://database/Assets/UI/Sprites/Resource/ResourceMini.png?fileID=-1702797436&amp;guid=002e33c44411cd74196cf066f7d1f2de&amp;type=3#ResourceMini_1&apos;);" />
                 <ui:Label tabindex="-1" text="1230" display-tooltip-when-elided="true" name="MercuryValue" class="footer_box_text" />
             </ui:VisualElement>
+            <ui:VisualElement name="Iron" class="footer_box">
+                <ui:VisualElement name="img" class="footer_box_img" style="background-image: url(&apos;project://database/Assets/UI/Sprites/Resource/ResourceMini.png?fileID=-70555635&amp;guid=002e33c44411cd74196cf066f7d1f2de&amp;type=3#ResourceMini_2&apos;);" />
+                <ui:Label tabindex="-1" text="1230" display-tooltip-when-elided="true" name="IronValue" class="footer_box_text" />
+            </ui:VisualElement>
             <ui:VisualElement name="Diamond" class="footer_box">
-                <ui:VisualElement name="img" class="footer_box_img" style="background-image: url(&apos;project://database/Assets/UI/Sprites/Buttons/DiamondFooter.png?fileID=2800000&amp;guid=a0174887094951b439b8fda75bf0b23b&amp;type=3#DiamondFooter&apos;);" />
+                <ui:VisualElement name="img" class="footer_box_img" style="background-image: url(&apos;project://database/Assets/UI/Sprites/Resource/ResourceMini.png?fileID=209333363&amp;guid=002e33c44411cd74196cf066f7d1f2de&amp;type=3#ResourceMini_4&apos;);" />
                 <ui:Label tabindex="-1" text="1230" display-tooltip-when-elided="true" name="DiamondValue" class="footer_box_text" />
             </ui:VisualElement>
             <ui:VisualElement name="Sulfur" class="footer_box">
-                <ui:VisualElement name="img" class="footer_box_img" style="background-image: url(&apos;project://database/Assets/UI/Sprites/Buttons/SulfurFooter.png?fileID=2800000&amp;guid=a074348c7044f044d807ba85164a94f4&amp;type=3#SulfurFooter&apos;);" />
+                <ui:VisualElement name="img" class="footer_box_img" style="background-image: url(&apos;project://database/Assets/UI/Sprites/Resource/ResourceMini.png?fileID=-523776582&amp;guid=002e33c44411cd74196cf066f7d1f2de&amp;type=3#ResourceMini_3&apos;);" />
                 <ui:Label tabindex="-1" text="1230" display-tooltip-when-elided="true" name="SulfurValue" class="footer_box_text" />
             </ui:VisualElement>
             <ui:VisualElement name="Gem" class="footer_box">
-                <ui:VisualElement name="img" class="footer_box_img" style="background-image: url(&apos;project://database/Assets/UI/Sprites/Buttons/GemFooter.png?fileID=2800000&amp;guid=8839a2b8b6d3dd846ba072fd1278082c&amp;type=3#GemFooter&apos;);" />
+                <ui:VisualElement name="img" class="footer_box_img" style="background-image: url(&apos;project://database/Assets/UI/Sprites/Resource/ResourceMini.png?fileID=33748423&amp;guid=002e33c44411cd74196cf066f7d1f2de&amp;type=3#ResourceMini_5&apos;);" />
                 <ui:Label tabindex="-1" text="1230" display-tooltip-when-elided="true" name="GemValue" class="footer_box_text" />
             </ui:VisualElement>
         </ui:VisualElement>

@@ -4,14 +4,16 @@ using Cysharp.Threading.Tasks;
 
 public class UIInfoCreatureOperation : LocalAssetLoader
 {
-    public UIInfoCreatureOperation()
+    private EntityCreature _entityCreature;
+    public UIInfoCreatureOperation(EntityCreature entityCreature)
     {
+        _entityCreature = entityCreature;
     }
 
     public async UniTask<DataResultBuildDialog> ShowAndHide()
     {
         var window = await Load();
-        var result = await window.ProcessAction();
+        var result = await window.ProcessAction(_entityCreature);
         Unload();
         return result;
     }

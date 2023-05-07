@@ -1,10 +1,14 @@
+using System;
 using System.Collections.Generic;
 
 using Cysharp.Threading.Tasks;
 
+using UnityEngine;
 using UnityEngine.Localization;
 using UnityEngine.Localization.Settings;
 using UnityEngine.Localization.SmartFormat.PersistentVariables;
+
+using Random = System.Random;
 
 public class MapEntityCreature : BaseMapEntity, IDialogMapObjectOperation
 {
@@ -16,6 +20,21 @@ public class MapEntityCreature : BaseMapEntity, IDialogMapObjectOperation
     public async UniTask<DataResultDialog> OnTriggeredHero()
     {
         var creature = (EntityCreature)_mapObject.Entity;
+
+        // Check diplomacy
+        var activeHero = LevelManager.Instance.ActivePlayer.ActiveHero;
+        if (activeHero.Data.SSkills.ContainsKey(TypeSecondarySkill.Diplomacy))
+        {
+            var hpCreature = creature.Data.value * creature.ConfigAttribute.CreatureParams.HP;
+
+            var hpArmy = 0;
+            foreach (var cr in activeHero.Data.Creatures)
+            {
+                if (cr.Value != null)
+                    hpArmy += cr.Value.Data.value * cr.Value.ConfigAttribute.CreatureParams.HP;
+            }
+            Debug.Log($"hpArmy={hpArmy}/hpCreature={hpCreature}");
+        }
 
         string nameText = Helpers.GetStringNameCountWarrior(creature.Data.value);
         LocalizedString stringCountWarriors = new LocalizedString(Constants.LanguageTable.LANG_TABLE_ADVENTURE, nameText);
@@ -72,6 +91,16 @@ public class MapEntityCreature : BaseMapEntity, IDialogMapObjectOperation
 
     private async UniTask OnHeroGo(Player player)
     {
+
+        if (player.ActiveHero.Data.SSkills.ContainsKey(TypeSecondarySkill.EagleEye))
+        {
+            // Effect eagle eye
+            var sskillData = ResourceSystem.Instance
+                .GetAttributesByType<ScriptableAttributeSecondarySkill>(TypeAttribute.SecondarySkill)
+                .Find(t => t.TypeTwoSkill == TypeSecondarySkill.EagleEye);
+            await sskillData.RunEffects(player, player.ActiveHero);
+        }
+
         MapObject.ProtectedNode.DisableProtectedNeigbours(_mapObject);
         MapObject.OccupiedNode.DisableProtectedNeigbours(_mapObject);
 

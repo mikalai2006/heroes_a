@@ -50,10 +50,22 @@ public class EffectPrimarySkill : BaseEffect
 
         dialogData.TypeEntity = TypeEntity.MapObject;
         var currentEffect = entity.Effects.Effects.Find(t => t.ide == idEffect);
+
+        int value = currentEffect.value;
+
+        // Effect Learning.
+        if (PrimarySkill.TypeSkill == TypePrimarySkill.Experience)
+        {
+            EntityHero hero = LevelManager.Instance.ActivePlayer.ActiveHero;
+            if (hero != null)
+            {
+                value = hero.GetExperience(currentEffect.value);
+            }
+        }
         dialogData.Values.Add(new DataDialogMapObjectGroupItem()
         {
             Sprite = PrimarySkill.MenuSprite,
-            Value = currentEffect.value,
+            value = value,
         });
     }
 }

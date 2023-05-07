@@ -30,6 +30,7 @@ public class SOGameSetting : ScriptableObject
     [Range(.05f, 1f)] public float speedHero;
     public AnimationCurve probabilityExperience;
     public int countBuildPerDay;
+    public int countRecoveryManaPerDay;
 
     [Header("Setting Movement")]
     [Space(5)]

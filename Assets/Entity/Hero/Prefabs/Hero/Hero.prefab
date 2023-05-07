@@ -113,6 +113,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -2308606727382651585, guid: 49ced5fecb7f5bc41908c5f0d6f2fa81, type: 3}
+      propertyPath: m_Offset.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -2308606727382651585, guid: 49ced5fecb7f5bc41908c5f0d6f2fa81, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 3419526075034768516, guid: 49ced5fecb7f5bc41908c5f0d6f2fa81, type: 3}
       propertyPath: m_Name
       value: Hero

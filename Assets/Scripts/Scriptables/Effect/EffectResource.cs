@@ -56,7 +56,7 @@ public class EffectResource : BaseEffect
         dialogData.Values.Add(new DataDialogMapObjectGroupItem()
         {
             Sprite = Resource.MenuSprite,
-            Value = currentEffect.value,
+            value = currentEffect.value,
         });
     }
 }

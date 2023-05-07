@@ -25,4 +25,9 @@ public class BuildGeneral : BaseBuild
             Data = saveData.data;
         }
     }
+
+    public void RunEffectEveryDay()
+    {
+        ConfigData.BuildLevels[level].RunEveryDay(ref _player, Town);
+    }
 }

@@ -20,42 +20,42 @@
                     <ui:VisualElement class="info_picto box_bg mr-1" style="background-image: url(&apos;project://database/Assets/UI/Sprites/InfoCreature/defense.png?fileID=2800000&amp;guid=ad50bfebd566f4845889bd1e65802d5f&amp;type=3#defense&apos;);" />
                     <ui:VisualElement class="box_bg" style="flex-grow: 1; flex-direction: row; justify-content: space-between;">
                         <ui:Label tabindex="-1" text="#defense" display-tooltip-when-elided="true" class="m-0 p-0" style="flex-grow: 1;" />
-                        <ui:Label tabindex="-1" text="0" display-tooltip-when-elided="true" name="AttackValue" class="m-0 p-0" style="flex-grow: 1; -unity-text-align: upper-right;" />
+                        <ui:Label tabindex="-1" text="0" display-tooltip-when-elided="true" name="DefenseValue" class="m-0 p-0" style="flex-grow: 1; -unity-text-align: upper-right;" />
                     </ui:VisualElement>
                 </ui:VisualElement>
                 <ui:VisualElement name="Ammount" class="box_shadow info_row" style="flex-direction: row; align-items: center; flex-grow: 1;">
                     <ui:VisualElement class="info_picto box_bg mr-1" style="background-image: url(&apos;project://database/Assets/UI/Sprites/InfoCreature/ammount.png?fileID=2800000&amp;guid=3a0896781bf80ce4c8d52cb13324f760&amp;type=3#ammount&apos;);" />
                     <ui:VisualElement class="box_bg" style="flex-grow: 1; flex-direction: row; justify-content: space-between;">
                         <ui:Label tabindex="-1" text="#ammount" display-tooltip-when-elided="true" class="m-0 p-0" style="flex-grow: 1;" />
-                        <ui:Label tabindex="-1" text="0" display-tooltip-when-elided="true" name="value" class="m-0 p-0" style="flex-grow: 1; -unity-text-align: upper-right;" />
+                        <ui:Label tabindex="-1" text="0" display-tooltip-when-elided="true" name="AmmountValue" class="m-0 p-0" style="flex-grow: 1; -unity-text-align: upper-right;" />
                     </ui:VisualElement>
                 </ui:VisualElement>
                 <ui:VisualElement name="Damage" class="box_shadow info_row" style="flex-direction: row; align-items: center; flex-grow: 1;">
                     <ui:VisualElement class="info_picto box_bg mr-1" style="background-image: url(&apos;project://database/Assets/UI/Sprites/InfoCreature/damage.png?fileID=2800000&amp;guid=219050a6e2bf39a4093483343eee4cc6&amp;type=3#damage&apos;);" />
                     <ui:VisualElement class="box_bg" style="flex-grow: 1; flex-direction: row; justify-content: space-between;">
                         <ui:Label tabindex="-1" text="#damage" display-tooltip-when-elided="true" class="m-0 p-0" style="flex-grow: 1;" />
-                        <ui:Label tabindex="-1" text="0" display-tooltip-when-elided="true" name="value" class="m-0 p-0" style="flex-grow: 1; -unity-text-align: upper-right;" />
+                        <ui:Label tabindex="-1" text="0" display-tooltip-when-elided="true" name="DamageValue" class="m-0 p-0" style="flex-grow: 1; -unity-text-align: upper-right;" />
                     </ui:VisualElement>
                 </ui:VisualElement>
                 <ui:VisualElement name="HP" class="box_shadow info_row" style="flex-direction: row; align-items: center; flex-grow: 1;">
                     <ui:VisualElement class="box_bg" style="flex-grow: 1; flex-direction: row; justify-content: space-between;">
                         <ui:VisualElement class="info_picto box_bg mr-1" style="background-image: url(&apos;project://database/Assets/UI/Sprites/InfoCreature/HP.png?fileID=2800000&amp;guid=e8eea111670417249bc1c58d64737882&amp;type=3#HP&apos;);" />
                         <ui:Label tabindex="-1" text="#hp" display-tooltip-when-elided="true" name="Label" class="m-0 p-0" style="flex-grow: 1;" />
-                        <ui:Label tabindex="-1" text="0" display-tooltip-when-elided="true" name="value" class="m-0 p-0" style="flex-grow: 1; -unity-text-align: upper-right;" />
+                        <ui:Label tabindex="-1" text="0" display-tooltip-when-elided="true" name="HPValue" class="m-0 p-0" style="flex-grow: 1; -unity-text-align: upper-right;" />
                     </ui:VisualElement>
                 </ui:VisualElement>
                 <ui:VisualElement name="HPa" class="box_shadow info_row" style="flex-direction: row; align-items: center; flex-grow: 1;">
                     <ui:VisualElement class="info_picto box_bg mr-1" style="background-image: url(&apos;project://database/Assets/UI/Sprites/InfoCreature/HPa.png?fileID=2800000&amp;guid=3b60d422a71422f4f8c3c8779552ac13&amp;type=3#HPa&apos;);" />
                     <ui:VisualElement class="box_bg" style="flex-grow: 1; flex-direction: row; justify-content: space-between;">
                         <ui:Label tabindex="-1" text="#hpa" display-tooltip-when-elided="true" class="m-0 p-0" style="flex-grow: 1;" />
-                        <ui:Label tabindex="-1" text="0" display-tooltip-when-elided="true" name="value" class="m-0 p-0" style="flex-grow: 1; -unity-text-align: upper-right;" />
+                        <ui:Label tabindex="-1" text="0" display-tooltip-when-elided="true" name="HPAValue" class="m-0 p-0" style="flex-grow: 1; -unity-text-align: upper-right;" />
                     </ui:VisualElement>
                 </ui:VisualElement>
                 <ui:VisualElement name="Speed" class="box_shadow info_row" style="flex-direction: row; align-items: center; flex-grow: 1;">
                     <ui:VisualElement class="info_picto box_bg mr-1" style="background-image: url(&apos;project://database/Assets/UI/Sprites/InfoCreature/speed.png?fileID=2800000&amp;guid=c59a56b2c9b645f4680a3382f4bf7aa0&amp;type=3#speed&apos;);" />
                     <ui:VisualElement class="box_bg" style="flex-grow: 1; flex-direction: row; justify-content: space-between;">
                         <ui:Label tabindex="-1" text="#speed" display-tooltip-when-elided="true" class="m-0 p-0" style="flex-grow: 1;" />
-                        <ui:Label tabindex="-1" text="0" display-tooltip-when-elided="true" name="value" class="m-0 p-0" style="flex-grow: 1; -unity-text-align: upper-right;" />
+                        <ui:Label tabindex="-1" text="0" display-tooltip-when-elided="true" name="SpeedValue" class="m-0 p-0" style="flex-grow: 1; -unity-text-align: upper-right;" />
                     </ui:VisualElement>
                 </ui:VisualElement>
             </ui:VisualElement>

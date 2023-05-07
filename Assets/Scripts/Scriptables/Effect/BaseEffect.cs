@@ -19,9 +19,8 @@ public abstract class BaseEffect : ScriptableObject
     {
 
     }
-    public virtual void RunEveryDay(ref Player player, BaseEntity entity)
+    public virtual void RunEveryDay(Player player, BaseEntity entity)
     {
-
     }
     public virtual void RunEveryWeek(ref Player player, BaseEntity entity)
     {

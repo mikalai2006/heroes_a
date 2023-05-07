@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 
 using Cysharp.Threading.Tasks;
@@ -11,8 +12,58 @@ public class BuildMonoBehavior : MonoBehaviour, IPointerClickHandler
     [SerializeField] protected BaseBuild Build;
     public BaseBuild GetBuild => Build;
 
-    #region Events GameState
-    #endregion
+    // #region Events GameState
+    // public void Start()
+    // {
+    //     GameManager.OnBeforeStateChanged += OnBeforeStateChanged;
+    //     GameManager.OnAfterStateChanged += OnAfterStateChanged;
+    // }
+    // public void Destroy()
+    // {
+    //     GameManager.OnBeforeStateChanged -= OnBeforeStateChanged;
+    //     GameManager.OnAfterStateChanged -= OnAfterStateChanged;
+    // }
+
+    // public virtual void OnBeforeStateChanged(GameState newState)
+    // {
+    //     // switch (newState)
+    //     // {
+    //     //     case GameState.SaveGame:
+    //     //         // OnSaveUnit();
+    //     //         break;
+    //     // }
+    // }
+
+    // public virtual void OnAfterStateChanged(GameState newState)
+    // {
+    //     switch (newState)
+    //     {
+    //         case GameState.NextWeek:
+    //             NextWeek();
+    //             break;
+    //         case GameState.NextDay:
+    //             NextDay();
+    //             break;
+    //     }
+    // }
+
+    // private void NextDay()
+    // {
+    //     if (GetBuild.Player == LevelManager.Instance.ActivePlayer)
+    //     {
+    //         // Run effect build
+    //         GetBuild.ConfigData.BuildLevels[GetBuild].RunEveryDay();
+
+    //     };
+    // }
+
+    // private void NextWeek()
+    // {
+    //     throw new NotImplementedException();
+    // }
+
+
+    // #endregion
 
     public void GoPulse()
     {
@@ -70,7 +121,7 @@ public class BuildMonoBehavior : MonoBehaviour, IPointerClickHandler
         // }
     }
 
-    public async void OnPointerClick(PointerEventData eventData)
+    public async void OnPointerClick(PointerEventData eventData = null)
     {
         var b = Build.ConfigData;
         switch (b.TypeBuild)

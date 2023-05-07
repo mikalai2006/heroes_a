@@ -14,15 +14,13 @@ public struct DataHero
     public int level;
     public int nextLevel;
     public SerializableDictionary<TypePrimarySkill, int> PSkills;
-    public SerializableDictionary<TypeSecondarySkill, int> SSkills;
+    public SerializableDictionary<TypeSecondarySkill, SkillDataItem> SSkills;
     // [NonSerialized] public SerializableDictionary<ScriptableAttributeSecondarySkill, int> SecondarySkills;
     public Vector3Int nextPosition;
     public float speed;
-    public float penaltie;
-    // public float hit;
     public float mp;
     public float mana;
-
+    // public float manaTotal;
     public bool isBook;
     public List<string> spells;
     [NonSerialized] public EntityBook SpellBook;
@@ -31,7 +29,6 @@ public struct DataHero
     public SerializableDictionary<int, EntityCreature> Creatures;
     public List<GridTileNode> path; // [NonSerialized]
     public StateHero State;
-    public QualitiesHero Qualities;
 }
 
 [Serializable]
@@ -43,11 +40,9 @@ public enum StateHero
     InGuest = 1 << 2
 }
 
-
 [Serializable]
-public struct QualitiesHero
+public struct SkillDataItem
 {
-    public int mp;
-    public int movepen;
-    public int scout;
+    public int level;
+    public int value;
 }

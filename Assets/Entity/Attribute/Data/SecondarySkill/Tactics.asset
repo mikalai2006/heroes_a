@@ -15,6 +15,11 @@ MonoBehaviour:
   idObject: attribute.skill.tactics
   TypeAttribute: 40
   MenuSprite: {fileID: 0}
+  MapPrefab:
+    m_AssetGUID: 
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
   Text:
     title:
       m_TableReference:
@@ -55,6 +60,7 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
+    value: 3
   - Sprite: {fileID: 1049194106, guid: bb3826057700334448fec2c60c7241e3, type: 3}
     Title:
       m_TableReference:
@@ -74,6 +80,7 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
+    value: 5
   - Sprite: {fileID: 741720483, guid: bb3826057700334448fec2c60c7241e3, type: 3}
     Title:
       m_TableReference:
@@ -93,6 +100,8 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
+    value: 7
+  Effects: []
   references:
     version: 2
     RefIds: []

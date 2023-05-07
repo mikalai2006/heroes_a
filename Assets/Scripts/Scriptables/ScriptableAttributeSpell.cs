@@ -7,6 +7,7 @@ using UnityEngine.Localization;
 [CreateAssetMenu(fileName = "AttributeSpell", menuName = "Game/Attribute/Spell")]
 public class ScriptableAttributeSpell : ScriptableAttribute
 {
+    public Sprite MapSprite;
     public ScriptableAttributeSchoolMagic SchoolMagic;
     public int level;
     public TypeSpell typeSpell;

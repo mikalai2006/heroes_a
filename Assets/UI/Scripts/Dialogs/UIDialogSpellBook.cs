@@ -114,7 +114,7 @@ public class UIDialogSpellBook : UIDialogBaseWindow
             DrawSpells();
         };
 
-        _mana = root.Q<Label>("Mana");
+        _mana = root.Q<Label>("ManaValue");
 
         // base.Localize(root);
     }
@@ -139,6 +139,8 @@ public class UIDialogSpellBook : UIDialogBaseWindow
 
     private void DrawSpells()
     {
+        _mana.text = _hero.Data.mana.ToString();
+
         var spellBook = _hero.Data.SpellBook;
         Debug.Log(spellBook.ToString());
         _dataResultDialog = new DataResultDialogSpellBook()
@@ -200,7 +202,7 @@ public class UIDialogSpellBook : UIDialogBaseWindow
             var levelSpell = -1;
             if (_hero.Data.SSkills.ContainsKey(schoolSpell.BaseSecondarySkill.TypeTwoSkill))
             {
-                levelSpell = _hero.Data.SSkills[schoolSpell.BaseSecondarySkill.TypeTwoSkill];
+                levelSpell = _hero.Data.SSkills[schoolSpell.BaseSecondarySkill.TypeTwoSkill].level;
             }
 
             var newNodeElementSpell = new VisualElement();
@@ -259,7 +261,6 @@ public class UIDialogSpellBook : UIDialogBaseWindow
 
         _hero = hero;
 
-        _mana.text = _hero.Data.mana.ToString();
 
         DrawSpells();
 

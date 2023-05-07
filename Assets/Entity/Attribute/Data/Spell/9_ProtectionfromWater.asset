@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   idObject: spell.protectionfromwater
   TypeAttribute: 60
-  MenuSprite: {fileID: -1228090198, guid: b07b1c1afdc21314e88a7a2e04cae4b9, type: 3}
+  MenuSprite: {fileID: -1049833167, guid: ed47d99f325775447b80057e6e6406ea, type: 3}
   MapPrefab:
     m_AssetGUID: 
     m_SubObjectName: 
@@ -39,6 +39,7 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
+  MapSprite: {fileID: -1228090198, guid: b07b1c1afdc21314e88a7a2e04cae4b9, type: 3}
   SchoolMagic: {fileID: 11400000, guid: 4d98384254a7e794eb2b1cd4b94312ff, type: 2}
   level: 1
   typeSpell: 0

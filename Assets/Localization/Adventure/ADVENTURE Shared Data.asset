@@ -371,6 +371,10 @@ MonoBehaviour:
     m_Key: shrine_noskill
     m_Metadata:
       m_Items: []
+  - m_Id: 14163753491922944
+    m_Key: eagleeyeffect_t
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

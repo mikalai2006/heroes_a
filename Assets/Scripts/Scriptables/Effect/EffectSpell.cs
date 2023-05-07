@@ -43,7 +43,7 @@ public class EffectSpell : BaseEffect
         dialogData.Values.Add(new DataDialogMapObjectGroupItem()
         {
             Sprite = randomSpell.MenuSprite,
-            Value = currentEffect.value
+            value = currentEffect.value
         });
     }
 }

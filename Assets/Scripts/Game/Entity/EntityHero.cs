@@ -73,12 +73,20 @@ public class EntityHero : BaseEntity
             Data.level = 1;
             Data.nextLevel = 1000;
 
-            Data.SSkills = new SerializableDictionary<TypeSecondarySkill, int>();
+            Data.SSkills = new SerializableDictionary<TypeSecondarySkill, SkillDataItem>();
             // Data.SecondarySkills = new SerializableDictionary<ScriptableAttributeSecondarySkill, int>();
             foreach (var skill in ConfigData.StartSecondarySkill)
             {
-                Data.SSkills.Add(skill.SecondarySkill.TypeTwoSkill, skill.value);
-                skill.SecondarySkill.RunEffect(Player, this);
+                var skillData = ResourceSystem.Instance
+                .GetAttributesByType<ScriptableAttributeSecondarySkill>(TypeAttribute.SecondarySkill)
+                .Find(t => t.TypeTwoSkill == skill.SecondarySkill.TypeTwoSkill);
+
+                Data.SSkills.Add(skill.SecondarySkill.TypeTwoSkill, new SkillDataItem()
+                {
+                    level = skill.value,
+                    value = skillData.Levels[skill.value].value
+                });
+                // skill.SecondarySkill.RunEffect(Player, this);
                 // Data.SecondarySkills.Add(skill.SecondarySkill, skill.value);
             }
 
@@ -206,7 +214,11 @@ public class EntityHero : BaseEntity
         }
 
         // add bonus secondarySkill.
-        var mpSSkil = ((result * Data.Qualities.mp) / 100f);
+        var mpSSkil = 0f;
+        if (Data.SSkills.ContainsKey(TypeSecondarySkill.Logistics))
+        {
+            mpSSkil = ((result * Data.SSkills[TypeSecondarySkill.Logistics].value) / 100f);
+        }
 
         // bonus special = mpSSkil * (0.05f * Data.level + 1) in %
         // result = result + (((mpSSkil * (Data.level * 0.05f + 1)) / 100f) * result);
@@ -227,7 +239,31 @@ public class EntityHero : BaseEntity
                 if (LevelManager.Instance.ActivePlayer == Player)
                 {
                     Data.mp = GetMoveMentPoints();
-                    Data.mana = 100f;
+
+                    // Effect Estates
+                    if (Data.SSkills.ContainsKey(TypeSecondarySkill.Estates))
+                    {
+                        var valueEstates = Data.SSkills[TypeSecondarySkill.Estates];
+                        Player.ChangeResource(TypeResource.Gold, valueEstates.value);
+                    }
+
+                    // Recovery mana if hero in town
+                    if (Data.mana < GetMana())
+                    {
+                        int countMana = LevelManager.Instance.ConfigGameSettings.countRecoveryManaPerDay;
+                        // Effect Mysticism
+                        if (Data.SSkills.ContainsKey(TypeSecondarySkill.Mysticism))
+                        {
+                            var valueMysticism = Data.SSkills[TypeSecondarySkill.Mysticism];
+                            Data.mana += valueMysticism.value;
+                        }
+                        else
+                        {
+                            Data.mana += countMana;
+                        }
+                    }
+
+
                 }
                 break;
         }
@@ -235,12 +271,34 @@ public class EntityHero : BaseEntity
     #endregion
 
     #region Getters
+    public float GetMana()
+    {
+        int result = Data.PSkills[TypePrimarySkill.Knowledge] * 10;
+
+        // Effect Intelligence
+        if (Data.SSkills.ContainsKey(TypeSecondarySkill.Intelligence))
+        {
+            result = result + (int)((result * Data.SSkills[TypeSecondarySkill.Intelligence].value) / 100f);
+        }
+
+        return result;
+    }
+    public void ChangeManaHero(float value)
+    {
+        Data.mana += value;
+
+        if (Player != null && Player.DataPlayer.playerType != PlayerType.Bot)
+        {
+            onChangeParamsActiveHero?.Invoke(this);
+        }
+    }
+
     public int GetLevelSSkil(TypeSecondarySkill typeSecondarySkill)
     {
         int result = -1;
         if (Data.SSkills.ContainsKey(typeSecondarySkill))
         {
-            result = Data.SSkills[typeSecondarySkill];
+            result = Data.SSkills[typeSecondarySkill].level;
         }
         return result;
     }
@@ -292,9 +350,9 @@ public class EntityHero : BaseEntity
         }
 
         // Use bonus cancel penaltie.
-        if (penaltie > 0)
+        if (penaltie > 0 && Data.SSkills.ContainsKey(TypeSecondarySkill.Pathfinding))
         {
-            penaltie = penaltie - Data.Qualities.movepen;
+            penaltie = penaltie - Data.SSkills[TypeSecondarySkill.Pathfinding].value;
         }
 
         float val = penaltie == 0 ? moveCost : penaltie;
@@ -315,9 +373,24 @@ public class EntityHero : BaseEntity
             onChangeParamsActiveHero?.Invoke(this);
         }
     }
+
+    public int GetExperience(int value)
+    {
+        // Effect Learning.
+        int dop = 0;
+        if (Data.SSkills.ContainsKey(TypeSecondarySkill.Learning))
+        {
+            dop = (int)(value * Data.SSkills[TypeSecondarySkill.Learning].value / 100f);
+        }
+
+        return value += dop;
+    }
+
     public async UniTask ChangeExperience(int value = 0)
     {
-        Data.PSkills[TypePrimarySkill.Experience] += value;
+        int val = GetExperience(value);
+        Debug.Log($"Change experience::: old={value}, new={val}");
+        Data.PSkills[TypePrimarySkill.Experience] += val;
 
         var quantityExperience = Data.PSkills[TypePrimarySkill.Experience];
         while (quantityExperience >= Data.nextLevel)
@@ -336,22 +409,33 @@ public class EntityHero : BaseEntity
         GameManager.Instance.ChangeState(GameState.ChangeHeroParams);
     }
 
-    public void ChangeSecondarySkill(TypeSecondarySkill typeSecondarySkill, int value = 0)
+    public void ChangeSecondarySkill(TypeSecondarySkill typeSecondarySkill, int level = 0)
     {
         // Debug.Log($"ChangeSecondarySkill::: {typeSecondarySkill}:{value}");
-        if (Data.SSkills.ContainsKey(typeSecondarySkill))
-        {
-            Data.SSkills[typeSecondarySkill] = value;
-        }
-        else
-        {
-            Data.SSkills[typeSecondarySkill] = value;
-        }
-
-        var skill = ResourceSystem.Instance
+        var skillData = ResourceSystem.Instance
             .GetAttributesByType<ScriptableAttributeSecondarySkill>(TypeAttribute.SecondarySkill)
             .Find(t => t.TypeTwoSkill == typeSecondarySkill);
-        skill.RunEffect(Player, this);
+        Data.SSkills[typeSecondarySkill] = new SkillDataItem()
+        {
+            level = level,
+            value = skillData.Levels[level].value
+        };
+        // skill.RunEffect(Player, this);
+        // SkillDataItem skillItem;
+        // Data.SSkills.TryGetValue(typeSecondarySkill, out skillItem);
+        // if (Data.SSkills.ContainsKey(typeSecondarySkill))
+        // {
+        //     skillItem.level = level;
+        //     skillItem.value = skillData.Levels[level].value;
+        //     // Data.SSData[typeSecondarySkill] = skill.Levels[level].value;
+        // }
+        // else
+        // {
+        //     skillItem.level = level;
+        //     skillItem.value = skillData.Levels[level].value;
+        //     // Data.SSData[typeSecondarySkill] = skill.Levels[level].value;
+        // }
+
 
         GameManager.Instance.ChangeState(GameState.ChangeHeroParams);
     }
@@ -366,26 +450,43 @@ public class EntityHero : BaseEntity
 
         // Generate secondary skills.
         var listSkills = GenerateSecondSkills();
+        var primarySkill = GeneratePrimarySkill();
 
+        int keySecondarySkill = 0;
         // Show dialog.
-        var dialogData = new DataDialogLevelHero()
+        if (Player.DataPlayer.playerType != PlayerType.Bot)
         {
-            sprite = this.ConfigData.MenuSprite,
-            name = Data.name,
-            gender = ConfigData.TypeGender.ToString(),
-            level = string.Format("{0}, {1}", Data.level, ConfigData.ClassHero.name),
-            SecondarySkills = listSkills,
-            PrimarySkill = GeneratePrimarySkill()
-        };
-        var dialogHeroInfo = new DialogHeroLevelOperation(dialogData);
-        var result = await dialogHeroInfo.ShowAndHide();
-        if (result.isOk)
+            var dialogData = new DataDialogLevelHero()
+            {
+                sprite = this.ConfigData.MenuSprite,
+                name = Data.name,
+                gender = ConfigData.TypeGender.ToString(),
+                level = string.Format("{0}, {1}", Data.level, ConfigData.ClassHero.name),
+                SecondarySkills = listSkills,
+                PrimarySkill = primarySkill
+            };
+            var dialogHeroInfo = new DialogHeroLevelOperation(dialogData);
+            var result = await dialogHeroInfo.ShowAndHide();
+            keySecondarySkill = result.keySecondarySkill;
+        }
+        else
         {
-            await ChangePrimarySkill(dialogData.PrimarySkill.TypeSkill, 1);
+            keySecondarySkill = Random.Range(0, listSkills.Count);
+        }
 
-            var chooseSSkill = listSkills.Where(t => t.Key == result.typeSecondarySkill).First();
+        await ChangePrimarySkill(primarySkill.TypeSkill, 1);
 
-            ChangeSecondarySkill(result.typeSecondarySkill, chooseSSkill.Value);
+        var chooseSSkill = listSkills.ElementAt(keySecondarySkill); //.Where(t => t.Key == result.typeSecondarySkill).First();
+
+        ChangeSecondarySkill(chooseSSkill.Key, chooseSSkill.Value);
+
+        // Effect eagle eye
+        if (Data.SSkills.ContainsKey(TypeSecondarySkill.EagleEye))
+        {
+            var sskillData = ResourceSystem.Instance
+                .GetAttributesByType<ScriptableAttributeSecondarySkill>(TypeAttribute.SecondarySkill)
+                .Find(t => t.TypeTwoSkill == TypeSecondarySkill.EagleEye);
+            await sskillData.RunEffects(Player, Player.ActiveHero);
         }
     }
 
@@ -412,12 +513,12 @@ public class EntityHero : BaseEntity
 
         // Find not expert exist secondary skill.
         var notExpertSSkills = Data.SSkills
-            .Where(t => t.Value < 2)
+            .Where(t => t.Value.level < 2)
             .ToList();
         if (notExpertSSkills.Count > 0)
         {
             var secondarySkill = notExpertSSkills[Random.Range(0, notExpertSSkills.Count)];
-            result.Add(secondarySkill.Key, secondarySkill.Value + 1);
+            result.Add(secondarySkill.Key, secondarySkill.Value.level + 1);
         }
         else
         {
@@ -480,8 +581,12 @@ public class EntityHero : BaseEntity
 
     public void SetClearSky(Vector3Int startPosition)
     {
+        int scoutingValue = 0;
+        if (Data.SSkills.ContainsKey(TypeSecondarySkill.Scouting))
+            scoutingValue = Data.SSkills[TypeSecondarySkill.Scouting].value;
+
         List<GridTileNode> noskyNode
-            = GameManager.Instance.MapManager.DrawSky(startPosition, Data.Qualities.scout);
+            = GameManager.Instance.MapManager.DrawSky(startPosition, scoutingValue);
         Player.SetNosky(noskyNode);
     }
 
@@ -767,7 +872,7 @@ public class EntityHero : BaseEntity
                     && node.position != MapObject.Position
                     )
                 {
-                    Debug.Log($"::: FindPathForHero for [{node.position}-{configData.name}]");
+                    Debug.Log($"::: FindPathForHero [{MapObject.Position}] for [{node.position}-{configData.name}]");
                     var path = FindPathForHero(node.position, true);
                     if (path != null)
                     {

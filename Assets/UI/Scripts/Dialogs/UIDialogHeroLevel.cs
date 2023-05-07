@@ -110,8 +110,9 @@ public class UIDialogHeroLevel : UIDialogBaseWindow
     private void FillSecondarySkills()
     {
         _secondSkillBlok.Clear();
-        foreach (var skill in _data.SecondarySkills)
+        for (int i = 0; i < _data.SecondarySkills.Count; i++)
         {
+            var skill = _data.SecondarySkills.ElementAt(i);
             var skillConfigData = ResourceSystem.Instance
                 .GetAttributesByType<ScriptableAttributeSecondarySkill>(TypeAttribute.SecondarySkill)
                 .Where(t => t.TypeTwoSkill == skill.Key).First();
@@ -133,9 +134,10 @@ public class UIDialogHeroLevel : UIDialogBaseWindow
             var blok = _templateSecondarySkill.Instantiate();
             var btnInBlok = blok.Q<Button>("Btn");
             var time = Time.realtimeSinceStartup;
+            int keyVariant = i;
             btnInBlok.RegisterCallback<ClickEvent>((ClickEvent evt) =>
             {
-                _dataResultDialog.typeSecondarySkill = skill.Key;
+                _dataResultDialog.keySecondarySkill = keyVariant;
                 ResetClassButton();
                 btnInBlok.AddToClassList("button_checked");
                 btnInBlok.AddToClassList("border-color");

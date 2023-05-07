@@ -39,6 +39,7 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
+  MapSprite: {fileID: -1282031042, guid: b07b1c1afdc21314e88a7a2e04cae4b9, type: 3}
   SchoolMagic: {fileID: 11400000, guid: 1a4c2e4875f68214c9f5f04508284976, type: 2}
   level: 1
   typeSpell: 0

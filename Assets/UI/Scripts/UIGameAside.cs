@@ -34,9 +34,9 @@ public class UIGameAside : UILocaleBase
     [SerializeField] private VisualTreeAsset _templateButtonHero;
     [SerializeField] private VisualTreeAsset _templateButtonTown;
     [SerializeField] private VisualTreeAsset _templateHeroInfo;
-    [SerializeField] private VisualTreeAsset _templateTownInfoCreature;
+    // [SerializeField] private VisualTreeAsset _templateTownInfoCreature;
     [SerializeField] private VisualTreeAsset _templateTownInfo;
-    [SerializeField] private VisualTreeAsset _templateHeroForce;
+    [SerializeField] private VisualTreeAsset _templateHeroInfoCreature;
 
     private Player player;
     private VisualElement boxinfo;
@@ -255,6 +255,9 @@ public class UIGameAside : UILocaleBase
         VisualElement townInfo = _templateTownInfo.Instantiate();
         townInfo.style.flexGrow = 1;
 
+        // Draw Gold
+        townInfo.Q<Label>("GoldPerDay").text = string.Format("+{0}", activeTown.Data.Resources[TypeResource.Gold]);
+
         var spriteTownEl = townInfo.Q<VisualElement>("TownIcon");
         var activeSprite = activeTown.ConfigData.LevelSprites.ElementAtOrDefault(activeTown.Data.level + 1);
         spriteTownEl.style.backgroundImage = new StyleBackground(activeSprite);
@@ -306,14 +309,14 @@ public class UIGameAside : UILocaleBase
             creatures = activeTown.Data.Creatures;
         }
 
-        var btnTownInfo = _templateTownInfoCreature.Instantiate();
+        var btnTownInfo = _templateHeroInfoCreature.Instantiate();
         btnTownInfo.AddToClassList("w-125");
         btnTownInfo.AddToClassList("h-50");
         listTownDwellingEl.Add(btnTownInfo);
 
         foreach (var creature in creatures)
         {
-            var btnCreature = _templateTownInfoCreature.Instantiate();
+            var btnCreature = _templateHeroInfoCreature.Instantiate();
             btnCreature.AddToClassList("w-25");
             btnCreature.AddToClassList("h-50");
             if (creature.Value != null)
@@ -614,7 +617,7 @@ public class UIGameAside : UILocaleBase
         for (int i = 0; i < activeHero.Data.Creatures.Count; i++)
         {
             var creature = activeHero.Data.Creatures[i];
-            var newForce = _templateTownInfoCreature.Instantiate();
+            var newForce = _templateHeroInfoCreature.Instantiate();
             newForce.AddToClassList("w-25");
             newForce.AddToClassList("h-50");
             if (creature != null)

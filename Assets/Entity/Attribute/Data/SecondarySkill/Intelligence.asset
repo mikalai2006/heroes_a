@@ -15,6 +15,11 @@ MonoBehaviour:
   idObject: attribute.skill.intelligence
   TypeAttribute: 40
   MenuSprite: {fileID: 0}
+  MapPrefab:
+    m_AssetGUID: 
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
   Text:
     title:
       m_TableReference:
@@ -55,6 +60,7 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
+    value: 25
   - Sprite: {fileID: -117044942, guid: bb3826057700334448fec2c60c7241e3, type: 3}
     Title:
       m_TableReference:
@@ -74,6 +80,7 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
+    value: 50
   - Sprite: {fileID: -1375378323, guid: bb3826057700334448fec2c60c7241e3, type: 3}
     Title:
       m_TableReference:
@@ -93,6 +100,8 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
+    value: 100
+  Effects: []
   references:
     version: 2
     RefIds: []

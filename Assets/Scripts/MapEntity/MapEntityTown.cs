@@ -40,7 +40,7 @@ public class MapEntityTown : BaseMapEntity
             // GameManager.Instance.AssetProvider.UnloadAdditiveScene(_scene);
             var town = (EntityTown)MapObject.Entity;
             player.SetActiveTown(town);
-            // player.ActiveTown.SetGuest(player.ActiveHero);
+            // player.ActiveHero.SetGuestForNode(town.MapObject.OccupiedNode);
             loadingOperations.Enqueue(new TownLoadOperation(town));
             await GameManager.Instance.LoadingScreenProvider.LoadAndDestroy(loadingOperations);
         }

@@ -58,7 +58,8 @@ MonoBehaviour:
       Count: 5
     Effect:
       One: []
-      EveryDay: []
+      EveryDay:
+      - {fileID: 11400000, guid: 3e37555526d8df944b02fadfe9fba2f6, type: 2}
       EveryWeek: []
       RunHero: []
   - MenuSprite: {fileID: 21300000, guid: 81569adf212c6664aae8949722e6782a, type: 3}
@@ -154,7 +155,8 @@ MonoBehaviour:
       Count: 6
     Effect:
       One: []
-      EveryDay: []
+      EveryDay:
+      - {fileID: 11400000, guid: 3e37555526d8df944b02fadfe9fba2f6, type: 2}
       EveryWeek: []
       RunHero: []
   - MenuSprite: {fileID: 21300000, guid: 87912e8dd7d9e5f4ca174e39afa3bffa, type: 3}
@@ -202,7 +204,8 @@ MonoBehaviour:
       Count: 8
     Effect:
       One: []
-      EveryDay: []
+      EveryDay:
+      - {fileID: 11400000, guid: 3e37555526d8df944b02fadfe9fba2f6, type: 2}
       EveryWeek: []
       RunHero: []
   - MenuSprite: {fileID: 21300000, guid: 88e91bf5dc5b3e849a13e2fdc7f91cc6, type: 3}
@@ -250,7 +253,8 @@ MonoBehaviour:
       Count: 10
     Effect:
       One: []
-      EveryDay: []
+      EveryDay:
+      - {fileID: 11400000, guid: 3e37555526d8df944b02fadfe9fba2f6, type: 2}
       EveryWeek: []
       RunHero: []
   references:
