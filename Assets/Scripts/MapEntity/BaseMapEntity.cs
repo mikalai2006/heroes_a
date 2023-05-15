@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.Localization;
 
 [System.Serializable]
-public abstract class BaseMapEntity : MonoBehaviour, IPointerClickHandler
+public abstract class BaseMapEntity : MonoBehaviour, IPointerDownHandler
 {
     [SerializeField] protected MapObject _mapObject;
     public MapObject MapObject => _mapObject;
@@ -68,7 +68,7 @@ public abstract class BaseMapEntity : MonoBehaviour, IPointerClickHandler
         await UniTask.Delay(1);
     }
 
-    public async virtual void OnPointerClick(PointerEventData eventData)
+    public async virtual void OnPointerDown(PointerEventData eventData)
     {
         if (Time.realtimeSinceStartup - timeClickPrev < LevelManager.Instance.ConfigGameSettings.deltaDoubleClick)
         {

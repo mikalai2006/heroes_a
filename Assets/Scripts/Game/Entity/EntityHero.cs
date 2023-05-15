@@ -123,7 +123,7 @@ public class EntityHero : BaseEntity
             // Create movement data.
             Data.mp = GetMoveMentPoints();
 
-            UnitManager.IdsExistsHeroes.Add(ScriptableData.idObject);
+            UnitManager.IdsExistsHeroes?.Add(ScriptableData.idObject);
         }
         else
         {

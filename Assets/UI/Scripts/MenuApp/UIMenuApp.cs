@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using Cysharp.Threading.Tasks;
 using System.Collections.Generic;
+using Loader;
 
 public class UIMenuApp : UILocaleBase
 {
@@ -38,6 +39,15 @@ public class UIMenuApp : UILocaleBase
         {
             GameManager.Instance.ChangeState(GameState.LoadGame);
             await GameManager.Instance.AssetProvider.UnloadAsset(_environment);
+        };
+
+        var testArenaButton = Root.rootVisualElement.Q<Button>("TestArena");
+        testArenaButton.clickable.clicked += async () =>
+        {
+            await DestroyMenu();
+            var loadingOperations = new Queue<ILoadingOperation>();
+            loadingOperations.Enqueue(new ArenaLoadOperation(new DialogArenaData()));
+            await GameManager.Instance.LoadingScreenProvider.LoadAndDestroy(loadingOperations);
         };
 
         var btnQuit = Root.rootVisualElement.Q<Button>("ButtonQuit");

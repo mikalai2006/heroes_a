@@ -20,7 +20,7 @@ public class LevelManager : Singleton<LevelManager>, ISaveDataPlay, ISaveDataGam
 
     public Player ActivePlayer
     {
-        get { return Level.listPlayer[Level.activePlayer]; }
+        get { return Level.listPlayer.ElementAtOrDefault(Level.activePlayer); }
         set
         {
             Level.listPlayer[Level.activePlayer] = value;

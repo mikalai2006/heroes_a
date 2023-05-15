@@ -42,7 +42,7 @@ MonoBehaviour:
   TypeFaction: 0
   TypeGround: 4
   ArenaModel:
-    m_AssetGUID: 299c696859711724ebe053f0e1deb1e4
+    m_AssetGUID: 400a12874a0b6a14abad838a5296bcbb
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0

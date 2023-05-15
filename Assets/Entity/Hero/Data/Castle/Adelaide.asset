@@ -40,7 +40,6 @@ MonoBehaviour:
     m_SubObjectType: 
     m_EditorAssetChanged: 0
   TypeGround: 12
-  Faction: {fileID: 0}
   TypeMapObject: 8
   RMGValue: 0
   listTypeNoPath: 
@@ -55,13 +54,25 @@ MonoBehaviour:
   - SecondarySkill: {fileID: 11400000, guid: 4427fef17b08d0f4b89ed9ffedaf6a4f, type: 2}
     value: 1
   StartCreatures:
-  - creature: {fileID: 11400000, guid: 45a286b764d7a864683d354b9e7d65fb, type: 2}
-    min: 10
-    max: 20
-  - creature: {fileID: 11400000, guid: 4b11b20843aa1e44c8e834d76d7feba6, type: 2}
-    min: 4
-    max: 7
-  - creature: {fileID: 11400000, guid: d03c087eb728b064e8c1e13511f0d189, type: 2}
+  - creature: {fileID: 11400000, guid: e34ee2bd20d331149b4525b763a3d4ad, type: 2}
+    min: 2
+    max: 3
+  - creature: {fileID: 11400000, guid: e859ac4485df88141b1a4cef5d566334, type: 2}
+    min: 2
+    max: 3
+  - creature: {fileID: 11400000, guid: b93745913452c36469604bba8816e3d6, type: 2}
+    min: 2
+    max: 3
+  - creature: {fileID: 11400000, guid: 6ea0b3ed958930e41ab8e76bc52ce1b9, type: 2}
+    min: 2
+    max: 3
+  - creature: {fileID: 11400000, guid: d6c05d15cb4a7664387a7a4caa681702, type: 2}
+    min: 2
+    max: 3
+  - creature: {fileID: 11400000, guid: c860fc307cbc9f346afc3fae4f08b1a2, type: 2}
+    min: 2
+    max: 3
+  - creature: {fileID: 11400000, guid: a1cc26c5ae4169645b7390f64d0d492a, type: 2}
     min: 2
     max: 3
   StartSpells:

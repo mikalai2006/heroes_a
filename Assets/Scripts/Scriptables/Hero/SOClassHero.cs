@@ -1,12 +1,14 @@
 using System.Collections.Generic;
 
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 [CreateAssetMenu(fileName = "ClassHero", menuName = "HeroesA/ClassHero", order = 0)]
 public class SOClassHero : ScriptableObject
 {
     public string idObject;
     [SerializeField] public LangEntity Text;
+    public AssetReferenceGameObject ArenaPrefab;
     [Range(0.8f, 1.2f)] public float levelAgression; // Aggression ≥ Neutral_army_strength ÷ Hero_army_strength
     public int startAttack;
     public int startDefense;

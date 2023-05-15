@@ -32,6 +32,11 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
+  ArenaPrefab:
+    m_AssetGUID: f85263cfe3ccf4c42a42b7f85656311a
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
   levelAgression: 1
   startAttack: 1
   startDefense: 1

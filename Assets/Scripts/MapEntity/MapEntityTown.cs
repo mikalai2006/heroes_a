@@ -46,7 +46,7 @@ public class MapEntityTown : BaseMapEntity
         }
     }
 
-    public async override void OnPointerClick(PointerEventData eventData)
+    public async override void OnPointerDown(PointerEventData eventData)
     {
         if (
             eventData.clickCount >= 2
@@ -55,7 +55,7 @@ public class MapEntityTown : BaseMapEntity
         {
             await OnGoHero(MapObject.Entity.Player);
         }
-        base.OnPointerClick(eventData);
+        base.OnPointerDown(eventData);
     }
 
     public void RefreshLevelBuild()

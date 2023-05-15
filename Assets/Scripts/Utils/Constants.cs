@@ -5,6 +5,7 @@ public class Constants
         public const string SCENE_MAIN = "MainScene";
         public const string SCENE_GAME = "GameScene";
         public const string SCENE_TOWN = "TownScene";
+        public const string SCENE_ARENA = "ArenaScene";
     }
 
     // public class Towns

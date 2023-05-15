@@ -48,10 +48,10 @@ public class UIDialogBaseWindow : UILocaleBase
         // _dataResultDialog = new DataResultBuildDialog();
         // _processCompletionSource = new TaskCompletionSource<DataResultBuildDialog>();
 
-        _activePlayer = LevelManager.Instance.ActivePlayer;
+        _activePlayer = LevelManager.Instance?.ActivePlayer;
         UQueryBuilder<VisualElement> builder = new UQueryBuilder<VisualElement>(root);
         List<VisualElement> list = builder.Name(_nameOverlay).ToList();
-        Color color = _activePlayer.DataPlayer.color;
+        Color color = _activePlayer != null ? _activePlayer.DataPlayer.color : Color.gray;
         color.a = LevelManager.Instance.ConfigGameSettings.alphaOverlay;
         foreach (var overlay in list)
         {
