@@ -61,12 +61,13 @@ public class ArenaEntity
     {
         OccupiedNode.SetOcuppiedUnit(null);
 
-        if (((ScriptableAttributeCreature)Entity.ScriptableDataAttribute).CreatureParams.Size == 2)
+        var size = ((ScriptableAttributeCreature)Entity.ScriptableDataAttribute).CreatureParams.Size;
+        if (size == 2)
         {
             NormalizeNode(node);
         }
 
-        _positionPrefab = node.positionPrefab;
+        _positionPrefab = node.center; // new Vector3(size + .5f, node.positionPrefab.y, node.positionPrefab.z);
         node.SetOcuppiedUnit(this);
         OccupiedNode = node;
     }
@@ -80,7 +81,8 @@ public class ArenaEntity
         }
 
         if (
-            Direction == TypeDirection.Right
+            // Direction == TypeDirection.Right
+            TypeArenaPlayer == TypeArenaPlayer.Left
             && node.LeftNode != null
             && node.LeftNode.OccupiedUnit == null
             )
@@ -89,7 +91,8 @@ public class ArenaEntity
             RelatedNode.SetOcuppiedUnit(this);
         }
         else if (
-        Direction == TypeDirection.Left
+        // Direction == TypeDirection.Left
+        TypeArenaPlayer == TypeArenaPlayer.Right
         && node.RightNode != null
         && node.RightNode.OccupiedUnit == null
         )
@@ -131,26 +134,26 @@ public class ArenaEntity
     public TypeDirection Rotate(GridArenaNode node)
     {
         var prevNode = node.cameFromNode;
-        if (prevNode != null)
-        {
-            var difference = node.positionPrefab.x - prevNode.positionPrefab.x;
-            if (difference < 0)
-            {
-                Direction = TypeDirection.Left;
-                // RelatedNode.SetOcuppiedUnit(null);
-                // _relatedNode = node.RightNode;
-                // RelatedNode.SetOcuppiedUnit(this);
-                Debug.Log($"Rotate Left::: {node.RightNode}");
-            }
-            else if (difference > 0)
-            {
-                Direction = TypeDirection.Right;
-                // RelatedNode.SetOcuppiedUnit(null);
-                // _relatedNode = node.LeftNode;
-                // RelatedNode.SetOcuppiedUnit(this);
-                Debug.Log($"Rotate Right::: {node.LeftNode}");
-            }
-        }
+        // if (prevNode != null)
+        // {
+        //     var difference = node.center.x - prevNode.center.x;
+        //     if (difference < 0)
+        //     {
+        //         Direction = TypeDirection.Left;
+        //         // RelatedNode.SetOcuppiedUnit(null);
+        //         // _relatedNode = node.RightNode;
+        //         // RelatedNode.SetOcuppiedUnit(this);
+        //         Debug.Log($"Rotate Left::: {node.RightNode}");
+        //     }
+        //     else if (difference > 0)
+        //     {
+        //         Direction = TypeDirection.Right;
+        //         // RelatedNode.SetOcuppiedUnit(null);
+        //         // _relatedNode = node.LeftNode;
+        //         // RelatedNode.SetOcuppiedUnit(this);
+        //         Debug.Log($"Rotate Right::: {node.LeftNode}");
+        //     }
+        // }
 
         // if (((ScriptableAttributeCreature)Entity.ScriptableDataAttribute).CreatureParams.Size == 2)
         // {

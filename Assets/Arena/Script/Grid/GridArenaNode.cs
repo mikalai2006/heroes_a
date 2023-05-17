@@ -10,7 +10,8 @@ public enum StateArenaNode
     Disable = 1 << 0,
     Empty = 1 << 1,
     Occupied = 1 << 2,
-    Related = 1 << 3
+    Related = 1 << 3,
+    Moved = 1 << 4
 }
 
 [Serializable]
@@ -22,7 +23,7 @@ public class GridArenaNode : IHeapItem<GridArenaNode>
     private int X;
     private int Y;
     [NonSerialized] public Vector3Int position;
-    [NonSerialized] public Vector3 positionPrefab;
+    [NonSerialized] public Vector3 center;
     [NonSerialized] private ArenaEntity _ocuppiedUnit = null;
     public ArenaEntity OccupiedUnit => _ocuppiedUnit;
 
@@ -117,7 +118,7 @@ public class GridArenaNode : IHeapItem<GridArenaNode>
 
     public void SetCenter(Vector3 center)
     {
-        positionPrefab = center;
+        this.center = center;
     }
 
 
@@ -132,7 +133,8 @@ public class GridArenaNode : IHeapItem<GridArenaNode>
 
         return "GridArenaNode:::" +
             "[_x=" + X + "),y=" + Y + "] \n" +
-            "positionPrefab [x" + positionPrefab.x + ",y" + positionPrefab.y + "] \n" +
+            "center [x" + center.x + ",y" + center.y + "] \n" +
+            "weight [" + weight + "] \n" +
             "WorldPos [" + _grid.GetWorldPosition(X, Y) + "] \n" +
             "position [x" + position.x + ",y" + position.y + "] \n" +
             (OccupiedUnit != null ? "OccupiedUnit=" + OccupiedUnit.Entity.ScriptableDataAttribute?.ToString() + ",\n" : "") +

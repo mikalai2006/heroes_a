@@ -202,6 +202,7 @@ public class ArenaMonoBehavior : MonoBehaviour // , IPointerDownHandler
     private async UniTask MoveHero(CancellationToken cancellationToken)
     {
         var entityCreature = (EntityCreature)ArenaEntity.Entity;
+        var entityData = (ScriptableAttributeCreature)entityCreature.ConfigAttribute;
         GridArenaNode prevNode = ArenaEntity.OccupiedNode;
         while (
             ArenaEntity.Path.Count > 0
@@ -217,10 +218,18 @@ public class ArenaMonoBehavior : MonoBehaviour // , IPointerDownHandler
             // Debug.Log(nodeTo.position);
             Rotate(nodeTo);
 
-            // UpdateAnimate(ArenaEntity.PositionPrefab, nodeTo.position);
-            // _animator.SetBool("isWalking", true);
-
-            await SmoothLerp(transform.position, (Vector3)nodeTo.positionPrefab);
+            // // UpdateAnimate(ArenaEntity.PositionPrefab, nodeTo.position);
+            // // _animator.SetBool("isWalking", true);
+            // var difPos = entityData.CreatureParams.Size == 2
+            //     ? new Vector3(nodeTo.position.x == 14 ? -0.5f : 0.5f, 0, 0)
+            //     : Vector3.zero;
+            // // var newPos = ArenaEntity.Path.Count == 1
+            // // && ArenaEntity.Direction == TypeDirection.Right
+            // // && nodeTo.cameFromNode != null
+            // // && nodeTo.cameFromNode.position.y == nodeTo.position.y
+            // //     ? (Vector3)nodeTo.cameFromNode.center + difPos
+            // //     : (Vector3)nodeTo.center + difPos;
+            await SmoothLerp(transform.position, (Vector3)nodeTo.center);
 
             // entityCreature.SetGuestForNode(nodeTo);
 

@@ -44,7 +44,9 @@ public class ArenaManager : MonoBehaviour
     private EntityHero enemy;
     private GameObject enemyGameObject;
     public List<ArenaEntity> ArenaEnteties;
-    public List<GridArenaNode> AllowNodes;
+    public List<GridArenaNode> DistanceNodes;
+    public List<GridArenaNode> PathNodes;
+    public List<GridArenaNode> MovedNodes = new List<GridArenaNode>();
 
     [SerializeField] private List<ScriptableEntityHero> heroes;
 
@@ -118,26 +120,87 @@ public class ArenaManager : MonoBehaviour
         ArenaEntity activeArenaEntity = ArenaQueue.activeEntity;
         ScriptableAttributeCreature activeEntityCreature = (ScriptableAttributeCreature)activeArenaEntity.Entity.ScriptableDataAttribute;
 
-        var allNodes = GridArenaHelper.GetNeighboursAtDistance(
+        ResetTileMaps();
+        DistanceNodes = GridArenaHelper.GetNeighboursAtDistance(
             activeArenaEntity.OccupiedNode,
             activeEntityCreature.CreatureParams.Speed
             );
 
-        ResetTileMaps();
-        _gridArenaHelper.CreateWeightCellByX();
+        _gridArenaHelper.CreateWeightCellByX(DistanceNodes, activeArenaEntity.OccupiedNode);
 
-        foreach (var neiNode in allNodes)
+        // if (activeEntityCreature.CreatureParams.Size > 1)
+        // {
+        foreach (var neiNode in DistanceNodes)
         {
             _tileMapDistance.SetTile(neiNode.position, _tileHexShadow);
-        };
 
-        var nodes = GridArenaHelper.GetNeighboursAtDistanceAndFindPath(allNodes, activeArenaEntity.OccupiedNode);
+            // // Set formal disable node for pathfinding.
+            if (activeEntityCreature.CreatureParams.Size > 1)
+            {
+                if (neiNode.OccupiedUnit != null)
+                {
+                    if (
+                        neiNode.LeftNode != null
+                        && activeArenaEntity.TypeArenaPlayer == TypeArenaPlayer.Right
+                        && neiNode.LeftNode.OccupiedUnit == null
+                        && neiNode.OccupiedUnit != activeArenaEntity.OccupiedNode.OccupiedUnit
+                        )
+                    {
+                        neiNode.LeftNode.StateArenaNode |= StateArenaNode.Moved;
+                        MovedNodes.Add(neiNode.LeftNode);
+                    }
+                    else if (
+                        neiNode.RightNode != null
+                        && activeArenaEntity.TypeArenaPlayer == TypeArenaPlayer.Left
+                        && neiNode.RightNode.OccupiedUnit == null
+                        && neiNode.OccupiedUnit != activeArenaEntity.OccupiedNode.OccupiedUnit
+                        )
+                    {
+                        neiNode.RightNode.StateArenaNode |= StateArenaNode.Moved;
+                        MovedNodes.Add(neiNode.RightNode);
+                    }
+                }
+            }
+        };
+        // }
+
+        // foreach (var neiNode in GridArenaHelper.GetAllGridNodes())
+        // {
+        //     SetTextMeshNode(neiNode);
+        // };
+
+        ResetTextMeshNode();
+        var nodes = GridArenaHelper.GetNeighboursAtDistanceAndFindPath(DistanceNodes, activeArenaEntity.OccupiedNode);
+        // var nodes = allNodes;
+        // if (activeEntityCreature.CreatureParams.Movement != MovementType.Flying)
+        // {
+        //     nodes = GridArenaHelper.GetNeighboursAtDistanceAndFindPath(allNodes, activeArenaEntity.OccupiedNode);
+        // }
+
+        // foreach (var node in GridArenaHelper.GetAllGridNodes())
+        // {
+        //     if (node.OccupiedUnit != null)
+        //     {
+        //         if (
+        //             node.LeftNode != null
+        //             && activeArenaEntity.TypeArenaPlayer == TypeArenaPlayer.Right
+        //             && node.LeftNode.OccupiedUnit == null
+        //             )
+        //         {
+        //             nodes.Add(node.LeftNode);
+        //         }
+        //     }
+        // };
+        _gridArenaHelper.CreateWeightCellByX(nodes, activeArenaEntity.OccupiedNode);
         foreach (var neiNode in nodes)
         {
             _tileMapShadow.SetTile(neiNode.position, _tileHexShadow);
+
+            PathNodes.Add(neiNode);
+        };
+        foreach (var neiNode in GridArenaHelper.GetAllGridNodes())
+        {
             SetTextMeshNode(neiNode);
-            AllowNodes.Add(neiNode);
-            // Debug.Log($"{neiNode?.position}");
         };
 
         // lighting active creature.
@@ -204,7 +267,7 @@ public class ArenaManager : MonoBehaviour
     // }
     public void SetTextMeshNode(GridArenaNode tileNode, string textString = "")
     {
-        Vector3 posText = new Vector3(tileNode.positionPrefab.x, tileNode.positionPrefab.y);
+        Vector3 posText = new Vector3(tileNode.center.x, tileNode.center.y);
         GameObject text;
         if (!_listText.TryGetValue(posText, out text))
         {
@@ -354,7 +417,7 @@ public class ArenaManager : MonoBehaviour
             //     // Debug.Log($"{neiNode?.position}");
             // };
 
-            var path = GridArenaHelper.FindPath(ArenaQueue.activeEntity.OccupiedNode.position, positionClick, AllowNodes);
+            var path = GridArenaHelper.FindPath(ArenaQueue.activeEntity.OccupiedNode.position, positionClick, PathNodes);
             if (path == null)
             {
                 return;
@@ -378,7 +441,15 @@ public class ArenaManager : MonoBehaviour
 
     private void ResetTileMaps()
     {
-        AllowNodes.Clear();
+        DistanceNodes.Clear();
+        PathNodes.Clear();
+
+        foreach (var neiNode in MovedNodes)
+        {
+            neiNode.StateArenaNode ^= StateArenaNode.Moved;
+        };
+        MovedNodes.Clear();
+
         ResetTextMeshNode();
         _tileMapDistance.ClearAllTiles();
         _tileMapPath.ClearAllTiles();
