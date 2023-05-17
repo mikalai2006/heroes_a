@@ -194,10 +194,23 @@ public class ArenaManager : MonoBehaviour
         _gridArenaHelper.CreateWeightCellByX(nodes, activeArenaEntity.OccupiedNode);
         foreach (var neiNode in nodes)
         {
-            _tileMapShadow.SetTile(neiNode.position, _tileHexShadow);
-
-            PathNodes.Add(neiNode);
+            if (neiNode.weight >= activeEntityCreature.CreatureParams.Size)
+            {
+                _tileMapShadow.SetTile(neiNode.position, _tileHexShadow);
+                PathNodes.Add(neiNode);
+            }
         };
+
+        if (activeEntityCreature.CreatureParams.Size >= 2)
+        {
+            foreach (var neiNode in MovedNodes)
+            {
+                if (neiNode.weight >= 2)
+                {
+                    _tileMapShadow.SetTile(neiNode.position, _tileHexShadow);
+                }
+            };
+        }
         foreach (var neiNode in GridArenaHelper.GetAllGridNodes())
         {
             SetTextMeshNode(neiNode);

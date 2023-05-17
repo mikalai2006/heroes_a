@@ -423,15 +423,24 @@ public class GridArenaHelper
         {
             var node = allNodes[i];
             node.weight = 1;
-            // if (
-            //     (node.LeftNode != null
-            //     && node.LeftNode.OccupiedUnit == null)
-            //     || (node.RightNode != null
-            //     && node.RightNode.OccupiedUnit == null)
-            //     )
-            // {
-            //     node.weight++;
-            // }
+            if (
+                (
+                    activeArenaEntity.TypeArenaPlayer == TypeArenaPlayer.Right
+                    && node.LeftNode != null
+                    && distanceNodes.Contains(node.LeftNode)
+                    && node.StateArenaNode.HasFlag(StateArenaNode.Moved)
+                )
+                ||
+                (
+                    activeArenaEntity.TypeArenaPlayer == TypeArenaPlayer.Left
+                    && node.RightNode != null
+                    && distanceNodes.Contains(node.RightNode)
+                    && node.StateArenaNode.HasFlag(StateArenaNode.Moved)
+                )
+                )
+            {
+                node.weight++;
+            }
             if (
                 node.LeftNode != null
                 && (node.LeftNode.StateArenaNode.HasFlag(StateArenaNode.Empty) || node.LeftNode.OccupiedUnit == startNode.OccupiedUnit)
@@ -550,45 +559,45 @@ public class GridArenaHelper
             }
         }
 
-        var relatedNode = startNode.OccupiedUnit.RelatedNode;
-        if (relatedNode != null)
-        {
-            foreach (GridArenaNode neighbourNode in GetAllGridNodes())
-            {
-                var dist = relatedNode.DistanceTo(neighbourNode);
-                if (
-                    !closedListNodes.Contains(neighbourNode)
-                    && dist <= distance
-                    )
-                {
-                    // Debug.Log($"Neighbour ({startNode.position})|end({neighbourNode.position})::: dist={dist}");
-                    closedListNodes.Add(neighbourNode);
-                }
-            }
-            // openListNodes.Add(relatedNode);
-            // while (openListNodes.Count > 0)
-            // {
-            //     GridArenaNode currentNode = openListNodes[0];
+        // var relatedNode = startNode.OccupiedUnit.RelatedNode;
+        // if (relatedNode != null)
+        // {
+        //     foreach (GridArenaNode neighbourNode in GetAllGridNodes())
+        //     {
+        //         var dist = relatedNode.DistanceTo(neighbourNode);
+        //         if (
+        //             !closedListNodes.Contains(neighbourNode)
+        //             && dist <= distance
+        //             )
+        //         {
+        //             // Debug.Log($"Neighbour ({startNode.position})|end({neighbourNode.position})::: dist={dist}");
+        //             closedListNodes.Add(neighbourNode);
+        //         }
+        //     }
+        //     // openListNodes.Add(relatedNode);
+        //     // while (openListNodes.Count > 0)
+        //     // {
+        //     //     GridArenaNode currentNode = openListNodes[0];
 
-            //     openListNodes.Remove(currentNode);
-            //     closedListNodes.Add(currentNode);
+        //     //     openListNodes.Remove(currentNode);
+        //     //     closedListNodes.Add(currentNode);
 
-            //     foreach (GridArenaNode neighbourNode in GetNeighbourList(currentNode))
-            //     {
-            //         if (closedListNodes.Contains(neighbourNode)) continue;
+        //     //     foreach (GridArenaNode neighbourNode in GetNeighbourList(currentNode))
+        //     //     {
+        //     //         if (closedListNodes.Contains(neighbourNode)) continue;
 
-            //         var dist = relatedNode.DistanceTo(neighbourNode);
-            //         if (
-            //             !openListNodes.Contains(neighbourNode)
-            //             && dist <= distance
-            //             )
-            //         {
-            //             // Debug.Log($"Neighbour ({startNode.position})|end({neighbourNode.position})::: dist={dist}");
-            //             openListNodes.Add(neighbourNode);
-            //         }
-            //     }
-            // }
-        }
+        //     //         var dist = relatedNode.DistanceTo(neighbourNode);
+        //     //         if (
+        //     //             !openListNodes.Contains(neighbourNode)
+        //     //             && dist <= distance
+        //     //             )
+        //     //         {
+        //     //             // Debug.Log($"Neighbour ({startNode.position})|end({neighbourNode.position})::: dist={dist}");
+        //     //             openListNodes.Add(neighbourNode);
+        //     //         }
+        //     //     }
+        //     // }
+        // }
 
         var result = new List<GridArenaNode>();
         foreach (var node in closedListNodes)
