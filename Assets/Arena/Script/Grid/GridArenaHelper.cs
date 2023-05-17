@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 using UnityEngine;
 
@@ -66,7 +67,6 @@ public class GridArenaHelper
                         && (endNode.LeftNode.OccupiedUnit == null || endNode.LeftNode.OccupiedUnit == startNode.OccupiedUnit))
                     {
                         endNode = endNode.LeftNode;
-                        Debug.Log("Move to left");
                     }
                 }
             }
@@ -127,9 +127,19 @@ public class GridArenaHelper
             {
                 if (
                     closedSet.Contains(neighbourNode)
-                    || !allowNodes.Contains(neighbourNode)
+                    || (
+                        !allowNodes.Contains(neighbourNode)
+                        && (entityData.CreatureParams.Movement != MovementType.Flying
+                            || neighbourNode == endNode
+                        )
+                        )
                 // || neighbourNode.StateArenaNode.HasFlag(StateArenaNode.Moved)
-                    || neighbourNode.weight < entityData.CreatureParams.Size // - 1
+                    || (
+                         neighbourNode.weight < entityData.CreatureParams.Size // - 1
+                        && (entityData.CreatureParams.Movement != MovementType.Flying
+                            || neighbourNode == endNode
+                        )
+                        )
                 )
                 {
                     continue;
@@ -144,40 +154,13 @@ public class GridArenaHelper
                         !neighbourNode.StateArenaNode.HasFlag(StateArenaNode.Occupied)
                     )
                     || (neighbourNode.OccupiedUnit != null && neighbourNode.OccupiedUnit == startNode.OccupiedUnit)
-                    || (
-                        neighbourNode.OccupiedUnit != endNode.OccupiedUnit
-                        &&
-                        entityData.CreatureParams.Movement == MovementType.Flying
-                    )
+                    || (neighbourNode != endNode && entityData.CreatureParams.Movement == MovementType.Flying)
                 );
                 if (!walk)
                 {
                     closedSet.Add(neighbourNode);
                     continue;
                 }
-
-
-                // var diagonalIntersect = GetIntersectHexagons(neighbourNode, currentNode, startNode.OccupiedUnit).Count;
-                // if (
-                //         entityData.CreatureParams.Size == 2
-                //         && currentNode.position.y != neighbourNode.position.y
-                //         && diagonalIntersect == 0 //<= entityData.CreatureParams.Size - 1
-                //         && entityData.CreatureParams.Movement != MovementType.Flying
-                //     )
-                // {
-                //     continue;
-                // }
-
-                // if (
-                //         entityData.CreatureParams.Size > 1
-                //         // && currentNode.position.y == neighbourNode.position.y
-                //         && GetEmptyCellByX(neighbourNode, allowNodes, startNode.OccupiedUnit).Count < entityData.CreatureParams.Size - 1
-                //     // && neighbourNode != startNode.LeftNode
-                //     // && neighbourNode != startNode.RightNode
-                //     )
-                // {
-                //     continue;
-                // }
 
                 float tentativeGCost = currentNode.gCost + 10; //CalculateDistanceCost(currentNode, neighbourNode);
 
@@ -192,17 +175,13 @@ public class GridArenaHelper
                     {
                         if (
                             entityData.CreatureParams.Size == 2
-                            // && allowPathNodes != null
-                            // && entityData.CreatureParams.Movement != MovementType.Flying
+                            && (entityData.CreatureParams.Movement != MovementType.Flying || neighbourNode == endNode)
                             )
                         {
-                            var direction = GetDirection(currentNode, neighbourNode);
                             if (
                                 (
                                     startNode.OccupiedUnit.TypeArenaPlayer == TypeArenaPlayer.Right &&
                                     ((
-                                        // direction == -1
-                                        // &&
                                         neighbourNode.RightNode != null
                                         && (
                                             neighbourNode.RightNode.OccupiedUnit == null
@@ -210,24 +189,12 @@ public class GridArenaHelper
                                             )
                                     )
                                     || neighbourNode.RightNode == null
-                                    // ||
-                                    // (
-                                    //     // direction == 1
-                                    //     // &&
-                                    //     neighbourNode.LeftNode != null
-                                    //     && (
-                                    //         neighbourNode.LeftNode.OccupiedUnit == null
-                                    //         || neighbourNode.LeftNode.OccupiedUnit == startNode.OccupiedUnit
-                                    //         )
-                                    // )
                                     )
                                 )
                                 ||
                                 (
                                     startNode.OccupiedUnit.TypeArenaPlayer == TypeArenaPlayer.Left &&
                                     ((
-                                        // direction == -1
-                                        // &&
                                         neighbourNode.LeftNode != null
                                         && (
                                             neighbourNode.LeftNode.OccupiedUnit == null
@@ -235,34 +202,13 @@ public class GridArenaHelper
                                             )
                                     )
                                     || neighbourNode.LeftNode == null
-                                    // ||
-                                    // (
-                                    //     // direction == 1
-                                    //     // &&
-                                    //     neighbourNode.LeftNode != null
-                                    //     && (
-                                    //         neighbourNode.LeftNode.OccupiedUnit == null
-                                    //         || neighbourNode.LeftNode.OccupiedUnit == startNode.OccupiedUnit
-                                    //         )
-                                    // )
                                     )
                                 )
-
-                            // &&
-                            // (GetIntersectHexagons(neighbourNode, currentNode).Count < entityData.CreatureParams.Size)
-                            // ||
-                            // (neighbourNode.LeftNode == null || neighbourNode.RightNode == null)
                             )
                             {
                                 openSet.Add(neighbourNode);
                                 // _arenaManager.SetColorPathNode(neighbourNode);
                             }
-                            // else if (neighbourNode == endNode)
-                            // {
-                            //     Debug.Log($"CheckEndNode before::: neig {neighbourNode}, end {endNode}");
-                            //     endNode = CheckEndNode(neighbourNode.cameFromNode, endNode);
-                            //     Debug.Log($"CheckEndNode after::: from {neighbourNode.cameFromNode} to {endNode}");
-                            // }
                         }
                         else
                         {
@@ -273,76 +219,16 @@ public class GridArenaHelper
                 }
             }
         }
-        Debug.Log($"Not found path");
+        // Debug.Log($"Not found path");
 
         return null; // CalculatePath(endNode);
     }
 
-    private GridArenaNode CheckEndNode(GridArenaNode startNode, GridArenaNode endNode)
-    {
-        // var direction = GetDirection(startNode, endNode);
-
-        // if (direction > 0 && endNode.RightNode != null)
-        // {
-        //     return endNode.RightNode;
-        // }
-        // else if (direction < 0 && endNode.LeftNode != null)
-        // {
-        //     return endNode.LeftNode;
-        // }
-        // else
-        // {
-        //     return endNode;
-        // }
-        if (
-            endNode.RightNode != null
-            && endNode.RightNode.StateArenaNode.HasFlag(StateArenaNode.Empty)
-            )
-        {
-            Debug.Log("Check RightNode");
-            return endNode.RightNode;
-        }
-        else if (endNode.LeftNode != null && endNode.LeftNode.StateArenaNode.HasFlag(StateArenaNode.Empty))
-        {
-            Debug.Log("Check LeftNode");
-            return endNode.LeftNode;
-        }
-        else
-        {
-            Debug.Log("Check Some Node");
-            return endNode;
-        }
-        // if (endNode.RightNode != null && endNode.RightNode.StateArenaNode.HasFlag(StateArenaNode.Empty))
-        // {
-        //     return endNode.RightNode;
-        // }
-        // else if (endNode.LeftNode != null && endNode.LeftNode.StateArenaNode.HasFlag(StateArenaNode.Empty))
-        // {
-        //     return endNode.LeftNode;
-        // }
-        // else
-        // {
-        //     return endNode;
-        // }
-    }
-
-    public int GetDirection(GridArenaNode startNode, GridArenaNode endNode)
-    {
-        var result = 0;
-        var difference = startNode.center.x - endNode.center.x;
-        if (difference > 0)
-        {
-            result = -1;
-        }
-        else if (difference < 0)
-        {
-            result = 1;
-        };
-
-        // Debug.Log($"Direction:::{startNode.positionPrefab}:::{endNode.positionPrefab}::: {result}");
-        return result;
-    }
-
+    /// <summary>
+    /// Get neighbours for node from grid.
+    /// </summary>
+    /// <param name="currentNode"></param>
+    /// <returns></returns>
     public List<GridArenaNode> GetNeighbourList(GridArenaNode currentNode)
     {
         Vector3Int position = currentNode.position;
@@ -371,6 +257,311 @@ public class GridArenaHelper
 
         return neighbourList;
     }
+
+    /// <summary>
+    /// Create weight as count allow neighbours of by x axios
+    /// </summary>
+    /// <param name="distanceNodes"></param>
+    /// <param name="startNode"></param>
+    public void CreateWeightCellByX(List<GridArenaNode> distanceNodes, GridArenaNode startNode)
+    {
+        List<GridArenaNode> allNodes = GetAllGridNodes();
+        ArenaEntity activeArenaEntity = startNode.OccupiedUnit;
+
+        for (int i = 0; i < allNodes.Count; i++)
+        {
+            var node = allNodes[i];
+            node.weight = 1;
+            if (
+                (
+                    activeArenaEntity.TypeArenaPlayer == TypeArenaPlayer.Right
+                    && node.LeftNode != null
+                    && distanceNodes.Contains(node.LeftNode)
+                    && node.StateArenaNode.HasFlag(StateArenaNode.Moved)
+                // && node.LeftNode.StateArenaNode.HasFlag(StateArenaNode.Empty)
+                )
+                ||
+                (
+                    activeArenaEntity.TypeArenaPlayer == TypeArenaPlayer.Left
+                    && node.RightNode != null
+                    && distanceNodes.Contains(node.RightNode)
+                    && node.StateArenaNode.HasFlag(StateArenaNode.Moved)
+                // && node.RightNode.StateArenaNode.HasFlag(StateArenaNode.Empty)
+                )
+                )
+            {
+                node.weight++;
+            }
+            if (
+                node.LeftNode != null
+                && (node.LeftNode.StateArenaNode.HasFlag(StateArenaNode.Empty) || node.LeftNode.OccupiedUnit == startNode.OccupiedUnit)
+                && (distanceNodes.Contains(node.LeftNode) || node.LeftNode.StateArenaNode.HasFlag(StateArenaNode.Moved))
+                && distanceNodes.Contains(node)
+            )
+            {
+                node.weight++;
+            }
+            if (
+                node.RightNode != null
+                && (node.RightNode.StateArenaNode.HasFlag(StateArenaNode.Empty) || node.RightNode.OccupiedUnit == startNode.OccupiedUnit)
+                && (distanceNodes.Contains(node.RightNode) || node.RightNode.StateArenaNode.HasFlag(StateArenaNode.Moved))
+                && distanceNodes.Contains(node)
+            )
+            {
+                node.weight++;
+            }
+        }
+
+    }
+
+    /// <summary>
+    /// Find Node of by distance from startnode and related node
+    /// </summary>
+    /// <param name="startNode"></param>
+    /// <param name="distance"></param>
+    /// <returns></returns>
+    public List<GridArenaNode> GetNeighboursAtDistance(GridArenaNode startNode, int distance)
+    {
+        HashSet<GridArenaNode> openListNodes = new HashSet<GridArenaNode>() { startNode };
+        HashSet<GridArenaNode> closedListNodes = new HashSet<GridArenaNode>();
+
+        var entity = ((EntityCreature)startNode.OccupiedUnit.Entity).ConfigAttribute;
+
+        while (openListNodes.Count > 0)
+        {
+            GridArenaNode currentNode = openListNodes.First();
+
+            openListNodes.Remove(currentNode);
+            closedListNodes.Add(currentNode);
+
+            foreach (GridArenaNode neighbourNode in GetNeighbourList(currentNode))
+            {
+                if (closedListNodes.Contains(neighbourNode)) continue;
+
+                var dist = startNode.DistanceTo(neighbourNode);
+                if (
+                    !openListNodes.Contains(neighbourNode)
+                    && dist <= distance
+                    )
+                {
+                    openListNodes.Add(neighbourNode);
+                }
+            }
+        }
+
+        var relatedNode = startNode.OccupiedUnit.RelatedNode;
+        if (relatedNode != null)
+        {
+            foreach (GridArenaNode neighbourNode in GetAllGridNodes())
+            {
+                if (!openListNodes.Contains(neighbourNode))
+                {
+                    var dist = relatedNode.DistanceTo(neighbourNode);
+                    if (
+                        !closedListNodes.Contains(neighbourNode)
+                        && dist <= distance
+                        )
+                    {
+                        closedListNodes.Add(neighbourNode);
+                    }
+                }
+            }
+        }
+
+        // var result = new List<GridArenaNode>();
+        // foreach (var node in closedListNodes)
+        // {
+        //     result.Add(node);
+        // }
+
+        return closedListNodes.ToList();
+    }
+
+    /// <summary>
+    /// Find nodes of by path
+    /// </summary>
+    /// <param name="allowNodes"></param>
+    /// <param name="startNode"></param>
+    /// <returns></returns>
+    public List<GridArenaNode> GetNeighboursAtDistanceAndFindPath(List<GridArenaNode> allowNodes, GridArenaNode startNode)
+    {
+        HashSet<GridArenaNode> pathSet = new HashSet<GridArenaNode>();
+
+        // var result = new List<GridArenaNode>();
+        var entityData = ((ScriptableAttributeCreature)startNode.OccupiedUnit.Entity.ScriptableDataAttribute);
+        foreach (var node in allowNodes)
+        {
+            var path = FindPath(startNode.position, node.position);
+            if (
+                path != null
+                && path.Count - 1 <= entityData.CreatureParams.Speed
+                )
+            {
+                // result.Add(node);
+                pathSet.Add(node);
+                node.level = path.Count - 1;
+            }
+        }
+
+        if (startNode.OccupiedUnit.RelatedNode != null)
+        {
+            foreach (var node in allowNodes)
+            {
+                if (!pathSet.Contains(node))
+                {
+                    var path = FindPath(startNode.OccupiedUnit.RelatedNode.position, node.position);
+                    if (
+                        path != null
+                        && path.Count - 1 <= entityData.CreatureParams.Speed
+                        )
+                    {
+                        // result.Add(node);
+                        pathSet.Add(node);
+                        node.level = path.Count - 1;
+                    }
+                }
+            }
+        }
+
+        return pathSet.ToList();
+    }
+
+    private List<GridArenaNode> CalculatePath(GridArenaNode endNode)
+    {
+        List<GridArenaNode> path = new List<GridArenaNode>();
+        path.Add(endNode);
+
+        GridArenaNode currentNode = endNode;
+        while (currentNode.cameFromNode != null)
+        {
+            path.Add(currentNode.cameFromNode);
+            currentNode = currentNode.cameFromNode;
+        }
+        path.Reverse();
+        return path;
+    }
+
+    public GridArenaNode GetNode(int x, int y)
+    {
+        return _gridArena.GetGridObject(new Vector3Int(x, y));
+    }
+
+    public GridArenaNode GetNode(Vector3Int pos)
+    {
+        return _gridArena.GetGridObject(pos);
+    }
+
+    private float CalculateDistanceCost(GridArenaNode a, GridArenaNode b)
+    {
+        // float xDistance = Mathf.Abs(a.position.x - b.position.x);
+        // float yDistance = Mathf.Abs(a.position.y - b.position.y);
+        // float remaining = Mathf.Abs(xDistance - yDistance);
+        // return Mathf.Min(xDistance, yDistance) + remaining;
+        return Mathf.RoundToInt(10 * Vector3.Distance(_gridArena.GetWorldPosition(a.position.x, a.position.y), _gridArena.GetWorldPosition(b.position.x, b.position.y)));
+    }
+
+    // private Vector3Int[] GetAxialDirectionVectors()
+    // {
+    //     return new[]{
+    //         new Vector3Int(+1, 0),
+    //         new Vector3Int(+1, -1),
+    //         new Vector3Int(0, -1),
+    //         new Vector3Int(-1, 0),
+    //         new Vector3Int(-1, +1),
+    //         new Vector3Int(0, +1),
+    //     };
+    // }
+
+    // public List<GridArenaNode> GetIntersectHexagons(GridArenaNode nodeStart, GridArenaNode nodeEnd, ArenaEntity entity)
+    // {
+    //     var neighboursNodeStart = GetNeighbourList(nodeStart);
+    //     var neighboursNodeEnd = GetNeighbourList(nodeEnd);
+
+    //     List<GridArenaNode> intersectNodes = new();
+
+    //     // var moreNodes = neighboursNodeEnd.Count > neighboursNodeStart.Count
+    //     //     ? neighboursNodeEnd
+    //     //     : neighboursNodeStart;
+
+    //     for (int i = 0; i < neighboursNodeStart.Count; i++)
+    //     {
+    //         var node = neighboursNodeStart[i];
+    //         if (neighboursNodeEnd.Contains(node) && node != nodeStart && node != nodeEnd)
+    //         {
+    //             intersectNodes.Add(node);
+    //         }
+    //     }
+
+    //     return intersectNodes
+    //         .Where(t => t.OccupiedUnit == null || t.OccupiedUnit == entity)
+    //         .ToList();
+    // }
+
+    // private GridArenaNode CheckEndNode(GridArenaNode startNode, GridArenaNode endNode)
+    // {
+    //     // var direction = GetDirection(startNode, endNode);
+
+    //     // if (direction > 0 && endNode.RightNode != null)
+    //     // {
+    //     //     return endNode.RightNode;
+    //     // }
+    //     // else if (direction < 0 && endNode.LeftNode != null)
+    //     // {
+    //     //     return endNode.LeftNode;
+    //     // }
+    //     // else
+    //     // {
+    //     //     return endNode;
+    //     // }
+    //     if (
+    //         endNode.RightNode != null
+    //         && endNode.RightNode.StateArenaNode.HasFlag(StateArenaNode.Empty)
+    //         )
+    //     {
+    //         Debug.Log("Check RightNode");
+    //         return endNode.RightNode;
+    //     }
+    //     else if (endNode.LeftNode != null && endNode.LeftNode.StateArenaNode.HasFlag(StateArenaNode.Empty))
+    //     {
+    //         Debug.Log("Check LeftNode");
+    //         return endNode.LeftNode;
+    //     }
+    //     else
+    //     {
+    //         Debug.Log("Check Some Node");
+    //         return endNode;
+    //     }
+    //     // if (endNode.RightNode != null && endNode.RightNode.StateArenaNode.HasFlag(StateArenaNode.Empty))
+    //     // {
+    //     //     return endNode.RightNode;
+    //     // }
+    //     // else if (endNode.LeftNode != null && endNode.LeftNode.StateArenaNode.HasFlag(StateArenaNode.Empty))
+    //     // {
+    //     //     return endNode.LeftNode;
+    //     // }
+    //     // else
+    //     // {
+    //     //     return endNode;
+    //     // }
+    // }
+
+    // public int GetDirection(GridArenaNode startNode, GridArenaNode endNode)
+    // {
+    //     var result = 0;
+    //     var difference = startNode.center.x - endNode.center.x;
+    //     if (difference > 0)
+    //     {
+    //         result = -1;
+    //     }
+    //     else if (difference < 0)
+    //     {
+    //         result = 1;
+    //     };
+
+    //     // Debug.Log($"Direction:::{startNode.positionPrefab}:::{endNode.positionPrefab}::: {result}");
+    //     return result;
+    // }
+
     // public List<GridArenaNode> GetEmptyNeighbours(GridArenaNode currentNode, List<GridArenaNode> listNodes)
     // {
     //     Vector3Int position = currentNode.position;
@@ -400,317 +591,18 @@ public class GridArenaHelper
     //     return neighbourList;
     // }
 
-    public List<GridArenaNode> GetEmptyCellByX(GridArenaNode currentNode, List<GridArenaNode> listNodes, ArenaEntity entity)
-    {
-        Vector3Int position = currentNode.position;
-        List<GridArenaNode> neighbourList = new List<GridArenaNode>();
-
-        var one = currentNode.LeftNode; // GetNode(position.x - 1, position.y);
-        if (one != null && ((one.OccupiedUnit == null && listNodes.Contains(one)) || one.OccupiedUnit == entity)) neighbourList.Add(one);
-
-        var two = currentNode.RightNode; // GetNode(position.x + 1, position.y);
-        if (two != null && ((two.OccupiedUnit == null && listNodes.Contains(two)) || two.OccupiedUnit == entity)) neighbourList.Add(two);
-
-        return neighbourList;
-    }
-
-    public void CreateWeightCellByX(List<GridArenaNode> distanceNodes, GridArenaNode startNode)
-    {
-        List<GridArenaNode> allNodes = GetAllGridNodes();
-        ArenaEntity activeArenaEntity = startNode.OccupiedUnit;
-
-        for (int i = 0; i < allNodes.Count; i++)
-        {
-            var node = allNodes[i];
-            node.weight = 1;
-            if (
-                (
-                    activeArenaEntity.TypeArenaPlayer == TypeArenaPlayer.Right
-                    && node.LeftNode != null
-                    && distanceNodes.Contains(node.LeftNode)
-                    && node.StateArenaNode.HasFlag(StateArenaNode.Moved)
-                )
-                ||
-                (
-                    activeArenaEntity.TypeArenaPlayer == TypeArenaPlayer.Left
-                    && node.RightNode != null
-                    && distanceNodes.Contains(node.RightNode)
-                    && node.StateArenaNode.HasFlag(StateArenaNode.Moved)
-                )
-                )
-            {
-                node.weight++;
-            }
-            if (
-                node.LeftNode != null
-                && (node.LeftNode.StateArenaNode.HasFlag(StateArenaNode.Empty) || node.LeftNode.OccupiedUnit == startNode.OccupiedUnit)
-                && (distanceNodes.Contains(node.LeftNode) || node.LeftNode.StateArenaNode.HasFlag(StateArenaNode.Moved))
-                && distanceNodes.Contains(node)
-            )
-            {
-                node.weight++;
-            }
-            if (
-                node.RightNode != null
-                && (node.RightNode.StateArenaNode.HasFlag(StateArenaNode.Empty) || node.RightNode.OccupiedUnit == startNode.OccupiedUnit)
-                && (distanceNodes.Contains(node.RightNode) || node.RightNode.StateArenaNode.HasFlag(StateArenaNode.Moved))
-                && distanceNodes.Contains(node)
-            )
-            {
-                node.weight++;
-            }
-            // if (
-            //         (node.RightNode != null
-            //         && distanceNodes.Contains(node.RightNode)
-            //         )
-            //         ||
-            //         (node.LeftNode != null
-            //         && distanceNodes.Contains(node.LeftNode)
-            //         )
-            //     )
-            // {
-            //     node.weight++;
-            // }
-            // else
-            // {
-            //     if (
-            //         activeArenaEntity.TypeArenaPlayer == TypeArenaPlayer.Right
-            //         && node.RightNode != null
-            //         && node.LeftNode != null
-            //         && distanceNodes.Contains(node)
-            //         && (node.LeftNode.OccupiedUnit == null || node.LeftNode.OccupiedUnit == startNode.OccupiedUnit)
-            //     )
-            //     {
-            //         node.weight++;
-            //     }
-            //     if (
-            //         activeArenaEntity.TypeArenaPlayer == TypeArenaPlayer.Left
-            //         && node.LeftNode != null
-            //         && node.RightNode != null
-            //         && distanceNodes.Contains(node)
-            //         && (node.RightNode.OccupiedUnit == null || node.RightNode.OccupiedUnit == startNode.OccupiedUnit)
-            //         )
-            //     {
-            //         node.weight++;
-            //     }
-            // }
-        }
-
-    }
-    // public List<GridArenaNode> GetIntersectHexagons(GridArenaNode nodeStart, GridArenaNode nodeEnd, ArenaEntity entity)
+    // public List<GridArenaNode> GetEmptyCellByX(GridArenaNode currentNode, List<GridArenaNode> listNodes, ArenaEntity entity)
     // {
-    //     var neighboursNodeStart = GetNeighbourList(nodeStart);
-    //     var neighboursNodeEnd = GetNeighbourList(nodeEnd);
+    //     Vector3Int position = currentNode.position;
+    //     List<GridArenaNode> neighbourList = new List<GridArenaNode>();
 
-    //     List<GridArenaNode> intersectNodes = new();
+    //     var one = currentNode.LeftNode; // GetNode(position.x - 1, position.y);
+    //     if (one != null && ((one.OccupiedUnit == null && listNodes.Contains(one)) || one.OccupiedUnit == entity)) neighbourList.Add(one);
 
-    //     // var moreNodes = neighboursNodeEnd.Count > neighboursNodeStart.Count
-    //     //     ? neighboursNodeEnd
-    //     //     : neighboursNodeStart;
+    //     var two = currentNode.RightNode; // GetNode(position.x + 1, position.y);
+    //     if (two != null && ((two.OccupiedUnit == null && listNodes.Contains(two)) || two.OccupiedUnit == entity)) neighbourList.Add(two);
 
-    //     for (int i = 0; i < neighboursNodeStart.Count; i++)
-    //     {
-    //         var node = neighboursNodeStart[i];
-    //         if (neighboursNodeEnd.Contains(node) && node != nodeStart && node != nodeEnd)
-    //         {
-    //             intersectNodes.Add(node);
-    //         }
-    //     }
-
-    //     return intersectNodes
-    //         .Where(t => t.OccupiedUnit == null || t.OccupiedUnit == entity)
-    //         .ToList();
+    //     return neighbourList;
     // }
 
-
-    public List<GridArenaNode> GetNeighboursAtDistance(GridArenaNode startNode, int distance)
-    {
-        List<GridArenaNode> openListNodes = new List<GridArenaNode>() { startNode };
-        List<GridArenaNode> closedListNodes = new List<GridArenaNode>();
-        var entity = ((EntityCreature)startNode.OccupiedUnit.Entity).ConfigAttribute;
-
-        while (openListNodes.Count > 0)
-        {
-            GridArenaNode currentNode = openListNodes[0];
-
-            openListNodes.Remove(currentNode);
-            closedListNodes.Add(currentNode);
-
-            foreach (GridArenaNode neighbourNode in GetNeighbourList(currentNode))
-            {
-                if (closedListNodes.Contains(neighbourNode)) continue;
-
-                var dist = startNode.DistanceTo(neighbourNode);
-                if (
-                    !openListNodes.Contains(neighbourNode)
-                    && dist <= distance
-                    // && (
-                    //     neighbourNode.StateArenaNode.HasFlag(StateArenaNode.Empty)
-                    //     || (
-                    //         neighbourNode.OccupiedUnit != null
-                    //         && neighbourNode.OccupiedUnit == startNode.OccupiedUnit
-                    //     )
-                    //     )
-                    )
-                {
-                    // Debug.Log($"Neighbour ({startNode.position})|end({neighbourNode.position})::: dist={dist}");
-                    openListNodes.Add(neighbourNode);
-                }
-            }
-        }
-
-        // var relatedNode = startNode.OccupiedUnit.RelatedNode;
-        // if (relatedNode != null)
-        // {
-        //     foreach (GridArenaNode neighbourNode in GetAllGridNodes())
-        //     {
-        //         var dist = relatedNode.DistanceTo(neighbourNode);
-        //         if (
-        //             !closedListNodes.Contains(neighbourNode)
-        //             && dist <= distance
-        //             )
-        //         {
-        //             // Debug.Log($"Neighbour ({startNode.position})|end({neighbourNode.position})::: dist={dist}");
-        //             closedListNodes.Add(neighbourNode);
-        //         }
-        //     }
-        //     // openListNodes.Add(relatedNode);
-        //     // while (openListNodes.Count > 0)
-        //     // {
-        //     //     GridArenaNode currentNode = openListNodes[0];
-
-        //     //     openListNodes.Remove(currentNode);
-        //     //     closedListNodes.Add(currentNode);
-
-        //     //     foreach (GridArenaNode neighbourNode in GetNeighbourList(currentNode))
-        //     //     {
-        //     //         if (closedListNodes.Contains(neighbourNode)) continue;
-
-        //     //         var dist = relatedNode.DistanceTo(neighbourNode);
-        //     //         if (
-        //     //             !openListNodes.Contains(neighbourNode)
-        //     //             && dist <= distance
-        //     //             )
-        //     //         {
-        //     //             // Debug.Log($"Neighbour ({startNode.position})|end({neighbourNode.position})::: dist={dist}");
-        //     //             openListNodes.Add(neighbourNode);
-        //     //         }
-        //     //     }
-        //     // }
-        // }
-
-        var result = new List<GridArenaNode>();
-        foreach (var node in closedListNodes)
-        {
-            // if (node.position != startNode.position
-            //     // && node.position != relatedNode?.position
-            //     // && ((GetEmptyCellByX(node, closedListNodes).Count + 1) >= entity.CreatureParams.Size)
-            //     // // ||
-            //     // // GetNeighbourList(node).Select(t => t.OccupiedUnit).Contains(startNode.OccupiedUnit)
-            //     )
-            // {
-            result.Add(node);
-            // }
-        }
-
-        return result;
-    }
-    public List<GridArenaNode> GetNeighboursAtDistanceAndFindPath(List<GridArenaNode> allowNodes, GridArenaNode startNode)
-    {
-        var result = new List<GridArenaNode>();
-        var entityData = ((ScriptableAttributeCreature)startNode.OccupiedUnit.Entity.ScriptableDataAttribute);
-        foreach (var node in allowNodes)
-        {
-            var path = FindPath(startNode.position, node.position);
-            if (
-                path != null
-                && path.Count - 1 <= entityData.CreatureParams.Speed
-                // &&
-                //     (
-                //         entityData.CreatureParams.Size == 1
-                //         ||
-                //         (
-                //             entityData.CreatureParams.Size > 1
-                //             &&
-                //         )
-                //     )
-                )
-            {
-                result.Add(node);
-                node.level = path.Count - 1;
-            }
-        }
-
-        // if (startNode.OccupiedUnit.RelatedNode != null)
-        // {
-        //     foreach (var node in allowNodes)
-        //     {
-        //         var path = FindPath(startNode.OccupiedUnit.RelatedNode.position, node.position);
-        //         if (
-        //             path != null
-        //             && path.Count - 1 <= entityData.CreatureParams.Speed
-        //             // &&
-        //             //     (
-        //             //         entityData.CreatureParams.Size == 1
-        //             //         ||
-        //             //         (
-        //             //             entityData.CreatureParams.Size > 1
-        //             //             &&
-        //             //         )
-        //             //     )
-        //             )
-        //         {
-        //             result.Add(node);
-        //             node.level = path.Count - 1;
-        //         }
-        //     }
-        // }
-
-        return result;
-    }
-
-    private List<GridArenaNode> CalculatePath(GridArenaNode endNode)
-    {
-        List<GridArenaNode> path = new List<GridArenaNode>();
-        path.Add(endNode);
-
-        GridArenaNode currentNode = endNode;
-        while (currentNode.cameFromNode != null)
-        {
-            path.Add(currentNode.cameFromNode);
-            currentNode = currentNode.cameFromNode;
-        }
-        path.Reverse();
-        return path;
-    }
-
-    // private Vector3Int[] GetAxialDirectionVectors()
-    // {
-    //     return new[]{
-    //         new Vector3Int(+1, 0),
-    //         new Vector3Int(+1, -1),
-    //         new Vector3Int(0, -1),
-    //         new Vector3Int(-1, 0),
-    //         new Vector3Int(-1, +1),
-    //         new Vector3Int(0, +1),
-    //     };
-    // }
-
-    public GridArenaNode GetNode(int x, int y)
-    {
-        return _gridArena.GetGridObject(new Vector3Int(x, y));
-    }
-    public GridArenaNode GetNode(Vector3Int pos)
-    {
-        return _gridArena.GetGridObject(pos);
-    }
-
-    private float CalculateDistanceCost(GridArenaNode a, GridArenaNode b)
-    {
-        // float xDistance = Mathf.Abs(a.position.x - b.position.x);
-        // float yDistance = Mathf.Abs(a.position.y - b.position.y);
-        // float remaining = Mathf.Abs(xDistance - yDistance);
-        // return Mathf.Min(xDistance, yDistance) + remaining;
-        return Mathf.RoundToInt(10 * Vector3.Distance(_gridArena.GetWorldPosition(a.position.x, a.position.y), _gridArena.GetWorldPosition(b.position.x, b.position.y)));
-    }
 }

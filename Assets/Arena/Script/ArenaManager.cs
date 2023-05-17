@@ -117,6 +117,10 @@ public class ArenaManager : MonoBehaviour
 
     private async UniTask GoEntity()
     {
+#if UNITY_EDITOR
+        System.Diagnostics.Stopwatch stopWatch = new System.Diagnostics.Stopwatch();
+        stopWatch.Start();
+#endif
         ArenaEntity activeArenaEntity = ArenaQueue.activeEntity;
         ScriptableAttributeCreature activeEntityCreature = (ScriptableAttributeCreature)activeArenaEntity.Entity.ScriptableDataAttribute;
 
@@ -128,11 +132,9 @@ public class ArenaManager : MonoBehaviour
 
         _gridArenaHelper.CreateWeightCellByX(DistanceNodes, activeArenaEntity.OccupiedNode);
 
-        // if (activeEntityCreature.CreatureParams.Size > 1)
-        // {
         foreach (var neiNode in DistanceNodes)
         {
-            _tileMapDistance.SetTile(neiNode.position, _tileHexShadow);
+            // _tileMapDistance.SetTile(neiNode.position, _tileHexShadow);
 
             // // Set formal disable node for pathfinding.
             if (activeEntityCreature.CreatureParams.Size > 1)
@@ -162,36 +164,17 @@ public class ArenaManager : MonoBehaviour
                 }
             }
         };
-        // }
 
         // foreach (var neiNode in GridArenaHelper.GetAllGridNodes())
         // {
         //     SetTextMeshNode(neiNode);
         // };
 
-        ResetTextMeshNode();
+        // ResetTextMeshNode();
         var nodes = GridArenaHelper.GetNeighboursAtDistanceAndFindPath(DistanceNodes, activeArenaEntity.OccupiedNode);
-        // var nodes = allNodes;
-        // if (activeEntityCreature.CreatureParams.Movement != MovementType.Flying)
-        // {
-        //     nodes = GridArenaHelper.GetNeighboursAtDistanceAndFindPath(allNodes, activeArenaEntity.OccupiedNode);
-        // }
 
-        // foreach (var node in GridArenaHelper.GetAllGridNodes())
-        // {
-        //     if (node.OccupiedUnit != null)
-        //     {
-        //         if (
-        //             node.LeftNode != null
-        //             && activeArenaEntity.TypeArenaPlayer == TypeArenaPlayer.Right
-        //             && node.LeftNode.OccupiedUnit == null
-        //             )
-        //         {
-        //             nodes.Add(node.LeftNode);
-        //         }
-        //     }
-        // };
         _gridArenaHelper.CreateWeightCellByX(nodes, activeArenaEntity.OccupiedNode);
+
         foreach (var neiNode in nodes)
         {
             if (neiNode.weight >= activeEntityCreature.CreatureParams.Size)
@@ -218,7 +201,11 @@ public class ArenaManager : MonoBehaviour
 
         // lighting active creature.
         SetColorActiveNode();
-
+#if UNITY_EDITOR
+        stopWatch.Stop();
+        System.TimeSpan timeTaken = stopWatch.Elapsed;
+        Debug.LogWarning($"Time Generation Step::: {timeTaken.ToString(@"m\:ss\.ffff")}");
+#endif
         await UniTask.Delay(1);
     }
 
@@ -288,7 +275,7 @@ public class ArenaManager : MonoBehaviour
             _listText.Add(posText, text);
         }
         text.gameObject.transform.GetComponentInChildren<TextMeshProUGUI>().text
-            = textString != "" ? textString : string.Format("{0}:{1}\r\n P{2} W{3}",
+            = textString != "" ? textString : string.Format("{0}:{1}\r\n L{2} W{3}",
             tileNode.position.x,
             tileNode.position.y,
             tileNode.level,
