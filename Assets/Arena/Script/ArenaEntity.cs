@@ -36,6 +36,8 @@ public class ArenaEntity
     [NonSerialized] public GridArenaNode ProtectedNode = null;
     [NonSerialized] private List<GridArenaNode> _path = null;
     public List<GridArenaNode> Path => _path;
+    private Vector3 _centerNode;
+    public Vector3 CenterNode => _centerNode;
     private Vector3 _positionPrefab;
     public Vector3 PositionPrefab => _positionPrefab;
     [NonSerialized] public ArenaMonoBehavior ArenaMonoBehavior;
@@ -60,14 +62,17 @@ public class ArenaEntity
     public void SetPosition(GridArenaNode node)
     {
         OccupiedNode.SetOcuppiedUnit(null);
+        var creatureData = ((ScriptableAttributeCreature)Entity.ScriptableDataAttribute);
+        var size = creatureData.CreatureParams.Size;
 
-        var size = ((ScriptableAttributeCreature)Entity.ScriptableDataAttribute).CreatureParams.Size;
         if (size == 2)
         {
             NormalizeNode(node);
         }
-
-        _positionPrefab = node.center; // new Vector3(size + .5f, node.positionPrefab.y, node.positionPrefab.z);
+        _centerNode = node.center; // new Vector3(size + .5f, node.positionPrefab.y, node.positionPrefab.z);
+        _positionPrefab = size == 2
+            ? node.center + new Vector3(TypeArenaPlayer == TypeArenaPlayer.Left ? -0.5f : 0.5f, 0, 0)
+            : node.center;
         node.SetOcuppiedUnit(this);
         OccupiedNode = node;
     }
@@ -88,6 +93,7 @@ public class ArenaEntity
             )
         {
             _relatedNode = node.LeftNode;
+            // _positionPrefab = node.OccupiedUnit._centerNode + new Vector3(-0.5f, 0, 0);
             RelatedNode.SetOcuppiedUnit(this);
         }
         else if (
@@ -98,6 +104,7 @@ public class ArenaEntity
         )
         {
             _relatedNode = node.RightNode;
+            // _positionPrefab = node.OccupiedUnit._centerNode + new Vector3(0.5f, 0, 0);
             RelatedNode.SetOcuppiedUnit(this);
         }
         // // disable old related data.
@@ -134,26 +141,26 @@ public class ArenaEntity
     public TypeDirection Rotate(GridArenaNode node)
     {
         var prevNode = node.cameFromNode;
-        // if (prevNode != null)
-        // {
-        //     var difference = node.center.x - prevNode.center.x;
-        //     if (difference < 0)
-        //     {
-        //         Direction = TypeDirection.Left;
-        //         // RelatedNode.SetOcuppiedUnit(null);
-        //         // _relatedNode = node.RightNode;
-        //         // RelatedNode.SetOcuppiedUnit(this);
-        //         Debug.Log($"Rotate Left::: {node.RightNode}");
-        //     }
-        //     else if (difference > 0)
-        //     {
-        //         Direction = TypeDirection.Right;
-        //         // RelatedNode.SetOcuppiedUnit(null);
-        //         // _relatedNode = node.LeftNode;
-        //         // RelatedNode.SetOcuppiedUnit(this);
-        //         Debug.Log($"Rotate Right::: {node.LeftNode}");
-        //     }
-        // }
+        if (prevNode != null)
+        {
+            var difference = node.center.x - prevNode.center.x;
+            if (difference < 0)
+            {
+                Direction = TypeDirection.Left;
+                // RelatedNode.SetOcuppiedUnit(null);
+                // _relatedNode = node.RightNode;
+                // RelatedNode.SetOcuppiedUnit(this);
+                // Debug.Log($"Rotate Left::: {node.RightNode}");
+            }
+            else if (difference > 0)
+            {
+                Direction = TypeDirection.Right;
+                // RelatedNode.SetOcuppiedUnit(null);
+                // _relatedNode = node.LeftNode;
+                // RelatedNode.SetOcuppiedUnit(this);
+                // Debug.Log($"Rotate Right::: {node.LeftNode}");
+            }
+        }
 
         // if (((ScriptableAttributeCreature)Entity.ScriptableDataAttribute).CreatureParams.Size == 2)
         // {
@@ -181,7 +188,7 @@ public class ArenaEntity
         // _positionPrefab = node.positionPrefab;
         SetPosition(node);
         // _arenaManager.SetColorActiveNode();
-        _arenaManager.SetColorDisableNode();
+        // _arenaManager.SetColorDisableNode();
     }
 
     public void DoHero(Player player)

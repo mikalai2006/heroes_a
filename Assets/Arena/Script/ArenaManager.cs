@@ -369,7 +369,7 @@ public class ArenaManager : MonoBehaviour
                 ArenaQueue.AddEntity(GridGameObject);
             }
         }
-        SetColorDisableNode();
+        // SetColorDisableNode();
     }
 
     private void CreateArena()

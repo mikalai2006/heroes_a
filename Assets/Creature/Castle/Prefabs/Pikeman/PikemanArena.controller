@@ -88,7 +88,8 @@ AnimatorState:
   m_Name: PikermanIdle
   m_Speed: 1
   m_CycleOffset: 0
-  m_Transitions: []
+  m_Transitions:
+  - {fileID: -5972674934731006790}
   m_StateMachineBehaviours: []
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
@@ -104,32 +105,31 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
---- !u!1102 &-6231444865009642713
-AnimatorState:
-  serializedVersion: 6
+--- !u!1101 &-5972674934731006790
+AnimatorStateTransition:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: PikermanStopMoving
-  m_Speed: 1
-  m_CycleOffset: 0
-  m_Transitions: []
-  m_StateMachineBehaviours: []
-  m_Position: {x: 50, y: 50, z: 0}
-  m_IKOnFeet: 0
-  m_WriteDefaultValues: 1
-  m_Mirror: 0
-  m_SpeedParameterActive: 0
-  m_MirrorParameterActive: 0
-  m_CycleOffsetParameterActive: 0
-  m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 462cb3bc32932d346b739685d9986ed5, type: 2}
-  m_Tag: 
-  m_SpeedParameter: 
-  m_MirrorParameter: 
-  m_CycleOffsetParameter: 
-  m_TimeParameter: 
+  m_Name: 
+  m_Conditions:
+  - m_ConditionMode: 1
+    m_ConditionEvent: move
+    m_EventTreshold: 0
+  m_DstStateMachine: {fileID: 0}
+  m_DstState: {fileID: 5962201444067648644}
+  m_Solo: 0
+  m_Mute: 0
+  m_IsExit: 0
+  serializedVersion: 3
+  m_TransitionDuration: 0
+  m_TransitionOffset: 0
+  m_ExitTime: 0.72727275
+  m_HasExitTime: 0
+  m_HasFixedDuration: 1
+  m_InterruptionSource: 0
+  m_OrderedInterruption: 1
+  m_CanTransitionToSelf: 1
 --- !u!1102 &-5740672540699986989
 AnimatorState:
   serializedVersion: 6
@@ -156,32 +156,31 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
---- !u!1102 &-4598443805749842728
-AnimatorState:
-  serializedVersion: 6
+--- !u!1101 &-3954465520571696474
+AnimatorStateTransition:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: PikermanStartMoving
-  m_Speed: 1
-  m_CycleOffset: 0
-  m_Transitions: []
-  m_StateMachineBehaviours: []
-  m_Position: {x: 50, y: 50, z: 0}
-  m_IKOnFeet: 0
-  m_WriteDefaultValues: 1
-  m_Mirror: 0
-  m_SpeedParameterActive: 0
-  m_MirrorParameterActive: 0
-  m_CycleOffsetParameterActive: 0
-  m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 51e491ef4b2eaa448bc11e94cb828983, type: 2}
-  m_Tag: 
-  m_SpeedParameter: 
-  m_MirrorParameter: 
-  m_CycleOffsetParameter: 
-  m_TimeParameter: 
+  m_Name: 
+  m_Conditions:
+  - m_ConditionMode: 2
+    m_ConditionEvent: move
+    m_EventTreshold: 0
+  m_DstStateMachine: {fileID: 0}
+  m_DstState: {fileID: -6313538650251692366}
+  m_Solo: 0
+  m_Mute: 0
+  m_IsExit: 0
+  serializedVersion: 3
+  m_TransitionDuration: 0
+  m_TransitionOffset: 0
+  m_ExitTime: 0.28571433
+  m_HasExitTime: 0
+  m_HasFixedDuration: 1
+  m_InterruptionSource: 0
+  m_OrderedInterruption: 1
+  m_CanTransitionToSelf: 1
 --- !u!1107 &-3912349394446347184
 AnimatorStateMachine:
   serializedVersion: 6
@@ -193,46 +192,40 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: -6313538650251692366}
-    m_Position: {x: 200, y: 0, z: 0}
+    m_Position: {x: 260, y: 120, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 5368456012316660230}
-    m_Position: {x: 235, y: 65, z: 0}
+    m_Position: {x: 800, y: 170, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -3679954477728254052}
-    m_Position: {x: 270, y: 130, z: 0}
+    m_Position: {x: 830, y: 240, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -8462616254276434450}
-    m_Position: {x: 305, y: 195, z: 0}
+    m_Position: {x: 870, y: 300, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 3627325362688307934}
-    m_Position: {x: 340, y: 260, z: 0}
+    m_Position: {x: 900, y: 370, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -1046105045292948459}
-    m_Position: {x: 375, y: 325, z: 0}
+    m_Position: {x: 870, y: 450, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -8658884305882265107}
-    m_Position: {x: 410, y: 390, z: 0}
+    m_Position: {x: 900, y: 510, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -5740672540699986989}
-    m_Position: {x: 445, y: 455, z: 0}
+    m_Position: {x: 940, y: 580, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -9144962852725710453}
-    m_Position: {x: 480, y: 520, z: 0}
+    m_Position: {x: 970, y: 640, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 5962201444067648644}
-    m_Position: {x: 515, y: 585, z: 0}
-  - serializedVersion: 1
-    m_State: {fileID: -4598443805749842728}
-    m_Position: {x: 550, y: 650, z: 0}
-  - serializedVersion: 1
-    m_State: {fileID: -6231444865009642713}
-    m_Position: {x: 585, y: 715, z: 0}
+    m_Position: {x: 270, y: 20, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 4774218950482373612}
-    m_Position: {x: 620, y: 780, z: 0}
+    m_Position: {x: 910, y: 730, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 2091216853957679109}
-    m_Position: {x: 655, y: 845, z: 0}
+    m_Position: {x: 940, y: 790, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -303,7 +296,25 @@ AnimatorController:
   m_PrefabAsset: {fileID: 0}
   m_Name: PikemanArena
   serializedVersion: 5
-  m_AnimatorParameters: []
+  m_AnimatorParameters:
+  - m_Name: move
+    m_Type: 4
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
+  - m_Name: walk
+    m_Type: 4
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
+  - m_Name: turn
+    m_Type: 4
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -431,7 +442,8 @@ AnimatorState:
   m_Name: PikermanMoving
   m_Speed: 1
   m_CycleOffset: 0
-  m_Transitions: []
+  m_Transitions:
+  - {fileID: -3954465520571696474}
   m_StateMachineBehaviours: []
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0

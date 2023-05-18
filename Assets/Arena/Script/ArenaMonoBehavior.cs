@@ -175,7 +175,7 @@ public class ArenaMonoBehavior : MonoBehaviour // , IPointerDownHandler
             gameObject.transform.position.y,
             -(11 - _arenaEntity.OccupiedNode.position.y));
 
-        if (ArenaEntity.PositionPrefab.x > 10f)
+        if (ArenaEntity.CenterNode.x > 10f)
         {
             _model.transform.localScale = new Vector3(-1, 1, 1);
         }
@@ -191,6 +191,10 @@ public class ArenaMonoBehavior : MonoBehaviour // , IPointerDownHandler
 
     public async UniTask StartMove()
     {
+        // Rotate(ArenaEntity.Path[0]);
+
+        _animator.SetBool("move", true);
+        await UniTask.Delay(100);
         var entityHero = (EntityCreature)_arenaEntity.Entity;
         // if (entityHero.IsExistPath)
         // {
@@ -216,20 +220,20 @@ public class ArenaMonoBehavior : MonoBehaviour // , IPointerDownHandler
                 = (ScriptableEntityMapObject)nodeTo.OccupiedUnit?.ConfigData;
 
             // Debug.Log(nodeTo.position);
-            Rotate(nodeTo);
+            //Rotate(nodeTo);
 
-            // // UpdateAnimate(ArenaEntity.PositionPrefab, nodeTo.position);
-            // // _animator.SetBool("isWalking", true);
-            // var difPos = entityData.CreatureParams.Size == 2
-            //     ? new Vector3(nodeTo.position.x == 14 ? -0.5f : 0.5f, 0, 0)
-            //     : Vector3.zero;
-            // // var newPos = ArenaEntity.Path.Count == 1
-            // // && ArenaEntity.Direction == TypeDirection.Right
-            // // && nodeTo.cameFromNode != null
-            // // && nodeTo.cameFromNode.position.y == nodeTo.position.y
-            // //     ? (Vector3)nodeTo.cameFromNode.center + difPos
-            // //     : (Vector3)nodeTo.center + difPos;
-            await SmoothLerp(transform.position, (Vector3)nodeTo.center);
+            UpdateAnimate(ArenaEntity.PositionPrefab, nodeTo.position, nodeTo);
+            // _animator.SetBool("isWalking", true);
+            var difPos = entityData.CreatureParams.Size == 2
+                ? new Vector3(ArenaEntity.TypeArenaPlayer == TypeArenaPlayer.Left ? -0.5f : 0.5f, 0, 0)
+                : Vector3.zero;
+            // var newPos = ArenaEntity.Path.Count == 1
+            // && ArenaEntity.Direction == TypeDirection.Right
+            // && nodeTo.cameFromNode != null
+            // && nodeTo.cameFromNode.position.y == nodeTo.position.y
+            //     ? (Vector3)nodeTo.cameFromNode.center + difPos
+            //     : (Vector3)nodeTo.center + difPos;
+            await SmoothLerp(transform.position, (Vector3)nodeTo.center + difPos);
 
             // entityCreature.SetGuestForNode(nodeTo);
 
@@ -250,13 +254,16 @@ public class ArenaMonoBehavior : MonoBehaviour // , IPointerDownHandler
 
             prevNode = nodeTo;
         }
+        _animator.SetBool("walk", false);
+        await UniTask.Delay(100);
         // _canMove = false;
-        // _animator.SetBool("isWalking", false);
+        _animator.SetBool("move", false);
     }
 
     private void Rotate(GridArenaNode node)
     {
         var dir = ArenaEntity.Rotate(node);
+        Debug.Log($"dir {dir}/ ");
         if (dir == TypeDirection.Right)
         {
             _model.localScale = new Vector3(1, 1, 1);
@@ -265,6 +272,8 @@ public class ArenaMonoBehavior : MonoBehaviour // , IPointerDownHandler
         {
             _model.localScale = new Vector3(-1, 1, 1);
         }
+
+        // _animator.SetBool("isRotate", true);
         // if ()
         // var direction = currentNode, neighbourNode);
     }
@@ -292,25 +301,26 @@ public class ArenaMonoBehavior : MonoBehaviour // , IPointerDownHandler
         }
     }
 
-    public void UpdateAnimate(Vector3 startPosition, Vector3 endPosition)
+    public void UpdateAnimate(Vector3 startPosition, Vector3 endPosition, GridArenaNode node)
     {
         if (_animator != null && startPosition != Vector3Int.zero && endPosition != Vector3Int.zero)
         {
-            if (startPosition.x > endPosition.x)
+            var dir = ArenaEntity.Rotate(node);
+            if (dir == TypeDirection.Right)
             {
-                _model.transform.localScale = new Vector3(-1, 1, 1);
+                _model.localScale = new Vector3(1, 1, 1);
             }
             else
             {
-                _model.transform.localScale = new Vector3(1, 1, 1);
+                _model.localScale = new Vector3(-1, 1, 1);
             }
 
             Vector3 direction = endPosition - startPosition;
             //Debug.Log($"Animator change::: {direction}");
-            _animator.SetFloat("X", (float)direction.x);
-            _animator.SetFloat("Y", (float)direction.y);
+            // _animator.SetFloat("X", (float)direction.x);
+            // _animator.SetFloat("Y", direction.y);
 
-            _animator.SetBool("isWalking", true);
+            _animator.SetBool("walk", true);
         }
     }
 
