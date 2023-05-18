@@ -194,10 +194,12 @@ public class ArenaManager : MonoBehaviour
                 }
             };
         }
-        foreach (var neiNode in GridArenaHelper.GetAllGridNodes())
-        {
-            SetTextMeshNode(neiNode);
-        };
+
+        // Draw help text.
+        // foreach (var neiNode in GridArenaHelper.GetAllGridNodes())
+        // {
+        //     SetTextMeshNode(neiNode);
+        // };
 
         // lighting active creature.
         SetColorActiveNode();
@@ -211,17 +213,27 @@ public class ArenaManager : MonoBehaviour
 
     public void SetColorActiveNode()
     {
+        _tileMapUnitActive.ClearAllTiles();
+        Color color = Color.magenta;
+        color.a = .6f;
+
         ArenaEntity activeArenaEntity = ArenaQueue.activeEntity;
 
         GridArenaNode nodeActiveCreature = activeArenaEntity.OccupiedNode;
-        _tileMapUnitActive.ClearAllTiles();
+        GridArenaNode relatedNodeActiveCreature = activeArenaEntity.RelatedNode;
 
         _tileMapUnitActive.SetTile(nodeActiveCreature.position, _tileHexActive);
         _tileMapUnitActive.SetTileFlags(nodeActiveCreature.position, TileFlags.None);
-        Color color = Color.magenta;
-        color.a = .6f;
         _tileMapUnitActive.SetColor(nodeActiveCreature.position, color);
         _tileMapUnitActive.SetTileFlags(nodeActiveCreature.position, TileFlags.LockColor);
+
+        if (relatedNodeActiveCreature != null)
+        {
+            _tileMapUnitActive.SetTile(relatedNodeActiveCreature.position, _tileHexActive);
+            _tileMapUnitActive.SetTileFlags(relatedNodeActiveCreature.position, TileFlags.None);
+            _tileMapUnitActive.SetColor(relatedNodeActiveCreature.position, color);
+            _tileMapUnitActive.SetTileFlags(relatedNodeActiveCreature.position, TileFlags.LockColor);
+        }
     }
     public void ResetPathColor()
     {

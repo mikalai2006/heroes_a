@@ -71,7 +71,7 @@ public class ArenaMonoBehavior : MonoBehaviour // , IPointerDownHandler
             var rayHit = Physics2D.GetRayIntersection(_camera.ScreenPointToRay(_inputManager.clickPosition()));
             if (!rayHit.collider) return;
             // Debug.Log($"OnClick::: {context.interaction} - {context.phase} - {rayHit.collider.gameObject}");
-            if (rayHit.collider.gameObject == _model.gameObject)
+            if (rayHit.collider.gameObject == gameObject) // _model.gameObject
             {
                 if (context.interaction is PressInteraction || context.interaction is TapInteraction)
                 {
@@ -290,7 +290,7 @@ public class ArenaMonoBehavior : MonoBehaviour // , IPointerDownHandler
 
     private async UniTask SmoothLerp(Vector3 startPosition, Vector3 endPosition)
     {
-        float time = LevelManager.Instance.ConfigGameSettings.speedHero;
+        float time = LevelManager.Instance.ConfigGameSettings.speedArenaAnimation;
         float elapsedTime = 0;
         while (elapsedTime < time)
         {

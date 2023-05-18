@@ -38,6 +38,9 @@ public class SOGameSetting : ScriptableObject
     public List<ItemDependencyCreatureOnMove> DependencyCreatureOnMove;
     public int countCellClearSky;
 
+    [Header("Setting Arena")]
+    [Space(5)]
+    [Range(.05f, 1f)] public float speedArenaAnimation;
 }
 
 [System.Serializable]
