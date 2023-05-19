@@ -18,6 +18,8 @@ public class ArenaMonoBehavior : MonoBehaviour // , IPointerDownHandler
     [NonSerialized] private Transform _quantity;
     private Camera _camera;
     private Collider2D _collider;
+    [SerializeField] public GameObject ShootPrefab;
+    private GameObject _shoot;
 
     private string _nameCreature;
 
@@ -40,6 +42,11 @@ public class ArenaMonoBehavior : MonoBehaviour // , IPointerDownHandler
     #region Unity methods
     public void Awake()
     {
+        if (ShootPrefab != null)
+        {
+            _shoot = GameObject.Instantiate(ShootPrefab, gameObject.transform.position, Quaternion.identity, transform);
+            _shoot.SetActive(false);
+        }
         // _camera = GameObject.FindGameObjectWithTag("ArenaCamera")?.GetComponent<Camera>();
         _animator = GetComponentInChildren<Animator>();
         _collider = GetComponentInChildren<Collider2D>();
@@ -49,6 +56,7 @@ public class ArenaMonoBehavior : MonoBehaviour // , IPointerDownHandler
     protected void OnDestroy()
     {
         ((ScriptableAttributeCreature)ArenaEntity.Entity.ScriptableDataAttribute).ArenaModel.ReleaseInstance(gameObject);
+        if (_shoot != null) Destroy(_shoot);
     }
 
     // public void OnPointerDown(PointerEventData eventData)
@@ -427,6 +435,9 @@ public class ArenaMonoBehavior : MonoBehaviour // , IPointerDownHandler
         Debug.Log($"Shoot {nameAnimationAttack}");
 
         _animator.Play(nameAnimationAttack, 0, 0f);
+        _shoot.SetActive(true);
+        await SmoothLerpShoot(transform.position, nodeForAttack.center, LevelManager.Instance.ConfigGameSettings.speedArenaAnimation * 2);
+        _shoot.SetActive(false);
         await UniTask.Delay(100);
         await nodeForAttack.OccupiedUnit.ArenaMonoBehavior.RunGettingHit(_arenaEntity.OccupiedNode);
 
@@ -459,5 +470,20 @@ public class ArenaMonoBehavior : MonoBehaviour // , IPointerDownHandler
         // NormalizeDirection();
         _animator.Play(string.Format("{0}{1}", _nameCreature, "Idle"), 0, 0f);
         await UniTask.Delay(1);
+    }
+
+    private async UniTask SmoothLerpShoot(Vector3 startPosition, Vector3 endPosition, float time)
+    {
+        // float time = LevelManager.Instance.ConfigGameSettings.speedArenaAnimation;
+        startPosition = startPosition + new Vector3(0, 1, 0);
+        endPosition = endPosition + new Vector3(0, 1, 0);
+        float elapsedTime = 0;
+        while (elapsedTime < time)
+        {
+            _shoot.transform.position = Vector3.Lerp(startPosition, endPosition, (elapsedTime / time));
+            elapsedTime += Time.deltaTime;
+            // yield return null;
+            await UniTask.Yield();
+        }
     }
 }

@@ -87,6 +87,7 @@ public class UIArena : UILocaleBase
     {
         OnNextCreature?.Invoke();
         DrawHelpCreature();
+        ChangeStatusButtonAttack();
     }
 
     private void ChangeStatusButtonAttack()
