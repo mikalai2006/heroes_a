@@ -17,8 +17,13 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: ba9bae349278e2844a6e95e6031a42c5
   m_SerializeEntries:
-  - m_GUID: dada6e24a42d0ac4c9b4642d9a7e2804
-    m_Address: Assets/Arena/Prefabs
+  - m_GUID: f85263cfe3ccf4c42a42b7f85656311a
+    m_Address: Assets/Arena/Prefabs/Hero/Knight/Hero_Battle_Knight.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 624f1428eb32a0c4ebd93502937ca8b9
+    m_Address: Assets/Arena/Prefabs/Text.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
