@@ -210,7 +210,8 @@ MonoBehaviour:
     FightFromBottomRight: {fileID: 11400000, guid: 72a50ae120c496b49bb869c068e07973, type: 2}
     FightFromBottom: {fileID: 11400000, guid: 8ef5c483b38530240ad793be3cda5a48, type: 2}
     FightFromBottomLeft: {fileID: 11400000, guid: e86536fa8db478a4693ab8c768c05690, type: 2}
-  _tileMapCursor: {fileID: 1567851507}
+    Shoot: {fileID: 11400000, guid: c126a8e01922f524aac0ac694dea68f6, type: 2}
+    ShootHalf: {fileID: 11400000, guid: 1ade8d014c3deac4bb9f0b5922ec12bb, type: 2}
   width: 15
   height: 11
   _tileMapArenaGrid: {fileID: 1204608557}
@@ -226,11 +227,15 @@ MonoBehaviour:
   _tileHex: {fileID: 11400000, guid: a9cc05e9b6f810e49a833d5eae39654b, type: 2}
   _tileHexShadow: {fileID: 11400000, guid: c64f75edc8ff68d4488734bf668acc37, type: 2}
   _tileHexActive: {fileID: 11400000, guid: 55acea784c53c744e80c39744dd4bef6, type: 2}
+  buttonAction: {fileID: 1874988815094525060, guid: 29feca8d9a5e3c34eb33fc7c8c93a4ff, type: 3}
+  _buttonAction: {fileID: 0}
   NodesForAttackActiveCreature: []
   heroes:
   - {fileID: 11400000, guid: 6ffb151385268c2468c11aa0926a7cf9, type: 2}
   - {fileID: 11400000, guid: 57be72433106473478d591f21ad47473, type: 2}
   _camera: {fileID: 815242362}
+  _colorActiveCreature: {r: 0.77254903, g: 1, b: 0, a: 0.6392157}
+  _colorAllowAttack: {r: 1, g: 0, b: 0, a: 0.56078434}
 --- !u!4 &114206433
 Transform:
   m_ObjectHideFlags: 0
@@ -1680,7 +1685,7 @@ GameObject:
   - component: {fileID: 1567851507}
   - component: {fileID: 1567851506}
   m_Layer: 0
-  m_Name: Cursor
+  m_Name: -Cursor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

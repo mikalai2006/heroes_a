@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 using Cysharp.Threading.Tasks;
 
@@ -16,6 +17,8 @@ public enum TypeArenaPlayer
     Left = 0,
     Right = 1,
 }
+
+[Serializable]
 public enum TypeDirection
 {
     Right = 0,
@@ -23,12 +26,26 @@ public enum TypeDirection
 }
 
 [Serializable]
+public enum TypeAttack
+{
+    Attack = 0,
+    Shoot = 1,
+}
+
+[Serializable]
+public class ArenaEntityData
+{
+    public int shoots;
+    public TypeAttack typeAttack;
+}
+
+[Serializable]
 public class ArenaEntity
 {
     private ArenaManager _arenaManager;
 
-    [SerializeField]
-    public ScriptableEntity _configData;
+    public ArenaEntityData Data = new();
+    [SerializeField] public ScriptableEntity _configData;
     public ScriptableEntity ConfigData => _configData;
     [NonSerialized] public GridArenaNode OccupiedNode = null;
     [NonSerialized] private GridArenaNode _relatedNode = null;
@@ -57,6 +74,9 @@ public class ArenaEntity
         OccupiedNode = node;
         // Debug.Log($"SetEntity::: {entity.ScriptableDataAttribute.name}");
         Direction = TypeArenaPlayer == TypeArenaPlayer.Left ? TypeDirection.Right : TypeDirection.Left;
+
+        var creatureData = ((ScriptableAttributeCreature)Entity.ScriptableDataAttribute);
+        Data.shoots = creatureData.CreatureParams.Shoots;
     }
 
     public void SetPosition(GridArenaNode node)
@@ -138,6 +158,11 @@ public class ArenaEntity
         // }
     }
 
+    public void SetDirection(TypeDirection direction)
+    {
+        Direction = direction;
+    }
+
     public TypeDirection Rotate(GridArenaNode node)
     {
         var prevNode = node.cameFromNode;
@@ -146,7 +171,7 @@ public class ArenaEntity
             var difference = node.center.x - prevNode.center.x;
             if (difference < 0)
             {
-                Direction = TypeDirection.Left;
+                SetDirection(TypeDirection.Left);
                 // RelatedNode.SetOcuppiedUnit(null);
                 // _relatedNode = node.RightNode;
                 // RelatedNode.SetOcuppiedUnit(this);
@@ -154,7 +179,7 @@ public class ArenaEntity
             }
             else if (difference > 0)
             {
-                Direction = TypeDirection.Right;
+                SetDirection(TypeDirection.Right);
                 // RelatedNode.SetOcuppiedUnit(null);
                 // _relatedNode = node.LeftNode;
                 // RelatedNode.SetOcuppiedUnit(this);
@@ -193,7 +218,9 @@ public class ArenaEntity
 
     public async void ClickCreature()
     {
-        if (_arenaManager.FightingOccupiedNodes.Contains(OccupiedNode))
+        if (
+            _arenaManager.FightingOccupiedNodes.Contains(OccupiedNode)
+            )
         {
             Debug.Log($"Fight node!");
             _arenaManager.CreateAttackNode(this);
@@ -208,6 +235,10 @@ public class ArenaEntity
     public void DoHero(Player player)
     {
 
+    }
+    public void SetTypeAttack(TypeAttack typeAttack)
+    {
+        Data.typeAttack = typeAttack;
     }
 
     public void DestroyMapObject()
@@ -285,5 +316,10 @@ public class ArenaEntity
         await UniTask.Delay(1);
     }
 
+    internal async Task GoAttackShoot(GridArenaNode nodeToAttack)
+    {
+        Debug.Log("Shoot attack");
+        await UniTask.Delay(100);
+    }
     #endregion
 }

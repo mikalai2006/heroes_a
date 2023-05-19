@@ -192,95 +192,83 @@ public class ArenaMonoBehavior : MonoBehaviour // , IPointerDownHandler
 
         // _animator.SetBool("move", true);
         _animator.Play(string.Format("{0}{1}", _nameCreature, "StartMoving"), 0, 0f);
-        await UniTask.Delay(200);
-        var entityHero = (EntityCreature)_arenaEntity.Entity;
-        // if (entityHero.IsExistPath)
-        // {
-        // if (entityHero.Data.path[0] == _mapObject.OccupiedNode) entityHero.Data.path.RemoveAt(0);
-        cancelTokenSource = new CancellationTokenSource();
-        await MoveEntity(cancelTokenSource.Token);
+        if (ArenaEntity.Path[ArenaEntity.Path.Count - 1] != ArenaEntity.Path[0])
+        {
+            await UniTask.Delay(200);
+            var entityHero = (EntityCreature)_arenaEntity.Entity;
+            // if (entityHero.IsExistPath)
+            // {
+            // if (entityHero.Data.path[0] == _mapObject.OccupiedNode) entityHero.Data.path.RemoveAt(0);
+            cancelTokenSource = new CancellationTokenSource();
+            await MoveEntity(cancelTokenSource.Token);
+        }
+        NormalizeDirection();
         // }
     }
     private async UniTask MoveEntity(CancellationToken cancellationToken)
     {
         var entityCreature = (EntityCreature)ArenaEntity.Entity;
         var entityData = (ScriptableAttributeCreature)entityCreature.ConfigAttribute;
-        GridArenaNode prevNode = ArenaEntity.OccupiedNode;
+
+        var nodeEnd = ArenaEntity.Path[ArenaEntity.Path.Count - 1];
         _animator.Play(string.Format("{0}{1}", _nameCreature, "Moving"), 0, 0f);
 
-        while (
-            ArenaEntity.Path.Count > 0
-            // && _canMove
-            // && entityCreature.Data.mp >= 1
-            && !cancellationToken.IsCancellationRequested
-            )
+        var difPos = entityData.CreatureParams.Size == 2
+            ? new Vector3(ArenaEntity.TypeArenaPlayer == TypeArenaPlayer.Left ? -0.5f : 0.5f, 0, 0)
+            : Vector3.zero;
+
+        if (entityData.CreatureParams.Movement == MovementType.Flying)
         {
-            var nodeTo = ArenaEntity.Path[0];
-            ScriptableEntityMapObject configNodeData
-                = (ScriptableEntityMapObject)nodeTo.OccupiedUnit?.ConfigData;
-
-            // Debug.Log(nodeTo.position);
-            //Rotate(nodeTo);
-
-            UpdateAnimate(ArenaEntity.PositionPrefab, nodeTo.position, nodeTo);
-            // _animator.SetBool("isWalking", true);
-            var difPos = entityData.CreatureParams.Size == 2
-                ? new Vector3(ArenaEntity.TypeArenaPlayer == TypeArenaPlayer.Left ? -0.5f : 0.5f, 0, 0)
-                : Vector3.zero;
-            // var newPos = ArenaEntity.Path.Count == 1
-            // && ArenaEntity.Direction == TypeDirection.Right
-            // && nodeTo.cameFromNode != null
-            // && nodeTo.cameFromNode.position.y == nodeTo.position.y
-            //     ? (Vector3)nodeTo.cameFromNode.center + difPos
-            //     : (Vector3)nodeTo.center + difPos;
-            await SmoothLerp(transform.position, (Vector3)nodeTo.center + difPos);
-
-            // entityCreature.SetGuestForNode(nodeTo);
-
-            ArenaEntity.Path.RemoveAt(0);
-            if (ArenaEntity.Path.Count == 0)
-            {
-                ArenaEntity.ChangePosition(nodeTo);
-            }
-
-            // if (nodeTo.OccupiedUnit != null)
-            // {
-            //     // await nodeTo.OccupiedUnit.MapObjectGameObject.OnGoHero(MapObjectClass.Player);
-            //     // await DoObject(nodeTo, nodeTo.OccupiedUnit.MapObjectGameObject, prevNode);
-            //     cancelTokenSource.Cancel();
-            //     cancelTokenSource.Dispose();
-            //     // break;
-            // }
-
-            prevNode = nodeTo;
-        }
-        // _animator.SetBool("walk", false);
-
-        _animator.Play(string.Format("{0}{1}", _nameCreature, "StopMoving"), 0, 0f);
-        await UniTask.Delay(200);
-        // _canMove = false;
-        // _animator.SetBool("move", false);
-
-        _animator.Play(string.Format("{0}{1}", _nameCreature, "Idle"), 0, 0f);
-    }
-
-    private void Rotate(GridArenaNode node)
-    {
-        var dir = ArenaEntity.Rotate(node);
-        Debug.Log($"dir {dir}/ ");
-        if (dir == TypeDirection.Right)
-        {
-            _model.localScale = new Vector3(1, 1, 1);
+            UpdateDirection(ArenaEntity.PositionPrefab, nodeEnd.position, nodeEnd);
+            await SmoothLerp(transform.position, nodeEnd.center + difPos, LevelManager.Instance.ConfigGameSettings.speedArenaAnimation * 2);
+            ArenaEntity.Path.Clear();
         }
         else
         {
-            _model.localScale = new Vector3(-1, 1, 1);
+            while (ArenaEntity.Path.Count > 0 && !cancellationToken.IsCancellationRequested)
+            {
+                var nodeTo = ArenaEntity.Path[0];
+                // ScriptableEntityMapObject configNodeData
+                //     = (ScriptableEntityMapObject)nodeTo.OccupiedUnit?.ConfigData;
+
+                //Rotate(nodeTo);
+
+                UpdateDirection(ArenaEntity.PositionPrefab, nodeTo.position, nodeTo);
+
+                await SmoothLerp(transform.position, nodeTo.center + difPos, LevelManager.Instance.ConfigGameSettings.speedArenaAnimation);
+
+                ArenaEntity.Path.RemoveAt(0);
+            }
         }
 
-        // _animator.SetBool("isRotate", true);
-        // if ()
-        // var direction = currentNode, neighbourNode);
+        if (ArenaEntity.Path.Count == 0)
+        {
+            ArenaEntity.ChangePosition(nodeEnd);
+        }
+        _animator.Play(string.Format("{0}{1}", _nameCreature, "StopMoving"), 0, 0f);
+
+        await UniTask.Delay(200);
+
+        _animator.Play(string.Format("{0}{1}", _nameCreature, "Idle"), 0, 0f);
+
     }
+
+    // private void Rotate(GridArenaNode node)
+    // {
+    //     var dir = ArenaEntity.Rotate(node);
+    //     if (dir == TypeDirection.Right)
+    //     {
+    //         _model.localScale = new Vector3(1, 1, 1);
+    //     }
+    //     else
+    //     {
+    //         _model.localScale = new Vector3(-1, 1, 1);
+    //     }
+
+    //     // _animator.SetBool("isRotate", true);
+    //     // if ()
+    //     // var direction = currentNode, neighbourNode);
+    // }
 
     // public async UniTask DoObject(GridTileNode nodeTo, BaseMapEntity mapEntity, GridTileNode nodePrev)
     // {
@@ -292,9 +280,9 @@ public class ArenaMonoBehavior : MonoBehaviour // , IPointerDownHandler
     //     entityCreature.SetPathHero(null);
     // }
 
-    private async UniTask SmoothLerp(Vector3 startPosition, Vector3 endPosition)
+    private async UniTask SmoothLerp(Vector3 startPosition, Vector3 endPosition, float time)
     {
-        float time = LevelManager.Instance.ConfigGameSettings.speedArenaAnimation;
+        // float time = LevelManager.Instance.ConfigGameSettings.speedArenaAnimation;
         float elapsedTime = 0;
         while (elapsedTime < time)
         {
@@ -305,7 +293,7 @@ public class ArenaMonoBehavior : MonoBehaviour // , IPointerDownHandler
         }
     }
 
-    public void UpdateAnimate(Vector3 startPosition, Vector3 endPosition, GridArenaNode node)
+    public void UpdateDirection(Vector3 startPosition, Vector3 endPosition, GridArenaNode node)
     {
         if (_animator != null && startPosition != Vector3Int.zero && endPosition != Vector3Int.zero)
         {
@@ -328,17 +316,34 @@ public class ArenaMonoBehavior : MonoBehaviour // , IPointerDownHandler
         }
     }
 
+    private void NormalizeDirection()
+    {
+        if (ArenaEntity.TypeArenaPlayer == TypeArenaPlayer.Left)
+        {
+            _model.localScale = new Vector3(1, 1, 1);
+            ArenaEntity.SetDirection(TypeDirection.Right);
+        }
+        else
+        {
+            _model.localScale = new Vector3(-1, 1, 1);
+            ArenaEntity.SetDirection(TypeDirection.Left);
+        }
+    }
+
     internal async UniTask RunAttack(GridArenaNode nodeForAttack)
     {
         string nameAnimAttack = "AttackStraight";
         Vector3 difPos = _arenaEntity.OccupiedNode.center - nodeForAttack.center;
+
         if (difPos.x > 0 && difPos.y == 0)
         {
             nameAnimAttack = "AttackStraight";
+            _model.localScale = new Vector3(-1, 1, 1);
         }
         else if (difPos.x < 0 && difPos.y == 0)
         {
             nameAnimAttack = "AttackStraight";
+            _model.localScale = new Vector3(1, 1, 1);
         }
         else if (difPos.x != 0 && difPos.y > 0)
         {
@@ -348,26 +353,38 @@ public class ArenaMonoBehavior : MonoBehaviour // , IPointerDownHandler
         {
             nameAnimAttack = "AttackUp";
         }
+
         Debug.Log($"Attack {_nameCreature}/{nameAnimAttack}");
 
         string nameAnimationAttack = string.Format("{0}{1}", _nameCreature, nameAnimAttack);
 
         _animator.Play(nameAnimationAttack, 0, 0f);
         await UniTask.Delay(100);
-        await nodeForAttack.OccupiedUnit.ArenaMonoBehavior.RunDefense();
+        await nodeForAttack.OccupiedUnit.ArenaMonoBehavior.RunDefense(_arenaEntity.OccupiedNode);
 
         // await UniTask.Delay(400);
 
         // _animator.Play(nameAnimationAttack, 0, 0f);
 
         // await UniTask.Delay(400);
-
+        NormalizeDirection();
         _animator.Play(string.Format("{0}{1}", _nameCreature, "Idle"), 0, 0f);
         await UniTask.Delay(1);
     }
 
-    internal async UniTask RunDefense()
+    internal async UniTask RunDefense(GridArenaNode nodeFromAttack)
     {
+        Vector3 difPos = _arenaEntity.OccupiedNode.center - nodeFromAttack.center;
+
+        if (difPos.x > 0)
+        {
+            _model.localScale = new Vector3(-1, 1, 1);
+        }
+        else if (difPos.x < 0)
+        {
+            _model.localScale = new Vector3(1, 1, 1);
+        }
+
         string nameAnimDefend = "Defend";
 
         string nameAnimationAttack = string.Format("{0}{1}", _nameCreature, nameAnimDefend);
@@ -376,6 +393,7 @@ public class ArenaMonoBehavior : MonoBehaviour // , IPointerDownHandler
 
         await UniTask.Delay(400);
 
+        NormalizeDirection();
         _animator.Play(string.Format("{0}{1}", _nameCreature, "Idle"), 0, 0f);
         await UniTask.Delay(1);
     }
