@@ -372,6 +372,7 @@ public class ArenaMonoBehavior : MonoBehaviour // , IPointerDownHandler
         await UniTask.Delay(1);
     }
 
+
     internal async UniTask RunDefense(GridArenaNode nodeFromAttack)
     {
         Vector3 difPos = _arenaEntity.OccupiedNode.center - nodeFromAttack.center;
@@ -394,6 +395,68 @@ public class ArenaMonoBehavior : MonoBehaviour // , IPointerDownHandler
         await UniTask.Delay(400);
 
         NormalizeDirection();
+        _animator.Play(string.Format("{0}{1}", _nameCreature, "Idle"), 0, 0f);
+        await UniTask.Delay(1);
+    }
+
+    internal async UniTask RunAttackShoot(GridArenaNode nodeForAttack)
+    {
+        string nameAnimAttack = "ShootStraight";
+        Vector3 difPos = _arenaEntity.OccupiedNode.center - nodeForAttack.center;
+
+        if (difPos.x > 0 && difPos.y == 0)
+        {
+            nameAnimAttack = "ShootStraight";
+            _model.localScale = new Vector3(-1, 1, 1);
+        }
+        else if (difPos.x < 0 && difPos.y == 0)
+        {
+            nameAnimAttack = "ShootStraight";
+            _model.localScale = new Vector3(1, 1, 1);
+        }
+        else if (difPos.x != 0 && difPos.y > 0)
+        {
+            nameAnimAttack = "ShootDown";
+        }
+        else if (difPos.x != 0 && difPos.y < 0)
+        {
+            nameAnimAttack = "ShootUp";
+        }
+
+        string nameAnimationAttack = string.Format("{0}{1}", _nameCreature, nameAnimAttack);
+        Debug.Log($"Shoot {nameAnimationAttack}");
+
+        _animator.Play(nameAnimationAttack, 0, 0f);
+        await UniTask.Delay(100);
+        await nodeForAttack.OccupiedUnit.ArenaMonoBehavior.RunGettingHit(_arenaEntity.OccupiedNode);
+
+        NormalizeDirection();
+        _animator.Play(string.Format("{0}{1}", _nameCreature, "Idle"), 0, 0f);
+        await UniTask.Delay(1);
+    }
+    internal async UniTask RunGettingHit(GridArenaNode nodeFromAttack)
+    {
+        // Vector3 difPos = _arenaEntity.OccupiedNode.center - nodeFromAttack.center;
+
+        // if (difPos.x > 0)
+        // {
+        //     _model.localScale = new Vector3(-1, 1, 1);
+        // }
+        // else if (difPos.x < 0)
+        // {
+        //     _model.localScale = new Vector3(1, 1, 1);
+        // }
+
+        string nameAnimDefend = "GettingHit";
+
+        string nameAnimationAttack = string.Format("{0}{1}", _nameCreature, nameAnimDefend);
+
+        Debug.Log($"Shoot Defense {nameAnimationAttack}");
+        _animator.Play(nameAnimationAttack, 0, 0f);
+
+        await UniTask.Delay(400);
+
+        // NormalizeDirection();
         _animator.Play(string.Format("{0}{1}", _nameCreature, "Idle"), 0, 0f);
         await UniTask.Delay(1);
     }

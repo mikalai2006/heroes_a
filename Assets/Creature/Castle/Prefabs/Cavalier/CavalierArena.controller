@@ -1,116 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1107 &-8453602465869576567
-AnimatorStateMachine:
-  serializedVersion: 6
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Base Layer
-  m_ChildStates:
-  - serializedVersion: 1
-    m_State: {fileID: 45963896979163528}
-    m_Position: {x: 260, y: 140, z: 0}
-  - serializedVersion: 1
-    m_State: {fileID: -7643038988343914372}
-    m_Position: {x: 730, y: -10, z: 0}
-  - serializedVersion: 1
-    m_State: {fileID: -6574990940897826441}
-    m_Position: {x: 750, y: 50, z: 0}
-  - serializedVersion: 1
-    m_State: {fileID: 4260463578625937063}
-    m_Position: {x: 750, y: 110, z: 0}
-  - serializedVersion: 1
-    m_State: {fileID: 5137162104447142590}
-    m_Position: {x: 740, y: 160, z: 0}
-  - serializedVersion: 1
-    m_State: {fileID: 968951997821363786}
-    m_Position: {x: 730, y: 270, z: 0}
-  - serializedVersion: 1
-    m_State: {fileID: 991431276221912706}
-    m_Position: {x: 730, y: 210, z: 0}
-  - serializedVersion: 1
-    m_State: {fileID: -3724900494700058712}
-    m_Position: {x: 740, y: 320, z: 0}
-  - serializedVersion: 1
-    m_State: {fileID: 6320016642613873273}
-    m_Position: {x: 250, y: -30, z: 0}
-  - serializedVersion: 1
-    m_State: {fileID: 1585322055908940311}
-    m_Position: {x: 250, y: 60, z: 0}
-  - serializedVersion: 1
-    m_State: {fileID: -7754942513876812724}
-    m_Position: {x: 460, y: 60, z: 0}
-  - serializedVersion: 1
-    m_State: {fileID: -3126276351709354247}
-    m_Position: {x: 880, y: 400, z: 0}
-  - serializedVersion: 1
-    m_State: {fileID: -8015286446208959209}
-    m_Position: {x: 920, y: 470, z: 0}
-  m_ChildStateMachines: []
-  m_AnyStateTransitions: []
-  m_EntryTransitions: []
-  m_StateMachineTransitions: {}
-  m_StateMachineBehaviours: []
-  m_AnyStatePosition: {x: 40, y: 60, z: 0}
-  m_EntryPosition: {x: 40, y: 120, z: 0}
-  m_ExitPosition: {x: 40, y: 180, z: 0}
-  m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
-  m_DefaultState: {fileID: 45963896979163528}
---- !u!1102 &-8015286446208959209
-AnimatorState:
-  serializedVersion: 6
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: CavalierTurnRight
-  m_Speed: 1
-  m_CycleOffset: 0
-  m_Transitions: []
-  m_StateMachineBehaviours: []
-  m_Position: {x: 50, y: 50, z: 0}
-  m_IKOnFeet: 0
-  m_WriteDefaultValues: 1
-  m_Mirror: 0
-  m_SpeedParameterActive: 0
-  m_MirrorParameterActive: 0
-  m_CycleOffsetParameterActive: 0
-  m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 6a81ae4eb65a2634da7d25424feeddfd, type: 2}
-  m_Tag: 
-  m_SpeedParameter: 
-  m_MirrorParameter: 
-  m_CycleOffsetParameter: 
-  m_TimeParameter: 
---- !u!1102 &-7754942513876812724
-AnimatorState:
-  serializedVersion: 6
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: CavalierStopMoving
-  m_Speed: 1
-  m_CycleOffset: 0
-  m_Transitions: []
-  m_StateMachineBehaviours: []
-  m_Position: {x: 50, y: 50, z: 0}
-  m_IKOnFeet: 0
-  m_WriteDefaultValues: 1
-  m_Mirror: 0
-  m_SpeedParameterActive: 0
-  m_MirrorParameterActive: 0
-  m_CycleOffsetParameterActive: 0
-  m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: c0378aa64869d32448be7989386284c0, type: 2}
-  m_Tag: 
-  m_SpeedParameter: 
-  m_MirrorParameter: 
-  m_CycleOffsetParameter: 
-  m_TimeParameter: 
---- !u!1102 &-7643038988343914372
+--- !u!1102 &-9028253388837715936
 AnimatorState:
   serializedVersion: 6
   m_ObjectHideFlags: 1
@@ -136,7 +26,117 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
---- !u!1102 &-6574990940897826441
+--- !u!1102 &-9028167682385434554
+AnimatorState:
+  serializedVersion: 6
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: CavalierMoving
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions: []
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: 7400000, guid: bd02f35577a77ae4994cffe548d5671b, type: 2}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
+--- !u!1107 &-8453602465869576567
+AnimatorStateMachine:
+  serializedVersion: 6
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Base Layer
+  m_ChildStates:
+  - serializedVersion: 1
+    m_State: {fileID: 45963896979163528}
+    m_Position: {x: 260, y: 140, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: 8723382461097771550}
+    m_Position: {x: 556.5291, y: 150.90088, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: -4996900324707299119}
+    m_Position: {x: 566.5291, y: 160.90088, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: -973632874175303570}
+    m_Position: {x: 576.5291, y: 170.90088, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: 4613044581261000553}
+    m_Position: {x: 586.5291, y: 180.90088, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: 5000931560740793542}
+    m_Position: {x: 596.5291, y: 190.90088, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: 8289177160186964529}
+    m_Position: {x: 606.5291, y: 200.90088, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: -9028253388837715936}
+    m_Position: {x: 616.5291, y: 210.90088, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: -9028167682385434554}
+    m_Position: {x: 626.5291, y: 220.90088, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: 5009554752317209254}
+    m_Position: {x: 636.5291, y: 230.90088, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: 1757165030732179306}
+    m_Position: {x: 646.5291, y: 240.90088, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: -6118497900076968771}
+    m_Position: {x: 656.5291, y: 250.90088, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: -5721260716861100}
+    m_Position: {x: 666.5291, y: 260.90088, z: 0}
+  m_ChildStateMachines: []
+  m_AnyStateTransitions: []
+  m_EntryTransitions: []
+  m_StateMachineTransitions: {}
+  m_StateMachineBehaviours: []
+  m_AnyStatePosition: {x: 40, y: 60, z: 0}
+  m_EntryPosition: {x: 40, y: 120, z: 0}
+  m_ExitPosition: {x: 40, y: 180, z: 0}
+  m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
+  m_DefaultState: {fileID: 45963896979163528}
+--- !u!1102 &-6118497900076968771
+AnimatorState:
+  serializedVersion: 6
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: CavalierTurnLeft
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions: []
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: 7400000, guid: 52dd088f73bfe8f419044cee176766a1, type: 2}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
+--- !u!1102 &-4996900324707299119
 AnimatorState:
   serializedVersion: 6
   m_ObjectHideFlags: 1
@@ -162,14 +162,14 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
---- !u!1102 &-3724900494700058712
+--- !u!1102 &-973632874175303570
 AnimatorState:
   serializedVersion: 6
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: CavalierDefend
+  m_Name: CavalierAttackUp
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -182,20 +182,20 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: dd91463e62db87f41a02451d9ef4fd63, type: 2}
+  m_Motion: {fileID: 7400000, guid: fa9983393f9c7d34793018691d5c0309, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
---- !u!1102 &-3126276351709354247
+--- !u!1102 &-5721260716861100
 AnimatorState:
   serializedVersion: 6
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: CavalierTurnLeft
+  m_Name: CavalierTurnRight
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -208,7 +208,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 52dd088f73bfe8f419044cee176766a1, type: 2}
+  m_Motion: {fileID: 7400000, guid: 6a81ae4eb65a2634da7d25424feeddfd, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -262,14 +262,14 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
---- !u!1102 &968951997821363786
+--- !u!1102 &1757165030732179306
 AnimatorState:
   serializedVersion: 6
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: CavalierGrettingHill
+  m_Name: CavalierStopMoving
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -282,13 +282,13 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 80e3fe8dd4b106848b8b76c59a50fc9a, type: 2}
+  m_Motion: {fileID: 7400000, guid: c0378aa64869d32448be7989386284c0, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
---- !u!1102 &991431276221912706
+--- !u!1102 &4613044581261000553
 AnimatorState:
   serializedVersion: 6
   m_ObjectHideFlags: 1
@@ -314,7 +314,33 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
---- !u!1102 &1585322055908940311
+--- !u!1102 &5000931560740793542
+AnimatorState:
+  serializedVersion: 6
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: CavalierDefend
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions: []
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: 7400000, guid: dd91463e62db87f41a02451d9ef4fd63, type: 2}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
+--- !u!1102 &5009554752317209254
 AnimatorState:
   serializedVersion: 6
   m_ObjectHideFlags: 1
@@ -340,14 +366,14 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
---- !u!1102 &4260463578625937063
+--- !u!1102 &8289177160186964529
 AnimatorState:
   serializedVersion: 6
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: CavalierAttackUp
+  m_Name: CavalierGettingHit
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -360,13 +386,13 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: fa9983393f9c7d34793018691d5c0309, type: 2}
+  m_Motion: {fileID: 7400000, guid: 80e3fe8dd4b106848b8b76c59a50fc9a, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
---- !u!1102 &5137162104447142590
+--- !u!1102 &8723382461097771550
 AnimatorState:
   serializedVersion: 6
   m_ObjectHideFlags: 1
@@ -387,32 +413,6 @@ AnimatorState:
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
   m_Motion: {fileID: 7400000, guid: 0ede19412a817ce45913092a3fae1fac, type: 2}
-  m_Tag: 
-  m_SpeedParameter: 
-  m_MirrorParameter: 
-  m_CycleOffsetParameter: 
-  m_TimeParameter: 
---- !u!1102 &6320016642613873273
-AnimatorState:
-  serializedVersion: 6
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: CavalierMoving
-  m_Speed: 1
-  m_CycleOffset: 0
-  m_Transitions: []
-  m_StateMachineBehaviours: []
-  m_Position: {x: 50, y: 50, z: 0}
-  m_IKOnFeet: 0
-  m_WriteDefaultValues: 1
-  m_Mirror: 0
-  m_SpeedParameterActive: 0
-  m_MirrorParameterActive: 0
-  m_CycleOffsetParameterActive: 0
-  m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: bd02f35577a77ae4994cffe548d5671b, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

@@ -21,7 +21,7 @@ public class UIArena : UILocaleBase
 
     public static event Action OnNextCreature;
     public static event Action OnOpenSpellBook;
-    public static event Action OnClickNextNodeForAttack;
+    public static event Action OnClickAttack;
 
     private VisualElement _box;
     private VisualElement _helpHero;
@@ -103,7 +103,7 @@ public class UIArena : UILocaleBase
 
     private void ClickDirAttack()
     {
-        OnClickNextNodeForAttack?.Invoke();
+        OnClickAttack?.Invoke();
     }
 
     private void DrawHelpCreature()

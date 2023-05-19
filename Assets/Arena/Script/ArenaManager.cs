@@ -117,7 +117,7 @@ public class ArenaManager : MonoBehaviour
         // inputManager.OnStartTouch += OnClick;
         UIArena.OnNextCreature += NextCreature;
         UIArena.OnOpenSpellBook += OpenSpellBook;
-        UIArena.OnClickNextNodeForAttack += ChooseNextPositionForAttack;
+        UIArena.OnClickAttack += ActionClickButton;
 
         CreateArena();
 
@@ -145,7 +145,7 @@ public class ArenaManager : MonoBehaviour
     {
         UIArena.OnNextCreature -= NextCreature;
         UIArena.OnOpenSpellBook -= OpenSpellBook;
-        UIArena.OnClickNextNodeForAttack -= ChooseNextPositionForAttack;
+        UIArena.OnClickAttack -= ActionClickButton;
     }
 
     private async void OpenSpellBook()
@@ -455,61 +455,63 @@ public class ArenaManager : MonoBehaviour
         _buttonAction.transform.position = positionButton;
         // _tileMapCursor.SetTile(clickedNode.position, ruleCursor);
     }
-
-    public async UniTask ClickButton(Vector3Int positionClick)
+    public async void ActionClickButton()
     {
-        GridArenaNode node = GridArenaHelper.GridTile.GetGridObject(new Vector3Int(positionClick.x, positionClick.y));
+        await ClickButton();
+    }
+    public async UniTask ClickButton()
+    {
+        Debug.Log($"Click button:::");
+        // GridArenaNode node = GridArenaHelper.GridTile.GetGridObject(new Vector3Int(positionClick.x, positionClick.y));
 
-        if (node != null)
+        // if (node != null)
+        // {
+
+        // if (AllowPathNodes.Contains(node))
+        // {
+        if (
+            (AttackedCreature != null && ArenaQueue.activeEntity.Data.typeAttack == TypeAttack.Attack)
+            || AttackedCreature == null
+            )
         {
-            Debug.Log($"Click button::: {node.ToString()}");
+            // Move creature.
+            await ArenaQueue.activeEntity.ArenaMonoBehavior.MoveCreature();
+        }
 
-            // if (AllowPathNodes.Contains(node))
-            // {
-            if (
-                (AttackedCreature != null && ArenaQueue.activeEntity.Data.typeAttack == TypeAttack.Attack)
-                || AttackedCreature == null
-                )
+        // Attack, if exist KeyNodeFromAttack
+        if (AttackedCreature != null)
+        {
+            var nodes = NodesForAttackActiveCreature[KeyNodeFromAttack];
+            if (nodes.nodeFromAttack.OccupiedUnit != null)
             {
-                // Move creature.
-                await ArenaQueue.activeEntity.ArenaMonoBehavior.MoveCreature();
-            }
-
-            // Attack, if exist KeyNodeFromAttack
-            if (AttackedCreature != null)
-            {
-                var nodes = NodesForAttackActiveCreature[KeyNodeFromAttack];
-                if (nodes.nodeFromAttack.OccupiedUnit != null)
+                if (ArenaQueue.activeEntity.Data.typeAttack == TypeAttack.Attack)
                 {
-                    if (ArenaQueue.activeEntity.Data.typeAttack == TypeAttack.Attack)
-                    {
-                        await nodes.nodeFromAttack.OccupiedUnit.GoAttack(nodes.nodeToAttack);
-                    }
-                    else
-                    {
-                        await nodes.nodeFromAttack.OccupiedUnit.GoAttackShoot(nodes.nodeToAttack);
-                    }
+                    await nodes.nodeFromAttack.OccupiedUnit.GoAttack(nodes.nodeToAttack);
+                }
+                else
+                {
+                    await nodes.nodeFromAttack.OccupiedUnit.GoAttackShoot(nodes.nodeToAttack);
                 }
             }
-
-            // Clear clicked node.
-            clickedNode = null;
-            ClearAttackNode();
-
-            // Next creature.
-            await GoEntity();
-
-            // }
-            // else
-            // {
-            //     // Click not allowed node.
-            //     _tileMapPath.ClearAllTiles();
-            //     clickedNode = node;
-            // }
-
-            // DrawCursor
-            if (clickedNode != null) DrawButtonAction();
         }
+
+        // Clear clicked node.
+        clickedNode = null;
+        ClearAttackNode();
+
+        // Next creature.
+        await GoEntity();
+
+        // }
+        // else
+        // {
+        //     // Click not allowed node.
+        //     _tileMapPath.ClearAllTiles();
+        //     clickedNode = node;
+        // }
+
+        // DrawCursor
+        if (clickedNode != null) DrawButtonAction();
     }
 
     public async UniTask ClickArena(Vector3Int positionClick)
@@ -625,7 +627,7 @@ public class ArenaManager : MonoBehaviour
             }
             else if (rayHit.collider.gameObject == _buttonAction.gameObject)
             {
-                await ClickButton(tilePos);
+                await ClickButton();
             }
         }
     }
