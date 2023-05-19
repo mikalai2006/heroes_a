@@ -46,10 +46,10 @@ public class EntityMonolith : BaseEntity
         }
     }
 
-    public override void SetPlayer(Player player)
+    public override async void SetPlayer(Player player)
     {
         ScriptableEntityPortal configData = (ScriptableEntityPortal)ScriptableData;
-        configData.RunHero(player, this);
+        await configData.RunHero(player, this);
         // Debug.Log($"Teleport to position::: {Data.portalPoints[0]}");
     }
 

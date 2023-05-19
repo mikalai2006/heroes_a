@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class InputManager
 {
     public delegate void ArenaClickEvent(InputAction.CallbackContext context);
-    public event ArenaClickEvent OnClickArena;
+    // public event ArenaClickEvent OnClickArena;
     private static ArenaInputController _input = new();
 
     public void Enable()

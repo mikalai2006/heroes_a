@@ -11,10 +11,36 @@ using UnityEngine.InputSystem;
 using UnityEngine.Tilemaps;
 using UnityEngine.UI;
 
+[Serializable]
+public struct CursorArena
+{
+    public RuleTile NotAllow;
+    public RuleTile GoGround;
+    public RuleTile GoFlying;
+    public RuleTile FightFromLeft;
+    public RuleTile FightFromTopLeft;
+    public RuleTile FightFromTop;
+    public RuleTile FightFromTopRight;
+    public RuleTile FightFromRight;
+    public RuleTile FightFromBottomRight;
+    public RuleTile FightFromBottom;
+    public RuleTile FightFromBottomLeft;
+}
+
+[Serializable]
+public struct AttackItemNode
+{
+    public GridArenaNode nodeFromAttack;
+    public GridArenaNode nodeToAttack;
+}
+
 public class ArenaManager : MonoBehaviour
 {
     public UIArena uiArena;
-    public static event Action OnSetNextCreature;
+    public CursorArena CursorRule;
+    [SerializeField] private Tilemap _tileMapCursor;
+    // public static event Action OnSetNextCreature;
+    public static event Action OnChangeNodesForAttack;
     [SerializeField] private int width = 15;
     [SerializeField] private int height = 11;
     [SerializeField] private Tilemap _tileMapArenaGrid;
@@ -35,18 +61,22 @@ public class ArenaManager : MonoBehaviour
     [SerializeField] public Tile _tileHex;
     [SerializeField] public Tile _tileHexShadow;
     [SerializeField] public Tile _tileHexActive;
-    [SerializeField] public GameObject _testObj;
-    [SerializeField] public GameObject _testCreatureObj;
-    [SerializeField] public GameObject _arenaGameObject;
 
     private EntityHero hero;
     private GameObject heroGameObject;
     private EntityHero enemy;
     private GameObject enemyGameObject;
-    public List<ArenaEntity> ArenaEnteties;
-    public List<GridArenaNode> DistanceNodes;
-    public List<GridArenaNode> PathNodes;
-    public List<GridArenaNode> MovedNodes = new List<GridArenaNode>();
+    private GridArenaNode clickedNode;
+    [NonSerialized] public List<ArenaEntity> ArenaEnteties;
+    [NonSerialized] public List<GridArenaNode> DistanceNodes = new();
+    [NonSerialized] public List<GridArenaNode> PathNodes = new();
+    [NonSerialized] public List<GridArenaNode> FightingOccupiedNodes = new();
+    [NonSerialized] public List<GridArenaNode> AllMovedNodes = new();
+    [NonSerialized] public List<GridArenaNode> AllowMovedNodes = new();
+    private List<GridArenaNode> AllowPathNodes => PathNodes.Concat(AllowMovedNodes).ToList();
+    // 1 - node attack, 2 - occupied,related node
+    public List<AttackItemNode> NodesForAttackActiveCreature = new();
+    private int KeyNodeFromAttack = -1;
 
     [SerializeField] private List<ScriptableEntityHero> heroes;
 
@@ -74,6 +104,7 @@ public class ArenaManager : MonoBehaviour
         // inputManager.OnStartTouch += OnClick;
         UIArena.OnNextCreature += NextCreature;
         UIArena.OnOpenSpellBook += OpenSpellBook;
+        UIArena.OnClickNextNodeForAttack += ChooseNextPositionForAttack;
 
         CreateArena();
 
@@ -101,6 +132,7 @@ public class ArenaManager : MonoBehaviour
     {
         UIArena.OnNextCreature -= NextCreature;
         UIArena.OnOpenSpellBook -= OpenSpellBook;
+        UIArena.OnClickNextNodeForAttack -= ChooseNextPositionForAttack;
     }
 
     private async void OpenSpellBook()
@@ -124,7 +156,7 @@ public class ArenaManager : MonoBehaviour
         ArenaEntity activeArenaEntity = ArenaQueue.activeEntity;
         ScriptableAttributeCreature activeEntityCreature = (ScriptableAttributeCreature)activeArenaEntity.Entity.ScriptableDataAttribute;
 
-        ResetTileMaps();
+        ResetArenaState();
         DistanceNodes = GridArenaHelper.GetNeighboursAtDistance(
             activeArenaEntity.OccupiedNode,
             activeEntityCreature.CreatureParams.Speed
@@ -149,7 +181,7 @@ public class ArenaManager : MonoBehaviour
                         )
                     {
                         neiNode.LeftNode.StateArenaNode |= StateArenaNode.Moved;
-                        MovedNodes.Add(neiNode.LeftNode);
+                        AllMovedNodes.Add(neiNode.LeftNode);
                     }
                     else if (
                         neiNode.RightNode != null
@@ -159,7 +191,7 @@ public class ArenaManager : MonoBehaviour
                         )
                     {
                         neiNode.RightNode.StateArenaNode |= StateArenaNode.Moved;
-                        MovedNodes.Add(neiNode.RightNode);
+                        AllMovedNodes.Add(neiNode.RightNode);
                     }
                 }
             }
@@ -186,16 +218,17 @@ public class ArenaManager : MonoBehaviour
 
         if (activeEntityCreature.CreatureParams.Size >= 2)
         {
-            foreach (var neiNode in MovedNodes)
+            foreach (var neiNode in AllMovedNodes)
             {
                 if (neiNode.weight >= 2)
                 {
                     _tileMapShadow.SetTile(neiNode.position, _tileHexShadow);
+                    AllowMovedNodes.Add(neiNode);
                 }
             };
         }
 
-        // Draw help text.
+        // // Draw help text.
         // foreach (var neiNode in GridArenaHelper.GetAllGridNodes())
         // {
         //     SetTextMeshNode(neiNode);
@@ -203,6 +236,10 @@ public class ArenaManager : MonoBehaviour
 
         // lighting active creature.
         SetColorActiveNode();
+
+        // lighting allow fighting nodes.
+        GetFightingNodes();
+
 #if UNITY_EDITOR
         stopWatch.Stop();
         System.TimeSpan timeTaken = stopWatch.Elapsed;
@@ -211,116 +248,22 @@ public class ArenaManager : MonoBehaviour
         await UniTask.Delay(1);
     }
 
-    public void SetColorActiveNode()
+    private void GetFightingNodes()
     {
-        _tileMapUnitActive.ClearAllTiles();
-        Color color = Color.magenta;
-        color.a = .6f;
-
-        ArenaEntity activeArenaEntity = ArenaQueue.activeEntity;
-
-        GridArenaNode nodeActiveCreature = activeArenaEntity.OccupiedNode;
-        GridArenaNode relatedNodeActiveCreature = activeArenaEntity.RelatedNode;
-
-        _tileMapUnitActive.SetTile(nodeActiveCreature.position, _tileHexActive);
-        _tileMapUnitActive.SetTileFlags(nodeActiveCreature.position, TileFlags.None);
-        _tileMapUnitActive.SetColor(nodeActiveCreature.position, color);
-        _tileMapUnitActive.SetTileFlags(nodeActiveCreature.position, TileFlags.LockColor);
-
-        if (relatedNodeActiveCreature != null)
+        // List<GridArenaNode> allowPathNodes = PathNodes.Concat(MovedNodes).ToList();
+        var occupiedNodes = GridArenaHelper
+            .GetAllGridNodes()
+            .Where(t => t.OccupiedUnit != null && t.OccupiedUnit.TypeArenaPlayer != ArenaQueue.activeEntity.TypeArenaPlayer);
+        foreach (var node in occupiedNodes)
         {
-            _tileMapUnitActive.SetTile(relatedNodeActiveCreature.position, _tileHexActive);
-            _tileMapUnitActive.SetTileFlags(relatedNodeActiveCreature.position, TileFlags.None);
-            _tileMapUnitActive.SetColor(relatedNodeActiveCreature.position, color);
-            _tileMapUnitActive.SetTileFlags(relatedNodeActiveCreature.position, TileFlags.LockColor);
+            var neighbours = GridArenaHelper.GetNeighbourList(node);
+            if (AllowPathNodes.Intersect(neighbours).Count() > 0)
+            {
+                FightingOccupiedNodes.Add(node);
+                SetColorAllowFightNode(node);
+            }
         }
     }
-    public void ResetPathColor()
-    {
-        _tileMapPathColor.ClearAllTiles();
-    }
-    public void SetColorPathNode(GridArenaNode node)
-    {
-        ArenaEntity activeArenaEntity = ArenaQueue.activeEntity;
-
-        _tileMapPathColor.SetTile(node.position, _tileHexActive);
-        _tileMapPathColor.SetTileFlags(node.position, TileFlags.None);
-        Color color = Color.blue;
-        color.a = .6f;
-        _tileMapPathColor.SetColor(node.position, color);
-        _tileMapPathColor.SetTileFlags(node.position, TileFlags.LockColor);
-    }
-    public void SetColorDisableNode()
-    {
-        List<GridArenaNode> disableNodes = GridArenaHelper.GetAllGridNodes()
-        .Where(t => !t.StateArenaNode.HasFlag(StateArenaNode.Empty)).ToList();
-        _tileMapDisableNode.ClearAllTiles();
-
-        foreach (var node in disableNodes)
-        {
-            _tileMapDisableNode.SetTile(node.position, _tileHexActive);
-            _tileMapDisableNode.SetTileFlags(node.position, TileFlags.None);
-            Color color = Color.red;
-            color.a = .6f;
-            _tileMapDisableNode.SetColor(node.position, color);
-            _tileMapDisableNode.SetTileFlags(node.position, TileFlags.LockColor);
-        }
-    }
-
-    // private void DrawText(string text)
-    // {
-    //     GameObject labelObject = Instantiate<GameObject>(_textPrefab, new Vector2(0, 0), Quaternion.identity, _textCanvas.transform);
-    //     TextMeshProUGUI label = labelObject.gameObject.transform.GetComponentInChildren<TextMeshProUGUI>();
-
-    //     // // label.rectTransform.SetParent(_textCanvas.transform, false);
-    //     // // label.rectTransform.anchoredPosition =
-    //     // //     new Vector2(0, 0);
-    //     label.text = text;//x.ToString() + "\n" + z.ToString();
-    // }
-    public void SetTextMeshNode(GridArenaNode tileNode, string textString = "")
-    {
-        Vector3 posText = new Vector3(tileNode.center.x, tileNode.center.y);
-        GameObject text;
-        if (!_listText.TryGetValue(posText, out text))
-        {
-            text = Instantiate(_textPrefab, posText, Quaternion.identity, _textCanvas.transform);
-            _listText.Add(posText, text);
-        }
-        text.gameObject.transform.GetComponentInChildren<TextMeshProUGUI>().text
-            = textString != "" ? textString : string.Format("{0}:{1}\r\n L{2} W{3}",
-            tileNode.position.x,
-            tileNode.position.y,
-            tileNode.level,
-            tileNode.weight
-            );
-        text.gameObject.SetActive(true);
-    }
-
-    public void ResetTextMeshNode()
-    {
-        foreach (var node in _listText)
-        {
-            node.Value.gameObject.SetActive(false);
-        }
-    }
-    // private void CreateWeight()
-    // {
-    //     // Get All empty nodes.
-    //     // List<GridArenaNode> allEmptyNodes = _gridArenaHelper.GetAllGridNodes()
-    //     //     .Where(t => !t.StateArenaNode.HasFlag(StateArenaNode.Disable) && !t.StateArenaNode.HasFlag(StateArenaNode.Occupied))
-    //     //     .ToList();
-    //     // foreach (var n in allEmptyNodes) {
-
-    //     // }
-
-    //     for (int y = height - 1; y >= 0; y--)
-    //     {
-    //         for (int x = width - 1; x >= 0; x--)
-    //         {
-    //             if (_gridArenaHelper.GetNode())
-    //         }
-    //     }
-    // }
 
     private void setSizeTileMap()
     {
@@ -405,70 +348,147 @@ public class ArenaManager : MonoBehaviour
         }
     }
 
-    public async void ClickArena(Vector3Int positionClick)
+    private void DrawCursor()
+    {
+        _tileMapCursor.ClearAllTiles();
+        RuleTile ruleCursor = CursorRule.NotAllow;
+
+        ScriptableAttributeCreature activeCreatureData
+            = (ScriptableAttributeCreature)ArenaQueue.activeEntity.Entity.ScriptableDataAttribute;
+
+        if (AllowPathNodes.Contains(clickedNode))
+        {
+            ruleCursor = activeCreatureData.CreatureParams.Movement == MovementType.Flying
+                ? CursorRule.GoFlying
+                : CursorRule.GoGround;
+        }
+        if (NodesForAttackActiveCreature.Count > 0)
+        {
+            ruleCursor = CursorRule.FightFromLeft;
+            if (KeyNodeFromAttack != -1)
+            {
+                var nodesForAttack = NodesForAttackActiveCreature[KeyNodeFromAttack];
+                Vector3 difPos = nodesForAttack.nodeFromAttack.center - nodesForAttack.nodeToAttack.center;
+                if (difPos.x > 0 && difPos.y > 0)
+                {
+                    ruleCursor = CursorRule.FightFromTopRight;
+                }
+                else if (difPos.x < 0 && difPos.y > 0)
+                {
+                    ruleCursor = CursorRule.FightFromTopLeft;
+                }
+                else if (difPos.x > 0 && difPos.y == 0)
+                {
+                    ruleCursor = CursorRule.FightFromRight;
+                }
+                else if (difPos.x < 0 && difPos.y == 0)
+                {
+                    ruleCursor = CursorRule.FightFromLeft;
+                }
+                else if (difPos.x < 0 && difPos.y < 0)
+                {
+                    ruleCursor = CursorRule.FightFromBottomLeft;
+                }
+                else if (difPos.x > 0 && difPos.y < 0)
+                {
+                    ruleCursor = CursorRule.FightFromBottomRight;
+                }
+            }
+        }
+        _tileMapCursor.SetTile(clickedNode.position, ruleCursor);
+    }
+
+    public async UniTask ClickArena(Vector3Int positionClick)
     {
         TileBase clickedTile = _tileMapArenaGrid.GetTile(positionClick);
         GridArenaNode node = GridArenaHelper.GridTile.GetGridObject(new Vector3Int(positionClick.x, positionClick.y));
+
         if (node != null)
         {
             Debug.Log($"Click node::: {node.ToString()}");
+            // List<GridArenaNode> allowPathNodes = PathNodes.Concat(MovedNodes).ToList();
 
-            // _tileMapShadow.ClearAllTiles();
-            // var nodes = GridArenaHelper.GetNeighbourList(node);
-            // foreach (var neiNode in nodes)
-            // {
-            //     _tileMapShadow.SetTile(neiNode.position, _tileHexShadow);
-            //     // Debug.Log($"Neig node::: {neiNode?.position}");
-            // };
-
-            // Debug.Log($"Neighbours==={node.position}=========================");
-            // var nodes = GridArenaHelper.GetNeighboursAtDistance(node, 2); //.FindPath(new Vector3Int(0, 0, 0), positionClick);
-            // foreach (var neiNode in nodes)
-            // {
-            //     _tileMapShadow.SetTile(neiNode.position, _tileHexShadow);
-            //     // Debug.Log($"{neiNode?.position}");
-            // };
-
-            var path = GridArenaHelper.FindPath(ArenaQueue.activeEntity.OccupiedNode.position, positionClick, PathNodes);
-            if (path == null)
+            if (AllowPathNodes.Contains(node))
             {
-                return;
+
+                if (clickedNode != node)
+                {
+                    //Find path.
+                    var path = GridArenaHelper.FindPath(ArenaQueue.activeEntity.OccupiedNode.position, positionClick, PathNodes);
+                    if (path == null)
+                    {
+                        return;
+                    }
+
+                    // Draw path.
+                    _tileMapPath.ClearAllTiles();
+                    ArenaQueue.activeEntity.SetPath(path);
+                    foreach (var pathNode in path)
+                    {
+                        _tileMapPath.SetTile(pathNode.position, _tileHexShadow);
+                    };
+
+                    // Set active click node.
+                    clickedNode = node;
+                }
+                else
+                {
+                    // Move creature.
+                    await ArenaQueue.activeEntity.ArenaMonoBehavior.MoveCreature();
+
+                    // Attack, if exist KeyNodeFromAttack
+                    if (KeyNodeFromAttack != -1)
+                    {
+                        var nodes = NodesForAttackActiveCreature[KeyNodeFromAttack];
+                        if (nodes.nodeFromAttack.OccupiedUnit != null)
+                        {
+                            await nodes.nodeFromAttack.OccupiedUnit.GoAttack(nodes.nodeToAttack);
+                        }
+                    }
+
+                    // Next creature.
+                    await GoEntity();
+
+                    // Clear clicked node.
+                    clickedNode = null;
+                }
+            }
+            else
+            {
+                // Click not allowed node.
+                _tileMapPath.ClearAllTiles();
+                clickedNode = node;
             }
 
-            _tileMapPath.ClearAllTiles();
-            ArenaQueue.activeEntity.SetPath(path);
-            foreach (var pathNode in path)
-            {
-                _tileMapPath.SetTile(pathNode.position, _tileHexShadow);
-
-                // Debug.Log($"Path node::: {pathNode.position}");
-            };
-            await ArenaQueue.activeEntity.ArenaMonoBehavior.StartMove();
-            await GoEntity();
-            // NextCreature();
-            // OnSetNextCreature?.Invoke();
-            // await UniTask.Delay(1);
+            // DrawCursor
+            if (clickedNode != null) DrawCursor();
         }
     }
 
-    private void ResetTileMaps()
+    private void ResetArenaState()
     {
+        NodesForAttackActiveCreature.Clear();
+        AllowPathNodes.Clear();
+        FightingOccupiedNodes.Clear();
         DistanceNodes.Clear();
         PathNodes.Clear();
 
-        foreach (var neiNode in MovedNodes)
+        foreach (var neiNode in AllMovedNodes)
         {
             neiNode.StateArenaNode ^= StateArenaNode.Moved;
         };
-        MovedNodes.Clear();
+        AllMovedNodes.Clear();
+        AllowMovedNodes.Clear();
 
         ResetTextMeshNode();
         _tileMapDistance.ClearAllTiles();
         _tileMapPath.ClearAllTiles();
         _tileMapShadow.ClearAllTiles();
+        _tileMapDisableNode.ClearAllTiles();
+        _tileMapCursor.ClearAllTiles();
     }
 
-    public void OnClick(InputAction.CallbackContext context)
+    public async void OnClick(InputAction.CallbackContext context)
     {
         // if (!context.started) return;
         if (context.performed)
@@ -482,9 +502,215 @@ public class ArenaManager : MonoBehaviour
             {
                 Vector2 posMouse = _camera.ScreenToWorldPoint(pos);
                 Vector3Int tilePos = _tileMapArenaGrid.WorldToCell(posMouse);
-                Debug.Log($"Click Grid::: {rayHit.collider.gameObject.name} / {pos}");
-                ClickArena(tilePos);
+                // Debug.Log($"Click Grid::: {rayHit.collider.gameObject.name} / {pos}");
+                await ClickArena(tilePos);
+                ClearAttackNode();
             }
         }
     }
+
+    public void ClearAttackNode()
+    {
+        Debug.Log("Clear attack Node");
+        _tileMapDisableNode.ClearAllTiles();
+        NodesForAttackActiveCreature.Clear();
+        KeyNodeFromAttack = -1;
+        OnChangeNodesForAttack?.Invoke();
+    }
+
+    public void CreateAttackNode(ArenaEntity clickedEntity)
+    {
+        clickedNode = null;
+        var allowNodes = AllowPathNodes.Concat(AllowMovedNodes).ToList();
+
+        List<GridArenaNode> neighbours = GridArenaHelper
+            .GetNeighbourList(clickedEntity.OccupiedNode)
+            .Where(t => t.OccupiedUnit == null)
+            .ToList();
+        var allowNeighbours = neighbours.Intersect(allowNodes).ToList();
+        foreach (var node in allowNeighbours)
+        {
+            NodesForAttackActiveCreature.Add(new AttackItemNode()
+            {
+                nodeFromAttack = node,
+                nodeToAttack = clickedEntity.OccupiedNode
+            });
+        }
+
+        if (clickedEntity.RelatedNode != null)
+        {
+            List<GridArenaNode> neighboursRelatedNode
+                = GridArenaHelper.GetNeighbourList(clickedEntity.RelatedNode)
+                .Where(t => t.OccupiedUnit == null)
+                .ToList();
+            // neighbours = neighbours.Concat(neighboursRelatedNode).ToList();
+            var allowNeighboursRelatedNode = neighboursRelatedNode.Intersect(allowNodes).ToList();
+            foreach (var node in allowNeighboursRelatedNode)
+            {
+                NodesForAttackActiveCreature.Add(new AttackItemNode()
+                {
+                    nodeFromAttack = node,
+                    nodeToAttack = clickedEntity.RelatedNode
+                });
+            }
+        }
+
+        // NodesForAttackActiveCreature = neighbours.Intersect(allowNodes).ToList();
+        _tileMapDisableNode.ClearAllTiles();
+        foreach (var node in NodesForAttackActiveCreature)
+        {
+            _tileMapDisableNode.SetTile(node.nodeFromAttack.position, _tileHexActive);
+            _tileMapDisableNode.SetTileFlags(node.nodeFromAttack.position, TileFlags.None);
+            Color color = Color.blue;
+            color.a = .3f;
+            _tileMapDisableNode.SetColor(node.nodeFromAttack.position, color);
+            _tileMapDisableNode.SetTileFlags(node.nodeFromAttack.position, TileFlags.LockColor);
+        }
+
+        // GridArenaNode randomFirstNode
+        //     = NodesForAttackActiveCreature[UnityEngine.Random.Range(0, NodesForAttackActiveCreature.Count)];
+        // clickedNode = NodesForAttackActiveCreature[1];
+        ChooseNextPositionForAttack();
+        OnChangeNodesForAttack?.Invoke();
+    }
+
+    public async void ChooseNextPositionForAttack()
+    {
+        int nextIndex = KeyNodeFromAttack + 1;
+        int indexNextAttackNode = nextIndex >= NodesForAttackActiveCreature.Count()
+            ? 0
+            : nextIndex;
+        KeyNodeFromAttack = indexNextAttackNode;
+        await ClickArena(NodesForAttackActiveCreature[indexNextAttackNode].nodeFromAttack.position);
+    }
+
+    #region  Helpers
+
+    public void SetColorActiveNode()
+    {
+        _tileMapUnitActive.ClearAllTiles();
+        Color color = Color.magenta;
+        color.a = .6f;
+
+        ArenaEntity activeArenaEntity = ArenaQueue.activeEntity;
+
+        GridArenaNode nodeActiveCreature = activeArenaEntity.OccupiedNode;
+        GridArenaNode relatedNodeActiveCreature = activeArenaEntity.RelatedNode;
+
+        _tileMapUnitActive.SetTile(nodeActiveCreature.position, _tileHexActive);
+        _tileMapUnitActive.SetTileFlags(nodeActiveCreature.position, TileFlags.None);
+        _tileMapUnitActive.SetColor(nodeActiveCreature.position, color);
+        _tileMapUnitActive.SetTileFlags(nodeActiveCreature.position, TileFlags.LockColor);
+
+        if (relatedNodeActiveCreature != null)
+        {
+            _tileMapUnitActive.SetTile(relatedNodeActiveCreature.position, _tileHexActive);
+            _tileMapUnitActive.SetTileFlags(relatedNodeActiveCreature.position, TileFlags.None);
+            _tileMapUnitActive.SetColor(relatedNodeActiveCreature.position, color);
+            _tileMapUnitActive.SetTileFlags(relatedNodeActiveCreature.position, TileFlags.LockColor);
+        }
+    }
+
+    private void SetColorAllowFightNode(GridArenaNode node)
+    {
+        // _tileMapUnitActive.ClearAllTiles();
+        _tileMapUnitActive.SetTile(node.position, _tileHexShadow);
+
+        // Color color = Color.red;
+        // color.a = .5f;
+        // _tileMapUnitActive.SetTileFlags(node.position, TileFlags.None);
+        // _tileMapUnitActive.SetColor(node.position, color);
+        // _tileMapUnitActive.SetTileFlags(node.position, TileFlags.LockColor);
+    }
+
+    public void ResetPathColor()
+    {
+        _tileMapPathColor.ClearAllTiles();
+    }
+
+    public void SetColorPathNode(GridArenaNode node)
+    {
+        ArenaEntity activeArenaEntity = ArenaQueue.activeEntity;
+
+        _tileMapPathColor.SetTile(node.position, _tileHexActive);
+        _tileMapPathColor.SetTileFlags(node.position, TileFlags.None);
+        Color color = Color.blue;
+        color.a = .6f;
+        _tileMapPathColor.SetColor(node.position, color);
+        _tileMapPathColor.SetTileFlags(node.position, TileFlags.LockColor);
+    }
+
+    public void SetColorDisableNode()
+    {
+        List<GridArenaNode> disableNodes = GridArenaHelper.GetAllGridNodes()
+        .Where(t => !t.StateArenaNode.HasFlag(StateArenaNode.Empty)).ToList();
+        _tileMapDisableNode.ClearAllTiles();
+
+        foreach (var node in disableNodes)
+        {
+            _tileMapDisableNode.SetTile(node.position, _tileHexActive);
+            _tileMapDisableNode.SetTileFlags(node.position, TileFlags.None);
+            Color color = Color.red;
+            color.a = .6f;
+            _tileMapDisableNode.SetColor(node.position, color);
+            _tileMapDisableNode.SetTileFlags(node.position, TileFlags.LockColor);
+        }
+    }
+
+    public void SetTextMeshNode(GridArenaNode tileNode, string textString = "")
+    {
+        Vector3 posText = new Vector3(tileNode.center.x, tileNode.center.y);
+        GameObject text;
+        if (!_listText.TryGetValue(posText, out text))
+        {
+            text = Instantiate(_textPrefab, posText, Quaternion.identity, _textCanvas.transform);
+            _listText.Add(posText, text);
+        }
+        text.gameObject.transform.GetComponentInChildren<TextMeshProUGUI>().text
+            = textString != "" ? textString : string.Format("{0}:{1}\r\n L{2} W{3}",
+            tileNode.position.x,
+            tileNode.position.y,
+            tileNode.level,
+            tileNode.weight
+            );
+        text.gameObject.SetActive(true);
+    }
+
+    public void ResetTextMeshNode()
+    {
+        foreach (var node in _listText)
+        {
+            node.Value.gameObject.SetActive(false);
+        }
+    }
+
+    // private void DrawText(string text)
+    // {
+    //     GameObject labelObject = Instantiate<GameObject>(_textPrefab, new Vector2(0, 0), Quaternion.identity, _textCanvas.transform);
+    //     TextMeshProUGUI label = labelObject.gameObject.transform.GetComponentInChildren<TextMeshProUGUI>();
+
+    //     // // label.rectTransform.SetParent(_textCanvas.transform, false);
+    //     // // label.rectTransform.anchoredPosition =
+    //     // //     new Vector2(0, 0);
+    //     label.text = text;//x.ToString() + "\n" + z.ToString();
+    // }
+    // private void CreateWeight()
+    // {
+    //     // Get All empty nodes.
+    //     // List<GridArenaNode> allEmptyNodes = _gridArenaHelper.GetAllGridNodes()
+    //     //     .Where(t => !t.StateArenaNode.HasFlag(StateArenaNode.Disable) && !t.StateArenaNode.HasFlag(StateArenaNode.Occupied))
+    //     //     .ToList();
+    //     // foreach (var n in allEmptyNodes) {
+
+    //     // }
+
+    //     for (int y = height - 1; y >= 0; y--)
+    //     {
+    //         for (int x = width - 1; x >= 0; x--)
+    //         {
+    //             if (_gridArenaHelper.GetNode())
+    //         }
+    //     }
+    // }
+    #endregion
 }

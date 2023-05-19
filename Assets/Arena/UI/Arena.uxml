@@ -30,6 +30,9 @@
         </ui:VisualElement>
         <ui:VisualElement name="ArenaRightButtons" class="aside_blok_list" style="flex-grow: 0; flex-shrink: 0; flex-direction: row;">
             <ui:VisualElement style="width: 80px; flex-grow: 1;">
+                <ui:Button display-tooltip-when-elided="true" name="DirAttack" class="button button_bg button_text m-px h-full button_bordered" style="background-image: url(&apos;project://database/Assets/Arena/Sprites/Cursor/CursorArena.png?fileID=-1293625518&amp;guid=c3e567c27f04e204580102a1966f157c&amp;type=3#CursorArena_12&apos;); -unity-background-scale-mode: scale-to-fit;" />
+            </ui:VisualElement>
+            <ui:VisualElement style="width: 80px; flex-grow: 1;">
                 <ui:Button display-tooltip-when-elided="true" name="SpellBookButton" class="button button_bg button_text m-px h-full button_bordered" style="background-image: url(&apos;project://database/Assets/Arena/Sprites/Buttons/BattleSpellBook.png?fileID=2800000&amp;guid=d360bf79178880c46a71c947b2b6aaa2&amp;type=3#BattleSpellBook&apos;); -unity-background-scale-mode: scale-to-fit;" />
             </ui:VisualElement>
             <ui:VisualElement style="width: 80px; flex-grow: 1;">

@@ -19,6 +19,8 @@ public class ArenaMonoBehavior : MonoBehaviour // , IPointerDownHandler
     private Camera _camera;
     private Collider2D _collider;
 
+    private string _nameCreature;
+
     private CancellationTokenSource cancelTokenSource;
     private Vector2 _pos;
     private InputManager _inputManager;
@@ -75,8 +77,8 @@ public class ArenaMonoBehavior : MonoBehaviour // , IPointerDownHandler
             {
                 if (context.interaction is PressInteraction || context.interaction is TapInteraction)
                 {
-                    Debug.Log($"Press::: {gameObject.name}");
-                    OnDo(context);
+                    // Debug.Log($"Press::: {gameObject.name}");
+                    ClickCreature(context);
                 }
                 else if (context.interaction is HoldInteraction)
                 {
@@ -151,16 +153,10 @@ public class ArenaMonoBehavior : MonoBehaviour // , IPointerDownHandler
         _inputManager.Enable();
     }
 
-    private void OnDo(InputAction.CallbackContext context)
+    private void ClickCreature(InputAction.CallbackContext context)
     {
-        // var rayHit = Physics2D.GetRayIntersection(_camera.ScreenPointToRay(context.ReadValue<Vector2>()));
-        // // Debug.Log($"{context.phase}::: {context.interaction} - {context.ReadValue<Vector2>()}");
-        // if (!rayHit.collider) return;
-        // if (rayHit.collider.gameObject != gameObject)
-        // {
-        //     return;
-        // }
-        // Debug.Log($"OnDo::: {context.interaction} - {context.phase}");
+        ArenaEntity.ClickCreature();
+        // Debug.Log($"Click {name}");
     }
     #endregion
 
@@ -187,27 +183,31 @@ public class ArenaMonoBehavior : MonoBehaviour // , IPointerDownHandler
         //     if (null == child)
         //         continue;
         // }
+        _nameCreature = ArenaEntity.Entity.ScriptableDataAttribute.name.Split('_')?[1];
     }
 
-    public async UniTask StartMove()
+    public async UniTask MoveCreature()
     {
         // Rotate(ArenaEntity.Path[0]);
 
-        _animator.SetBool("move", true);
-        await UniTask.Delay(100);
+        // _animator.SetBool("move", true);
+        _animator.Play(string.Format("{0}{1}", _nameCreature, "StartMoving"), 0, 0f);
+        await UniTask.Delay(200);
         var entityHero = (EntityCreature)_arenaEntity.Entity;
         // if (entityHero.IsExistPath)
         // {
         // if (entityHero.Data.path[0] == _mapObject.OccupiedNode) entityHero.Data.path.RemoveAt(0);
         cancelTokenSource = new CancellationTokenSource();
-        await MoveHero(cancelTokenSource.Token);
+        await MoveEntity(cancelTokenSource.Token);
         // }
     }
-    private async UniTask MoveHero(CancellationToken cancellationToken)
+    private async UniTask MoveEntity(CancellationToken cancellationToken)
     {
         var entityCreature = (EntityCreature)ArenaEntity.Entity;
         var entityData = (ScriptableAttributeCreature)entityCreature.ConfigAttribute;
         GridArenaNode prevNode = ArenaEntity.OccupiedNode;
+        _animator.Play(string.Format("{0}{1}", _nameCreature, "Moving"), 0, 0f);
+
         while (
             ArenaEntity.Path.Count > 0
             // && _canMove
@@ -254,10 +254,14 @@ public class ArenaMonoBehavior : MonoBehaviour // , IPointerDownHandler
 
             prevNode = nodeTo;
         }
-        _animator.SetBool("walk", false);
-        await UniTask.Delay(100);
+        // _animator.SetBool("walk", false);
+
+        _animator.Play(string.Format("{0}{1}", _nameCreature, "StopMoving"), 0, 0f);
+        await UniTask.Delay(200);
         // _canMove = false;
-        _animator.SetBool("move", false);
+        // _animator.SetBool("move", false);
+
+        _animator.Play(string.Format("{0}{1}", _nameCreature, "Idle"), 0, 0f);
     }
 
     private void Rotate(GridArenaNode node)
@@ -320,8 +324,59 @@ public class ArenaMonoBehavior : MonoBehaviour // , IPointerDownHandler
             // _animator.SetFloat("X", (float)direction.x);
             // _animator.SetFloat("Y", direction.y);
 
-            _animator.SetBool("walk", true);
+            // _animator.SetBool("walk", true);
         }
     }
 
+    internal async UniTask RunAttack(GridArenaNode nodeForAttack)
+    {
+        string nameAnimAttack = "AttackStraight";
+        Vector3 difPos = _arenaEntity.OccupiedNode.center - nodeForAttack.center;
+        if (difPos.x > 0 && difPos.y == 0)
+        {
+            nameAnimAttack = "AttackStraight";
+        }
+        else if (difPos.x < 0 && difPos.y == 0)
+        {
+            nameAnimAttack = "AttackStraight";
+        }
+        else if (difPos.x != 0 && difPos.y > 0)
+        {
+            nameAnimAttack = "AttackDown";
+        }
+        else if (difPos.x != 0 && difPos.y < 0)
+        {
+            nameAnimAttack = "AttackUp";
+        }
+        Debug.Log($"Attack {_nameCreature}/{nameAnimAttack}");
+
+        string nameAnimationAttack = string.Format("{0}{1}", _nameCreature, nameAnimAttack);
+
+        _animator.Play(nameAnimationAttack, 0, 0f);
+        await UniTask.Delay(100);
+        await nodeForAttack.OccupiedUnit.ArenaMonoBehavior.RunDefense();
+
+        // await UniTask.Delay(400);
+
+        // _animator.Play(nameAnimationAttack, 0, 0f);
+
+        // await UniTask.Delay(400);
+
+        _animator.Play(string.Format("{0}{1}", _nameCreature, "Idle"), 0, 0f);
+        await UniTask.Delay(1);
+    }
+
+    internal async UniTask RunDefense()
+    {
+        string nameAnimDefend = "Defend";
+
+        string nameAnimationAttack = string.Format("{0}{1}", _nameCreature, nameAnimDefend);
+
+        _animator.Play(nameAnimationAttack, 0, 0f);
+
+        await UniTask.Delay(400);
+
+        _animator.Play(string.Format("{0}{1}", _nameCreature, "Idle"), 0, 0f);
+        await UniTask.Delay(1);
+    }
 }

@@ -121,6 +121,11 @@ public class GridArenaNode : IHeapItem<GridArenaNode>
         this.center = center;
     }
 
+    // public List<GridArenaNode> Neighbours() {
+    //     List<GridArenaNode> result = new List<GridArenaNode>();
+
+    // }
+
 
 #if UNITY_EDITOR
     public override string ToString()

@@ -21,10 +21,12 @@ public class UIArena : UILocaleBase
 
     public static event Action OnNextCreature;
     public static event Action OnOpenSpellBook;
+    public static event Action OnClickNextNodeForAttack;
 
     private VisualElement _box;
     private VisualElement _helpHero;
     private VisualElement _helpEnemy;
+    private Button _btnDirAttack;
     private const string _arenaButtons = "ArenaButtons";
     private SceneInstance _arenaScene;
     private Camera _cameraMain;
@@ -32,11 +34,12 @@ public class UIArena : UILocaleBase
 
     private void Awake()
     {
-        ArenaManager.OnSetNextCreature += DrawHelpCreature;
+        ArenaManager.OnChangeNodesForAttack += ChangeStatusButtonAttack;
     }
+
     private void OnDestroy()
     {
-        ArenaManager.OnSetNextCreature -= DrawHelpCreature;
+        ArenaManager.OnChangeNodesForAttack -= ChangeStatusButtonAttack;
     }
 
     public void Init(SceneInstance arenaScene)
@@ -65,6 +68,10 @@ public class UIArena : UILocaleBase
         var btnRunCreature = _box.Q<Button>("RunButton");
         btnRunCreature.clickable.clicked += OnClickClose;
 
+        _btnDirAttack = _box.Q<Button>("DirAttack");
+        _btnDirAttack.clickable.clicked += ClickDirAttack;
+        _btnDirAttack.SetEnabled(false);
+
         var btnSpellBook = _box.Q<Button>("SpellBookButton");
         btnSpellBook.clickable.clicked += () =>
         {
@@ -80,6 +87,23 @@ public class UIArena : UILocaleBase
     {
         OnNextCreature?.Invoke();
         DrawHelpCreature();
+    }
+
+    private void ChangeStatusButtonAttack()
+    {
+        if (arenaManager.NodesForAttackActiveCreature.Count > 0)
+        {
+            _btnDirAttack.SetEnabled(true);
+        }
+        else
+        {
+            _btnDirAttack.SetEnabled(false);
+        }
+    }
+
+    private void ClickDirAttack()
+    {
+        OnClickNextNodeForAttack?.Invoke();
     }
 
     private void DrawHelpCreature()

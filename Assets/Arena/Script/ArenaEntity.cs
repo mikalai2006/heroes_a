@@ -191,6 +191,20 @@ public class ArenaEntity
         // _arenaManager.SetColorDisableNode();
     }
 
+    public async void ClickCreature()
+    {
+        if (_arenaManager.FightingOccupiedNodes.Contains(OccupiedNode))
+        {
+            Debug.Log($"Fight node!");
+            _arenaManager.CreateAttackNode(this);
+        }
+        else
+        {
+            Debug.Log($"Creature not maybe to attack!");
+        }
+        await UniTask.Delay(1);
+    }
+
     public void DoHero(Player player)
     {
 
@@ -259,6 +273,16 @@ public class ArenaEntity
         {
             Debug.LogError($"Error Load prefab::: {handle.Status}");
         }
+    }
+
+    internal async UniTask GoAttack(GridArenaNode nodeForAttack)
+    {
+        var entityForAttack = nodeForAttack.OccupiedUnit;
+        Debug.Log($"Attack [{this.Entity.ScriptableDataAttribute.name}] / [{entityForAttack.Entity.ScriptableDataAttribute.name}]");
+
+        await ArenaMonoBehavior.RunAttack(nodeForAttack);
+
+        await UniTask.Delay(1);
     }
 
     #endregion

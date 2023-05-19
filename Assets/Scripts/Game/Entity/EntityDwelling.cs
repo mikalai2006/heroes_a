@@ -63,10 +63,10 @@ public class EntityDwelling : BaseEntity
         Data.value = Data.growth;
     }
 
-    public override void SetPlayer(Player player)
+    public override async void SetPlayer(Player player)
     {
         ScriptableEntityDwelling configData = (ScriptableEntityDwelling)ScriptableData;
-        configData.RunHero(player, this);
+        await configData.RunHero(player, this);
         _player = player;
         Data.idPlayer = player.DataPlayer.id;
     }
