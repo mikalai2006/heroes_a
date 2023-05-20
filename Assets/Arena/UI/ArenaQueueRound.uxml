@@ -1,0 +1,11 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/Toolkit/Base.uss?fileID=7433441132597879392&amp;guid=fa07b064290e7384d9ad2e26e79f5953&amp;type=3#Base" />
+    <ui:VisualElement class="text-center bg border-1 border-color p-05" style="flex-grow: 1;">
+        <ui:VisualElement name="VisualElement" style="flex-grow: 1; justify-content: center;">
+            <ui:Label tabindex="-1" display-tooltip-when-elided="true" name="Round" text="1" class="text-secondary font-bold text_xl" />
+        </ui:VisualElement>
+        <ui:VisualElement name="VisualElement" class="border-t border-color" style="flex-grow: 1; justify-content: center;">
+            <ui:Label tabindex="-1" display-tooltip-when-elided="true" text="#round" class="text-secondary text-xs" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

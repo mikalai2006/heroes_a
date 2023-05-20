@@ -24,6 +24,9 @@
             <ui:VisualElement class="w-25">
                 <ui:Button display-tooltip-when-elided="true" name="AutoButton" class="button button_bg button_text m-px h-full button_bordered" style="background-image: url(&apos;project://database/Assets/Arena/Sprites/Buttons/BattleAuto.png?fileID=2800000&amp;guid=b1d2e6e8047d64244b0296379d633aa8&amp;type=3#BattleAuto&apos;); -unity-background-scale-mode: scale-to-fit;" />
             </ui:VisualElement>
+            <ui:VisualElement class="w-25">
+                <ui:Button display-tooltip-when-elided="true" name="QueueButton" class="button button_bg button_text m-px h-full button_bordered" style="background-image: url(&apos;project://database/Packages/com.unity.timeline/Editor/StyleSheets/Images/Shared/TimelineWarning.png?fileID=2800000&amp;guid=1732e542f535d374bbfa7565fc78414e&amp;type=3#TimelineWarning&apos;); -unity-background-scale-mode: scale-to-fit;" />
+            </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement class="border-color p-05" style="flex-grow: 1; border-left-width: 1px; border-right-width: 1px;">
             <ui:Label tabindex="-1" text="Information" display-tooltip-when-elided="true" name="Stat" class="text pt-0" />
@@ -39,7 +42,7 @@
                 <ui:Button display-tooltip-when-elided="true" name="WaitButton" class="button button_bg button_text m-px h-full button_bordered" style="background-image: url(&apos;project://database/Assets/Arena/Sprites/Buttons/BattleWait.png?fileID=2800000&amp;guid=e50dd5490ad214547bd49794694ef7cd&amp;type=3#BattleWait&apos;); -unity-background-scale-mode: scale-to-fit;" />
             </ui:VisualElement>
             <ui:VisualElement style="width: 80px; flex-grow: 1;">
-                <ui:Button display-tooltip-when-elided="true" name="DamageButton" class="button button_bg button_text m-px h-full button_bordered" style="background-image: url(&apos;project://database/Assets/Arena/Sprites/Buttons/BattleDefense.png?fileID=2800000&amp;guid=78f2eeb88d594bd44a3aa4837e2170fa&amp;type=3#BattleDefense&apos;); -unity-background-scale-mode: scale-to-fit;" />
+                <ui:Button display-tooltip-when-elided="true" name="DefenseButton" class="button button_bg button_text m-px h-full button_bordered" style="background-image: url(&apos;project://database/Assets/Arena/Sprites/Buttons/BattleDefense.png?fileID=2800000&amp;guid=78f2eeb88d594bd44a3aa4837e2170fa&amp;type=3#BattleDefense&apos;); -unity-background-scale-mode: scale-to-fit;" />
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
@@ -49,4 +52,5 @@
             <ui:Instance template="ArenaShortInfoCreature" name="ArenaShortInfoCreature" />
         </ui:VisualElement>
     </ui:VisualElement>
+    <ui:VisualElement name="QueueBlok" style="flex-grow: 1; position: absolute; top: 0; left: 15%; right: 15%; background-color: rgba(0, 0, 0, 0.64); flex-direction: row; height: 80px;" />
 </ui:UXML>
