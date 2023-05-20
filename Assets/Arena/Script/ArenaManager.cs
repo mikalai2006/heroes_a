@@ -117,7 +117,7 @@ public class ArenaManager : MonoBehaviour
         // inputManager.OnStartTouch += OnClick;
         UIArena.OnNextCreature += NextCreature;
         UIArena.OnOpenSpellBook += OpenSpellBook;
-        UIArena.OnClickNextNodeForAttack += ChooseNextPositionForAttack;
+        UIArena.OnClickAttack += ActionClickButton;
 
         CreateArena();
 
@@ -135,7 +135,7 @@ public class ArenaManager : MonoBehaviour
             // ArenaQueue.SetActiveEntity(ArenaQueue.First);
 
             // await GoEntity();
-            NextCreature();
+            NextCreature(false);
 
             setSizeTileMap();
 
@@ -145,7 +145,7 @@ public class ArenaManager : MonoBehaviour
     {
         UIArena.OnNextCreature -= NextCreature;
         UIArena.OnOpenSpellBook -= OpenSpellBook;
-        UIArena.OnClickNextNodeForAttack -= ChooseNextPositionForAttack;
+        UIArena.OnClickAttack -= ActionClickButton;
     }
 
     private async void OpenSpellBook()
@@ -154,9 +154,9 @@ public class ArenaManager : MonoBehaviour
         var result = await dialogWindow.ShowAndHide();
     }
 
-    private async void NextCreature()
+    private async void NextCreature(bool wait)
     {
-        ArenaQueue.NextCreature();
+        ArenaQueue.NextCreature(wait);
         await GoEntity();
     }
 
@@ -166,7 +166,7 @@ public class ArenaManager : MonoBehaviour
         System.Diagnostics.Stopwatch stopWatch = new System.Diagnostics.Stopwatch();
         stopWatch.Start();
 #endif
-        ArenaEntity activeArenaEntity = ArenaQueue.activeEntity;
+        ArenaEntity activeArenaEntity = ArenaQueue.activeEntity.arenaEntity;
         ScriptableAttributeCreature activeEntityCreature = (ScriptableAttributeCreature)activeArenaEntity.Entity.ScriptableDataAttribute;
 
         ResetArenaState();
@@ -264,22 +264,22 @@ public class ArenaManager : MonoBehaviour
     private void GetFightingNodes()
     {
         // List<GridArenaNode> allowPathNodes = PathNodes.Concat(MovedNodes).ToList();
-        var creatureData = ((ScriptableAttributeCreature)ArenaQueue.activeEntity.Entity.ScriptableDataAttribute);
+        var creatureData = ((ScriptableAttributeCreature)ArenaQueue.activeEntity.arenaEntity.Entity.ScriptableDataAttribute);
         var occupiedNodes = GridArenaHelper
             .GetAllGridNodes()
-            .Where(t => t.OccupiedUnit != null && t.OccupiedUnit.TypeArenaPlayer != ArenaQueue.activeEntity.TypeArenaPlayer);
+            .Where(t => t.OccupiedUnit != null && t.OccupiedUnit.TypeArenaPlayer != ArenaQueue.activeEntity.arenaEntity.TypeArenaPlayer);
         var neighboursNodesEnemy = GridArenaHelper
-            .GetNeighbourList(ArenaQueue.activeEntity.OccupiedNode)
-            .Where(t => t.OccupiedUnit != null && t.OccupiedUnit.TypeArenaPlayer != ArenaQueue.activeEntity.TypeArenaPlayer);
+            .GetNeighbourList(ArenaQueue.activeEntity.arenaEntity.OccupiedNode)
+            .Where(t => t.OccupiedUnit != null && t.OccupiedUnit.TypeArenaPlayer != ArenaQueue.activeEntity.arenaEntity.TypeArenaPlayer);
         foreach (var node in occupiedNodes)
         {
             if (
-                ArenaQueue.activeEntity.Data.shoots == 0
+                ArenaQueue.activeEntity.arenaEntity.Data.shoots == 0
                 ||
                 (creatureData.CreatureParams.Shoots != 0 && neighboursNodesEnemy.Count() > 0)
                 )
             {
-                ArenaQueue.activeEntity.SetTypeAttack(TypeAttack.Attack);
+                ArenaQueue.activeEntity.arenaEntity.SetTypeAttack(TypeAttack.Attack);
                 var neighbours = GridArenaHelper.GetNeighbourList(node);
                 if (AllowPathNodes.Intersect(neighbours).Count() > 0)
                 {
@@ -289,7 +289,7 @@ public class ArenaManager : MonoBehaviour
             }
             else
             {
-                ArenaQueue.activeEntity.SetTypeAttack(TypeAttack.Shoot);
+                ArenaQueue.activeEntity.arenaEntity.SetTypeAttack(TypeAttack.Shoot);
                 FightingOccupiedNodes.Add(node);
                 SetColorAllowFightNode(node);
             }
@@ -386,7 +386,7 @@ public class ArenaManager : MonoBehaviour
         RuleTile ruleCursor = CursorRule.NotAllow;
 
         ScriptableAttributeCreature activeCreatureData
-            = (ScriptableAttributeCreature)ArenaQueue.activeEntity.Entity.ScriptableDataAttribute;
+            = (ScriptableAttributeCreature)ArenaQueue.activeEntity.arenaEntity.Entity.ScriptableDataAttribute;
 
         var positionButton = new Vector3(clickedNode.center.x, clickedNode.center.y, zCoord);
         if (AllowPathNodes.Contains(clickedNode))
@@ -405,10 +405,10 @@ public class ArenaManager : MonoBehaviour
                 //     .GetNeighbourList(ArenaQueue.activeEntity.OccupiedNode)
                 //     .Where(t => t.OccupiedUnit != null && t.OccupiedUnit.TypeArenaPlayer != ArenaQueue.activeEntity.TypeArenaPlayer);
 
-                if (ArenaQueue.activeEntity.Data.shoots > 0 && ArenaQueue.activeEntity.Data.typeAttack == TypeAttack.Shoot)
+                if (ArenaQueue.activeEntity.arenaEntity.Data.shoots > 0 && ArenaQueue.activeEntity.arenaEntity.Data.typeAttack == TypeAttack.Shoot)
                 {
                     // check distance.
-                    if (nodesForAttack.nodeToAttack.DistanceTo(ArenaQueue.activeEntity.OccupiedNode) <= activeCreatureData.CreatureParams.Speed)
+                    if (nodesForAttack.nodeToAttack.DistanceTo(ArenaQueue.activeEntity.arenaEntity.OccupiedNode) <= activeCreatureData.CreatureParams.Speed)
                     {
                         ruleCursor = CursorRule.Shoot;
                     }
@@ -455,61 +455,63 @@ public class ArenaManager : MonoBehaviour
         _buttonAction.transform.position = positionButton;
         // _tileMapCursor.SetTile(clickedNode.position, ruleCursor);
     }
-
-    public async UniTask ClickButton(Vector3Int positionClick)
+    public async void ActionClickButton()
     {
-        GridArenaNode node = GridArenaHelper.GridTile.GetGridObject(new Vector3Int(positionClick.x, positionClick.y));
+        await ClickButton();
+    }
+    public async UniTask ClickButton()
+    {
+        Debug.Log($"Click button:::");
+        // GridArenaNode node = GridArenaHelper.GridTile.GetGridObject(new Vector3Int(positionClick.x, positionClick.y));
 
-        if (node != null)
+        // if (node != null)
+        // {
+
+        // if (AllowPathNodes.Contains(node))
+        // {
+        if (
+            (AttackedCreature != null && ArenaQueue.activeEntity.arenaEntity.Data.typeAttack == TypeAttack.Attack)
+            || AttackedCreature == null
+            )
         {
-            Debug.Log($"Click button::: {node.ToString()}");
+            // Move creature.
+            await ArenaQueue.activeEntity.arenaEntity.ArenaMonoBehavior.MoveCreature();
+        }
 
-            // if (AllowPathNodes.Contains(node))
-            // {
-            if (
-                (AttackedCreature != null && ArenaQueue.activeEntity.Data.typeAttack == TypeAttack.Attack)
-                || AttackedCreature == null
-                )
+        // Attack, if exist KeyNodeFromAttack
+        if (AttackedCreature != null)
+        {
+            var nodes = NodesForAttackActiveCreature[KeyNodeFromAttack];
+            if (nodes.nodeFromAttack.OccupiedUnit != null)
             {
-                // Move creature.
-                await ArenaQueue.activeEntity.ArenaMonoBehavior.MoveCreature();
-            }
-
-            // Attack, if exist KeyNodeFromAttack
-            if (AttackedCreature != null)
-            {
-                var nodes = NodesForAttackActiveCreature[KeyNodeFromAttack];
-                if (nodes.nodeFromAttack.OccupiedUnit != null)
+                if (ArenaQueue.activeEntity.arenaEntity.Data.typeAttack == TypeAttack.Attack)
                 {
-                    if (ArenaQueue.activeEntity.Data.typeAttack == TypeAttack.Attack)
-                    {
-                        await nodes.nodeFromAttack.OccupiedUnit.GoAttack(nodes.nodeToAttack);
-                    }
-                    else
-                    {
-                        await nodes.nodeFromAttack.OccupiedUnit.GoAttackShoot(nodes.nodeToAttack);
-                    }
+                    await nodes.nodeFromAttack.OccupiedUnit.GoAttack(nodes.nodeToAttack);
+                }
+                else
+                {
+                    await nodes.nodeFromAttack.OccupiedUnit.GoAttackShoot(nodes.nodeToAttack);
                 }
             }
-
-            // Clear clicked node.
-            clickedNode = null;
-            ClearAttackNode();
-
-            // Next creature.
-            await GoEntity();
-
-            // }
-            // else
-            // {
-            //     // Click not allowed node.
-            //     _tileMapPath.ClearAllTiles();
-            //     clickedNode = node;
-            // }
-
-            // DrawCursor
-            if (clickedNode != null) DrawButtonAction();
         }
+
+        // Clear clicked node.
+        clickedNode = null;
+        ClearAttackNode();
+
+        // Next creature.
+        await GoEntity();
+
+        // }
+        // else
+        // {
+        //     // Click not allowed node.
+        //     _tileMapPath.ClearAllTiles();
+        //     clickedNode = node;
+        // }
+
+        // DrawCursor
+        if (clickedNode != null) DrawButtonAction();
     }
 
     public async UniTask ClickArena(Vector3Int positionClick)
@@ -526,7 +528,7 @@ public class ArenaManager : MonoBehaviour
                 if (clickedNode != node)
                 {
                     //Find path.
-                    var path = GridArenaHelper.FindPath(ArenaQueue.activeEntity.OccupiedNode.position, positionClick, PathNodes);
+                    var path = GridArenaHelper.FindPath(ArenaQueue.activeEntity.arenaEntity.OccupiedNode.position, positionClick, PathNodes);
                     if (path == null)
                     {
                         return;
@@ -534,7 +536,7 @@ public class ArenaManager : MonoBehaviour
 
                     // Draw path.
                     _tileMapPath.ClearAllTiles();
-                    ArenaQueue.activeEntity.SetPath(path);
+                    ArenaQueue.activeEntity.arenaEntity.SetPath(path);
                     foreach (var pathNode in path)
                     {
                         _tileMapPath.SetTile(pathNode.position, _tileHexShadow);
@@ -625,7 +627,7 @@ public class ArenaManager : MonoBehaviour
             }
             else if (rayHit.collider.gameObject == _buttonAction.gameObject)
             {
-                await ClickButton(tilePos);
+                await ClickButton();
             }
         }
     }
@@ -636,8 +638,8 @@ public class ArenaManager : MonoBehaviour
         _tileMapDisableNode.ClearAllTiles();
         NodesForAttackActiveCreature.Clear();
         KeyNodeFromAttack = -1;
-        OnChangeNodesForAttack?.Invoke();
         AttackedCreature = null;
+        OnChangeNodesForAttack?.Invoke();
     }
 
     public void CreateAttackNode(ArenaEntity clickedEntity)
@@ -647,21 +649,21 @@ public class ArenaManager : MonoBehaviour
         {
             ClearAttackNode();
         }
-        else
-        {
-            AttackedCreature = clickedEntity;
-        }
+        // else
+        // {
+        AttackedCreature = clickedEntity;
+        // }
 
         var allowNodes = AllowPathNodes.Concat(AllowMovedNodes).ToList();
 
         var neighbourNodesEnemyEntity = GridArenaHelper
-            .GetNeighbourList(ArenaQueue.activeEntity.OccupiedNode)
-            .Where(t => t.OccupiedUnit != null && t.OccupiedUnit.TypeArenaPlayer != ArenaQueue.activeEntity.TypeArenaPlayer);
-        if (ArenaQueue.activeEntity.Data.shoots == 0 || neighbourNodesEnemyEntity.Count() > 0)
+            .GetNeighbourList(ArenaQueue.activeEntity.arenaEntity.OccupiedNode)
+            .Where(t => t.OccupiedUnit != null && t.OccupiedUnit.TypeArenaPlayer != ArenaQueue.activeEntity.arenaEntity.TypeArenaPlayer);
+        if (ArenaQueue.activeEntity.arenaEntity.Data.shoots == 0 || neighbourNodesEnemyEntity.Count() > 0)
         {
             List<GridArenaNode> neighbours = GridArenaHelper
                 .GetNeighbourList(clickedEntity.OccupiedNode)
-                .Where(t => t.OccupiedUnit == null || t.OccupiedUnit == ArenaQueue.activeEntity)
+                .Where(t => t.OccupiedUnit == null || t.OccupiedUnit == ArenaQueue.activeEntity.arenaEntity)
                 .ToList();
             var allowNeighbours = neighbours.Intersect(allowNodes).ToList();
             foreach (var node in allowNeighbours)
@@ -677,7 +679,7 @@ public class ArenaManager : MonoBehaviour
             {
                 List<GridArenaNode> neighboursRelatedNode
                     = GridArenaHelper.GetNeighbourList(clickedEntity.RelatedNode)
-                    .Where(t => t.OccupiedUnit == null || t.OccupiedUnit == ArenaQueue.activeEntity)
+                    .Where(t => t.OccupiedUnit == null || t.OccupiedUnit == ArenaQueue.activeEntity.arenaEntity)
                     .ToList();
                 // neighbours = neighbours.Concat(neighboursRelatedNode).ToList();
                 var allowNeighboursRelatedNode = neighboursRelatedNode.Intersect(allowNodes).ToList();
@@ -695,7 +697,7 @@ public class ArenaManager : MonoBehaviour
         {
             NodesForAttackActiveCreature.Add(new AttackItemNode()
             {
-                nodeFromAttack = ArenaQueue.activeEntity.OccupiedNode,
+                nodeFromAttack = ArenaQueue.activeEntity.arenaEntity.OccupiedNode,
                 nodeToAttack = clickedEntity.OccupiedNode
             });
         }
@@ -732,7 +734,7 @@ public class ArenaManager : MonoBehaviour
     public void LightingActiveNode()
     {
         _tileMapUnitActive.ClearAllTiles();
-        ArenaEntity activeArenaEntity = ArenaQueue.activeEntity;
+        ArenaEntity activeArenaEntity = ArenaQueue.activeEntity.arenaEntity;
 
         GridArenaNode nodeActiveCreature = activeArenaEntity.OccupiedNode;
         GridArenaNode relatedNodeActiveCreature = activeArenaEntity.RelatedNode;

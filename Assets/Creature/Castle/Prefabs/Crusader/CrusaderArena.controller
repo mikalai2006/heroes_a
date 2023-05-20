@@ -1,13 +1,13 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1102 &-8003779973008840624
+--- !u!1102 &-7723613905602580992
 AnimatorState:
   serializedVersion: 6
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: CrusaderStopMoving
+  m_Name: CrusaderDefend
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -20,65 +20,13 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: eac01f284088c0041b006eecf98b5f67, type: 2}
+  m_Motion: {fileID: 7400000, guid: d5b6a64034f7ca9429824a84d42d0127, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
---- !u!1102 &-7200972330512836494
-AnimatorState:
-  serializedVersion: 6
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: CrusaderAttackDown
-  m_Speed: 1
-  m_CycleOffset: 0
-  m_Transitions: []
-  m_StateMachineBehaviours: []
-  m_Position: {x: 50, y: 50, z: 0}
-  m_IKOnFeet: 0
-  m_WriteDefaultValues: 1
-  m_Mirror: 0
-  m_SpeedParameterActive: 0
-  m_MirrorParameterActive: 0
-  m_CycleOffsetParameterActive: 0
-  m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 9d0a0a36178bdff4ca75ec67dc20b656, type: 2}
-  m_Tag: 
-  m_SpeedParameter: 
-  m_MirrorParameter: 
-  m_CycleOffsetParameter: 
-  m_TimeParameter: 
---- !u!1102 &-6621754452377036690
-AnimatorState:
-  serializedVersion: 6
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: CrusaderAttackStraight
-  m_Speed: 1
-  m_CycleOffset: 0
-  m_Transitions: []
-  m_StateMachineBehaviours: []
-  m_Position: {x: 50, y: 50, z: 0}
-  m_IKOnFeet: 0
-  m_WriteDefaultValues: 1
-  m_Mirror: 0
-  m_SpeedParameterActive: 0
-  m_MirrorParameterActive: 0
-  m_CycleOffsetParameterActive: 0
-  m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 81c6059cf0b2fed429dd6ecd9324edb7, type: 2}
-  m_Tag: 
-  m_SpeedParameter: 
-  m_MirrorParameter: 
-  m_CycleOffsetParameter: 
-  m_TimeParameter: 
---- !u!1102 &-5446914319857883012
+--- !u!1102 &-4310715222375140081
 AnimatorState:
   serializedVersion: 6
   m_ObjectHideFlags: 1
@@ -104,14 +52,14 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
---- !u!1102 &-4996705306077216844
+--- !u!1102 &-3615892699671672327
 AnimatorState:
   serializedVersion: 6
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: CrusaderStartMoving
+  m_Name: CrusaderAttackStraight
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -124,13 +72,13 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 04945193ce2c9f64182a6f5dc48dabca, type: 2}
+  m_Motion: {fileID: 7400000, guid: 81c6059cf0b2fed429dd6ecd9324edb7, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
---- !u!1102 &-3375927573324515880
+--- !u!1102 &-3426650762818174306
 AnimatorState:
   serializedVersion: 6
   m_ObjectHideFlags: 1
@@ -182,14 +130,14 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
---- !u!1102 &-3102702077281275736
+--- !u!1102 &-2597357910457591338
 AnimatorState:
   serializedVersion: 6
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: CrusaderAttackUp
+  m_Name: CrusaderAttackDown
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -202,85 +150,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 07535ecbf07b03d4fb1925fd7571b9b6, type: 2}
-  m_Tag: 
-  m_SpeedParameter: 
-  m_MirrorParameter: 
-  m_CycleOffsetParameter: 
-  m_TimeParameter: 
---- !u!1102 &-1555439668395305237
-AnimatorState:
-  serializedVersion: 6
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: CrusaderDefend
-  m_Speed: 1
-  m_CycleOffset: 0
-  m_Transitions: []
-  m_StateMachineBehaviours: []
-  m_Position: {x: 50, y: 50, z: 0}
-  m_IKOnFeet: 0
-  m_WriteDefaultValues: 1
-  m_Mirror: 0
-  m_SpeedParameterActive: 0
-  m_MirrorParameterActive: 0
-  m_CycleOffsetParameterActive: 0
-  m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: d5b6a64034f7ca9429824a84d42d0127, type: 2}
-  m_Tag: 
-  m_SpeedParameter: 
-  m_MirrorParameter: 
-  m_CycleOffsetParameter: 
-  m_TimeParameter: 
---- !u!1102 &-728346092957260993
-AnimatorState:
-  serializedVersion: 6
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: CrusaderGettingHit
-  m_Speed: 1
-  m_CycleOffset: 0
-  m_Transitions: []
-  m_StateMachineBehaviours: []
-  m_Position: {x: 50, y: 50, z: 0}
-  m_IKOnFeet: 0
-  m_WriteDefaultValues: 1
-  m_Mirror: 0
-  m_SpeedParameterActive: 0
-  m_MirrorParameterActive: 0
-  m_CycleOffsetParameterActive: 0
-  m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 2467decd19313404f9862820633dccbf, type: 2}
-  m_Tag: 
-  m_SpeedParameter: 
-  m_MirrorParameter: 
-  m_CycleOffsetParameter: 
-  m_TimeParameter: 
---- !u!1102 &-516414173100083996
-AnimatorState:
-  serializedVersion: 6
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: CrusaderTurnRight
-  m_Speed: 1
-  m_CycleOffset: 0
-  m_Transitions: []
-  m_StateMachineBehaviours: []
-  m_Position: {x: 50, y: 50, z: 0}
-  m_IKOnFeet: 0
-  m_WriteDefaultValues: 1
-  m_Mirror: 0
-  m_SpeedParameterActive: 0
-  m_MirrorParameterActive: 0
-  m_CycleOffsetParameterActive: 0
-  m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: f728f3563b5349940ad0ff815b7a3b77, type: 2}
+  m_Motion: {fileID: 7400000, guid: 9d0a0a36178bdff4ca75ec67dc20b656, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -321,41 +191,41 @@ AnimatorStateMachine:
     m_State: {fileID: -3105147269749579339}
     m_Position: {x: 270, y: 120, z: 0}
   - serializedVersion: 1
-    m_State: {fileID: -3375927573324515880}
-    m_Position: {x: 870, y: 180, z: 0}
+    m_State: {fileID: -2597357910457591338}
+    m_Position: {x: 558.59143, y: 111.27823, z: 0}
   - serializedVersion: 1
-    m_State: {fileID: -6621754452377036690}
-    m_Position: {x: 910, y: 240, z: 0}
+    m_State: {fileID: -3615892699671672327}
+    m_Position: {x: 568.59143, y: 121.27823, z: 0}
   - serializedVersion: 1
-    m_State: {fileID: -3102702077281275736}
-    m_Position: {x: 940, y: 310, z: 0}
+    m_State: {fileID: 2525749276347335000}
+    m_Position: {x: 578.59143, y: 131.27823, z: 0}
   - serializedVersion: 1
-    m_State: {fileID: -7200972330512836494}
-    m_Position: {x: 980, y: 370, z: 0}
+    m_State: {fileID: -4310715222375140081}
+    m_Position: {x: 588.59143, y: 141.27823, z: 0}
   - serializedVersion: 1
-    m_State: {fileID: -728346092957260993}
-    m_Position: {x: 870, y: 430, z: 0}
+    m_State: {fileID: -7723613905602580992}
+    m_Position: {x: 598.59143, y: 151.27823, z: 0}
   - serializedVersion: 1
-    m_State: {fileID: -5446914319857883012}
-    m_Position: {x: 900, y: 490, z: 0}
+    m_State: {fileID: 9065757870133341436}
+    m_Position: {x: 608.59143, y: 161.27823, z: 0}
   - serializedVersion: 1
-    m_State: {fileID: -1555439668395305237}
-    m_Position: {x: 940, y: 560, z: 0}
+    m_State: {fileID: -3426650762818174306}
+    m_Position: {x: 618.59143, y: 171.27823, z: 0}
   - serializedVersion: 1
-    m_State: {fileID: 3206987850136051288}
-    m_Position: {x: 270, y: -50, z: 0}
+    m_State: {fileID: 8877495040331324777}
+    m_Position: {x: 628.59143, y: 181.27823, z: 0}
   - serializedVersion: 1
-    m_State: {fileID: -4996705306077216844}
-    m_Position: {x: 270, y: 30, z: 0}
+    m_State: {fileID: 3741351215321058856}
+    m_Position: {x: 638.59143, y: 191.27823, z: 0}
   - serializedVersion: 1
-    m_State: {fileID: -8003779973008840624}
-    m_Position: {x: 510, y: 30, z: 0}
+    m_State: {fileID: 1925390165452589908}
+    m_Position: {x: 648.59143, y: 201.27823, z: 0}
   - serializedVersion: 1
-    m_State: {fileID: 7011833959281536930}
-    m_Position: {x: 890, y: 680, z: 0}
+    m_State: {fileID: 6696981068835904905}
+    m_Position: {x: 658.59143, y: 211.27823, z: 0}
   - serializedVersion: 1
-    m_State: {fileID: -516414173100083996}
-    m_Position: {x: 920, y: 750, z: 0}
+    m_State: {fileID: 3932240051146989194}
+    m_Position: {x: 668.59143, y: 221.27823, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -366,7 +236,137 @@ AnimatorStateMachine:
   m_ExitPosition: {x: 50, y: 180, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
   m_DefaultState: {fileID: -3105147269749579339}
---- !u!1102 &3206987850136051288
+--- !u!1102 &1925390165452589908
+AnimatorState:
+  serializedVersion: 6
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: CrusaderStopMoving
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions: []
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: 7400000, guid: eac01f284088c0041b006eecf98b5f67, type: 2}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
+--- !u!1102 &2525749276347335000
+AnimatorState:
+  serializedVersion: 6
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: CrusaderAttackUp
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions: []
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: 7400000, guid: 07535ecbf07b03d4fb1925fd7571b9b6, type: 2}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
+--- !u!1102 &3741351215321058856
+AnimatorState:
+  serializedVersion: 6
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: CrusaderStartMoving
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions: []
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: 7400000, guid: 04945193ce2c9f64182a6f5dc48dabca, type: 2}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
+--- !u!1102 &3932240051146989194
+AnimatorState:
+  serializedVersion: 6
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: CrusaderTurnRight
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions: []
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: 7400000, guid: f728f3563b5349940ad0ff815b7a3b77, type: 2}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
+--- !u!1102 &6696981068835904905
+AnimatorState:
+  serializedVersion: 6
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: CrusaderTurnLeft
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions: []
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: 7400000, guid: 9fdd853ad5e6a404192dcc8a827efca7, type: 2}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
+--- !u!1102 &8877495040331324777
 AnimatorState:
   serializedVersion: 6
   m_ObjectHideFlags: 1
@@ -392,14 +392,14 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
---- !u!1102 &7011833959281536930
+--- !u!1102 &9065757870133341436
 AnimatorState:
   serializedVersion: 6
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: CrusaderTurnLeft
+  m_Name: CrusaderGettingHit
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -412,7 +412,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 9fdd853ad5e6a404192dcc8a827efca7, type: 2}
+  m_Motion: {fileID: 7400000, guid: 2467decd19313404f9862820633dccbf, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

@@ -403,6 +403,18 @@ MonoBehaviour:
     m_Key: mana
     m_Metadata:
       m_Items: []
+  - m_Id: 19546126500921344
+    m_Key: movecreature
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19563712659750912
+    m_Key: attackedcreature
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19582116313595904
+    m_Key: round
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

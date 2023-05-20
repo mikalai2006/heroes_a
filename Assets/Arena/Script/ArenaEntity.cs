@@ -316,10 +316,14 @@ public class ArenaEntity
         await UniTask.Delay(1);
     }
 
-    internal async Task GoAttackShoot(GridArenaNode nodeToAttack)
+    internal async Task GoAttackShoot(GridArenaNode nodeForAttack)
     {
-        Debug.Log("Shoot attack");
-        await UniTask.Delay(100);
+        var entityForAttack = nodeForAttack.OccupiedUnit;
+        Debug.Log($"ShootAttack [{this.Entity.ScriptableDataAttribute.name}] / [{entityForAttack.Entity.ScriptableDataAttribute.name}]");
+
+        await ArenaMonoBehavior.RunAttackShoot(nodeForAttack);
+
+        await UniTask.Delay(1);
     }
     #endregion
 }

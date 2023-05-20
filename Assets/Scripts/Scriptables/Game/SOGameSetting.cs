@@ -41,6 +41,7 @@ public class SOGameSetting : ScriptableObject
     [Header("Setting Arena")]
     [Space(5)]
     [Range(.05f, 1f)] public float speedArenaAnimation;
+    public Color neutralColor;
 }
 
 [System.Serializable]
