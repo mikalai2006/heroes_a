@@ -12,13 +12,15 @@ public class UIAppMenuVariants : UILocaleBase
     public void Init()
     {
         _root = _rootDoc.rootVisualElement;
-        _root.Q<Button>("back").clickable.clicked += () =>
+        _root.Q<Button>("back").clickable.clicked += async () =>
         {
+            await AudioManager.Instance.Click();
             Hide();
         };
 
-        _root.Q<Button>("singlegame").clickable.clicked += () =>
+        _root.Q<Button>("singlegame").clickable.clicked += async () =>
         {
+            await AudioManager.Instance.Click();
             LevelManager.Instance.Level.Settings.countPlayer = 1;
             LevelManager.Instance.Level.Settings.countBot = 1;
             LevelManager.Instance.Level.Settings.TypeGame = TypeGame.Single;
@@ -28,8 +30,9 @@ public class UIAppMenuVariants : UILocaleBase
             Hide();
         };
         var btnMultipleGame = _root.Q<Button>("multiplegame");
-        btnMultipleGame.clickable.clicked += () =>
+        btnMultipleGame.clickable.clicked += async () =>
         {
+            await AudioManager.Instance.Click();
             LevelManager.Instance.Level.Settings.TypeGame = TypeGame.MultipleOneDevice;
             LevelManager.Instance.Init();
             // _parent.AppMenuNewGame.Show();

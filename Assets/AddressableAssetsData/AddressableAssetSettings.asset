@@ -62,6 +62,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1934a15413d759b4cb28980f9a15d040, type: 2}
   - {fileID: 11400000, guid: e67617fd1228fd841a80fc408cc1ce58, type: 2}
   - {fileID: 11400000, guid: 6fb6202d674ad3e4db1a8aff9a316076, type: 2}
+  - {fileID: 11400000, guid: 1682179ce659b5d4181c99dd659cc16a, type: 2}
   m_BuildSettings:
     m_CompileScriptsInVirtualMode: 0
     m_CleanupStreamingAssetsAfterBuilds: 1
@@ -134,12 +135,6 @@ MonoBehaviour:
     - gamemode
     - landscape
     - nature
-    - units
-    - hero
-    - road
-    - skill
-    - twoskill
-    - artifact
     - Locale
     - Locale-en
     - Locale-ru
@@ -151,6 +146,7 @@ MonoBehaviour:
     - attribute
     - build_base
     - gamesetting
+    - gameaudio
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: d17b4f64a43f1ea4697eba1d03bab099, type: 2}

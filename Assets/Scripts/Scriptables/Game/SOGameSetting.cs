@@ -48,6 +48,8 @@ public class SOGameSetting : ScriptableObject
     public Color colorAllowAttackCreature;
     public bool paintActiveCreature;
     public Color colorActiveCreature;
+
+    public SOGameAudio AudioGeneral;
 }
 
 [System.Serializable]

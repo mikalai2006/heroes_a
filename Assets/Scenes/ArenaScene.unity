@@ -212,6 +212,7 @@ MonoBehaviour:
     FightFromBottomLeft: {fileID: 11400000, guid: e86536fa8db478a4693ab8c768c05690, type: 2}
     Shoot: {fileID: 11400000, guid: c126a8e01922f524aac0ac694dea68f6, type: 2}
     ShootHalf: {fileID: 11400000, guid: 1ade8d014c3deac4bb9f0b5922ec12bb, type: 2}
+  activeCursor: {fileID: 0}
   width: 15
   height: 11
   _tileMapArenaGrid: {fileID: 1204608557}
@@ -844,7 +845,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 815242360}
-  m_Enabled: 0
+  m_Enabled: 1
 --- !u!20 &815242362
 Camera:
   m_ObjectHideFlags: 0
