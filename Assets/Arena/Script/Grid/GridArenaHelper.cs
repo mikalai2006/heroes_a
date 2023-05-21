@@ -240,20 +240,20 @@ public class GridArenaHelper
         var one = GetNode(position.x - 1, position.y);
         if (one != null) neighbourList.Add(one);
 
-        var two = GetNode(position.x + 1, position.y);
-        if (two != null) neighbourList.Add(two);
-
         var three = GetNode(position.x + xOffset - 1, position.y + 1);
         if (three != null) neighbourList.Add(three);
 
         var four = GetNode(position.x + xOffset, position.y + 1);
         if (four != null) neighbourList.Add(four);
 
-        var five = GetNode(position.x + xOffset - 1, position.y - 1);
-        if (five != null) neighbourList.Add(five);
+        var two = GetNode(position.x + 1, position.y);
+        if (two != null) neighbourList.Add(two);
 
         var six = GetNode(position.x + xOffset, position.y - 1);
         if (six != null) neighbourList.Add(six);
+
+        var five = GetNode(position.x + xOffset - 1, position.y - 1);
+        if (five != null) neighbourList.Add(five);
 
         return neighbourList;
     }

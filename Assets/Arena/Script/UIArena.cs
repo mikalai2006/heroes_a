@@ -39,14 +39,19 @@ public class UIArena : UILocaleBase
     private string textMoveCreature;
     private string textAttackedCreature;
 
+
     private void Awake()
     {
         ArenaManager.OnChangeNodesForAttack += ChangeStatusButtonAttack;
+        ArenaEntity.OnChangeParamsCreature += ChangeParamsCreature;
+        ArenaManager.OnAutoNextCreature += DrawInfo;
     }
 
     private void OnDestroy()
     {
         ArenaManager.OnChangeNodesForAttack -= ChangeStatusButtonAttack;
+        ArenaEntity.OnChangeParamsCreature -= ChangeParamsCreature;
+        ArenaManager.OnAutoNextCreature -= DrawInfo;
     }
 
     public void Init(SceneInstance arenaScene)
@@ -121,7 +126,8 @@ public class UIArena : UILocaleBase
                 = new StyleLength(new Length(58, LengthUnit.Pixel));
             creatureElement.Q<VisualElement>("Img").style.width
                 = new StyleLength(new Length(64, LengthUnit.Pixel));
-            creatureElement.Q<Label>("Value").text = entity.Data.value.ToString();
+            creatureElement.Q<Label>("Value").text
+                = creature.arenaEntity.Data.quantity.ToString(); // entity.Data.value.ToString();
             creatureElement.Q<VisualElement>("Overlay").style.backgroundColor
                 = new StyleColor(creature.arenaEntity.Entity.Player != null
                     ? creature.arenaEntity.Entity.Player.DataPlayer.color
@@ -132,6 +138,7 @@ public class UIArena : UILocaleBase
                 creatureElement.Q<Button>().RemoveFromClassList("button_bordered");
                 creatureElement.Q<Button>().AddToClassList("button_active");
             }
+
             if (startRound != creature.round)
             {
                 startRound = creature.round;
@@ -146,20 +153,28 @@ public class UIArena : UILocaleBase
         base.Localize(_box);
     }
 
-    private void OnClickDefense()
+    private void ChangeParamsCreature()
     {
-        OnNextCreature?.Invoke(false);
+        DrawInfo();
+    }
+
+    private void DrawInfo()
+    {
         DrawQueue();
         ChangeStatusButtonAttack();
         DrawHelpCreature();
     }
 
+    private void OnClickDefense()
+    {
+        OnNextCreature?.Invoke(false);
+        DrawInfo();
+    }
+
     private void OnClickWait()
     {
         OnNextCreature?.Invoke(true);
-        DrawQueue();
-        ChangeStatusButtonAttack();
-        DrawHelpCreature();
+        DrawInfo();
     }
 
     private void ChangeStatusButtonAttack()
@@ -263,7 +278,7 @@ public class UIArena : UILocaleBase
         infoBlok.Q<Label>("Attack").text = string.Format("{0}", creatureData.CreatureParams.Attack);
         infoBlok.Q<Label>("Defense").text = string.Format("{0}", creatureData.CreatureParams.Defense);
         infoBlok.Q<Label>("Damage").text = string.Format("{0}-{1}", creatureData.CreatureParams.DamageMin, creatureData.CreatureParams.DamageMax);
-        infoBlok.Q<Label>("Damage").text = string.Format("{0}", creatureData.CreatureParams.DamageMin, creatureData.CreatureParams.HP);
+        infoBlok.Q<Label>("Hp").text = string.Format("{0}", creatureData.CreatureParams.HP);
 
         base.Localize(_box);
     }

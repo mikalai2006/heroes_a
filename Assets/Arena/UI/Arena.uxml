@@ -1,5 +1,6 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
     <ui:Template name="ArenaShortInfoCreature" src="project://database/Assets/Arena/UI/ArenaShortInfoCreature.uxml?fileID=9197481963319205126&amp;guid=228006d32228eac49bbe346738edf579&amp;type=3#ArenaShortInfoCreature" />
+    <ui:Template name="ArenaQueueRound" src="project://database/Assets/Arena/UI/ArenaQueueRound.uxml?fileID=9197481963319205126&amp;guid=1da8b8dd36ab6f14489540032c89cfd9&amp;type=3#ArenaQueueRound" />
     <Style src="project://database/Assets/UI/Toolkit/Aside/AsideMenu.uss?fileID=7433441132597879392&amp;guid=e55e2feb94a32ea4281de07ce70e415f&amp;type=3#AsideMenu" />
     <Style src="project://database/Assets/UI/Toolkit/Base.uss?fileID=7433441132597879392&amp;guid=fa07b064290e7384d9ad2e26e79f5953&amp;type=3#Base" />
     <Style src="project://database/Assets/UI/Toolkit/Aside/AsideFooter.uss?fileID=7433441132597879392&amp;guid=100acbaeadba496408baf44e6dfd4501&amp;type=3#AsideFooter" />
@@ -52,5 +53,8 @@
             <ui:Instance template="ArenaShortInfoCreature" name="ArenaShortInfoCreature" />
         </ui:VisualElement>
     </ui:VisualElement>
-    <ui:VisualElement name="QueueBlok" style="flex-grow: 1; position: absolute; top: 0; left: 15%; right: 15%; background-color: rgba(0, 0, 0, 0.64); flex-direction: row; height: 80px;" />
+    <ui:VisualElement name="QueueBlok" style="flex-grow: 1; position: absolute; top: 0; left: 15%; right: 15%; flex-direction: row; height: 80px; align-items: stretch; justify-content: center;">
+        <ui:Instance template="ArenaQueueRound" name="ArenaQueueRound" />
+        <ui:Instance template="ArenaQueueRound" name="ArenaQueueRound" />
+    </ui:VisualElement>
 </ui:UXML>

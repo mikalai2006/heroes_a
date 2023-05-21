@@ -11,7 +11,8 @@ public enum StateArenaNode
     Empty = 1 << 1,
     Occupied = 1 << 2,
     Related = 1 << 3,
-    Moved = 1 << 4
+    Moved = 1 << 4,
+    Deathed = 1 << 5
 }
 
 [Serializable]
@@ -26,6 +27,8 @@ public class GridArenaNode : IHeapItem<GridArenaNode>
     [NonSerialized] public Vector3 center;
     [NonSerialized] private ArenaEntity _ocuppiedUnit = null;
     public ArenaEntity OccupiedUnit => _ocuppiedUnit;
+    [NonSerialized] private List<ArenaEntity> _deathedUnits = null;
+    public List<ArenaEntity> DeathedUnits => _deathedUnits;
 
     public GridArenaNode LeftNode => _grid.GetGridObject(new Vector3Int(X - 1, Y));
     public GridArenaNode RightNode => _grid.GetGridObject(new Vector3Int(X + 1, Y));
@@ -72,21 +75,26 @@ public class GridArenaNode : IHeapItem<GridArenaNode>
     {
         fCost = gCost + hCost;
     }
-    // public void SetRelatedUnit(GridArenaNode relatedNode)
-    // {
-    //     _relatedNode = relatedNode;
-    //     if (relatedNode == null)
-    //     {
-    //         StateArenaNode ^= StateArenaNode.Related;
-    //         StateArenaNode |= StateArenaNode.Empty;
-    //     }
-    //     else
-    //     {
-    //         StateArenaNode |= StateArenaNode.Related;
-    //         StateArenaNode ^= StateArenaNode.Empty;
-    //     }
 
-    // }
+    public void SetDeathedNode(ArenaEntity entity)
+    {
+        if (_deathedUnits == null)
+        {
+            _deathedUnits = new();
+        }
+
+        if (entity != null)
+        {
+            StateArenaNode |= StateArenaNode.Deathed;
+            _deathedUnits.Add(entity);
+        }
+        else
+        {
+            StateArenaNode ^= StateArenaNode.Deathed;
+            _deathedUnits.Remove(entity);
+        }
+
+    }
     public void SetOcuppiedUnit(ArenaEntity entity)
     {
         _ocuppiedUnit = entity;

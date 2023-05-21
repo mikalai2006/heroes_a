@@ -68,25 +68,25 @@ MonoBehaviour:
   StartCreatures:
   - creature: {fileID: 11400000, guid: 45a286b764d7a864683d354b9e7d65fb, type: 2}
     min: 10
-    max: 20
+    max: 2000
   - creature: {fileID: 11400000, guid: 4b11b20843aa1e44c8e834d76d7feba6, type: 2}
     min: 4
-    max: 7
+    max: 700
   - creature: {fileID: 11400000, guid: d03c087eb728b064e8c1e13511f0d189, type: 2}
     min: 2
-    max: 3
+    max: 3000
   - creature: {fileID: 11400000, guid: 203fcde347e55264b97e1a9e2acffe1e, type: 2}
     min: 2
-    max: 3
+    max: 3000
   - creature: {fileID: 11400000, guid: f4417669ef6505d4591991dfc43bac0d, type: 2}
     min: 2
-    max: 3
+    max: 3000
   - creature: {fileID: 11400000, guid: 6731d909c99ecb34f88a1e0795901e4d, type: 2}
     min: 2
-    max: 3
+    max: 3000
   - creature: {fileID: 11400000, guid: b770f4df671795844af7854c6469b998, type: 2}
-    min: 2
-    max: 3
+    min: 3000
+    max: 3000
   StartSpells:
   - {fileID: 11400000, guid: 96ef36e9d522f3344b7a02ab0aa328cd, type: 2}
   references:
