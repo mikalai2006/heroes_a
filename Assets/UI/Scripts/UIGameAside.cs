@@ -136,7 +136,7 @@ public class UIGameAside : UILocaleBase
             if (valueHit > 100)
             {
                 var countPlus = Math.Ceiling((hero.Data.mp - baseMp) / 1000f);
-                Debug.Log($"countPlus={countPlus}[{(hero.Data.mp - baseMp) / 1000f}]");
+                // Debug.Log($"countPlus={countPlus}[{(hero.Data.mp - baseMp) / 1000f}]");
                 for (int i = 0; i < countPlus; i++)
                 {
                     plusBlok.Add(_templatePlus.Instantiate());

@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
 
+using Cysharp.Threading.Tasks;
+
 using Loader;
 
 using UnityEngine;
-using UnityEngine.AddressableAssets;
-using UnityEngine.Events;
 using UnityEngine.Localization;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.ResourceManagement.ResourceProviders;
@@ -20,6 +20,7 @@ public class UIArena : UILocaleBase
     [SerializeField] private VisualTreeAsset _templateShortCreatureInfo;
     [SerializeField] private VisualTreeAsset _templateQueueCreature;
     [SerializeField] private VisualTreeAsset _templateQueueRound;
+    [SerializeField] private VisualTreeAsset _templateShortSpellInfo;
     [SerializeField] private UnityEngine.UI.Image _bgImage;
 
     public static event Action<bool> OnNextCreature;
@@ -27,10 +28,13 @@ public class UIArena : UILocaleBase
     public static event Action OnClickAttack;
 
     private VisualElement _box;
+    private VisualElement _leftSide;
+    private VisualElement _rightSide;
     private VisualElement _helpLeftCreature;
     private VisualElement _helpRightCreature;
     private VisualElement _queueBlok;
     private Button _btnDirAttack;
+    private Button _btnSpellBook;
     private Button _btnQueue;
     private const string _arenaButtons = "ArenaButtons";
     private SceneInstance _arenaScene;
@@ -39,61 +43,152 @@ public class UIArena : UILocaleBase
     private string textMoveCreature;
     private string textAttackedCreature;
 
+
     private void Awake()
     {
         ArenaManager.OnChangeNodesForAttack += ChangeStatusButtonAttack;
-    }
+        ArenaEntity.OnChangeParamsCreature += ChangeParamsCreature;
+        ArenaManager.OnAutoNextCreature += DrawInfo;
+        ArenaQueue.OnNextStep += ChangeStatusButton;
+        UIDialogSpellBook.OnClickSpell += ShowSpellInfo;
 
-    private void OnDestroy()
-    {
-        ArenaManager.OnChangeNodesForAttack -= ChangeStatusButtonAttack;
-    }
-
-    public void Init(SceneInstance arenaScene)
-    {
         textMoveCreature = new LocalizedString(Constants.LanguageTable.LANG_TABLE_UILANG, "movecreature").GetLocalizedString();
         textAttackedCreature = new LocalizedString(Constants.LanguageTable.LANG_TABLE_UILANG, "attackedcreature").GetLocalizedString();
 
         _cameraMain = Camera.main;
         _cameraMain.gameObject.SetActive(false);
 
-        _arenaScene = arenaScene;
 
         // _bgImage.sprite = _activeBuildTown.Bg;
         _box = _uiDoc.rootVisualElement;
 
-        _helpRightCreature = _box.Q<VisualElement>("SideRight");
-        _helpLeftCreature = _box.Q<VisualElement>("SideLeft");
+        _leftSide = _box.Q<VisualElement>("SideLeft");
+        _rightSide = _box.Q<VisualElement>("SideRight");
+
+        _helpRightCreature = _rightSide.Q<VisualElement>("Creature");
+        _helpLeftCreature = _leftSide.Q<VisualElement>("Creature");
         _queueBlok = _box.Q<VisualElement>("QueueBlok");
 
         var btnWait = _box.Q<Button>("WaitButton");
-        btnWait.clickable.clicked += OnClickWait;
+        btnWait.clickable.clicked += async () =>
+        {
+            await AudioManager.Instance.Click();
+            OnClickWait();
+        };
 
         var btnDefense = _box.Q<Button>("DefenseButton");
-        btnDefense.clickable.clicked += OnClickDefense;
+        btnDefense.clickable.clicked += async () =>
+        {
+            await AudioManager.Instance.Click();
+            OnClickDefense();
+        };
 
         var btnRunCreature = _box.Q<Button>("RunButton");
-        btnRunCreature.clickable.clicked += OnClickClose;
+        btnRunCreature.clickable.clicked += async () =>
+        {
+            await AudioManager.Instance.Click();
+            OnClickClose();
+        };
 
         _btnQueue = _box.Q<Button>("QueueButton");
-        _btnQueue.clickable.clicked += OnToggleQueue;
+        _btnQueue.clickable.clicked += async () =>
+        {
+            await AudioManager.Instance.Click();
+            OnToggleQueue();
+        };
         OnToggleQueue();
 
         _btnDirAttack = _box.Q<Button>("DirAttack");
-        _btnDirAttack.clickable.clicked += ClickDirAttack;
+        _btnDirAttack.clickable.clicked += async () =>
+        {
+            await AudioManager.Instance.Click();
+            ClickDirAttack();
+        };
         _btnDirAttack.SetEnabled(false);
 
-        var btnSpellBook = _box.Q<Button>("SpellBookButton");
-        btnSpellBook.clickable.clicked += () =>
+        _btnSpellBook = _box.Q<Button>("SpellBookButton");
+        _btnSpellBook.clickable.clicked += async () =>
         {
+            await AudioManager.Instance.Click();
             OnOpenSpellBook?.Invoke();
         };
+    }
+
+    private void OnDestroy()
+    {
+        ArenaManager.OnChangeNodesForAttack -= ChangeStatusButtonAttack;
+        ArenaEntity.OnChangeParamsCreature -= ChangeParamsCreature;
+        ArenaManager.OnAutoNextCreature -= DrawInfo;
+        ArenaQueue.OnNextStep -= ChangeStatusButton;
+        UIDialogSpellBook.OnClickSpell -= ShowSpellInfo;
+    }
+
+    public void Init(SceneInstance arenaScene)
+    {
+        _arenaScene = arenaScene;
 
         DrawHelpCreature();
 
         DrawQueue();
 
         base.Localize(_box);
+    }
+
+    private void ShowSpellInfo()
+    {
+        DrawShortSpellInfo();
+        base.Localize(_box);
+    }
+
+    private void DrawShortSpellInfo()
+    {
+        if (arenaManager.ArenaQueue.ActiveHero.Data.SpellBook.ChoosedSpell == null)
+        {
+            return;
+        }
+        var activeEntity = arenaManager.ArenaQueue.activeEntity;
+        if (activeEntity.arenaEntity.TypeArenaPlayer == TypeArenaPlayer.Left)
+        {
+            _helpLeftCreature.style.display = DisplayStyle.Flex;
+            DrawShortSpell(_leftSide, activeEntity.arenaEntity);
+        }
+        else
+        {
+            _helpRightCreature.style.display = DisplayStyle.Flex;
+            DrawShortSpell(_rightSide, activeEntity.arenaEntity);
+        }
+    }
+
+    private void DrawShortSpell(VisualElement box, ArenaEntity arenaEntity)
+    {
+        var boxSpell = _templateShortSpellInfo.Instantiate();
+
+        var spellBook = arenaManager.ArenaQueue.ActiveHero.Data.SpellBook;
+        if (spellBook != null)
+        {
+            boxSpell.Q<VisualElement>("Ava").style.backgroundImage
+                = new StyleBackground(spellBook.ChoosedSpell.MenuSprite);
+            boxSpell.Q<Label>("Name").text = spellBook.ChoosedSpell.Text.title.GetLocalizedString();
+            boxSpell.Q<Button>("Btn").clickable.clicked += async () =>
+            {
+                await AudioManager.Instance.Click();
+                spellBook.ChooseSpell(null);
+                box.Remove(boxSpell);
+            };
+            box.Add(boxSpell);
+        }
+    }
+
+    private void ChangeStatusButton()
+    {
+        if (arenaManager.ArenaQueue.ActiveHero != null)
+        {
+            _btnSpellBook.SetEnabled(true);
+        }
+        else
+        {
+            _btnSpellBook.SetEnabled(false);
+        }
     }
 
     private void OnToggleQueue()
@@ -121,7 +216,8 @@ public class UIArena : UILocaleBase
                 = new StyleLength(new Length(58, LengthUnit.Pixel));
             creatureElement.Q<VisualElement>("Img").style.width
                 = new StyleLength(new Length(64, LengthUnit.Pixel));
-            creatureElement.Q<Label>("Value").text = entity.Data.value.ToString();
+            creatureElement.Q<Label>("Value").text
+                = creature.arenaEntity.Data.quantity.ToString(); // entity.Data.value.ToString();
             creatureElement.Q<VisualElement>("Overlay").style.backgroundColor
                 = new StyleColor(creature.arenaEntity.Entity.Player != null
                     ? creature.arenaEntity.Entity.Player.DataPlayer.color
@@ -132,6 +228,7 @@ public class UIArena : UILocaleBase
                 creatureElement.Q<Button>().RemoveFromClassList("button_bordered");
                 creatureElement.Q<Button>().AddToClassList("button_active");
             }
+
             if (startRound != creature.round)
             {
                 startRound = creature.round;
@@ -146,20 +243,28 @@ public class UIArena : UILocaleBase
         base.Localize(_box);
     }
 
-    private void OnClickDefense()
+    private void ChangeParamsCreature()
     {
-        OnNextCreature?.Invoke(false);
+        DrawInfo();
+    }
+
+    private void DrawInfo()
+    {
         DrawQueue();
         ChangeStatusButtonAttack();
         DrawHelpCreature();
     }
 
+    private void OnClickDefense()
+    {
+        OnNextCreature?.Invoke(false);
+        DrawInfo();
+    }
+
     private void OnClickWait()
     {
         OnNextCreature?.Invoke(true);
-        DrawQueue();
-        ChangeStatusButtonAttack();
-        DrawHelpCreature();
+        DrawInfo();
     }
 
     private void ChangeStatusButtonAttack()
@@ -263,21 +368,23 @@ public class UIArena : UILocaleBase
         infoBlok.Q<Label>("Attack").text = string.Format("{0}", creatureData.CreatureParams.Attack);
         infoBlok.Q<Label>("Defense").text = string.Format("{0}", creatureData.CreatureParams.Defense);
         infoBlok.Q<Label>("Damage").text = string.Format("{0}-{1}", creatureData.CreatureParams.DamageMin, creatureData.CreatureParams.DamageMax);
-        infoBlok.Q<Label>("Damage").text = string.Format("{0}", creatureData.CreatureParams.DamageMin, creatureData.CreatureParams.HP);
+        infoBlok.Q<Label>("Hp").text = string.Format("{0}", creatureData.CreatureParams.HP);
 
         base.Localize(_box);
     }
 
     private async void OnClickClose()
     {
-        _cameraMain.gameObject.SetActive(true);
-
         // Release asset prefab town.
+        // if (_asset.IsValid())
+        // {
+        //     Addressables.ReleaseInstance(_asset);
+        // }
         await GameManager.Instance.AssetProvider.UnloadAdditiveScene(_arenaScene);
-        if (_asset.IsValid())
-        {
-            Addressables.ReleaseInstance(_asset);
-        }
+
+        await UniTask.Yield();
+
+        _cameraMain.gameObject.SetActive(true);
 
         var loadingOperations = new Queue<ILoadingOperation>();
         loadingOperations.Enqueue(new MenuAppOperation());

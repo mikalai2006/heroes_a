@@ -4,12 +4,13 @@ using UnityEngine.UIElements;
 using UnityEngine.Events;
 using System.Collections.Generic;
 using UnityEngine.Localization;
-
+using System;
 
 public class UIDialogSpellBook : UIDialogBaseWindow
 {
     [SerializeField] private VisualTreeAsset _templateSpellItem;
     [SerializeField] private VisualTreeAsset _templateButton;
+    public static event Action OnClickSpell;
 
     private Button _buttonOk;
     private Button _buttonAir;
@@ -26,7 +27,7 @@ public class UIDialogSpellBook : UIDialogBaseWindow
     private VisualElement _spellList2;
     private TaskCompletionSource<DataResultDialogSpellBook> _processCompletionSource;
 
-    public UnityEvent processAction;
+    // public UnityEvent processAction;
 
     private EntityHero _hero;
     private DataResultDialogSpellBook _dataResultDialog;
@@ -40,25 +41,32 @@ public class UIDialogSpellBook : UIDialogBaseWindow
         Title.style.display = DisplayStyle.None;
 
         _buttonPrev = root.Q<Button>("Prev");
-        _buttonPrev.clickable.clicked += () =>
+        _buttonPrev.clickable.clicked += async () =>
         {
+            await AudioManager.Instance.Click();
             ChangePage(-1);
         };
         _buttonNext = root.Q<Button>("Next");
-        _buttonNext.clickable.clicked += () =>
+        _buttonNext.clickable.clicked += async () =>
         {
+            await AudioManager.Instance.Click();
             ChangePage(1);
         };
 
         _buttonOk = root.Q<Button>("Close");
-        _buttonOk.clickable.clicked += OnClickClose;
+        _buttonOk.clickable.clicked += async () =>
+        {
+            await AudioManager.Instance.Click();
+            OnClickClose();
+        };
 
         _spellList1 = root.Q<VisualElement>("SpellList1");
         _spellList2 = root.Q<VisualElement>("SpellList2");
 
         _buttonAir = root.Q<Button>("Air");
-        _buttonAir.clickable.clicked += () =>
+        _buttonAir.clickable.clicked += async () =>
         {
+            await AudioManager.Instance.Click();
             ClickRightButtons();
             _hero.Data.SpellBook.SetSchoolMagic(TypeSchoolMagic.SchoolofAirMagic);
             _buttonAir.style.marginLeft = new StyleLength(new Length(0, LengthUnit.Pixel));
@@ -66,8 +74,9 @@ public class UIDialogSpellBook : UIDialogBaseWindow
             DrawSpells();
         };
         _buttonFire = root.Q<Button>("Fire");
-        _buttonFire.clickable.clicked += () =>
+        _buttonFire.clickable.clicked += async () =>
         {
+            await AudioManager.Instance.Click();
             ClickRightButtons();
             _hero.Data.SpellBook.SetSchoolMagic(TypeSchoolMagic.SchoolofFireMagic);
             _buttonFire.style.marginLeft = new StyleLength(new Length(0, LengthUnit.Pixel));
@@ -75,8 +84,9 @@ public class UIDialogSpellBook : UIDialogBaseWindow
             DrawSpells();
         };
         _buttonWater = root.Q<Button>("Water");
-        _buttonWater.clickable.clicked += () =>
+        _buttonWater.clickable.clicked += async () =>
         {
+            await AudioManager.Instance.Click();
             ClickRightButtons();
             _hero.Data.SpellBook.SetSchoolMagic(TypeSchoolMagic.SchoolofWaterMagic);
             _buttonWater.style.marginLeft = new StyleLength(new Length(0, LengthUnit.Pixel));
@@ -84,8 +94,9 @@ public class UIDialogSpellBook : UIDialogBaseWindow
             DrawSpells();
         };
         _buttonEarth = root.Q<Button>("Earth");
-        _buttonEarth.clickable.clicked += () =>
+        _buttonEarth.clickable.clicked += async () =>
         {
+            await AudioManager.Instance.Click();
             ClickRightButtons();
             _hero.Data.SpellBook.SetSchoolMagic(TypeSchoolMagic.SchoolofEarthMagic);
             _buttonEarth.style.marginLeft = new StyleLength(new Length(0, LengthUnit.Pixel));
@@ -93,8 +104,9 @@ public class UIDialogSpellBook : UIDialogBaseWindow
             DrawSpells();
         };
         _buttonAll = root.Q<Button>("All");
-        _buttonAll.clickable.clicked += () =>
+        _buttonAll.clickable.clicked += async () =>
         {
+            await AudioManager.Instance.Click();
             ClickRightButtons();
             _hero.Data.SpellBook.SetSchoolMagic(TypeSchoolMagic.AllSchools);
             _buttonAll.style.marginLeft = new StyleLength(new Length(0, LengthUnit.Pixel));
@@ -102,14 +114,16 @@ public class UIDialogSpellBook : UIDialogBaseWindow
             DrawSpells();
         };
         _buttonCombat = root.Q<Button>("Combat");
-        _buttonCombat.clickable.clicked += () =>
+        _buttonCombat.clickable.clicked += async () =>
         {
+            await AudioManager.Instance.Click();
             _hero.Data.SpellBook.SetTypeSpell(TypeSpell.Combat);
             DrawSpells();
         };
         _buttonAdv = root.Q<Button>("Adv");
-        _buttonAdv.clickable.clicked += () =>
+        _buttonAdv.clickable.clicked += async () =>
         {
+            await AudioManager.Instance.Click();
             _hero.Data.SpellBook.SetTypeSpell(TypeSpell.Adventure);
             DrawSpells();
         };
@@ -205,7 +219,10 @@ public class UIDialogSpellBook : UIDialogBaseWindow
                 levelSpell = _hero.Data.SSkills[schoolSpell.BaseSecondarySkill.TypeTwoSkill].level;
             }
 
-            var newNodeElementSpell = new VisualElement();
+            var newNodeElementSpell = new Button();
+            newNodeElementSpell.AddToClassList("button");
+            newNodeElementSpell.AddToClassList("border-0");
+            newNodeElementSpell.AddToClassList("bg-transparent");
             newNodeElementSpell.AddToClassList("w-33");
             newNodeElementSpell.AddToClassList("h-33");
 
@@ -246,6 +263,14 @@ public class UIDialogSpellBook : UIDialogBaseWindow
                     spellData.LevelData[levelSSkill + 1].cost
                 );
 
+            newNodeElementSpell.clickable.clicked += async () =>
+            {
+                await AudioManager.Instance.Click();
+                spellBook.ChooseSpell(spellData);
+                OnClickSpell();
+                OnClickClose();
+            };
+
             _boxForSpell.Add(newNodeElementSpell);
             index++;
             if (index % 9 == 0)
@@ -274,7 +299,7 @@ public class UIDialogSpellBook : UIDialogBaseWindow
         _dataResultDialog.isOk = true;
         _processCompletionSource.SetResult(_dataResultDialog);
 
-        processAction?.Invoke();
+        // processAction?.Invoke();
     }
 }
 

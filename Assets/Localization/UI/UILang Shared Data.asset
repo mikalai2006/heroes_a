@@ -415,6 +415,10 @@ MonoBehaviour:
     m_Key: round
     m_Metadata:
       m_Items: []
+  - m_Id: 20015162460372992
+    m_Key: choosenodeforspell
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

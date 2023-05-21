@@ -14,6 +14,9 @@ public class EntityBook
     private List<ScriptableAttributeSpell> _activeSpells;
     public List<ScriptableAttributeSpell> ActiveSpells => _activeSpells;
 
+    private ScriptableAttributeSpell _choosedSpell;
+    public ScriptableAttributeSpell ChoosedSpell => _choosedSpell;
+
     private EntityHero _hero;
 
     private const int LIMITPERPAGE = 18;
@@ -123,6 +126,11 @@ public class EntityBook
     {
         _hero.Data.spells.Add(spellData.idObject);
         Data.Spells.Add(spellData);
+    }
+
+    public void ChooseSpell(ScriptableAttributeSpell spellData)
+    {
+        _choosedSpell = spellData;
     }
 
     public List<ScriptableAttributeSpell> GenerateSpells(TypeSpell typeSpell, int maxLevel, int countSpell)

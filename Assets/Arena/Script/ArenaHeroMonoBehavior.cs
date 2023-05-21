@@ -24,7 +24,10 @@ public class ArenaHeroMonoBehavior : MonoBehaviour, IPointerClickHandler
 
     public async void OnPointerClick(PointerEventData eventData)
     {
-        Debug.Log($"Click {ArenaEntityHero.ConfigData.name}");
+        await AudioManager.Instance.Click();
+
+        // Debug.Log($"Click {ArenaEntityHero.ConfigData.name}");
+
         var dialogHeroInfo = new DialogHeroInfoOperation((EntityHero)ArenaEntityHero.Entity);
         var result = await dialogHeroInfo.ShowAndHide();
         if (result.isOk)
