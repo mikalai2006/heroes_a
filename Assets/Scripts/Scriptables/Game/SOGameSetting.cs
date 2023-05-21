@@ -44,6 +44,7 @@ public class SOGameSetting : ScriptableObject
     [Range(.05f, 1f)] public float speedArenaAnimation;
     public bool paintAllowAttackNode;
     public Color colorAllowAttackNode;
+    public Color colorNodeRunSpell;
     public bool paintAllowAttackCreature;
     public Color colorAllowAttackCreature;
     public bool paintActiveCreature;

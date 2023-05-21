@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 using Cysharp.Threading.Tasks;
 
@@ -9,7 +10,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Tilemaps;
-using UnityEngine.UI;
 
 [Serializable]
 public struct CursorArena
@@ -27,6 +27,7 @@ public struct CursorArena
     public RuleTile FightFromBottomLeft;
     public RuleTile Shoot;
     public RuleTile ShootHalf;
+    public RuleTile Spell;
 }
 
 [Serializable]
@@ -65,12 +66,15 @@ public class ArenaManager : MonoBehaviour
     [SerializeField] public Tile _tileHex;
     [SerializeField] public Tile _tileHexShadow;
     [SerializeField] public Tile _tileHexActive;
+    private int zCoord = -14;
 
     private EntityHero hero;
     // private GameObject heroGameObject;
     private EntityHero enemy;
     public GameObject buttonAction;
     public GameObject _buttonAction;
+    public GameObject buttonSpell;
+    public GameObject _buttonSpell;
     private GridArenaNode clickedNode;
     // [NonSerialized] public List<ArenaEntity> ArenaEnteties;
     [NonSerialized] public List<GridArenaNode> DistanceNodes = new();
@@ -110,11 +114,18 @@ public class ArenaManager : MonoBehaviour
             Quaternion.identity,
             transform
         );
+        _buttonSpell = GameObject.Instantiate(
+            buttonSpell,
+            new Vector3(0, 0, -5),
+            Quaternion.identity,
+            transform
+        );
         // inputManager.OnStartTouch += OnClick;
         UIArena.OnNextCreature += NextCreature;
         UIArena.OnOpenSpellBook += OpenSpellBook;
         UIArena.OnClickAttack += ActionClickButton;
         UIDialogSpellBook.OnClickSpell += ChooseSpell;
+        UIArena.OnCancelSpell += CancelSpell;
 
         CreateArena();
 
@@ -132,7 +143,7 @@ public class ArenaManager : MonoBehaviour
             // ArenaQueue.SetActiveEntity(ArenaQueue.First);
 
             // await GoEntity();
-            NextCreature(false);
+            NextCreature(false, false);
 
             setSizeTileMap();
 
@@ -144,6 +155,7 @@ public class ArenaManager : MonoBehaviour
         UIArena.OnOpenSpellBook -= OpenSpellBook;
         UIArena.OnClickAttack -= ActionClickButton;
         UIDialogSpellBook.OnClickSpell -= ChooseSpell;
+        UIArena.OnCancelSpell -= CancelSpell;
     }
 
     private async void OpenSpellBook()
@@ -156,14 +168,9 @@ public class ArenaManager : MonoBehaviour
         inputManager.Enable();
     }
 
-    private void ChooseSpell()
+    public async void NextCreature(bool wait, bool def)
     {
-        GetFightingNodes();
-    }
-
-    public async void NextCreature(bool wait)
-    {
-        ArenaQueue.NextCreature(wait);
+        ArenaQueue.NextCreature(wait, def);
         await GoEntity();
         OnAutoNextCreature?.Invoke();
     }
@@ -272,9 +279,12 @@ public class ArenaManager : MonoBehaviour
 
     private void GetFightingNodes()
     {
+        _tileMapAllowAttack.ClearAllTiles();
+
         var arenaEntity = ArenaQueue.activeEntity.arenaEntity;
-        // List<GridArenaNode> allowPathNodes = PathNodes.Concat(MovedNodes).ToList();
+
         var creatureData = ((ScriptableAttributeCreature)arenaEntity.Entity.ScriptableDataAttribute);
+
         var occupiedNodes = GridArenaHelper
             .GetAllGridNodes()
             .Where(t =>
@@ -282,19 +292,26 @@ public class ArenaManager : MonoBehaviour
                 && t.OccupiedUnit.TypeArenaPlayer != arenaEntity.TypeArenaPlayer
                 // && !t.StateArenaNode.HasFlag(StateArenaNode.Deathed)
                 );
-        var neighboursNodesEnemy = GridArenaHelper
-            .GetNeighbourList(arenaEntity.OccupiedNode)
-            .Where(t =>
-                t.OccupiedUnit != null
-                && t.OccupiedUnit.TypeArenaPlayer != arenaEntity.TypeArenaPlayer
-                // && !t.StateArenaNode.HasFlag(StateArenaNode.Deathed)
-                );
+
+        List<GridArenaNode> neighboursNodesEnemy = new();
+        if (creatureData.CreatureParams.Shoots != 0)
+        {
+            neighboursNodesEnemy = GridArenaHelper
+                .GetNeighbourList(arenaEntity.OccupiedNode)
+                .Where(t =>
+                    t.OccupiedUnit != null
+                    && t.OccupiedUnit.TypeArenaPlayer != arenaEntity.TypeArenaPlayer
+                    // && !t.StateArenaNode.HasFlag(StateArenaNode.Deathed)
+                    )
+                .ToList();
+        }
+
         foreach (var node in occupiedNodes)
         {
             if (
-                arenaEntity.Data.shoots == 0
+                (arenaEntity.Data.shoots == 0
                 ||
-                (creatureData.CreatureParams.Shoots != 0 && neighboursNodesEnemy.Count() > 0)
+                (creatureData.CreatureParams.Shoots != 0 && neighboursNodesEnemy.Count() > 0))
                 )
             {
                 arenaEntity.SetTypeAttack(TypeAttack.Attack);
@@ -302,14 +319,14 @@ public class ArenaManager : MonoBehaviour
                 if (AllowPathNodes.Intersect(neighbours).Count() > 0)
                 {
                     FightingOccupiedNodes.Add(node);
-                    SetColorAllowFightNode(node);
+                    SetColorAllowFightNode(node, LevelManager.Instance.ConfigGameSettings.colorAllowAttackCreature);
                 }
             }
             else
             {
                 arenaEntity.SetTypeAttack(TypeAttack.AttackShoot);
                 FightingOccupiedNodes.Add(node);
-                SetColorAllowFightNode(node);
+                SetColorAllowFightNode(node, LevelManager.Instance.ConfigGameSettings.colorAllowAttackCreature);
             }
         }
     }
@@ -395,85 +412,101 @@ public class ArenaManager : MonoBehaviour
 
     private void DrawButtonAction()
     {
-        int zCoord = -14;
-        // _tileMapCursor.ClearAllTiles();
         RuleTile ruleCursor = CursorRule.NotAllow;
 
-        ScriptableAttributeCreature activeCreatureData
-            = (ScriptableAttributeCreature)ArenaQueue.activeEntity.arenaEntity.Entity.ScriptableDataAttribute;
+        ScriptableAttributeSpell activeSpell = ArenaQueue.ActiveHero != null
+            ? ArenaQueue.ActiveHero.Data.SpellBook.ChoosedSpell
+            : null;
+        Vector3 positionButton = new Vector3(clickedNode.center.x, clickedNode.center.y, zCoord);
 
-        var positionButton = new Vector3(clickedNode.center.x, clickedNode.center.y, zCoord);
-        if (AllowPathNodes.Contains(clickedNode))
+        if (activeSpell == null)
         {
-            ruleCursor = activeCreatureData.CreatureParams.Movement == MovementType.Flying
-                ? CursorRule.GoFlying
-                : CursorRule.GoGround;
-        }
-        if (NodesForAttackActiveCreature.Count > 0)
-        {
-            ruleCursor = CursorRule.FightFromLeft;
-            if (KeyNodeFromAttack != -1 && AttackedCreature != null)
+            ScriptableAttributeCreature activeCreatureData
+                = (ScriptableAttributeCreature)ArenaQueue.activeEntity.arenaEntity.Entity.ScriptableDataAttribute;
+
+            if (AllowPathNodes.Contains(clickedNode))
             {
-                var nodesForAttack = NodesForAttackActiveCreature[KeyNodeFromAttack];
-                // var neighboursNodesEnemy = GridArenaHelper
-                //     .GetNeighbourList(ArenaQueue.activeEntity.OccupiedNode)
-                //     .Where(t => t.OccupiedUnit != null && t.OccupiedUnit.TypeArenaPlayer != ArenaQueue.activeEntity.TypeArenaPlayer);
-
-                if (ArenaQueue.activeEntity.arenaEntity.Data.shoots > 0 && ArenaQueue.activeEntity.arenaEntity.Data.typeAttack == TypeAttack.AttackShoot)
+                ruleCursor = activeCreatureData.CreatureParams.Movement == MovementType.Flying
+                    ? CursorRule.GoFlying
+                    : CursorRule.GoGround;
+            }
+            if (NodesForAttackActiveCreature.Count > 0)
+            {
+                if (KeyNodeFromAttack != -1 && AttackedCreature != null)
                 {
-                    // check distance.
-                    if (nodesForAttack.nodeToAttack.DistanceTo(ArenaQueue.activeEntity.arenaEntity.OccupiedNode) <= ArenaQueue.activeEntity.arenaEntity.Data.speed)
+                    var nodesForAttack = NodesForAttackActiveCreature[KeyNodeFromAttack];
+                    // var neighboursNodesEnemy = GridArenaHelper
+                    //     .GetNeighbourList(ArenaQueue.activeEntity.OccupiedNode)
+                    //     .Where(t => t.OccupiedUnit != null && t.OccupiedUnit.TypeArenaPlayer != ArenaQueue.activeEntity.TypeArenaPlayer);
+                    if (ArenaQueue.ActiveHero.Data.SpellBook.ChoosedSpell == null)
                     {
-                        ruleCursor = CursorRule.Shoot;
+                        ruleCursor = CursorRule.FightFromLeft;
+                        if (ArenaQueue.activeEntity.arenaEntity.Data.shoots > 0 && ArenaQueue.activeEntity.arenaEntity.Data.typeAttack == TypeAttack.AttackShoot)
+                        {
+                            // check distance.
+                            if (nodesForAttack.nodeToAttack.DistanceTo(ArenaQueue.activeEntity.arenaEntity.OccupiedNode) <= ArenaQueue.activeEntity.arenaEntity.Data.speed)
+                            {
+                                ruleCursor = CursorRule.Shoot;
+                            }
+                            else
+                            {
+                                ruleCursor = CursorRule.ShootHalf;
+                            }
+                            positionButton = new Vector3(nodesForAttack.nodeToAttack.center.x, nodesForAttack.nodeToAttack.center.y, zCoord);
+                        }
+                        else
+                        {
+                            Vector3 difPos = nodesForAttack.nodeFromAttack.center - nodesForAttack.nodeToAttack.center;
+                            if (difPos.x > 0 && difPos.y > 0)
+                            {
+                                ruleCursor = CursorRule.FightFromTopRight;
+                            }
+                            else if (difPos.x < 0 && difPos.y > 0)
+                            {
+                                ruleCursor = CursorRule.FightFromTopLeft;
+                            }
+                            else if (difPos.x > 0 && difPos.y == 0)
+                            {
+                                ruleCursor = CursorRule.FightFromRight;
+                            }
+                            else if (difPos.x < 0 && difPos.y == 0)
+                            {
+                                ruleCursor = CursorRule.FightFromLeft;
+                            }
+                            else if (difPos.x < 0 && difPos.y < 0)
+                            {
+                                ruleCursor = CursorRule.FightFromBottomLeft;
+                            }
+                            else if (difPos.x > 0 && difPos.y < 0)
+                            {
+                                ruleCursor = CursorRule.FightFromBottomRight;
+                            }
+                            // _buttonAction.transform.position = new Vector3(clickedNode.center.x, clickedNode.center.y, -5);
+                        }
                     }
                     else
                     {
-                        ruleCursor = CursorRule.ShootHalf;
+                        // Spell cursor.
+                        ruleCursor = CursorRule.Spell;
+                        positionButton = new Vector3(nodesForAttack.nodeToAttack.center.x, nodesForAttack.nodeToAttack.center.y, zCoord);
                     }
-                    positionButton = new Vector3(nodesForAttack.nodeToAttack.center.x, nodesForAttack.nodeToAttack.center.y, zCoord);
-                }
-                else
-                {
-                    Vector3 difPos = nodesForAttack.nodeFromAttack.center - nodesForAttack.nodeToAttack.center;
-                    if (difPos.x > 0 && difPos.y > 0)
-                    {
-                        ruleCursor = CursorRule.FightFromTopRight;
-                    }
-                    else if (difPos.x < 0 && difPos.y > 0)
-                    {
-                        ruleCursor = CursorRule.FightFromTopLeft;
-                    }
-                    else if (difPos.x > 0 && difPos.y == 0)
-                    {
-                        ruleCursor = CursorRule.FightFromRight;
-                    }
-                    else if (difPos.x < 0 && difPos.y == 0)
-                    {
-                        ruleCursor = CursorRule.FightFromLeft;
-                    }
-                    else if (difPos.x < 0 && difPos.y < 0)
-                    {
-                        ruleCursor = CursorRule.FightFromBottomLeft;
-                    }
-                    else if (difPos.x > 0 && difPos.y < 0)
-                    {
-                        ruleCursor = CursorRule.FightFromBottomRight;
-                    }
-                    // _buttonAction.transform.position = new Vector3(clickedNode.center.x, clickedNode.center.y, -5);
                 }
             }
         }
 
         _buttonAction.SetActive(true);
+        _buttonSpell.SetActive(false);
         _buttonAction.GetComponent<SpriteRenderer>().sprite = ruleCursor.m_DefaultSprite;
         _buttonAction.transform.position = positionButton;
         activeCursor = ruleCursor;
         // _tileMapCursor.SetTile(clickedNode.position, ruleCursor);
     }
+
     public async void ActionClickButton()
     {
         await ClickButton();
     }
+
     public async UniTask ClickButton()
     {
         await AudioManager.Instance.Click();
@@ -505,7 +538,7 @@ public class ArenaManager : MonoBehaviour
 
         // Next creature.
         // await GoEntity();
-        NextCreature(false);
+        NextCreature(false, false);
 
         // DrawCursor
         if (clickedNode != null) DrawButtonAction();
@@ -514,7 +547,18 @@ public class ArenaManager : MonoBehaviour
     public async UniTask ClickArena(Vector3Int positionClick)
     {
         await AudioManager.Instance.Click();
+
         GridArenaNode node = GridArenaHelper.GridTile.GetGridObject(new Vector3Int(positionClick.x, positionClick.y));
+
+        var activeSpell = ArenaQueue.ActiveHero != null
+            ? ArenaQueue.ActiveHero.Data.SpellBook.ChoosedSpell
+            : null;
+        if (activeSpell != null && node != null)
+        {
+            clickedNode = node;
+            DrawButtonAction();
+            return;
+        }
 
         if (node != null)
         {
@@ -594,8 +638,9 @@ public class ArenaManager : MonoBehaviour
         AllMovedNodes.Clear();
         AllowMovedNodes.Clear();
         _buttonAction.SetActive(false);
+        _buttonSpell.SetActive(false);
 
-        _tileMapAllowAttack.ClearAllTiles();
+        // _tileMapAllowAttack.ClearAllTiles();
         _tileMapDistance.ClearAllTiles();
         _tileMapPath.ClearAllTiles();
         _tileMapShadow.ClearAllTiles();
@@ -627,6 +672,10 @@ public class ArenaManager : MonoBehaviour
             {
                 await ClickButton();
             }
+            else if (rayHit.collider.gameObject == _buttonSpell.gameObject)
+            {
+                await ClickButtonSpell();
+            }
         }
     }
 
@@ -634,9 +683,11 @@ public class ArenaManager : MonoBehaviour
     {
         // Debug.Log("Clear attack Node");
         _tileMapDisableNode.ClearAllTiles();
+        _tileMapPath.ClearAllTiles();
         NodesForAttackActiveCreature.Clear();
         KeyNodeFromAttack = -1;
         AttackedCreature = null;
+        _buttonAction.SetActive(false);
         OnChangeNodesForAttack?.Invoke();
     }
 
@@ -657,7 +708,11 @@ public class ArenaManager : MonoBehaviour
         var neighbourNodesEnemyEntity = GridArenaHelper
             .GetNeighbourList(ArenaQueue.activeEntity.arenaEntity.OccupiedNode)
             .Where(t => t.OccupiedUnit != null && t.OccupiedUnit.TypeArenaPlayer != ArenaQueue.activeEntity.arenaEntity.TypeArenaPlayer);
-        if (ArenaQueue.activeEntity.arenaEntity.Data.shoots == 0 || neighbourNodesEnemyEntity.Count() > 0)
+        if (
+            (ArenaQueue.activeEntity.arenaEntity.Data.shoots == 0
+            || neighbourNodesEnemyEntity.Count() > 0)
+            && ArenaQueue.ActiveHero.Data.SpellBook.ChoosedSpell == null
+            )
         {
             List<GridArenaNode> neighbours = GridArenaHelper
                 .GetNeighbourList(clickedEntity.OccupiedNode)
@@ -759,7 +814,7 @@ public class ArenaManager : MonoBehaviour
         }
     }
 
-    private void SetColorAllowFightNode(GridArenaNode node)
+    private void SetColorAllowFightNode(GridArenaNode node, Color color)
     {
         // // _tileMapUnitActive.ClearAllTiles();
         // _tileMapUnitActive.SetTile(node.position, _tileHexShadow);
@@ -768,7 +823,7 @@ public class ArenaManager : MonoBehaviour
         {
             _tileMapAllowAttack.SetTile(node.position, _tileHexActive);
             _tileMapAllowAttack.SetTileFlags(node.position, TileFlags.None);
-            _tileMapAllowAttack.SetColor(node.position, LevelManager.Instance.ConfigGameSettings.colorAllowAttackCreature);
+            _tileMapAllowAttack.SetColor(node.position, color);
             _tileMapAllowAttack.SetTileFlags(node.position, TileFlags.LockColor);
         }
         // Color color = Color.red;
@@ -837,6 +892,78 @@ public class ArenaManager : MonoBehaviour
         {
             node.Value.gameObject.SetActive(false);
         }
+    }
+
+    private void ChooseSpell()
+    {
+        ClearAttackNode();
+        _tileMapAllowAttack.ClearAllTiles();
+        FightingOccupiedNodes.Clear();
+
+        var arenaEntity = ArenaQueue.activeEntity.arenaEntity;
+
+        var activeSpell = ArenaQueue.ActiveHero != null
+            ? ArenaQueue.ActiveHero.Data.SpellBook.ChoosedSpell
+            : null;
+
+        var occupiedNodes = GridArenaHelper
+            .GetAllGridNodes()
+            .Where(t =>
+                t.OccupiedUnit != null
+                && (
+                    (
+                        activeSpell.typeAchievement == TypeSpellAchievement.Enemy
+                        && t.OccupiedUnit.TypeArenaPlayer != ArenaQueue.activeEntity.arenaEntity.TypeArenaPlayer
+                    )
+                    || (
+                        activeSpell.typeAchievement == TypeSpellAchievement.Friendly
+                        && t.OccupiedUnit.TypeArenaPlayer == ArenaQueue.activeEntity.arenaEntity.TypeArenaPlayer
+                    )
+                )
+                );
+
+        foreach (var node in occupiedNodes)
+        {
+            FightingOccupiedNodes.Add(node);
+            SetColorAllowFightNode(node, LevelManager.Instance.ConfigGameSettings.colorNodeRunSpell);
+        }
+    }
+
+    internal void CreateButtonSpell(ArenaEntity clickedEntity)
+    {
+        clickedNode = null;
+        ClearAttackNode();
+
+        AttackedCreature = clickedEntity;
+
+        var positionButton = new Vector3(clickedEntity.OccupiedNode.center.x, clickedEntity.OccupiedNode.center.y, zCoord);
+
+        if (
+            FightingOccupiedNodes.Count > 0
+            && AttackedCreature != null
+            && FightingOccupiedNodes.Contains(clickedEntity.OccupiedNode)
+            )
+        {
+            _buttonSpell.SetActive(true);
+            _buttonAction.SetActive(false);
+            _buttonSpell.transform.position = positionButton;
+        }
+    }
+
+    private async UniTask ClickButtonSpell()
+    {
+        await AudioManager.Instance.Click();
+        _buttonSpell.SetActive(false);
+        await AttackedCreature.GoRunSpell();
+        ArenaQueue.ActiveHero.Data.SpellBook.ChooseSpell(null);
+        await GoEntity();
+    }
+
+    private async void CancelSpell()
+    {
+        _buttonSpell.SetActive(false);
+        ArenaQueue.ActiveHero.Data.SpellBook.ChooseSpell(null);
+        await GoEntity();
     }
 
     // private void DrawText(string text)

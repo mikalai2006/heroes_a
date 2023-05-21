@@ -212,6 +212,7 @@ MonoBehaviour:
     FightFromBottomLeft: {fileID: 11400000, guid: e86536fa8db478a4693ab8c768c05690, type: 2}
     Shoot: {fileID: 11400000, guid: c126a8e01922f524aac0ac694dea68f6, type: 2}
     ShootHalf: {fileID: 11400000, guid: 1ade8d014c3deac4bb9f0b5922ec12bb, type: 2}
+    Spell: {fileID: 11400000, guid: 34d6eb4990f45704aad14fd27b28e701, type: 2}
   activeCursor: {fileID: 0}
   width: 15
   height: 11
@@ -230,6 +231,8 @@ MonoBehaviour:
   _tileHexActive: {fileID: 11400000, guid: 55acea784c53c744e80c39744dd4bef6, type: 2}
   buttonAction: {fileID: 1874988815094525060, guid: 29feca8d9a5e3c34eb33fc7c8c93a4ff, type: 3}
   _buttonAction: {fileID: 0}
+  buttonSpell: {fileID: 1874988815094525060, guid: 839fa7926c317b345b007036c4e245f3, type: 3}
+  _buttonSpell: {fileID: 0}
   NodesForAttackActiveCreature: []
   heroes:
   - {fileID: 11400000, guid: 6ffb151385268c2468c11aa0926a7cf9, type: 2}
