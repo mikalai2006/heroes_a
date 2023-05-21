@@ -1,0 +1,1575 @@
+fileFormatVersion: 2
+guid: 5f37eb2ab56a08344ab3e8c0242405ac
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 40
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: GoblinArenaIdle_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1350
+        width: 150
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 752565416b2c56e4f81d427696694852
+      internalID: -1457176745
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinArenaIdle_1
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 1350
+        width: 150
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cada17b5862e40d4997fd5035d994f93
+      internalID: 1868989420
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinArenaIdle_2
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 1350
+        width: 150
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6439674b3ee086643a06abfd196da5f4
+      internalID: 620324659
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinArenaIdle_3
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 1350
+        width: 150
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: edc10898ade7fc046aaeb0e1167920cf
+      internalID: -459706205
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinArenaIdleMouseOver_0
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 1350
+        width: 150
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 142713dd46a3d274b8a119c44ba8fa74
+      internalID: 1733840818
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinArenaIdleMouseOver_1
+      rect:
+        serializedVersion: 2
+        x: 750
+        y: 1350
+        width: 150
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b0c08d507bff5974e94408e220b4b138
+      internalID: -1125674740
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinArenaIdleMouseOver_2
+      rect:
+        serializedVersion: 2
+        x: 900
+        y: 1350
+        width: 150
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e40fc0f9e8868a46b9dcc216259dd45
+      internalID: -630802170
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinArenaIdleMouseOver_3
+      rect:
+        serializedVersion: 2
+        x: 1050
+        y: 1350
+        width: 150
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7349110639a31f44aba221639ad5f6c2
+      internalID: 1925711091
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinArenaAttackStraight_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1200
+        width: 150
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7dfbbb8c8126ae04bb8d392cdce49f59
+      internalID: -370893007
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinArenaAttackStraight_1
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 1200
+        width: 150
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2439985842f1b94d89fa812802d61d0
+      internalID: -626441977
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinArenaAttackStraight_2
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 1200
+        width: 150
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ec3f84bfe5371c4d93566ebe253b943
+      internalID: -1554849644
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinArenaAttackStraight_3
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 1200
+        width: 150
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd0fd5ec3e7305545b588b05df59d43b
+      internalID: 1047135683
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinArenaAttackStraight_4
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 1200
+        width: 150
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52859df0f60de9643bb8992c55cc26a8
+      internalID: 1903374484
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinArenaAttackStraight_5
+      rect:
+        serializedVersion: 2
+        x: 750
+        y: 1200
+        width: 150
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f4be4627bffb0c4c9160024314039ea
+      internalID: -709669011
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinArenaAttackStraight_6
+      rect:
+        serializedVersion: 2
+        x: 900
+        y: 1200
+        width: 150
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c52ef854cd854af4989df444d98118f9
+      internalID: 215839992
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinArenaAttackUp_0
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 1050
+        width: 150
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2dd3327792d65d84c9ffbf9b46bfe2f6
+      internalID: -1447272037
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinArenaAttackUp_1
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 1050
+        width: 150
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac85866bfb608e0479b472a0d24c356f
+      internalID: 1481945947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinArenaAttackUp_2
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 1050
+        width: 150
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4446e4ba4e46f514a8bd2840da7d2f5c
+      internalID: 1160483519
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinArenaAttackUp_3
+      rect:
+        serializedVersion: 2
+        x: 750
+        y: 1050
+        width: 150
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e921a7536b9228d41b4c3174e2420467
+      internalID: 1768424163
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinArenaAttackUp_4
+      rect:
+        serializedVersion: 2
+        x: 900
+        y: 1050
+        width: 150
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a0914987b3e79e4d94f736ac36fe22b
+      internalID: -57159186
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinArenaAttackDown_0
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 900
+        width: 150
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 816bda2172efc74439528acc18a8070b
+      internalID: -220239871
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinArenaAttackDown_1
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 900
+        width: 150
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae64e9dee32c2ae44838347bad52dcc1
+      internalID: 526572882
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinArenaAttackDown_2
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 900
+        width: 150
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e92de3c7d073424d830ceafeee5cf67
+      internalID: -158974836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinArenaAttackDown_3
+      rect:
+        serializedVersion: 2
+        x: 750
+        y: 900
+        width: 150
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 291f8b33d9a49094ba8598cb32994f3c
+      internalID: -2046658301
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinArenaAttackDown_4
+      rect:
+        serializedVersion: 2
+        x: 900
+        y: 900
+        width: 150
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 388439b61901d7d429afcc9d50837de4
+      internalID: 1945702841
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinArenaGettingHit_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 750
+        width: 150
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae270b086cf40db45b28a60af6962d75
+      internalID: -1308880126
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinArenaGettingHit_1
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 750
+        width: 150
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e893a12eda174048883408ed51bdfcf
+      internalID: 256458446
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinArenaGettingHit_2
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 750
+        width: 150
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 360d3151b705d0e4bbe1153d0a2fef01
+      internalID: 1915296555
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinArenaGettingHit_3
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 750
+        width: 150
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7e863111f3f5d44ca78f3c8a6375f84
+      internalID: 104021240
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinArenaGettingHit_4
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 750
+        width: 150
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9bda809caf045564d9679171f9239d41
+      internalID: 1744938921
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinArenaGettingHit_5
+      rect:
+        serializedVersion: 2
+        x: 750
+        y: 750
+        width: 150
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 881ff11284ed1db40b055f055606ba58
+      internalID: -1083047883
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinArenaDeath_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 600
+        width: 150
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bef5bf1f69fe7364b950b7def13eed47
+      internalID: 278115001
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinArenaDeath_1
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 600
+        width: 150
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a25c28ef5e3a9af4b89dcd363dcc8a66
+      internalID: -1500775421
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinArenaDeath_2
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 600
+        width: 150
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 38d4e92357cc4b940a3a4367b21a5deb
+      internalID: 150428457
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinArenaDeath_3
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 600
+        width: 150
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8bc7a88e5e64354c84584669990df30
+      internalID: -99539859
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinArenaDeath_4
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 600
+        width: 150
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d0d9fbf9f1047684490758ace4f6f98b
+      internalID: 1681093228
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinArenaDeath_5
+      rect:
+        serializedVersion: 2
+        x: 750
+        y: 600
+        width: 150
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d197a073f38f0f4bb008c3846d6a24a
+      internalID: 553131202
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinArenaDeath_6
+      rect:
+        serializedVersion: 2
+        x: 900
+        y: 600
+        width: 150
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f5b7b88a72ce774699a31b913d1739d
+      internalID: -1721288949
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinArenaDeath_7
+      rect:
+        serializedVersion: 2
+        x: 1050
+        y: 600
+        width: 150
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd08f87cbfb5d1a43a3040c5067b2525
+      internalID: -1686329019
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinArenaDefend_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 450
+        width: 150
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f85e4fa847269ba4d977b5e84dadb5a0
+      internalID: 445902730
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinArenaDefend_1
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 450
+        width: 150
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 51d5e2fb2a9636d44be6407647f96564
+      internalID: 56526515
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinArenaDefend_2
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 450
+        width: 150
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dca4a2c1432c0314f8281b246f69be34
+      internalID: 1603127880
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinArenaDefend_3
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 450
+        width: 150
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9edd7305308d04d4a987dbc87cece537
+      internalID: 862420019
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinArenaDefend_4
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 450
+        width: 150
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 682410a3dd6d3ac4fa4cdad267acb1ed
+      internalID: 741955726
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinArenaDefend_5
+      rect:
+        serializedVersion: 2
+        x: 750
+        y: 450
+        width: 150
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bdf856a1af39cdb4d9866877cd630f6f
+      internalID: -48940848
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinArenaDefend_6
+      rect:
+        serializedVersion: 2
+        x: 900
+        y: 450
+        width: 150
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5611d8b697fb06d4894f358c2205e39a
+      internalID: -305673022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinArenaMoving_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 300
+        width: 150
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8896df939a52b1442b62204ae1a08a4f
+      internalID: -164251923
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinArenaMoving_1
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 300
+        width: 150
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d2f2d30acb3a4146a9021fd19bdcafb
+      internalID: 1041112235
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinArenaMoving_2
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 300
+        width: 150
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 656f1b8ff67aeed4c84293dea0954ee9
+      internalID: 1267005239
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinArenaMoving_3
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 300
+        width: 150
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5b83826482f70647bfddf880725ee88
+      internalID: 1600594169
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinArenaMoving_4
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 300
+        width: 150
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ec9fe279a1666541ac9fdc07e96c9b3
+      internalID: -1297822401
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinArenaMoving_5
+      rect:
+        serializedVersion: 2
+        x: 750
+        y: 300
+        width: 150
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e195fc011ae71bb41b14eed84731cc83
+      internalID: -1666720202
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinArenaMoving_6
+      rect:
+        serializedVersion: 2
+        x: 900
+        y: 300
+        width: 150
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28579511131693746ab1bcc9d4a08181
+      internalID: 1179574584
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinArenaMoving_7
+      rect:
+        serializedVersion: 2
+        x: 1050
+        y: 300
+        width: 150
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b8e53505d7297a4c9409bdf4ba1d598
+      internalID: -960020816
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinArenaMoving_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 150
+        width: 150
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44a01cef2a59795498326cbc39fd3ad2
+      internalID: -2062536840
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinArenaStartMoving_0
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 150
+        width: 150
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d640c388078a404a92a6357effae66b
+      internalID: 534562823
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinArenaStopMoving_0
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 150
+        width: 150
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: da2286025e61fc14eb5d555324c7d2e5
+      internalID: -1684014504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinArenaTurn_0
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 150
+        width: 150
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b55928d5da1d60c4bbe39239bcf8cba0
+      internalID: 767994038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinArenaTurn_1
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 150
+        width: 150
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be002b47f54dc464f94df8b33a2525ac
+      internalID: -1194253824
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinArena150x150_0
+      rect:
+        serializedVersion: 2
+        x: 1050
+        y: 1200
+        width: 150
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 508b2a3c2be548348b02491c0976d942
+      internalID: -555228621
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinArena150x150_1
+      rect:
+        serializedVersion: 2
+        x: 900
+        y: 750
+        width: 150
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05917f1f14a3b7d4da39b75c0c5b615c
+      internalID: 147069104
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinArena150x150_2
+      rect:
+        serializedVersion: 2
+        x: 1050
+        y: 450
+        width: 150
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9036aa7427b11174dbf41a75683a6f0f
+      internalID: 2029297704
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinArena150x150_3
+      rect:
+        serializedVersion: 2
+        x: 750
+        y: 150
+        width: 150
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60c26a5240715ac4bb49d4705c82a25b
+      internalID: -840823968
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinArena150x150_4
+      rect:
+        serializedVersion: 2
+        x: 900
+        y: 150
+        width: 150
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b08a413b50d151448b7cd47689a267e
+      internalID: 372693672
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinArena150x150_5
+      rect:
+        serializedVersion: 2
+        x: 1050
+        y: 150
+        width: 150
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c36608bf329afc94f8e98813f954b668
+      internalID: 1466947299
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      GoblinArena150x150_0: -555228621
+      GoblinArena150x150_1: 147069104
+      GoblinArena150x150_15: 1462786328
+      GoblinArena150x150_2: 2029297704
+      GoblinArena150x150_3: -840823968
+      GoblinArena150x150_32: -2121344499
+      GoblinArena150x150_4: 372693672
+      GoblinArena150x150_48: -1081008051
+      GoblinArena150x150_5: 1466947299
+      GoblinArena150x150_62: -873071818
+      GoblinArena150x150_63: 187938301
+      GoblinArena150x150_64: -2094958918
+      GoblinArena150x150_65: 1008874031
+      GoblinArena150x150_66: -447952209
+      GoblinArena150x150_67: 149145393
+      GoblinArenaAttackDown_0: -220239871
+      GoblinArenaAttackDown_1: 526572882
+      GoblinArenaAttackDown_2: -158974836
+      GoblinArenaAttackDown_3: -2046658301
+      GoblinArenaAttackDown_4: 1945702841
+      GoblinArenaAttackStraight_0: -370893007
+      GoblinArenaAttackStraight_1: -626441977
+      GoblinArenaAttackStraight_2: -1554849644
+      GoblinArenaAttackStraight_3: 1047135683
+      GoblinArenaAttackStraight_4: 1903374484
+      GoblinArenaAttackStraight_5: -709669011
+      GoblinArenaAttackStraight_6: 215839992
+      GoblinArenaAttackUp_0: -1447272037
+      GoblinArenaAttackUp_1: 1481945947
+      GoblinArenaAttackUp_2: 1160483519
+      GoblinArenaAttackUp_3: 1768424163
+      GoblinArenaAttackUp_4: -57159186
+      GoblinArenaDeath_0: 278115001
+      GoblinArenaDeath_1: -1500775421
+      GoblinArenaDeath_2: 150428457
+      GoblinArenaDeath_3: -99539859
+      GoblinArenaDeath_4: 1681093228
+      GoblinArenaDeath_5: 553131202
+      GoblinArenaDeath_6: -1721288949
+      GoblinArenaDeath_7: -1686329019
+      GoblinArenaDefend_0: 445902730
+      GoblinArenaDefend_1: 56526515
+      GoblinArenaDefend_2: 1603127880
+      GoblinArenaDefend_3: 862420019
+      GoblinArenaDefend_4: 741955726
+      GoblinArenaDefend_5: -48940848
+      GoblinArenaDefend_6: -305673022
+      GoblinArenaGettingHit_0: -1308880126
+      GoblinArenaGettingHit_1: 256458446
+      GoblinArenaGettingHit_2: 1915296555
+      GoblinArenaGettingHit_3: 104021240
+      GoblinArenaGettingHit_4: 1744938921
+      GoblinArenaGettingHit_5: -1083047883
+      GoblinArenaIdleMouseOver_0: 1733840818
+      GoblinArenaIdleMouseOver_1: -1125674740
+      GoblinArenaIdleMouseOver_2: -630802170
+      GoblinArenaIdleMouseOver_3: 1925711091
+      GoblinArenaIdle_0: -1457176745
+      GoblinArenaIdle_1: 1868989420
+      GoblinArenaIdle_2: 620324659
+      GoblinArenaIdle_3: -459706205
+      GoblinArenaMoving_0: -164251923
+      GoblinArenaMoving_1: 1041112235
+      GoblinArenaMoving_2: 1267005239
+      GoblinArenaMoving_3: 1600594169
+      GoblinArenaMoving_4: -1297822401
+      GoblinArenaMoving_5: -1666720202
+      GoblinArenaMoving_6: 1179574584
+      GoblinArenaMoving_7: -960020816
+      GoblinArenaMoving_8: -2062536840
+      GoblinArenaStartMoving_0: 534562823
+      GoblinArenaStopMoving_0: -1684014504
+      GoblinArenaTurn_0: 767994038
+      GoblinArenaTurn_1: -1194253824
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
