@@ -2,39 +2,75 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-using UnityEngine;
+[Serializable]
+public struct QueueItem
+{
+    public ArenaEntity arenaEntity;
+    public int round;
+}
 
 public class ArenaQueue
 {
-    public List<ArenaEntity> ListEntities = new List<ArenaEntity>();
+    public static event Action OnNextRound;
+    public List<QueueItem> ListEntities = new List<QueueItem>();
     // LinkedList<ArenaEntity> queueEntity = new LinkedList<ArenaEntity>();
-    public ArenaEntity activeEntity;
+    public QueueItem activeEntity;
+    public int ActiveRound;
 
-    public List<ArenaEntity> SetActiveEntity(ArenaEntity arenaEntity)
+    public List<QueueItem> SetActiveEntity(QueueItem arenaEntity)
     {
         activeEntity = arenaEntity;
         return ListEntities;
     }
 
-    public void NextCreature()
+    public void NextCreature(bool wait)
     {
-        if (this.activeEntity != null)
+        if (this.activeEntity.arenaEntity != null && !this.activeEntity.arenaEntity.Death)
         {
             ListEntities.Remove(activeEntity);
-            ListEntities.Add(activeEntity);
+            if (wait)
+            {
+                activeEntity.arenaEntity.Data.isDefense = false;
+                var allRoundItems = ListEntities.Where(t => t.round == activeEntity.round);
+                var indexLastInRound = allRoundItems.Count();
+                ListEntities.Insert(indexLastInRound, activeEntity);
+            }
+            else
+            {
+                activeEntity.arenaEntity.Data.isDefense = true;
+                activeEntity.round += 1;
+                ListEntities.Add(activeEntity);
+            }
         }
-        else
-        {
 
-        }
         activeEntity = ListEntities.ElementAt(0);
+
+        if (ActiveRound != activeEntity.round)
+        {
+            OnNextRound?.Invoke();
+        }
+        ActiveRound = activeEntity.round;
     }
 
-    public void AddEntity(ArenaEntity gridGameObject)
+    public void AddEntity(ArenaEntity entity)
     {
-        ListEntities.Add(gridGameObject);
+        QueueItem item = new QueueItem()
+        {
+            arenaEntity = entity,
+            round = 1
+        };
+        ListEntities.Add(item);
         ListEntities = ListEntities
-            .OrderBy(t => -((ScriptableAttributeCreature)t.Entity.ScriptableDataAttribute).CreatureParams.Speed)
+            .OrderBy(t => -((ScriptableAttributeCreature)t.arenaEntity.Entity.ScriptableDataAttribute).CreatureParams.Speed)
             .ToList();
+    }
+
+    internal void RemoveEntity(ArenaEntity arenaEntity)
+    {
+        var index = ListEntities.FindIndex(t => t.arenaEntity == arenaEntity);
+        if (index != -1)
+        {
+            ListEntities.RemoveAt(index);
+        }
     }
 }

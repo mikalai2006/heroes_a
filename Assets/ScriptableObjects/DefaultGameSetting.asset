@@ -22,6 +22,7 @@ MonoBehaviour:
   - {r: 0.5716156, g: 0.20825918, b: 0.6792453, a: 1}
   - {r: 0.20784311, g: 0.49296337, b: 0.6784314, a: 1}
   - {r: 0.735849, g: 0.60186034, b: 0.12842648, a: 1}
+  neutralColor: {r: 0, g: 0, b: 0, a: 0}
   alphaOverlay: 0.735
   TypesPlayer:
   - title:
@@ -218,7 +219,13 @@ MonoBehaviour:
   - levelCreature: 11
     movementValue: 2000
   countCellClearSky: 4
-  speedArenaAnimation: 0.2
+  speedArenaAnimation: 0.1
+  paintAllowAttackNode: 1
+  colorAllowAttackNode: {r: 1, g: 0, b: 0, a: 0.56078434}
+  paintAllowAttackCreature: 1
+  colorAllowAttackCreature: {r: 1, g: 0, b: 0, a: 0.28235295}
+  paintActiveCreature: 1
+  colorActiveCreature: {r: 0.77254903, g: 1, b: 0, a: 0.6392157}
   references:
     version: 2
     RefIds: []

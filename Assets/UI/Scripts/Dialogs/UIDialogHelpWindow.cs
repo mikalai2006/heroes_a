@@ -84,7 +84,9 @@ public class UIDialogHelpWindow : UILocaleBase
         List<VisualElement> list = builder.Name(_nameOverlay).ToList();
         foreach (var overlay in list)
         {
-            overlay.style.backgroundColor = player.DataPlayer.color;
+            overlay.style.backgroundColor = player != null
+                ? player.DataPlayer.color
+                : LevelManager.Instance.ConfigGameSettings.neutralColor;
         }
 
         _processCompletionSource = new TaskCompletionSource<DataResultDialog>();

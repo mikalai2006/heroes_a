@@ -12,6 +12,7 @@ public class SOGameSetting : ScriptableObject
     [Space(5)]
     public int maxPlayer;
     public List<Color> colors;
+    public Color neutralColor;
     [Range(0.5f, 1f)] public float alphaOverlay;
     public List<ItemPlayerType> TypesPlayer;
     public List<SOComplexity> Complexities;
@@ -41,6 +42,12 @@ public class SOGameSetting : ScriptableObject
     [Header("Setting Arena")]
     [Space(5)]
     [Range(.05f, 1f)] public float speedArenaAnimation;
+    public bool paintAllowAttackNode;
+    public Color colorAllowAttackNode;
+    public bool paintAllowAttackCreature;
+    public Color colorAllowAttackCreature;
+    public bool paintActiveCreature;
+    public Color colorActiveCreature;
 }
 
 [System.Serializable]

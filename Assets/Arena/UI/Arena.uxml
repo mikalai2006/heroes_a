@@ -1,5 +1,6 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
     <ui:Template name="ArenaShortInfoCreature" src="project://database/Assets/Arena/UI/ArenaShortInfoCreature.uxml?fileID=9197481963319205126&amp;guid=228006d32228eac49bbe346738edf579&amp;type=3#ArenaShortInfoCreature" />
+    <ui:Template name="ArenaQueueRound" src="project://database/Assets/Arena/UI/ArenaQueueRound.uxml?fileID=9197481963319205126&amp;guid=1da8b8dd36ab6f14489540032c89cfd9&amp;type=3#ArenaQueueRound" />
     <Style src="project://database/Assets/UI/Toolkit/Aside/AsideMenu.uss?fileID=7433441132597879392&amp;guid=e55e2feb94a32ea4281de07ce70e415f&amp;type=3#AsideMenu" />
     <Style src="project://database/Assets/UI/Toolkit/Base.uss?fileID=7433441132597879392&amp;guid=fa07b064290e7384d9ad2e26e79f5953&amp;type=3#Base" />
     <Style src="project://database/Assets/UI/Toolkit/Aside/AsideFooter.uss?fileID=7433441132597879392&amp;guid=100acbaeadba496408baf44e6dfd4501&amp;type=3#AsideFooter" />
@@ -24,6 +25,9 @@
             <ui:VisualElement class="w-25">
                 <ui:Button display-tooltip-when-elided="true" name="AutoButton" class="button button_bg button_text m-px h-full button_bordered" style="background-image: url(&apos;project://database/Assets/Arena/Sprites/Buttons/BattleAuto.png?fileID=2800000&amp;guid=b1d2e6e8047d64244b0296379d633aa8&amp;type=3#BattleAuto&apos;); -unity-background-scale-mode: scale-to-fit;" />
             </ui:VisualElement>
+            <ui:VisualElement class="w-25">
+                <ui:Button display-tooltip-when-elided="true" name="QueueButton" class="button button_bg button_text m-px h-full button_bordered" style="background-image: url(&apos;project://database/Packages/com.unity.timeline/Editor/StyleSheets/Images/Shared/TimelineWarning.png?fileID=2800000&amp;guid=1732e542f535d374bbfa7565fc78414e&amp;type=3#TimelineWarning&apos;); -unity-background-scale-mode: scale-to-fit;" />
+            </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement class="border-color p-05" style="flex-grow: 1; border-left-width: 1px; border-right-width: 1px;">
             <ui:Label tabindex="-1" text="Information" display-tooltip-when-elided="true" name="Stat" class="text pt-0" />
@@ -39,7 +43,7 @@
                 <ui:Button display-tooltip-when-elided="true" name="WaitButton" class="button button_bg button_text m-px h-full button_bordered" style="background-image: url(&apos;project://database/Assets/Arena/Sprites/Buttons/BattleWait.png?fileID=2800000&amp;guid=e50dd5490ad214547bd49794694ef7cd&amp;type=3#BattleWait&apos;); -unity-background-scale-mode: scale-to-fit;" />
             </ui:VisualElement>
             <ui:VisualElement style="width: 80px; flex-grow: 1;">
-                <ui:Button display-tooltip-when-elided="true" name="DamageButton" class="button button_bg button_text m-px h-full button_bordered" style="background-image: url(&apos;project://database/Assets/Arena/Sprites/Buttons/BattleDefense.png?fileID=2800000&amp;guid=78f2eeb88d594bd44a3aa4837e2170fa&amp;type=3#BattleDefense&apos;); -unity-background-scale-mode: scale-to-fit;" />
+                <ui:Button display-tooltip-when-elided="true" name="DefenseButton" class="button button_bg button_text m-px h-full button_bordered" style="background-image: url(&apos;project://database/Assets/Arena/Sprites/Buttons/BattleDefense.png?fileID=2800000&amp;guid=78f2eeb88d594bd44a3aa4837e2170fa&amp;type=3#BattleDefense&apos;); -unity-background-scale-mode: scale-to-fit;" />
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
@@ -48,5 +52,9 @@
         <ui:VisualElement name="Info" class="m-1" style="flex-grow: 1;">
             <ui:Instance template="ArenaShortInfoCreature" name="ArenaShortInfoCreature" />
         </ui:VisualElement>
+    </ui:VisualElement>
+    <ui:VisualElement name="QueueBlok" style="flex-grow: 1; position: absolute; top: 0; left: 15%; right: 15%; flex-direction: row; height: 80px; align-items: stretch; justify-content: center;">
+        <ui:Instance template="ArenaQueueRound" name="ArenaQueueRound" />
+        <ui:Instance template="ArenaQueueRound" name="ArenaQueueRound" />
     </ui:VisualElement>
 </ui:UXML>

@@ -1,13 +1,13 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1102 &-6825115188296273757
+--- !u!1102 &-6646265440687211506
 AnimatorState:
   serializedVersion: 6
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ArchangelDefend
+  m_Name: ArchangelGettingHit
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -20,20 +20,20 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: f7da90e7ddbf629478a871f5232ac24c, type: 2}
+  m_Motion: {fileID: 7400000, guid: 112e18ffd765c1444bf0bf35fdd579ce, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
---- !u!1102 &-6701393078762686011
+--- !u!1102 &-4813266818448985963
 AnimatorState:
   serializedVersion: 6
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ArchangelDeath
+  m_Name: ArchangelTurnRight
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -46,20 +46,20 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: f93b90cabef5a9b4baef2f3a1000d065, type: 2}
+  m_Motion: {fileID: 7400000, guid: 6410ec66e4fe62843a85659502e95c76, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
---- !u!1102 &-5956556382152972464
+--- !u!1102 &-4644965021098111808
 AnimatorState:
   serializedVersion: 6
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ArchangelAttackDown
+  m_Name: ArchangelStopMoving
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -72,13 +72,13 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: c487a1dd7099108408ffcbd359438744, type: 2}
+  m_Motion: {fileID: 7400000, guid: 4b06e02de5366df4383f516a3a3b82b9, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
---- !u!1102 &-5616890301784274319
+--- !u!1102 &-3974620189340038296
 AnimatorState:
   serializedVersion: 6
   m_ObjectHideFlags: 1
@@ -111,7 +111,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Archangel_idle
+  m_Name: ArchangelIdle
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -125,58 +125,6 @@ AnimatorState:
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
   m_Motion: {fileID: 7400000, guid: 6e2a08e3037e1574096c6703380946fb, type: 2}
-  m_Tag: 
-  m_SpeedParameter: 
-  m_MirrorParameter: 
-  m_CycleOffsetParameter: 
-  m_TimeParameter: 
---- !u!1102 &-3258075446254103722
-AnimatorState:
-  serializedVersion: 6
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: ArchangelMoving 0
-  m_Speed: 1
-  m_CycleOffset: 0
-  m_Transitions: []
-  m_StateMachineBehaviours: []
-  m_Position: {x: 50, y: 50, z: 0}
-  m_IKOnFeet: 0
-  m_WriteDefaultValues: 1
-  m_Mirror: 0
-  m_SpeedParameterActive: 0
-  m_MirrorParameterActive: 0
-  m_CycleOffsetParameterActive: 0
-  m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 8eb7f8eff1157ab41a2c5dc504ff9901, type: 2}
-  m_Tag: 
-  m_SpeedParameter: 
-  m_MirrorParameter: 
-  m_CycleOffsetParameter: 
-  m_TimeParameter: 
---- !u!1102 &-766106637854762857
-AnimatorState:
-  serializedVersion: 6
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: ArchangelAttackUp
-  m_Speed: 1
-  m_CycleOffset: 0
-  m_Transitions: []
-  m_StateMachineBehaviours: []
-  m_Position: {x: 50, y: 50, z: 0}
-  m_IKOnFeet: 0
-  m_WriteDefaultValues: 1
-  m_Mirror: 0
-  m_SpeedParameterActive: 0
-  m_MirrorParameterActive: 0
-  m_CycleOffsetParameterActive: 0
-  m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 59dbbbd706286954f9b77ef1d7654d40, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -197,151 +145,7 @@ BlendTree:
   m_UseAutomaticThresholds: 1
   m_NormalizedBlendValues: 0
   m_BlendType: 0
---- !u!91 &9100000
-AnimatorController:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: ArchangelArena
-  serializedVersion: 5
-  m_AnimatorParameters: []
-  m_AnimatorLayers:
-  - serializedVersion: 5
-    m_Name: Base Layer
-    m_StateMachine: {fileID: 485520444798056935}
-    m_Mask: {fileID: 0}
-    m_Motions: []
-    m_Behaviours: []
-    m_BlendingMode: 0
-    m_SyncedLayerIndex: -1
-    m_DefaultWeight: 0
-    m_IKPass: 0
-    m_SyncedLayerAffectsTiming: 0
-    m_Controller: {fileID: 9100000}
---- !u!1102 &265638189921784099
-AnimatorState:
-  serializedVersion: 6
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: ArchangelStartMoving 0
-  m_Speed: 1
-  m_CycleOffset: 0
-  m_Transitions: []
-  m_StateMachineBehaviours: []
-  m_Position: {x: 50, y: 50, z: 0}
-  m_IKOnFeet: 0
-  m_WriteDefaultValues: 1
-  m_Mirror: 0
-  m_SpeedParameterActive: 0
-  m_MirrorParameterActive: 0
-  m_CycleOffsetParameterActive: 0
-  m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 933d607377e37bd41876f5e6f8f67f0e, type: 2}
-  m_Tag: 
-  m_SpeedParameter: 
-  m_MirrorParameter: 
-  m_CycleOffsetParameter: 
-  m_TimeParameter: 
---- !u!1102 &389107020059932523
-AnimatorState:
-  serializedVersion: 6
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: ArchangelAttackStraight
-  m_Speed: 1
-  m_CycleOffset: 0
-  m_Transitions: []
-  m_StateMachineBehaviours: []
-  m_Position: {x: 50, y: 50, z: 0}
-  m_IKOnFeet: 0
-  m_WriteDefaultValues: 1
-  m_Mirror: 0
-  m_SpeedParameterActive: 0
-  m_MirrorParameterActive: 0
-  m_CycleOffsetParameterActive: 0
-  m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 2b8498e182666c842ac00ae32eb78188, type: 2}
-  m_Tag: 
-  m_SpeedParameter: 
-  m_MirrorParameter: 
-  m_CycleOffsetParameter: 
-  m_TimeParameter: 
---- !u!1107 &485520444798056935
-AnimatorStateMachine:
-  serializedVersion: 6
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Base Layer
-  m_ChildStates:
-  - serializedVersion: 1
-    m_State: {fileID: -3909434896319205741}
-    m_Position: {x: 260, y: 20, z: 0}
-  - serializedVersion: 1
-    m_State: {fileID: -5956556382152972464}
-    m_Position: {x: 743.9384, y: 290.66174, z: 0}
-  - serializedVersion: 1
-    m_State: {fileID: 389107020059932523}
-    m_Position: {x: 753.9384, y: 300.66174, z: 0}
-  - serializedVersion: 1
-    m_State: {fileID: -766106637854762857}
-    m_Position: {x: 763.9384, y: 310.66174, z: 0}
-  - serializedVersion: 1
-    m_State: {fileID: -6701393078762686011}
-    m_Position: {x: 773.9384, y: 320.66174, z: 0}
-  - serializedVersion: 1
-    m_State: {fileID: -6825115188296273757}
-    m_Position: {x: 783.9384, y: 330.66174, z: 0}
-  - serializedVersion: 1
-    m_State: {fileID: 3234962385341493082}
-    m_Position: {x: 793.9384, y: 340.66174, z: 0}
-  - serializedVersion: 1
-    m_State: {fileID: 8646711421089551588}
-    m_Position: {x: 502.66003, y: 242.68828, z: 0}
-  - serializedVersion: 1
-    m_State: {fileID: 3195834346823191022}
-    m_Position: {x: 512.66003, y: 252.68828, z: 0}
-  - serializedVersion: 1
-    m_State: {fileID: 7966896942291223477}
-    m_Position: {x: 522.66003, y: 262.6883, z: 0}
-  - serializedVersion: 1
-    m_State: {fileID: 8753668463016297440}
-    m_Position: {x: 532.66003, y: 272.6883, z: 0}
-  - serializedVersion: 1
-    m_State: {fileID: 3308262233870030279}
-    m_Position: {x: 542.66003, y: 282.6883, z: 0}
-  - serializedVersion: 1
-    m_State: {fileID: -5616890301784274319}
-    m_Position: {x: 552.66003, y: 292.6883, z: 0}
-  - serializedVersion: 1
-    m_State: {fileID: 5089218010115592294}
-    m_Position: {x: 562.66003, y: 302.6883, z: 0}
-  - serializedVersion: 1
-    m_State: {fileID: -3258075446254103722}
-    m_Position: {x: 719.8488, y: 76.08975, z: 0}
-  - serializedVersion: 1
-    m_State: {fileID: 265638189921784099}
-    m_Position: {x: 729.8488, y: 86.08975, z: 0}
-  - serializedVersion: 1
-    m_State: {fileID: 7537988676475430130}
-    m_Position: {x: 739.8488, y: 96.08975, z: 0}
-  m_ChildStateMachines: []
-  m_AnyStateTransitions: []
-  m_EntryTransitions: []
-  m_StateMachineTransitions: {}
-  m_StateMachineBehaviours: []
-  m_AnyStatePosition: {x: 0, y: -30, z: 0}
-  m_EntryPosition: {x: 0, y: 30, z: 0}
-  m_ExitPosition: {x: 0, y: 90, z: 0}
-  m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
-  m_DefaultState: {fileID: -3909434896319205741}
---- !u!1102 &3195834346823191022
+--- !u!1102 &-502305273159833410
 AnimatorState:
   serializedVersion: 6
   m_ObjectHideFlags: 1
@@ -367,14 +171,36 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
---- !u!1102 &3234962385341493082
+--- !u!91 &9100000
+AnimatorController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: ArchangelArena
+  serializedVersion: 5
+  m_AnimatorParameters: []
+  m_AnimatorLayers:
+  - serializedVersion: 5
+    m_Name: Base Layer
+    m_StateMachine: {fileID: 485520444798056935}
+    m_Mask: {fileID: 0}
+    m_Motions: []
+    m_Behaviours: []
+    m_BlendingMode: 0
+    m_SyncedLayerIndex: -1
+    m_DefaultWeight: 0
+    m_IKPass: 0
+    m_SyncedLayerAffectsTiming: 0
+    m_Controller: {fileID: 9100000}
+--- !u!1102 &211377974831921532
 AnimatorState:
   serializedVersion: 6
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ArchangelGettingHit
+  m_Name: ArchangelAttackDown
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -387,20 +213,78 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 112e18ffd765c1444bf0bf35fdd579ce, type: 2}
+  m_Motion: {fileID: 7400000, guid: c487a1dd7099108408ffcbd359438744, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
---- !u!1102 &3308262233870030279
+--- !u!1107 &485520444798056935
+AnimatorStateMachine:
+  serializedVersion: 6
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Base Layer
+  m_ChildStates:
+  - serializedVersion: 1
+    m_State: {fileID: -3909434896319205741}
+    m_Position: {x: 260, y: 20, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: 211377974831921532}
+    m_Position: {x: 543.24817, y: 57.09851, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: 3518566840410529563}
+    m_Position: {x: 553.24817, y: 67.09851, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: 4329168652874879936}
+    m_Position: {x: 563.24817, y: 77.09851, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: 7715709317415663342}
+    m_Position: {x: 573.24817, y: 87.09851, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: 5731817932347596694}
+    m_Position: {x: 583.24817, y: 97.09851, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: -6646265440687211506}
+    m_Position: {x: 593.24817, y: 107.09851, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: -502305273159833410}
+    m_Position: {x: 603.24817, y: 117.09851, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: 2157540933786176181}
+    m_Position: {x: 613.24817, y: 127.09851, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: 8553122807148639013}
+    m_Position: {x: 623.24817, y: 137.09851, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: -4644965021098111808}
+    m_Position: {x: 633.24817, y: 147.09851, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: -3974620189340038296}
+    m_Position: {x: 643.24817, y: 157.09851, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: -4813266818448985963}
+    m_Position: {x: 653.24817, y: 167.09851, z: 0}
+  m_ChildStateMachines: []
+  m_AnyStateTransitions: []
+  m_EntryTransitions: []
+  m_StateMachineTransitions: {}
+  m_StateMachineBehaviours: []
+  m_AnyStatePosition: {x: 0, y: -30, z: 0}
+  m_EntryPosition: {x: 0, y: 30, z: 0}
+  m_ExitPosition: {x: 0, y: 90, z: 0}
+  m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
+  m_DefaultState: {fileID: -3909434896319205741}
+--- !u!1102 &2157540933786176181
 AnimatorState:
   serializedVersion: 6
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ArchangelStopMoving
+  m_Name: ArchangelMoving
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -413,20 +297,20 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 4b06e02de5366df4383f516a3a3b82b9, type: 2}
+  m_Motion: {fileID: 7400000, guid: 8eb7f8eff1157ab41a2c5dc504ff9901, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
---- !u!1102 &5089218010115592294
+--- !u!1102 &3518566840410529563
 AnimatorState:
   serializedVersion: 6
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ArchangelTurnRight
+  m_Name: ArchangelAttackStraight
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -439,7 +323,59 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 6410ec66e4fe62843a85659502e95c76, type: 2}
+  m_Motion: {fileID: 7400000, guid: 2b8498e182666c842ac00ae32eb78188, type: 2}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
+--- !u!1102 &4329168652874879936
+AnimatorState:
+  serializedVersion: 6
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: ArchangelAttackUp
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions: []
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: 7400000, guid: 59dbbbd706286954f9b77ef1d7654d40, type: 2}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
+--- !u!1102 &5731817932347596694
+AnimatorState:
+  serializedVersion: 6
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: ArchangelDefend
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions: []
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: 7400000, guid: f7da90e7ddbf629478a871f5232ac24c, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -468,14 +404,14 @@ BlendTree:
   m_UseAutomaticThresholds: 1
   m_NormalizedBlendValues: 0
   m_BlendType: 0
---- !u!1102 &7537988676475430130
+--- !u!1102 &7715709317415663342
 AnimatorState:
   serializedVersion: 6
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ArchangelStopMoving 0
+  m_Name: ArchangelDeath
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -488,65 +424,13 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 4b06e02de5366df4383f516a3a3b82b9, type: 2}
+  m_Motion: {fileID: 7400000, guid: f93b90cabef5a9b4baef2f3a1000d065, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
---- !u!1102 &7966896942291223477
-AnimatorState:
-  serializedVersion: 6
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: ArchangelMoving
-  m_Speed: 1
-  m_CycleOffset: 0
-  m_Transitions: []
-  m_StateMachineBehaviours: []
-  m_Position: {x: 50, y: 50, z: 0}
-  m_IKOnFeet: 0
-  m_WriteDefaultValues: 1
-  m_Mirror: 0
-  m_SpeedParameterActive: 0
-  m_MirrorParameterActive: 0
-  m_CycleOffsetParameterActive: 0
-  m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 8eb7f8eff1157ab41a2c5dc504ff9901, type: 2}
-  m_Tag: 
-  m_SpeedParameter: 
-  m_MirrorParameter: 
-  m_CycleOffsetParameter: 
-  m_TimeParameter: 
---- !u!1102 &8646711421089551588
-AnimatorState:
-  serializedVersion: 6
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: ArchangelIdle
-  m_Speed: 1
-  m_CycleOffset: 0
-  m_Transitions: []
-  m_StateMachineBehaviours: []
-  m_Position: {x: 50, y: 50, z: 0}
-  m_IKOnFeet: 0
-  m_WriteDefaultValues: 1
-  m_Mirror: 0
-  m_SpeedParameterActive: 0
-  m_MirrorParameterActive: 0
-  m_CycleOffsetParameterActive: 0
-  m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 6e2a08e3037e1574096c6703380946fb, type: 2}
-  m_Tag: 
-  m_SpeedParameter: 
-  m_MirrorParameter: 
-  m_CycleOffsetParameter: 
-  m_TimeParameter: 
---- !u!1102 &8753668463016297440
+--- !u!1102 &8553122807148639013
 AnimatorState:
   serializedVersion: 6
   m_ObjectHideFlags: 1

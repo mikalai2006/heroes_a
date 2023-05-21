@@ -113,6 +113,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -5896583525801940916, guid: 85e07074849dfd347aa575cbe88b7e5d, type: 3}
+      propertyPath: ShootPrefab
+      value: 
+      objectReference: {fileID: 5077846430636554357, guid: 4eab236b70cbd9d48a78da57d11caa5e, type: 3}
     - target: {fileID: 50873964902334322, guid: 85e07074849dfd347aa575cbe88b7e5d, type: 3}
       propertyPath: m_Name
       value: ZealotArena

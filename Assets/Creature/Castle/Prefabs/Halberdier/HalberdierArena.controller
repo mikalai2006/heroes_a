@@ -1,5 +1,31 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1102 &-7626896486220330546
+AnimatorState:
+  serializedVersion: 6
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: HalberdierTurnRight
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions: []
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: 7400000, guid: 2e76081d7b7adce499150c879d5da2c7, type: 2}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
 --- !u!1102 &-5412786230592706431
 AnimatorState:
   serializedVersion: 6
@@ -26,14 +52,14 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
---- !u!1102 &-2438108360882193928
+--- !u!1102 &-5167655565541773368
 AnimatorState:
   serializedVersion: 6
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: HalberdierTurnLeft
+  m_Name: HalberdierAttackStraight
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -46,13 +72,13 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: c045f066db337ad4fb7018ab04aa83ac, type: 2}
+  m_Motion: {fileID: 7400000, guid: 6c6e4b058fd7c9846bd23935f63bbc26, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
---- !u!1102 &-1858743172561473579
+--- !u!1102 &-3451493672109375304
 AnimatorState:
   serializedVersion: 6
   m_ObjectHideFlags: 1
@@ -78,7 +104,33 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
---- !u!1102 &-507156825993820147
+--- !u!1102 &-2281288383291001632
+AnimatorState:
+  serializedVersion: 6
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: HalberdierAttackUp
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions: []
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: 7400000, guid: 0cda86e3e9689d74cb95fca182d6231d, type: 2}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
+--- !u!1102 &-940987399494609884
 AnimatorState:
   serializedVersion: 6
   m_ObjectHideFlags: 1
@@ -104,32 +156,6 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
---- !u!1102 &-258581422293808588
-AnimatorState:
-  serializedVersion: 6
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: HalberdierIdleMouseOver
-  m_Speed: 1
-  m_CycleOffset: 0
-  m_Transitions: []
-  m_StateMachineBehaviours: []
-  m_Position: {x: 50, y: 50, z: 0}
-  m_IKOnFeet: 0
-  m_WriteDefaultValues: 1
-  m_Mirror: 0
-  m_SpeedParameterActive: 0
-  m_MirrorParameterActive: 0
-  m_CycleOffsetParameterActive: 0
-  m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 702da5acef8c9a945a9a46b06286fb79, type: 2}
-  m_Tag: 
-  m_SpeedParameter: 
-  m_MirrorParameter: 
-  m_CycleOffsetParameter: 
-  m_TimeParameter: 
 --- !u!1107 &-19821879236832920
 AnimatorStateMachine:
   serializedVersion: 6
@@ -143,35 +169,35 @@ AnimatorStateMachine:
     m_State: {fileID: -5412786230592706431}
     m_Position: {x: 270, y: 120, z: 0}
   - serializedVersion: 1
-    m_State: {fileID: -258581422293808588}
-    m_Position: {x: 630, y: -10, z: 0}
+    m_State: {fileID: 7810303527117544549}
+    m_Position: {x: 579.3595, y: 126.05551, z: 0}
   - serializedVersion: 1
-    m_State: {fileID: 7697324507411372863}
-    m_Position: {x: 830, y: 250, z: 0}
+    m_State: {fileID: -5167655565541773368}
+    m_Position: {x: 589.3595, y: 136.05551, z: 0}
   - serializedVersion: 1
-    m_State: {fileID: 6559300869971680650}
-    m_Position: {x: 840, y: 300, z: 0}
+    m_State: {fileID: -2281288383291001632}
+    m_Position: {x: 599.3595, y: 146.05551, z: 0}
   - serializedVersion: 1
-    m_State: {fileID: 3855724363833450511}
-    m_Position: {x: 840, y: 370, z: 0}
+    m_State: {fileID: -3451493672109375304}
+    m_Position: {x: 609.3595, y: 156.05551, z: 0}
   - serializedVersion: 1
-    m_State: {fileID: 2251990668288152020}
-    m_Position: {x: 850, y: 430, z: 0}
+    m_State: {fileID: -940987399494609884}
+    m_Position: {x: 619.3595, y: 166.05551, z: 0}
   - serializedVersion: 1
-    m_State: {fileID: -1858743172561473579}
-    m_Position: {x: 820, y: 480, z: 0}
+    m_State: {fileID: 1479591589967726948}
+    m_Position: {x: 629.3595, y: 176.05551, z: 0}
   - serializedVersion: 1
-    m_State: {fileID: -507156825993820147}
-    m_Position: {x: 840, y: 550, z: 0}
+    m_State: {fileID: 2829219818418829133}
+    m_Position: {x: 639.3595, y: 186.05551, z: 0}
   - serializedVersion: 1
-    m_State: {fileID: 2238427118639770270}
-    m_Position: {x: 270, y: 20, z: 0}
+    m_State: {fileID: 3423368492247643056}
+    m_Position: {x: 649.3595, y: 196.05551, z: 0}
   - serializedVersion: 1
-    m_State: {fileID: -2438108360882193928}
-    m_Position: {x: 870, y: 620, z: 0}
+    m_State: {fileID: 551567951890449828}
+    m_Position: {x: 659.3595, y: 206.05551, z: 0}
   - serializedVersion: 1
-    m_State: {fileID: 3860443118329553428}
-    m_Position: {x: 910, y: 690, z: 0}
+    m_State: {fileID: -7626896486220330546}
+    m_Position: {x: 669.3595, y: 216.05551, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -204,14 +230,14 @@ AnimatorController:
     m_IKPass: 0
     m_SyncedLayerAffectsTiming: 0
     m_Controller: {fileID: 9100000}
---- !u!1102 &2238427118639770270
+--- !u!1102 &551567951890449828
 AnimatorState:
   serializedVersion: 6
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: HalberdierMoving
+  m_Name: HalberdierTurnLeft
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -224,13 +250,13 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 43717000d0c64374e9eec4c45b7f4d4c, type: 2}
+  m_Motion: {fileID: 7400000, guid: c045f066db337ad4fb7018ab04aa83ac, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
---- !u!1102 &2251990668288152020
+--- !u!1102 &1479591589967726948
 AnimatorState:
   serializedVersion: 6
   m_ObjectHideFlags: 1
@@ -256,7 +282,59 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
---- !u!1102 &3855724363833450511
+--- !u!1102 &2829219818418829133
+AnimatorState:
+  serializedVersion: 6
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: HalberdierIdleMouseOver
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions: []
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: 7400000, guid: 702da5acef8c9a945a9a46b06286fb79, type: 2}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
+--- !u!1102 &3423368492247643056
+AnimatorState:
+  serializedVersion: 6
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: HalberdierMoving
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions: []
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: 7400000, guid: 43717000d0c64374e9eec4c45b7f4d4c, type: 2}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
+--- !u!1102 &7810303527117544549
 AnimatorState:
   serializedVersion: 6
   m_ObjectHideFlags: 1
@@ -277,84 +355,6 @@ AnimatorState:
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
   m_Motion: {fileID: 7400000, guid: 9fdeee311cb40c7458f44a5bf95f934b, type: 2}
-  m_Tag: 
-  m_SpeedParameter: 
-  m_MirrorParameter: 
-  m_CycleOffsetParameter: 
-  m_TimeParameter: 
---- !u!1102 &3860443118329553428
-AnimatorState:
-  serializedVersion: 6
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: HalberdierTurnRight
-  m_Speed: 1
-  m_CycleOffset: 0
-  m_Transitions: []
-  m_StateMachineBehaviours: []
-  m_Position: {x: 50, y: 50, z: 0}
-  m_IKOnFeet: 0
-  m_WriteDefaultValues: 1
-  m_Mirror: 0
-  m_SpeedParameterActive: 0
-  m_MirrorParameterActive: 0
-  m_CycleOffsetParameterActive: 0
-  m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 2e76081d7b7adce499150c879d5da2c7, type: 2}
-  m_Tag: 
-  m_SpeedParameter: 
-  m_MirrorParameter: 
-  m_CycleOffsetParameter: 
-  m_TimeParameter: 
---- !u!1102 &6559300869971680650
-AnimatorState:
-  serializedVersion: 6
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: HalberdierAttackStraight
-  m_Speed: 1
-  m_CycleOffset: 0
-  m_Transitions: []
-  m_StateMachineBehaviours: []
-  m_Position: {x: 50, y: 50, z: 0}
-  m_IKOnFeet: 0
-  m_WriteDefaultValues: 1
-  m_Mirror: 0
-  m_SpeedParameterActive: 0
-  m_MirrorParameterActive: 0
-  m_CycleOffsetParameterActive: 0
-  m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 6c6e4b058fd7c9846bd23935f63bbc26, type: 2}
-  m_Tag: 
-  m_SpeedParameter: 
-  m_MirrorParameter: 
-  m_CycleOffsetParameter: 
-  m_TimeParameter: 
---- !u!1102 &7697324507411372863
-AnimatorState:
-  serializedVersion: 6
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: HalberdierAttackUp
-  m_Speed: 1
-  m_CycleOffset: 0
-  m_Transitions: []
-  m_StateMachineBehaviours: []
-  m_Position: {x: 50, y: 50, z: 0}
-  m_IKOnFeet: 0
-  m_WriteDefaultValues: 1
-  m_Mirror: 0
-  m_SpeedParameterActive: 0
-  m_MirrorParameterActive: 0
-  m_CycleOffsetParameterActive: 0
-  m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 0cda86e3e9689d74cb95fca182d6231d, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
