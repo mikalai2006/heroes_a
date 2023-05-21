@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 40
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -126,8 +126,8 @@ TextureImporter:
         y: 1600
         width: 250
         height: 200
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -147,8 +147,8 @@ TextureImporter:
         y: 1600
         width: 250
         height: 200
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -168,8 +168,8 @@ TextureImporter:
         y: 1600
         width: 250
         height: 200
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -189,8 +189,8 @@ TextureImporter:
         y: 1600
         width: 250
         height: 200
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -210,8 +210,8 @@ TextureImporter:
         y: 1600
         width: 250
         height: 200
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -231,8 +231,8 @@ TextureImporter:
         y: 1600
         width: 250
         height: 200
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -252,8 +252,8 @@ TextureImporter:
         y: 1600
         width: 250
         height: 200
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -273,8 +273,8 @@ TextureImporter:
         y: 1400
         width: 250
         height: 200
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -294,8 +294,8 @@ TextureImporter:
         y: 1400
         width: 250
         height: 200
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -315,8 +315,8 @@ TextureImporter:
         y: 1400
         width: 250
         height: 200
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -336,8 +336,8 @@ TextureImporter:
         y: 1400
         width: 250
         height: 200
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -357,8 +357,8 @@ TextureImporter:
         y: 1400
         width: 250
         height: 200
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -374,12 +374,12 @@ TextureImporter:
       name: AncientBehemothAttackStright_5
       rect:
         serializedVersion: 2
-        x: 1249
+        x: 1250
         y: 1400
         width: 250
         height: 200
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -399,8 +399,8 @@ TextureImporter:
         y: 1200
         width: 250
         height: 200
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -420,8 +420,8 @@ TextureImporter:
         y: 1200
         width: 250
         height: 200
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -441,8 +441,8 @@ TextureImporter:
         y: 1200
         width: 250
         height: 200
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -458,12 +458,12 @@ TextureImporter:
       name: AncientBehemothAttackUp_3
       rect:
         serializedVersion: 2
-        x: 750
+        x: 751
         y: 1200
         width: 250
         height: 200
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -483,8 +483,8 @@ TextureImporter:
         y: 1200
         width: 250
         height: 200
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -504,8 +504,8 @@ TextureImporter:
         y: 1200
         width: 250
         height: 200
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -525,8 +525,8 @@ TextureImporter:
         y: 1000
         width: 250
         height: 200
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -546,8 +546,8 @@ TextureImporter:
         y: 1000
         width: 250
         height: 200
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -567,8 +567,8 @@ TextureImporter:
         y: 1000
         width: 250
         height: 200
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -588,8 +588,8 @@ TextureImporter:
         y: 1000
         width: 250
         height: 200
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -609,8 +609,8 @@ TextureImporter:
         y: 1000
         width: 250
         height: 200
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -626,12 +626,12 @@ TextureImporter:
       name: AncientBehemothAttackDown_5
       rect:
         serializedVersion: 2
-        x: 1249
+        x: 1250
         y: 1000
         width: 250
         height: 200
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -651,8 +651,8 @@ TextureImporter:
         y: 800
         width: 250
         height: 200
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -672,8 +672,8 @@ TextureImporter:
         y: 800
         width: 250
         height: 200
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -693,8 +693,8 @@ TextureImporter:
         y: 800
         width: 250
         height: 200
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -714,8 +714,8 @@ TextureImporter:
         y: 800
         width: 250
         height: 200
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -735,8 +735,8 @@ TextureImporter:
         y: 800
         width: 250
         height: 200
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -756,8 +756,8 @@ TextureImporter:
         y: 800
         width: 250
         height: 200
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -777,8 +777,8 @@ TextureImporter:
         y: 600
         width: 250
         height: 200
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -798,8 +798,8 @@ TextureImporter:
         y: 600
         width: 250
         height: 200
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -819,8 +819,8 @@ TextureImporter:
         y: 600
         width: 250
         height: 200
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -840,8 +840,8 @@ TextureImporter:
         y: 600
         width: 250
         height: 200
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -861,8 +861,8 @@ TextureImporter:
         y: 600
         width: 250
         height: 200
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -882,8 +882,8 @@ TextureImporter:
         y: 600
         width: 250
         height: 200
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -903,8 +903,8 @@ TextureImporter:
         y: 600
         width: 250
         height: 200
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -924,8 +924,8 @@ TextureImporter:
         y: 400
         width: 250
         height: 200
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -945,8 +945,8 @@ TextureImporter:
         y: 400
         width: 250
         height: 200
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -966,8 +966,8 @@ TextureImporter:
         y: 400
         width: 250
         height: 200
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -987,8 +987,8 @@ TextureImporter:
         y: 400
         width: 250
         height: 200
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1008,8 +1008,8 @@ TextureImporter:
         y: 400
         width: 250
         height: 200
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1029,8 +1029,8 @@ TextureImporter:
         y: 200
         width: 250
         height: 200
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1050,8 +1050,8 @@ TextureImporter:
         y: 200
         width: 250
         height: 200
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1071,8 +1071,8 @@ TextureImporter:
         y: 200
         width: 250
         height: 200
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1088,12 +1088,12 @@ TextureImporter:
       name: AncientBehemothMoving_3
       rect:
         serializedVersion: 2
-        x: 749
+        x: 750
         y: 200
         width: 250
         height: 200
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1113,8 +1113,8 @@ TextureImporter:
         y: 200
         width: 250
         height: 200
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1130,12 +1130,12 @@ TextureImporter:
       name: AncientBehemothMoving_5
       rect:
         serializedVersion: 2
-        x: 1250
+        x: 1252
         y: 200
         width: 250
         height: 200
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1155,8 +1155,8 @@ TextureImporter:
         y: 200
         width: 250
         height: 200
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1176,8 +1176,8 @@ TextureImporter:
         y: 0
         width: 250
         height: 200
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1197,8 +1197,8 @@ TextureImporter:
         y: 0
         width: 250
         height: 200
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1218,8 +1218,8 @@ TextureImporter:
         y: 0
         width: 250
         height: 200
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1239,8 +1239,8 @@ TextureImporter:
         y: 0
         width: 250
         height: 200
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1263,60 +1263,61 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      AncientBehemothAttackDown_0: -1024523052
-      AncientBehemothAttackDown_1: 1078300603
-      AncientBehemothAttackDown_2: 515339371
-      AncientBehemothAttackDown_3: -1667606564
-      AncientBehemothAttackDown_4: -1691000743
-      AncientBehemothAttackDown_5: -852797716
-      AncientBehemothAttackStright_0: 364991218
-      AncientBehemothAttackStright_1: 2054756886
-      AncientBehemothAttackStright_2: 26760563
-      AncientBehemothAttackStright_3: 580322527
-      AncientBehemothAttackStright_4: -500384831
-      AncientBehemothAttackStright_5: 1709448651
-      AncientBehemothAttackUp_0: 134569306
-      AncientBehemothAttackUp_1: -1736548175
-      AncientBehemothAttackUp_2: 1019820750
-      AncientBehemothAttackUp_3: 1962939812
-      AncientBehemothAttackUp_4: -2048663357
-      AncientBehemothAttackUp_5: -1954230751
-      AncientBehemothDeath_0: -1164624294
-      AncientBehemothDeath_1: 613298103
-      AncientBehemothDeath_2: -1997870712
-      AncientBehemothDeath_3: 1510282437
-      AncientBehemothDeath_4: 331485287
-      AncientBehemothDeath_5: -1668853462
-      AncientBehemothDeath_6: -1913172667
-      AncientBehemothDefend_0: -1913172667
-      AncientBehemothDefend_1: -1535884870
-      AncientBehemothDefend_2: 1251262440
-      AncientBehemothGettingHit_0: 1727726426
-      AncientBehemothGettingHit_1: 600781326
-      AncientBehemothGettingHit_2: -859013343
-      AncientBehemothGettingHit_3: 1097692845
-      AncientBehemothGettingHit_4: -1440150365
-      AncientBehemothGettingHit_5: -1756091482
-      AncientBehemothIdleMouseOver_0: -776537099
-      AncientBehemothIdleMouseOver_1: 1089469443
-      AncientBehemothIdleMouseOver_2: -1319229347
-      AncientBehemothIdleMouseOver_3: -3716139
-      AncientBehemothIdle_0: -1659977143
-      AncientBehemothIdle_1: 1517548505
-      AncientBehemothIdle_2: -197860114
-      AncientBehemothMoving_0: -1687135105
-      AncientBehemothMoving_1: -68877407
-      AncientBehemothMoving_2: 1792594514
-      AncientBehemothMoving_3: 70448057
-      AncientBehemothMoving_4: 687511946
-      AncientBehemothMoving_5: 67219534
-      AncientBehemothMoving_6: -1722541316
-      AncientBehemothMoving_7: -1159118711
-      AncientBehemothMoving_8: 524477408
-      AncientBehemothStartMoving_0: 1409017701
-      AncientBehemothStopMoving_0: -1139267209
-      AncientBehemothTurn_0: 660992290
-      AncientBehemothTurn_1: -1102923247
+      AncientBehemoth250x200_0: -1909295060
+      AncientBehemothAttackDown_0: 88484958
+      AncientBehemothAttackDown_1: -550449655
+      AncientBehemothAttackDown_2: -1185291954
+      AncientBehemothAttackDown_3: 1911619138
+      AncientBehemothAttackDown_4: -12323245
+      AncientBehemothAttackDown_5: -1172726772
+      AncientBehemothAttackStright_0: -1281630480
+      AncientBehemothAttackStright_1: 1081102392
+      AncientBehemothAttackStright_2: -1887673824
+      AncientBehemothAttackStright_3: -330292827
+      AncientBehemothAttackStright_4: -895401578
+      AncientBehemothAttackStright_5: -1043915927
+      AncientBehemothAttackUp_0: 1622972822
+      AncientBehemothAttackUp_1: 480806313
+      AncientBehemothAttackUp_2: 629277802
+      AncientBehemothAttackUp_3: -475205559
+      AncientBehemothAttackUp_4: 1268459599
+      AncientBehemothAttackUp_5: 1597062821
+      AncientBehemothDeath_0: -2132124781
+      AncientBehemothDeath_1: 846014544
+      AncientBehemothDeath_2: 2066716954
+      AncientBehemothDeath_3: -2143400441
+      AncientBehemothDeath_4: -479804242
+      AncientBehemothDeath_5: -436906339
+      AncientBehemothDeath_6: 1144270594
+      AncientBehemothDefend_0: -1975544858
+      AncientBehemothDefend_1: 637966510
+      AncientBehemothDefend_2: 205392074
+      AncientBehemothGettingHit_0: 1021490058
+      AncientBehemothGettingHit_1: -1616717452
+      AncientBehemothGettingHit_2: -339843158
+      AncientBehemothGettingHit_3: -620540842
+      AncientBehemothGettingHit_4: -546519161
+      AncientBehemothGettingHit_5: -1823848953
+      AncientBehemothIdleMouseOver_0: 96098146
+      AncientBehemothIdleMouseOver_1: 1687936488
+      AncientBehemothIdleMouseOver_2: -1992600974
+      AncientBehemothIdleMouseOver_3: -1759632713
+      AncientBehemothIdle_0: 642699626
+      AncientBehemothIdle_1: 1406014388
+      AncientBehemothIdle_2: -746939111
+      AncientBehemothMoving_0: 2029062246
+      AncientBehemothMoving_1: -1330346003
+      AncientBehemothMoving_2: -645564061
+      AncientBehemothMoving_3: 81398491
+      AncientBehemothMoving_4: -1252791243
+      AncientBehemothMoving_5: 1385328018
+      AncientBehemothMoving_6: 1721635641
+      AncientBehemothMoving_7: -1052195485
+      AncientBehemothMoving_8: -547016053
+      AncientBehemothStartMoving_0: 42508186
+      AncientBehemothStopMoving_0: 1930670461
+      AncientBehemothTurn_0: -508841257
+      AncientBehemothTurn_1: 1247689444
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
