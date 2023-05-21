@@ -1,0 +1,20 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:Template name="Button" src="project://database/Assets/UI/Toolkit/Button.uxml?fileID=9197481963319205126&amp;guid=db5e7d04a42304542a4356b1519364b2&amp;type=3#Button" />
+    <Style src="project://database/Assets/UI/Toolkit/Base.uss?fileID=7433441132597879392&amp;guid=fa07b064290e7384d9ad2e26e79f5953&amp;type=3#Base" />
+    <ui:VisualElement name="Info" class="bg border-1 border-color">
+        <ui:VisualElement style="flex-grow: 1;">
+            <ui:Label tabindex="-1" text="#choosenodeforspell" display-tooltip-when-elided="true" name="Title" class="p-05 m-0" style="white-space: normal;" />
+        </ui:VisualElement>
+        <ui:VisualElement>
+            <ui:VisualElement class="p-1 bg" style="align-items: center;">
+                <ui:VisualElement name="Ava" style="background-image: url(&apos;project://database/Assets/UI/Sprites/Spell/Spell_book.png?fileID=740670611&amp;guid=ed47d99f325775447b80057e6e6406ea&amp;type=3#Spell_book_9&apos;); width: 80px; height: 60px;" />
+                <ui:Label tabindex="-1" text="HornedDemon" display-tooltip-when-elided="true" name="Name" class="m-0 p-0 text-sm" style="white-space: normal; -unity-text-align: upper-center;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement class="pt-1">
+            <ui:Instance template="Button" name="Button">
+                <AttributeOverrides element-name="Btn" text="#cancel" />
+            </ui:Instance>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

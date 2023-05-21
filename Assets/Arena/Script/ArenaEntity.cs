@@ -73,10 +73,13 @@ public class ArenaEntity
     public TypeArenaPlayer TypeArenaPlayer;
     public BaseEntity Entity { get; private set; }
     public TypeDirection Direction;
+    private EntityHero _hero;
+    public EntityHero Hero => _hero;
 
-    public ArenaEntity(ArenaManager arenaManager)
+    public ArenaEntity(ArenaManager arenaManager, EntityHero hero)
     {
         _arenaManager = arenaManager;
+        _hero = hero;
     }
 
     public void SetEntity(BaseEntity entity, GridArenaNode node)
