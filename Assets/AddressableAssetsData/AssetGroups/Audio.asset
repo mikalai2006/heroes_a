@@ -10,22 +10,27 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: Localization-Assets-English (en)
+  m_Name: Audio
   m_EditorClassIdentifier: 
-  m_GroupName: Localization-Assets-English (en)
+  m_GroupName: Audio
   m_Data:
     m_SerializedData: []
-  m_GUID: 44cfdf0dc42db914696d4939c33582cc
+  m_GUID: dc8d73e552538ba40a8f8975ee421627
   m_SerializeEntries:
-  - m_GUID: 50690291126389542a9e02fe266757c2
-    m_Address: England
-    m_ReadOnly: 1
-    m_SerializedLabels:
-    - Locale-en
+  - m_GUID: 0134fa6f5fc3ab44b8b765db8e81231e
+    m_Address: Assets/Audio
+    m_ReadOnly: 0
+    m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  m_ReadOnly: 1
+  - m_GUID: fe8d1e48c237f1a428344434599d0c24
+    m_Address: Assets/ScriptableObjects/GameAudio.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - gameaudio
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 9a6380555b06f9d46b9bf47dd32221de, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 64912ed4ec24ff142bf66f56f2d22cef, type: 2}
-    - {fileID: 11400000, guid: 58a2cef398a24344e8933df36f6521b6, type: 2}
+    - {fileID: 11400000, guid: 9f744212b40a0c641b0e4a40f9584a8a, type: 2}
+    - {fileID: 11400000, guid: 210ab60c5d533d14b98231281c4a7869, type: 2}

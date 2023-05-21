@@ -226,6 +226,7 @@ MonoBehaviour:
   colorAllowAttackCreature: {r: 1, g: 0, b: 0, a: 0.28235295}
   paintActiveCreature: 1
   colorActiveCreature: {r: 0.77254903, g: 1, b: 0, a: 0.6392157}
+  AudioGeneral: {fileID: 11400000, guid: fe8d1e48c237f1a428344434599d0c24, type: 2}
   references:
     version: 2
     RefIds: []

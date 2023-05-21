@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 
+using Cysharp.Threading.Tasks;
+
 using Loader;
 
 using UnityEngine;
@@ -72,25 +74,46 @@ public class UIArena : UILocaleBase
         _queueBlok = _box.Q<VisualElement>("QueueBlok");
 
         var btnWait = _box.Q<Button>("WaitButton");
-        btnWait.clickable.clicked += OnClickWait;
+        btnWait.clickable.clicked += async () =>
+        {
+            await AudioManager.Instance.Click();
+            OnClickWait();
+        };
 
         var btnDefense = _box.Q<Button>("DefenseButton");
-        btnDefense.clickable.clicked += OnClickDefense;
+        btnDefense.clickable.clicked += async () =>
+        {
+            await AudioManager.Instance.Click();
+            OnClickDefense();
+        };
 
         var btnRunCreature = _box.Q<Button>("RunButton");
-        btnRunCreature.clickable.clicked += OnClickClose;
+        btnRunCreature.clickable.clicked += async () =>
+        {
+            await AudioManager.Instance.Click();
+            OnClickClose();
+        };
 
         _btnQueue = _box.Q<Button>("QueueButton");
-        _btnQueue.clickable.clicked += OnToggleQueue;
+        _btnQueue.clickable.clicked += async () =>
+        {
+            await AudioManager.Instance.Click();
+            OnToggleQueue();
+        };
         OnToggleQueue();
 
         _btnDirAttack = _box.Q<Button>("DirAttack");
-        _btnDirAttack.clickable.clicked += ClickDirAttack;
+        _btnDirAttack.clickable.clicked += async () =>
+        {
+            await AudioManager.Instance.Click();
+            ClickDirAttack();
+        };
         _btnDirAttack.SetEnabled(false);
 
         var btnSpellBook = _box.Q<Button>("SpellBookButton");
-        btnSpellBook.clickable.clicked += () =>
+        btnSpellBook.clickable.clicked += async () =>
         {
+            await AudioManager.Instance.Click();
             OnOpenSpellBook?.Invoke();
         };
 
@@ -285,14 +308,16 @@ public class UIArena : UILocaleBase
 
     private async void OnClickClose()
     {
-        _cameraMain.gameObject.SetActive(true);
-
         // Release asset prefab town.
+        // if (_asset.IsValid())
+        // {
+        //     Addressables.ReleaseInstance(_asset);
+        // }
         await GameManager.Instance.AssetProvider.UnloadAdditiveScene(_arenaScene);
-        if (_asset.IsValid())
-        {
-            Addressables.ReleaseInstance(_asset);
-        }
+
+        await UniTask.Yield();
+
+        _cameraMain.gameObject.SetActive(true);
 
         var loadingOperations = new Queue<ILoadingOperation>();
         loadingOperations.Enqueue(new MenuAppOperation());

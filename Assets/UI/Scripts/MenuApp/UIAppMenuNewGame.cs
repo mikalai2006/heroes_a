@@ -48,14 +48,16 @@ public class UIAppMenuNewGame : UILocaleBase
         _boxContentGeneral = _box.Q<VisualElement>("BoxGeneral");
         _boxContentAdvanced = _box.Q<VisualElement>("BoxAdvanced");
         _buttonAdvancedSetting = _box.Q<VisualElement>("AdvancedOptions");
-        _buttonAdvancedSetting.Q<Button>().clickable.clicked += () =>
+        _buttonAdvancedSetting.Q<Button>().clickable.clicked += async () =>
         {
+            await AudioManager.Instance.Click();
             ShowHideAdvancedOptions();
         };
         _boxContentSetting = _box.Q<VisualElement>("BoxSetting");
         _buttonRandomSetting = _box.Q<VisualElement>("RandomOptions");
-        _buttonRandomSetting.Q<Button>().clickable.clicked += () =>
+        _buttonRandomSetting.Q<Button>().clickable.clicked += async () =>
         {
+            await AudioManager.Instance.Click();
             ShowHideRandomOptions();
         };
 
@@ -85,14 +87,16 @@ public class UIAppMenuNewGame : UILocaleBase
         _btnNewGame = _box.Q<VisualElement>("ButtonNewGame").Q<Button>("Btn");
         _btnNewGame.clickable.clicked += async () =>
         {
+            await AudioManager.Instance.Click();
             GameManager.Instance.ChangeState(GameState.NewGame);
             Hide();
             await _parent.DestroyMenu();
         };
 
         var btnClose = _root.Q<VisualElement>("ButtonClose").Q<Button>("Btn");
-        btnClose.clickable.clicked += () =>
+        btnClose.clickable.clicked += async () =>
         {
+            await AudioManager.Instance.Click();
             _parent.AppMenuVariants.Show();
             Hide();
         };
@@ -196,8 +200,9 @@ public class UIAppMenuNewGame : UILocaleBase
                 ? TypesPlayer.Where(t => t == player.StartSetting.TypePlayerItem).First()
                 : TypesPlayer.Where(t => t.TypePlayer == PlayerType.Bot).First();
             typePlayerText.text = currentTypePlayer.title;
-            typePlayerText.clickable.clicked += () =>
+            typePlayerText.clickable.clicked += async () =>
             {
+                await AudioManager.Instance.Click();
                 ChangeTypePlayer(player);
                 DrawAdvancedOptions();
             };
@@ -225,8 +230,9 @@ public class UIAppMenuNewGame : UILocaleBase
                 _listChoosedHero.Remove(player.StartSetting.hero);
                 player.StartSetting.hero = null;
             }
-            chooserTown.Q<Button>("arrowleft").clickable.clicked += () =>
+            chooserTown.Q<Button>("arrowleft").clickable.clicked += async () =>
             {
+                await AudioManager.Instance.Click();
                 if (activeTown >= 0)
                 {
                     activeTown--;
@@ -248,8 +254,9 @@ public class UIAppMenuNewGame : UILocaleBase
 
                 DrawAdvancedOptions();
             };
-            chooserTown.Q<Button>("arrowright").clickable.clicked += () =>
+            chooserTown.Q<Button>("arrowright").clickable.clicked += async () =>
             {
+                await AudioManager.Instance.Click();
                 if (activeTown <= listTowns.Count - 1)
                 {
                     activeTown++;
@@ -301,8 +308,9 @@ public class UIAppMenuNewGame : UILocaleBase
 
             if (player.StartSetting.town != null)
             {
-                btnPrevHero.clickable.clicked += () =>
+                btnPrevHero.clickable.clicked += async () =>
                 {
+                    await AudioManager.Instance.Click();
                     if (indexActiveHero >= 0)
                     {
                         indexActiveHero--;
@@ -325,8 +333,9 @@ public class UIAppMenuNewGame : UILocaleBase
 
                     DrawAdvancedOptions();
                 };
-                btnNextHero.clickable.clicked += () =>
+                btnNextHero.clickable.clicked += async () =>
                 {
+                    await AudioManager.Instance.Click();
                     if (indexActiveHero <= listHeroesForTown.Count - 1)
                     {
                         indexActiveHero++;
@@ -365,8 +374,9 @@ public class UIAppMenuNewGame : UILocaleBase
             SetBonus(player.StartSetting.bonus, chooserBonus);
             var indexActiveBonus = _configGameSettings.StartBonuses
                 .FindIndex(t => t.TypeBonus == player.StartSetting.bonus);
-            chooserBonus.Q<Button>("arrowleft").clickable.clicked += () =>
+            chooserBonus.Q<Button>("arrowleft").clickable.clicked += async () =>
             {
+                await AudioManager.Instance.Click();
                 if (indexActiveBonus >= 0)
                 {
                     indexActiveBonus--;
@@ -386,8 +396,9 @@ public class UIAppMenuNewGame : UILocaleBase
 
                 DrawAdvancedOptions();
             };
-            chooserBonus.Q<Button>("arrowright").clickable.clicked += () =>
+            chooserBonus.Q<Button>("arrowright").clickable.clicked += async () =>
             {
+                await AudioManager.Instance.Click();
                 if (indexActiveBonus <= _configGameSettings.StartBonuses.Count - 1)
                 {
                     indexActiveBonus++;
@@ -538,8 +549,9 @@ public class UIAppMenuNewGame : UILocaleBase
             }
             else
             {
-                btn.clickable.clicked += () =>
+                btn.clickable.clicked += async () =>
                 {
+                    await AudioManager.Instance.Click();
                     Level.Settings.compexity = item.value;
 
                     RefreshOptions();
@@ -580,8 +592,9 @@ public class UIAppMenuNewGame : UILocaleBase
             }
             else
             {
-                btn.clickable.clicked += () =>
+                btn.clickable.clicked += async () =>
                 {
+                    await AudioManager.Instance.Click();
                     Level.GameModeData = currentMode.GameModeData;
                     RefreshOptions();
                 };
@@ -628,9 +641,10 @@ public class UIAppMenuNewGame : UILocaleBase
             }
             else
             {
-                newBtn.clickable.clicked += () =>
+                newBtn.clickable.clicked += async () =>
                 {
-                    Debug.Log($"Click {j} button!");
+                    await AudioManager.Instance.Click();
+                    // Debug.Log($"Click {j} button!");
                     Level.Settings.countBotCommand = j;
                     RefreshOptions();
                 };
@@ -666,9 +680,10 @@ public class UIAppMenuNewGame : UILocaleBase
             }
             else
             {
-                newBtn.clickable.clicked += () =>
+                newBtn.clickable.clicked += async () =>
                 {
-                    Debug.Log($"Click {j} button!");
+                    await AudioManager.Instance.Click();
+                    // Debug.Log($"Click {j} button!");
                     Level.Settings.countCommand = j;
                     RefreshOptions();
                 };
@@ -707,8 +722,9 @@ public class UIAppMenuNewGame : UILocaleBase
             }
             else
             {
-                newBtn.clickable.clicked += () =>
+                newBtn.clickable.clicked += async () =>
                 {
+                    await AudioManager.Instance.Click();
                     Level.Settings.strenghtMonster = item.strenghtMonster;
                     RefreshOptions();
                 };
@@ -744,8 +760,9 @@ public class UIAppMenuNewGame : UILocaleBase
             }
             else
             {
-                newBtn.clickable.clicked += () =>
+                newBtn.clickable.clicked += async () =>
                 {
+                    await AudioManager.Instance.Click();
                     Level.Settings.countPlayer = j;
                     if (Level.Settings.countBot != 0)
                     {
@@ -794,8 +811,9 @@ public class UIAppMenuNewGame : UILocaleBase
             }
             else
             {
-                newBtn.clickable.clicked += () =>
+                newBtn.clickable.clicked += async () =>
                 {
+                    await AudioManager.Instance.Click();
                     Level.Settings.countBot = j;
                     RefreshOptions();
                 };

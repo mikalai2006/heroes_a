@@ -28,15 +28,16 @@ public class UIMenuApp : UILocaleBase
         _appMenuNewGame.Init();
 
         var newGameButton = Root.rootVisualElement.Q<Button>("newgame");
-        newGameButton.clickable.clicked += () =>
+        newGameButton.clickable.clicked += async () =>
         {
-            // GameManager.Instance.ChangeState(GameState.NewGame);
+            await AudioManager.Instance.Click();
             _appMenuVariantsDoc.Show();
         };
 
         var loadGameButton = Root.rootVisualElement.Q<Button>("loadgame");
         loadGameButton.clickable.clicked += async () =>
         {
+            await AudioManager.Instance.Click();
             GameManager.Instance.ChangeState(GameState.LoadGame);
             await GameManager.Instance.AssetProvider.UnloadAsset(_environment);
         };
@@ -44,6 +45,7 @@ public class UIMenuApp : UILocaleBase
         var testArenaButton = Root.rootVisualElement.Q<Button>("TestArena");
         testArenaButton.clickable.clicked += async () =>
         {
+            await AudioManager.Instance.Click();
             await DestroyMenu();
             var loadingOperations = new Queue<ILoadingOperation>();
             loadingOperations.Enqueue(new ArenaLoadOperation(new DialogArenaData()));
@@ -51,8 +53,9 @@ public class UIMenuApp : UILocaleBase
         };
 
         var btnQuit = Root.rootVisualElement.Q<Button>("ButtonQuit");
-        btnQuit.clickable.clicked += () =>
+        btnQuit.clickable.clicked += async () =>
         {
+            await AudioManager.Instance.Click();
             Application.Quit();
         };
 

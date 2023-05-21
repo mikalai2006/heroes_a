@@ -465,6 +465,7 @@ public class ArenaManager : MonoBehaviour
     }
     public async UniTask ClickButton()
     {
+        await AudioManager.Instance.Click();
         if (activeCursor == CursorRule.NotAllow) return;
         Debug.Log($"Click button:::");
 
@@ -501,6 +502,7 @@ public class ArenaManager : MonoBehaviour
 
     public async UniTask ClickArena(Vector3Int positionClick)
     {
+        await AudioManager.Instance.Click();
         GridArenaNode node = GridArenaHelper.GridTile.GetGridObject(new Vector3Int(positionClick.x, positionClick.y));
 
         if (node != null)

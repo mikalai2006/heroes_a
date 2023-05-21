@@ -33,12 +33,14 @@ public class UIAppMenuMultipleOneDevice : UILocaleBase
         _generalBlok.Add(docDialogBlok);
         RootDoc.rootVisualElement.style.display = DisplayStyle.None;
         _headerLabel.text = new LocalizedString(Constants.LanguageTable.LANG_TABLE_UILANG, "Hotseat").GetLocalizedString();
-        _root.Q<Button>("back").clickable.clicked += () =>
+        _root.Q<Button>("back").clickable.clicked += async () =>
             {
+                await AudioManager.Instance.Click();
                 Hide();
             };
-        _root.Q<Button>("ok").clickable.clicked += () =>
+        _root.Q<Button>("ok").clickable.clicked += async () =>
             {
+                await AudioManager.Instance.Click();
                 CreateListTypesPlayer();
                 // _parent.AppMenuNewGame.DrawAdvancedOptions();
                 _parent.AppMenuNewGame.Show();
