@@ -39,10 +39,12 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
+  MapSprite: {fileID: 0}
   SchoolMagic: {fileID: 11400000, guid: 31a94fbbb40b1054c9afac5eb9ba992f, type: 2}
   level: 2
   typeSpell: 0
   typeSpellDuration: 2
+  typeAchievement: 1
   LevelData:
   - cost: 10
     Effect: 3

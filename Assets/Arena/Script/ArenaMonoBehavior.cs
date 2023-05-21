@@ -500,7 +500,7 @@ public class ArenaMonoBehavior : MonoBehaviour // , IPointerDownHandler
         await SmoothLerpShoot(transform.position, nodeForAttack.center, LevelManager.Instance.ConfigGameSettings.speedArenaAnimation * 2);
         _shoot.SetActive(false);
 
-        await UniTask.Delay(100);
+        await UniTask.Delay(200);
 
         await nodeForAttack.OccupiedUnit.RunGettingHit(_arenaEntity.OccupiedNode);
         // if (_arenaEntity.Data.isDefense)
