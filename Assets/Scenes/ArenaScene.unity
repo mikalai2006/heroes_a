@@ -2061,6 +2061,7 @@ MonoBehaviour:
   _templateShortCreatureInfo: {fileID: 9197481963319205126, guid: 228006d32228eac49bbe346738edf579, type: 3}
   _templateQueueCreature: {fileID: 9197481963319205126, guid: 61d796511ce891140969c53b0af54e12, type: 3}
   _templateQueueRound: {fileID: 9197481963319205126, guid: 1da8b8dd36ab6f14489540032c89cfd9, type: 3}
+  _templateShortSpellInfo: {fileID: 9197481963319205126, guid: 333d4f4e09152dd459417c1bf4facb9a, type: 3}
   _bgImage: {fileID: 0}
 --- !u!4 &1790115398
 Transform:

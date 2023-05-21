@@ -339,6 +339,10 @@
     margin-right: 5px;
 }
 
+.mb-1 {
+    margin-bottom: 5px;
+}
+
 .m-0 {
     margin-left: 0;
     margin-right: 0;

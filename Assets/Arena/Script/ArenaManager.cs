@@ -114,6 +114,7 @@ public class ArenaManager : MonoBehaviour
         UIArena.OnNextCreature += NextCreature;
         UIArena.OnOpenSpellBook += OpenSpellBook;
         UIArena.OnClickAttack += ActionClickButton;
+        UIDialogSpellBook.OnClickSpell += ChooseSpell;
 
         CreateArena();
 
@@ -142,12 +143,22 @@ public class ArenaManager : MonoBehaviour
         UIArena.OnNextCreature -= NextCreature;
         UIArena.OnOpenSpellBook -= OpenSpellBook;
         UIArena.OnClickAttack -= ActionClickButton;
+        UIDialogSpellBook.OnClickSpell -= ChooseSpell;
     }
 
     private async void OpenSpellBook()
     {
-        var dialogWindow = new DialogSpellBookOperation(hero);
+        inputManager.Disable();
+
+        var dialogWindow = new DialogSpellBookOperation(ArenaQueue.ActiveHero);
         var result = await dialogWindow.ShowAndHide();
+
+        inputManager.Enable();
+    }
+
+    private void ChooseSpell()
+    {
+        GetFightingNodes();
     }
 
     public async void NextCreature(bool wait)
@@ -329,7 +340,7 @@ public class ArenaManager : MonoBehaviour
         {
             if (creature.Value != null)
             {
-                var GridGameObject = new ArenaEntity(this);
+                var GridGameObject = new ArenaEntity(this, hero);
                 var size = ((ScriptableAttributeCreature)creature.Value.ScriptableDataAttribute).CreatureParams.Size;
                 var nodeObj = GridArenaHelper.GridTile.GetGridObject(new Vector3Int(size - 1, creature.Key));
                 GridGameObject.TypeArenaPlayer = TypeArenaPlayer.Left;
@@ -346,7 +357,7 @@ public class ArenaManager : MonoBehaviour
         {
             if (creature.Value != null)
             {
-                var GridGameObject = new ArenaEntity(this);
+                var GridGameObject = new ArenaEntity(this, enemy);
                 var size = ((ScriptableAttributeCreature)creature.Value.ScriptableDataAttribute).CreatureParams.Size;
                 var nodeObj = GridArenaHelper.GridTile.GetGridObject(new Vector3Int(width - size, creature.Key));
                 GridGameObject.TypeArenaPlayer = TypeArenaPlayer.Right;

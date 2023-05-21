@@ -12,10 +12,12 @@ public struct QueueItem
 public class ArenaQueue
 {
     public static event Action OnNextRound;
+    public static event Action OnNextStep;
     public List<QueueItem> ListEntities = new List<QueueItem>();
     // LinkedList<ArenaEntity> queueEntity = new LinkedList<ArenaEntity>();
     public QueueItem activeEntity;
     public int ActiveRound;
+    public EntityHero ActiveHero => activeEntity.arenaEntity.Hero;
 
     public List<QueueItem> SetActiveEntity(QueueItem arenaEntity)
     {
@@ -50,6 +52,8 @@ public class ArenaQueue
             OnNextRound?.Invoke();
         }
         ActiveRound = activeEntity.round;
+
+        OnNextStep?.Invoke();
     }
 
     public void AddEntity(ArenaEntity entity)

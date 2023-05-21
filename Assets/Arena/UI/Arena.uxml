@@ -4,10 +4,12 @@
     <Style src="project://database/Assets/UI/Toolkit/Aside/AsideMenu.uss?fileID=7433441132597879392&amp;guid=e55e2feb94a32ea4281de07ce70e415f&amp;type=3#AsideMenu" />
     <Style src="project://database/Assets/UI/Toolkit/Base.uss?fileID=7433441132597879392&amp;guid=fa07b064290e7384d9ad2e26e79f5953&amp;type=3#Base" />
     <Style src="project://database/Assets/UI/Toolkit/Aside/AsideFooter.uss?fileID=7433441132597879392&amp;guid=100acbaeadba496408baf44e6dfd4501&amp;type=3#AsideFooter" />
-    <ui:VisualElement name="SideLeft" class="m-1 text-secondary border-1 border-color bg" style="width: 10%; position: absolute; bottom: 60px; left: 0;">
-        <ui:VisualElement name="Overlay" class="overlay" />
-        <ui:VisualElement name="Info" class="m-1" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
-            <ui:Instance template="ArenaShortInfoCreature" name="ArenaShortInfoCreature" />
+    <ui:VisualElement name="SideLeft" class="m-1 text-secondary" style="width: 10%; position: absolute; bottom: 60px; left: 0;">
+        <ui:VisualElement name="Creature" class="border-1 border-color mb-1 bg" style="flex-grow: 1;">
+            <ui:VisualElement name="Overlay" class="overlay" />
+            <ui:VisualElement name="Info" class="m-1" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
+                <ui:Instance template="ArenaShortInfoCreature" name="ArenaShortInfoCreature" />
+            </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
     <ui:VisualElement name="Footer" class="footer border-color" style="display: flex; position: absolute; bottom: 0; left: 0; right: 0; height: 60px; flex-grow: 1;">
@@ -47,10 +49,12 @@
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
-    <ui:VisualElement name="SideRight" class="border-color border-1 m-1 text-secondary bg" style="width: 10%; position: absolute; right: 0; bottom: 60px;">
-        <ui:VisualElement name="Overlay" class="overlay" />
-        <ui:VisualElement name="Info" class="m-1" style="flex-grow: 1;">
-            <ui:Instance template="ArenaShortInfoCreature" name="ArenaShortInfoCreature" />
+    <ui:VisualElement name="SideRight" class="m-1 text-secondary" style="width: 10%; position: absolute; right: 0; bottom: 60px;">
+        <ui:VisualElement name="Creature" class="border-1 border-color mb-1 bg" style="flex-grow: 1;">
+            <ui:VisualElement name="Overlay" class="overlay" />
+            <ui:VisualElement name="Info" class="m-1" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
+                <ui:Instance template="ArenaShortInfoCreature" name="ArenaShortInfoCreature" />
+            </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
     <ui:VisualElement name="QueueBlok" style="flex-grow: 1; position: absolute; top: 0; left: 15%; right: 15%; flex-direction: row; height: 80px; align-items: stretch; justify-content: center;">
