@@ -222,6 +222,7 @@ MonoBehaviour:
   speedArenaAnimation: 0.1
   paintAllowAttackNode: 1
   colorAllowAttackNode: {r: 1, g: 0, b: 0, a: 0.56078434}
+  colorNodeRunSpell: {r: 1, g: 0.88953507, b: 0, a: 0.6392157}
   paintAllowAttackCreature: 1
   colorAllowAttackCreature: {r: 1, g: 0, b: 0, a: 0.28235295}
   paintActiveCreature: 1

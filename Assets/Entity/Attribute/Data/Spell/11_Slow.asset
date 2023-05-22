@@ -44,6 +44,7 @@ MonoBehaviour:
   level: 1
   typeSpell: 0
   typeSpellDuration: 1
+  typeAchievement: 1
   LevelData:
   - cost: 6
     Effect: 75

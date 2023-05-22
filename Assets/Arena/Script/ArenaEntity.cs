@@ -30,6 +30,7 @@ public enum TypeAttack
 {
     Attack = 0,
     AttackShoot = 1,
+    // AttackSpell = 2
 }
 
 [Serializable]
@@ -47,6 +48,13 @@ public class ArenaEntityData
     public int damageMax;
     public int totalHP;
     public int HP { get; internal set; }
+    public List<SpellStateItem> SpellsState = new();
+}
+
+public struct SpellStateItem
+{
+    public ScriptableAttributeSpell Spell;
+    public int round;
 }
 
 [Serializable]
@@ -201,12 +209,23 @@ public class ArenaEntity
 
     public async void ClickCreature()
     {
-        if (
-            _arenaManager.FightingOccupiedNodes.Contains(OccupiedNode)
-            )
+        await AudioManager.Instance.Click();
+        if (_arenaManager.FightingOccupiedNodes.Contains(OccupiedNode))
         {
-            Debug.Log($"Fight node!");
-            _arenaManager.CreateAttackNode(this);
+            var activeSpell = _arenaManager.ArenaQueue.ActiveHero != null
+            ? _arenaManager.ArenaQueue.ActiveHero.Data.SpellBook.ChoosedSpell
+            : null;
+
+            if (activeSpell == null)
+            {
+                Debug.Log($"Choose creature for attack!");
+                _arenaManager.CreateAttackNode(this);
+            }
+            else
+            {
+                Debug.Log($"Choose creature for spell!");
+                _arenaManager.CreateButtonSpell(this);
+            }
         }
         else
         {
@@ -214,6 +233,7 @@ public class ArenaEntity
         }
         await UniTask.Delay(1);
     }
+
 
     public void DoHero(Player player)
     {
@@ -228,6 +248,160 @@ public class ArenaEntity
     {
         _path = path;
     }
+
+
+    private void SetDamage(int damage)
+    {
+        Data.totalHP -= damage;
+        if (Death)
+        {
+            Data.totalHP = 0;
+            _arenaManager.ArenaQueue.RemoveEntity(this);
+
+            ArenaMonoBehavior.RunDeath();
+            OccupiedNode.SetDeathedNode(this);
+            OccupiedNode.SetOcuppiedUnit(null);
+            if (RelatedNode != null)
+            {
+                RelatedNode.SetDeathedNode(this);
+                RelatedNode.SetOcuppiedUnit(null);
+            }
+        }
+        Data.quantity = (int)Math.Ceiling((double)Data.totalHP / (double)Data.HP);
+        OnChangeParamsCreature?.Invoke();
+    }
+
+    private void CalculateAttack(GridArenaNode nodeFromAttack, GridArenaNode nodeToAttack)
+    {
+        var randomDamage = new System.Random();
+        int totalDamage = 0;
+        if (Data.quantity <= 10)
+        {
+            for (int i = 0; i < Data.quantity; i++)
+            {
+                totalDamage += randomDamage.Next(Data.damageMin, Data.damageMax);
+            }
+        }
+        else
+        {
+            int totalRandomDamage = 0;
+            for (int i = 0; i < 10; i++)
+            {
+                totalRandomDamage += randomDamage.Next(Data.damageMin, Data.damageMax);
+            }
+            totalDamage = totalRandomDamage * (Data.quantity / 10);
+        }
+
+        Debug.Log($"{Entity.ScriptableDataAttribute.name} run damage {totalDamage}");
+        var entityForAttack = nodeToAttack.OccupiedUnit;
+        entityForAttack.SetDamage(totalDamage);
+    }
+
+    internal async UniTask GoAttack(GridArenaNode nodeFromAttack, GridArenaNode nodeToAttack)
+    {
+        var entityForAttack = nodeToAttack.OccupiedUnit;
+        var typeAttack = _arenaManager.ArenaQueue.activeEntity.arenaEntity.Data.typeAttack;
+        if (typeAttack == TypeAttack.Attack)
+        {
+            // Debug.Log($"Attack [{this.Entity.ScriptableDataAttribute.name}] / [{entityForAttack.Entity.ScriptableDataAttribute.name}]");
+
+            for (int i = 0; i < Data.countAttack; i++)
+            {
+                if (
+                    nodeToAttack.OccupiedUnit != null
+                    && !nodeToAttack.OccupiedUnit.Death
+                    && !Death
+                    )
+                {
+                    await ArenaMonoBehavior.RunAttack(nodeFromAttack, nodeToAttack);
+                    CalculateAttack(nodeFromAttack, nodeToAttack);
+                    if (
+                        nodeToAttack != OccupiedNode
+                        && nodeToAttack.OccupiedUnit != null
+                        && nodeToAttack.OccupiedUnit.Data.counterAttack > 0
+                        && !Death
+                        )
+                    {
+                        await nodeToAttack.OccupiedUnit.GoCounterAttack(nodeToAttack, nodeFromAttack);
+                    }
+                }
+            }
+        }
+        else if (typeAttack == TypeAttack.AttackShoot)
+        {
+            // Debug.Log($"ShootAttack [{this.Entity.ScriptableDataAttribute.name}] / [{entityForAttack.Entity.ScriptableDataAttribute.name}]");
+
+            for (int i = 0; i < Data.countAttack; i++)
+            {
+                if (
+                    nodeToAttack.OccupiedUnit != null
+                    && !nodeToAttack.OccupiedUnit.Death
+                    && !Death
+                    )
+                {
+                    await ArenaMonoBehavior.RunAttackShoot(nodeToAttack);
+                    CalculateAttack(nodeFromAttack, nodeToAttack);
+                }
+            }
+        }
+    }
+
+    internal async UniTask GoRunSpell()
+    {
+        Debug.Log("GoRunSpell");
+        var activeSpell = _arenaManager.ArenaQueue.ActiveHero != null
+            ? _arenaManager.ArenaQueue.ActiveHero.Data.SpellBook.ChoosedSpell
+            : null;
+
+        Addressables.InstantiateAsync(
+            activeSpell.AnimatePrefab,
+            new Vector3(0, 1, 0),
+            Quaternion.identity,
+            ArenaMonoBehavior.transform
+            ).Completed += RunSpell;
+
+        await UniTask.Delay(1);
+    }
+
+    public async virtual void RunSpell(AsyncOperationHandle<GameObject> handle)
+    {
+        if (handle.Status == AsyncOperationStatus.Succeeded)
+        {
+            Debug.Log($"Run spell!");
+            handle.Result.gameObject.transform.localPosition = new Vector3(0, 1, 0);
+            var choosedSpell = _arenaManager.ArenaQueue.ActiveHero.Data.SpellBook.ChoosedSpell;
+            await choosedSpell.Effect.AddEffect(this);
+            Data.SpellsState.Add(new SpellStateItem()
+            {
+                Spell = choosedSpell,
+                round = 1
+            });
+            await UniTask.Delay(1000);
+            Addressables.Release(handle);
+            _arenaManager.ArenaQueue.ActiveHero.Data.SpellBook.ChooseSpell(null);
+            OnChangeParamsCreature?.Invoke();
+        }
+        else
+        {
+            Debug.LogError($"Error Load prefab::: {handle.Status}");
+        }
+    }
+
+    internal async UniTask GoCounterAttack(GridArenaNode nodeFromAttack, GridArenaNode nodeToAttack)
+    {
+        if (!Death)
+        {
+            await ArenaMonoBehavior.RunAttack(nodeFromAttack, nodeToAttack);
+            CalculateAttack(nodeFromAttack, nodeToAttack);
+            Data.counterAttack -= 1;
+        }
+    }
+
+    internal async UniTask RunGettingHit(GridArenaNode attackNode)
+    {
+        await ArenaMonoBehavior.RunGettingHit(attackNode);
+    }
+
 
     #region CreateDestroy
     public void DestroyMapObject()
@@ -286,112 +460,5 @@ public class ArenaEntity
             Debug.LogError($"Error Load prefab::: {handle.Status}");
         }
     }
-
-    private void SetDamage(int damage)
-    {
-        Data.totalHP -= damage;
-        if (Death)
-        {
-            Data.totalHP = 0;
-            _arenaManager.ArenaQueue.RemoveEntity(this);
-
-            ArenaMonoBehavior.RunDeath();
-            OccupiedNode.SetDeathedNode(this);
-            OccupiedNode.SetOcuppiedUnit(null);
-            if (RelatedNode != null)
-            {
-                RelatedNode.SetDeathedNode(this);
-                RelatedNode.SetOcuppiedUnit(null);
-            }
-            // if (_arenaManager.ArenaQueue.activeEntity.arenaEntity == this)
-            // {
-            //     _arenaManager.NextCreature(false);
-            // }
-        }
-        Data.quantity = (int)Math.Ceiling((double)Data.totalHP / (double)Data.HP);
-        OnChangeParamsCreature?.Invoke();
-    }
-
-    private void CalculateAttack(GridArenaNode nodeFromAttack, GridArenaNode nodeToAttack)
-    {
-        var entityForAttack = nodeToAttack.OccupiedUnit;
-        var totalDamage = this.Data.damageMax * ((EntityCreature)this.Entity).Data.value;
-        entityForAttack.SetDamage(totalDamage);
-    }
-
-    internal async UniTask GoAttack(GridArenaNode nodeFromAttack, GridArenaNode nodeToAttack)
-    {
-        var entityForAttack = nodeToAttack.OccupiedUnit;
-        if (_arenaManager.ArenaQueue.activeEntity.arenaEntity.Data.typeAttack == TypeAttack.Attack)
-        {
-            // Debug.Log($"Attack [{this.Entity.ScriptableDataAttribute.name}] / [{entityForAttack.Entity.ScriptableDataAttribute.name}]");
-
-            for (int i = 0; i < Data.countAttack; i++)
-            {
-                if (
-                    nodeToAttack.OccupiedUnit != null
-                    && !nodeToAttack.OccupiedUnit.Death
-                    && !Death
-                    )
-                {
-                    await ArenaMonoBehavior.RunAttack(nodeFromAttack, nodeToAttack);
-                    CalculateAttack(nodeFromAttack, nodeToAttack);
-                    if (
-                        nodeToAttack != OccupiedNode
-                        && nodeToAttack.OccupiedUnit != null
-                        && nodeToAttack.OccupiedUnit.Data.counterAttack > 0
-                        && !Death
-                        )
-                    {
-                        await nodeToAttack.OccupiedUnit.GoCounterAttack(nodeToAttack, nodeFromAttack);
-                    }
-                }
-            }
-        }
-        else
-        {
-            // Debug.Log($"ShootAttack [{this.Entity.ScriptableDataAttribute.name}] / [{entityForAttack.Entity.ScriptableDataAttribute.name}]");
-
-            for (int i = 0; i < Data.countAttack; i++)
-            {
-                if (
-                    nodeToAttack.OccupiedUnit != null
-                    && !nodeToAttack.OccupiedUnit.Death
-                    && !Death
-                    )
-                {
-                    await ArenaMonoBehavior.RunAttackShoot(nodeToAttack);
-                    CalculateAttack(nodeFromAttack, nodeToAttack);
-                }
-            }
-        }
-    }
-
-    internal async UniTask GoCounterAttack(GridArenaNode nodeFromAttack, GridArenaNode nodeToAttack)
-    {
-        if (!Death)
-        {
-            await ArenaMonoBehavior.RunAttack(nodeFromAttack, nodeToAttack);
-            CalculateAttack(nodeFromAttack, nodeToAttack);
-            Data.counterAttack -= 1;
-        }
-    }
-
-    internal async UniTask RunGettingHit(GridArenaNode attackNode)
-    {
-
-        await ArenaMonoBehavior.RunGettingHit(attackNode);
-        // await UniTask.Delay(1);
-    }
-
-    // internal async Task GoAttackShoot(GridArenaNode nodeForAttack)
-    // {
-    //     var entityForAttack = nodeForAttack.OccupiedUnit;
-    //     Debug.Log($"ShootAttack [{this.Entity.ScriptableDataAttribute.name}] / [{entityForAttack.Entity.ScriptableDataAttribute.name}]");
-
-    //     await ArenaMonoBehavior.RunAttackShoot(nodeForAttack);
-
-    //     await UniTask.Delay(1);
-    // }
     #endregion
 }

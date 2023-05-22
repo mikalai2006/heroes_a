@@ -23,7 +23,9 @@ public class UIArena : UILocaleBase
     [SerializeField] private VisualTreeAsset _templateShortSpellInfo;
     [SerializeField] private UnityEngine.UI.Image _bgImage;
 
-    public static event Action<bool> OnNextCreature;
+    public static event Action<bool, bool> OnNextCreature;
+
+    public static event Action OnCancelSpell;
     public static event Action OnOpenSpellBook;
     public static event Action OnClickAttack;
 
@@ -42,7 +44,6 @@ public class UIArena : UILocaleBase
     private AsyncOperationHandle<ScriptableEntityTown> _asset;
     private string textMoveCreature;
     private string textAttackedCreature;
-
 
     private void Awake()
     {
@@ -136,26 +137,26 @@ public class UIArena : UILocaleBase
 
     private void ShowSpellInfo()
     {
+        if (arenaManager.ArenaQueue.ActiveHero.Data.SpellBook.ChoosedSpell == null)
+        {
+            return;
+        }
         DrawShortSpellInfo();
         base.Localize(_box);
     }
 
     private void DrawShortSpellInfo()
     {
-        if (arenaManager.ArenaQueue.ActiveHero.Data.SpellBook.ChoosedSpell == null)
-        {
-            return;
-        }
         var activeEntity = arenaManager.ArenaQueue.activeEntity;
         if (activeEntity.arenaEntity.TypeArenaPlayer == TypeArenaPlayer.Left)
         {
             _helpLeftCreature.style.display = DisplayStyle.Flex;
-            DrawShortSpell(_leftSide, activeEntity.arenaEntity);
+            DrawShortSpell(_leftSide.Q<VisualElement>("Anymore"), activeEntity.arenaEntity);
         }
         else
         {
             _helpRightCreature.style.display = DisplayStyle.Flex;
-            DrawShortSpell(_rightSide, activeEntity.arenaEntity);
+            DrawShortSpell(_rightSide.Q<VisualElement>("Anymore"), activeEntity.arenaEntity);
         }
     }
 
@@ -174,6 +175,7 @@ public class UIArena : UILocaleBase
                 await AudioManager.Instance.Click();
                 spellBook.ChooseSpell(null);
                 box.Remove(boxSpell);
+                OnCancelSpell?.Invoke();
             };
             box.Add(boxSpell);
         }
@@ -250,20 +252,24 @@ public class UIArena : UILocaleBase
 
     private void DrawInfo()
     {
+        _leftSide.Q<VisualElement>("Anymore").Clear();
+        _rightSide.Q<VisualElement>("Anymore").Clear();
+
         DrawQueue();
         ChangeStatusButtonAttack();
         DrawHelpCreature();
+        // ShowSpellInfo();
     }
 
     private void OnClickDefense()
     {
-        OnNextCreature?.Invoke(false);
+        OnNextCreature?.Invoke(false, true);
         DrawInfo();
     }
 
     private void OnClickWait()
     {
-        OnNextCreature?.Invoke(true);
+        OnNextCreature?.Invoke(true, false);
         DrawInfo();
     }
 
@@ -287,6 +293,7 @@ public class UIArena : UILocaleBase
 
     private void DrawHelpCreature()
     {
+
         _helpLeftCreature.style.display = DisplayStyle.None;
         _helpRightCreature.style.display = DisplayStyle.None;
 

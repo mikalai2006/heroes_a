@@ -25,24 +25,33 @@ public class ArenaQueue
         return ListEntities;
     }
 
-    public void NextCreature(bool wait)
+    public void NextCreature(bool wait, bool def)
     {
         if (this.activeEntity.arenaEntity != null && !this.activeEntity.arenaEntity.Death)
         {
             ListEntities.Remove(activeEntity);
-            if (wait)
+            if (def)
+            {
+                activeEntity.arenaEntity.Data.isDefense = true;
+            }
+            else
             {
                 activeEntity.arenaEntity.Data.isDefense = false;
+            }
+            if (wait)
+            {
+                // activeEntity.arenaEntity.Data.isDefense = false;
                 var allRoundItems = ListEntities.Where(t => t.round == activeEntity.round);
                 var indexLastInRound = allRoundItems.Count();
                 ListEntities.Insert(indexLastInRound, activeEntity);
             }
             else
             {
-                activeEntity.arenaEntity.Data.isDefense = true;
+                // activeEntity.arenaEntity.Data.isDefense = false;
                 activeEntity.round += 1;
                 ListEntities.Add(activeEntity);
             }
+
         }
 
         activeEntity = ListEntities.ElementAt(0);

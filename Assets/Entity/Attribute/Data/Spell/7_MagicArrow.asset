@@ -32,18 +32,29 @@ MonoBehaviour:
       m_LocalVariables: []
     description:
       m_TableReference:
-        m_TableCollectionName: GUID:d70741e361221cc41926374ef28f7c49
+        m_TableCollectionName: 
       m_TableEntryReference:
-        m_KeyId: 51943473152
+        m_KeyId: 0
         m_Key: 
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
   MapSprite: {fileID: -1006131333, guid: b07b1c1afdc21314e88a7a2e04cae4b9, type: 3}
   SchoolMagic: {fileID: 11400000, guid: 31a94fbbb40b1054c9afac5eb9ba992f, type: 2}
+  AnimatePrefab:
+    m_AssetGUID: 10eff8c1204e18d419fb7e54dbe747af
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  AnimateSound:
+    m_AssetGUID: 
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
   level: 1
   typeSpell: 0
   typeSpellDuration: 0
+  typeAchievement: 1
   LevelData:
   - cost: 5
     Effect: 10
