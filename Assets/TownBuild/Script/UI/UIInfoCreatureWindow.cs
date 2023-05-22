@@ -1,5 +1,7 @@
 using System.Threading.Tasks;
 
+using Cysharp.Threading.Tasks;
+
 using UnityEngine.UIElements;
 
 public class UIInfoCreatureWindow : UIDialogBaseWindow
@@ -52,6 +54,9 @@ public class UIInfoCreatureWindow : UIDialogBaseWindow
         root.Q<Label>("DamageValue").text = string.Format("{0}-{1}", parameters.DamageMin, parameters.DamageMax);
         root.Q<Label>("HPValue").text = parameters.HP.ToString();
         root.Q<Label>("SpeedValue").text = parameters.Speed.ToString();
+
+        VisualElement elementSprite = root.Q<VisualElement>("AnimationBlok");
+
     }
 }
 

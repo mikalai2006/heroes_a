@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14d91db6ddbb6e346a9b5746589643a9, type: 3}
+  m_Script: {fileID: 11500000, guid: 1b2508c82744b5c49ade48e9211565d7, type: 3}
   m_Name: 1_Bless
   m_EditorClassIdentifier: 
   idObject: spell.bless
@@ -165,7 +165,7 @@ MonoBehaviour:
   - Item: 20
     probability: 0.05000000074505806
   unAvailability: 
-  Effect: {fileID: 11400000, guid: c245b838a865960479034b75f0a053d9, type: 2}
+  CounterSpell: {fileID: 11400000, guid: e9c45497960076d4c8496681b5a56557, type: 2}
   references:
     version: 2
     RefIds: []

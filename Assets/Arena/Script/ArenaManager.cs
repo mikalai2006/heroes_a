@@ -46,6 +46,7 @@ public class ArenaManager : MonoBehaviour
     // public static event Action OnSetNextCreature;
     public static event Action OnChangeNodesForAttack;
     public static event Action OnAutoNextCreature;
+    public static event Action OnChooseCreatureForSpell;
     [SerializeField] private int width = 15;
     [SerializeField] private int height = 11;
     [SerializeField] private Tilemap _tileMapArenaGrid;
@@ -125,7 +126,7 @@ public class ArenaManager : MonoBehaviour
         UIArena.OnOpenSpellBook += OpenSpellBook;
         UIArena.OnClickAttack += ActionClickButton;
         UIDialogSpellBook.OnClickSpell += ChooseSpell;
-        UIArena.OnCancelSpell += CancelSpell;
+        UIArena.OnCancelSpell += EndSpell;
 
         CreateArena();
 
@@ -155,7 +156,7 @@ public class ArenaManager : MonoBehaviour
         UIArena.OnOpenSpellBook -= OpenSpellBook;
         UIArena.OnClickAttack -= ActionClickButton;
         UIDialogSpellBook.OnClickSpell -= ChooseSpell;
-        UIArena.OnCancelSpell -= CancelSpell;
+        UIArena.OnCancelSpell -= EndSpell;
     }
 
     private async void OpenSpellBook()
@@ -187,7 +188,7 @@ public class ArenaManager : MonoBehaviour
         ResetArenaState();
         DistanceNodes = GridArenaHelper.GetNeighboursAtDistance(
             activeArenaEntity.OccupiedNode,
-            activeArenaEntity.Data.speed
+            activeArenaEntity.Speed
             );
 
         _gridArenaHelper.CreateWeightCellByX(DistanceNodes, activeArenaEntity.OccupiedNode);
@@ -444,7 +445,7 @@ public class ArenaManager : MonoBehaviour
                         if (ArenaQueue.activeEntity.arenaEntity.Data.shoots > 0 && ArenaQueue.activeEntity.arenaEntity.Data.typeAttack == TypeAttack.AttackShoot)
                         {
                             // check distance.
-                            if (nodesForAttack.nodeToAttack.DistanceTo(ArenaQueue.activeEntity.arenaEntity.OccupiedNode) <= ArenaQueue.activeEntity.arenaEntity.Data.speed)
+                            if (nodesForAttack.nodeToAttack.DistanceTo(ArenaQueue.activeEntity.arenaEntity.OccupiedNode) <= ArenaQueue.activeEntity.arenaEntity.Speed)
                             {
                                 ruleCursor = CursorRule.Shoot;
                             }
@@ -509,9 +510,9 @@ public class ArenaManager : MonoBehaviour
 
     public async UniTask ClickButton()
     {
+        Debug.Log("ClickButton");
         await AudioManager.Instance.Click();
         if (activeCursor == CursorRule.NotAllow) return;
-        Debug.Log($"Click button:::");
 
         if (
             (AttackedCreature != null && ArenaQueue.activeEntity.arenaEntity.Data.typeAttack == TypeAttack.Attack)
@@ -546,6 +547,7 @@ public class ArenaManager : MonoBehaviour
 
     public async UniTask ClickArena(Vector3Int positionClick)
     {
+        Debug.Log("ClickArena");
         await AudioManager.Instance.Click();
 
         GridArenaNode node = GridArenaHelper.GridTile.GetGridObject(new Vector3Int(positionClick.x, positionClick.y));
@@ -557,6 +559,7 @@ public class ArenaManager : MonoBehaviour
         {
             clickedNode = node;
             DrawButtonAction();
+            OnChooseCreatureForSpell?.Invoke();
             return;
         }
 
@@ -894,7 +897,7 @@ public class ArenaManager : MonoBehaviour
         }
     }
 
-    private void ChooseSpell()
+    private async void ChooseSpell()
     {
         ClearAttackNode();
         _tileMapAllowAttack.ClearAllTiles();
@@ -919,13 +922,38 @@ public class ArenaManager : MonoBehaviour
                         activeSpell.typeAchievement == TypeSpellAchievement.Friendly
                         && t.OccupiedUnit.TypeArenaPlayer == ArenaQueue.activeEntity.arenaEntity.TypeArenaPlayer
                     )
+                    || activeSpell.typeAchievement == TypeSpellAchievement.All
                 )
-                );
+            );
 
         foreach (var node in occupiedNodes)
         {
-            FightingOccupiedNodes.Add(node);
-            SetColorAllowFightNode(node, LevelManager.Instance.ConfigGameSettings.colorNodeRunSpell);
+            if (!node.StateArenaNode.HasFlag(StateArenaNode.Related))
+            {
+                FightingOccupiedNodes.Add(node);
+                SetColorAllowFightNode(node, LevelManager.Instance.ConfigGameSettings.colorNodeRunSpell);
+            }
+        }
+
+        if (ArenaQueue.ActiveHero != null)
+        {
+            // if expert school, fun for all.
+            var baseSSkill = activeSpell.SchoolMagic.BaseSecondarySkill;
+            if (ArenaQueue.ActiveHero.Data.SSkills.ContainsKey(baseSSkill.TypeTwoSkill))
+            {
+                var dataSSkill = ArenaQueue.ActiveHero.Data.SSkills[baseSSkill.TypeTwoSkill];
+                if (dataSSkill.level >= 2)
+                {
+                    List<UniTask> listTasks = new();
+                    for (int i = 0; i < FightingOccupiedNodes.Count; i++)
+                    {
+                        listTasks.Add(FightingOccupiedNodes.ElementAt(i).OccupiedUnit.RunSpell());
+                    }
+                    await UniTask.WhenAll(listTasks);
+                    ArenaQueue.Refresh();
+                    EndSpell();
+                }
+            }
         }
     }
 
@@ -948,22 +976,28 @@ public class ArenaManager : MonoBehaviour
             _buttonAction.SetActive(false);
             _buttonSpell.transform.position = positionButton;
         }
+        OnChooseCreatureForSpell?.Invoke();
     }
 
     private async UniTask ClickButtonSpell()
     {
+        Debug.Log("ClickButtonSpell");
+
         await AudioManager.Instance.Click();
         _buttonSpell.SetActive(false);
-        await AttackedCreature.GoRunSpell();
-        ArenaQueue.ActiveHero.Data.SpellBook.ChooseSpell(null);
-        await GoEntity();
+        await AttackedCreature.RunSpell();
+        // ArenaQueue.ActiveHero.Data.SpellBook.ChooseSpell(null);
+        // await GoEntity();
+        ArenaQueue.Refresh();
+        EndSpell();
     }
 
-    private async void CancelSpell()
+    private async void EndSpell()
     {
         _buttonSpell.SetActive(false);
         ArenaQueue.ActiveHero.Data.SpellBook.ChooseSpell(null);
         await GoEntity();
+        OnAutoNextCreature?.Invoke();
     }
 
     // private void DrawText(string text)

@@ -419,6 +419,22 @@ MonoBehaviour:
     m_Key: choosenodeforspell
     m_Metadata:
       m_Items: []
+  - m_Id: 20282310353125376
+    m_Key: apply
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20288399492677632
+    m_Key: runspell
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20289142773678080
+    m_Key: for
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20463998861475840
+    m_Key: hpa
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

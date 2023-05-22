@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14d91db6ddbb6e346a9b5746589643a9, type: 3}
+  m_Script: {fileID: 11500000, guid: d4e4e37b0d821434d83cc7987de14fc4, type: 3}
   m_Name: 3_Cure
   m_EditorClassIdentifier: 
   idObject: spell.cure
@@ -41,9 +41,20 @@ MonoBehaviour:
       m_LocalVariables: []
   MapSprite: {fileID: 976531938, guid: b07b1c1afdc21314e88a7a2e04cae4b9, type: 3}
   SchoolMagic: {fileID: 11400000, guid: 4d98384254a7e794eb2b1cd4b94312ff, type: 2}
+  AnimatePrefab:
+    m_AssetGUID: 2244839d9f577e146a14683ac6f631cc
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  AnimateSound:
+    m_AssetGUID: 
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
   level: 1
   typeSpell: 0
   typeSpellDuration: 0
+  typeAchievement: 0
   LevelData:
   - cost: 6
     Effect: 10
@@ -154,7 +165,7 @@ MonoBehaviour:
   - Item: 20
     probability: 0.05000000074505806
   unAvailability: 
-  Effect: {fileID: 0}
+  CounterSpell: {fileID: 0}
   references:
     version: 2
     RefIds: []

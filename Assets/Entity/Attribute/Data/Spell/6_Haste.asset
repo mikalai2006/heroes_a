@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14d91db6ddbb6e346a9b5746589643a9, type: 3}
+  m_Script: {fileID: 11500000, guid: 564424f0d2efabb43bae79a93047d821, type: 3}
   m_Name: 6_Haste
   m_EditorClassIdentifier: 
   idObject: spell.haste
@@ -41,9 +41,20 @@ MonoBehaviour:
       m_LocalVariables: []
   MapSprite: {fileID: 705946128, guid: b07b1c1afdc21314e88a7a2e04cae4b9, type: 3}
   SchoolMagic: {fileID: 11400000, guid: 31a94fbbb40b1054c9afac5eb9ba992f, type: 2}
+  AnimatePrefab:
+    m_AssetGUID: 322cb19037db2a143bea77216d6484a9
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  AnimateSound:
+    m_AssetGUID: 
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
   level: 1
   typeSpell: 0
   typeSpellDuration: 1
+  typeAchievement: 0
   LevelData:
   - cost: 6
     Effect: 3
@@ -154,7 +165,7 @@ MonoBehaviour:
   - Item: 20
     probability: 0.10000000149011612
   unAvailability: 
-  Effect: {fileID: 0}
+  CounterSpell: {fileID: 11400000, guid: 68fa24297844d904f9b28c1ccb3707f8, type: 2}
   references:
     version: 2
     RefIds: []

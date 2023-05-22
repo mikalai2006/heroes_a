@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14d91db6ddbb6e346a9b5746589643a9, type: 3}
+  m_Script: {fileID: 11500000, guid: bf19b584bd7ee09449e1748bbe320747, type: 3}
   m_Name: 7_MagicArrow
   m_EditorClassIdentifier: 
   idObject: spell.magicarrow
@@ -42,7 +42,7 @@ MonoBehaviour:
   MapSprite: {fileID: -1006131333, guid: b07b1c1afdc21314e88a7a2e04cae4b9, type: 3}
   SchoolMagic: {fileID: 11400000, guid: 31a94fbbb40b1054c9afac5eb9ba992f, type: 2}
   AnimatePrefab:
-    m_AssetGUID: 10eff8c1204e18d419fb7e54dbe747af
+    m_AssetGUID: 85b020f40018dbd43a985a2b3a8ac3b2
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
@@ -165,7 +165,7 @@ MonoBehaviour:
   - Item: 60
     probability: 0.30000001192092896
   unAvailability: 
-  Effect: {fileID: 0}
+  CounterSpell: {fileID: 0}
   references:
     version: 2
     RefIds: []

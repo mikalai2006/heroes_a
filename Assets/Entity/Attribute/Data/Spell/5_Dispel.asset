@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14d91db6ddbb6e346a9b5746589643a9, type: 3}
+  m_Script: {fileID: 11500000, guid: 61c2146e56b3a9d47b0576fa53eeb41a, type: 3}
   m_Name: 5_Dispel
   m_EditorClassIdentifier: 
   idObject: spell.dispel
@@ -41,9 +41,20 @@ MonoBehaviour:
       m_LocalVariables: []
   MapSprite: {fileID: -1300729089, guid: b07b1c1afdc21314e88a7a2e04cae4b9, type: 3}
   SchoolMagic: {fileID: 11400000, guid: 4d98384254a7e794eb2b1cd4b94312ff, type: 2}
+  AnimatePrefab:
+    m_AssetGUID: c75119484c680734fb0e1f9496b3ad48
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  AnimateSound:
+    m_AssetGUID: 
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
   level: 1
   typeSpell: 0
   typeSpellDuration: 0
+  typeAchievement: 2
   LevelData:
   - cost: 5
     Effect: 0
@@ -154,7 +165,7 @@ MonoBehaviour:
   - Item: 20
     probability: 0.10000000149011612
   unAvailability: 
-  Effect: {fileID: 0}
+  CounterSpell: {fileID: 0}
   references:
     version: 2
     RefIds: []

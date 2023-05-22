@@ -41,6 +41,7 @@ public class ArenaQueue
             if (wait)
             {
                 // activeEntity.arenaEntity.Data.isDefense = false;
+                activeEntity.arenaEntity.Data.waitTick = 1;
                 var allRoundItems = ListEntities.Where(t => t.round == activeEntity.round);
                 var indexLastInRound = allRoundItems.Count();
                 ListEntities.Insert(indexLastInRound, activeEntity);
@@ -49,6 +50,7 @@ public class ArenaQueue
             {
                 // activeEntity.arenaEntity.Data.isDefense = false;
                 activeEntity.round += 1;
+                activeEntity.arenaEntity.Data.waitTick = 0;
                 ListEntities.Add(activeEntity);
             }
 
@@ -73,9 +75,10 @@ public class ArenaQueue
             round = 1
         };
         ListEntities.Add(item);
-        ListEntities = ListEntities
-            .OrderBy(t => -((ScriptableAttributeCreature)t.arenaEntity.Entity.ScriptableDataAttribute).CreatureParams.Speed)
-            .ToList();
+        // ListEntities = ListEntities
+        //     .OrderBy(t => -((ScriptableAttributeCreature)t.arenaEntity.Entity.ScriptableDataAttribute).CreatureParams.Speed)
+        //     .ToList();
+        Refresh();
     }
 
     internal void RemoveEntity(ArenaEntity arenaEntity)
@@ -85,5 +88,15 @@ public class ArenaQueue
         {
             ListEntities.RemoveAt(index);
         }
+    }
+
+    public List<QueueItem> Refresh()
+    {
+        ListEntities = ListEntities
+            .OrderBy(t => t.round)
+            .ThenBy(t => t.arenaEntity.Data.waitTick)
+            .ThenBy(t => -t.arenaEntity.Speed)
+            .ToList();
+        return ListEntities;
     }
 }

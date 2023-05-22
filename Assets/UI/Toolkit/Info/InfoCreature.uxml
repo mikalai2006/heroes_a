@@ -6,7 +6,7 @@
     <ui:VisualElement name="CreatureInfo" class="text-lg text-secondary" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); background-image: url(&apos;project://database/Assets/UI/Sprites/Bg.png?fileID=2800000&amp;guid=0641c76439a64674aa800f9e3d79c6a4&amp;type=3#Bg&apos;); -unity-background-scale-mode: scale-and-crop;">
         <ui:VisualElement name="CreatureRow" style="flex-direction: row; flex-grow: 1;">
             <ui:VisualElement class="w-25 h-full mr-2">
-                <ui:VisualElement name="Sprite" class="border-2 w-25 h-full w-full border-color" />
+                <ui:VisualElement name="AnimationBlok" class="border-2 w-25 h-full w-full border-color" />
             </ui:VisualElement>
             <ui:VisualElement class="w-75" style="flex-grow: 1;">
                 <ui:VisualElement name="Attack" class="box_shadow info_row" style="flex-direction: row; align-items: center; flex-grow: 1;">

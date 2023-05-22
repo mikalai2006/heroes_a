@@ -74,7 +74,7 @@ MonoBehaviour:
     max: 3000
   - creature: {fileID: 11400000, guid: a1cc26c5ae4169645b7390f64d0d492a, type: 2}
     min: 3
-    max: 3000
+    max: 30
   StartSpells:
   - {fileID: 11400000, guid: 08c84490596087042ad4ccae387cb166, type: 2}
   - {fileID: 11400000, guid: f0b6ce2de2ab0db4ea5d460c4e7461df, type: 2}
