@@ -55,20 +55,20 @@ MonoBehaviour:
     value: 0
   - SecondarySkill: {fileID: 11400000, guid: 1d1748c1f68aa4a46b72dc60507f14b6, type: 2}
     value: 0
-  - SecondarySkill: {fileID: 11400000, guid: d933b47acd8e2fa4daf7df86bf56bda8, type: 2}
+  - SecondarySkill: {fileID: 11400000, guid: f2d574356e14eb74f89ac88c56b5df18, type: 2}
     value: 2
   - SecondarySkill: {fileID: 11400000, guid: 470e94f5e23819448ac29936897125d9, type: 2}
     value: 0
-  - SecondarySkill: {fileID: 11400000, guid: a5a6f7166a0b39c43b0ab3b00b913ec0, type: 2}
-    value: 0
-  - SecondarySkill: {fileID: 11400000, guid: 0ae481169a28e984d98c9992a7ae218b, type: 2}
-    value: 1
-  - SecondarySkill: {fileID: 11400000, guid: cb02e83a41f24fe408c650a8be226e5d, type: 2}
-    value: 1
+  - SecondarySkill: {fileID: 11400000, guid: 2c060e15242dcbd45808ada6fa521278, type: 2}
+    value: 2
+  - SecondarySkill: {fileID: 11400000, guid: fa3203a5ee7c3ff4ebb5cca62988acab, type: 2}
+    value: 2
+  - SecondarySkill: {fileID: 11400000, guid: 7f7e8be60bed4304a92c4341542e5e5e, type: 2}
+    value: 2
   StartCreatures:
   - creature: {fileID: 11400000, guid: 45a286b764d7a864683d354b9e7d65fb, type: 2}
     min: 10
-    max: 2000
+    max: 20
   - creature: {fileID: 11400000, guid: 7d1983f083e2c9a49bc2725df7d9691b, type: 2}
     min: 4
     max: 700
@@ -89,8 +89,17 @@ MonoBehaviour:
     max: 3000
   StartSpells:
   - {fileID: 11400000, guid: 96ef36e9d522f3344b7a02ab0aa328cd, type: 2}
+  - {fileID: 11400000, guid: 80712bd7daac1e7429d3b7cfb83f0e7b, type: 2}
+  - {fileID: 11400000, guid: ec43a0e6bcfc27343ad38114d88b992c, type: 2}
+  - {fileID: 11400000, guid: e9c45497960076d4c8496681b5a56557, type: 2}
+  - {fileID: 11400000, guid: d1f1f4b937c3509409028db57aa726d7, type: 2}
   - {fileID: 11400000, guid: a4de2eed50695aa40a49254cbfea6906, type: 2}
+  - {fileID: 11400000, guid: 08c84490596087042ad4ccae387cb166, type: 2}
+  - {fileID: 11400000, guid: 3d525652233fe48499713f561aad9bd7, type: 2}
+  - {fileID: 11400000, guid: ddef3f5940088704baf2d66b876732de, type: 2}
+  - {fileID: 11400000, guid: ca1818cbcbc1e0442b05214da84e9117, type: 2}
   - {fileID: 11400000, guid: 68fa24297844d904f9b28c1ccb3707f8, type: 2}
+  - {fileID: 11400000, guid: 8cfccb94b2d3ce143a2c87b3ae6f6985, type: 2}
   references:
     version: 2
     RefIds: []

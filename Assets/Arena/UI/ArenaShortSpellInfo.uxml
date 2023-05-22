@@ -3,16 +3,24 @@
     <Style src="project://database/Assets/UI/Toolkit/Base.uss?fileID=7433441132597879392&amp;guid=fa07b064290e7384d9ad2e26e79f5953&amp;type=3#Base" />
     <ui:VisualElement name="Info" class="bg border-1 border-color">
         <ui:VisualElement style="flex-grow: 1;">
-            <ui:Label tabindex="-1" text="#choosenodeforspell" display-tooltip-when-elided="true" name="Title" class="p-05 m-0" style="white-space: normal;" />
+            <ui:Label tabindex="-1" text="#runspell" display-tooltip-when-elided="true" name="Title" class="p-05 m-0 text-center" style="white-space: normal;" />
         </ui:VisualElement>
-        <ui:VisualElement>
-            <ui:VisualElement class="p-1 bg" style="align-items: center;">
+        <ui:VisualElement style="justify-content: center;">
+            <ui:VisualElement class="bg" style="align-items: center;">
                 <ui:VisualElement name="Ava" style="background-image: url(&apos;project://database/Assets/UI/Sprites/Spell/Spell_book.png?fileID=740670611&amp;guid=ed47d99f325775447b80057e6e6406ea&amp;type=3#Spell_book_9&apos;); width: 80px; height: 60px;" />
                 <ui:Label tabindex="-1" text="HornedDemon" display-tooltip-when-elided="true" name="Name" class="m-0 p-0 text-sm" style="white-space: normal; -unity-text-align: upper-center;" />
             </ui:VisualElement>
+            <ui:Label tabindex="-1" text="#for" display-tooltip-when-elided="true" name="For" class="p-05 mt-2 text-center text-primary" style="white-space: normal;" />
+            <ui:VisualElement name="CreatureInfo" class="p-1 bg text-primary" style="align-items: center;">
+                <ui:VisualElement name="AvaCreature" style="background-image: url(&apos;project://database/Assets/Creature/Rampart/Prefabs/Unicorn/UnicornMenu.png?fileID=21300000&amp;guid=12c1125c10b5ab24d9ab219cefa4a98b&amp;type=3#UnicornMenu&apos;); width: 58px; height: 64px;" />
+                <ui:Label tabindex="-1" text="HornedDemon" display-tooltip-when-elided="true" name="NameCreature" class="m-0 p-0 text-sm" style="white-space: normal; -unity-text-align: upper-center;" />
+            </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement class="pt-1">
-            <ui:Instance template="Button" name="Button">
+            <ui:Instance template="Button" name="Apply">
+                <AttributeOverrides element-name="Btn" text="#apply" />
+            </ui:Instance>
+            <ui:Instance template="Button" name="Cancel">
                 <AttributeOverrides element-name="Btn" text="#cancel" />
             </ui:Instance>
         </ui:VisualElement>

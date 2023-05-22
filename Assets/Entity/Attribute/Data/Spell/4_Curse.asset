@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14d91db6ddbb6e346a9b5746589643a9, type: 3}
+  m_Script: {fileID: 11500000, guid: 2a375399577ba9f4db17d2a93e3d5f5b, type: 3}
   m_Name: 4_Curse
   m_EditorClassIdentifier: 
   idObject: spell.curse
@@ -41,6 +41,16 @@ MonoBehaviour:
       m_LocalVariables: []
   MapSprite: {fileID: -1282031042, guid: b07b1c1afdc21314e88a7a2e04cae4b9, type: 3}
   SchoolMagic: {fileID: 11400000, guid: 1a4c2e4875f68214c9f5f04508284976, type: 2}
+  AnimatePrefab:
+    m_AssetGUID: 2e0452591af1b4041b8fdd286f1b2d00
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  AnimateSound:
+    m_AssetGUID: 
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
   level: 1
   typeSpell: 0
   typeSpellDuration: 1
@@ -155,7 +165,7 @@ MonoBehaviour:
   - Item: 20
     probability: 0.05000000074505806
   unAvailability: 
-  Effect: {fileID: 0}
+  CounterSpell: {fileID: 11400000, guid: 96ef36e9d522f3344b7a02ab0aa328cd, type: 2}
   references:
     version: 2
     RefIds: []
