@@ -46,7 +46,7 @@ public class GridArenaHelper
         var entityData = ((EntityCreature)startNode.OccupiedUnit.Entity).ConfigAttribute;
         var allowNodes = allowPathNodes == null ? GetNeighboursAtDistance(
             startNode,
-            entityData.CreatureParams.Speed
+            startNode.OccupiedUnit.Speed // entityData.CreatureParams.Speed
             ) : allowPathNodes;
         // _arenaManager.ResetPathColor();
 
@@ -388,13 +388,13 @@ public class GridArenaHelper
         HashSet<GridArenaNode> pathSet = new HashSet<GridArenaNode>();
 
         // var result = new List<GridArenaNode>();
-        var entityData = ((ScriptableAttributeCreature)startNode.OccupiedUnit.Entity.ScriptableDataAttribute);
+        // var entityData = ((ScriptableAttributeCreature)startNode.OccupiedUnit.Entity.ScriptableDataAttribute);
         foreach (var node in allowNodes)
         {
             var path = FindPath(startNode.position, node.position);
             if (
                 path != null
-                && path.Count - 1 <= entityData.CreatureParams.Speed
+                && path.Count - 1 <= startNode.OccupiedUnit.Speed
                 )
             {
                 // result.Add(node);
@@ -412,7 +412,7 @@ public class GridArenaHelper
                     var path = FindPath(startNode.OccupiedUnit.RelatedNode.position, node.position);
                     if (
                         path != null
-                        && path.Count - 1 <= entityData.CreatureParams.Speed
+                        && path.Count - 1 <= startNode.OccupiedUnit.Speed
                         )
                     {
                         // result.Add(node);

@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14d91db6ddbb6e346a9b5746589643a9, type: 3}
+  m_Script: {fileID: 11500000, guid: 0cde7291c44ebcf4383cfd3e681e1409, type: 3}
   m_Name: 11_Slow
   m_EditorClassIdentifier: 
   idObject: spell.slow
@@ -41,6 +41,16 @@ MonoBehaviour:
       m_LocalVariables: []
   MapSprite: {fileID: 111884764, guid: b07b1c1afdc21314e88a7a2e04cae4b9, type: 3}
   SchoolMagic: {fileID: 11400000, guid: 3c19e31280a96cb4f9d6d12af46e376d, type: 2}
+  AnimatePrefab:
+    m_AssetGUID: ee23a6b2f4d1aa143a1865e64642532b
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  AnimateSound:
+    m_AssetGUID: 
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
   level: 1
   typeSpell: 0
   typeSpellDuration: 1
@@ -155,7 +165,7 @@ MonoBehaviour:
   - Item: 20
     probability: 1
   unAvailability: 
-  Effect: {fileID: 0}
+  CounterSpell: {fileID: 11400000, guid: a4de2eed50695aa40a49254cbfea6906, type: 2}
   references:
     version: 2
     RefIds: []

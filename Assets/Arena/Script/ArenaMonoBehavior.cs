@@ -170,10 +170,10 @@ public class ArenaMonoBehavior : MonoBehaviour // , IPointerDownHandler
 
     // }
 
-    private async void ShowDialogInfo()
+    public async void ShowDialogInfo()
     {
         _inputManager.Disable();
-        var dialogWindow = new UIInfoCreatureOperation((EntityCreature)_arenaEntity.Entity);
+        var dialogWindow = new UIInfoCreatureArenaOperation(_arenaEntity);
         var result = await dialogWindow.ShowAndHide();
         if (result.isOk)
         {
@@ -542,6 +542,25 @@ public class ArenaMonoBehavior : MonoBehaviour // , IPointerDownHandler
         }
     }
 
+    internal async UniTask RunGettingHitSpell()
+    {
+        // Animate.
+        string nameAnimDefend = "GettingHit";
+        // if (_arenaEntity.Data.isDefense)
+        // {
+        //     nameAnimDefend = "Defend";
+        // }
+
+        string nameAnimationAttack = string.Format("{0}{1}", _nameCreature, nameAnimDefend);
+
+        _animator.Play(nameAnimationAttack, 0, 0f);
+
+        await UniTask.Delay(200);
+
+        NormalizeDirection();
+        _animator.Play(string.Format("{0}{1}", _nameCreature, "Idle"), 0, 0f);
+    }
+
     internal void RunDeath()
     {
         string nameAnim = "Death";
@@ -551,5 +570,21 @@ public class ArenaMonoBehavior : MonoBehaviour // , IPointerDownHandler
         _animator.Play(nameAnimation, 0, 0f);
         _collider.enabled = false;
         _model.GetComponent<SpriteRenderer>().sortingOrder = -1;
+    }
+
+    public async UniTask ColorPulse(Color color, int count)
+    {
+        var sr = _model.GetComponent<SpriteRenderer>();
+        var startColor = sr.color;
+        var time = 1000 / count;
+        for (int i = 0; i < count; i++)
+        {
+            sr.color = color;
+            await UniTask.Yield();
+            await UniTask.Delay(time);
+            sr.color = startColor;
+            await UniTask.Yield();
+            if (i < count - 1) await UniTask.Delay(time);
+        }
     }
 }

@@ -95,6 +95,18 @@ public class GridArenaNode : IHeapItem<GridArenaNode>
         }
 
     }
+    public void SetRelatedStatus(bool status)
+    {
+        if (status)
+        {
+            StateArenaNode |= StateArenaNode.Related;
+        }
+        else
+        {
+            StateArenaNode ^= StateArenaNode.Related;
+        }
+
+    }
     public void SetOcuppiedUnit(ArenaEntity entity)
     {
         _ocuppiedUnit = entity;

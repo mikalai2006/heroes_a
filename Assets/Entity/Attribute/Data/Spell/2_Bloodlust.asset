@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14d91db6ddbb6e346a9b5746589643a9, type: 3}
+  m_Script: {fileID: 11500000, guid: 6ffd8385a136cb34cacf43bf185b5e0e, type: 3}
   m_Name: 2_Bloodlust
   m_EditorClassIdentifier: 
   idObject: spell.bloodlust

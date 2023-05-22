@@ -36,35 +36,45 @@ public enum TypeAttack
 [Serializable]
 public class ArenaEntityData
 {
+    public int waitTick;
     public TypeAttack typeAttack;
+    public int attack;
+    public Dictionary<ScriptableAttribute, int> AttackModificators = new();
+    public bool isDefense;
+    public int defense;
+    public Dictionary<ScriptableAttribute, int> DefenseModificators = new();
     public int speed;
+    public Dictionary<ScriptableAttribute, int> SpeedModificators = new();
+    public int fireDefense;
+    public Dictionary<ScriptableAttribute, int> FireDefenseModificators = new();
+    public int waterDefense;
+    public Dictionary<ScriptableAttribute, int> WaterDefenseModificators = new();
     public MovementType typeMove;
     public int shoots;
     public int quantity;
-    public bool isDefense;
     public int counterAttack;
     public int countAttack;
     public int damageMin;
     public int damageMax;
+    public Dictionary<ScriptableAttribute, int> DamageModificators = new();
+    public int maxHP;
     public int totalHP;
     public int HP { get; internal set; }
-    public List<SpellStateItem> SpellsState = new();
-}
-
-public struct SpellStateItem
-{
-    public ScriptableAttributeSpell Spell;
-    public int round;
+    // int - quantity round
+    public Dictionary<ScriptableAttributeSpell, int> SpellsState = new();
 }
 
 [Serializable]
 public class ArenaEntity
 {
+    public ArenaEntityData Data = new();
+    public bool Death => Data.totalHP <= 0;
+    public int Speed => Data.speed + Data.SpeedModificators.Values.Sum();
+
+
     private ArenaManager _arenaManager;
     public static event Action OnChangeParamsCreature;
 
-    public ArenaEntityData Data = new();
-    public bool Death => Data.totalHP <= 0;
     [SerializeField] public ScriptableEntity _configData;
     public ScriptableEntity ConfigData => _configData;
     [NonSerialized] public GridArenaNode OccupiedNode = null;
@@ -109,7 +119,9 @@ public class ArenaEntity
         Data.damageMax = creatureData.CreatureParams.DamageMax;
 
         Data.HP = creatureData.CreatureParams.HP;
-        Data.totalHP = creatureData.CreatureParams.HP * ((EntityCreature)Entity).Data.value;
+        Data.totalHP = Data.maxHP = creatureData.CreatureParams.HP * ((EntityCreature)Entity).Data.value;
+
+        Data.attack = creatureData.CreatureParams.Attack;
     }
 
     public void SetRoundData()
@@ -143,6 +155,7 @@ public class ArenaEntity
         if (RelatedNode != null && RelatedNode.OccupiedUnit == this)
         {
             RelatedNode.SetOcuppiedUnit(null);
+            RelatedNode.SetRelatedStatus(false);
             _relatedNode = null;
         }
 
@@ -156,6 +169,7 @@ public class ArenaEntity
             _relatedNode = node.LeftNode;
             // _positionPrefab = node.OccupiedUnit._centerNode + new Vector3(-0.5f, 0, 0);
             RelatedNode.SetOcuppiedUnit(this);
+            RelatedNode.SetRelatedStatus(true);
         }
         else if (
         // Direction == TypeDirection.Left
@@ -167,6 +181,7 @@ public class ArenaEntity
             _relatedNode = node.RightNode;
             // _positionPrefab = node.OccupiedUnit._centerNode + new Vector3(0.5f, 0, 0);
             RelatedNode.SetOcuppiedUnit(this);
+            RelatedNode.SetRelatedStatus(true);
         }
     }
 
@@ -209,6 +224,7 @@ public class ArenaEntity
 
     public async void ClickCreature()
     {
+        Debug.Log("ClickCreature");
         await AudioManager.Instance.Click();
         if (_arenaManager.FightingOccupiedNodes.Contains(OccupiedNode))
         {
@@ -250,7 +266,7 @@ public class ArenaEntity
     }
 
 
-    private void SetDamage(int damage)
+    public void SetDamage(int damage)
     {
         Data.totalHP -= damage;
         if (Death)
@@ -267,7 +283,8 @@ public class ArenaEntity
                 RelatedNode.SetOcuppiedUnit(null);
             }
         }
-        Data.quantity = (int)Math.Ceiling((double)Data.totalHP / (double)Data.HP);
+        Data.quantity = (int)Math.Truncate((double)Data.totalHP / (double)Data.HP);
+        Debug.Log($"Quantity::: quantity={Data.quantity},{Data.totalHP},{Data.HP}");
         OnChangeParamsCreature?.Invoke();
     }
 
@@ -275,11 +292,12 @@ public class ArenaEntity
     {
         var randomDamage = new System.Random();
         int totalDamage = 0;
+        int dopDamage = Data.DamageModificators.Values.Sum();
         if (Data.quantity <= 10)
         {
             for (int i = 0; i < Data.quantity; i++)
             {
-                totalDamage += randomDamage.Next(Data.damageMin, Data.damageMax);
+                totalDamage += randomDamage.Next(Data.damageMin, Data.damageMax) + dopDamage;
             }
         }
         else
@@ -287,9 +305,10 @@ public class ArenaEntity
             int totalRandomDamage = 0;
             for (int i = 0; i < 10; i++)
             {
-                totalRandomDamage += randomDamage.Next(Data.damageMin, Data.damageMax);
+                totalRandomDamage += randomDamage.Next(Data.damageMin, Data.damageMax) + dopDamage;
             }
-            totalDamage = totalRandomDamage * (Data.quantity / 10);
+
+            totalDamage = (int)Math.Ceiling(totalRandomDamage * (Data.quantity / 10.0));
         }
 
         Debug.Log($"{Entity.ScriptableDataAttribute.name} run damage {totalDamage}");
@@ -346,45 +365,67 @@ public class ArenaEntity
         }
     }
 
-    internal async UniTask GoRunSpell()
+    // internal async UniTask GoRunSpell()
+    // {
+    //     Debug.Log("GoRunSpell");
+    //     var activeSpell = _arenaManager.ArenaQueue.ActiveHero != null
+    //         ? _arenaManager.ArenaQueue.ActiveHero.Data.SpellBook.ChoosedSpell
+    //         : null;
+
+    //     if (activeSpell.AnimatePrefab.RuntimeKeyIsValid())
+    //     {
+
+    //         Debug.Log("InstantiateAsync");
+    //         Addressables.InstantiateAsync(
+    //             activeSpell.AnimatePrefab,
+    //             new Vector3(0, 1, 0),
+    //             Quaternion.identity,
+    //             ArenaMonoBehavior.transform
+    //             ).Completed += RunSpellResult;
+    //     }
+    //     else
+    //     {
+    //         await RunSpell();
+    //     }
+
+    //     await UniTask.Delay(1);
+    // }
+
+    // public async void RunSpellResult(AsyncOperationHandle<GameObject> handle)
+    // {
+    //     if (handle.Status == AsyncOperationStatus.Succeeded)
+    //     {
+    //         handle.Result.gameObject.transform.localPosition = new Vector3(0, 1, 0);
+    //         await RunSpell();
+    //         await UniTask.Delay(1000);
+    //         Addressables.Release(handle);
+    //     }
+    //     else
+    //     {
+    //         Debug.LogError($"Error Load prefab::: {handle.Status}");
+    //     }
+    // }
+
+    internal async UniTask RunSpell()
     {
-        Debug.Log("GoRunSpell");
-        var activeSpell = _arenaManager.ArenaQueue.ActiveHero != null
-            ? _arenaManager.ArenaQueue.ActiveHero.Data.SpellBook.ChoosedSpell
-            : null;
-
-        Addressables.InstantiateAsync(
-            activeSpell.AnimatePrefab,
-            new Vector3(0, 1, 0),
-            Quaternion.identity,
-            ArenaMonoBehavior.transform
-            ).Completed += RunSpell;
-
-        await UniTask.Delay(1);
-    }
-
-    public async virtual void RunSpell(AsyncOperationHandle<GameObject> handle)
-    {
-        if (handle.Status == AsyncOperationStatus.Succeeded)
+        Debug.Log($"Run spell!");
+        var heroRunSpell = _arenaManager.ArenaQueue.ActiveHero;
+        var choosedSpell = _arenaManager.ArenaQueue.ActiveHero.Data.SpellBook.ChoosedSpell;
+        await choosedSpell.AddEffect(this, heroRunSpell);
+        if (choosedSpell.typeSpellDuration != TypeSpellDuration.Instant)
         {
-            Debug.Log($"Run spell!");
-            handle.Result.gameObject.transform.localPosition = new Vector3(0, 1, 0);
-            var choosedSpell = _arenaManager.ArenaQueue.ActiveHero.Data.SpellBook.ChoosedSpell;
-            await choosedSpell.Effect.AddEffect(this);
-            Data.SpellsState.Add(new SpellStateItem()
+            int countRound = heroRunSpell.Data.PSkills[TypePrimarySkill.Power];
+            if (Data.SpellsState.ContainsKey(choosedSpell))
             {
-                Spell = choosedSpell,
-                round = 1
-            });
-            await UniTask.Delay(1000);
-            Addressables.Release(handle);
-            _arenaManager.ArenaQueue.ActiveHero.Data.SpellBook.ChooseSpell(null);
-            OnChangeParamsCreature?.Invoke();
+                Data.SpellsState[choosedSpell] = countRound;
+            }
+            else
+            {
+                Data.SpellsState.Add(choosedSpell, countRound);
+            }
         }
-        else
-        {
-            Debug.LogError($"Error Load prefab::: {handle.Status}");
-        }
+        // _arenaManager.ArenaQueue.ActiveHero.Data.SpellBook.ChooseSpell(null);
+        // OnChangeParamsCreature?.Invoke();
     }
 
     internal async UniTask GoCounterAttack(GridArenaNode nodeFromAttack, GridArenaNode nodeToAttack)
