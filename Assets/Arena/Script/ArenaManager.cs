@@ -46,6 +46,7 @@ public class ArenaManager : MonoBehaviour
     // public static event Action OnSetNextCreature;
     public static event Action OnChangeNodesForAttack;
     public static event Action OnAutoNextCreature;
+    public static event Action OnHideSpellInfo;
     public static event Action OnChooseCreatureForSpell;
     [SerializeField] private int width = 15;
     [SerializeField] private int height = 11;
@@ -88,9 +89,11 @@ public class ArenaManager : MonoBehaviour
     public List<AttackItemNode> NodesForAttackActiveCreature = new();
     private int KeyNodeFromAttack = -1;
     [NonSerialized] public ArenaEntity AttackedCreature;
+    [NonSerialized] public GridArenaNode NodeForSpell;
     [SerializeField] private List<ScriptableEntityHero> heroes;
     public ArenaQueue ArenaQueue = new ArenaQueue();
     [SerializeField] private Camera _camera;
+    public bool isRunningAction;
     private InputManager inputManager;
 
 
@@ -174,6 +177,11 @@ public class ArenaManager : MonoBehaviour
         ArenaQueue.NextCreature(wait, def);
         await GoEntity();
         OnAutoNextCreature?.Invoke();
+
+        if (!ArenaQueue.activeEntity.arenaEntity.Data.isRun)
+        {
+            NextCreature(false, false);
+        }
     }
 
     private async UniTask GoEntity()
@@ -345,11 +353,13 @@ public class ArenaManager : MonoBehaviour
         heroArena.SetEntity(hero);
         heroArena.SetPosition(new Vector3(-2, 8.5f));
         heroArena.CreateMapGameObject();
+        hero.ArenaHeroEntity = heroArena;
 
         var enemyArena = new ArenaHeroEntity(tileMapArenaUnits);
         enemyArena.SetEntity(enemy);
         enemyArena.SetPosition(new Vector3(width + 1.5f, 8.5f));
         enemyArena.CreateMapGameObject();
+        enemy.ArenaHeroEntity = enemyArena;
     }
 
     private void CreateCreatures()
@@ -511,6 +521,8 @@ public class ArenaManager : MonoBehaviour
     public async UniTask ClickButton()
     {
         Debug.Log("ClickButton");
+        isRunningAction = true;
+
         await AudioManager.Instance.Click();
         if (activeCursor == CursorRule.NotAllow) return;
 
@@ -543,12 +555,14 @@ public class ArenaManager : MonoBehaviour
 
         // DrawCursor
         if (clickedNode != null) DrawButtonAction();
+
+        isRunningAction = false;
     }
 
     public async UniTask ClickArena(Vector3Int positionClick)
     {
-        Debug.Log("ClickArena");
-        await AudioManager.Instance.Click();
+        // Debug.Log("ClickArena");
+        // await AudioManager.Instance.Click();
 
         GridArenaNode node = GridArenaHelper.GridTile.GetGridObject(new Vector3Int(positionClick.x, positionClick.y));
 
@@ -558,7 +572,14 @@ public class ArenaManager : MonoBehaviour
         if (activeSpell != null && node != null)
         {
             clickedNode = node;
-            DrawButtonAction();
+            if (activeSpell.typeSpellTarget == TypeSpellTarget.Node)
+            {
+                CreateButtonSpell(node);
+            }
+            else
+            {
+                DrawButtonAction();
+            }
             OnChooseCreatureForSpell?.Invoke();
             return;
         }
@@ -633,6 +654,10 @@ public class ArenaManager : MonoBehaviour
         FightingOccupiedNodes.Clear();
         DistanceNodes.Clear();
         PathNodes.Clear();
+        if (ArenaQueue.ActiveHero.Data.SpellBook.ChoosedSpell != null)
+        {
+            EndSpell();
+        }
 
         foreach (var neiNode in AllMovedNodes)
         {
@@ -654,7 +679,7 @@ public class ArenaManager : MonoBehaviour
     public async void OnClick(InputAction.CallbackContext context)
     {
         // if (!context.started) return;
-        if (context.performed)
+        if (context.performed && !isRunningAction)
         {
             var pos = context.ReadValue<Vector2>();
             var rayHit = Physics2D.GetRayIntersection(_camera.ScreenPointToRay(pos));
@@ -909,22 +934,23 @@ public class ArenaManager : MonoBehaviour
             ? ArenaQueue.ActiveHero.Data.SpellBook.ChoosedSpell
             : null;
 
-        var occupiedNodes = GridArenaHelper
-            .GetAllGridNodes()
-            .Where(t =>
-                t.OccupiedUnit != null
-                && (
-                    (
-                        activeSpell.typeAchievement == TypeSpellAchievement.Enemy
-                        && t.OccupiedUnit.TypeArenaPlayer != ArenaQueue.activeEntity.arenaEntity.TypeArenaPlayer
-                    )
-                    || (
-                        activeSpell.typeAchievement == TypeSpellAchievement.Friendly
-                        && t.OccupiedUnit.TypeArenaPlayer == ArenaQueue.activeEntity.arenaEntity.TypeArenaPlayer
-                    )
-                    || activeSpell.typeAchievement == TypeSpellAchievement.All
-                )
-            );
+        // var occupiedNodes = GridArenaHelper
+        //     .GetAllGridNodes()
+        //     .Where(t =>
+        //         t.OccupiedUnit != null
+        //         && (
+        //             (
+        //                 activeSpell.typeAchievement == TypeSpellAchievement.Enemy
+        //                 && t.OccupiedUnit.TypeArenaPlayer != ArenaQueue.activeEntity.arenaEntity.TypeArenaPlayer
+        //             )
+        //             || (
+        //                 activeSpell.typeAchievement == TypeSpellAchievement.Friendly
+        //                 && t.OccupiedUnit.TypeArenaPlayer == ArenaQueue.activeEntity.arenaEntity.TypeArenaPlayer
+        //             )
+        //             || activeSpell.typeAchievement == TypeSpellAchievement.All
+        //         )
+        //     );
+        var occupiedNodes = await activeSpell.ChooseTarget(this, ArenaQueue.ActiveHero);
 
         foreach (var node in occupiedNodes)
         {
@@ -939,7 +965,9 @@ public class ArenaManager : MonoBehaviour
         {
             // if expert school, fun for all.
             var baseSSkill = activeSpell.SchoolMagic.BaseSecondarySkill;
-            if (ArenaQueue.ActiveHero.Data.SSkills.ContainsKey(baseSSkill.TypeTwoSkill))
+            if (
+                ArenaQueue.ActiveHero.Data.SSkills.ContainsKey(baseSSkill.TypeTwoSkill)
+                && activeSpell.typeSpellRun == TypeSpellRun.Collective)
             {
                 var dataSSkill = ArenaQueue.ActiveHero.Data.SSkills[baseSSkill.TypeTwoSkill];
                 if (dataSSkill.level >= 2)
@@ -947,8 +975,10 @@ public class ArenaManager : MonoBehaviour
                     List<UniTask> listTasks = new();
                     for (int i = 0; i < FightingOccupiedNodes.Count; i++)
                     {
-                        listTasks.Add(FightingOccupiedNodes.ElementAt(i).OccupiedUnit.RunSpell());
+                        // listTasks.Add(FightingOccupiedNodes.ElementAt(i).OccupiedUnit.RunSpell());
+                        listTasks.Add(ArenaQueue.ActiveHero.Data.SpellBook.RunSpellCombat(FightingOccupiedNodes.ElementAt(i), this));
                     }
+                    await ArenaQueue.ActiveHero.ArenaHeroEntity.ArenaHeroMonoBehavior.RunSpellAnimation();
                     await UniTask.WhenAll(listTasks);
                     ArenaQueue.Refresh();
                     EndSpell();
@@ -957,19 +987,20 @@ public class ArenaManager : MonoBehaviour
         }
     }
 
-    internal void CreateButtonSpell(ArenaEntity clickedEntity)
+    internal void CreateButtonSpell(GridArenaNode nodeForSpell)
     {
         clickedNode = null;
         ClearAttackNode();
 
-        AttackedCreature = clickedEntity;
+        // AttackedCreature = clickedEntity;
+        NodeForSpell = nodeForSpell;
 
-        var positionButton = new Vector3(clickedEntity.OccupiedNode.center.x, clickedEntity.OccupiedNode.center.y, zCoord);
+        var positionButton = new Vector3(NodeForSpell.center.x, NodeForSpell.center.y, zCoord);
 
         if (
             FightingOccupiedNodes.Count > 0
-            && AttackedCreature != null
-            && FightingOccupiedNodes.Contains(clickedEntity.OccupiedNode)
+            && NodeForSpell != null
+            && FightingOccupiedNodes.Contains(NodeForSpell)
             )
         {
             _buttonSpell.SetActive(true);
@@ -979,17 +1010,21 @@ public class ArenaManager : MonoBehaviour
         OnChooseCreatureForSpell?.Invoke();
     }
 
-    private async UniTask ClickButtonSpell()
+    public async UniTask ClickButtonSpell()
     {
         Debug.Log("ClickButtonSpell");
+        isRunningAction = true;
+        OnHideSpellInfo?.Invoke();
 
         await AudioManager.Instance.Click();
         _buttonSpell.SetActive(false);
-        await AttackedCreature.RunSpell();
-        // ArenaQueue.ActiveHero.Data.SpellBook.ChooseSpell(null);
-        // await GoEntity();
+        // await NodeForSpell.OccupiedUnit.RunSpell();
+        await ArenaQueue.ActiveHero.ArenaHeroEntity.ArenaHeroMonoBehavior.RunSpellAnimation();
+        await ArenaQueue.ActiveHero.Data.SpellBook.RunSpellCombat(NodeForSpell, this);
+
         ArenaQueue.Refresh();
         EndSpell();
+        isRunningAction = false;
     }
 
     private async void EndSpell()
@@ -997,6 +1032,7 @@ public class ArenaManager : MonoBehaviour
         _buttonSpell.SetActive(false);
         ArenaQueue.ActiveHero.Data.SpellBook.ChooseSpell(null);
         await GoEntity();
+        NodeForSpell = null;
         OnAutoNextCreature?.Invoke();
     }
 

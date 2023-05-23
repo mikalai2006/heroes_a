@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 
 using Cysharp.Threading.Tasks;
@@ -8,32 +9,41 @@ using UnityEngine.AddressableAssets;
 [CreateAssetMenu(fileName = "SpellDispel", menuName = "Game/Attribute/Spell/5_Dispel")]
 public class SpellDispel : ScriptableAttributeSpell
 {
-    public async override UniTask AddEffect(ArenaEntity entity, EntityHero heroRunSpell, Player player = null)
+    public async override UniTask<List<GridArenaNode>> ChooseTarget(ArenaManager arenaManager, EntityHero hero, Player player = null)
     {
+        List<GridArenaNode> nodes = arenaManager
+            .GridArenaHelper
+            .GetAllGridNodes()
+            .Where(t => t.OccupiedUnit != null)
+            .ToList();
+
+        await UniTask.Delay(1);
+        return nodes;
+    }
+
+    public async override UniTask AddEffect(GridArenaNode node, EntityHero heroRunSpell, ArenaManager arenaManager, Player player = null)
+    {
+        var entity = node.OccupiedUnit;
+        ScriptableAttributeSecondarySkill baseSSkill = SchoolMagic.BaseSecondarySkill;
+        SpellItem dataCurrent = new();
+        int levelSSkill = 0;
         if (entity.Hero != null)
         {
-            ScriptableAttributeSecondarySkill baseSSkill = SchoolMagic.BaseSecondarySkill;
-            int levelSSkill = entity.Hero.Data.SSkills.ContainsKey(baseSSkill.TypeTwoSkill)
-                ? entity.Hero.Data.SSkills[baseSSkill.TypeTwoSkill].level
+            levelSSkill = entity.Hero.Data.SSkills.ContainsKey(baseSSkill.TypeTwoSkill)
+                ? entity.Hero.Data.SSkills[baseSSkill.TypeTwoSkill].level + 1
                 : 0;
-            var dataCurrent = LevelData[levelSSkill];
-
-            // Cure.
-            entity.Data.totalHP += dataCurrent.Effect + (5 * heroRunSpell.Data.PSkills[TypePrimarySkill.Power]);
-            if (entity.Data.totalHP > entity.Data.maxHP)
-            {
-                entity.Data.totalHP = entity.Data.maxHP;
-            }
-
-            // Remove all effects.
-            var spells = entity.Data.SpellsState.Keys.ToList();
-            foreach (var spell in spells)
-            {
-                await spell.RemoveEffect(entity, heroRunSpell);
-                entity.Data.SpellsState.Remove(spell);
-            }
+            dataCurrent = LevelData[levelSSkill];
         }
 
+        // Remove all effects.
+        var spells = entity.Data.SpellsState.Keys.ToList();
+        foreach (var spell in spells)
+        {
+            await spell.RemoveEffect(node, heroRunSpell);
+            entity.Data.SpellsState.Remove(spell);
+        }
+
+        // Run effect.
         if (AnimatePrefab.RuntimeKeyIsValid())
         {
             var asset = Addressables.InstantiateAsync(
@@ -46,6 +56,23 @@ public class SpellDispel : ScriptableAttributeSpell
             obj.gameObject.transform.localPosition = new Vector3(0, 1, 0);
             await UniTask.Delay(500);
             Addressables.Release(asset);
+        }
+
+        // Remove spells of node
+        List<GridArenaNode> spellsnodes = arenaManager
+            .GridArenaHelper
+            .GetAllGridNodes()
+            .Where(t => t.SpellsUnit != null)
+            .ToList();
+        if (levelSSkill >= 2 && spellsnodes.Count > 0)
+        {
+            foreach (var spellNode in spellsnodes)
+            {
+                if (spellNode.SpellsUnit != null)
+                {
+                    await spellNode.SpellsUnit.ConfigDataSpell.RemoveEffect(spellNode, heroRunSpell);
+                }
+            }
         }
     }
 }

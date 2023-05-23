@@ -114,6 +114,7 @@ public class UIArena : UILocaleBase
         ArenaQueue.OnNextStep += ChangeStatusButton;
         UIDialogSpellBook.OnClickSpell += ShowSpellInfo;
         ArenaManager.OnChooseCreatureForSpell += ShowSpellInfo;
+        ArenaManager.OnHideSpellInfo += HideSpellInfo;
     }
 
     private void OnDestroy()
@@ -124,6 +125,7 @@ public class UIArena : UILocaleBase
         ArenaQueue.OnNextStep -= ChangeStatusButton;
         UIDialogSpellBook.OnClickSpell -= ShowSpellInfo;
         ArenaManager.OnChooseCreatureForSpell -= ShowSpellInfo;
+        ArenaManager.OnHideSpellInfo -= HideSpellInfo;
     }
 
     public void Init(SceneInstance arenaScene)
@@ -135,6 +137,11 @@ public class UIArena : UILocaleBase
         DrawQueue();
 
         base.Localize(_box);
+    }
+
+    private void HideSpellInfo()
+    {
+        _box.Q<VisualElement>("SpellButtons").style.display = DisplayStyle.None;
     }
 
     private void ShowSpellInfo()
@@ -184,30 +191,42 @@ public class UIArena : UILocaleBase
                 box.Remove(boxSpell);
                 OnCancelSpell?.Invoke();
             };
-            if (arenaManager.AttackedCreature != null)
+            if (arenaManager.NodeForSpell != null)
             {
-                var attackedCreature = arenaManager.AttackedCreature.Entity.ScriptableDataAttribute;
-                var boxInfoCreature = boxSpell.Q<VisualElement>("CreatureInfo");
-                boxInfoCreature.style.display = DisplayStyle.Flex;
-                boxInfoCreature.Q<VisualElement>("AvaCreature").style.backgroundImage
-                    = new StyleBackground(attackedCreature.MenuSprite);
-
-                var dataPlural = new Dictionary<string, int> { { "value", 1 } };
-                var arguments = new[] { dataPlural };
-                var titlePlural = Helpers.GetLocalizedPluralString(
-                    attackedCreature.Text.title,
-                    arguments,
-                    dataPlural
-                    );
-                boxInfoCreature.Q<Label>("NameCreature").text = titlePlural;
-                var btnApplySpell = boxSpell.Q<VisualElement>("Apply").Q<Button>("Btn");
-                btnApplySpell.style.display = DisplayStyle.Flex;
-                btnApplySpell.clickable.clicked += async () =>
+                var attackedCreature = arenaManager.NodeForSpell.OccupiedUnit != null
+                    ? arenaManager.NodeForSpell.OccupiedUnit.Entity.ScriptableDataAttribute
+                    : null;
+                if (attackedCreature != null)
                 {
-                    await AudioManager.Instance.Click();
-                };
-                boxSpell.Q<Label>("For").text
-                    = new LocalizedString(Constants.LanguageTable.LANG_TABLE_UILANG, "for").GetLocalizedString();
+                    var boxInfoCreature = boxSpell.Q<VisualElement>("CreatureInfo");
+                    boxInfoCreature.style.display = DisplayStyle.Flex;
+                    boxInfoCreature.Q<VisualElement>("AvaCreature").style.backgroundImage
+                        = new StyleBackground(attackedCreature.MenuSprite);
+
+                    var dataPlural = new Dictionary<string, int> { { "value", 1 } };
+                    var arguments = new[] { dataPlural };
+                    var titlePlural = Helpers.GetLocalizedPluralString(
+                        attackedCreature.Text.title,
+                        arguments,
+                        dataPlural
+                        );
+                    boxInfoCreature.Q<Label>("NameCreature").text = titlePlural;
+                    var btnApplySpell = boxSpell.Q<VisualElement>("Apply").Q<Button>("Btn");
+                    btnApplySpell.style.display = DisplayStyle.Flex;
+                    btnApplySpell.clickable.clicked += async () =>
+                    {
+                        HideSpellInfo();
+
+                        await AudioManager.Instance.Click();
+                        await arenaManager.ClickButtonSpell();
+                    };
+                    boxSpell.Q<Label>("For").text
+                        = new LocalizedString(Constants.LanguageTable.LANG_TABLE_UILANG, "for").GetLocalizedString();
+                }
+                else
+                {
+                    boxSpell.Q<Label>("For").style.display = DisplayStyle.None;
+                }
             }
             else
             {
@@ -270,8 +289,9 @@ public class UIArena : UILocaleBase
                 creatureElement.Q<Button>().AddToClassList("button_active");
             }
 
-            creatureElement.RegisterCallback<ClickEvent>((ClickEvent evt) =>
+            creatureElement.RegisterCallback<ClickEvent>(async (ClickEvent evt) =>
             {
+                await AudioManager.Instance.Click();
                 creature.arenaEntity.ArenaMonoBehavior.ShowDialogInfo();
             });
 

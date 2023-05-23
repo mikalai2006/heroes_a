@@ -30,6 +30,7 @@ public class ArenaMonoBehavior : MonoBehaviour // , IPointerDownHandler
     private Vector2 _pos;
     private InputManager _inputManager;
 
+    #region Unity methods
     private void OnEnable()
     {
         _inputManager = new InputManager();
@@ -42,7 +43,6 @@ public class ArenaMonoBehavior : MonoBehaviour // , IPointerDownHandler
         _inputManager.ClickEntity -= OnClick;
         _inputManager.Disable();
     }
-    #region Unity methods
     public void Awake()
     {
         ArenaEntity.OnChangeParamsCreature += RefreshQuantity;
@@ -286,6 +286,14 @@ public class ArenaMonoBehavior : MonoBehaviour // , IPointerDownHandler
 
                 await SmoothLerp(transform.position, nodeTo.center + difPos, time);
                 await UniTask.Yield();
+
+                if (nodeTo.SpellsState.Count > 0)
+                {
+                    foreach (var spell in nodeTo.SpellsState)
+                    {
+                        await spell.Key.RunEffect(_arenaEntity.OccupiedNode, _arenaEntity.Hero);
+                    }
+                }
 
                 ArenaEntity.Path.RemoveAt(0);
             }
@@ -563,6 +571,7 @@ public class ArenaMonoBehavior : MonoBehaviour // , IPointerDownHandler
 
     internal void RunDeath()
     {
+        Debug.Log("RunDeath");
         string nameAnim = "Death";
 
         string nameAnimation = string.Format("{0}{1}", _nameCreature, nameAnim);

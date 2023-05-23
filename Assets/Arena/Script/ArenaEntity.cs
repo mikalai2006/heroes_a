@@ -33,11 +33,20 @@ public enum TypeAttack
     // AttackSpell = 2
 }
 
+// [Serializable]
+// public struct ModificatorItem {
+//     public int round;
+//     public ScriptableAttribute Spell;
+// }
+
 [Serializable]
 public class ArenaEntityData
 {
+    public bool isRun;
     public int waitTick;
     public TypeAttack typeAttack;
+    public int lucky;
+    public Dictionary<ScriptableAttribute, int> LuckyModificators = new();
     public int attack;
     public Dictionary<ScriptableAttribute, int> AttackModificators = new();
     public bool isDefense;
@@ -118,18 +127,31 @@ public class ArenaEntity
         Data.damageMin = creatureData.CreatureParams.DamageMin;
         Data.damageMax = creatureData.CreatureParams.DamageMax;
 
+        Data.defense = creatureData.CreatureParams.Defense;
+        Data.attack = creatureData.CreatureParams.Attack;
+
         Data.HP = creatureData.CreatureParams.HP;
         Data.totalHP = Data.maxHP = creatureData.CreatureParams.HP * ((EntityCreature)Entity).Data.value;
 
-        Data.attack = creatureData.CreatureParams.Attack;
+        Data.isRun = true;
     }
 
-    public void SetRoundData()
+    public async void SetRoundData()
     {
         Data.counterAttack = 1;
         Data.countAttack = 1;
 
         // TODO effects.
+        var spells = Data.SpellsState.Keys.ToList();
+        foreach (var spell in spells)
+        {
+            Data.SpellsState[spell] -= 1;
+            if (Data.SpellsState[spell] <= 0)
+            {
+                await spell.RemoveEffect(OccupiedNode, Hero);
+                Data.SpellsState.Remove(spell);
+            }
+        }
     }
 
     public void SetPosition(GridArenaNode node)
@@ -224,28 +246,31 @@ public class ArenaEntity
 
     public async void ClickCreature()
     {
-        Debug.Log("ClickCreature");
-        await AudioManager.Instance.Click();
-        if (_arenaManager.FightingOccupiedNodes.Contains(OccupiedNode))
+        if (!_arenaManager.isRunningAction)
         {
-            var activeSpell = _arenaManager.ArenaQueue.ActiveHero != null
-            ? _arenaManager.ArenaQueue.ActiveHero.Data.SpellBook.ChoosedSpell
-            : null;
-
-            if (activeSpell == null)
+            Debug.Log("ClickCreature");
+            await AudioManager.Instance.Click();
+            if (_arenaManager.FightingOccupiedNodes.Contains(OccupiedNode))
             {
-                Debug.Log($"Choose creature for attack!");
-                _arenaManager.CreateAttackNode(this);
+                var activeSpell = _arenaManager.ArenaQueue.ActiveHero != null
+                ? _arenaManager.ArenaQueue.ActiveHero.Data.SpellBook.ChoosedSpell
+                : null;
+
+                if (activeSpell == null)
+                {
+                    Debug.Log($"Choose creature for attack!");
+                    _arenaManager.CreateAttackNode(this);
+                }
+                else
+                {
+                    Debug.Log($"Choose creature for spell!");
+                    _arenaManager.CreateButtonSpell(OccupiedNode);
+                }
             }
             else
             {
-                Debug.Log($"Choose creature for spell!");
-                _arenaManager.CreateButtonSpell(this);
+                Debug.Log($"Creature not maybe to attack!");
             }
-        }
-        else
-        {
-            Debug.Log($"Creature not maybe to attack!");
         }
         await UniTask.Delay(1);
     }
@@ -265,13 +290,13 @@ public class ArenaEntity
         _path = path;
     }
 
-
     public void SetDamage(int damage)
     {
         Data.totalHP -= damage;
         if (Death)
         {
             Data.totalHP = 0;
+            Data.quantity = 0;
             _arenaManager.ArenaQueue.RemoveEntity(this);
 
             ArenaMonoBehavior.RunDeath();
@@ -283,7 +308,10 @@ public class ArenaEntity
                 RelatedNode.SetOcuppiedUnit(null);
             }
         }
-        Data.quantity = (int)Math.Truncate((double)Data.totalHP / (double)Data.HP);
+        else
+        {
+            Data.quantity = (int)Math.Ceiling((double)Data.totalHP / (double)Data.HP);
+        }
         Debug.Log($"Quantity::: quantity={Data.quantity},{Data.totalHP},{Data.HP}");
         OnChangeParamsCreature?.Invoke();
     }
@@ -339,6 +367,7 @@ public class ArenaEntity
                         && nodeToAttack.OccupiedUnit != null
                         && nodeToAttack.OccupiedUnit.Data.counterAttack > 0
                         && !Death
+                        && nodeToAttack.OccupiedUnit.Data.attack > 0
                         )
                     {
                         await nodeToAttack.OccupiedUnit.GoCounterAttack(nodeToAttack, nodeFromAttack);
@@ -406,27 +435,27 @@ public class ArenaEntity
     //     }
     // }
 
-    internal async UniTask RunSpell()
-    {
-        Debug.Log($"Run spell!");
-        var heroRunSpell = _arenaManager.ArenaQueue.ActiveHero;
-        var choosedSpell = _arenaManager.ArenaQueue.ActiveHero.Data.SpellBook.ChoosedSpell;
-        await choosedSpell.AddEffect(this, heroRunSpell);
-        if (choosedSpell.typeSpellDuration != TypeSpellDuration.Instant)
-        {
-            int countRound = heroRunSpell.Data.PSkills[TypePrimarySkill.Power];
-            if (Data.SpellsState.ContainsKey(choosedSpell))
-            {
-                Data.SpellsState[choosedSpell] = countRound;
-            }
-            else
-            {
-                Data.SpellsState.Add(choosedSpell, countRound);
-            }
-        }
-        // _arenaManager.ArenaQueue.ActiveHero.Data.SpellBook.ChooseSpell(null);
-        // OnChangeParamsCreature?.Invoke();
-    }
+    // internal async UniTask RunSpell()
+    // {
+    //     Debug.Log($"Run spell!");
+    //     var heroRunSpell = _arenaManager.ArenaQueue.ActiveHero;
+    //     var choosedSpell = _arenaManager.ArenaQueue.ActiveHero.Data.SpellBook.ChoosedSpell;
+    //     await choosedSpell.AddEffect(this, heroRunSpell);
+    //     if (choosedSpell.typeSpellDuration != TypeSpellDuration.Instant)
+    //     {
+    //         int countRound = heroRunSpell.Data.PSkills[TypePrimarySkill.Power];
+    //         if (Data.SpellsState.ContainsKey(choosedSpell))
+    //         {
+    //             Data.SpellsState[choosedSpell] = countRound;
+    //         }
+    //         else
+    //         {
+    //             Data.SpellsState.Add(choosedSpell, countRound);
+    //         }
+    //     }
+    //     // _arenaManager.ArenaQueue.ActiveHero.Data.SpellBook.ChooseSpell(null);
+    //     // OnChangeParamsCreature?.Invoke();
+    // }
 
     internal async UniTask GoCounterAttack(GridArenaNode nodeFromAttack, GridArenaNode nodeToAttack)
     {
@@ -441,6 +470,15 @@ public class ArenaEntity
     internal async UniTask RunGettingHit(GridArenaNode attackNode)
     {
         await ArenaMonoBehavior.RunGettingHit(attackNode);
+
+        var keys = Data.SpellsState.Keys.ToList();
+        var listSpellOfAction = keys.Where(t => t.typeSpellDuration == TypeSpellDuration.RoundOrAction);
+        foreach (var spell in listSpellOfAction)
+        {
+            await spell.RemoveEffect(OccupiedNode, _hero);
+            Data.SpellsState.Remove(spell);
+        }
+
     }
 
 

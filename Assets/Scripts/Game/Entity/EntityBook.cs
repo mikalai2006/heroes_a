@@ -2,6 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
+using Cysharp.Threading.Tasks;
+
+using UnityEngine;
+
 [System.Serializable]
 public class EntityBook
 {
@@ -150,6 +154,40 @@ public class EntityBook
             result = allSpells.GetRange(0, countSpell);
         }
         return result;
+    }
+
+    internal async UniTask RunSpellCombat(GridArenaNode node, ArenaManager arenaManager)
+    {
+        Debug.Log($"Run RunSpellCombat!");
+        await ChoosedSpell.AddEffect(node, _hero, arenaManager);
+
+        // if (ChoosedSpell.typeSpellDuration != TypeSpellDuration.Instant)
+        // {
+        //     int countRound = _hero.Data.PSkills[TypePrimarySkill.Power];
+        //     if (ChoosedSpell.typeSpellTarget == TypeSpellTarget.Creature)
+        //     {
+        //         var creatureArena = node.OccupiedUnit;
+        //         if (creatureArena.Data.SpellsState.ContainsKey(ChoosedSpell))
+        //         {
+        //             creatureArena.Data.SpellsState[ChoosedSpell] = countRound;
+        //         }
+        //         else
+        //         {
+        //             creatureArena.Data.SpellsState.Add(ChoosedSpell, countRound);
+        //         }
+        //     }
+        //     else
+        //     {
+        //         if (node.SpellsState.ContainsKey(ChoosedSpell))
+        //         {
+        //             node.SpellsState[ChoosedSpell] = countRound;
+        //         }
+        //         else
+        //         {
+        //             node.SpellsState.Add(ChoosedSpell, countRound);
+        //         }
+        //     }
+        // }
     }
 
     public override string ToString()

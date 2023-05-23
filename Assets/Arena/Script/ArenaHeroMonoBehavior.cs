@@ -5,43 +5,65 @@ using Cysharp.Threading.Tasks;
 
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Interactions;
 
-public class ArenaHeroMonoBehavior : MonoBehaviour, IPointerClickHandler
+public class ArenaHeroMonoBehavior : MonoBehaviour
 {
     [SerializeField] protected ArenaHeroEntity _arenaHeroEntity;
     public ArenaHeroEntity ArenaEntityHero => _arenaHeroEntity;
     [NonSerialized] private Animator _animator;
     [NonSerialized] private Transform _model;
-
+    private Camera _camera;
+    private InputManager _inputManager;
     private CancellationTokenSource cancelTokenSource;
 
     #region Unity methods
+    private void OnEnable()
+    {
+        _inputManager = new InputManager();
+        _inputManager.ClickEntity += OnClick;
+        _inputManager.Enable();
+    }
+
+    private void OnDisable()
+    {
+        _inputManager.ClickEntity -= OnClick;
+        _inputManager.Disable();
+    }
     protected void Awake()
     {
         _animator = GetComponentInChildren<Animator>();
         _model = transform.Find("Model");
+        _camera = GameObject.FindGameObjectWithTag("ArenaCamera")?.GetComponent<Camera>();
     }
 
-    public async void OnPointerClick(PointerEventData eventData)
+    public async void OnClick(InputAction.CallbackContext context)
     {
-        await AudioManager.Instance.Click();
-
-        // Debug.Log($"Click {ArenaEntityHero.ConfigData.name}");
-
-        var dialogHeroInfo = new DialogHeroInfoOperation((EntityHero)ArenaEntityHero.Entity);
-        var result = await dialogHeroInfo.ShowAndHide();
-        if (result.isOk)
+        if (context.performed)
         {
+            var rayHit = Physics2D.GetRayIntersection(_camera.ScreenPointToRay(_inputManager.clickPosition()));
+            if (!rayHit.collider) return;
+            if (rayHit.collider.gameObject == gameObject)
+            {
+                if (context.interaction is PressInteraction || context.interaction is TapInteraction)
+                {
+                    await AudioManager.Instance.Click();
+                    _inputManager.Disable();
+                    var dialogHeroInfo = new UIInfoArenaHeroOperation((EntityHero)ArenaEntityHero.Entity);
+                    var result = await dialogHeroInfo.ShowAndHide();
+                    if (result.isOk)
+                    {
 
+                    }
+                    _inputManager.Enable();
+                }
+                else if (context.interaction is HoldInteraction)
+                {
+                }
+            }
         }
-        await UniTask.Delay(1);
     }
-
-    // public async void OnMouseDown()
-    // {
-    //     Debug.Log($"OnMouseDown {EntityHero.ConfigData.name}");
-    //     await UniTask.Delay(1);
-    // }
     #endregion
 
     public void Init(ArenaHeroEntity entityHero)
@@ -58,26 +80,18 @@ public class ArenaHeroMonoBehavior : MonoBehaviour, IPointerClickHandler
         // ArenaEntity.DestroyGameObject();
     }
 
-    public void UpdateAnimate(Vector3 startPosition, Vector3 endPosition)
+    public async UniTask RunSpellAnimation()
     {
-        // if (_animator != null && startPosition != Vector3Int.zero && endPosition != Vector3Int.zero)
-        // {
-        //     if (startPosition.x > endPosition.x)
-        //     {
-        //         _model.transform.localScale = new Vector3(-1, 1, 1);
-        //     }
-        //     else
-        //     {
-        //         _model.transform.localScale = new Vector3(1, 1, 1);
-        //     }
+        if (_animator != null)
+        {
+            _animator.SetBool("spell", true);
 
-        //     Vector3 direction = endPosition - startPosition;
-        //     //Debug.Log($"Animator change::: {direction}");
-        //     _animator.SetFloat("X", (float)direction.x);
-        //     _animator.SetFloat("Y", (float)direction.y);
+            await UniTask.Delay(300);
 
-        //     _animator.SetBool("isWalking", true);
-        // }
+            _animator.SetBool("spell", false);
+
+            await UniTask.Yield();
+        }
     }
 
 }

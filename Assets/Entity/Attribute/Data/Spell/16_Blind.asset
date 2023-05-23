@@ -1,0 +1,155 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 859e6a6149da81e478dde02ebdacc1a6, type: 3}
+  m_Name: 16_Blind
+  m_EditorClassIdentifier: 
+  idObject: spell.blind
+  TypeAttribute: 60
+  MenuSprite: {fileID: 775746287, guid: ed47d99f325775447b80057e6e6406ea, type: 3}
+  MapPrefab:
+    m_AssetGUID: 
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  Text:
+    title:
+      m_TableReference:
+        m_TableCollectionName: GUID:d70741e361221cc41926374ef28f7c49
+      m_TableEntryReference:
+        m_KeyId: 7265963646025728
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    description:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+  MapSprite: {fileID: 583544422, guid: b07b1c1afdc21314e88a7a2e04cae4b9, type: 3}
+  SchoolMagic: {fileID: 11400000, guid: 1a4c2e4875f68214c9f5f04508284976, type: 2}
+  AnimatePrefab:
+    m_AssetGUID: 5694dd15743054849a34c608127788b3
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  AnimateSound:
+    m_AssetGUID: 
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  level: 2
+  typeSpell: 0
+  typeSpellDuration: 3
+  typeSpellRun: 1
+  typeSpellTarget: 0
+  typeAchievement: 1
+  LevelData:
+  - cost: 10
+    Effect: 50
+    AI: 50
+    Text:
+      title:
+        m_TableReference:
+          m_TableCollectionName: GUID:d70741e361221cc41926374ef28f7c49
+        m_TableEntryReference:
+          m_KeyId: 7265963646025728
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      description:
+        m_TableReference:
+          m_TableCollectionName: GUID:d70741e361221cc41926374ef28f7c49
+        m_TableEntryReference:
+          m_KeyId: 7266007325507584
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+  - cost: 8
+    Effect: 50
+    AI: 50
+    Text:
+      title:
+        m_TableReference:
+          m_TableCollectionName: GUID:d70741e361221cc41926374ef28f7c49
+        m_TableEntryReference:
+          m_KeyId: 7265992976793600
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      description:
+        m_TableReference:
+          m_TableCollectionName: GUID:d70741e361221cc41926374ef28f7c49
+        m_TableEntryReference:
+          m_KeyId: 7266007325507584
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+  - cost: 8
+    Effect: 25
+    AI: 50
+    Text:
+      title:
+        m_TableReference:
+          m_TableCollectionName: GUID:d70741e361221cc41926374ef28f7c49
+        m_TableEntryReference:
+          m_KeyId: 7266021430951936
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      description:
+        m_TableReference:
+          m_TableCollectionName: GUID:d70741e361221cc41926374ef28f7c49
+        m_TableEntryReference:
+          m_KeyId: 7266038585655296
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+  - cost: 8
+    Effect: 0
+    AI: 50
+    Text:
+      title:
+        m_TableReference:
+          m_TableCollectionName: GUID:d70741e361221cc41926374ef28f7c49
+        m_TableEntryReference:
+          m_KeyId: 7266049679589376
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      description:
+        m_TableReference:
+          m_TableCollectionName: GUID:d70741e361221cc41926374ef28f7c49
+        m_TableEntryReference:
+          m_KeyId: 7266061171982336
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+  power: 0
+  ChanceToGain: []
+  unAvailability: 
+  CounterSpell: {fileID: 0}
+  references:
+    version: 2
+    RefIds: []
