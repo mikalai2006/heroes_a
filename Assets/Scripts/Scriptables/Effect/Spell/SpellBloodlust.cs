@@ -5,7 +5,7 @@ using Cysharp.Threading.Tasks;
 
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "SpellBloodlust", menuName = "Game/Attribute/Spell/2_Bloodlust")]
+[CreateAssetMenu(fileName = "SpellBloodlust", menuName = "Game/Attribute/Spell/2_Bloodlust", order = 2)]
 public class SpellBloodlust : ScriptableAttributeSpell
 {
     public async override UniTask<List<GridArenaNode>> ChooseTarget(ArenaManager arenaManager, EntityHero hero, Player player = null)
@@ -16,6 +16,7 @@ public class SpellBloodlust : ScriptableAttributeSpell
             .Where(t =>
                 t.OccupiedUnit != null
                 && t.OccupiedUnit.TypeArenaPlayer == arenaManager.ArenaQueue.activeEntity.arenaEntity.TypeArenaPlayer
+                && ((EntityCreature)t.OccupiedUnit.Entity).ConfigAttribute.CreatureParams.Shoots == 0
             )
             .ToList();
 

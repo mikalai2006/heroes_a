@@ -5,7 +5,7 @@ using Cysharp.Threading.Tasks;
 
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "SpellFireWall", menuName = "Game/Attribute/Spell/20_FireWall")]
+[CreateAssetMenu(fileName = "SpellFireWall", menuName = "Game/Attribute/Spell/20_FireWall", order = 20)]
 public class SpellFireWall : ScriptableAttributeSpell
 {
     public async override UniTask<List<GridArenaNode>> ChooseTarget(ArenaManager arenaManager, EntityHero hero, Player player = null)

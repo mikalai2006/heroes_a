@@ -56,6 +56,8 @@ public class ArenaEntityData
     public Dictionary<ScriptableAttribute, int> SpeedModificators = new();
     public int fireDefense;
     public Dictionary<ScriptableAttribute, int> FireDefenseModificators = new();
+    public int airDefense;
+    public Dictionary<ScriptableAttribute, int> AirDefenseModificators = new();
     public int waterDefense;
     public Dictionary<ScriptableAttribute, int> WaterDefenseModificators = new();
     public MovementType typeMove;

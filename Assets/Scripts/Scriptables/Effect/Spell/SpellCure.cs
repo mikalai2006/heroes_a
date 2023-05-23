@@ -6,7 +6,7 @@ using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
-[CreateAssetMenu(fileName = "SpellCure", menuName = "Game/Attribute/Spell/3_Cure")]
+[CreateAssetMenu(fileName = "SpellCure", menuName = "Game/Attribute/Spell/3_Cure", order = 3)]
 public class SpellCure : ScriptableAttributeSpell
 {
     public async override UniTask<List<GridArenaNode>> ChooseTarget(ArenaManager arenaManager, EntityHero hero, Player player = null)
