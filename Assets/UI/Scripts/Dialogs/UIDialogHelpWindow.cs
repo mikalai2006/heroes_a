@@ -94,16 +94,10 @@ public class UIDialogHelpWindow : UILocaleBase
         return await _processCompletionSource.Task;
     }
 
-    private void OnClickOk()
+    private async void OnClickOk()
     {
+        await AudioManager.Instance.Click();
         _dataResultDialog.isOk = true;
-        _processCompletionSource.SetResult(_dataResultDialog);
-
-        processAction?.Invoke();
-    }
-    private void OnClickCancel()
-    {
-        _dataResultDialog.isOk = false;
         _processCompletionSource.SetResult(_dataResultDialog);
 
         processAction?.Invoke();

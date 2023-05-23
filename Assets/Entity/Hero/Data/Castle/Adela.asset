@@ -78,7 +78,7 @@ MonoBehaviour:
   - creature: {fileID: 11400000, guid: 203fcde347e55264b97e1a9e2acffe1e, type: 2}
     min: 2
     max: 3000
-  - creature: {fileID: 11400000, guid: 895c0aaa61289ee498260bf96e0174a8, type: 2}
+  - creature: {fileID: 11400000, guid: 7225164ceb73cbd4d9df4215358e36e7, type: 2}
     min: 2
     max: 300
   - creature: {fileID: 11400000, guid: 6731d909c99ecb34f88a1e0795901e4d, type: 2}
@@ -100,6 +100,16 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ca1818cbcbc1e0442b05214da84e9117, type: 2}
   - {fileID: 11400000, guid: 68fa24297844d904f9b28c1ccb3707f8, type: 2}
   - {fileID: 11400000, guid: 8cfccb94b2d3ce143a2c87b3ae6f6985, type: 2}
+  - {fileID: 11400000, guid: f42ddeba6f84dc5408ac9737f32a351a, type: 2}
+  - {fileID: 11400000, guid: 58b71ce58831d834c89c4327537e8218, type: 2}
+  - {fileID: 11400000, guid: c700ca2a6e85e0d44b055751ca5d457b, type: 2}
+  - {fileID: 11400000, guid: d137f671bd8ab80418b8e36bfa1c3bfe, type: 2}
+  - {fileID: 11400000, guid: 6ea98df9624d2e34188a22eb56f9b7c0, type: 2}
+  - {fileID: 11400000, guid: b18e4e8a6ea1f9146a8322afb6d74359, type: 2}
+  - {fileID: 11400000, guid: 3a79806f3be4c014eb4eec39aae48b43, type: 2}
+  - {fileID: 11400000, guid: f9597d3eb0e7e4d469c2ed737ed3d40d, type: 2}
+  - {fileID: 11400000, guid: 1be5e9d2367f5364c9c6e3d882440319, type: 2}
+  - {fileID: 11400000, guid: 4dc603b43d03e0448850cadec249dd47, type: 2}
   references:
     version: 2
     RefIds: []

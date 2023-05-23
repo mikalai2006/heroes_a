@@ -54,6 +54,8 @@ MonoBehaviour:
   level: 1
   typeSpell: 0
   typeSpellDuration: 0
+  typeSpellRun: 1
+  typeSpellTarget: 0
   typeAchievement: 1
   LevelData:
   - cost: 5

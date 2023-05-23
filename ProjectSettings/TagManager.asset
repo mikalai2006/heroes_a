@@ -12,6 +12,7 @@ TagManager:
   - UITown
   - UIArena
   - ArenaCamera
+  - ArenaUnits
   layers:
   - Default
   - TransparentFX

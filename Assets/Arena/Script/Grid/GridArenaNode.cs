@@ -12,7 +12,8 @@ public enum StateArenaNode
     Occupied = 1 << 2,
     Related = 1 << 3,
     Moved = 1 << 4,
-    Deathed = 1 << 5
+    Deathed = 1 << 5,
+    Spellsed = 1 << 6
 }
 
 [Serializable]
@@ -34,7 +35,6 @@ public class GridArenaNode : IHeapItem<GridArenaNode>
     public GridArenaNode RightNode => _grid.GetGridObject(new Vector3Int(X + 1, Y));
     public int level = 0;
     public int weight = 0;
-
     private int heapIndex;
     public int HeapIndex
     {
@@ -47,11 +47,15 @@ public class GridArenaNode : IHeapItem<GridArenaNode>
             heapIndex = value;
         }
     }
-
     [NonSerialized] public GridArenaNode cameFromNode;
     [NonSerialized] public float gCost;
     [NonSerialized] public float hCost;
     [NonSerialized] public float fCost;
+    [NonSerialized] private ArenaEntitySpell _spellsUnit = null;
+    public ArenaEntitySpell SpellsUnit => _spellsUnit;
+    // int - quantity round
+    public Dictionary<ScriptableAttributeSpell, int> SpellsState = new();
+
 
     public GridArenaNode(GridArena<GridArenaNode> grid, GridArenaHelper gridArenaHelper, int x, int y)
     {
@@ -122,6 +126,21 @@ public class GridArenaNode : IHeapItem<GridArenaNode>
         }
 
     }
+    public void SetSpellsUnit(ArenaEntitySpell entity)
+    {
+        _spellsUnit = entity;
+        if (entity == null)
+        {
+            StateArenaNode ^= StateArenaNode.Spellsed;
+            // StateArenaNode |= StateArenaNode.Empty;
+        }
+        else
+        {
+            StateArenaNode |= StateArenaNode.Spellsed;
+            // StateArenaNode ^= StateArenaNode.Empty;
+        }
+
+    }
     public float DistanceTo(GridArenaNode other)
     {
         int dx = X - other.X;     // signed deltas
@@ -141,11 +160,39 @@ public class GridArenaNode : IHeapItem<GridArenaNode>
         this.center = center;
     }
 
-    // public List<GridArenaNode> Neighbours() {
-    //     List<GridArenaNode> result = new List<GridArenaNode>();
+    /// <summary>
+    /// Get neighbours for node from grid.
+    /// </summary>
+    /// <param name="currentNode"></param>
+    /// <returns></returns>
+    public List<GridArenaNode> Neighbours()
+    {
+        Vector3Int position = this.position;
+        List<GridArenaNode> neighbourList = new List<GridArenaNode>();
+        int xOffset = 0;
+        if (position.y % 2 != 0)
+            xOffset = 1;
 
-    // }
+        var one = _grid.GetGridObject(position.x - 1, position.y);
+        if (one != null) neighbourList.Add(one);
 
+        var three = _grid.GetGridObject(position.x + xOffset - 1, position.y + 1);
+        if (three != null) neighbourList.Add(three);
+
+        var four = _grid.GetGridObject(position.x + xOffset, position.y + 1);
+        if (four != null) neighbourList.Add(four);
+
+        var two = _grid.GetGridObject(position.x + 1, position.y);
+        if (two != null) neighbourList.Add(two);
+
+        var six = _grid.GetGridObject(position.x + xOffset, position.y - 1);
+        if (six != null) neighbourList.Add(six);
+
+        var five = _grid.GetGridObject(position.x + xOffset - 1, position.y - 1);
+        if (five != null) neighbourList.Add(five);
+
+        return neighbourList;
+    }
 
 #if UNITY_EDITOR
     public override string ToString()

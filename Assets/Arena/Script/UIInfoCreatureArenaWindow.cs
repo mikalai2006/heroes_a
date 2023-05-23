@@ -22,8 +22,9 @@ public class UIInfoCreatureArenaWindow : UIDialogBaseWindow
 
     }
 
-    private void OnClickClose()
+    private async void OnClickClose()
     {
+        await AudioManager.Instance.Click();
         _dataResultDialog.isOk = false;
         _processCompletionSource.SetResult(_dataResultDialog);
     }
@@ -49,7 +50,9 @@ public class UIInfoCreatureArenaWindow : UIDialogBaseWindow
         root.Q<Label>("AttackValue").text
             = string.Format("{0}({1})", parameters.Attack, parameters.Attack + _arenaEntity.Data.AttackModificators.Values.Sum());
         //  = parameters.Attack.ToString();
-        root.Q<Label>("DefenseValue").text = parameters.Defense.ToString();
+        root.Q<Label>("DefenseValue").text
+            = string.Format("{0}({1})", parameters.Defense, parameters.Defense + _arenaEntity.Data.DefenseModificators.Values.Sum());
+        // = parameters.Defense.ToString();
         if (parameters.Shoots != 0)
         {
             root.Q<Label>("AmmountValue").text = parameters.Shoots.ToString();
@@ -57,8 +60,9 @@ public class UIInfoCreatureArenaWindow : UIDialogBaseWindow
         root.Q<Label>("DamageValue").text
             = string.Format("{0}-{1}", parameters.DamageMin, parameters.DamageMax);
         root.Q<Label>("HPValue").text = parameters.HP.ToString();
+        int currentHP = _arenaEntity.Data.totalHP - (_arenaEntity.Data.HP * (_arenaEntity.Data.quantity - 1));
         root.Q<Label>("HPAValue").text
-            = (_arenaEntity.Data.totalHP - _arenaEntity.Data.HP * _arenaEntity.Data.quantity).ToString();
+            = (currentHP == 0 ? _arenaEntity.Data.HP : currentHP).ToString();
         root.Q<Label>("SpeedValue").text
             = string.Format("{0}({1})", parameters.Speed, _arenaEntity.Speed);
 

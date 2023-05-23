@@ -45,6 +45,11 @@ public class GridArena<T>
         //Debug.Log($"GetGrid {x},{z}: {GetWorldPosition(x, z)}");
         return pos.x >= 0 && pos.y >= 0 && pos.x < _width && pos.y < _height ? _gridArray[pos.x, pos.y] : default;
     }
+    public T GetGridObject(int x, int y)
+    {
+        Vector3Int pos = new Vector3Int(x, y);
+        return pos.x >= 0 && pos.y >= 0 && pos.x < _width && pos.y < _height ? _gridArray[pos.x, pos.y] : default;
+    }
 
     public int GetHeight()
     {

@@ -131,14 +131,14 @@ public class GridArenaHelper
                         !allowNodes.Contains(neighbourNode)
                         && (entityData.CreatureParams.Movement != MovementType.Flying
                             || neighbourNode == endNode
-                        )
+                            )
                         )
                 // || neighbourNode.StateArenaNode.HasFlag(StateArenaNode.Moved)
                     || (
                          neighbourNode.weight < entityData.CreatureParams.Size // - 1
                         && (entityData.CreatureParams.Movement != MovementType.Flying
                             || neighbourNode == endNode
-                        )
+                            )
                         )
                 )
                 {

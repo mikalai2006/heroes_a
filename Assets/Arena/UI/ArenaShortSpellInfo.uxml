@@ -16,7 +16,7 @@
                 <ui:Label tabindex="-1" text="HornedDemon" display-tooltip-when-elided="true" name="NameCreature" class="m-0 p-0 text-sm" style="white-space: normal; -unity-text-align: upper-center;" />
             </ui:VisualElement>
         </ui:VisualElement>
-        <ui:VisualElement class="pt-1">
+        <ui:VisualElement name="SpellButtons" class="pt-1">
             <ui:Instance template="Button" name="Apply">
                 <AttributeOverrides element-name="Btn" text="#apply" />
             </ui:Instance>

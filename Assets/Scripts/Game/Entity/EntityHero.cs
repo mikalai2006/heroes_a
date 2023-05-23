@@ -15,6 +15,7 @@ public class EntityHero : BaseEntity
 {
     public static event Action<EntityHero> onChangeParamsActiveHero;
     [SerializeField] public DataHero Data = new DataHero();
+    [NonSerialized] public ArenaHeroEntity ArenaHeroEntity;
     public ScriptableEntityHero ConfigData => (ScriptableEntityHero)ScriptableData;
     // public ScriptableAttributeHero ConfigAttribute => (ScriptableAttributeHero)ScriptableDataAttribute;
 

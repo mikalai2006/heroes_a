@@ -113,13 +113,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -5896583525801940916, guid: 85e07074849dfd347aa575cbe88b7e5d, type: 3}
+      propertyPath: ShootPrefab
+      value: 
+      objectReference: {fileID: 5922891531265235108, guid: 13c8c3c070e664c4a8629bd0ca80a293, type: 3}
     - target: {fileID: 50873964902334322, guid: 85e07074849dfd347aa575cbe88b7e5d, type: 3}
       propertyPath: m_Name
       value: CyclopArena
       objectReference: {fileID: 0}
     - target: {fileID: 562329377649478516, guid: 85e07074849dfd347aa575cbe88b7e5d, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6259990559177729889, guid: 85e07074849dfd347aa575cbe88b7e5d, type: 3}
       propertyPath: m_RootOrder
@@ -166,6 +170,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6871735786305452529, guid: 85e07074849dfd347aa575cbe88b7e5d, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7517279187114665218, guid: 85e07074849dfd347aa575cbe88b7e5d, type: 3}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}

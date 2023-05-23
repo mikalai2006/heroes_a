@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using System.Linq;
+
 using Cysharp.Threading.Tasks;
 
 using UnityEngine;
@@ -6,15 +9,36 @@ using UnityEngine.AddressableAssets;
 [CreateAssetMenu(fileName = "SpellMagicArrow", menuName = "Game/Attribute/Spell/7_MagicArrow")]
 public class SpellMagicArrow : ScriptableAttributeSpell
 {
-    public async override UniTask AddEffect(ArenaEntity entity, EntityHero heroRunSpell, Player player = null)
+    public async override UniTask<List<GridArenaNode>> ChooseTarget(ArenaManager arenaManager, EntityHero hero, Player player = null)
     {
-        await base.AddEffect(entity, heroRunSpell);
+        List<GridArenaNode> nodes = arenaManager
+            .GridArenaHelper
+            .GetAllGridNodes()
+            .Where(t =>
+                t.OccupiedUnit != null
+                && t.OccupiedUnit.TypeArenaPlayer != arenaManager.ArenaQueue.activeEntity.arenaEntity.TypeArenaPlayer
+            )
+            .ToList();
+
+        await UniTask.Delay(1);
+        return nodes;
+    }
+
+    public async override UniTask AddEffect(GridArenaNode node, EntityHero heroRunSpell, ArenaManager arenaManager, Player player = null)
+    {
+        await base.AddEffect(node, heroRunSpell, arenaManager);
+
+        var entity = node.OccupiedUnit;
 
         ScriptableAttributeSecondarySkill baseSSkill = SchoolMagic.BaseSecondarySkill;
-        int levelSSkill = heroRunSpell.Data.SSkills.ContainsKey(baseSSkill.TypeTwoSkill)
-            ? heroRunSpell.Data.SSkills[baseSSkill.TypeTwoSkill].level
+        SpellItem dataCurrent = new();
+        if (entity.Hero != null)
+        {
+            int levelSSkill = heroRunSpell.Data.SSkills.ContainsKey(baseSSkill.TypeTwoSkill)
+            ? heroRunSpell.Data.SSkills[baseSSkill.TypeTwoSkill].level + 1
             : 0;
-        var dataCurrent = LevelData[levelSSkill];
+            dataCurrent = LevelData[levelSSkill];
+        }
 
         int totalDamage = dataCurrent.Effect + (heroRunSpell.Data.PSkills[TypePrimarySkill.Power] * 10);
 
@@ -26,7 +50,8 @@ public class SpellMagicArrow : ScriptableAttributeSpell
                Quaternion.identity
            );
             var obj = await asset.Task;
-            Vector3 startPosition = new Vector3(0, 0, 0);
+            var arenaHeroEntity = arenaManager.ArenaQueue.ActiveHero.ArenaHeroEntity;
+            Vector3 startPosition = arenaHeroEntity.ArenaHeroMonoBehavior.transform.position;
             Vector3 endPosition = entity.OccupiedNode.center;
             float elapsedTime = 0;
             float time = .3f;
@@ -41,12 +66,7 @@ public class SpellMagicArrow : ScriptableAttributeSpell
             Addressables.Release(asset);
         }
 
-        entity.SetDamage(totalDamage);
         await entity.ArenaMonoBehavior.RunGettingHitSpell();
+        entity.SetDamage(totalDamage);
     }
-
-    //     public override UniTask RemoveEffect(ArenaEntity entity, EntityHero hero, Player player = null)
-    //     {
-    //         return base.RemoveEffect(entity, hero, player);
-    //     }
 }

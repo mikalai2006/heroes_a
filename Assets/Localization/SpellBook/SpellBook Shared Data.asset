@@ -15,520 +15,716 @@ MonoBehaviour:
   m_TableCollectionName: SpellBook
   m_TableCollectionNameGuidString: d70741e361221cc41926374ef28f7c49
   m_Entries:
-  - m_Id: 10637967360
-    m_Key: magicarrow_t
+  - m_Id: 7286522110967808
+    m_Key: deathripple_e_d
     m_Metadata:
       m_Items: []
-  - m_Id: 30334247927808
-    m_Key: magicarrow_b_t
+  - m_Id: 7286509905543168
+    m_Key: deathripple_e_t
     m_Metadata:
       m_Items: []
-  - m_Id: 30349339033600
-    m_Key: magicarrow_b_d
+  - m_Id: 7286499499474944
+    m_Key: deathripple_a_d
     m_Metadata:
       m_Items: []
-  - m_Id: 30380519489536
-    m_Key: magicarrow_a_t
+  - m_Id: 7286485775712256
+    m_Key: deathripple_a_t
     m_Metadata:
       m_Items: []
-  - m_Id: 30403428777984
-    m_Key: magicarrow_a_d
+  - m_Id: 7286473264103424
+    m_Key: deathripple_b_d
     m_Metadata:
       m_Items: []
-  - m_Id: 30421476868096
-    m_Key: magicarrow_e_t
+  - m_Id: 7286459339014144
+    m_Key: deathripple_b_t
     m_Metadata:
       m_Items: []
-  - m_Id: 30456235065344
-    m_Key: magicarrow_e_d
+  - m_Id: 7286403533799424
+    m_Key: deathripple_t
     m_Metadata:
       m_Items: []
-  - m_Id: 31544791171072
-    m_Key: disruptingray_b_t
+  - m_Id: 7266061171982336
+    m_Key: blind_e_d
     m_Metadata:
       m_Items: []
-  - m_Id: 31617985970176
-    m_Key: disruptingray_b_d
+  - m_Id: 7266049679589376
+    m_Key: blind_e_t
     m_Metadata:
       m_Items: []
-  - m_Id: 31634268258304
-    m_Key: disruptingray_a_t
+  - m_Id: 7266038585655296
+    m_Key: blind_a_d
     m_Metadata:
       m_Items: []
-  - m_Id: 31649741045760
-    m_Key: disruptingray_a_d
+  - m_Id: 7266021430951936
+    m_Key: blind_a_t
     m_Metadata:
       m_Items: []
-  - m_Id: 31674244169728
-    m_Key: disruptingray_e_t
+  - m_Id: 7266007325507584
+    m_Key: blind_b_d
     m_Metadata:
       m_Items: []
-  - m_Id: 31694116782080
-    m_Key: disruptingray_e_d
+  - m_Id: 7265992976793600
+    m_Key: blind_b_t
     m_Metadata:
       m_Items: []
-  - m_Id: 31949143048192
-    m_Key: disruptingray_t
+  - m_Id: 7265963646025728
+    m_Key: blind_t
     m_Metadata:
       m_Items: []
-  - m_Id: 33930481926144
-    m_Key: airshield_t
+  - m_Id: 7138508830572544
+    m_Key: firewall_e_d
     m_Metadata:
       m_Items: []
-  - m_Id: 33996693209088
-    m_Key: airshield_b_t
+  - m_Id: 7138495870173184
+    m_Key: firewall_e_t
     m_Metadata:
       m_Items: []
-  - m_Id: 34015198478336
-    m_Key: airshield_b_d
+  - m_Id: 7138480175087616
+    m_Key: firewall_a_d
     m_Metadata:
       m_Items: []
-  - m_Id: 34028486033408
-    m_Key: airshield_a_t
+  - m_Id: 7138467902554112
+    m_Key: firewall_a_t
     m_Metadata:
       m_Items: []
-  - m_Id: 34053563777024
-    m_Key: airshield_a_d
+  - m_Id: 7138453310570496
+    m_Key: firewall_b_d
     m_Metadata:
       m_Items: []
-  - m_Id: 34066532564992
-    m_Key: airshield_e_t
+  - m_Id: 7138436902453248
+    m_Key: firewall_b_t
     m_Metadata:
       m_Items: []
-  - m_Id: 34089899032576
-    m_Key: airshield_e_d
+  - m_Id: 7138365460873216
+    m_Key: firewall_t
     m_Metadata:
       m_Items: []
-  - m_Id: 35781793185792
-    m_Key: counterstrike_t
-    m_Metadata:
-      m_Items: []
-  - m_Id: 35809131659264
-    m_Key: counterstrike_b_t
-    m_Metadata:
-      m_Items: []
-  - m_Id: 35827829866496
-    m_Key: counterstrike_b_d
-    m_Metadata:
-      m_Items: []
-  - m_Id: 35843860496384
-    m_Key: counterstrike_a_t
-    m_Metadata:
-      m_Items: []
-  - m_Id: 35867096940544
-    m_Key: counterstrike_a_d
-    m_Metadata:
-      m_Items: []
-  - m_Id: 35880384495616
-    m_Key: counterstrike_e_t
-    m_Metadata:
-      m_Items: []
-  - m_Id: 35893806268416
-    m_Key: counterstrike_e_d
-    m_Metadata:
-      m_Items: []
-  - m_Id: 36870693224448
-    m_Key: dimensiondoor_t
-    m_Metadata:
-      m_Items: []
-  - m_Id: 37469950214144
-    m_Key: dimensiondoor_b_t
-    m_Metadata:
-      m_Items: []
-  - m_Id: 37487545319424
-    m_Key: dimensiondoor_b_d
-    m_Metadata:
-      m_Items: []
-  - m_Id: 37500417638400
-    m_Key: dimensiondoor_a_t
-    m_Metadata:
-      m_Items: []
-  - m_Id: 37514195927040
-    m_Key: dimensiondoor_a_d
-    m_Metadata:
-      m_Items: []
-  - m_Id: 37526699147264
-    m_Key: dimensiondoor_e_t
-    m_Metadata:
-      m_Items: []
-  - m_Id: 37542893355008
-    m_Key: dimensiondoor_e_d
-    m_Metadata:
-      m_Items: []
-  - m_Id: 37803124752384
-    m_Key: dimensiondoor_d
-    m_Metadata:
-      m_Items: []
-  - m_Id: 59896495243264
-    m_Key: levelshort
-    m_Metadata:
-      m_Items: []
-  - m_Id: 66212806688768
-    m_Key: levelsskilshort
-    m_Metadata:
-      m_Items: []
-  - m_Id: 238188103892992
-    m_Key: bless_t
-    m_Metadata:
-      m_Items: []
-  - m_Id: 238220588777472
-    m_Key: bless_b_t
-    m_Metadata:
-      m_Items: []
-  - m_Id: 238243506454528
-    m_Key: bless_b_d
-    m_Metadata:
-      m_Items: []
-  - m_Id: 238261676179456
-    m_Key: bless_a_t
-    m_Metadata:
-      m_Items: []
-  - m_Id: 238292453982208
-    m_Key: bless_a_d
-    m_Metadata:
-      m_Items: []
-  - m_Id: 238307033382912
-    m_Key: bless_e_t
-    m_Metadata:
-      m_Items: []
-  - m_Id: 238322485198848
-    m_Key: bless_e_d
-    m_Metadata:
-      m_Items: []
-  - m_Id: 238987550818304
-    m_Key: bloodlust_t
-    m_Metadata:
-      m_Items: []
-  - m_Id: 239012917968896
-    m_Key: bloodlust_b_t
-    m_Metadata:
-      m_Items: []
-  - m_Id: 239029519024128
-    m_Key: bloodlust_b_d
-    m_Metadata:
-      m_Items: []
-  - m_Id: 239043515416576
-    m_Key: bloodlust_a_t
-    m_Metadata:
-      m_Items: []
-  - m_Id: 239055540486144
-    m_Key: bloodlust_a_d
-    m_Metadata:
-      m_Items: []
-  - m_Id: 239106379644928
-    m_Key: bloodlust_e_t
-    m_Metadata:
-      m_Items: []
-  - m_Id: 239120040493056
-    m_Key: bloodlust_e_d
-    m_Metadata:
-      m_Items: []
-  - m_Id: 240548674961408
-    m_Key: cure_t
-    m_Metadata:
-      m_Items: []
-  - m_Id: 240587799429120
-    m_Key: cure_b_t
-    m_Metadata:
-      m_Items: []
-  - m_Id: 240604304015360
-    m_Key: cure_b_d
-    m_Metadata:
-      m_Items: []
-  - m_Id: 240630770073600
-    m_Key: cure_a_t
-    m_Metadata:
-      m_Items: []
-  - m_Id: 240651011784704
-    m_Key: cure_a_d
-    m_Metadata:
-      m_Items: []
-  - m_Id: 240667050803200
-    m_Key: cure_e_t
-    m_Metadata:
-      m_Items: []
-  - m_Id: 240681722478592
-    m_Key: cure_e_d
-    m_Metadata:
-      m_Items: []
-  - m_Id: 241795943530496
-    m_Key: curse_t
-    m_Metadata:
-      m_Items: []
-  - m_Id: 241822095015936
-    m_Key: curse_b_t
-    m_Metadata:
-      m_Items: []
-  - m_Id: 241837873987584
-    m_Key: curse_b_d
-    m_Metadata:
-      m_Items: []
-  - m_Id: 241852763766784
-    m_Key: curse_a_t
-    m_Metadata:
-      m_Items: []
-  - m_Id: 241868731482112
-    m_Key: curse_a_d
-    m_Metadata:
-      m_Items: []
-  - m_Id: 241880764940288
-    m_Key: curse_e_t
-    m_Metadata:
-      m_Items: []
-  - m_Id: 241898171301888
-    m_Key: curse_e_d
-    m_Metadata:
-      m_Items: []
-  - m_Id: 243318140338176
-    m_Key: dispel_t
-    m_Metadata:
-      m_Items: []
-  - m_Id: 243346699354112
-    m_Key: dispel_b_t
-    m_Metadata:
-      m_Items: []
-  - m_Id: 243369482813440
-    m_Key: dispel_b_d
-    m_Metadata:
-      m_Items: []
-  - m_Id: 243383592452096
-    m_Key: dispel_a_t
-    m_Metadata:
-      m_Items: []
-  - m_Id: 243400705212416
-    m_Key: dispel_a_d
-    m_Metadata:
-      m_Items: []
-  - m_Id: 243416970723328
-    m_Key: dispel_e_t
-    m_Metadata:
-      m_Items: []
-  - m_Id: 243431441072128
-    m_Key: dispel_e_d
-    m_Metadata:
-      m_Items: []
-  - m_Id: 244242653020160
-    m_Key: haste_t
-    m_Metadata:
-      m_Items: []
-  - m_Id: 244274584256512
-    m_Key: haste_b_t
-    m_Metadata:
-      m_Items: []
-  - m_Id: 244287657902080
-    m_Key: haste_b_d
-    m_Metadata:
-      m_Items: []
-  - m_Id: 244301054509056
-    m_Key: haste_a_t
-    m_Metadata:
-      m_Items: []
-  - m_Id: 244320599965696
-    m_Key: haste_a_d
-    m_Metadata:
-      m_Items: []
-  - m_Id: 244332826361856
-    m_Key: haste_e_t
-    m_Metadata:
-      m_Items: []
-  - m_Id: 244344255840256
-    m_Key: haste_e_d
-    m_Metadata:
-      m_Items: []
-  - m_Id: 608603284340736
-    m_Key: protectionfromfire_t
-    m_Metadata:
-      m_Items: []
-  - m_Id: 608634468990976
-    m_Key: protectionfromfire_b_t
-    m_Metadata:
-      m_Items: []
-  - m_Id: 608652655493120
-    m_Key: protectionfromfire_b_d
-    m_Metadata:
-      m_Items: []
-  - m_Id: 608665758498816
-    m_Key: protectionfromfire_a_t
-    m_Metadata:
-      m_Items: []
-  - m_Id: 608677980700672
-    m_Key: protectionfromfire_a_d
-    m_Metadata:
-      m_Items: []
-  - m_Id: 608689875746816
-    m_Key: protectionfromfire_e_t
-    m_Metadata:
-      m_Items: []
-  - m_Id: 608701158424576
-    m_Key: protectionfromfire_e_d
-    m_Metadata:
-      m_Items: []
-  - m_Id: 609565734502400
-    m_Key: protectionfromwater_t
-    m_Metadata:
-      m_Items: []
-  - m_Id: 609585779081216
-    m_Key: protectionfromwater_b_t
-    m_Metadata:
-      m_Items: []
-  - m_Id: 609602203975680
-    m_Key: protectionfromwater_b_d
-    m_Metadata:
-      m_Items: []
-  - m_Id: 609619081854976
-    m_Key: protectionfromwater_a_t
-    m_Metadata:
-      m_Items: []
-  - m_Id: 609636916035584
-    m_Key: protectionfromwater_a_d
-    m_Metadata:
-      m_Items: []
-  - m_Id: 609648777527296
-    m_Key: protectionfromwater_e_t
-    m_Metadata:
-      m_Items: []
-  - m_Id: 609661939253248
-    m_Key: protectionfromwater_e_d
-    m_Metadata:
-      m_Items: []
-  - m_Id: 610216803729408
-    m_Key: shield_t
-    m_Metadata:
-      m_Items: []
-  - m_Id: 610233069240320
-    m_Key: shield_b_t
-    m_Metadata:
-      m_Items: []
-  - m_Id: 610249720627200
-    m_Key: shield_b_d
-    m_Metadata:
-      m_Items: []
-  - m_Id: 610263213703168
-    m_Key: shield_a_t
-    m_Metadata:
-      m_Items: []
-  - m_Id: 610275725312000
-    m_Key: shield_a_d
-    m_Metadata:
-      m_Items: []
-  - m_Id: 610286605336576
-    m_Key: shield_e_t
-    m_Metadata:
-      m_Items: []
-  - m_Id: 610335057936384
-    m_Key: shield_e_d
-    m_Metadata:
-      m_Items: []
-  - m_Id: 611245884604416
-    m_Key: slow_t
-    m_Metadata:
-      m_Items: []
-  - m_Id: 611262049452032
-    m_Key: slow_b_t
-    m_Metadata:
-      m_Items: []
-  - m_Id: 611276104564736
-    m_Key: slow_b_d
-    m_Metadata:
-      m_Items: []
-  - m_Id: 611289589252096
-    m_Key: slow_a_t
-    m_Metadata:
-      m_Items: []
-  - m_Id: 611313605836800
-    m_Key: slow_a_d
-    m_Metadata:
-      m_Items: []
-  - m_Id: 611325442162688
-    m_Key: slow_e_t
-    m_Metadata:
-      m_Items: []
-  - m_Id: 611340432605184
-    m_Key: slow_e_d
-    m_Metadata:
-      m_Items: []
-  - m_Id: 612822087270400
-    m_Key: stoneskin_t
-    m_Metadata:
-      m_Items: []
-  - m_Id: 613319993098240
-    m_Key: stoneskin_b_t
-    m_Metadata:
-      m_Items: []
-  - m_Id: 613334169845760
-    m_Key: stoneskin_b_d
-    m_Metadata:
-      m_Items: []
-  - m_Id: 613348380147712
-    m_Key: stoneskin_a_t
-    m_Metadata:
-      m_Items: []
-  - m_Id: 613365585182720
-    m_Key: stoneskin_a_d
-    m_Metadata:
-      m_Items: []
-  - m_Id: 613376205160448
-    m_Key: stoneskin_e_t
-    m_Metadata:
-      m_Items: []
-  - m_Id: 613386695114752
-    m_Key: stoneskin_e_d
-    m_Metadata:
-      m_Items: []
-  - m_Id: 614284196478976
-    m_Key: viewair_t
-    m_Metadata:
-      m_Items: []
-  - m_Id: 614338126839808
-    m_Key: viewair_b_t
-    m_Metadata:
-      m_Items: []
-  - m_Id: 614351104016384
-    m_Key: viewair_b_d
-    m_Metadata:
-      m_Items: []
-  - m_Id: 614367059148800
-    m_Key: viewair_a_t
-    m_Metadata:
-      m_Items: []
-  - m_Id: 614379482677248
-    m_Key: viewair_a_d
-    m_Metadata:
-      m_Items: []
-  - m_Id: 614391864262656
-    m_Key: viewair_e_t
-    m_Metadata:
-      m_Items: []
-  - m_Id: 614410143039488
-    m_Key: viewair_e_d
-    m_Metadata:
-      m_Items: []
-  - m_Id: 615271137181696
-    m_Key: viewearh_t
-    m_Metadata:
-      m_Items: []
-  - m_Id: 615292184199168
-    m_Key: viewearh_b_t
-    m_Metadata:
-      m_Items: []
-  - m_Id: 615306331586560
-    m_Key: viewearh_b_d
-    m_Metadata:
-      m_Items: []
-  - m_Id: 615319468146688
-    m_Key: viewearh_a_t
-    m_Metadata:
-      m_Items: []
-  - m_Id: 615333057691648
-    m_Key: viewearh_a_d
+  - m_Id: 615355245559808
+    m_Key: viewearh_e_d
     m_Metadata:
       m_Items: []
   - m_Id: 615344390701056
     m_Key: viewearh_e_t
     m_Metadata:
       m_Items: []
-  - m_Id: 615355245559808
-    m_Key: viewearh_e_d
+  - m_Id: 615333057691648
+    m_Key: viewearh_a_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 615319468146688
+    m_Key: viewearh_a_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 615306331586560
+    m_Key: viewearh_b_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 615292184199168
+    m_Key: viewearh_b_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 615271137181696
+    m_Key: viewearh_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 614410143039488
+    m_Key: viewair_e_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 614391864262656
+    m_Key: viewair_e_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 614379482677248
+    m_Key: viewair_a_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 614367059148800
+    m_Key: viewair_a_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 614351104016384
+    m_Key: viewair_b_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 614338126839808
+    m_Key: viewair_b_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 614284196478976
+    m_Key: viewair_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 613386695114752
+    m_Key: stoneskin_e_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 613376205160448
+    m_Key: stoneskin_e_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 613365585182720
+    m_Key: stoneskin_a_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 613348380147712
+    m_Key: stoneskin_a_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 613334169845760
+    m_Key: stoneskin_b_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 613319993098240
+    m_Key: stoneskin_b_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 612822087270400
+    m_Key: stoneskin_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 611340432605184
+    m_Key: slow_e_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 611325442162688
+    m_Key: slow_e_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 611313605836800
+    m_Key: slow_a_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 611289589252096
+    m_Key: slow_a_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 611276104564736
+    m_Key: slow_b_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 611262049452032
+    m_Key: slow_b_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 611245884604416
+    m_Key: slow_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 610335057936384
+    m_Key: shield_e_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 610286605336576
+    m_Key: shield_e_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 610275725312000
+    m_Key: shield_a_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 610263213703168
+    m_Key: shield_a_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 610249720627200
+    m_Key: shield_b_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 610233069240320
+    m_Key: shield_b_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 610216803729408
+    m_Key: shield_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 609661939253248
+    m_Key: protectionfromwater_e_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 609648777527296
+    m_Key: protectionfromwater_e_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 609636916035584
+    m_Key: protectionfromwater_a_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 609619081854976
+    m_Key: protectionfromwater_a_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 609602203975680
+    m_Key: protectionfromwater_b_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 609585779081216
+    m_Key: protectionfromwater_b_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 609565734502400
+    m_Key: protectionfromwater_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 608701158424576
+    m_Key: protectionfromfire_e_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 608689875746816
+    m_Key: protectionfromfire_e_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 608677980700672
+    m_Key: protectionfromfire_a_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 608665758498816
+    m_Key: protectionfromfire_a_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 608652655493120
+    m_Key: protectionfromfire_b_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 608634468990976
+    m_Key: protectionfromfire_b_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 608603284340736
+    m_Key: protectionfromfire_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 244344255840256
+    m_Key: haste_e_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 244332826361856
+    m_Key: haste_e_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 244320599965696
+    m_Key: haste_a_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 244301054509056
+    m_Key: haste_a_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 244287657902080
+    m_Key: haste_b_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 244274584256512
+    m_Key: haste_b_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 244242653020160
+    m_Key: haste_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 243431441072128
+    m_Key: dispel_e_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 243416970723328
+    m_Key: dispel_e_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 243400705212416
+    m_Key: dispel_a_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 243383592452096
+    m_Key: dispel_a_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 243369482813440
+    m_Key: dispel_b_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 243346699354112
+    m_Key: dispel_b_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 243318140338176
+    m_Key: dispel_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 241898171301888
+    m_Key: curse_e_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 241880764940288
+    m_Key: curse_e_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 241868731482112
+    m_Key: curse_a_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 241852763766784
+    m_Key: curse_a_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 241837873987584
+    m_Key: curse_b_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 241822095015936
+    m_Key: curse_b_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 241795943530496
+    m_Key: curse_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 240681722478592
+    m_Key: cure_e_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 240667050803200
+    m_Key: cure_e_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 240651011784704
+    m_Key: cure_a_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 240630770073600
+    m_Key: cure_a_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 240604304015360
+    m_Key: cure_b_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 240587799429120
+    m_Key: cure_b_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 240548674961408
+    m_Key: cure_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 239120040493056
+    m_Key: bloodlust_e_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 239106379644928
+    m_Key: bloodlust_e_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 239055540486144
+    m_Key: bloodlust_a_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 239043515416576
+    m_Key: bloodlust_a_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 239029519024128
+    m_Key: bloodlust_b_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 239012917968896
+    m_Key: bloodlust_b_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 238987550818304
+    m_Key: bloodlust_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 238322485198848
+    m_Key: bless_e_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 238307033382912
+    m_Key: bless_e_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 238292453982208
+    m_Key: bless_a_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 238261676179456
+    m_Key: bless_a_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 238243506454528
+    m_Key: bless_b_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 238220588777472
+    m_Key: bless_b_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 238188103892992
+    m_Key: bless_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 66212806688768
+    m_Key: levelsskilshort
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59896495243264
+    m_Key: levelshort
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37803124752384
+    m_Key: dimensiondoor_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37542893355008
+    m_Key: dimensiondoor_e_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37526699147264
+    m_Key: dimensiondoor_e_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37514195927040
+    m_Key: dimensiondoor_a_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37500417638400
+    m_Key: dimensiondoor_a_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37487545319424
+    m_Key: dimensiondoor_b_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37469950214144
+    m_Key: dimensiondoor_b_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36870693224448
+    m_Key: dimensiondoor_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 35893806268416
+    m_Key: counterstrike_e_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 35880384495616
+    m_Key: counterstrike_e_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 35867096940544
+    m_Key: counterstrike_a_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 35843860496384
+    m_Key: counterstrike_a_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 35827829866496
+    m_Key: counterstrike_b_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 35809131659264
+    m_Key: counterstrike_b_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 35781793185792
+    m_Key: counterstrike_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34089899032576
+    m_Key: airshield_e_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34066532564992
+    m_Key: airshield_e_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34053563777024
+    m_Key: airshield_a_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34028486033408
+    m_Key: airshield_a_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34015198478336
+    m_Key: airshield_b_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 33996693209088
+    m_Key: airshield_b_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 33930481926144
+    m_Key: airshield_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31949143048192
+    m_Key: disruptingray_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31694116782080
+    m_Key: disruptingray_e_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31674244169728
+    m_Key: disruptingray_e_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31649741045760
+    m_Key: disruptingray_a_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31634268258304
+    m_Key: disruptingray_a_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31617985970176
+    m_Key: disruptingray_b_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31544791171072
+    m_Key: disruptingray_b_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30456235065344
+    m_Key: magicarrow_e_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30421476868096
+    m_Key: magicarrow_e_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30403428777984
+    m_Key: magicarrow_a_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30380519489536
+    m_Key: magicarrow_a_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30349339033600
+    m_Key: magicarrow_b_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30334247927808
+    m_Key: magicarrow_b_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10637967360
+    m_Key: magicarrow_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7303088001155072
+    m_Key: fortune_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7303111862550528
+    m_Key: fortune_b_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7303148927614976
+    m_Key: fortune_b_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7303164547203072
+    m_Key: fortune_a_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7303186642796544
+    m_Key: fortune_a_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7303198592368640
+    m_Key: fortune_e_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7303209652748288
+    m_Key: fortune_e_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7305211514355712
+    m_Key: icebolt_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7305244968124416
+    m_Key: icebolt_b_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7305271656480768
+    m_Key: icebolt_b_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7305285682233344
+    m_Key: icebolt_a_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7305298634244096
+    m_Key: icebolt_a_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7305309833035776
+    m_Key: icebolt_e_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7305322042654720
+    m_Key: icebolt_e_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7309530846363648
+    m_Key: lightningbolt_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7309579978440704
+    m_Key: lightningbolt_b_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7309594784333824
+    m_Key: lightningbolt_b_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7309611997757440
+    m_Key: lightningbolt_a_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7309624689721344
+    m_Key: lightningbolt_a_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7309640208646144
+    m_Key: lightningbolt_e_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7309657036193792
+    m_Key: lightningbolt_e_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7313866158669824
+    m_Key: precision_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7313901113999360
+    m_Key: precision_b_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7313920542015488
+    m_Key: precision_b_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7313933271728128
+    m_Key: precision_a_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7313950153801728
+    m_Key: precision_a_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7313967140732928
+    m_Key: precision_e_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7313981493641216
+    m_Key: precision_e_d
     m_Metadata:
       m_Items: []
   m_Metadata:

@@ -31,6 +31,7 @@ public class Constants
         public const string UI_TOWN = "UITown";
         public const string UI_DIALOG_SPELLBOOK = "UIDialogSpellBook";
         public const string UI_INFO_ARENA_CREATURE = "UIInfoArenaCreature";
+        public const string UI_DIALOG_ARENA_HEROINFO = "UIInfoArenaHero";
 
     }
 
