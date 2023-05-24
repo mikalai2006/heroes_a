@@ -211,21 +211,17 @@ public class UIArena : UILocaleBase
                         dataPlural
                         );
                     boxInfoCreature.Q<Label>("NameCreature").text = titlePlural;
-                    var btnApplySpell = boxSpell.Q<VisualElement>("Apply").Q<Button>("Btn");
-                    btnApplySpell.style.display = DisplayStyle.Flex;
-                    btnApplySpell.clickable.clicked += async () =>
-                    {
-                        HideSpellInfo();
 
-                        await AudioManager.Instance.Click();
-                        await arenaManager.ClickButtonSpell();
-                    };
+                    CreateButtonApply(boxSpell);
+
                     boxSpell.Q<Label>("For").text
                         = new LocalizedString(Constants.LanguageTable.LANG_TABLE_UILANG, "for").GetLocalizedString();
                 }
                 else
                 {
                     boxSpell.Q<Label>("For").style.display = DisplayStyle.None;
+                    boxSpell.Q<VisualElement>("CreatureInfo").style.display = DisplayStyle.None;
+                    CreateButtonApply(boxSpell);
                 }
             }
             else
@@ -239,9 +235,26 @@ public class UIArena : UILocaleBase
         }
     }
 
+    private void CreateButtonApply(VisualElement boxSpell)
+    {
+        var btnApplySpell = boxSpell.Q<VisualElement>("Apply").Q<Button>("Btn");
+        btnApplySpell.style.display = DisplayStyle.Flex;
+        btnApplySpell.clickable.clicked += async () =>
+        {
+            HideSpellInfo();
+
+            await AudioManager.Instance.Click();
+            await arenaManager.ClickButtonSpell();
+        };
+    }
+
     private void ChangeStatusButton()
     {
-        if (arenaManager.ArenaQueue.ActiveHero != null)
+        if (
+            arenaManager.ArenaQueue.ActiveHero != null
+            &&
+            arenaManager.ArenaQueue.ActiveHero.Data.SpellBook.countCreatedSpell > 0
+            )
         {
             _btnSpellBook.SetEnabled(true);
         }
@@ -321,6 +334,7 @@ public class UIArena : UILocaleBase
 
         DrawQueue();
         ChangeStatusButtonAttack();
+        ChangeStatusButton();
         DrawHelpCreature();
         // ShowSpellInfo();
     }

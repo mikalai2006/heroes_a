@@ -24,6 +24,7 @@ public class EntityBook
     private EntityHero _hero;
 
     private const int LIMITPERPAGE = 18;
+    public int countCreatedSpell;
 
     public EntityBook(EntityHero hero)
     {
@@ -156,11 +157,16 @@ public class EntityBook
         return result;
     }
 
+    internal void SetCountSpellPerRound()
+    {
+        countCreatedSpell = LevelManager.Instance.ConfigGameSettings.countSpellPerRound;
+    }
+
     internal async UniTask RunSpellCombat(GridArenaNode node, ArenaManager arenaManager)
     {
         Debug.Log($"Run RunSpellCombat!");
         await ChoosedSpell.AddEffect(node, _hero, arenaManager);
-
+        countCreatedSpell--;
         // if (ChoosedSpell.typeSpellDuration != TypeSpellDuration.Instant)
         // {
         //     int countRound = _hero.Data.PSkills[TypePrimarySkill.Power];

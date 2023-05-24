@@ -28,7 +28,7 @@ public class ArenaEntitySpell
     // public static event Action OnChangeParamsCreature;
 
     [NonSerialized] public GridArenaNode OccupiedNode = null;
-    [NonSerialized] private List<GridArenaNode> _relatedNodes = null;
+    [NonSerialized] private List<GridArenaNode> _relatedNodes = new();
     public List<GridArenaNode> RelatedNodes => _relatedNodes;
     public ScriptableAttributeSpell ConfigDataSpell;
     private Vector3 _centerNode;
@@ -38,6 +38,7 @@ public class ArenaEntitySpell
     [NonSerialized] public ArenaSpellMonoBehavior ArenaSpellMonoBehavior;
     public TypeArenaPlayer TypeArenaPlayer;
     private EntityHero _hero;
+    public EntityHero Hero => _hero;
 
     public ArenaEntitySpell(
         GridArenaNode node,
@@ -77,11 +78,16 @@ public class ArenaEntitySpell
     {
         LoadGameObject();
     }
+    public void AddRelatedNode(GridArenaNode node)
+    {
+        _relatedNodes.Add(node);
+    }
 
     public void DestroyMapObject()
     {
         GameObject.Destroy(ArenaSpellMonoBehavior);
         OccupiedNode.SetSpellsUnit(null);
+        OccupiedNode.SetSpellsStatus(false);
     }
 
     private void LoadGameObject()

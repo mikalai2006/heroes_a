@@ -255,6 +255,7 @@ public class ArenaMonoBehavior : MonoBehaviour // , IPointerDownHandler
         var entityCreature = (EntityCreature)ArenaEntity.Entity;
         var entityData = (ScriptableAttributeCreature)entityCreature.ConfigAttribute;
 
+        var nodeStart = ArenaEntity.Path[0];
         var nodeEnd = ArenaEntity.Path[ArenaEntity.Path.Count - 1];
         _animator.Play(string.Format("{0}{1}", _nameCreature, "Moving"), 0, 0f);
 
@@ -277,6 +278,7 @@ public class ArenaMonoBehavior : MonoBehaviour // , IPointerDownHandler
             while (ArenaEntity.Path.Count > 0 && !cancellationToken.IsCancellationRequested)
             {
                 var nodeTo = ArenaEntity.Path[0];
+                nodeEnd = nodeTo;
                 // ScriptableEntityMapObject configNodeData
                 //     = (ScriptableEntityMapObject)nodeTo.OccupiedUnit?.ConfigData;
 
@@ -287,15 +289,15 @@ public class ArenaMonoBehavior : MonoBehaviour // , IPointerDownHandler
                 await SmoothLerp(transform.position, nodeTo.center + difPos, time);
                 await UniTask.Yield();
 
-                if (nodeTo.SpellsState.Count > 0)
+                ArenaEntity.Path.RemoveAt(0);
+
+                if (nodeTo.SpellsState.Count > 0 && nodeTo != nodeStart)
                 {
                     foreach (var spell in nodeTo.SpellsState)
                     {
-                        await spell.Key.RunEffect(_arenaEntity.OccupiedNode, _arenaEntity.Hero);
+                        await spell.Key.RunEffect(ArenaEntity.OccupiedNode, ArenaEntity.Hero, nodeTo);
                     }
                 }
-
-                ArenaEntity.Path.RemoveAt(0);
             }
         }
 

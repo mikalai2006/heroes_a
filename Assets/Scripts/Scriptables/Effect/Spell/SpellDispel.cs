@@ -62,15 +62,15 @@ public class SpellDispel : ScriptableAttributeSpell
         List<GridArenaNode> spellsnodes = arenaManager
             .GridArenaHelper
             .GetAllGridNodes()
-            .Where(t => t.SpellsUnit != null)
+            .Where(t => t.SpellUnit != null)
             .ToList();
         if (levelSSkill >= 2 && spellsnodes.Count > 0)
         {
             foreach (var spellNode in spellsnodes)
             {
-                if (spellNode.SpellsUnit != null)
+                if (spellNode.SpellUnit != null)
                 {
-                    await spellNode.SpellsUnit.ConfigDataSpell.RemoveEffect(spellNode, heroRunSpell);
+                    await spellNode.SpellUnit.ConfigDataSpell.RemoveEffect(spellNode, heroRunSpell);
                 }
             }
         }

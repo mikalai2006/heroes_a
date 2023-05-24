@@ -54,7 +54,7 @@ MonoBehaviour:
   level: 2
   typeSpell: 0
   typeSpellDuration: 2
-  typeSpellRun: 1
+  typeSpellRun: 2
   typeSpellTarget: 1
   typeAchievement: 2
   LevelData:

@@ -136,12 +136,14 @@ public class ArenaEntity
         Data.totalHP = Data.maxHP = creatureData.CreatureParams.HP * ((EntityCreature)Entity).Data.value;
 
         Data.isRun = true;
+        Hero.Data.SpellBook.SetCountSpellPerRound();
     }
 
     public async void SetRoundData()
     {
         Data.counterAttack = 1;
         Data.countAttack = 1;
+
 
         // TODO effects.
         var spells = Data.SpellsState.Keys.ToList();
@@ -289,7 +291,7 @@ public class ArenaEntity
 
     public void SetPath(List<GridArenaNode> path)
     {
-        _path = path;
+        _path = path == null ? new() : path;
     }
 
     public void SetDamage(int damage)

@@ -16,7 +16,7 @@ public class SpellRemoveObstacle : ScriptableAttributeSpell
             .GetAllGridNodes()
             .Where(t =>
                 t.OccupiedUnit == null
-                && t.SpellsUnit != null
+                && t.StateArenaNode.HasFlag(StateArenaNode.Spellsed)
             )
             .ToList();
 
@@ -43,7 +43,7 @@ public class SpellRemoveObstacle : ScriptableAttributeSpell
                AnimatePrefab,
                new Vector3(0, 1, 0),
                Quaternion.identity,
-               node.SpellsUnit.ArenaSpellMonoBehavior.transform
+               node.SpellUnit.ArenaSpellMonoBehavior.transform
            );
             var obj = await asset.Task;
             obj.gameObject.transform.localPosition = new Vector3(0, 1, 0);
@@ -52,9 +52,9 @@ public class SpellRemoveObstacle : ScriptableAttributeSpell
         }
 
         // Remove spell of node
-        if (levelSSkill >= 2 && node.SpellsUnit != null)
+        if (levelSSkill >= 2 && node.SpellUnit != null)
         {
-            await node.SpellsUnit.ConfigDataSpell.RemoveEffect(node, heroRunSpell);
+            await node.SpellUnit.ConfigDataSpell.RemoveEffect(node, heroRunSpell);
         }
     }
 }

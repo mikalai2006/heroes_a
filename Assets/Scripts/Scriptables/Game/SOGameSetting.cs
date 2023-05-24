@@ -32,6 +32,7 @@ public class SOGameSetting : ScriptableObject
     public AnimationCurve probabilityExperience;
     public int countBuildPerDay;
     public int countRecoveryManaPerDay;
+    public int countSpellPerRound;
 
     [Header("Setting Movement")]
     [Space(5)]
@@ -49,6 +50,11 @@ public class SOGameSetting : ScriptableObject
     public Color colorAllowAttackCreature;
     public bool paintActiveCreature;
     public Color colorActiveCreature;
+    public bool showPath;
+    public bool showShadowCursor;
+    public Color colorShadow;
+    public bool showGrid;
+    public bool showShadowGrid;
 
     public SOGameAudio AudioGeneral;
 }

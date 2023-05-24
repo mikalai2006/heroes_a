@@ -226,8 +226,8 @@ MonoBehaviour:
   _tileMapPath: {fileID: 1563218023}
   _textPrefab: {fileID: 2423169752321950798, guid: 624f1428eb32a0c4ebd93502937ca8b9, type: 3}
   _textCanvas: {fileID: 771947965}
-  _tileHex: {fileID: 11400000, guid: a9cc05e9b6f810e49a833d5eae39654b, type: 2}
-  _tileHexShadow: {fileID: 11400000, guid: c64f75edc8ff68d4488734bf668acc37, type: 2}
+  _tileHex: {fileID: 11400000, guid: 837044e8046fc594a9235c588146608b, type: 2}
+  _tileHexShadow: {fileID: 11400000, guid: 55acea784c53c744e80c39744dd4bef6, type: 2}
   _tileHexActive: {fileID: 11400000, guid: 55acea784c53c744e80c39744dd4bef6, type: 2}
   buttonAction: {fileID: 1874988815094525060, guid: 29feca8d9a5e3c34eb33fc7c8c93a4ff, type: 3}
   _buttonAction: {fileID: 0}
@@ -238,6 +238,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6ffb151385268c2468c11aa0926a7cf9, type: 2}
   - {fileID: 11400000, guid: 57be72433106473478d591f21ad47473, type: 2}
   _camera: {fileID: 815242362}
+  isRunningAction: 0
 --- !u!4 &114206433
 Transform:
   m_ObjectHideFlags: 0
@@ -1247,7 +1248,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 784102457
   m_SortingLayer: 2
-  m_SortingOrder: -10
+  m_SortingOrder: -8
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16

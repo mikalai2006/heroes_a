@@ -31,8 +31,11 @@ public class GridArenaNode : IHeapItem<GridArenaNode>
     [NonSerialized] private List<ArenaEntity> _deathedUnits = null;
     public List<ArenaEntity> DeathedUnits => _deathedUnits;
 
+    private int xOffset => position.y % 2 != 0 ? 1 : 0;
     public GridArenaNode LeftNode => _grid.GetGridObject(new Vector3Int(X - 1, Y));
     public GridArenaNode RightNode => _grid.GetGridObject(new Vector3Int(X + 1, Y));
+    public GridArenaNode LeftTopNode => _grid.GetGridObject(new Vector3Int(X + xOffset - 1, Y + 1));
+    public GridArenaNode LeftBottomNode => _grid.GetGridObject(new Vector3Int(X + xOffset - 1, Y - 1));
     public int level = 0;
     public int weight = 0;
     private int heapIndex;
@@ -52,7 +55,7 @@ public class GridArenaNode : IHeapItem<GridArenaNode>
     [NonSerialized] public float hCost;
     [NonSerialized] public float fCost;
     [NonSerialized] private ArenaEntitySpell _spellsUnit = null;
-    public ArenaEntitySpell SpellsUnit => _spellsUnit;
+    public ArenaEntitySpell SpellUnit => _spellsUnit;
     // int - quantity round
     public Dictionary<ScriptableAttributeSpell, int> SpellsState = new();
 
@@ -129,7 +132,10 @@ public class GridArenaNode : IHeapItem<GridArenaNode>
     public void SetSpellsUnit(ArenaEntitySpell entity)
     {
         _spellsUnit = entity;
-        if (entity == null)
+    }
+    public void SetSpellsStatus(bool status)
+    {
+        if (!status)
         {
             StateArenaNode ^= StateArenaNode.Spellsed;
             // StateArenaNode |= StateArenaNode.Empty;
@@ -169,9 +175,9 @@ public class GridArenaNode : IHeapItem<GridArenaNode>
     {
         Vector3Int position = this.position;
         List<GridArenaNode> neighbourList = new List<GridArenaNode>();
-        int xOffset = 0;
-        if (position.y % 2 != 0)
-            xOffset = 1;
+        // int xOffset = 0;
+        // if (position.y % 2 != 0)
+        //     xOffset = 1;
 
         var one = _grid.GetGridObject(position.x - 1, position.y);
         if (one != null) neighbourList.Add(one);

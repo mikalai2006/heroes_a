@@ -198,6 +198,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   countBuildPerDay: 1
   countRecoveryManaPerDay: 1
+  countSpellPerRound: 5
   baseMovementValue: 1900
   DependencyCreatureOnMove:
   - levelCreature: 3
@@ -221,12 +222,17 @@ MonoBehaviour:
   countCellClearSky: 4
   speedArenaAnimation: 0.1
   paintAllowAttackNode: 1
-  colorAllowAttackNode: {r: 1, g: 0, b: 0, a: 0.56078434}
-  colorNodeRunSpell: {r: 1, g: 0.88953507, b: 0, a: 0.6392157}
+  colorAllowAttackNode: {r: 1, g: 0, b: 0, a: 0.4117647}
+  colorNodeRunSpell: {r: 1, g: 0.88953507, b: 0, a: 0.21176471}
   paintAllowAttackCreature: 1
   colorAllowAttackCreature: {r: 1, g: 0, b: 0, a: 0.28235295}
   paintActiveCreature: 1
   colorActiveCreature: {r: 0.77254903, g: 1, b: 0, a: 0.6392157}
+  showPath: 0
+  showShadowCursor: 1
+  colorShadow: {r: 0, g: 0, b: 0, a: 0.33333334}
+  showGrid: 1
+  showShadowGrid: 1
   AudioGeneral: {fileID: 11400000, guid: fe8d1e48c237f1a428344434599d0c24, type: 2}
   references:
     version: 2

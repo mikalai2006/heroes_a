@@ -33,9 +33,19 @@ public class ArenaHeroMonoBehavior : MonoBehaviour
     }
     protected void Awake()
     {
+        ArenaQueue.OnNextRound += NextRound;
         _animator = GetComponentInChildren<Animator>();
         _model = transform.Find("Model");
         _camera = GameObject.FindGameObjectWithTag("ArenaCamera")?.GetComponent<Camera>();
+    }
+    protected void OnDestroy()
+    {
+        ArenaQueue.OnNextRound -= NextRound;
+    }
+
+    private void NextRound()
+    {
+        ((EntityHero)ArenaEntityHero.Entity).Data.SpellBook.SetCountSpellPerRound();
     }
 
     public async void OnClick(InputAction.CallbackContext context)
@@ -75,11 +85,6 @@ public class ArenaHeroMonoBehavior : MonoBehaviour
             gameObject.transform.localScale = new Vector3(-1, 1, 1);
         }
     }
-    protected void OnDestroy()
-    {
-        // ArenaEntity.DestroyGameObject();
-    }
-
     public async UniTask RunSpellAnimation()
     {
         if (_animator != null)

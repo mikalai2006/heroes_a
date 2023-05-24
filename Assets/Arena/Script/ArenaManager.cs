@@ -248,7 +248,8 @@ public class ArenaManager : MonoBehaviour
         {
             if (neiNode.weight >= activeEntityCreature.CreatureParams.Size)
             {
-                _tileMapShadow.SetTile(neiNode.position, _tileHexShadow);
+                FillShadowNode(_tileMapShadow, neiNode);
+                // _tileMapShadow.SetTile(neiNode.position, _tileHexShadow);
                 PathNodes.Add(neiNode);
             }
         };
@@ -259,12 +260,11 @@ public class ArenaManager : MonoBehaviour
             {
                 if (neiNode.weight >= 2)
                 {
-                    _tileMapShadow.SetTile(neiNode.position, _tileHexShadow);
+                    FillShadowNode(_tileMapShadow, neiNode);
                     AllowMovedNodes.Add(neiNode);
                 }
             };
         }
-
         // // Draw help text.
         // ResetTextMeshNode();
         // foreach (var neiNode in GridArenaHelper.GetAllGridNodes())
@@ -284,6 +284,18 @@ public class ArenaManager : MonoBehaviour
         Debug.LogWarning($"Time Generation Step::: {timeTaken.ToString(@"m\:ss\.ffff")}");
 #endif
         await UniTask.Delay(1);
+    }
+
+    private void FillShadowNode(Tilemap tilemap, GridArenaNode node)
+    {
+        var settingGame = LevelManager.Instance.ConfigGameSettings;
+        if (settingGame.showShadowGrid)
+        {
+            tilemap.SetTile(node.position, _tileHexShadow);
+            tilemap.SetTileFlags(node.position, TileFlags.None);
+            tilemap.SetColor(node.position, settingGame.colorShadow);
+            tilemap.SetTileFlags(node.position, TileFlags.LockColor);
+        }
     }
 
     private void GetFightingNodes()
@@ -403,6 +415,7 @@ public class ArenaManager : MonoBehaviour
     private void CreateArena()
     {
         // Create grid and helper.
+        var settingGame = LevelManager.Instance.ConfigGameSettings;
         _gridArenaHelper = new GridArenaHelper(width, height, this);
 
         for (int x = 0; x < width; x++)
@@ -410,12 +423,14 @@ public class ArenaManager : MonoBehaviour
             for (int y = 0; y < height; y++)
             {
                 Vector3Int pos = new Vector3Int(x, y, 0);
-
-                _tileMapArenaGrid.SetTile(pos, _tileHex);
                 var nodeObj = GridArenaHelper.GridTile.GetGridObject(new Vector3Int(x, y));
                 var bounds = tileMapArenaUnits.GetBoundsLocal(pos);
                 nodeObj.SetCenter(bounds.center);
 
+                if (settingGame.showGrid)
+                {
+                    _tileMapArenaGrid.SetTile(pos, _tileHex);
+                }
                 // SetTextMeshNode(nodeObj);
             }
         }
@@ -603,10 +618,30 @@ public class ArenaManager : MonoBehaviour
                     // Draw path.
                     _tileMapPath.ClearAllTiles();
                     ArenaQueue.activeEntity.arenaEntity.SetPath(path);
-                    foreach (var pathNode in path)
+                    var settingGame = LevelManager.Instance.ConfigGameSettings;
+                    if (settingGame.showPath)
                     {
-                        _tileMapPath.SetTile(pathNode.position, _tileHexShadow);
-                    };
+                        foreach (var pathNode in path)
+                        {
+                            // _tileMapPath.SetTile(pathNode.position, _tileHexShadow);
+                            FillShadowNode(_tileMapPath, pathNode);
+                        };
+                    }
+
+                    if (settingGame.showShadowCursor)
+                    {
+                        var endNode = path[path.Count - 1];
+                        // _tileMapPath.SetTile(endNode.position, _tileHexShadow);
+                        FillShadowNode(_tileMapPath, endNode);
+                        if (((EntityCreature)ArenaQueue.activeEntity.arenaEntity.Entity).ConfigAttribute.CreatureParams.Size == 2)
+                        {
+                            var relatedNewNode = ArenaQueue.activeEntity.arenaEntity.TypeArenaPlayer == TypeArenaPlayer.Left
+                                ? endNode.LeftNode
+                                : endNode.RightNode;
+                            FillShadowNode(_tileMapPath, relatedNewNode);
+                            // _tileMapPath.SetTile(relatedNewNode.position, _tileHexShadow);
+                        }
+                    }
 
                     // Set active click node.
                     clickedNode = node;
@@ -957,7 +992,10 @@ public class ArenaManager : MonoBehaviour
             if (!node.StateArenaNode.HasFlag(StateArenaNode.Related))
             {
                 FightingOccupiedNodes.Add(node);
-                SetColorAllowFightNode(node, LevelManager.Instance.ConfigGameSettings.colorNodeRunSpell);
+                if (activeSpell.typeSpellRun != TypeSpellRun.Immediately)
+                {
+                    SetColorAllowFightNode(node, LevelManager.Instance.ConfigGameSettings.colorNodeRunSpell);
+                }
             }
         }
 
@@ -967,7 +1005,8 @@ public class ArenaManager : MonoBehaviour
             var baseSSkill = activeSpell.SchoolMagic.BaseSecondarySkill;
             if (
                 ArenaQueue.ActiveHero.Data.SSkills.ContainsKey(baseSSkill.TypeTwoSkill)
-                && activeSpell.typeSpellRun == TypeSpellRun.Collective)
+                && activeSpell.typeSpellRun == TypeSpellRun.Collective
+                )
             {
                 var dataSSkill = ArenaQueue.ActiveHero.Data.SSkills[baseSSkill.TypeTwoSkill];
                 if (dataSSkill.level >= 2)
@@ -984,6 +1023,15 @@ public class ArenaManager : MonoBehaviour
                     EndSpell();
                 }
             }
+        }
+        // if immediately run spell.
+        if (activeSpell.typeSpellRun == TypeSpellRun.Immediately)
+        {
+            await ArenaQueue.ActiveHero.ArenaHeroEntity.ArenaHeroMonoBehavior.RunSpellAnimation();
+            await ArenaQueue.ActiveHero.Data.SpellBook
+                .RunSpellCombat(FightingOccupiedNodes[UnityEngine.Random.Range(0, FightingOccupiedNodes.Count - 1)], this);
+            ArenaQueue.Refresh();
+            EndSpell();
         }
     }
 
