@@ -65,7 +65,7 @@ public class UIGameAside : UILocaleBase
 
     const int countTown = 3;
 
-    private SceneInstance _scene;
+    // private SceneInstance _scene;
 
     private void Start()
     {
@@ -76,6 +76,8 @@ public class UIGameAside : UILocaleBase
         UITown.OnInputToTown += HideMapButtons;
         UIDialogDwellingWindow.OnBuyCreature += ChangeHeroInfo;
         UIDialogHeroInfo.OnMoveCreature += ChangeHeroInfo;
+        UIArena.OnLoadArena += HideAside;
+        UIArena.OnUnloadArena += ShowAside;
     }
 
     private void OnDestroy()
@@ -87,6 +89,8 @@ public class UIGameAside : UILocaleBase
         UITown.OnInputToTown -= HideMapButtons;
         UIDialogDwellingWindow.OnBuyCreature -= ChangeHeroInfo;
         UIDialogHeroInfo.OnMoveCreature -= ChangeHeroInfo;
+        UIArena.OnLoadArena -= HideAside;
+        UIArena.OnUnloadArena -= ShowAside;
     }
 
     private void OnAfterStateChanged(GameState state)
@@ -170,7 +174,7 @@ public class UIGameAside : UILocaleBase
     {
         try
         {
-            _scene = scene;
+            LevelManager.Instance.activeScene = scene;
             aside = _aside.rootVisualElement.Q<VisualElement>(NameWrapper);
             _mapButtons = _aside.rootVisualElement.Q<VisualElement>("MapButtons");
             _timeBlok = _aside.rootVisualElement.Q<Label>("Time");
@@ -185,7 +189,7 @@ public class UIGameAside : UILocaleBase
                 if (result.isOk)
                 {
                     var loadingOperations = new Queue<ILoadingOperation>();
-                    await GameManager.Instance.AssetProvider.UnloadAdditiveScene(_scene);
+                    await GameManager.Instance.AssetProvider.UnloadAdditiveScene(LevelManager.Instance.activeScene);
                     loadingOperations.Enqueue(new MenuAppOperation());
                     await GameManager.Instance.LoadingScreenProvider.LoadAndDestroy(loadingOperations);
                 }
@@ -213,6 +217,16 @@ public class UIGameAside : UILocaleBase
         base.Localize(aside);
     }
 
+    private void HideAside()
+    {
+        aside.style.display = DisplayStyle.None;
+        HideMapButtons();
+    }
+    private void ShowAside()
+    {
+        aside.style.display = DisplayStyle.Flex;
+        ShowMapButtons();
+    }
     private void HideMapButtons()
     {
         _mapButtons.style.display = DisplayStyle.None;

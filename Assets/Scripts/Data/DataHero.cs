@@ -23,7 +23,7 @@ public struct DataHero
     // public float manaTotal;
     public bool isBook;
     public List<string> spells;
-    [NonSerialized] public EntityBook SpellBook;
+    // [NonSerialized] public EntityBook SpellBook;
     public List<string> artifacts;
     [NonSerialized] public List<EntityArtifact> Artifacts;
     public SerializableDictionary<int, EntityCreature> Creatures;

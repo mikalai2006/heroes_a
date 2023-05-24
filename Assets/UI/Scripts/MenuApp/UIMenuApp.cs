@@ -47,9 +47,20 @@ public class UIMenuApp : UILocaleBase
         {
             await AudioManager.Instance.Click();
             await DestroyMenu();
-            var loadingOperations = new Queue<ILoadingOperation>();
-            loadingOperations.Enqueue(new ArenaLoadOperation(new DialogArenaData()));
-            await GameManager.Instance.LoadingScreenProvider.LoadAndDestroy(loadingOperations);
+
+            var testHero = new EntityHero(TypeFaction.Castle, LevelManager.Instance.ConfigGameSettings.ArenaTestHeroes[0]);
+            var testEnemy = new EntityHero(TypeFaction.Castle, LevelManager.Instance.ConfigGameSettings.ArenaTestHeroes[1]);
+
+            var loadingOperations = new ArenaLoadOperation(new DialogArenaData()
+            {
+                hero = testHero,
+                enemy = testEnemy
+            });
+            var result = await loadingOperations.ShowHide();
+
+            var loaderMenu = new Queue<ILoadingOperation>();
+            loaderMenu.Enqueue(new MenuAppOperation());
+            await GameManager.Instance.LoadingScreenProvider.LoadAndDestroy(loaderMenu);
         };
 
         var btnQuit = Root.rootVisualElement.Q<Button>("ButtonQuit");

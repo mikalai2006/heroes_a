@@ -15,6 +15,7 @@ public class EntityHero : BaseEntity
 {
     public static event Action<EntityHero> onChangeParamsActiveHero;
     [SerializeField] public DataHero Data = new DataHero();
+    [NonSerialized] public EntityBook SpellBook;
     [NonSerialized] public ArenaHeroEntity ArenaHeroEntity;
     public ScriptableEntityHero ConfigData => (ScriptableEntityHero)ScriptableData;
     // public ScriptableAttributeHero ConfigAttribute => (ScriptableAttributeHero)ScriptableDataAttribute;
@@ -189,7 +190,7 @@ public class EntityHero : BaseEntity
         // Create SpellBook.
         if (Data.isBook)
         {
-            Data.SpellBook = new EntityBook(this);
+            SpellBook = new EntityBook(this);
         }
     }
 

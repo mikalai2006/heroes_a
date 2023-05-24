@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using UnityEngine.Localization;
 
 [CreateAssetMenu(fileName = "GameSetting", menuName = "HeroesA/GameSetting")]
@@ -57,6 +58,12 @@ public class SOGameSetting : ScriptableObject
     public bool showShadowGrid;
 
     public SOGameAudio AudioGeneral;
+
+    [Header("Setting Tests")]
+    [Space(5)]
+    public List<ScriptableEntityHero> ArenaTestHeroes;
+    [SerializeField] public AssetReferenceGameObject ArenaPlaceholderModel;
+    [SerializeField] public AssetReferenceGameObject ArenaPlaceholderShootModel;
 }
 
 [System.Serializable]

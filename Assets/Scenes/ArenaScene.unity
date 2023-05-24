@@ -180,7 +180,7 @@ GameObject:
   - component: {fileID: 114206432}
   m_Layer: 0
   m_Name: ArenaManager
-  m_TagString: Untagged
+  m_TagString: ArenaManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -234,9 +234,6 @@ MonoBehaviour:
   buttonSpell: {fileID: 1874988815094525060, guid: 839fa7926c317b345b007036c4e245f3, type: 3}
   _buttonSpell: {fileID: 0}
   NodesForAttackActiveCreature: []
-  heroes:
-  - {fileID: 11400000, guid: 6ffb151385268c2468c11aa0926a7cf9, type: 2}
-  - {fileID: 11400000, guid: 57be72433106473478d591f21ad47473, type: 2}
   _camera: {fileID: 815242362}
   isRunningAction: 0
 --- !u!4 &114206433
@@ -428,7 +425,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 195629601}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -20, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

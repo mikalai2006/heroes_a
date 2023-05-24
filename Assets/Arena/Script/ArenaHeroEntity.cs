@@ -16,12 +16,12 @@ public class ArenaHeroEntity
     private Tilemap _tileMapArenaUnits;
 
     [SerializeField]
-    public ScriptableEntity _configData;
-    public ScriptableEntity ConfigData => _configData;
+    public ScriptableEntityHero _configData;
+    public ScriptableEntityHero ConfigData => _configData;
     private Vector3 _position;
     public Vector3 Position => _position;
     [NonSerialized] public ArenaHeroMonoBehavior ArenaHeroMonoBehavior;
-    public BaseEntity Entity { get; private set; }
+    public EntityHero Entity { get; private set; }
 
     public ArenaHeroEntity(Tilemap tileMapArenaUnits)
     {
@@ -30,8 +30,12 @@ public class ArenaHeroEntity
 
     public void SetEntity(BaseEntity entity)
     {
-        Entity = entity;
-        _configData = Entity.ScriptableData;
+        Entity = ((EntityHero)entity);
+        _configData = Entity.ConfigData;
+        if (entity != null && Entity.SpellBook != null)
+        {
+            Entity.SpellBook.SetCountSpellPerRound();
+        }
     }
 
     public void SetPosition(Vector3 pos)

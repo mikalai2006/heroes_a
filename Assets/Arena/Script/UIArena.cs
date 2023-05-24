@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 using Cysharp.Threading.Tasks;
 
@@ -28,6 +29,8 @@ public class UIArena : UILocaleBase
     public static event Action OnCancelSpell;
     public static event Action OnOpenSpellBook;
     public static event Action OnClickAttack;
+    public static event Action OnUnloadArena;
+    public static event Action OnLoadArena;
 
     private VisualElement _box;
     private VisualElement _leftSide;
@@ -39,11 +42,13 @@ public class UIArena : UILocaleBase
     private Button _btnSpellBook;
     private Button _btnQueue;
     private const string _arenaButtons = "ArenaButtons";
-    private SceneInstance _arenaScene;
     private Camera _cameraMain;
     private AsyncOperationHandle<ScriptableEntityTown> _asset;
     private string textMoveCreature;
     private string textAttackedCreature;
+    private GameObject grid;
+    protected TaskCompletionSource<ResultDialogArenaData> _processCompletionSource;
+    protected ResultDialogArenaData _dataResultDialog;
 
     private void Awake()
     {
@@ -115,6 +120,8 @@ public class UIArena : UILocaleBase
         UIDialogSpellBook.OnClickSpell += ShowSpellInfo;
         ArenaManager.OnChooseCreatureForSpell += ShowSpellInfo;
         ArenaManager.OnHideSpellInfo += HideSpellInfo;
+        // ArenaManager.OnRunFromBattle += OnClickClose;
+        // ArenaManager.OnEndBattle += OnClickClose;
     }
 
     private void OnDestroy()
@@ -126,17 +133,30 @@ public class UIArena : UILocaleBase
         UIDialogSpellBook.OnClickSpell -= ShowSpellInfo;
         ArenaManager.OnChooseCreatureForSpell -= ShowSpellInfo;
         ArenaManager.OnHideSpellInfo -= HideSpellInfo;
+        // ArenaManager.OnRunFromBattle -= OnClickClose;
+        // ArenaManager.OnEndBattle -= OnClickClose;
     }
 
-    public void Init(SceneInstance arenaScene)
+    public void Init()
     {
-        _arenaScene = arenaScene;
+        OnLoadArena?.Invoke();
 
         DrawHelpCreature();
 
         DrawQueue();
 
         base.Localize(_box);
+    }
+
+    public async Task<ResultDialogArenaData> ProcessAction()
+    {
+        _dataResultDialog = new ResultDialogArenaData();
+        _processCompletionSource = new TaskCompletionSource<ResultDialogArenaData>();
+
+        grid = GameObject.FindGameObjectWithTag("Map");
+        if (grid != null) grid.SetActive(false);
+
+        return await _processCompletionSource.Task;
     }
 
     private void HideSpellInfo()
@@ -146,7 +166,7 @@ public class UIArena : UILocaleBase
 
     private void ShowSpellInfo()
     {
-        if (arenaManager.ArenaQueue.ActiveHero.Data.SpellBook.ChoosedSpell == null)
+        if (arenaManager.ArenaQueue.ActiveHero.SpellBook.ChoosedSpell == null)
         {
             return;
         }
@@ -178,7 +198,7 @@ public class UIArena : UILocaleBase
         box.Clear();
         var boxSpell = _templateShortSpellInfo.Instantiate();
 
-        var spellBook = arenaManager.ArenaQueue.ActiveHero.Data.SpellBook;
+        var spellBook = arenaManager.ArenaQueue.ActiveHero.SpellBook;
         if (spellBook != null)
         {
             boxSpell.Q<VisualElement>("Ava").style.backgroundImage
@@ -253,7 +273,9 @@ public class UIArena : UILocaleBase
         if (
             arenaManager.ArenaQueue.ActiveHero != null
             &&
-            arenaManager.ArenaQueue.ActiveHero.Data.SpellBook.countCreatedSpell > 0
+            arenaManager.ArenaQueue.ActiveHero.SpellBook != null
+            &&
+            arenaManager.ArenaQueue.ActiveHero.SpellBook.countCreatedSpell > 0
             )
         {
             _btnSpellBook.SetEnabled(true);
@@ -371,12 +393,13 @@ public class UIArena : UILocaleBase
 
     private void DrawHelpCreature()
     {
+        var activeEntity = arenaManager.ArenaQueue.activeEntity;
+        if (activeEntity.arenaEntity == null) return;
 
         _helpLeftCreature.style.display = DisplayStyle.None;
         _helpRightCreature.style.display = DisplayStyle.None;
 
         VisualElement blokInfoCreature;
-        var activeEntity = arenaManager.ArenaQueue.activeEntity;
         if (activeEntity.arenaEntity.TypeArenaPlayer == TypeArenaPlayer.Left)
         {
             blokInfoCreature = _helpLeftCreature;
@@ -465,15 +488,15 @@ public class UIArena : UILocaleBase
         // {
         //     Addressables.ReleaseInstance(_asset);
         // }
-        await GameManager.Instance.AssetProvider.UnloadAdditiveScene(_arenaScene);
-
-        await UniTask.Yield();
+        await arenaManager.CalculateStat();
 
         _cameraMain.gameObject.SetActive(true);
+        if (grid != null) grid.SetActive(true);
 
-        var loadingOperations = new Queue<ILoadingOperation>();
-        loadingOperations.Enqueue(new MenuAppOperation());
-        await GameManager.Instance.LoadingScreenProvider.LoadAndDestroy(loadingOperations);
+        _dataResultDialog.isEnd = true;
+        _processCompletionSource.SetResult(_dataResultDialog);
+
+        OnUnloadArena?.Invoke();
     }
 }
 

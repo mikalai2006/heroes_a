@@ -136,7 +136,6 @@ public class ArenaEntity
         Data.totalHP = Data.maxHP = creatureData.CreatureParams.HP * ((EntityCreature)Entity).Data.value;
 
         Data.isRun = true;
-        Hero.Data.SpellBook.SetCountSpellPerRound();
     }
 
     public async void SetRoundData()
@@ -256,8 +255,8 @@ public class ArenaEntity
             await AudioManager.Instance.Click();
             if (_arenaManager.FightingOccupiedNodes.Contains(OccupiedNode))
             {
-                var activeSpell = _arenaManager.ArenaQueue.ActiveHero != null
-                ? _arenaManager.ArenaQueue.ActiveHero.Data.SpellBook.ChoosedSpell
+                var activeSpell = _arenaManager.ArenaQueue.ActiveHero != null && _arenaManager.ArenaQueue.ActiveHero.SpellBook != null
+                ? _arenaManager.ArenaQueue.ActiveHero.SpellBook.ChoosedSpell
                 : null;
 
                 if (activeSpell == null)
@@ -514,7 +513,17 @@ public class ArenaEntity
         {
             gameObj = configCreature.ArenaModel;
         }
-
+        if (gameObj == null)
+        {
+            if (configCreature.CreatureParams.Shoots != 0)
+            {
+                gameObj = LevelManager.Instance.ConfigGameSettings.ArenaPlaceholderShootModel;
+            }
+            else
+            {
+                gameObj = LevelManager.Instance.ConfigGameSettings.ArenaPlaceholderModel;
+            }
+        }
         if (gameObj == null)
         {
             Debug.LogWarning($"Not found ArenaPrefab {ConfigData.name}!");

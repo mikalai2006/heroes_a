@@ -3,6 +3,8 @@ using System.Collections.Generic;
 
 using Cysharp.Threading.Tasks;
 
+using Loader;
+
 using UnityEngine;
 using UnityEngine.Localization;
 using UnityEngine.Localization.Settings;
@@ -91,6 +93,7 @@ public class MapEntityCreature : BaseMapEntity, IDialogMapObjectOperation
 
     private async UniTask OnHeroGo(Player player)
     {
+        var entityCreature = (EntityCreature)_mapObject.Entity;
 
         if (player.ActiveHero.Data.SSkills.ContainsKey(TypeSecondarySkill.EagleEye))
         {
@@ -105,7 +108,14 @@ public class MapEntityCreature : BaseMapEntity, IDialogMapObjectOperation
         MapObject.OccupiedNode.DisableProtectedNeigbours(_mapObject);
 
         // TODO ARENA
-        var entityCreature = (EntityCreature)MapObject.Entity;
+
+        var loadingOperations = new ArenaLoadOperation(new DialogArenaData()
+        {
+            hero = player.ActiveHero,
+            creature = entityCreature
+        });
+        var result = await loadingOperations.ShowHide();
+
         await player.ActiveHero.ChangeExperience(entityCreature.ConfigAttribute.CreatureParams.HP * entityCreature.Data.value);
 
         MapObject.DoHero(player);

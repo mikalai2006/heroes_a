@@ -68,7 +68,7 @@ public class UIDialogSpellBook : UIDialogBaseWindow
         {
             await AudioManager.Instance.Click();
             ClickRightButtons();
-            _hero.Data.SpellBook.SetSchoolMagic(TypeSchoolMagic.SchoolofAirMagic);
+            _hero.SpellBook.SetSchoolMagic(TypeSchoolMagic.SchoolofAirMagic);
             _buttonAir.style.marginLeft = new StyleLength(new Length(0, LengthUnit.Pixel));
             // Draw spells for current type.
             DrawSpells();
@@ -78,7 +78,7 @@ public class UIDialogSpellBook : UIDialogBaseWindow
         {
             await AudioManager.Instance.Click();
             ClickRightButtons();
-            _hero.Data.SpellBook.SetSchoolMagic(TypeSchoolMagic.SchoolofFireMagic);
+            _hero.SpellBook.SetSchoolMagic(TypeSchoolMagic.SchoolofFireMagic);
             _buttonFire.style.marginLeft = new StyleLength(new Length(0, LengthUnit.Pixel));
             // Draw spells for current type.
             DrawSpells();
@@ -88,7 +88,7 @@ public class UIDialogSpellBook : UIDialogBaseWindow
         {
             await AudioManager.Instance.Click();
             ClickRightButtons();
-            _hero.Data.SpellBook.SetSchoolMagic(TypeSchoolMagic.SchoolofWaterMagic);
+            _hero.SpellBook.SetSchoolMagic(TypeSchoolMagic.SchoolofWaterMagic);
             _buttonWater.style.marginLeft = new StyleLength(new Length(0, LengthUnit.Pixel));
             // Draw spells for current type.
             DrawSpells();
@@ -98,7 +98,7 @@ public class UIDialogSpellBook : UIDialogBaseWindow
         {
             await AudioManager.Instance.Click();
             ClickRightButtons();
-            _hero.Data.SpellBook.SetSchoolMagic(TypeSchoolMagic.SchoolofEarthMagic);
+            _hero.SpellBook.SetSchoolMagic(TypeSchoolMagic.SchoolofEarthMagic);
             _buttonEarth.style.marginLeft = new StyleLength(new Length(0, LengthUnit.Pixel));
             // Draw spells for current type.
             DrawSpells();
@@ -108,7 +108,7 @@ public class UIDialogSpellBook : UIDialogBaseWindow
         {
             await AudioManager.Instance.Click();
             ClickRightButtons();
-            _hero.Data.SpellBook.SetSchoolMagic(TypeSchoolMagic.AllSchools);
+            _hero.SpellBook.SetSchoolMagic(TypeSchoolMagic.AllSchools);
             _buttonAll.style.marginLeft = new StyleLength(new Length(0, LengthUnit.Pixel));
             // Draw spells for current type.
             DrawSpells();
@@ -117,14 +117,14 @@ public class UIDialogSpellBook : UIDialogBaseWindow
         _buttonCombat.clickable.clicked += async () =>
         {
             await AudioManager.Instance.Click();
-            _hero.Data.SpellBook.SetTypeSpell(TypeSpell.Combat);
+            _hero.SpellBook.SetTypeSpell(TypeSpell.Combat);
             DrawSpells();
         };
         _buttonAdv = root.Q<Button>("Adv");
         _buttonAdv.clickable.clicked += async () =>
         {
             await AudioManager.Instance.Click();
-            _hero.Data.SpellBook.SetTypeSpell(TypeSpell.Adventure);
+            _hero.SpellBook.SetTypeSpell(TypeSpell.Adventure);
             DrawSpells();
         };
 
@@ -135,7 +135,7 @@ public class UIDialogSpellBook : UIDialogBaseWindow
 
     private void ChangePage(int page)
     {
-        _hero.Data.SpellBook.ChangePage(page);
+        _hero.SpellBook.ChangePage(page);
         DrawSpells();
     }
 
@@ -155,7 +155,7 @@ public class UIDialogSpellBook : UIDialogBaseWindow
     {
         _mana.text = _hero.Data.mana.ToString();
 
-        var spellBook = _hero.Data.SpellBook;
+        var spellBook = _hero.SpellBook;
         Debug.Log(spellBook.ToString());
         _dataResultDialog = new DataResultDialogSpellBook()
         {

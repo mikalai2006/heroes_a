@@ -45,7 +45,11 @@ public class ArenaHeroMonoBehavior : MonoBehaviour
 
     private void NextRound()
     {
-        ((EntityHero)ArenaEntityHero.Entity).Data.SpellBook.SetCountSpellPerRound();
+        var hero = ((EntityHero)ArenaEntityHero.Entity);
+        if (hero != null && hero.SpellBook != null)
+        {
+            hero.SpellBook.SetCountSpellPerRound();
+        }
     }
 
     public async void OnClick(InputAction.CallbackContext context)

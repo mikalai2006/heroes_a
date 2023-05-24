@@ -1,10 +1,11 @@
 using System;
-using System.Linq;
+
+using Assets;
 
 using Cysharp.Threading.Tasks;
 
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.ResourceManagement.ResourceProviders;
 
 [Serializable]
 public struct DialogArenaData
@@ -13,12 +14,19 @@ public struct DialogArenaData
     public EntityHero hero;
     public EntityHero enemy;
     public EntityMapObject creatureBank;
+    public EntityCreature creature;
+}
+[Serializable]
+public struct ResultDialogArenaData
+{
+    public bool isEnd;
 }
 
 namespace Loader
 {
-    public class ArenaLoadOperation : ILoadingOperation
+    public class ArenaLoadOperation : LocalAssetLoader
     {
+        private SceneInstance _scene;
         private DialogArenaData _dialogArenaData;
 
         public ArenaLoadOperation(DialogArenaData dialogArenaData)
@@ -26,33 +34,28 @@ namespace Loader
             _dialogArenaData = dialogArenaData;
         }
 
-        public async UniTask Load(Action<float> onProgress, Action<string> onSetNotify)
+        public async UniTask<ResultDialogArenaData> ShowHide()
         {
-            onProgress?.Invoke(0.1f);
-
-            onSetNotify?.Invoke("Load arena scene ...");
-            var environment = await GameManager.Instance.AssetProvider.LoadSceneAdditive(Constants.Scenes.SCENE_ARENA);
-            var rootObjects = environment.Scene.GetRootGameObjects();
+            _scene = await GameManager.Instance.AssetProvider.LoadSceneAdditive(Constants.Scenes.SCENE_ARENA);
+            // var rootObjects = _scene.Scene.GetRootGameObjects();
 
             UIArena UIArena = GameObject.FindGameObjectWithTag("UIArena")?.GetComponent<UIArena>();
 
             if (UIArena != null)
             {
-                UIArena.Init(environment);
+                UIArena.Init();
             }
-            // GameObject Town = GameObject.FindGameObjectWithTag("Town");
+            ArenaManager ArenaManager = GameObject.FindGameObjectWithTag("ArenaManager")?.GetComponent<ArenaManager>();
+            ArenaManager.CreateArena(_dialogArenaData);
 
-            // if (Town != null)
-            // {
-            //     foreach (BuildBase build in Town.transform.GetComponentsInChildren<BuildBase>())
-            //     {
-            //         build.UITown = UITown;
-            //     }
-            // }
+            var result = await UIArena.ProcessAction();
+            await Unload();
+            return result;
+        }
 
-            // editorGame.Init(environment);
-            // editorGame.BeginNewGame();
-            onProgress?.Invoke(0.2f);
+        public async UniTask Unload()
+        {
+            await GameManager.Instance.AssetProvider.UnloadAdditiveScene(_scene);
         }
     }
 }
