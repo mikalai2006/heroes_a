@@ -503,6 +503,10 @@ MonoBehaviour:
     m_Key: monolithtwoway_desc
     m_Metadata:
       m_Items: []
+  - m_Id: 21377861664538624
+    m_Key: armygroup_desc
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

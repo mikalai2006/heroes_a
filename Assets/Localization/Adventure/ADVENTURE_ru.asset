@@ -980,10 +980,15 @@ MonoBehaviour:
       \u0432 \u044D\u0442\u043E\u0442 \u043C\u043E\u043D\u043E\u043B\u0438\u0442."
     m_Metadata:
       m_Items: []
+  - m_Id: 21377861664538624
+    m_Localized: '{name}.'
+    m_Metadata:
+      m_Items:
+      - rid: 5790064033013694477
   references:
     version: 2
     RefIds:
     - rid: 5790064033013694477
       type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
       data:
-        m_Entries: 0080d2622300000000809281e1860200008052977d88020000801216cf961300
+        m_Entries: 0080d2622300000000809281e1860200008052977d88020000801216cf9613000080924a0df34b00

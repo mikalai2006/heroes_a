@@ -13,14 +13,12 @@ public abstract class BaseMapEntity : MonoBehaviour//, IPointerDownHandler
 {
     [SerializeField] protected MapObject _mapObject;
     public MapObject MapObject => _mapObject;
-    private float timeClickPrev;
-    private GlobalMapInputManager _inputManager;
-    private Camera _camera;
+    protected GlobalMapInputManager _inputManager;
+    protected Camera _camera;
 
     public virtual void InitUnit(MapObject mapObject)
     {
         _mapObject = mapObject;
-        timeClickPrev = Time.realtimeSinceStartup;
     }
 
     #region Unity methods + events
@@ -128,7 +126,7 @@ public abstract class BaseMapEntity : MonoBehaviour//, IPointerDownHandler
                 }
                 else if (context.interaction is HoldInteraction)
                 {
-                    Debug.Log($"Show info object::: {gameObject.name}");
+                    // Debug.Log($"Show info object::: {gameObject.name}");
                     _inputManager.Disable();
                     var dialogData = new DataDialogHelp()
                     {
