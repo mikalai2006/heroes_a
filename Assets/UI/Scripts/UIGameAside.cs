@@ -64,11 +64,14 @@ public class UIGameAside : UILocaleBase
     private VisualElement _townbox;
 
     const int countTown = 3;
+    private GlobalMapInputManager _globalInputManager;
 
     // private SceneInstance _scene;
 
     private void Start()
     {
+        _globalInputManager = new GlobalMapInputManager();
+
         GameManager.OnAfterStateChanged += OnAfterStateChanged;
         EntityHero.onChangeParamsActiveHero += ChangeParamsActiveHero;
         UITownInfo.onMoveHero += DrawHeroBox;
@@ -78,6 +81,8 @@ public class UIGameAside : UILocaleBase
         UIDialogHeroInfo.OnMoveCreature += ChangeHeroInfo;
         UIArena.OnLoadArena += HideAside;
         UIArena.OnUnloadArena += ShowAside;
+        UITown.OnInputToTown += HideAside;
+        UITown.OnExitFromTown += ShowAside;
     }
 
     private void OnDestroy()
@@ -91,6 +96,8 @@ public class UIGameAside : UILocaleBase
         UIDialogHeroInfo.OnMoveCreature -= ChangeHeroInfo;
         UIArena.OnLoadArena -= HideAside;
         UIArena.OnUnloadArena -= ShowAside;
+        UITown.OnInputToTown -= HideAside;
+        UITown.OnExitFromTown -= ShowAside;
     }
 
     private void OnAfterStateChanged(GameState state)
@@ -221,11 +228,13 @@ public class UIGameAside : UILocaleBase
     {
         aside.style.display = DisplayStyle.None;
         HideMapButtons();
+        _globalInputManager.Disable();
     }
     private void ShowAside()
     {
         aside.style.display = DisplayStyle.Flex;
         ShowMapButtons();
+        _globalInputManager.Enable();
     }
     private void HideMapButtons()
     {

@@ -31,9 +31,17 @@ public class UITown : UILocaleBase
     private Camera _cameraMain;
     public ScriptableEntityTown _activeBuildTown;
     private AsyncOperationHandle<ScriptableEntityTown> _asset;
+    private GlobalMapInputManager _globalInputManager;
+    private GameObject grid;
 
     public void Init(SceneInstance townScene)
     {
+        _globalInputManager = new GlobalMapInputManager();
+        _globalInputManager.Disable();
+
+        grid = GameObject.FindGameObjectWithTag("Map");
+        if (grid != null) grid.SetActive(false);
+
         _cameraMain = Camera.main;
         _cameraMain.gameObject.SetActive(false);
 
@@ -72,6 +80,7 @@ public class UITown : UILocaleBase
     private async void OnClickClose()
     {
         _cameraMain.gameObject.SetActive(true);
+        if (grid != null) grid.SetActive(true);
 
         // Release asset prefab town.
         await GameManager.Instance.AssetProvider.UnloadAdditiveScene(_townScene);
@@ -80,6 +89,7 @@ public class UITown : UILocaleBase
             Addressables.ReleaseInstance(_asset);
             // Addressables.ReleaseInstance(_townPrefabAsset);
         }
+        _globalInputManager.Enable();
         OnExitFromTown?.Invoke();
     }
 }

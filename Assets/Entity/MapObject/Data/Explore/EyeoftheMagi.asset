@@ -15,30 +15,38 @@ MonoBehaviour:
   idObject: explore.eyeofmagi
   TypeEntity: 34
   MenuSprite: {fileID: 0}
-  title:
-    m_TableReference:
-      m_TableCollectionName: 
-    m_TableEntryReference:
-      m_KeyId: 0
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
+  Text:
+    title:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    description:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
   MapPrefab:
     m_AssetGUID: 18d5767ea8e236340931912f373e4d6a
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
   TypeGround: 1
-  TypeWorkEffect: 0
-  Attributes: []
   TypeMapObject: 1
   RMGValue: 1000
   listTypeNoPath: 
   listRuleInput: 1100000013000000120000000c0000000e000000
   TypeWorkObject: 5
+  TypeWorkEffect: 0
   Effects: []
-  Perks: []
   references:
     version: 2
     RefIds: []

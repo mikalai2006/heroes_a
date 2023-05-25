@@ -50,6 +50,7 @@ public class ArenaManager : MonoBehaviour
     public static event Action OnAutoNextCreature;
     public static event Action OnHideSpellInfo;
     public static event Action OnChooseCreatureForSpell;
+    public static event Action OnShowState;
     [SerializeField] private int width = 15;
     [SerializeField] private int height = 11;
     [SerializeField] private Tilemap _tileMapArenaGrid;
@@ -161,6 +162,15 @@ public class ArenaManager : MonoBehaviour
 
     public async void NextCreature(bool wait, bool def)
     {
+        var countCreaturesLeft = ArenaQueue.ListEntities.Where(t => t.arenaEntity.TypeArenaPlayer == TypeArenaPlayer.Left).Count();
+        var countCreaturesRight = ArenaQueue.ListEntities.Where(t => t.arenaEntity.TypeArenaPlayer == TypeArenaPlayer.Right).Count();
+
+        if (countCreaturesLeft == 0 || countCreaturesRight == 0)
+        {
+            await CalculateStat();
+            return;
+        }
+
         ArenaQueue.NextCreature(wait, def);
         await GoEntity();
         OnAutoNextCreature?.Invoke();
@@ -1115,6 +1125,7 @@ public class ArenaManager : MonoBehaviour
     internal async UniTask CalculateStat()
     {
 
+        OnShowState?.Invoke();
         await UniTask.Delay(1);
     }
 

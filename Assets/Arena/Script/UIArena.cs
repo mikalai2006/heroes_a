@@ -120,6 +120,8 @@ public class UIArena : UILocaleBase
         UIDialogSpellBook.OnClickSpell += ShowSpellInfo;
         ArenaManager.OnChooseCreatureForSpell += ShowSpellInfo;
         ArenaManager.OnHideSpellInfo += HideSpellInfo;
+        ArenaManager.OnShowState += ShowStat;
+        UIArenaEndStatWindow.OnCloseStat += UnloadArena;
         // ArenaManager.OnRunFromBattle += OnClickClose;
         // ArenaManager.OnEndBattle += OnClickClose;
     }
@@ -133,6 +135,8 @@ public class UIArena : UILocaleBase
         UIDialogSpellBook.OnClickSpell -= ShowSpellInfo;
         ArenaManager.OnChooseCreatureForSpell -= ShowSpellInfo;
         ArenaManager.OnHideSpellInfo -= HideSpellInfo;
+        ArenaManager.OnShowState -= ShowStat;
+        UIArenaEndStatWindow.OnCloseStat -= UnloadArena;
         // ArenaManager.OnRunFromBattle -= OnClickClose;
         // ArenaManager.OnEndBattle -= OnClickClose;
     }
@@ -481,6 +485,15 @@ public class UIArena : UILocaleBase
         base.Localize(_box);
     }
 
+    public async void ShowStat()
+    {
+        var loaderStat = new UIArenaEndStatOperation(new ArenaStat()
+        {
+
+        });
+        await loaderStat.ShowAndHide();
+    }
+
     private async void OnClickClose()
     {
         // Release asset prefab town.
@@ -489,7 +502,11 @@ public class UIArena : UILocaleBase
         //     Addressables.ReleaseInstance(_asset);
         // }
         await arenaManager.CalculateStat();
+        // UnloadArena();
+    }
 
+    private void UnloadArena()
+    {
         _cameraMain.gameObject.SetActive(true);
         if (grid != null) grid.SetActive(true);
 

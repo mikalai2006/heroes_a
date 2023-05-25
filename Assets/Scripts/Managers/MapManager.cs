@@ -117,6 +117,8 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
     [Space(10)]
     [SerializeField] public Cursors _cursorSprites;
 
+    private GridTileNode prevClickNode;
+
     public void SaveDataGame(ref DataGame data)
     {
         data.dataMap.mapNode = gridTileHelper?.GetAllGridNodes();
@@ -766,10 +768,10 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
         return gridTileHelper;
     }
 
-    public async void ChangePath()
+    public async void ChangePath(Vector3Int tilePos)
     {
-        Vector2 posMouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector3Int tilePos = _tileMap.WorldToCell(posMouse);
+        // Vector2 posMouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        // Vector3Int tilePos = _tileMap.WorldToCell(posMouse);
 
         TileBase clickedTile = _tileMap.GetTile(tilePos);
         GridTileNode node = gridTileHelper.GetNode(tilePos.x, tilePos.y);
@@ -780,7 +782,16 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
             {
                 if (LevelManager.Instance.ActivePlayer.ActiveHero != null)
                 {
-                    LevelManager.Instance.ActivePlayer.ActiveHero.FindPathForHero(tilePos, true);
+                    if (prevClickNode == node)
+                    {
+                        GameManager.Instance.ChangeState(GameState.StartMoveHero);
+                        prevClickNode = null;
+                    }
+                    else
+                    {
+                        LevelManager.Instance.ActivePlayer.ActiveHero.FindPathForHero(tilePos, true);
+                        prevClickNode = node;
+                    }
                 }
                 else
                 {

@@ -18,18 +18,18 @@ MonoBehaviour:
   Text:
     title:
       m_TableReference:
-        m_TableCollectionName: 
+        m_TableCollectionName: GUID:99ee07ddc90ffba41a3d18974d364707
       m_TableEntryReference:
-        m_KeyId: 0
+        m_KeyId: 4737672213069824
         m_Key: 
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
     description:
       m_TableReference:
-        m_TableCollectionName: 
+        m_TableCollectionName: GUID:99ee07ddc90ffba41a3d18974d364707
       m_TableEntryReference:
-        m_KeyId: 0
+        m_KeyId: 4737672213069824
         m_Key: 
       m_FallbackState: 0
       m_WaitForCompletion: 0

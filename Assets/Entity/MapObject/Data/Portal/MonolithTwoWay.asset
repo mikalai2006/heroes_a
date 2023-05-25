@@ -18,18 +18,18 @@ MonoBehaviour:
   Text:
     title:
       m_TableReference:
-        m_TableCollectionName: 
+        m_TableCollectionName: GUID:8ed801dac82951d449557e1a63174ac8
       m_TableEntryReference:
-        m_KeyId: 0
+        m_KeyId: 21372787965984768
         m_Key: 
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
     description:
       m_TableReference:
-        m_TableCollectionName: 
+        m_TableCollectionName: GUID:8ed801dac82951d449557e1a63174ac8
       m_TableEntryReference:
-        m_KeyId: 0
+        m_KeyId: 21372843083333632
         m_Key: 
       m_FallbackState: 0
       m_WaitForCompletion: 0
@@ -50,9 +50,9 @@ MonoBehaviour:
   - Item:
       description:
         m_TableReference:
-          m_TableCollectionName: 
+          m_TableCollectionName: GUID:8ed801dac82951d449557e1a63174ac8
         m_TableEntryReference:
-          m_KeyId: 0
+          m_KeyId: 21372832077479936
           m_Key: 
         m_FallbackState: 0
         m_WaitForCompletion: 0

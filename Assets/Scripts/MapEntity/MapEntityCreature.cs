@@ -116,6 +116,8 @@ public class MapEntityCreature : BaseMapEntity, IDialogMapObjectOperation
         });
         var result = await loadingOperations.ShowHide();
 
+        Debug.Log("End battle");
+
         await player.ActiveHero.ChangeExperience(entityCreature.ConfigAttribute.CreatureParams.HP * entityCreature.Data.value);
 
         MapObject.DoHero(player);
