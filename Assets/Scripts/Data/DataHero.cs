@@ -29,6 +29,11 @@ public struct DataHero
     public SerializableDictionary<int, EntityCreature> Creatures;
     public List<GridTileNode> path; // [NonSerialized]
     public StateHero State;
+    public SerializableDictionary<TypeWarMachine, EntityCreature> WarMachines;
+    // public EntityCreature Ballista;
+    // public EntityCreature FirstAidTent;
+    // public EntityCreature Catapult;
+    // public EntityCreature AmmoCart;
 }
 
 [Serializable]

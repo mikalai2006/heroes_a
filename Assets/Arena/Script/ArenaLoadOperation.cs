@@ -15,6 +15,7 @@ public struct DialogArenaData
     public EntityHero enemy;
     public EntityMapObject creatureBank;
     public EntityCreature creature;
+    public SOArenaSetting ArenaSetting;
 }
 [Serializable]
 public struct ResultDialogArenaData
@@ -41,12 +42,12 @@ namespace Loader
 
             UIArena UIArena = GameObject.FindGameObjectWithTag("UIArena")?.GetComponent<UIArena>();
 
+            ArenaManager ArenaManager = GameObject.FindGameObjectWithTag("ArenaManager")?.GetComponent<ArenaManager>();
+            ArenaManager.CreateArena(_dialogArenaData);
             if (UIArena != null)
             {
                 UIArena.Init();
             }
-            ArenaManager ArenaManager = GameObject.FindGameObjectWithTag("ArenaManager")?.GetComponent<ArenaManager>();
-            ArenaManager.CreateArena(_dialogArenaData);
 
             var result = await UIArena.ProcessAction();
             await Unload();

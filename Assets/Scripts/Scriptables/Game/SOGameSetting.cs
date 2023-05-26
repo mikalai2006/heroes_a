@@ -43,6 +43,7 @@ public class SOGameSetting : ScriptableObject
 
     [Header("Setting Arena")]
     [Space(5)]
+    public List<SOArenaSetting> ArenaSettings;
     [Range(.05f, 1f)] public float speedArenaAnimation;
     public bool paintAllowAttackNode;
     public Color colorAllowAttackNode;

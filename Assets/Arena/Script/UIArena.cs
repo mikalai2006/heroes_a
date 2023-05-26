@@ -59,7 +59,6 @@ public class UIArena : UILocaleBase
         _cameraMain.gameObject.SetActive(false);
 
 
-        // _bgImage.sprite = _activeBuildTown.Bg;
         _box = _uiDoc.rootVisualElement;
 
         _leftSide = _box.Q<VisualElement>("SideLeft");
@@ -143,6 +142,8 @@ public class UIArena : UILocaleBase
 
     public void Init()
     {
+        _bgImage.sprite = arenaManager.DialogArenaData.ArenaSetting.BgSprites[UnityEngine.Random.Range(0, arenaManager.DialogArenaData.ArenaSetting.BgSprites.Count)];
+
         OnLoadArena?.Invoke();
 
         DrawHelpCreature();

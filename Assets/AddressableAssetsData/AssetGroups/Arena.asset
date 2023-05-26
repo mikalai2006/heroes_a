@@ -27,6 +27,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7bb9610adc1932f4f9fce2a99f24e189
+    m_Address: Assets/Arena/Prefabs/Towns
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 9a6380555b06f9d46b9bf47dd32221de, type: 2}
   m_SchemaSet:

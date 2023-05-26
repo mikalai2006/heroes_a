@@ -16,6 +16,7 @@ public class UIMenuApp : UILocaleBase
     public UIAppMenuMultipleOneDevice DialogMultipleOneDeviceDoc => _dialogMultipleOneDeviceDoc;
 
     private GameObject _environment;
+    private SOGameSetting GameSetting => LevelManager.Instance.ConfigGameSettings;
 
     public void Init(GameObject environment)
     {
@@ -48,13 +49,19 @@ public class UIMenuApp : UILocaleBase
             await AudioManager.Instance.Click();
             await DestroyMenu();
 
-            var testHero = new EntityHero(TypeFaction.Castle, LevelManager.Instance.ConfigGameSettings.ArenaTestHeroes[0]);
-            var testEnemy = new EntityHero(TypeFaction.Castle, LevelManager.Instance.ConfigGameSettings.ArenaTestHeroes[1]);
+            var testHero = new EntityHero(TypeFaction.Castle, GameSetting.ArenaTestHeroes[0]);
+            var testEnemy = new EntityHero(TypeFaction.Castle, GameSetting.ArenaTestHeroes[1]);
+            var configTown = ResourceSystem.Instance
+                .GetEntityByType<ScriptableEntityTown>(TypeEntity.Town)
+                .Find(t => t.TypeFaction == TypeFaction.Castle);
+            var town = new EntityTown(TypeGround.Grass, configTown);
 
             var loadingOperations = new ArenaLoadOperation(new DialogArenaData()
             {
                 hero = testHero,
-                enemy = testEnemy
+                enemy = testEnemy,
+                town = town,
+                ArenaSetting = GameSetting.ArenaSettings[Random.Range(0, GameSetting.ArenaSettings.Count)]
             });
             var result = await loadingOperations.ShowHide();
 

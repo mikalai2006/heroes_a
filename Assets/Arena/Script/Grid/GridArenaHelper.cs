@@ -29,7 +29,7 @@ public class GridArenaHelper
         {
             for (int x = 0; x < _gridArena.GetWidth(); x++)
             {
-                for (int y = 0; y < _gridArena.GetHeight(); y++)
+                for (int y = 1; y < _gridArena.GetHeight(); y++)
                 {
                     list.Add(_gridArena.GetGridObject(new Vector3Int(x, y)));
                 }
@@ -97,9 +97,9 @@ public class GridArenaHelper
 
         for (int x = 0; x < _gridArena.GetWidth(); x++)
         {
-            for (int z = 0; z < _gridArena.GetHeight(); z++)
+            for (int y = 1; y < _gridArena.GetHeight(); y++)
             {
-                GridArenaNode GridArenaNode = _gridArena.GetGridObject(new Vector3Int(x, z));
+                GridArenaNode GridArenaNode = _gridArena.GetGridObject(new Vector3Int(x, y));
                 GridArenaNode.gCost = int.MaxValue;
                 GridArenaNode.CalculateFCost();
                 GridArenaNode.cameFromNode = null;
@@ -123,7 +123,7 @@ public class GridArenaHelper
                 return pathList;
             }
 
-            foreach (GridArenaNode neighbourNode in GetNeighbourList(currentNode))
+            foreach (GridArenaNode neighbourNode in currentNode.Neighbours()) // GetNeighbourList(currentNode)
             {
                 if (
                     closedSet.Contains(neighbourNode)
@@ -224,39 +224,39 @@ public class GridArenaHelper
         return null; // CalculatePath(endNode);
     }
 
-    /// <summary>
-    /// Get neighbours for node from grid.
-    /// </summary>
-    /// <param name="currentNode"></param>
-    /// <returns></returns>
-    public List<GridArenaNode> GetNeighbourList(GridArenaNode currentNode)
-    {
-        Vector3Int position = currentNode.position;
-        List<GridArenaNode> neighbourList = new List<GridArenaNode>();
-        int xOffset = 0;
-        if (position.y % 2 != 0)
-            xOffset = 1;
+    // /// <summary>
+    // /// Get neighbours for node from grid.
+    // /// </summary>
+    // /// <param name="currentNode"></param>
+    // /// <returns></returns>
+    // public List<GridArenaNode> GetNeighbourList(GridArenaNode currentNode)
+    // {
+    //     Vector3Int position = currentNode.position;
+    //     List<GridArenaNode> neighbourList = new List<GridArenaNode>();
+    //     int xOffset = 0;
+    //     if (position.y % 2 != 0)
+    //         xOffset = 1;
 
-        var one = GetNode(position.x - 1, position.y);
-        if (one != null) neighbourList.Add(one);
+    //     var one = GetNode(position.x - 1, position.y);
+    //     if (one != null) neighbourList.Add(one);
 
-        var three = GetNode(position.x + xOffset - 1, position.y + 1);
-        if (three != null) neighbourList.Add(three);
+    //     var three = GetNode(position.x + xOffset - 1, position.y + 1);
+    //     if (three != null) neighbourList.Add(three);
 
-        var four = GetNode(position.x + xOffset, position.y + 1);
-        if (four != null) neighbourList.Add(four);
+    //     var four = GetNode(position.x + xOffset, position.y + 1);
+    //     if (four != null) neighbourList.Add(four);
 
-        var two = GetNode(position.x + 1, position.y);
-        if (two != null) neighbourList.Add(two);
+    //     var two = GetNode(position.x + 1, position.y);
+    //     if (two != null) neighbourList.Add(two);
 
-        var six = GetNode(position.x + xOffset, position.y - 1);
-        if (six != null) neighbourList.Add(six);
+    //     var six = GetNode(position.x + xOffset, position.y - 1);
+    //     if (six != null) neighbourList.Add(six);
 
-        var five = GetNode(position.x + xOffset - 1, position.y - 1);
-        if (five != null) neighbourList.Add(five);
+    //     var five = GetNode(position.x + xOffset - 1, position.y - 1);
+    //     if (five != null) neighbourList.Add(five);
 
-        return neighbourList;
-    }
+    //     return neighbourList;
+    // }
 
     /// <summary>
     /// Create weight as count allow neighbours of by x axios
@@ -334,7 +334,7 @@ public class GridArenaHelper
             openListNodes.Remove(currentNode);
             closedListNodes.Add(currentNode);
 
-            foreach (GridArenaNode neighbourNode in GetNeighbourList(currentNode))
+            foreach (GridArenaNode neighbourNode in currentNode.Neighbours()) // GetNeighbourList(currentNode)
             {
                 if (closedListNodes.Contains(neighbourNode)) continue;
 

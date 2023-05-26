@@ -212,7 +212,8 @@ public class ArenaMonoBehavior : MonoBehaviour // , IPointerDownHandler
         //     if (null == child)
         //         continue;
         // }
-        _nameCreature = ArenaEntity.Entity.ScriptableDataAttribute.name.Split('_')?[1];
+        var splitName = ArenaEntity.Entity.ScriptableDataAttribute.name.Split('_');
+        _nameCreature = splitName.Length > 1 ? splitName[1] : splitName[0];
 
         RefreshQuantity();
     }
@@ -502,7 +503,7 @@ public class ArenaMonoBehavior : MonoBehaviour // , IPointerDownHandler
         }
 
         string nameAnimationAttack = string.Format("{0}{1}", _nameCreature, nameAnimAttack);
-        // Debug.Log($"Shoot {nameAnimationAttack}");
+        Debug.Log($"Shoot {nameAnimationAttack}");
 
         _animator.Play(nameAnimationAttack, 0, 0f);
 

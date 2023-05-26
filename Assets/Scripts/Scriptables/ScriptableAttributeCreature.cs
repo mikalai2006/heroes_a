@@ -35,7 +35,8 @@ public struct DataCreatureParams
 public enum MovementType
 {
     Ground = 0,
-    Flying = 10
+    NoMove = 8,
+    Flying = 10,
 }
 
 [System.Serializable]

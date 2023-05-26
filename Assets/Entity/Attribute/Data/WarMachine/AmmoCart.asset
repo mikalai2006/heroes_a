@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c72a7d4bf2b7684e968fbaaeb491eb5, type: 3}
+  m_Name: AmmoCart
+  m_EditorClassIdentifier: 
+  idObject: ammocart
+  TypeAttribute: 99
+  MenuSprite: {fileID: -227238068, guid: e7a6d1e198529c44c93ed148f1bf1afe, type: 3}
+  MapPrefab:
+    m_AssetGUID: 
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  Text:
+    title:
+      m_TableReference:
+        m_TableCollectionName: GUID:99ee07ddc90ffba41a3d18974d364707
+      m_TableEntryReference:
+        m_KeyId: 18773683784024064
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    description:
+      m_TableReference:
+        m_TableCollectionName: GUID:99ee07ddc90ffba41a3d18974d364707
+      m_TableEntryReference:
+        m_KeyId: 18773722279346176
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+  TypeFaction: 100
+  TypeGround: -1
+  ArenaModel:
+    m_AssetGUID: 6ef48e65f9ebe2c47938a6ed148d4f57
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  CreatureParams:
+    Level: 1
+    Attack: 0
+    Defense: 5
+    DamageMin: 0
+    DamageMax: 0
+    HP: 100
+    Speed: 0
+    Shoots: 0
+    Growth: 0
+    Size: 1
+    Movement: 0
+    AI: 400
+    Cost:
+    - Resource: {fileID: 11400000, guid: 3894d4d068775c343b5c4bf1510dee33, type: 2}
+      Count: 1000
+  TypeWarMachine: 1
+  references:
+    version: 2
+    RefIds: []

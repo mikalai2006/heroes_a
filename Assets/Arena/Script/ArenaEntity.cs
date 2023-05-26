@@ -30,6 +30,9 @@ public enum TypeAttack
 {
     Attack = 0,
     AttackShoot = 1,
+    AttackWarMachine = 2,
+    AttackShootTown = 3,
+    // CatapultShoot = 2,
     // AttackSpell = 2
 }
 
@@ -261,8 +264,29 @@ public class ArenaEntity
 
                 if (activeSpell == null)
                 {
-                    Debug.Log($"Choose creature for attack!");
-                    _arenaManager.CreateAttackNode(this);
+                    var creature = ((EntityCreature)_arenaManager.ArenaQueue.activeEntity.arenaEntity.Entity);
+                    switch (_arenaManager.ArenaQueue.activeEntity.arenaEntity.Data.typeAttack)
+                    {
+                        case TypeAttack.AttackWarMachine:
+                            _arenaManager.CreateButtonWarMachine(OccupiedNode);
+                            break;
+                        case TypeAttack.AttackShootTown:
+                            Debug.Log($"Choose creature for shoot town attack!");
+                            break;
+                        default:
+                            _arenaManager.CreateButtonAttackNode(this);
+                            break;
+                    }
+                    // if (creature.ConfigAttribute.TypeAttribute == TypeAttribute.Creature)
+                    // {
+                    //     Debug.Log($"Choose creature for attack!");
+                    //     _arenaManager.CreateButtonAttackNode(this);
+                    // }
+                    // else
+                    // {
+                    //     Debug.Log($"Choose target for war machine!");
+                    //     _arenaManager.CreateButtonWarMachine(OccupiedNode);
+                    // }
                 }
                 else
                 {
@@ -493,15 +517,15 @@ public class ArenaEntity
         // // MapObjectGameObject.DestroyMapObject();
         // UnitManager.MapObjects.Remove(IdMapObject);
     }
-    public void CreateMapGameObject(GridArenaNode node)
+    public async UniTask CreateMapGameObject(GridArenaNode node)
     {
         // Debug.LogWarning($"CreateMapGameObject::: {Entity.ScriptableData.name}");
         // _positionPrefab = node.positionPrefab;
         // OccupiedNode = node;
         // Entity.SetMapObject(this);
-        LoadGameObject();
+        await LoadGameObject();
     }
-    private void LoadGameObject()
+    private async UniTask LoadGameObject()
     {
         AssetReferenceGameObject gameObj = null;
         // if (ConfigData.MapPrefab.RuntimeKeyIsValid())
@@ -530,27 +554,31 @@ public class ArenaEntity
             return;
         }
 
-        Addressables.InstantiateAsync(
+        var asset = Addressables.InstantiateAsync(
             gameObj,
             PositionPrefab, // + new Vector3(0, -.25f, 0),
             Quaternion.identity,
             _arenaManager.tileMapArenaUnits.transform
-            ).Completed += LoadedAsset;
+            );
+        await asset.Task;
+        ArenaMonoBehavior = asset.Result.GetComponent<ArenaMonoBehavior>();
+        // Debug.Log($"Spawn Entity::: {r_asset.name}");
+        ArenaMonoBehavior.Init(this);
     }
 
-    public virtual void LoadedAsset(AsyncOperationHandle<GameObject> handle)
-    {
-        if (handle.Status == AsyncOperationStatus.Succeeded)
-        {
-            var r_asset = handle.Result;
-            ArenaMonoBehavior = r_asset.GetComponent<ArenaMonoBehavior>();
-            // Debug.Log($"Spawn Entity::: {r_asset.name}");
-            ArenaMonoBehavior.Init(this);
-        }
-        else
-        {
-            Debug.LogError($"Error Load prefab::: {handle.Status}");
-        }
-    }
+    // public virtual void LoadedAsset()
+    // {
+    //     if (handle.Status == AsyncOperationStatus.Succeeded)
+    //     {
+    //         var r_asset = handle.Result;
+    //         ArenaMonoBehavior = r_asset.GetComponent<ArenaMonoBehavior>();
+    //         // Debug.Log($"Spawn Entity::: {r_asset.name}");
+    //         ArenaMonoBehavior.Init(this);
+    //     }
+    //     else
+    //     {
+    //         Debug.LogError($"Error Load prefab::: {handle.Status}");
+    //     }
+    // }
     #endregion
 }

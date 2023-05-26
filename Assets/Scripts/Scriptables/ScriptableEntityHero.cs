@@ -15,6 +15,9 @@ public class ScriptableEntityHero : ScriptableEntityMapObject, IEffected
     public List<LevelSecondarySkill> StartSecondarySkill;
     public List<StartCreatureItem> StartCreatures;
     public List<ScriptableAttributeSpell> StartSpells;
+    public bool isBallista;
+    public bool isAmmoCart;
+    public bool isFirstAidTent;
 
     // public override UniTask RunHero(Player player, BaseEntity entity)
     // {

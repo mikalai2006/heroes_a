@@ -122,6 +122,24 @@ public class EntityHero : BaseEntity
                 Data.spells = ConfigData.StartSpells.Select(t => t.idObject).ToList();
             }
 
+            // Create War Machine.
+            AddWarMachine(TypeWarMachine.Catapult);
+
+            if (ConfigData.isBallista)
+            {
+                AddWarMachine(TypeWarMachine.Ballista);
+            }
+
+            if (ConfigData.isAmmoCart)
+            {
+                AddWarMachine(TypeWarMachine.AmmoCart);
+            }
+
+            if (ConfigData.isFirstAidTent)
+            {
+                AddWarMachine(TypeWarMachine.FirstAidTent);
+            }
+
             // Create movement data.
             Data.mp = GetMoveMentPoints();
 
@@ -165,7 +183,6 @@ public class EntityHero : BaseEntity
             {
                 Data.path = FindPathForHero(saveData.data.nextPosition, true);
             }
-
             // var artifacts = saveData.data.artifacts;
             // for (int i = 0; i < artifacts.Count; i++)
             // {
@@ -324,6 +341,17 @@ public class EntityHero : BaseEntity
         base.SetPlayer(player);
         Data.idPlayer = player.DataPlayer.id;
         player.AddHero(this);
+    }
+
+    public void AddWarMachine(TypeWarMachine typeWarMachine)
+    {
+        if (Data.WarMachines == null) Data.WarMachines = new();
+        var allWarMachine = ResourceSystem.Instance
+                .GetAttributesByType<ScriptableAttributeWarMachine>(TypeAttribute.WarMachine);
+        var configBallista = allWarMachine
+            .Where(t => t.TypeWarMachine == typeWarMachine)
+            .First();
+        Data.WarMachines[typeWarMachine] = new EntityCreature(configBallista);
     }
 
     #region Move

@@ -13,7 +13,8 @@ public enum StateArenaNode
     Related = 1 << 3,
     Moved = 1 << 4,
     Deathed = 1 << 5,
-    Spellsed = 1 << 6
+    Spellsed = 1 << 6,
+    Obstacles = 1 << 7
 }
 
 [Serializable]
@@ -175,9 +176,6 @@ public class GridArenaNode : IHeapItem<GridArenaNode>
     {
         Vector3Int position = this.position;
         List<GridArenaNode> neighbourList = new List<GridArenaNode>();
-        // int xOffset = 0;
-        // if (position.y % 2 != 0)
-        //     xOffset = 1;
 
         var one = _grid.GetGridObject(position.x - 1, position.y);
         if (one != null) neighbourList.Add(one);

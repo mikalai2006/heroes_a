@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 using Cysharp.Threading.Tasks;
 
@@ -12,7 +13,7 @@ using UnityEngine.Localization;
 using UnityEngine.Localization.Settings;
 using UnityEngine.Localization.SmartFormat.PersistentVariables;
 
-using Random = System.Random;
+using Random = UnityEngine.Random;
 
 public class MapEntityCreature : BaseMapEntity, IDialogMapObjectOperation
 {
@@ -186,12 +187,17 @@ public class MapEntityCreature : BaseMapEntity, IDialogMapObjectOperation
         MapObject.ProtectedNode.DisableProtectedNeigbours(_mapObject);
         MapObject.OccupiedNode.DisableProtectedNeigbours(_mapObject);
 
-        // TODO ARENA
 
+        // Get setting for arena.
+        var arenaSetting = LevelManager.Instance.ConfigGameSettings.ArenaSettings
+            .Where(t => t.NativeGround.typeGround == MapObject.OccupiedNode.TypeGround)
+            .ToList();
+        // TODO ARENA
         var loadingOperations = new ArenaLoadOperation(new DialogArenaData()
         {
             hero = player.ActiveHero,
-            creature = entityCreature
+            creature = entityCreature,
+            ArenaSetting = arenaSetting[Random.Range(0, arenaSetting.Count())]
         });
         var result = await loadingOperations.ShowHide();
 

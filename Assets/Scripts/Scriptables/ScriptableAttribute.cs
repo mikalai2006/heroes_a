@@ -22,6 +22,6 @@ public enum TypeAttribute
     Spell = 60,
     // Hero = 70,
     Creature = 80,
-    // Town = 100,
+    WarMachine = 99,
     SchoolMagic = 100
 }

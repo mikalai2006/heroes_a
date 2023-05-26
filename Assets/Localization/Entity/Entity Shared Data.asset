@@ -135,6 +135,38 @@ MonoBehaviour:
     m_Key: town_tower
     m_Metadata:
       m_Items: []
+  - m_Id: 18773630902239232
+    m_Key: ballista_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18773677081526272
+    m_Key: ballista_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18773683784024064
+    m_Key: ammocart_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18773722279346176
+    m_Key: ammocart_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18773730550513664
+    m_Key: catapult_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18773769658204160
+    m_Key: catapult_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18773778256527360
+    m_Key: firstaidtent_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18773860779458560
+    m_Key: firstaidtent_d
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
