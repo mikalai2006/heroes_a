@@ -27,6 +27,10 @@ public class ScriptableAttributeWarMachine : ScriptableAttributeCreature
         await UniTask.Delay(1);
     }
 
+    public virtual async UniTask RunEffectByGameObject(ArenaManager arenaManager, GridArenaNode node, GameObject gameObject)
+    {
+        await UniTask.Delay(1);
+    }
 }
 
 public struct ArenaResultChoose

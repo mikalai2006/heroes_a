@@ -14,7 +14,9 @@ public enum StateArenaNode
     Moved = 1 << 4,
     Deathed = 1 << 5,
     Spellsed = 1 << 6,
-    Obstacles = 1 << 7
+    Obstacles = 1 << 7,
+    Moating = 1 << 8,
+    Wall = 1 << 9,
 }
 
 [Serializable]

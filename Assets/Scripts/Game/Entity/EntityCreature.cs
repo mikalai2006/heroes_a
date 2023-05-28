@@ -8,6 +8,7 @@ using UnityEngine;
 public class EntityCreature : BaseEntity
 {
     [SerializeField] public DataCreature Data = new DataCreature();
+    public int totalAI => Data.value * ConfigAttribute.CreatureParams.AI;
     public ScriptableEntityMapObject ConfigData => (ScriptableEntityMapObject)ScriptableData;
     public ScriptableAttributeCreature ConfigAttribute => (ScriptableAttributeCreature)ScriptableDataAttribute;
 

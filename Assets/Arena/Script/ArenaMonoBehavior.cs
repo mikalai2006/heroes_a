@@ -478,10 +478,11 @@ public class ArenaMonoBehavior : MonoBehaviour // , IPointerDownHandler
     }
 
 
-    internal async UniTask RunAttackShoot(GridArenaNode nodeForAttack)
+    internal async UniTask RunAttackShoot(GridArenaNode nodeForAttack, Transform positionGameObejct = null)
     {
         string nameAnimAttack = "ShootStraight";
-        Vector3 difPos = _arenaEntity.OccupiedNode.center - nodeForAttack.center;
+        Vector3 positionToAttack = nodeForAttack != null ? nodeForAttack.center : positionGameObejct.position;
+        Vector3 difPos = _arenaEntity.OccupiedNode.center - positionToAttack;
 
         if (difPos.x > 0 && difPos.y == 0)
         {
@@ -508,12 +509,12 @@ public class ArenaMonoBehavior : MonoBehaviour // , IPointerDownHandler
         _animator.Play(nameAnimationAttack, 0, 0f);
 
         _shoot.SetActive(true);
-        await SmoothLerpShoot(transform.position, nodeForAttack.center, LevelManager.Instance.ConfigGameSettings.speedArenaAnimation * 2);
+        await SmoothLerpShoot(transform.position, positionToAttack, LevelManager.Instance.ConfigGameSettings.speedArenaAnimation * 2);
         _shoot.SetActive(false);
 
         await UniTask.Delay(200);
 
-        await nodeForAttack.OccupiedUnit.RunGettingHit(_arenaEntity.OccupiedNode);
+        if (nodeForAttack != null) await nodeForAttack.OccupiedUnit.RunGettingHit(_arenaEntity.OccupiedNode);
         // if (_arenaEntity.Data.isDefense)
         // {
         // }

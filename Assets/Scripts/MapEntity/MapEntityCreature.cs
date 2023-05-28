@@ -197,6 +197,7 @@ public class MapEntityCreature : BaseMapEntity, IDialogMapObjectOperation
         {
             hero = player.ActiveHero,
             creature = entityCreature,
+            town = null,
             ArenaSetting = arenaSetting[Random.Range(0, arenaSetting.Count())]
         });
         var result = await loadingOperations.ShowHide();

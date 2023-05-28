@@ -50,8 +50,6 @@ public class ArenaEntityTown
         // ConfigDataTown = _town.ConfigData;
         // node.SetSpellsUnit(this);
 
-        CreateGameObject();
-
         if (Town.Data.level > 0)
         {
             var castle = Town.Data.Generals.Where(t => t.Value.ConfigData.TypeBuild == TypeBuild.Castle).First();
@@ -84,11 +82,21 @@ public class ArenaEntityTown
     //     }
     //     await UniTask.Delay(1);
     // }
+    public void ClickFortification(GameObject clickedObject)
+    {
+        Debug.Log($"Click fortification {clickedObject.name}");
+
+        _arenaManager.CreateButtonCatapult(clickedObject);
+    }
+    public void AttackFortification(GameObject fortification)
+    {
+        Debug.Log($"Click fortification {fortification.name}");
+    }
 
     #region CreateDestroy
-    public void CreateGameObject()
+    public async UniTask CreateGameObject()
     {
-        LoadGameObject();
+        await LoadGameObject();
     }
     // public void AddRelatedNode(GridArenaNode node)
     // {
@@ -102,7 +110,7 @@ public class ArenaEntityTown
     //     // OccupiedNode.SetSpellsStatus(false);
     // }
 
-    private void LoadGameObject()
+    private async UniTask LoadGameObject()
     {
         AssetReferenceGameObject gameObj = null;
         if (Town.ConfigData != null && Town.ConfigData.ArenaPrefab.RuntimeKeyIsValid())
@@ -118,27 +126,31 @@ public class ArenaEntityTown
 
         var arenaUnits = GameObject.FindGameObjectWithTag("ArenaUnits");
 
-        Addressables.InstantiateAsync(
+        var asset = Addressables.InstantiateAsync(
             gameObj,
             OccupiedNode.center,
             Quaternion.identity,
             arenaUnits.transform
-            ).Completed += LoadedAsset;
+        );
+        await asset.Task;
+
+        ArenaEntityTownMonobehavior = asset.Result.GetComponent<ArenaEntityTownMonobehavior>();
+        ArenaEntityTownMonobehavior.Init(this);
     }
 
-    public virtual void LoadedAsset(AsyncOperationHandle<GameObject> handle)
-    {
-        if (handle.Status == AsyncOperationStatus.Succeeded)
-        {
-            var r_asset = handle.Result;
-            ArenaEntityTownMonobehavior = r_asset.GetComponent<ArenaEntityTownMonobehavior>();
-            ArenaEntityTownMonobehavior.Init(this);
-        }
-        else
-        {
-            Debug.LogError($"Error Load prefab::: {handle.Status}");
-        }
-    }
+    // public virtual void LoadedAsset(AsyncOperationHandle<GameObject> handle)
+    // {
+    //     if (handle.Status == AsyncOperationStatus.Succeeded)
+    //     {
+    //         var r_asset = handle.Result;
+    //         ArenaEntityTownMonobehavior = r_asset.GetComponent<ArenaEntityTownMonobehavior>();
+    //         ArenaEntityTownMonobehavior.Init(this);
+    //     }
+    //     else
+    //     {
+    //         Debug.LogError($"Error Load prefab::: {handle.Status}");
+    //     }
+    // }
 
     internal async void SetRoundData()
     {
