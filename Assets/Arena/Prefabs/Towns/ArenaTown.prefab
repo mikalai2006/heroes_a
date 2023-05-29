@@ -1814,15 +1814,8 @@ MonoBehaviour:
     FortificationsGameObject:
       keys: []
       values: 
-  moat: {fileID: 8104236606833869908}
-  wall1: {fileID: 2842825254779760799}
-  wall2: {fileID: 7902356622249287345}
-  wall3: {fileID: 6396857770721040074}
-  wall4: {fileID: 7350316093384212343}
-  tower1: {fileID: 8012476494397154121}
-  tower2: {fileID: 5542129512236693073}
-  tower3: {fileID: 3163114333084331086}
-  door: {fileID: 7687461887842857693}
+  bridge: {fileID: 7687461887842857693}
+  isOpenBridge: 0
 --- !u!1 &4401692393042928835
 GameObject:
   m_ObjectHideFlags: 0
@@ -2812,7 +2805,7 @@ GameObject:
   - component: {fileID: 8552380950008113144}
   - component: {fileID: 7162644699927800482}
   m_Layer: 0
-  m_Name: Door
+  m_Name: Bridge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3434,7 +3427,7 @@ GameObject:
   - component: {fileID: 665331042123926531}
   - component: {fileID: 162769986842165073}
   m_Layer: 0
-  m_Name: One
+  m_Name: WorkedBridge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

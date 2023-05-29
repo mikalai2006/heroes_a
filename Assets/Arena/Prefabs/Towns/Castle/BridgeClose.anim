@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: DoorOpen
+  m_Name: BridgeClose
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -21,9 +21,9 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: 21300000, guid: ed38516ab13092f4fa9ed7b3af740ed2, type: 3}
-    - time: 0.33333334
       value: {fileID: 21300000, guid: ac32367c7d4e4b04f8f0214fbc44c53d, type: 3}
+    - time: 0.33333334
+      value: {fileID: 21300000, guid: ed38516ab13092f4fa9ed7b3af740ed2, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -46,8 +46,8 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: 21300000, guid: ed38516ab13092f4fa9ed7b3af740ed2, type: 3}
     - {fileID: 21300000, guid: ac32367c7d4e4b04f8f0214fbc44c53d, type: 3}
+    - {fileID: 21300000, guid: ed38516ab13092f4fa9ed7b3af740ed2, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}

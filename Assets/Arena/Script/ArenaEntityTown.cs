@@ -32,7 +32,6 @@ public class ArenaEntityTown
     private Vector3 _positionPrefab;
     public Vector3 PositionPrefab => _positionPrefab;
     [NonSerialized] public ArenaEntityTownMB ArenaEntityTownMB;
-    // public Transform Door;
 
     public SerializableDictionary<Transform, int> FortificationsGameObject = new();
     private EntityTown _town;
@@ -50,20 +49,18 @@ public class ArenaEntityTown
 
     }
 
-    public async UniTask OpenDoor()
+    public async UniTask OpenBridge()
     {
-        await ArenaEntityTownMB.OpenDoor();
+        await ArenaEntityTownMB.OpenBridge();
     }
 
-    public void CloseDoor()
+    public void CloseBridge()
     {
-        ArenaEntityTownMB.CloseDoor();
+        ArenaEntityTownMB.CloseBridge();
     }
 
     public async UniTask SetShootTown()
     {
-        // Door = FortificationsGameObject.Where(t => t.Key.name == "Door").First().Key;
-
         if (Town.Data.level > 0)
         {
             var castle = Town.Data.Generals.Where(t => t.Value.ConfigData.TypeBuild == TypeBuild.Castle).First();

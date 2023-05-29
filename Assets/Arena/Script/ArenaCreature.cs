@@ -106,7 +106,7 @@ public class ArenaCreature : ArenaEntityBase
     // public TypeArenaPlayer TypeArenaPlayer;
     // public BaseEntity Entity { get; private set; }
     public TypeDirection Direction;
-    private GridArenaNode nodeDoor;
+    private GridArenaNode nodeBridge;
     // private EntityHero _hero;
     // public EntityHero Hero => _hero;
 
@@ -222,49 +222,61 @@ public class ArenaCreature : ArenaEntityBase
         Direction = direction;
     }
 
-    public async UniTask OpenDoor(GridArenaNode nodeForCheckDoor)
+    public async UniTask OpenBridge(GridArenaNode nodeForCheckBridge)
     {
         if (_arenaManager.town == null) return;
-        if (_arenaManager.town.ArenaEntityTownMB.isOpenDoor) return;
+        // if (_arenaManager.town.ArenaEntityTownMB.isOpenBridge) return;
 
-        if (nodeForCheckDoor.StateArenaNode.HasFlag(StateArenaNode.Door))
+        if (nodeForCheckBridge.StateArenaNode.HasFlag(StateArenaNode.Bridge))
         {
-            nodeDoor = nodeForCheckDoor;
-            nodeForCheckDoor.StateArenaNode |= StateArenaNode.OpenDoor;
+            nodeBridge = nodeForCheckBridge;
+            nodeForCheckBridge.StateArenaNode |= StateArenaNode.OpenBridge;
         }
 
-        if (nodeForCheckDoor.RightNode != null
-            && nodeForCheckDoor.RightNode.StateArenaNode.HasFlag(StateArenaNode.Door)
+        if (nodeForCheckBridge.RightNode != null
+            && nodeForCheckBridge.RightNode.StateArenaNode.HasFlag(StateArenaNode.Bridge)
             && TypeArenaPlayer == TypeArenaPlayer.Right
             )
         {
-            nodeDoor = nodeForCheckDoor.RightNode;
-            nodeForCheckDoor.RightNode.StateArenaNode |= StateArenaNode.OpenDoor;
+            nodeBridge = nodeForCheckBridge.RightNode;
+            nodeForCheckBridge.RightNode.StateArenaNode |= StateArenaNode.OpenBridge;
         }
 
-        if (nodeDoor != null)
+        if (nodeForCheckBridge.RightNode.RightNode != null
+            && nodeForCheckBridge.RightNode.RightNode.StateArenaNode.HasFlag(StateArenaNode.Bridge)
+            && TypeArenaPlayer == TypeArenaPlayer.Right
+            )
         {
-            await _arenaManager.town.OpenDoor();
+            nodeBridge = nodeForCheckBridge.RightNode.RightNode;
+            nodeForCheckBridge.RightNode.RightNode.StateArenaNode |= StateArenaNode.OpenBridge;
+        }
+
+        if (nodeBridge != null)
+        {
+            await _arenaManager.town.OpenBridge();
         }
 
         await UniTask.Yield();
     }
 
-    public async void CloseDoor(GridArenaNode nodeEnd)
+    public async void CloseBridge(GridArenaNode nodeEnd)
     {
-        if (nodeDoor == null) return;
+        if (nodeBridge == null) return;
 
-        // Check Door.
+        // Check Bridge.
+        Debug.Log($"nodeBridge={nodeBridge}");
         if (
-            nodeDoor != nodeEnd
-            && !nodeDoor.LeftNode.StateArenaNode.HasFlag(StateArenaNode.Deathed)
-            && !nodeDoor.LeftNode.StateArenaNode.HasFlag(StateArenaNode.Occupied)
+            nodeBridge != nodeEnd
+            && !nodeBridge.StateArenaNode.HasFlag(StateArenaNode.Occupied)
+            && !nodeBridge.StateArenaNode.HasFlag(StateArenaNode.Deathed)
+            && !nodeBridge.LeftNode.StateArenaNode.HasFlag(StateArenaNode.Deathed)
+            && !nodeBridge.LeftNode.StateArenaNode.HasFlag(StateArenaNode.Occupied)
             )
         {
             await UniTask.Delay(400);
-            nodeDoor.StateArenaNode &= ~StateArenaNode.OpenDoor;
-            nodeDoor = null;
-            _arenaManager.town.CloseDoor();
+            nodeBridge.StateArenaNode &= ~StateArenaNode.OpenBridge;
+            nodeBridge = null;
+            _arenaManager.town.CloseBridge();
         }
     }
 

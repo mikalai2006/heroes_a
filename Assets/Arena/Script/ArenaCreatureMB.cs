@@ -264,14 +264,14 @@ public class ArenaCreatureMB : MonoBehaviour // , IPointerDownHandler
         var nodeStart = ArenaEntity.Path[0];
         var nodeEnd = ArenaEntity.Path[ArenaEntity.Path.Count - 1];
 
-        GridArenaNode nodeDoor = null;
-        if (nodeStart.StateArenaNode.HasFlag(StateArenaNode.OpenDoor))
+        GridArenaNode nodeBridge = null;
+        if (nodeStart.StateArenaNode.HasFlag(StateArenaNode.OpenBridge))
         {
-            nodeDoor = nodeStart;
+            nodeBridge = nodeStart;
         };
-        if (nodeStart.OccupiedUnit.RelatedNode != null && nodeStart.OccupiedUnit.RelatedNode.StateArenaNode.HasFlag(StateArenaNode.OpenDoor))
+        if (nodeStart.OccupiedUnit.RelatedNode != null && nodeStart.OccupiedUnit.RelatedNode.StateArenaNode.HasFlag(StateArenaNode.OpenBridge))
         {
-            nodeDoor = nodeStart.OccupiedUnit.RelatedNode;
+            nodeBridge = nodeStart.OccupiedUnit.RelatedNode;
         };
 
         _animator.Play(string.Format("{0}{1}", _nameCreature, "Moving"), 0, 0f);
@@ -284,8 +284,8 @@ public class ArenaCreatureMB : MonoBehaviour // , IPointerDownHandler
         {
             var time = _speedAnimation * ArenaEntity.Path.Count;
 
-            // Check Door.
-            await ArenaEntity.OpenDoor(nodeEnd);
+            // Check Bridge.
+            await ArenaEntity.OpenBridge(nodeEnd);
 
             UpdateDirection(ArenaEntity.PositionPrefab, nodeEnd.position, nodeEnd);
             await SmoothLerp(transform.position, nodeEnd.center + difPos, time);
@@ -300,8 +300,8 @@ public class ArenaCreatureMB : MonoBehaviour // , IPointerDownHandler
                 var nodeTo = ArenaEntity.Path[0];
                 nodeEnd = nodeTo;
 
-                // Check Door.
-                await ArenaEntity.OpenDoor(nodeEnd);
+                // Check Bridge.
+                await ArenaEntity.OpenBridge(nodeEnd);
 
                 // ScriptableEntityMapObject configNodeData
                 //     = (ScriptableEntityMapObject)nodeTo.OccupiedUnit?.ConfigData;
@@ -312,15 +312,6 @@ public class ArenaCreatureMB : MonoBehaviour // , IPointerDownHandler
 
                 await SmoothLerp(transform.position, nodeTo.center + difPos, time);
                 await UniTask.Yield();
-
-                // if (
-                //     !nodeTo.StateArenaNode.HasFlag(StateArenaNode.Door)
-                //     && ArenaEntity.man
-                //     // && (nodeTo.RightNode != null && nodeTo.RightNode.StateArenaNode.HasFlag(StateArenaNode.Door))
-                //     )
-                // {
-                //     ArenaEntity.CloseDoor();
-                // }
 
                 ArenaEntity.Path.RemoveAt(0);
 
@@ -339,8 +330,8 @@ public class ArenaCreatureMB : MonoBehaviour // , IPointerDownHandler
             ArenaEntity.ChangePosition(nodeEnd);
         }
 
-        // Close Door.
-        ArenaEntity.CloseDoor(nodeEnd);
+        // Close Bridge.
+        ArenaEntity.CloseBridge(nodeEnd);
 
         await UniTask.Yield();
         _animator.Play(string.Format("{0}{1}", _nameCreature, "StopMoving"), 0, 0f);

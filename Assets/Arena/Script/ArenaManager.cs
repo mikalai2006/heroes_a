@@ -205,7 +205,7 @@ public class ArenaManager : MonoBehaviour
                         && neiNode.LeftNode.OccupiedUnit == null
                         && activeArenaEntity.TypeArenaPlayer == TypeArenaPlayer.Right
                         && neiNode.OccupiedUnit != activeArenaEntity.OccupiedNode.OccupiedUnit
-                        && !neiNode.LeftNode.StateArenaNode.HasFlag(StateArenaNode.Door)
+                        && !neiNode.LeftNode.StateArenaNode.HasFlag(StateArenaNode.Bridge)
                         )
                     {
                         neiNode.LeftNode.StateArenaNode |= StateArenaNode.Moved;
@@ -216,7 +216,7 @@ public class ArenaManager : MonoBehaviour
                         && activeArenaEntity.TypeArenaPlayer == TypeArenaPlayer.Left
                         && neiNode.RightNode.OccupiedUnit == null
                         && neiNode.OccupiedUnit != activeArenaEntity.OccupiedNode.OccupiedUnit
-                        && !neiNode.RightNode.StateArenaNode.HasFlag(StateArenaNode.Door)
+                        && !neiNode.RightNode.StateArenaNode.HasFlag(StateArenaNode.Bridge)
                         )
                     {
                         neiNode.RightNode.StateArenaNode |= StateArenaNode.Moved;
@@ -327,6 +327,7 @@ public class ArenaManager : MonoBehaviour
 
     public void DrawButtonAction()
     {
+        if (clickedNode == null) return;
         RuleTile ruleCursor = CursorRule.NotAllow;
         Vector3 positionButton = new Vector3(clickedNode.center.x, clickedNode.center.y, zCoord);
 
@@ -1003,8 +1004,8 @@ public class ArenaManager : MonoBehaviour
             GridArenaHelper.GetNode(10, 2).StateArenaNode |= StateArenaNode.Moating;
             GridArenaHelper.GetNode(10, 1).StateArenaNode |= StateArenaNode.Moating;
 
-            // Door.
-            GridArenaHelper.GetNode(10, 6).StateArenaNode |= StateArenaNode.Door;
+            // Bridge.
+            GridArenaHelper.GetNode(10, 6).StateArenaNode |= StateArenaNode.Bridge;
         }
         else if (DialogArenaData.creatureBank != null)
         {

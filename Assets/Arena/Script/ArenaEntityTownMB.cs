@@ -31,9 +31,9 @@ public class ArenaEntityTownMB : MonoBehaviour
     // [SerializeField] private GameObject tower1;
     // [SerializeField] private GameObject tower2;
     // [SerializeField] private GameObject tower3;
-    [SerializeField] private GameObject door;
-    private Animator doorAnimator;
-    public bool isOpenDoor = false;
+    [SerializeField] private GameObject bridge;
+    private Animator bridgeAnimator;
+    public bool isOpenBridge = false;
     // public List<Transform> _fortifications = new();
 
 
@@ -56,8 +56,8 @@ public class ArenaEntityTownMB : MonoBehaviour
         _animator = GetComponentInChildren<Animator>();
         _model = transform.Find("Model");
         _camera = GameObject.FindGameObjectWithTag("ArenaCamera")?.GetComponent<Camera>();
-        doorAnimator = door.transform.GetChild(0).GetComponent<Animator>();
-        door.SetActive(false);
+        bridgeAnimator = bridge.transform.GetChild(0).GetComponent<Animator>();
+        bridge.SetActive(false);
     }
     #endregion
 
@@ -165,7 +165,7 @@ public class ArenaEntityTownMB : MonoBehaviour
                 // {
 
                 // }
-                // else if (rayHit.collider.gameObject == door)
+                // else if (rayHit.collider.gameObject == bridge)
                 // {
 
                 // }
@@ -178,20 +178,20 @@ public class ArenaEntityTownMB : MonoBehaviour
         }
     }
 
-    internal async UniTask OpenDoor()
+    internal async UniTask OpenBridge()
     {
-        door.SetActive(true);
-        doorAnimator.Play("DoorOpen");
-        isOpenDoor = true;
+        bridge.SetActive(true);
+        bridgeAnimator.Play("BridgeOpen");
+        isOpenBridge = true;
 
         await UniTask.Yield();
     }
-    internal void CloseDoor()
+    internal void CloseBridge()
     {
-        if (!isOpenDoor) return;
+        if (!isOpenBridge) return;
 
-        doorAnimator.Play("DoorClose");
-        isOpenDoor = false;
-        door.SetActive(false);
+        bridgeAnimator.Play("BridgeClose");
+        isOpenBridge = false;
+        bridge.SetActive(false);
     }
 }
