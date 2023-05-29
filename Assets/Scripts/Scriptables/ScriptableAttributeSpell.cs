@@ -17,6 +17,7 @@ public class ScriptableAttributeSpell : ScriptableAttribute
     public int level;
     public TypeSpell typeSpell;
     public TypeSpellDuration typeSpellDuration;
+    [Tooltip("Как вызывать заклинание: немедленно, коллективно, индивидуально")]
     public TypeSpellRun typeSpellRun;
     public TypeSpellTarget typeSpellTarget;
     public TypeSpellAchievement typeAchievement;
@@ -50,7 +51,7 @@ public class ScriptableAttributeSpell : ScriptableAttribute
         return new();
     }
 
-    public async virtual UniTask RunEffect(GridArenaNode node, EntityHero hero, Player player = null)
+    public async virtual UniTask RunEffect(GridArenaNode node, EntityHero hero, GridArenaNode nodeWithSpell, Player player = null)
     {
         await UniTask.Delay(1);
     }
@@ -75,6 +76,7 @@ public enum TypeSpellRun
 {
     Collective = 0,
     Individual = 1,
+    Immediately = 2,
 }
 [System.Serializable]
 public enum TypeSpellTarget

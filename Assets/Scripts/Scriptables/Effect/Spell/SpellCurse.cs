@@ -6,7 +6,7 @@ using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
-[CreateAssetMenu(fileName = "SpellCurse", menuName = "Game/Attribute/Spell/4_Curse")]
+[CreateAssetMenu(fileName = "SpellCurse", menuName = "Game/Attribute/Spell/4_Curse", order = 4)]
 public class SpellCurse : ScriptableAttributeSpell
 {
     public async override UniTask<List<GridArenaNode>> ChooseTarget(ArenaManager arenaManager, EntityHero hero, Player player = null)
@@ -64,7 +64,9 @@ public class SpellCurse : ScriptableAttributeSpell
                AnimatePrefab,
                new Vector3(0, 1, 0),
                Quaternion.identity,
-               creatureArena.ArenaMonoBehavior.transform
+               creatureArena is ArenaCreature ?
+                ((ArenaCreature)creatureArena).ArenaMonoBehavior.transform
+                : ((ArenaWarMachine)creatureArena).ArenaWarMachineMonoBehavior.transform
            );
             var obj = await asset.Task;
             obj.gameObject.transform.localPosition = new Vector3(0, 1, 0);

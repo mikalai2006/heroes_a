@@ -15,31 +15,38 @@ MonoBehaviour:
   idObject: explore.redwoodobservatory
   TypeEntity: 34
   MenuSprite: {fileID: 0}
-  title:
-    m_TableReference:
-      m_TableCollectionName: 
-    m_TableEntryReference:
-      m_KeyId: 0
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
+  Text:
+    title:
+      m_TableReference:
+        m_TableCollectionName: GUID:8ed801dac82951d449557e1a63174ac8
+      m_TableEntryReference:
+        m_KeyId: 21372479395233792
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    description:
+      m_TableReference:
+        m_TableCollectionName: GUID:8ed801dac82951d449557e1a63174ac8
+      m_TableEntryReference:
+        m_KeyId: 21372536634900480
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
   MapPrefab:
     m_AssetGUID: 0a736c2ff87971845b53d01d41b40a5b
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
   TypeGround: 1
-  TypeWorkEffect: 0
-  Attributes: []
   TypeMapObject: 1
   RMGValue: 750
   listTypeNoPath: 
   listRuleInput: 1100000013000000120000000c0000000e000000
   TypeWorkObject: 5
+  TypeWorkEffect: 0
   Effects: []
-  Perks:
-  - {fileID: 11400000, guid: dd5c83d6e505beb4dbd8092db3ca46dd, type: 2}
   references:
     version: 2
     RefIds: []

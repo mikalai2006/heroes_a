@@ -6,7 +6,7 @@ using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
-[CreateAssetMenu(fileName = "SpellMagicArrow", menuName = "Game/Attribute/Spell/7_MagicArrow")]
+[CreateAssetMenu(fileName = "SpellMagicArrow", menuName = "Game/Attribute/Spell/7_MagicArrow", order = 7)]
 public class SpellMagicArrow : ScriptableAttributeSpell
 {
     public async override UniTask<List<GridArenaNode>> ChooseTarget(ArenaManager arenaManager, EntityHero hero, Player player = null)
@@ -66,7 +66,7 @@ public class SpellMagicArrow : ScriptableAttributeSpell
             Addressables.Release(asset);
         }
 
-        await entity.ArenaMonoBehavior.RunGettingHitSpell();
+        await entity.RunGettingHitSpell();
         entity.SetDamage(totalDamage);
     }
 }

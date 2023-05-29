@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76947a1f89f260345a397b7b60fc44ab, type: 3}
+  m_Name: ArenaSnow
+  m_EditorClassIdentifier: 
+  idObject: arena.snow
+  BgSprites:
+  - {fileID: 21300000, guid: b67d17b7670def246b67267269731e2a, type: 3}
+  - {fileID: 21300000, guid: 3d2133589bf70bd448266e02d90f94a2, type: 3}
+  NativeGround: {fileID: 11400000, guid: a4738e56e5475c143ac4fbc28b9c1c2b, type: 2}
+  Obstacles: []

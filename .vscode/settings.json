@@ -13,5 +13,6 @@
   "editor.fontSize": 16,
   "editor.tokenColorCustomizations": {
     "comments": "#444"
-  }
+},
+"zowe.settings.version": 2
 }

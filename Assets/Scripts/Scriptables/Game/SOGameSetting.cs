@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using UnityEngine.Localization;
 
 [CreateAssetMenu(fileName = "GameSetting", menuName = "HeroesA/GameSetting")]
@@ -32,6 +33,7 @@ public class SOGameSetting : ScriptableObject
     public AnimationCurve probabilityExperience;
     public int countBuildPerDay;
     public int countRecoveryManaPerDay;
+    public int countSpellPerRound;
 
     [Header("Setting Movement")]
     [Space(5)]
@@ -41,6 +43,7 @@ public class SOGameSetting : ScriptableObject
 
     [Header("Setting Arena")]
     [Space(5)]
+    public List<SOArenaSetting> ArenaSettings;
     [Range(.05f, 1f)] public float speedArenaAnimation;
     public bool paintAllowAttackNode;
     public Color colorAllowAttackNode;
@@ -49,8 +52,19 @@ public class SOGameSetting : ScriptableObject
     public Color colorAllowAttackCreature;
     public bool paintActiveCreature;
     public Color colorActiveCreature;
+    public bool showPath;
+    public bool showShadowCursor;
+    public Color colorShadow;
+    public bool showGrid;
+    public bool showShadowGrid;
 
     public SOGameAudio AudioGeneral;
+
+    [Header("Setting Tests")]
+    [Space(5)]
+    public List<ScriptableEntityHero> ArenaTestHeroes;
+    [SerializeField] public AssetReferenceGameObject ArenaPlaceholderModel;
+    [SerializeField] public AssetReferenceGameObject ArenaPlaceholderShootModel;
 }
 
 [System.Serializable]

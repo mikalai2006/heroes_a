@@ -229,10 +229,13 @@ public class MapEntityHero : BaseMapEntity
         while (elapsedTime < time)
         {
             transform.position = Vector3.Lerp(startPosition, endPosition, (elapsedTime / time));
-            Camera.main.transform.position = Vector3.Lerp(
-                startPosition + new Vector3(0, 0, -10),
-                endPosition + new Vector3(0, 0, -10),
-                (elapsedTime / time));
+            if (Camera.main != null)
+            {
+                Camera.main.transform.position = Vector3.Lerp(
+                    startPosition + new Vector3(0, 0, -10),
+                    endPosition + new Vector3(0, 0, -10),
+                    (elapsedTime / time));
+            }
             //new Vector3((float)startPosition.x, (float)endPosition.y, -10f);
             elapsedTime += Time.deltaTime;
             // yield return null;

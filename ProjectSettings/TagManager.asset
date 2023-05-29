@@ -13,6 +13,7 @@ TagManager:
   - UIArena
   - ArenaCamera
   - ArenaUnits
+  - ArenaManager
   layers:
   - Default
   - TransparentFX

@@ -32,11 +32,3 @@ public class EffectWarMachine : BaseEffect
     // }
 }
 
-[System.Serializable]
-public enum TypeWarMachine
-{
-    AmmoCart = 1,
-    Ballista = 2,
-    FirstAidTent = 3,
-    Catapult = 4,
-}

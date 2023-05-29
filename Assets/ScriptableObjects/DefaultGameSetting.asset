@@ -198,6 +198,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   countBuildPerDay: 1
   countRecoveryManaPerDay: 1
+  countSpellPerRound: 5
   baseMovementValue: 1900
   DependencyCreatureOnMove:
   - levelCreature: 3
@@ -219,15 +220,37 @@ MonoBehaviour:
   - levelCreature: 11
     movementValue: 2000
   countCellClearSky: 4
+  ArenaSettings:
+  - {fileID: 11400000, guid: fa40c4e0896592b4285b302b88cbf934, type: 2}
+  - {fileID: 11400000, guid: 16c748b79c69ed9429cda5ff1da596a2, type: 2}
+  - {fileID: 11400000, guid: 548bfe8b458dd2240b104dd9d3eddf4d, type: 2}
   speedArenaAnimation: 0.1
   paintAllowAttackNode: 1
-  colorAllowAttackNode: {r: 1, g: 0, b: 0, a: 0.56078434}
-  colorNodeRunSpell: {r: 1, g: 0.88953507, b: 0, a: 0.6392157}
+  colorAllowAttackNode: {r: 1, g: 0, b: 0, a: 0.4117647}
+  colorNodeRunSpell: {r: 1, g: 0.88953507, b: 0, a: 0.21176471}
   paintAllowAttackCreature: 1
-  colorAllowAttackCreature: {r: 1, g: 0, b: 0, a: 0.28235295}
+  colorAllowAttackCreature: {r: 1, g: 0, b: 0, a: 0.11372549}
   paintActiveCreature: 1
   colorActiveCreature: {r: 0.77254903, g: 1, b: 0, a: 0.6392157}
+  showPath: 1
+  showShadowCursor: 1
+  colorShadow: {r: 0, g: 0, b: 0, a: 0.33333334}
+  showGrid: 1
+  showShadowGrid: 1
   AudioGeneral: {fileID: 11400000, guid: fe8d1e48c237f1a428344434599d0c24, type: 2}
+  ArenaTestHeroes:
+  - {fileID: 11400000, guid: 6ffb151385268c2468c11aa0926a7cf9, type: 2}
+  - {fileID: 11400000, guid: 57be72433106473478d591f21ad47473, type: 2}
+  ArenaPlaceholderModel:
+    m_AssetGUID: 3e52e3b730df77e4c83258db01c17448
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  ArenaPlaceholderShootModel:
+    m_AssetGUID: 1f58c5967b1743748b171ef8c91a9505
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
   references:
     version: 2
     RefIds: []

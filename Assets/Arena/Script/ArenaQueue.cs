@@ -2,10 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
+using UnityEngine;
+
 [Serializable]
 public struct QueueItem
 {
-    public ArenaEntity arenaEntity;
+    public ArenaEntityBase arenaEntity;
     public int round;
 }
 
@@ -56,6 +58,7 @@ public class ArenaQueue
 
         }
 
+        Refresh();
         activeEntity = ListEntities.ElementAt(0);
 
         if (ActiveRound != activeEntity.round)
@@ -67,7 +70,7 @@ public class ArenaQueue
         OnNextStep?.Invoke();
     }
 
-    public void AddEntity(ArenaEntity entity)
+    public void AddEntity(ArenaEntityBase entity)
     {
         QueueItem item = new QueueItem()
         {
@@ -81,7 +84,7 @@ public class ArenaQueue
         Refresh();
     }
 
-    internal void RemoveEntity(ArenaEntity arenaEntity)
+    internal void RemoveEntity(ArenaCreature arenaEntity)
     {
         var index = ListEntities.FindIndex(t => t.arenaEntity == arenaEntity);
         if (index != -1)

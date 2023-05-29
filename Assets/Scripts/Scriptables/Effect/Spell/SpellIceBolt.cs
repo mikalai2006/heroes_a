@@ -66,7 +66,7 @@ public class SpellIceBolt : ScriptableAttributeSpell
             Addressables.Release(asset);
         }
 
-        await entity.ArenaMonoBehavior.RunGettingHitSpell();
+        await entity.RunGettingHitSpell();
         entity.SetDamage(totalDamage);
     }
 }

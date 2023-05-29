@@ -29,6 +29,18 @@ MonoBehaviour:
   primarySkills:
   - PrimarySkill: {fileID: 11400000, guid: 71fd48291a2040e4b92224f9677707ba, type: 2}
     value: 5000
+  textWin:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -56,9 +68,9 @@ MonoBehaviour:
       m_LocalVariables: []
     description:
       m_TableReference:
-        m_TableCollectionName: 
+        m_TableCollectionName: GUID:8ed801dac82951d449557e1a63174ac8
       m_TableEntryReference:
-        m_KeyId: 0
+        m_KeyId: 21372055636312064
         m_Key: 
       m_FallbackState: 0
       m_WaitForCompletion: 0

@@ -1,0 +1,35 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:Template name="Button" src="project://database/Assets/UI/Toolkit/Button.uxml?fileID=9197481963319205126&amp;guid=db5e7d04a42304542a4356b1519364b2&amp;type=3#Button" />
+    <Style src="project://database/Assets/UI/Toolkit/Base.uss?fileID=7433441132597879392&amp;guid=fa07b064290e7384d9ad2e26e79f5953&amp;type=3#Base" />
+    <Style src="project://database/Assets/UI/Toolkit/UnityBase.uss?fileID=7433441132597879392&amp;guid=c0905c354b5fb524e83bc41ae3debe10&amp;type=3#UnityBase" />
+    <ui:VisualElement name="HeroInfo" class="text-secondary" style="flex-grow: 1;">
+        <ui:VisualElement name="Overlay" class="inset-0" style="flex-grow: 1; position: absolute;" />
+        <ui:VisualElement name="VisualElement" class="bg" style="flex-grow: 1;">
+            <ui:VisualElement style="flex-grow: 1; flex-direction: row; justify-content: space-between;">
+                <ui:VisualElement class="mx-1" style="flex-grow: 0;">
+                    <ui:VisualElement name="Ava" style="width: 58px; height: 64px; background-image: url(&apos;project://database/Assets/Entity/Hero/Sprites/Castle/Sprites/Sorsha.png?fileID=21300000&amp;guid=0af1b5b0a79024e44afdf4418cf6e796&amp;type=3#Sorsha&apos;); margin-left: 3px; margin-right: 3px; margin-top: 3px; margin-bottom: 0;" />
+                    <ui:VisualElement class="box_shadow text-center">
+                        <ui:VisualElement class="box_bg p-1">
+                            <ui:Label tabindex="-1" text="Label" display-tooltip-when-elided="true" name="Name" class="text-primary p-0 text_md" />
+                            <ui:Label tabindex="-1" text="Label" display-tooltip-when-elided="true" name="Status" class="text-secondary p-0" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement class="p-05" style="flex-grow: 1;">
+                    <ui:Instance template="Button" name="Cancel">
+                        <AttributeOverrides element-name="Btn" text="#exit" />
+                    </ui:Instance>
+                </ui:VisualElement>
+                <ui:VisualElement class="mx-1" style="flex-grow: 0;">
+                    <ui:VisualElement name="Ava" style="width: 58px; height: 64px; background-image: url(&apos;project://database/Assets/Entity/Hero/Sprites/Castle/Sprites/Sorsha.png?fileID=21300000&amp;guid=0af1b5b0a79024e44afdf4418cf6e796&amp;type=3#Sorsha&apos;); margin-left: 3px; margin-right: 3px; margin-top: 3px; margin-bottom: 0;" />
+                    <ui:VisualElement class="box_shadow text-center">
+                        <ui:VisualElement class="box_bg p-1">
+                            <ui:Label tabindex="-1" text="Label" display-tooltip-when-elided="true" name="Name" class="text-primary p-0 text_md" />
+                            <ui:Label tabindex="-1" text="Label" display-tooltip-when-elided="true" name="Status" class="text-secondary p-0" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

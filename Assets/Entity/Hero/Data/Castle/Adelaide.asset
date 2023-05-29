@@ -53,14 +53,20 @@ MonoBehaviour:
   StartSecondarySkill:
   - SecondarySkill: {fileID: 11400000, guid: 4427fef17b08d0f4b89ed9ffedaf6a4f, type: 2}
     value: 1
+  - SecondarySkill: {fileID: 11400000, guid: 75f4fc7d8a73dbf40afbcad79987193c, type: 2}
+    value: 2
+  - SecondarySkill: {fileID: 11400000, guid: 2c060e15242dcbd45808ada6fa521278, type: 2}
+    value: 2
+  - SecondarySkill: {fileID: 11400000, guid: 7f7e8be60bed4304a92c4341542e5e5e, type: 2}
+    value: 2
   StartCreatures:
   - creature: {fileID: 11400000, guid: e34ee2bd20d331149b4525b763a3d4ad, type: 2}
     min: 2
     max: 3
-  - creature: {fileID: 11400000, guid: 9f3b6d3f88186174ea86b4e0f01dc676, type: 2}
+  - creature: {fileID: 11400000, guid: 7d1983f083e2c9a49bc2725df7d9691b, type: 2}
     min: 3
     max: 3000
-  - creature: {fileID: 11400000, guid: 30e7175a5da25aa439308cab8f79b62b, type: 2}
+  - creature: {fileID: 11400000, guid: b93745913452c36469604bba8816e3d6, type: 2}
     min: 2
     max: 3000
   - creature: {fileID: 11400000, guid: 6ea0b3ed958930e41ab8e76bc52ce1b9, type: 2}
@@ -72,12 +78,21 @@ MonoBehaviour:
   - creature: {fileID: 11400000, guid: c860fc307cbc9f346afc3fae4f08b1a2, type: 2}
     min: 2
     max: 3000
-  - creature: {fileID: 11400000, guid: a1cc26c5ae4169645b7390f64d0d492a, type: 2}
+  - creature: {fileID: 11400000, guid: e859ac4485df88141b1a4cef5d566334, type: 2}
     min: 3
     max: 30
   StartSpells:
   - {fileID: 11400000, guid: 08c84490596087042ad4ccae387cb166, type: 2}
   - {fileID: 11400000, guid: f0b6ce2de2ab0db4ea5d460c4e7461df, type: 2}
+  - {fileID: 11400000, guid: 96ef36e9d522f3344b7a02ab0aa328cd, type: 2}
+  - {fileID: 11400000, guid: 80712bd7daac1e7429d3b7cfb83f0e7b, type: 2}
+  - {fileID: 11400000, guid: ec43a0e6bcfc27343ad38114d88b992c, type: 2}
+  - {fileID: 11400000, guid: a4de2eed50695aa40a49254cbfea6906, type: 2}
+  - {fileID: 11400000, guid: 68fa24297844d904f9b28c1ccb3707f8, type: 2}
+  - {fileID: 11400000, guid: e9c45497960076d4c8496681b5a56557, type: 2}
+  isBallista: 1
+  isAmmoCart: 1
+  isFirstAidTent: 1
   references:
     version: 2
     RefIds: []

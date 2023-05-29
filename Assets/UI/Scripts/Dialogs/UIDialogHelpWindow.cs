@@ -10,7 +10,7 @@ public class UIDialogHelpWindow : UILocaleBase
     public UIDocument DialogApp => _uiDoc;
     [SerializeField] private VisualTreeAsset _templateHelp;
     private readonly string _nameButtonOk = "ButtonOk";
-    private readonly string _nameSpriteElement = "Sprite";
+    private readonly string _nameSpriteElement = "SpriteObject";
     private readonly string _nameDescriptionLabel = "DescriptionDialog";
     private readonly string _nameHeaderLabel = "HeaderDialog";
     private readonly string _nameGeneralBlok = "GeneralBlok";

@@ -6,7 +6,7 @@ using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
-[CreateAssetMenu(fileName = "SpellProtectionFromFire", menuName = "Game/Attribute/Spell/8_ProtectionFromFire")]
+[CreateAssetMenu(fileName = "SpellProtectionFromFire", menuName = "Game/Attribute/Spell/8_ProtectionFromFire", order = 8)]
 public class SpellProtectionFromFire : ScriptableAttributeSpell
 {
     public async override UniTask<List<GridArenaNode>> ChooseTarget(ArenaManager arenaManager, EntityHero hero, Player player = null)
@@ -64,7 +64,9 @@ public class SpellProtectionFromFire : ScriptableAttributeSpell
                AnimatePrefab,
                new Vector3(0, 1, 0),
                Quaternion.identity,
-               creatureArena.ArenaMonoBehavior.transform
+               creatureArena is ArenaCreature ?
+                ((ArenaCreature)creatureArena).ArenaMonoBehavior.transform
+                : ((ArenaWarMachine)creatureArena).ArenaWarMachineMonoBehavior.transform
            );
             var obj = await asset.Task;
             obj.gameObject.transform.localPosition = new Vector3(0, 1, 0);

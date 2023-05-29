@@ -6,7 +6,7 @@ using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
-[CreateAssetMenu(fileName = "SpellDispel", menuName = "Game/Attribute/Spell/5_Dispel")]
+[CreateAssetMenu(fileName = "SpellDispel", menuName = "Game/Attribute/Spell/5_Dispel", order = 5)]
 public class SpellDispel : ScriptableAttributeSpell
 {
     public async override UniTask<List<GridArenaNode>> ChooseTarget(ArenaManager arenaManager, EntityHero hero, Player player = null)
@@ -50,7 +50,9 @@ public class SpellDispel : ScriptableAttributeSpell
                AnimatePrefab,
                new Vector3(0, 1, 0),
                Quaternion.identity,
-               entity.ArenaMonoBehavior.transform
+               entity is ArenaCreature ?
+                ((ArenaCreature)entity).ArenaMonoBehavior.transform
+                : ((ArenaWarMachine)entity).ArenaWarMachineMonoBehavior.transform
            );
             var obj = await asset.Task;
             obj.gameObject.transform.localPosition = new Vector3(0, 1, 0);
@@ -62,15 +64,15 @@ public class SpellDispel : ScriptableAttributeSpell
         List<GridArenaNode> spellsnodes = arenaManager
             .GridArenaHelper
             .GetAllGridNodes()
-            .Where(t => t.SpellsUnit != null)
+            .Where(t => t.SpellUnit != null)
             .ToList();
         if (levelSSkill >= 2 && spellsnodes.Count > 0)
         {
             foreach (var spellNode in spellsnodes)
             {
-                if (spellNode.SpellsUnit != null)
+                if (spellNode.SpellUnit != null)
                 {
-                    await spellNode.SpellsUnit.ConfigDataSpell.RemoveEffect(spellNode, heroRunSpell);
+                    await spellNode.SpellUnit.ConfigDataSpell.RemoveEffect(spellNode, heroRunSpell);
                 }
             }
         }

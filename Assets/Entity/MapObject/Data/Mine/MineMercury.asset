@@ -45,9 +45,9 @@ MonoBehaviour:
       m_LocalVariables: []
     description:
       m_TableReference:
-        m_TableCollectionName: 
+        m_TableCollectionName: GUID:8ed801dac82951d449557e1a63174ac8
       m_TableEntryReference:
-        m_KeyId: 0
+        m_KeyId: 21364871477231616
         m_Key: 
       m_FallbackState: 0
       m_WaitForCompletion: 0
@@ -58,7 +58,6 @@ MonoBehaviour:
     m_SubObjectType: 
     m_EditorAssetChanged: 0
   TypeGround: 1790
-  Faction: {fileID: 11400000, guid: 021986cf2e7642b4f8955a12beacc027, type: 2}
   TypeMapObject: 5
   RMGValue: 3500
   listTypeNoPath: 0c000000080000000e000000

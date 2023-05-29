@@ -64,11 +64,14 @@ public class UIGameAside : UILocaleBase
     private VisualElement _townbox;
 
     const int countTown = 3;
+    private GlobalMapInputManager _globalInputManager;
 
-    private SceneInstance _scene;
+    // private SceneInstance _scene;
 
     private void Start()
     {
+        _globalInputManager = new GlobalMapInputManager();
+
         GameManager.OnAfterStateChanged += OnAfterStateChanged;
         EntityHero.onChangeParamsActiveHero += ChangeParamsActiveHero;
         UITownInfo.onMoveHero += DrawHeroBox;
@@ -76,6 +79,10 @@ public class UIGameAside : UILocaleBase
         UITown.OnInputToTown += HideMapButtons;
         UIDialogDwellingWindow.OnBuyCreature += ChangeHeroInfo;
         UIDialogHeroInfo.OnMoveCreature += ChangeHeroInfo;
+        UIArena.OnLoadArena += HideAside;
+        UIArena.OnUnloadArena += ShowAside;
+        UITown.OnInputToTown += HideAside;
+        UITown.OnExitFromTown += ShowAside;
     }
 
     private void OnDestroy()
@@ -87,6 +94,10 @@ public class UIGameAside : UILocaleBase
         UITown.OnInputToTown -= HideMapButtons;
         UIDialogDwellingWindow.OnBuyCreature -= ChangeHeroInfo;
         UIDialogHeroInfo.OnMoveCreature -= ChangeHeroInfo;
+        UIArena.OnLoadArena -= HideAside;
+        UIArena.OnUnloadArena -= ShowAside;
+        UITown.OnInputToTown -= HideAside;
+        UITown.OnExitFromTown -= ShowAside;
     }
 
     private void OnAfterStateChanged(GameState state)
@@ -170,7 +181,7 @@ public class UIGameAside : UILocaleBase
     {
         try
         {
-            _scene = scene;
+            LevelManager.Instance.activeScene = scene;
             aside = _aside.rootVisualElement.Q<VisualElement>(NameWrapper);
             _mapButtons = _aside.rootVisualElement.Q<VisualElement>("MapButtons");
             _timeBlok = _aside.rootVisualElement.Q<Label>("Time");
@@ -185,7 +196,7 @@ public class UIGameAside : UILocaleBase
                 if (result.isOk)
                 {
                     var loadingOperations = new Queue<ILoadingOperation>();
-                    await GameManager.Instance.AssetProvider.UnloadAdditiveScene(_scene);
+                    await GameManager.Instance.AssetProvider.UnloadAdditiveScene(LevelManager.Instance.activeScene);
                     loadingOperations.Enqueue(new MenuAppOperation());
                     await GameManager.Instance.LoadingScreenProvider.LoadAndDestroy(loadingOperations);
                 }
@@ -213,6 +224,18 @@ public class UIGameAside : UILocaleBase
         base.Localize(aside);
     }
 
+    private void HideAside()
+    {
+        aside.style.display = DisplayStyle.None;
+        HideMapButtons();
+        _globalInputManager.Disable();
+    }
+    private void ShowAside()
+    {
+        aside.style.display = DisplayStyle.Flex;
+        ShowMapButtons();
+        _globalInputManager.Enable();
+    }
     private void HideMapButtons()
     {
         _mapButtons.style.display = DisplayStyle.None;

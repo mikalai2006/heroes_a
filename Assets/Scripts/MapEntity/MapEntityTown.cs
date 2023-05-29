@@ -7,6 +7,7 @@ using Loader;
 
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 
 public class MapEntityTown : BaseMapEntity
 {
@@ -46,17 +47,33 @@ public class MapEntityTown : BaseMapEntity
         }
     }
 
-    public async override void OnPointerDown(PointerEventData eventData)
-    {
-        if (
-            eventData.clickCount >= 2
-            && MapObject.Entity.Player == LevelManager.Instance.ActivePlayer
-            )
-        {
-            await OnGoHero(MapObject.Entity.Player);
-        }
-        base.OnPointerDown(eventData);
-    }
+    // public async override void OnClick(InputAction.CallbackContext context)
+    // {
+    //     // if (context.performed)
+    //     // {
+    //     //     var rayHit = Physics2D.GetRayIntersection(Camera.main.ScreenPointToRay(_inputManager.clickPosition()));
+    //     //     if (!rayHit.collider) return;
+    //     //     if (rayHit.collider.gameObject == gameObject) // _model.gameObject
+    //     //     {
+    //     //         if (context.interaction is PressInteraction || context.interaction is TapInteraction)
+    //     //         {
+    //     //         }
+    //     //         }
+    //     // }
+    //     // Debug.Log("Click Town!");
+    //     await UniTask.Delay(1);
+    // }
+    // public async override void OnClick(PointerEventData eventData)
+    // {
+    //     if (
+    //         eventData.clickCount >= 2
+    //         && MapObject.Entity.Player == LevelManager.Instance.ActivePlayer
+    //         )
+    //     {
+    //         await OnGoHero(MapObject.Entity.Player);
+    //     }
+    //     base.OnPointerDown(eventData);
+    // }
 
     public void RefreshLevelBuild()
     {

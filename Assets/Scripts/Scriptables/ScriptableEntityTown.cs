@@ -21,6 +21,7 @@ public class ScriptableEntityTown : ScriptableEntityMapObject
     // public AssetReference Prefab;
     public Sprite Bg;
     [SerializeField] public List<ScriptableBuilding> Builds;
+    [SerializeField] public AssetReferenceGameObject ArenaPrefab;
     // [SerializeField] public List<ScriptableBuildArmy> BuildsArmy;
     // [SerializeField] public AssetReferenceScriptableTown TownMap;
     public List<BuildLevelItem> StartProgressBuilds;
@@ -30,6 +31,7 @@ public class ScriptableEntityTown : ScriptableEntityMapObject
     // public TypeBuild[] StartProgressBuilds;
     // public List<ScriptableEntityHero> heroes;
     public List<ScriptableEntityMine> mines;
+    public ScriptableAttributeCreature shootCreature;
 }
 
 [System.Serializable]

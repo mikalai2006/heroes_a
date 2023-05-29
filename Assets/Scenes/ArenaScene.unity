@@ -180,7 +180,7 @@ GameObject:
   - component: {fileID: 114206432}
   m_Layer: 0
   m_Name: ArenaManager
-  m_TagString: Untagged
+  m_TagString: ArenaManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -213,6 +213,8 @@ MonoBehaviour:
     Shoot: {fileID: 11400000, guid: c126a8e01922f524aac0ac694dea68f6, type: 2}
     ShootHalf: {fileID: 11400000, guid: 1ade8d014c3deac4bb9f0b5922ec12bb, type: 2}
     Spell: {fileID: 11400000, guid: 34d6eb4990f45704aad14fd27b28e701, type: 2}
+    Catapult: {fileID: 11400000, guid: 0bf3a5af2cf8f7945b6cec60ba58a69d, type: 2}
+    FirstAidTent: {fileID: 11400000, guid: 3ac6e0b525247f24ea69fb1e71bab758, type: 2}
   activeCursor: {fileID: 0}
   width: 15
   height: 11
@@ -221,23 +223,132 @@ MonoBehaviour:
   _tileMapDistance: {fileID: 1637570129}
   _tileMapShadow: {fileID: 1727087951}
   _tileMapUnitActive: {fileID: 192717395}
-  _tileMapDisableNode: {fileID: 975882357}
+  _tileMapAllowAttackNode: {fileID: 975882357}
   _tileMapAllowAttack: {fileID: 210828314}
   _tileMapPath: {fileID: 1563218023}
   _textPrefab: {fileID: 2423169752321950798, guid: 624f1428eb32a0c4ebd93502937ca8b9, type: 3}
   _textCanvas: {fileID: 771947965}
-  _tileHex: {fileID: 11400000, guid: a9cc05e9b6f810e49a833d5eae39654b, type: 2}
-  _tileHexShadow: {fileID: 11400000, guid: c64f75edc8ff68d4488734bf668acc37, type: 2}
+  _tileHex: {fileID: 11400000, guid: 837044e8046fc594a9235c588146608b, type: 2}
+  _tileHexShadow: {fileID: 11400000, guid: 55acea784c53c744e80c39744dd4bef6, type: 2}
   _tileHexActive: {fileID: 11400000, guid: 55acea784c53c744e80c39744dd4bef6, type: 2}
+  town:
+    Data:
+      status: 0
+      ShootEntities: []
+    FortificationsGameObject:
+      keys: []
+      values: 
+  clickedFortification: {fileID: 0}
   buttonAction: {fileID: 1874988815094525060, guid: 29feca8d9a5e3c34eb33fc7c8c93a4ff, type: 3}
   _buttonAction: {fileID: 0}
   buttonSpell: {fileID: 1874988815094525060, guid: 839fa7926c317b345b007036c4e245f3, type: 3}
   _buttonSpell: {fileID: 0}
+  buttonWarMachine: {fileID: 1874988815094525060, guid: df7df605ceb71c14a814918448b65104, type: 3}
+  _buttonWarMachine: {fileID: 0}
   NodesForAttackActiveCreature: []
-  heroes:
-  - {fileID: 11400000, guid: 6ffb151385268c2468c11aa0926a7cf9, type: 2}
-  - {fileID: 11400000, guid: 57be72433106473478d591f21ad47473, type: 2}
   _camera: {fileID: 815242362}
+  isRunningAction: 0
+  DialogArenaData:
+    town:
+      Effects:
+        Effects: []
+        index: 0
+      Data:
+        idPlayer: 0
+        name: 
+        level: 0
+        koofcreature: 0
+        countBuild: 0
+        HeroinTown: 
+        HeroGuest: 
+        Resources:
+          keys: 
+          values: 
+        Creatures:
+          keys: 
+          values: []
+        Generals:
+          keys: []
+          values: []
+        Armys:
+          keys: []
+          values: []
+    hero:
+      Effects:
+        Effects: []
+        index: 0
+      Data:
+        idPlayer: 0
+        ide: 
+        name: 
+        idObject: 
+        level: 0
+        nextLevel: 0
+        PSkills:
+          keys: 
+          values: 
+        SSkills:
+          keys: 
+          values: []
+        nextPosition: {x: 0, y: 0, z: 0}
+        speed: 0
+        mp: 0
+        mana: 0
+        isBook: 0
+        spells: []
+        artifacts: []
+        Creatures:
+          keys: 
+          values: []
+        path: []
+        State: 0
+        WarMachines:
+          keys: 
+          values: []
+    enemy:
+      Effects:
+        Effects: []
+        index: 0
+      Data:
+        idPlayer: 0
+        ide: 
+        name: 
+        idObject: 
+        level: 0
+        nextLevel: 0
+        PSkills:
+          keys: 
+          values: 
+        SSkills:
+          keys: 
+          values: []
+        nextPosition: {x: 0, y: 0, z: 0}
+        speed: 0
+        mp: 0
+        mana: 0
+        isBook: 0
+        spells: []
+        artifacts: []
+        Creatures:
+          keys: 
+          values: []
+        path: []
+        State: 0
+        WarMachines:
+          keys: 
+          values: []
+    creatureBank:
+      Effects:
+        Effects: []
+        index: 0
+    creature:
+      Effects:
+        Effects: []
+        index: 0
+      Data:
+        idObject: 
+        value: 0
+    ArenaSetting: {fileID: 0}
 --- !u!4 &114206433
 Transform:
   m_ObjectHideFlags: 0
@@ -427,7 +538,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 195629601}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -20, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -604,7 +715,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &240409842
 RectTransform:
   m_ObjectHideFlags: 0
@@ -908,7 +1019,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 815242360}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.25, y: 4.2, z: -15}
+  m_LocalPosition: {x: 7.25, y: 4.9, z: -15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -986,7 +1097,7 @@ GameObject:
   - component: {fileID: 975882357}
   - component: {fileID: 975882356}
   m_Layer: 0
-  m_Name: DisableNode
+  m_Name: AllowAttackNode
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1247,7 +1358,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 784102457
   m_SortingLayer: 2
-  m_SortingOrder: -10
+  m_SortingOrder: -8
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -1356,7 +1467,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 7.2, y: 3.7}
+  m_Offset: {x: 7.25, y: 4.6}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1367,7 +1478,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 16, y: 9}
+  m_Size: {x: 15.5, y: 8.3}
   m_EdgeRadius: 0
 --- !u!114 &1204608560
 MonoBehaviour:
@@ -2065,7 +2176,7 @@ MonoBehaviour:
   _templateQueueCreature: {fileID: 9197481963319205126, guid: 61d796511ce891140969c53b0af54e12, type: 3}
   _templateQueueRound: {fileID: 9197481963319205126, guid: 1da8b8dd36ab6f14489540032c89cfd9, type: 3}
   _templateShortSpellInfo: {fileID: 9197481963319205126, guid: 333d4f4e09152dd459417c1bf4facb9a, type: 3}
-  _bgImage: {fileID: 0}
+  _bgImage: {fileID: 2018039738}
 --- !u!4 &1790115398
 Transform:
   m_ObjectHideFlags: 0
@@ -2134,14 +2245,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
+  m_Maskable: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: 167c5ffd1433db64d9d32bb898410482, type: 3}
-  m_Type: 1
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4

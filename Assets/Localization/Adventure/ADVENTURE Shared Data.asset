@@ -375,6 +375,138 @@ MonoBehaviour:
     m_Key: eagleeyeffect_t
     m_Metadata:
       m_Items: []
+  - m_Id: 21364687796076544
+    m_Key: minecrystal_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21364794067156992
+    m_Key: minewood_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21364819316867072
+    m_Key: mineore_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21364871477231616
+    m_Key: minemercury_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21364920886132736
+    m_Key: minesulfur_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21364943820587008
+    m_Key: minegems_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21366776085512192
+    m_Key: resource_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21367217137549312
+    m_Key: threasurechest_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21367569727520768
+    m_Key: campfire_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21367832869765120
+    m_Key: corpse_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21368180455931904
+    m_Key: mysticalgarden_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21368599735336960
+    m_Key: wagon_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21368882691473408
+    m_Key: waterwheel_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21369126913212416
+    m_Key: windwheel_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21369406895587328
+    m_Key: gardenrevelation_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21369480610480128
+    m_Key: learningstone_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21369719220240384
+    m_Key: marlettotower_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21369849969278976
+    m_Key: mercenarycamp_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21370004365803520
+    m_Key: schoolofmagic_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21370148528226304
+    m_Key: schoolofwar_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21370473746169856
+    m_Key: shrine1_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21370609985552384
+    m_Key: shrine2_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21370678419816448
+    m_Key: shrine3_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21370786129543168
+    m_Key: staraxis_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21371730862964736
+    m_Key: crypt_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21372055636312064
+    m_Key: utopia_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21372479395233792
+    m_Key: redwoodobservatory_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21372519450836992
+    m_Key: redwoodobservatory_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21372536634900480
+    m_Key: redwoodobservatory_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21372787965984768
+    m_Key: monolithtwoway_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21372832077479936
+    m_Key: monolithtwoway_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21372843083333632
+    m_Key: monolithtwoway_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21377861664538624
+    m_Key: armygroup_desc
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

@@ -2,12 +2,14 @@ using System.Collections.Generic;
 using System.Linq;
 
 using UnityEngine;
+using UnityEngine.ResourceManagement.ResourceProviders;
 
 public class LevelManager : Singleton<LevelManager>, ISaveDataPlay, ISaveDataGame
 {
     [SerializeField] private Transform _camera;
     public DataLevel Level;
     private DataLevel DefaultSettings;
+    public SceneInstance activeScene;
     public GameDate GameDate { get; private set; }
     public SOGameSetting ConfigGameSettings;
     public SOStrenghtMonsters CurrentStrenghtMonsters

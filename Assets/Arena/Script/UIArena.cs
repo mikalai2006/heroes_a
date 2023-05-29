@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 using Cysharp.Threading.Tasks;
 
@@ -28,6 +29,8 @@ public class UIArena : UILocaleBase
     public static event Action OnCancelSpell;
     public static event Action OnOpenSpellBook;
     public static event Action OnClickAttack;
+    public static event Action OnUnloadArena;
+    public static event Action OnLoadArena;
 
     private VisualElement _box;
     private VisualElement _leftSide;
@@ -39,11 +42,13 @@ public class UIArena : UILocaleBase
     private Button _btnSpellBook;
     private Button _btnQueue;
     private const string _arenaButtons = "ArenaButtons";
-    private SceneInstance _arenaScene;
     private Camera _cameraMain;
     private AsyncOperationHandle<ScriptableEntityTown> _asset;
     private string textMoveCreature;
     private string textAttackedCreature;
+    private GameObject grid;
+    protected TaskCompletionSource<ResultDialogArenaData> _processCompletionSource;
+    protected ResultDialogArenaData _dataResultDialog;
 
     private void Awake()
     {
@@ -54,7 +59,6 @@ public class UIArena : UILocaleBase
         _cameraMain.gameObject.SetActive(false);
 
 
-        // _bgImage.sprite = _activeBuildTown.Bg;
         _box = _uiDoc.rootVisualElement;
 
         _leftSide = _box.Q<VisualElement>("SideLeft");
@@ -109,34 +113,55 @@ public class UIArena : UILocaleBase
         };
 
         ArenaManager.OnChangeNodesForAttack += ChangeStatusButtonAttack;
-        ArenaEntity.OnChangeParamsCreature += ChangeParamsCreature;
+        ArenaCreature.OnChangeParamsCreature += ChangeParamsCreature;
         ArenaManager.OnAutoNextCreature += DrawInfo;
         ArenaQueue.OnNextStep += ChangeStatusButton;
         UIDialogSpellBook.OnClickSpell += ShowSpellInfo;
         ArenaManager.OnChooseCreatureForSpell += ShowSpellInfo;
         ArenaManager.OnHideSpellInfo += HideSpellInfo;
+        ArenaManager.OnShowState += ShowStat;
+        UIArenaEndStatWindow.OnCloseStat += UnloadArena;
+        // ArenaManager.OnRunFromBattle += OnClickClose;
+        // ArenaManager.OnEndBattle += OnClickClose;
     }
 
     private void OnDestroy()
     {
         ArenaManager.OnChangeNodesForAttack -= ChangeStatusButtonAttack;
-        ArenaEntity.OnChangeParamsCreature -= ChangeParamsCreature;
+        ArenaCreature.OnChangeParamsCreature -= ChangeParamsCreature;
         ArenaManager.OnAutoNextCreature -= DrawInfo;
         ArenaQueue.OnNextStep -= ChangeStatusButton;
         UIDialogSpellBook.OnClickSpell -= ShowSpellInfo;
         ArenaManager.OnChooseCreatureForSpell -= ShowSpellInfo;
         ArenaManager.OnHideSpellInfo -= HideSpellInfo;
+        ArenaManager.OnShowState -= ShowStat;
+        UIArenaEndStatWindow.OnCloseStat -= UnloadArena;
+        // ArenaManager.OnRunFromBattle -= OnClickClose;
+        // ArenaManager.OnEndBattle -= OnClickClose;
     }
 
-    public void Init(SceneInstance arenaScene)
+    public void Init()
     {
-        _arenaScene = arenaScene;
+        _bgImage.sprite = arenaManager.DialogArenaData.ArenaSetting.BgSprites[UnityEngine.Random.Range(0, arenaManager.DialogArenaData.ArenaSetting.BgSprites.Count)];
+
+        OnLoadArena?.Invoke();
 
         DrawHelpCreature();
 
         DrawQueue();
 
         base.Localize(_box);
+    }
+
+    public async Task<ResultDialogArenaData> ProcessAction()
+    {
+        _dataResultDialog = new ResultDialogArenaData();
+        _processCompletionSource = new TaskCompletionSource<ResultDialogArenaData>();
+
+        grid = GameObject.FindGameObjectWithTag("Map");
+        if (grid != null) grid.SetActive(false);
+
+        return await _processCompletionSource.Task;
     }
 
     private void HideSpellInfo()
@@ -146,7 +171,7 @@ public class UIArena : UILocaleBase
 
     private void ShowSpellInfo()
     {
-        if (arenaManager.ArenaQueue.ActiveHero.Data.SpellBook.ChoosedSpell == null)
+        if (arenaManager.ArenaQueue.ActiveHero.SpellBook.ChoosedSpell == null)
         {
             return;
         }
@@ -173,12 +198,12 @@ public class UIArena : UILocaleBase
         }
     }
 
-    private void DrawShortSpell(VisualElement box, ArenaEntity arenaEntity)
+    private void DrawShortSpell(VisualElement box, ArenaEntityBase arenaEntity)
     {
         box.Clear();
         var boxSpell = _templateShortSpellInfo.Instantiate();
 
-        var spellBook = arenaManager.ArenaQueue.ActiveHero.Data.SpellBook;
+        var spellBook = arenaManager.ArenaQueue.ActiveHero.SpellBook;
         if (spellBook != null)
         {
             boxSpell.Q<VisualElement>("Ava").style.backgroundImage
@@ -191,10 +216,10 @@ public class UIArena : UILocaleBase
                 box.Remove(boxSpell);
                 OnCancelSpell?.Invoke();
             };
-            if (arenaManager.NodeForSpell != null)
+            if (arenaManager.clickedNode != null)
             {
-                var attackedCreature = arenaManager.NodeForSpell.OccupiedUnit != null
-                    ? arenaManager.NodeForSpell.OccupiedUnit.Entity.ScriptableDataAttribute
+                var attackedCreature = arenaManager.clickedNode.OccupiedUnit != null
+                    ? arenaManager.clickedNode.OccupiedUnit.Entity.ScriptableDataAttribute
                     : null;
                 if (attackedCreature != null)
                 {
@@ -211,21 +236,17 @@ public class UIArena : UILocaleBase
                         dataPlural
                         );
                     boxInfoCreature.Q<Label>("NameCreature").text = titlePlural;
-                    var btnApplySpell = boxSpell.Q<VisualElement>("Apply").Q<Button>("Btn");
-                    btnApplySpell.style.display = DisplayStyle.Flex;
-                    btnApplySpell.clickable.clicked += async () =>
-                    {
-                        HideSpellInfo();
 
-                        await AudioManager.Instance.Click();
-                        await arenaManager.ClickButtonSpell();
-                    };
+                    CreateButtonApply(boxSpell);
+
                     boxSpell.Q<Label>("For").text
                         = new LocalizedString(Constants.LanguageTable.LANG_TABLE_UILANG, "for").GetLocalizedString();
                 }
                 else
                 {
                     boxSpell.Q<Label>("For").style.display = DisplayStyle.None;
+                    boxSpell.Q<VisualElement>("CreatureInfo").style.display = DisplayStyle.None;
+                    CreateButtonApply(boxSpell);
                 }
             }
             else
@@ -239,9 +260,28 @@ public class UIArena : UILocaleBase
         }
     }
 
+    private void CreateButtonApply(VisualElement boxSpell)
+    {
+        var btnApplySpell = boxSpell.Q<VisualElement>("Apply").Q<Button>("Btn");
+        btnApplySpell.style.display = DisplayStyle.Flex;
+        btnApplySpell.clickable.clicked += async () =>
+        {
+            HideSpellInfo();
+
+            await AudioManager.Instance.Click();
+            await arenaManager.ClickButtonSpell();
+        };
+    }
+
     private void ChangeStatusButton()
     {
-        if (arenaManager.ArenaQueue.ActiveHero != null)
+        if (
+            arenaManager.ArenaQueue.ActiveHero != null
+            &&
+            arenaManager.ArenaQueue.ActiveHero.SpellBook != null
+            &&
+            arenaManager.ArenaQueue.ActiveHero.SpellBook.countCreatedSpell > 0
+            )
         {
             _btnSpellBook.SetEnabled(true);
         }
@@ -269,9 +309,13 @@ public class UIArena : UILocaleBase
         foreach (var creature in arenaManager.ArenaQueue.ListEntities)
         {
             var entity = ((EntityCreature)creature.arenaEntity.Entity);
+
+            var sprite = creature.arenaEntity.Data.typeAttack == TypeAttack.AttackShootTown
+                ? arenaManager.town.Town.ConfigData.MenuSprite
+                : creature.arenaEntity.Entity.ScriptableDataAttribute.MenuSprite;
             var creatureElement = _templateQueueCreature.Instantiate();
             creatureElement.Q<VisualElement>("Img").style.backgroundImage
-                = new StyleBackground(creature.arenaEntity.Entity.ScriptableDataAttribute.MenuSprite);
+                = new StyleBackground(sprite);
             creatureElement.Q<VisualElement>("Img").style.width
                 = new StyleLength(new Length(58, LengthUnit.Pixel));
             // creatureElement.Q<VisualElement>("Img").style.height
@@ -292,7 +336,7 @@ public class UIArena : UILocaleBase
             creatureElement.RegisterCallback<ClickEvent>(async (ClickEvent evt) =>
             {
                 await AudioManager.Instance.Click();
-                creature.arenaEntity.ArenaMonoBehavior.ShowDialogInfo();
+                creature.arenaEntity.ShowDialogInfo();
             });
 
             if (startRound != creature.round)
@@ -321,6 +365,7 @@ public class UIArena : UILocaleBase
 
         DrawQueue();
         ChangeStatusButtonAttack();
+        ChangeStatusButton();
         DrawHelpCreature();
         // ShowSpellInfo();
     }
@@ -357,12 +402,13 @@ public class UIArena : UILocaleBase
 
     private void DrawHelpCreature()
     {
+        var activeEntity = arenaManager.ArenaQueue.activeEntity;
+        if (activeEntity.arenaEntity == null) return;
 
         _helpLeftCreature.style.display = DisplayStyle.None;
         _helpRightCreature.style.display = DisplayStyle.None;
 
         VisualElement blokInfoCreature;
-        var activeEntity = arenaManager.ArenaQueue.activeEntity;
         if (activeEntity.arenaEntity.TypeArenaPlayer == TypeArenaPlayer.Left)
         {
             blokInfoCreature = _helpLeftCreature;
@@ -413,7 +459,7 @@ public class UIArena : UILocaleBase
         }
     }
 
-    private void DrawCreatureInfo(VisualElement blokInfoCreature, ArenaEntity activeEntity, string text)
+    private void DrawCreatureInfo(VisualElement blokInfoCreature, ArenaEntityBase activeEntity, string text)
     {
         VisualElement infoBlok = blokInfoCreature.Q<VisualElement>("Info");
         infoBlok.Clear();
@@ -444,6 +490,15 @@ public class UIArena : UILocaleBase
         base.Localize(_box);
     }
 
+    public async void ShowStat()
+    {
+        var loaderStat = new UIArenaEndStatOperation(new ArenaStat()
+        {
+
+        });
+        await loaderStat.ShowAndHide();
+    }
+
     private async void OnClickClose()
     {
         // Release asset prefab town.
@@ -451,15 +506,19 @@ public class UIArena : UILocaleBase
         // {
         //     Addressables.ReleaseInstance(_asset);
         // }
-        await GameManager.Instance.AssetProvider.UnloadAdditiveScene(_arenaScene);
+        await arenaManager.CalculateStat();
+        // UnloadArena();
+    }
 
-        await UniTask.Yield();
-
+    private void UnloadArena()
+    {
         _cameraMain.gameObject.SetActive(true);
+        if (grid != null) grid.SetActive(true);
 
-        var loadingOperations = new Queue<ILoadingOperation>();
-        loadingOperations.Enqueue(new MenuAppOperation());
-        await GameManager.Instance.LoadingScreenProvider.LoadAndDestroy(loadingOperations);
+        _dataResultDialog.isEnd = true;
+        _processCompletionSource.SetResult(_dataResultDialog);
+
+        OnUnloadArena?.Invoke();
     }
 }
 

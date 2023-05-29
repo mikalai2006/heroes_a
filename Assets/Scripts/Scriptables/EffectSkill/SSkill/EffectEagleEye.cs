@@ -33,7 +33,7 @@ public class EffectEagleEye : BaseEffectSkill
             }
 
             int levelEagleEye = valueEagleEye.level + 1;
-            var spells = hero.Data.SpellBook.GenerateSpells(
+            var spells = hero.SpellBook.GenerateSpells(
                 TypeSpell.Combat,
                 levelEagleEye <= maxlevel ? levelEagleEye : maxlevel,
                 2);
@@ -74,7 +74,7 @@ public class EffectEagleEye : BaseEffectSkill
                     indexChoose = result.keyVariant;
                 }
 
-                hero.Data.SpellBook.AddSpell(spells[indexChoose]);
+                hero.SpellBook.AddSpell(spells[indexChoose]);
             }
         }
     }

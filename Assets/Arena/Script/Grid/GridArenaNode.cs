@@ -13,7 +13,11 @@ public enum StateArenaNode
     Related = 1 << 3,
     Moved = 1 << 4,
     Deathed = 1 << 5,
-    Spellsed = 1 << 6
+    Spellsed = 1 << 6,
+    Obstacles = 1 << 7,
+    Moating = 1 << 8,
+    Wall = 1 << 9,
+    Door = 1 << 10
 }
 
 [Serializable]
@@ -26,13 +30,16 @@ public class GridArenaNode : IHeapItem<GridArenaNode>
     private int Y;
     [NonSerialized] public Vector3Int position;
     [NonSerialized] public Vector3 center;
-    [NonSerialized] private ArenaEntity _ocuppiedUnit = null;
-    public ArenaEntity OccupiedUnit => _ocuppiedUnit;
-    [NonSerialized] private List<ArenaEntity> _deathedUnits = null;
-    public List<ArenaEntity> DeathedUnits => _deathedUnits;
+    [NonSerialized] private ArenaEntityBase _ocuppiedUnit = null;
+    public ArenaEntityBase OccupiedUnit => _ocuppiedUnit;
+    [NonSerialized] private List<ArenaEntityBase> _deathedUnits = null;
+    public List<ArenaEntityBase> DeathedUnits => _deathedUnits;
 
+    private int xOffset => position.y % 2 != 0 ? 1 : 0;
     public GridArenaNode LeftNode => _grid.GetGridObject(new Vector3Int(X - 1, Y));
     public GridArenaNode RightNode => _grid.GetGridObject(new Vector3Int(X + 1, Y));
+    public GridArenaNode LeftTopNode => _grid.GetGridObject(new Vector3Int(X + xOffset - 1, Y + 1));
+    public GridArenaNode LeftBottomNode => _grid.GetGridObject(new Vector3Int(X + xOffset - 1, Y - 1));
     public int level = 0;
     public int weight = 0;
     private int heapIndex;
@@ -52,7 +59,7 @@ public class GridArenaNode : IHeapItem<GridArenaNode>
     [NonSerialized] public float hCost;
     [NonSerialized] public float fCost;
     [NonSerialized] private ArenaEntitySpell _spellsUnit = null;
-    public ArenaEntitySpell SpellsUnit => _spellsUnit;
+    public ArenaEntitySpell SpellUnit => _spellsUnit;
     // int - quantity round
     public Dictionary<ScriptableAttributeSpell, int> SpellsState = new();
 
@@ -80,7 +87,7 @@ public class GridArenaNode : IHeapItem<GridArenaNode>
         fCost = gCost + hCost;
     }
 
-    public void SetDeathedNode(ArenaEntity entity)
+    public void SetDeathedNode(ArenaEntityBase entity)
     {
         if (_deathedUnits == null)
         {
@@ -111,7 +118,7 @@ public class GridArenaNode : IHeapItem<GridArenaNode>
         }
 
     }
-    public void SetOcuppiedUnit(ArenaEntity entity)
+    public void SetOcuppiedUnit(ArenaEntityBase entity)
     {
         _ocuppiedUnit = entity;
         if (entity == null)
@@ -129,7 +136,10 @@ public class GridArenaNode : IHeapItem<GridArenaNode>
     public void SetSpellsUnit(ArenaEntitySpell entity)
     {
         _spellsUnit = entity;
-        if (entity == null)
+    }
+    public void SetSpellsStatus(bool status)
+    {
+        if (!status)
         {
             StateArenaNode ^= StateArenaNode.Spellsed;
             // StateArenaNode |= StateArenaNode.Empty;
@@ -169,9 +179,6 @@ public class GridArenaNode : IHeapItem<GridArenaNode>
     {
         Vector3Int position = this.position;
         List<GridArenaNode> neighbourList = new List<GridArenaNode>();
-        int xOffset = 0;
-        if (position.y % 2 != 0)
-            xOffset = 1;
 
         var one = _grid.GetGridObject(position.x - 1, position.y);
         if (one != null) neighbourList.Add(one);

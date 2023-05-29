@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a859413fb054f5c4797ac09356b08ded, type: 3}
+  m_Name: 3_WolfRider
+  m_EditorClassIdentifier: 
+  idObject: creature.wolfrider
+  TypeAttribute: 80
+  MenuSprite: {fileID: -1997176659, guid: e7a6d1e198529c44c93ed148f1bf1afe, type: 3}
+  MapPrefab:
+    m_AssetGUID: 4236611ec08e31d4b83eff38c4fa5768
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 1
+  Text:
+    title:
+      m_TableReference:
+        m_TableCollectionName: GUID:b4e7cd63f22a6d74db78346f658a168b
+      m_TableEntryReference:
+        m_KeyId: 1434791401652224
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    description:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+  TypeFaction: 1
+  TypeGround: 16
+  ArenaModel:
+    m_AssetGUID: 
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  CreatureParams:
+    Level: 2
+    Attack: 7
+    Defense: 5
+    DamageMin: 2
+    DamageMax: 4
+    HP: 10
+    Speed: 6
+    Shoots: 0
+    Growth: 9
+    Size: 2
+    Movement: 0
+    AI: 130
+    Cost:
+    - Resource: {fileID: 11400000, guid: 3894d4d068775c343b5c4bf1510dee33, type: 2}
+      Count: 100
+  references:
+    version: 2
+    RefIds: []

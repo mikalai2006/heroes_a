@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b728e4d9784f244d8fb939b3ebd4733, type: 3}
+  m_Name: Catapult
+  m_EditorClassIdentifier: 
+  idObject: catapult
+  TypeAttribute: 99
+  MenuSprite: {fileID: -2088853481, guid: e7a6d1e198529c44c93ed148f1bf1afe, type: 3}
+  MapPrefab:
+    m_AssetGUID: 
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  Text:
+    title:
+      m_TableReference:
+        m_TableCollectionName: GUID:99ee07ddc90ffba41a3d18974d364707
+      m_TableEntryReference:
+        m_KeyId: 18773730550513664
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    description:
+      m_TableReference:
+        m_TableCollectionName: GUID:99ee07ddc90ffba41a3d18974d364707
+      m_TableEntryReference:
+        m_KeyId: 18773769658204160
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+  TypeFaction: 100
+  TypeGround: -1
+  ArenaModel:
+    m_AssetGUID: 5bac9f1a7176cea45b494be3e51eb014
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  CreatureParams:
+    Level: 1
+    Attack: 10
+    Defense: 10
+    DamageMin: 0
+    DamageMax: 0
+    HP: 1000
+    Speed: 1000
+    Shoots: 24
+    Growth: 0
+    Size: 1
+    Movement: 8
+    AI: 500
+    Cost:
+    - Resource: {fileID: 11400000, guid: 3894d4d068775c343b5c4bf1510dee33, type: 2}
+      Count: 0
+  TypeWarMachine: 4
+  references:
+    version: 2
+    RefIds: []
