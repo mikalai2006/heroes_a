@@ -387,7 +387,7 @@ public abstract class ArenaEntityBase
         if (
             // (_arenaManager.ArenaQueue.activeEntity.arenaEntity.Data.shoots == 0
             // || neighbourNodesEnemyEntity.Count() > 0)
-            // && 
+            // &&
             _arenaManager.ArenaQueue.activeEntity.arenaEntity.Data.typeAttack == TypeAttack.Attack
             )
         {

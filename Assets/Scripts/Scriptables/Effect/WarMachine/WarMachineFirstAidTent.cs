@@ -39,7 +39,7 @@ public class WarMachineFirstAidTent : ScriptableAttributeWarMachine
             case 1:
             case 2:
             case 3:
-                typeRunEffect = ArenaTypeRunEffect.AutoAll;
+                typeRunEffect = ArenaTypeRunEffect.Choosed;
                 break;
         }
 

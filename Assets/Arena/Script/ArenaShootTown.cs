@@ -26,8 +26,9 @@ public class ArenaShootTown : ArenaEntityBase
         Data.shoots = 1000;
         Data.speed = creatureData.CreatureParams.Speed;
         Data.typeMove = creatureData.CreatureParams.Movement;
-        Data.typeAttack = TypeAttack.AttackShootTown;
+        Data.typeAttack = TypeAttack.AttackShoot;
         Data.quantity = ((EntityCreature)Entity).Data.value;
+        Data.countAttack = 1;
 
         Data.damageMin = creatureData.CreatureParams.DamageMin;
         Data.damageMax = creatureData.CreatureParams.DamageMax;
@@ -83,41 +84,24 @@ public class ArenaShootTown : ArenaEntityBase
             Debug.LogWarning($"Not found ArenaPrefab {ConfigData.name}!");
             return;
         }
-
-        // var asset = Addressables.InstantiateAsync(
-        //     gameObj,
-        //     PositionPrefab,
-        //     Quaternion.identity,
-        //     transform
-        //     // _arenaManager.tileMapArenaUnits.transform
-        //     );
-        // await asset.Task;
-        // var comp = asset.Result.GetComponent<ArenaMonoBehavior>();
-        // // var shoots = comp.ShootPrefab;
-        // GameObject.Destroy(comp);
-        // asset.Result.AddComponent<ArenaShootTownMB>();
-        // ArenaShootTownMB = asset.Result.GetComponent<ArenaShootTownMB>();
-        // ArenaShootTownMB.Init(this);
-
         var asset = Addressables.InstantiateAsync(
             gameObj,
-            PositionPrefab, // + new Vector3(0, -.25f, 0),
+            PositionPrefab,
             Quaternion.identity,
             _arenaManager.tileMapArenaUnits.transform
             );
         await asset.Task;
-        var comp = asset.Result.GetComponent<ArenaMonoBehavior>();
-        // var shoots = comp.ShootPrefab;
+        var comp = asset.Result.GetComponent<ArenaCreatureMB>();
+        var shoots = comp.ShootPrefab;
         GameObject.Destroy(comp);
         asset.Result.AddComponent<ArenaShootTownMB>();
         ArenaShootTownMB = asset.Result.GetComponent<ArenaShootTownMB>();
-        ArenaShootTownMB.Init(this);
+        ArenaShootTownMB.Init(this, shoots);
     }
 
     public override async UniTask GetFightingNodes()
     {
         _arenaManager.ClearAttackNode();
-        // _tileMapAllowAttack.ClearAllTiles();
         _arenaManager.FightingOccupiedNodes.Clear();
 
         var arenaEntity = _arenaManager.ArenaQueue.activeEntity.arenaEntity;
@@ -165,10 +149,12 @@ public class ArenaShootTown : ArenaEntityBase
             case ArenaTypeRunEffect.AutoChoose:
                 // TODO choose target algoritm.
                 Debug.Log($"Auto run shoot town! Artillery={levelSSkill}");
-                // await ArenaQueue.activeEntity.arenaEntity.GoAttack(
-                //     ArenaQueue.activeEntity.arenaEntity.OccupiedNode,
-                //     nodesForAttack[UnityEngine.Random.Range(0, nodesForAttack.Count)]
-                // );
+                //TODO AI choose target.
+                var nodeToAttack = nodesForAttack[UnityEngine.Random.Range(0, nodesForAttack.Count)];
+                _arenaManager.clickedNode = nodeToAttack;
+                _arenaManager.AttackedCreature = nodeToAttack.OccupiedUnit;
+                CreateButtonAttackNode(nodeToAttack);
+                await ClickButtonAction();
                 break;
             case ArenaTypeRunEffect.Choosed:
                 // TODO choose target algoritm.
@@ -179,32 +165,52 @@ public class ArenaShootTown : ArenaEntityBase
         await UniTask.Yield();
     }
 
-    public override void CreateButtonAttackNode(GridArenaNode clickedNode)
+    public override async UniTask ClickButtonAction()
     {
-        _arenaManager.clickedNode = OccupiedNode;
-        if (_arenaManager.AttackedCreature != this && _arenaManager.AttackedCreature != null)
+        _arenaManager.isRunningAction = true;
+        // await AudioManager.Instance.Click();
+
+        if (_arenaManager.activeCursor == _arenaManager.CursorRule.NotAllow)
         {
-            _arenaManager.ClearAttackNode();
+            _arenaManager.isRunningAction = false;
+            return;
+        };
+
+        if (_arenaManager.AttackedCreature != null)
+        {
+            var nodes = _arenaManager.NodesForAttackActiveCreature[_arenaManager.KeyNodeFromAttack];
+            if (nodes.nodeFromAttack.OccupiedUnit != null)
+            {
+                await nodes.nodeFromAttack.OccupiedUnit.GoAttack(nodes.nodeFromAttack, nodes.nodeToAttack);
+            }
         }
-        // _arenaManager.AttackedCreature = this;
-        _arenaManager.clickedNode = OccupiedNode;
 
-        var allowNodes = _arenaManager.AllowPathNodes.Concat(_arenaManager.AllowMovedNodes).ToList();
+        // Clear clicked node.
+        _arenaManager.clickedNode = null;
+        _arenaManager.ClearAttackNode();
 
-        _arenaManager.NodesForAttackActiveCreature.Add(new AttackItemNode()
-        {
-            nodeFromAttack = _arenaManager.ArenaQueue.activeEntity.arenaEntity.OccupiedNode,
-            nodeToAttack = OccupiedNode
-        });
+        // Next creature.
+        // await GoEntity();
+        _arenaManager.NextCreature(false, false);
 
-        // _arenaManager.ChooseNextPositionForAttack();
-        _arenaManager.DrawAttackNodes();
-        _arenaManager.DrawButtonAction();
+        // EndRunWarMachine();
+        _arenaManager.isRunningAction = false;
     }
 
-
-    public override void CreateButton(GridArenaNode occupiedNode)
+    public override async UniTask GoAttack(GridArenaNode nodeFromAttack, GridArenaNode nodeToAttack)
     {
-        base.CreateButton(occupiedNode);
+        for (int i = 0; i < Data.countAttack; i++)
+        {
+            if (
+                nodeToAttack.OccupiedUnit != null
+                && !nodeToAttack.OccupiedUnit.Death
+                && !Death
+                )
+            {
+                await ArenaShootTownMB.RunAttackShoot(nodeToAttack);
+                CalculateAttack(nodeFromAttack, nodeToAttack);
+            }
+        }
     }
+
 }

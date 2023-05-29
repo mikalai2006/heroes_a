@@ -63,17 +63,17 @@ MonoBehaviour:
     value: 2
   - SecondarySkill: {fileID: 11400000, guid: fa3203a5ee7c3ff4ebb5cca62988acab, type: 2}
     value: 2
-  - SecondarySkill: {fileID: 11400000, guid: b3653fec31423044eabbe48c254a0dc7, type: 2}
+  - SecondarySkill: {fileID: 11400000, guid: 2cbdf2de5831fc144b37408fd9ee6e8d, type: 2}
     value: 2
   - SecondarySkill: {fileID: 11400000, guid: 75f4fc7d8a73dbf40afbcad79987193c, type: 2}
     value: 2
   StartCreatures:
-  - creature: {fileID: 11400000, guid: 4fd41ea386a0ace4abad0946d8860497, type: 2}
+  - creature: {fileID: 11400000, guid: b93745913452c36469604bba8816e3d6, type: 2}
     min: 10
     max: 20
-  - creature: {fileID: 11400000, guid: fc505faf60fcf384c83594e0c41815a0, type: 2}
+  - creature: {fileID: 11400000, guid: 7d1983f083e2c9a49bc2725df7d9691b, type: 2}
     min: 4
-    max: 700
+    max: 20
   - creature: {fileID: 11400000, guid: 7df000dfe67f063478052d4e0578b42a, type: 2}
     min: 2
     max: 3000
@@ -83,10 +83,10 @@ MonoBehaviour:
   - creature: {fileID: 11400000, guid: 7225164ceb73cbd4d9df4215358e36e7, type: 2}
     min: 2
     max: 300
-  - creature: {fileID: 11400000, guid: 6731d909c99ecb34f88a1e0795901e4d, type: 2}
+  - creature: {fileID: 11400000, guid: 4fd41ea386a0ace4abad0946d8860497, type: 2}
     min: 2
     max: 3000
-  - creature: {fileID: 11400000, guid: b770f4df671795844af7854c6469b998, type: 2}
+  - creature: {fileID: 11400000, guid: fc505faf60fcf384c83594e0c41815a0, type: 2}
     min: 3000
     max: 3000
   StartSpells:

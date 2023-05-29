@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading;
+using System.Threading.Tasks;
 
 using Cysharp.Threading.Tasks;
 
@@ -10,15 +11,15 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Interactions;
 
-public class ArenaEntityTownMonobehavior : MonoBehaviour
+public class ArenaEntityTownMB : MonoBehaviour
 {
     [SerializeField] protected ArenaEntityTown _arenaEntityTown;
     public ArenaEntityTown ArenaEntityTown => _arenaEntityTown;
     [NonSerialized] private Animator _animator;
     [NonSerialized] private Transform _model;
-    public GameObject _shoot1;
-    public GameObject _shoot2;
-    public GameObject _shoot3;
+    // public GameObject _shoot1;
+    // public GameObject _shoot2;
+    // public GameObject _shoot3;
     private InputManager _inputManager;
     private Camera _camera;
 
@@ -31,6 +32,8 @@ public class ArenaEntityTownMonobehavior : MonoBehaviour
     [SerializeField] private GameObject tower2;
     [SerializeField] private GameObject tower3;
     [SerializeField] private GameObject door;
+    private Animator doorAnimator;
+    private bool isOpenDoor = false;
     // public List<Transform> _fortifications = new();
 
 
@@ -53,7 +56,8 @@ public class ArenaEntityTownMonobehavior : MonoBehaviour
         _animator = GetComponentInChildren<Animator>();
         _model = transform.Find("Model");
         _camera = GameObject.FindGameObjectWithTag("ArenaCamera")?.GetComponent<Camera>();
-
+        doorAnimator = door.transform.GetChild(0).GetComponent<Animator>();
+        door.SetActive(false);
     }
     #endregion
 
@@ -82,7 +86,6 @@ public class ArenaEntityTownMonobehavior : MonoBehaviour
             }
         }
 
-
         SetStatusColliders(false);
     }
 
@@ -95,7 +98,7 @@ public class ArenaEntityTownMonobehavior : MonoBehaviour
 
     private void NextRound()
     {
-        ArenaEntityTown.SetRoundData();
+        // ArenaEntityTown.SetRoundData();
     }
 
     public async UniTask ColorPulse(Color color, int count)
@@ -173,5 +176,20 @@ public class ArenaEntityTownMonobehavior : MonoBehaviour
             }
             // }
         }
+    }
+
+    internal async UniTask OpenDoor()
+    {
+        door.SetActive(true);
+        doorAnimator.Play("DoorOpen");
+        isOpenDoor = true;
+
+        await UniTask.Yield();
+    }
+    internal void CloseDoor()
+    {
+        doorAnimator.Play("DoorClose");
+        isOpenDoor = false;
+        door.SetActive(false);
     }
 }

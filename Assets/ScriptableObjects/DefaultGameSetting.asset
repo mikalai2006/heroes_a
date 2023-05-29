@@ -229,7 +229,7 @@ MonoBehaviour:
   colorAllowAttackNode: {r: 1, g: 0, b: 0, a: 0.4117647}
   colorNodeRunSpell: {r: 1, g: 0.88953507, b: 0, a: 0.21176471}
   paintAllowAttackCreature: 1
-  colorAllowAttackCreature: {r: 1, g: 0, b: 0, a: 0.28235295}
+  colorAllowAttackCreature: {r: 1, g: 0, b: 0, a: 0.11372549}
   paintActiveCreature: 1
   colorActiveCreature: {r: 0.77254903, g: 1, b: 0, a: 0.6392157}
   showPath: 1

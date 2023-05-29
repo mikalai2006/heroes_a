@@ -10,7 +10,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Interactions;
 
-public class ArenaMonoBehavior : MonoBehaviour // , IPointerDownHandler
+public class ArenaCreatureMB : MonoBehaviour // , IPointerDownHandler
 {
     // public UITown UITown;
     [SerializeField] protected ArenaCreature _arenaEntity;
@@ -260,6 +260,7 @@ public class ArenaMonoBehavior : MonoBehaviour // , IPointerDownHandler
     {
         var entityCreature = (EntityCreature)ArenaEntity.Entity;
         var entityData = (ScriptableAttributeCreature)entityCreature.ConfigAttribute;
+        GridArenaNode nodeDoor = null;
 
         var nodeStart = ArenaEntity.Path[0];
         var nodeEnd = ArenaEntity.Path[ArenaEntity.Path.Count - 1];
@@ -273,6 +274,29 @@ public class ArenaMonoBehavior : MonoBehaviour // , IPointerDownHandler
         {
             var time = _speedAnimation * ArenaEntity.Path.Count;
 
+            // Open Door.
+            if (
+                nodeEnd.StateArenaNode.HasFlag(StateArenaNode.Door)
+                || (
+                    nodeEnd.RightNode != null
+                    && nodeEnd.RightNode.StateArenaNode.HasFlag(StateArenaNode.Door)
+                    && ArenaEntity.TypeArenaPlayer == TypeArenaPlayer.Right
+                    )
+                )
+            {
+                await ArenaEntity.OpenDoor();
+                if (nodeEnd.StateArenaNode.HasFlag(StateArenaNode.Door))
+                {
+                    nodeDoor = nodeEnd;
+                    nodeEnd.StateArenaNode &= ~StateArenaNode.Door;
+                }
+                else if (nodeEnd.RightNode.StateArenaNode.HasFlag(StateArenaNode.Door))
+                {
+                    nodeDoor = nodeEnd.RightNode;
+                    nodeEnd.RightNode.StateArenaNode &= ~StateArenaNode.Door;
+                }
+            }
+
             UpdateDirection(ArenaEntity.PositionPrefab, nodeEnd.position, nodeEnd);
             await SmoothLerp(transform.position, nodeEnd.center + difPos, time);
             ArenaEntity.Path.Clear();
@@ -285,6 +309,30 @@ public class ArenaMonoBehavior : MonoBehaviour // , IPointerDownHandler
             {
                 var nodeTo = ArenaEntity.Path[0];
                 nodeEnd = nodeTo;
+
+                // Open Door.
+                if (
+                    nodeTo.StateArenaNode.HasFlag(StateArenaNode.Door)
+                    || (
+                        nodeTo.RightNode != null
+                        && nodeTo.RightNode.StateArenaNode.HasFlag(StateArenaNode.Door)
+                        && ArenaEntity.TypeArenaPlayer == TypeArenaPlayer.Right
+                        )
+                    )
+                {
+                    await ArenaEntity.OpenDoor();
+                    if (nodeEnd.StateArenaNode.HasFlag(StateArenaNode.Door))
+                    {
+                        nodeDoor = nodeTo;
+                        nodeTo.StateArenaNode &= ~StateArenaNode.Door;
+                    }
+                    else if (nodeTo.RightNode.StateArenaNode.HasFlag(StateArenaNode.Door))
+                    {
+                        nodeDoor = nodeTo.RightNode;
+                        nodeTo.RightNode.StateArenaNode &= ~StateArenaNode.Door;
+                    }
+                }
+
                 // ScriptableEntityMapObject configNodeData
                 //     = (ScriptableEntityMapObject)nodeTo.OccupiedUnit?.ConfigData;
 
@@ -294,6 +342,15 @@ public class ArenaMonoBehavior : MonoBehaviour // , IPointerDownHandler
 
                 await SmoothLerp(transform.position, nodeTo.center + difPos, time);
                 await UniTask.Yield();
+
+                // if (
+                //     !nodeTo.StateArenaNode.HasFlag(StateArenaNode.Door)
+                //     && ArenaEntity.man
+                //     // && (nodeTo.RightNode != null && nodeTo.RightNode.StateArenaNode.HasFlag(StateArenaNode.Door))
+                //     )
+                // {
+                //     ArenaEntity.CloseDoor();
+                // }
 
                 ArenaEntity.Path.RemoveAt(0);
 
@@ -311,6 +368,19 @@ public class ArenaMonoBehavior : MonoBehaviour // , IPointerDownHandler
         {
             ArenaEntity.ChangePosition(nodeEnd);
         }
+
+        // Check Door.
+        if (
+            nodeDoor != null
+            && !nodeEnd.StateArenaNode.HasFlag(StateArenaNode.Door)
+            && nodeEnd.RightNode != null
+            && !nodeEnd.RightNode.StateArenaNode.HasFlag(StateArenaNode.Door)
+            )
+        {
+            ArenaEntity.CloseDoor();
+            nodeDoor.StateArenaNode |= StateArenaNode.Door;
+        }
+
         await UniTask.Yield();
         _animator.Play(string.Format("{0}{1}", _nameCreature, "StopMoving"), 0, 0f);
 

@@ -21,11 +21,6 @@ public class ArenaShootTownMB : MonoBehaviour
     #region Unity methods
     public void Awake()
     {
-        if (ShootPrefab != null)
-        {
-            _shoot = GameObject.Instantiate(ShootPrefab, gameObject.transform.position, Quaternion.identity, transform);
-            _shoot.SetActive(false);
-        }
 
         _animator = GetComponentInChildren<Animator>();
         transform.Find("Quantity").gameObject.SetActive(false);
@@ -38,8 +33,14 @@ public class ArenaShootTownMB : MonoBehaviour
     }
     #endregion
 
-    public void Init(ArenaShootTown arenaEntity)
+    public void Init(ArenaShootTown arenaEntity, GameObject shoots)
     {
+        if (shoots != null)
+        {
+            ShootPrefab = shoots;
+            _shoot = GameObject.Instantiate(ShootPrefab, gameObject.transform.position, Quaternion.identity, transform);
+            _shoot.SetActive(false);
+        }
         _arenaEntity = arenaEntity;
         // _collider.layerOverridePriority = 11 - _arenaEntity.OccupiedNode.position.y;
         // gameObject.transform.localPosition = new Vector3(

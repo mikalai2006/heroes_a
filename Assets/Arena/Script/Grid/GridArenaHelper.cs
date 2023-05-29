@@ -152,11 +152,47 @@ public class GridArenaHelper
                         !neighbourNode.StateArenaNode.HasFlag(StateArenaNode.Disable)
                         &&
                         !neighbourNode.StateArenaNode.HasFlag(StateArenaNode.Occupied)
+                        &&
+                        !neighbourNode.StateArenaNode.HasFlag(StateArenaNode.Wall)
                     )
                     || (neighbourNode.OccupiedUnit != null && neighbourNode.OccupiedUnit == startNode.OccupiedUnit)
                     || (neighbourNode != endNode && entityData.CreatureParams.Movement == MovementType.Flying)
                 );
-                if (!walk)
+                if (
+                    !walk
+                    ||
+                    // Check door.
+                    (
+                        neighbourNode.StateArenaNode.HasFlag(StateArenaNode.Door)
+                        &&
+                        (
+                            (
+                                // for creatures not town.
+                                (
+                                    startNode.OccupiedUnit.TypeArenaPlayer != TypeArenaPlayer.Right
+                                    ||
+                                    (
+                                        // for creatures by town.
+                                        startNode.OccupiedUnit.TypeArenaPlayer == TypeArenaPlayer.Right
+                                        && neighbourNode.LeftNode != null
+                                        && neighbourNode.LeftNode.OccupiedUnit != null
+                                    )
+                                )
+                                &&
+                                // not flying creatures.
+                                startNode.OccupiedUnit.Data.typeMove != MovementType.Flying
+                            )
+                        ||
+                            (
+                                neighbourNode.LeftNode != null
+                                && (
+                                    neighbourNode.LeftNode.StateArenaNode.HasFlag(StateArenaNode.Deathed)
+                                    || neighbourNode.LeftNode.OccupiedUnit != null
+                                )
+                            )
+                        )
+                    )
+                    )
                 {
                     closedSet.Add(neighbourNode);
                     continue;
@@ -187,6 +223,8 @@ public class GridArenaHelper
                                             neighbourNode.RightNode.OccupiedUnit == null
                                             || neighbourNode.RightNode.OccupiedUnit == startNode.OccupiedUnit
                                             )
+                                        && !neighbourNode.RightNode.StateArenaNode.HasFlag(StateArenaNode.Disable)
+                                        && !neighbourNode.RightNode.StateArenaNode.HasFlag(StateArenaNode.Obstacles)
                                     )
                                     || neighbourNode.RightNode == null
                                     )
@@ -200,6 +238,8 @@ public class GridArenaHelper
                                             neighbourNode.LeftNode.OccupiedUnit == null
                                             || neighbourNode.LeftNode.OccupiedUnit == startNode.OccupiedUnit
                                             )
+                                        && !neighbourNode.LeftNode.StateArenaNode.HasFlag(StateArenaNode.Disable)
+                                        && !neighbourNode.LeftNode.StateArenaNode.HasFlag(StateArenaNode.Obstacles)
                                     )
                                     || neighbourNode.LeftNode == null
                                     )

@@ -102,7 +102,7 @@ public class ArenaCreature : ArenaEntityBase
     // public Vector3 CenterNode => _centerNode;
     // private Vector3 _positionPrefab;
     // public Vector3 PositionPrefab => _positionPrefab;
-    [NonSerialized] public ArenaMonoBehavior ArenaMonoBehavior;
+    [NonSerialized] public ArenaCreatureMB ArenaMonoBehavior;
     // public TypeArenaPlayer TypeArenaPlayer;
     // public BaseEntity Entity { get; private set; }
     public TypeDirection Direction;
@@ -221,6 +221,20 @@ public class ArenaCreature : ArenaEntityBase
         Direction = direction;
     }
 
+    public async UniTask OpenDoor()
+    {
+        Debug.Log("Wait door");
+        await _arenaManager.town.OpenDoor();
+        await UniTask.Yield();
+    }
+
+    public async void CloseDoor()
+    {
+        await UniTask.Delay(400);
+        Debug.Log("Wait door");
+        _arenaManager.town.CloseDoor();
+    }
+
     public TypeDirection Rotate(GridArenaNode node)
     {
         var prevNode = node.cameFromNode;
@@ -282,7 +296,7 @@ public class ArenaCreature : ArenaEntityBase
         }
         else
         {
-            Debug.Log($"Choose creature node for attack {OccupiedNode}!");
+            Debug.Log($"{GetType()}::: Choose creature node for attack {OccupiedNode}!");
             if (_arenaManager.AttackedCreature == this)
             {
                 _arenaManager.ChooseNextPositionForAttack();
@@ -296,8 +310,8 @@ public class ArenaCreature : ArenaEntityBase
                 _arenaManager.clickedNode = OccupiedNode;
                 _arenaManager.AttackedCreature = this;
                 _arenaManager.ArenaQueue.activeEntity.arenaEntity.CreateButtonAttackNode(OccupiedNode);
+                Debug.Log($"{GetType()}::: _arenaManager.clickedNode= {_arenaManager.clickedNode}!");
             }
-            Debug.Log($"_arenaManager.clickedNode= {_arenaManager.clickedNode}!");
         }
         //         break;
         // }
@@ -771,7 +785,7 @@ public class ArenaCreature : ArenaEntityBase
             _arenaManager.tileMapArenaUnits.transform
             );
         await asset.Task;
-        ArenaMonoBehavior = asset.Result.GetComponent<ArenaMonoBehavior>();
+        ArenaMonoBehavior = asset.Result.GetComponent<ArenaCreatureMB>();
         // Debug.Log($"Spawn Entity::: {r_asset.name}");
         ArenaMonoBehavior.Init(this);
     }

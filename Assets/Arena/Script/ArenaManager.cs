@@ -202,9 +202,10 @@ public class ArenaManager : MonoBehaviour
                 {
                     if (
                         neiNode.LeftNode != null
-                        && activeArenaEntity.TypeArenaPlayer == TypeArenaPlayer.Right
                         && neiNode.LeftNode.OccupiedUnit == null
+                        && activeArenaEntity.TypeArenaPlayer == TypeArenaPlayer.Right
                         && neiNode.OccupiedUnit != activeArenaEntity.OccupiedNode.OccupiedUnit
+                        && !neiNode.LeftNode.StateArenaNode.HasFlag(StateArenaNode.Door)
                         )
                     {
                         neiNode.LeftNode.StateArenaNode |= StateArenaNode.Moved;
@@ -215,6 +216,7 @@ public class ArenaManager : MonoBehaviour
                         && activeArenaEntity.TypeArenaPlayer == TypeArenaPlayer.Left
                         && neiNode.RightNode.OccupiedUnit == null
                         && neiNode.OccupiedUnit != activeArenaEntity.OccupiedNode.OccupiedUnit
+                        && !neiNode.RightNode.StateArenaNode.HasFlag(StateArenaNode.Door)
                         )
                     {
                         neiNode.RightNode.StateArenaNode |= StateArenaNode.Moved;
@@ -347,24 +349,11 @@ public class ArenaManager : MonoBehaviour
                     // var neighboursNodesEnemy = GridArenaHelper
                     //     .GetNeighbourList(ArenaQueue.activeEntity.OccupiedNode)
                     //     .Where(t => t.OccupiedUnit != null && t.OccupiedUnit.TypeArenaPlayer != ArenaQueue.activeEntity.TypeArenaPlayer);
-                    if (ChoosedSpell == null)
+                    // if (ChoosedSpell == null)
+                    // {
+                    switch (ArenaQueue.activeEntity.arenaEntity.Data.typeAttack)
                     {
-                        ruleCursor = CursorRule.FightFromLeft;
-                        if (ArenaQueue.activeEntity.arenaEntity.Data.shoots > 0 && ArenaQueue.activeEntity.arenaEntity.Data.typeAttack == TypeAttack.AttackShoot)
-                        {
-                            // check distance.
-                            if (nodesForAttack.nodeToAttack.DistanceTo(ArenaQueue.activeEntity.arenaEntity.OccupiedNode) <= ArenaQueue.activeEntity.arenaEntity.Speed)
-                            {
-                                ruleCursor = CursorRule.Shoot;
-                            }
-                            else
-                            {
-                                ruleCursor = CursorRule.ShootHalf;
-                            }
-                            positionButton = new Vector3(nodesForAttack.nodeToAttack.center.x, nodesForAttack.nodeToAttack.center.y, zCoord);
-                        }
-                        else
-                        {
+                        case TypeAttack.Attack:
                             Vector3 difPos = nodesForAttack.nodeFromAttack.center - nodesForAttack.nodeToAttack.center;
                             if (difPos.x > 0 && difPos.y > 0)
                             {
@@ -390,15 +379,76 @@ public class ArenaManager : MonoBehaviour
                             {
                                 ruleCursor = CursorRule.FightFromBottomRight;
                             }
-                            // _buttonAction.transform.position = new Vector3(clickedNode.center.x, clickedNode.center.y, -5);
-                        }
+                            break;
+                        case TypeAttack.AttackShoot:
+                            if (nodesForAttack.nodeToAttack.DistanceTo(ArenaQueue.activeEntity.arenaEntity.OccupiedNode) <= ArenaQueue.activeEntity.arenaEntity.Speed)
+                            {
+                                ruleCursor = CursorRule.Shoot;
+                            }
+                            else
+                            {
+                                ruleCursor = CursorRule.ShootHalf;
+                            }
+                            positionButton = new Vector3(nodesForAttack.nodeToAttack.center.x, nodesForAttack.nodeToAttack.center.y, zCoord);
+                            break;
+                        case TypeAttack.Aid:
+                            ruleCursor = CursorRule.FirstAidTent;
+                            positionButton = new Vector3(nodesForAttack.nodeToAttack.center.x, nodesForAttack.nodeToAttack.center.y, zCoord);
+                            break;
+                        default:
+                            ruleCursor = CursorRule.FightFromLeft;
+                            break;
                     }
-                    else
-                    {
-                        // Spell cursor.
-                        ruleCursor = CursorRule.Spell;
-                        positionButton = new Vector3(nodesForAttack.nodeToAttack.center.x, nodesForAttack.nodeToAttack.center.y, zCoord);
-                    }
+
+                    // if (ArenaQueue.activeEntity.arenaEntity.Data.shoots > 0 && ArenaQueue.activeEntity.arenaEntity.Data.typeAttack == TypeAttack.AttackShoot)
+                    // {
+                    //     // check distance.
+                    //     if (nodesForAttack.nodeToAttack.DistanceTo(ArenaQueue.activeEntity.arenaEntity.OccupiedNode) <= ArenaQueue.activeEntity.arenaEntity.Speed)
+                    //     {
+                    //         ruleCursor = CursorRule.Shoot;
+                    //     }
+                    //     else
+                    //     {
+                    //         ruleCursor = CursorRule.ShootHalf;
+                    //     }
+                    //     positionButton = new Vector3(nodesForAttack.nodeToAttack.center.x, nodesForAttack.nodeToAttack.center.y, zCoord);
+                    // }
+                    // else
+                    // {
+                    //     Vector3 difPos = nodesForAttack.nodeFromAttack.center - nodesForAttack.nodeToAttack.center;
+                    //     if (difPos.x > 0 && difPos.y > 0)
+                    //     {
+                    //         ruleCursor = CursorRule.FightFromTopRight;
+                    //     }
+                    //     else if (difPos.x < 0 && difPos.y > 0)
+                    //     {
+                    //         ruleCursor = CursorRule.FightFromTopLeft;
+                    //     }
+                    //     else if (difPos.x > 0 && difPos.y == 0)
+                    //     {
+                    //         ruleCursor = CursorRule.FightFromRight;
+                    //     }
+                    //     else if (difPos.x < 0 && difPos.y == 0)
+                    //     {
+                    //         ruleCursor = CursorRule.FightFromLeft;
+                    //     }
+                    //     else if (difPos.x < 0 && difPos.y < 0)
+                    //     {
+                    //         ruleCursor = CursorRule.FightFromBottomLeft;
+                    //     }
+                    //     else if (difPos.x > 0 && difPos.y < 0)
+                    //     {
+                    //         ruleCursor = CursorRule.FightFromBottomRight;
+                    //     }
+                    //     // _buttonAction.transform.position = new Vector3(clickedNode.center.x, clickedNode.center.y, -5);
+                    // }
+                    // // }
+                    // // else
+                    // // {
+                    // //     // Spell cursor.
+                    // //     ruleCursor = CursorRule.Spell;
+                    // //     positionButton = new Vector3(nodesForAttack.nodeToAttack.center.x, nodesForAttack.nodeToAttack.center.y, zCoord);
+                    // // }
                 }
             }
         }
@@ -478,7 +528,7 @@ public class ArenaManager : MonoBehaviour
     {
         // Clear clicked node.
         // clickedNode = null;
-        // ClearAttackNode();
+        ClearAttackNode();
         // isRunningAction = false;
         _tileMapAllowAttack.ClearAllTiles();
 
@@ -497,6 +547,7 @@ public class ArenaManager : MonoBehaviour
         {
             neiNode.StateArenaNode ^= StateArenaNode.Moved;
         };
+        town.ArenaEntityTownMB.SetStatusColliders(false);
         AllMovedNodes.Clear();
         AllowMovedNodes.Clear();
         ResetButton();
@@ -532,6 +583,7 @@ public class ArenaManager : MonoBehaviour
             Vector3Int tilePos = _tileMapArenaGrid.WorldToCell(posMouse);
 
             GridArenaNode node = GridArenaHelper.GridTile.GetGridObject(tilePos);
+            Debug.Log($"Click node::: {node}");
 
             if (rayHit.collider.gameObject == _tileMapArenaGrid.gameObject)
             {
@@ -854,13 +906,13 @@ public class ArenaManager : MonoBehaviour
                 var bounds = tileMapArenaUnits.GetBoundsLocal(nodeObj.position);
                 nodeObj.SetCenter(bounds.center);
 
-                if (settingGame.showGrid)
+                if (y == 0 || y > height || x >= width)
                 {
-                    if (y == 0 || y > height || x >= width)
-                    {
-                        nodeObj.StateArenaNode |= StateArenaNode.Disable;
-                    }
-                    else
+                    nodeObj.StateArenaNode |= StateArenaNode.Disable;
+                }
+                else
+                {
+                    if (settingGame.showGrid)
                     {
                         _tileMapArenaGrid.SetTile(nodeObj.position, _tileHex);
                     }
@@ -928,10 +980,10 @@ public class ArenaManager : MonoBehaviour
 
             // Destructible Wall nodes.
             // (11, 10) (9, 7) (10, 4) (11, 1)
-            GridArenaHelper.GetNode(11, 10).StateArenaNode |= StateArenaNode.Wall;
-            GridArenaHelper.GetNode(9, 7).StateArenaNode |= StateArenaNode.Wall;
-            GridArenaHelper.GetNode(10, 4).StateArenaNode |= StateArenaNode.Wall;
-            GridArenaHelper.GetNode(11, 1).StateArenaNode |= StateArenaNode.Wall;
+            GridArenaHelper.GetNode(11, 10).StateArenaNode |= StateArenaNode.Wall | StateArenaNode.Disable;
+            GridArenaHelper.GetNode(9, 7).StateArenaNode |= StateArenaNode.Wall | StateArenaNode.Disable;
+            GridArenaHelper.GetNode(10, 4).StateArenaNode |= StateArenaNode.Wall | StateArenaNode.Disable;
+            GridArenaHelper.GetNode(11, 1).StateArenaNode |= StateArenaNode.Wall | StateArenaNode.Disable;
 
             // Moat nodes.
             // 10,11; 10,10; 9,9; 9,8; 8,7; 9,6; 8,5; 9,4; 9,3; 10,2; 10,1;
@@ -940,12 +992,15 @@ public class ArenaManager : MonoBehaviour
             GridArenaHelper.GetNode(9, 9).StateArenaNode |= StateArenaNode.Moating;
             GridArenaHelper.GetNode(9, 8).StateArenaNode |= StateArenaNode.Moating;
             GridArenaHelper.GetNode(8, 7).StateArenaNode |= StateArenaNode.Moating;
-            GridArenaHelper.GetNode(9, 6).StateArenaNode |= StateArenaNode.Moating;
+            // GridArenaHelper.GetNode(9, 6).StateArenaNode |= StateArenaNode.Moating;
             GridArenaHelper.GetNode(8, 5).StateArenaNode |= StateArenaNode.Moating;
             GridArenaHelper.GetNode(9, 4).StateArenaNode |= StateArenaNode.Moating;
             GridArenaHelper.GetNode(9, 3).StateArenaNode |= StateArenaNode.Moating;
             GridArenaHelper.GetNode(10, 2).StateArenaNode |= StateArenaNode.Moating;
             GridArenaHelper.GetNode(10, 1).StateArenaNode |= StateArenaNode.Moating;
+
+            // Door.
+            GridArenaHelper.GetNode(10, 6).StateArenaNode |= StateArenaNode.Door;
         }
         else if (DialogArenaData.creatureBank != null)
         {

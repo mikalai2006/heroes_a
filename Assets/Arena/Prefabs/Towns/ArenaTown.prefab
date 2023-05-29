@@ -675,7 +675,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1753788084641528087}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.24, y: 5.2, z: 0}
+  m_LocalPosition: {x: 3.03, y: 5.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1326,7 +1326,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3163114333084331086}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.55, y: 2.63, z: 0.028839111}
+  m_LocalPosition: {x: 4.64, y: 2.4, z: 0.028839111}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1804,7 +1804,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4215312882273980611}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6049d27049e6ba4aa1d83605eba73ba, type: 3}
+  m_Script: {fileID: 11500000, guid: 01fffdc2b71a0f048bc030bd795ee6a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _arenaEntityTown:
@@ -1814,9 +1814,6 @@ MonoBehaviour:
     FortificationsGameObject:
       keys: []
       values: 
-  _shoot1: {fileID: 1390117051562122258}
-  _shoot2: {fileID: 908610590944057889}
-  _shoot3: {fileID: 4822340170743084190}
   moat: {fileID: 8104236606833869908}
   wall1: {fileID: 2842825254779760799}
   wall2: {fileID: 7902356622249287345}
@@ -3072,7 +3069,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8012476494397154121}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.05, y: 6.223, z: 0.0018229485}
+  m_LocalPosition: {x: 1.13, y: 6.223, z: 0.0018229485}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

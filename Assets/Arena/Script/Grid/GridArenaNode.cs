@@ -17,6 +17,7 @@ public enum StateArenaNode
     Obstacles = 1 << 7,
     Moating = 1 << 8,
     Wall = 1 << 9,
+    Door = 1 << 10
 }
 
 [Serializable]

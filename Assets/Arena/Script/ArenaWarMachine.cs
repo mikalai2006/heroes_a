@@ -143,7 +143,7 @@ public class ArenaWarMachine : ArenaEntityBase
                 }
                 else
                 {
-                    _arenaManager.town.ArenaEntityTownMonobehavior.SetStatusColliders(true);
+                    _arenaManager.town.ArenaEntityTownMB.SetStatusColliders(true);
                 }
                 break;
             case ArenaTypeRunEffect.AutoAll:
@@ -187,7 +187,7 @@ public class ArenaWarMachine : ArenaEntityBase
                     _arenaManager.ClearAttackNode();
                 }
                 _arenaManager.clickedNode = OccupiedNode;
-                // _arenaManager.AttackedCreature = this;
+                _arenaManager.AttackedCreature = this;
                 _arenaManager.ArenaQueue.activeEntity.arenaEntity.CreateButtonAttackNode(OccupiedNode);
             }
         }
@@ -215,11 +215,15 @@ public class ArenaWarMachine : ArenaEntityBase
     public override async UniTask ClickButtonAction()
     {
         Debug.Log($"{this.GetType()} ClickButtonAction {_arenaManager.clickedNode}");
+        var warMachine = ((ScriptableAttributeWarMachine)((EntityCreature)Entity).ConfigAttribute);
+        if (_arenaManager.clickedFortification == null && warMachine.TypeWarMachine == TypeWarMachine.Catapult)
+            return;
+        if ((_arenaManager.clickedNode == null || _arenaManager.clickedNode.OccupiedUnit == null) && warMachine.TypeWarMachine != TypeWarMachine.Catapult)
+            return;
 
         _arenaManager.isRunningAction = true;
         await AudioManager.Instance.Click();
 
-        var warMachine = ((ScriptableAttributeWarMachine)((EntityCreature)Entity).ConfigAttribute);
 
         _arenaManager._buttonWarMachine.SetActive(false);
         // // await ((ScriptableAttributeWarMachine)ArenaQueue.activeEntity.arenaEntity.Entity.ScriptableDataAttribute)
@@ -228,13 +232,13 @@ public class ArenaWarMachine : ArenaEntityBase
         {
             case TypeWarMachine.Catapult:
                 await warMachine.RunEffectByGameObject(_arenaManager, OccupiedNode, _arenaManager.clickedFortification);
-                _arenaManager.town.ArenaEntityTownMonobehavior.SetStatusColliders(false);
                 break;
             default:
                 await warMachine.RunEffect(_arenaManager, OccupiedNode, _arenaManager.clickedNode);
                 break;
         }
 
+        _arenaManager.town.ArenaEntityTownMB.SetStatusColliders(false);
         EndRunWarMachine();
     }
 
