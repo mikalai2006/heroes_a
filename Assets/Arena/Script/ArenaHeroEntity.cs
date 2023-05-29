@@ -11,8 +11,22 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.Tilemaps;
 
 [Serializable]
+public struct ArenaHeroEntityData
+{
+    public int ballisticShoot;
+    public int ballisticChanceHitKeep;
+    public int ballisticChanceHitTower;
+    public int ballisticChanceHitBridge;
+    public int ballisticChanceHitIntendedWall;
+    public int ballisticChanceNoDamage;
+    public int ballisticChance1Damage;
+    public int ballisticChance2Damage;
+}
+
+[Serializable]
 public class ArenaHeroEntity
 {
+    public ArenaHeroEntityData Data;
     private Tilemap _tileMapArenaUnits;
 
     [SerializeField]
@@ -30,6 +44,18 @@ public class ArenaHeroEntity
 
     public void SetEntity(BaseEntity entity)
     {
+        Data = new()
+        {
+            ballisticShoot = 1,
+            ballisticChanceHitKeep = 5,
+            ballisticChanceHitBridge = 25,
+            ballisticChanceHitTower = 10,
+            ballisticChanceHitIntendedWall = 50,
+            ballisticChanceNoDamage = 10,
+            ballisticChance1Damage = 60,
+            ballisticChance2Damage = 30
+        };
+
         Entity = ((EntityHero)entity);
         _configData = Entity.ConfigData;
         if (entity != null && Entity.SpellBook != null)

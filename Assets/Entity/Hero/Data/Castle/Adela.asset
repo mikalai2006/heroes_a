@@ -63,7 +63,7 @@ MonoBehaviour:
     value: 2
   - SecondarySkill: {fileID: 11400000, guid: fa3203a5ee7c3ff4ebb5cca62988acab, type: 2}
     value: 2
-  - SecondarySkill: {fileID: 11400000, guid: 2cbdf2de5831fc144b37408fd9ee6e8d, type: 2}
+  - SecondarySkill: {fileID: 11400000, guid: b3653fec31423044eabbe48c254a0dc7, type: 2}
     value: 2
   - SecondarySkill: {fileID: 11400000, guid: 75f4fc7d8a73dbf40afbcad79987193c, type: 2}
     value: 2

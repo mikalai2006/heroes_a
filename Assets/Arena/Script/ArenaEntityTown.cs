@@ -59,6 +59,7 @@ public class ArenaEntityTown
     {
         ArenaEntityTownMB.CloseDoor();
     }
+
     public async UniTask SetShootTown()
     {
         // Door = FortificationsGameObject.Where(t => t.Key.name == "Door").First().Key;
@@ -71,23 +72,18 @@ public class ArenaEntityTown
         Town.Data.level = 1;
         Debug.Log($"Town.Data.level={Town.Data.level}");
 
-        switch (Town.Data.level)
+        if (Town.Data.level >= 1)
         {
-            case 0:
-                break;
-            case 1:
-                var nodeObj3 = _arenaManager.GridArenaHelper.GridTile.GetGridObject(new Vector3Int(15, 7));
-                await CreateShooter(nodeObj3);
-                break;
-            case 2:
-                var nodeObj = _arenaManager.GridArenaHelper.GridTile.GetGridObject(new Vector3Int(12, 12));
-                await CreateShooter(nodeObj);
-                var nodeObj2 = _arenaManager.GridArenaHelper.GridTile.GetGridObject(new Vector3Int(12, 0));
-                await CreateShooter(nodeObj2);
-                break;
-            default:
+            var nodeObj3 = _arenaManager.GridArenaHelper.GridTile.GetGridObject(new Vector3Int(15, 7));
+            await CreateShooter(nodeObj3);
+        }
 
-                break;
+        if (Town.Data.level >= 2)
+        {
+            var nodeObj = _arenaManager.GridArenaHelper.GridTile.GetGridObject(new Vector3Int(12, 12));
+            await CreateShooter(nodeObj);
+            var nodeObj2 = _arenaManager.GridArenaHelper.GridTile.GetGridObject(new Vector3Int(12, 0));
+            await CreateShooter(nodeObj2);
         }
     }
 
@@ -107,19 +103,29 @@ public class ArenaEntityTown
     //     }
     //     await UniTask.Delay(1);
     // }
+
     public void ClickFortification(GameObject clickedObject)
     {
         Debug.Log($"Click fortification {clickedObject.name}");
 
         _arenaManager.CreateButtonCatapult(clickedObject);
     }
-    public void AttackFortification(GameObject fortification)
-    {
-        Debug.Log($"Click fortification {fortification.name}");
-    }
+
     internal void AddFortification(Transform child)
     {
-        FortificationsGameObject.Add(child, Town.Data.level);
+        var countHPTownObject = 2;
+        if (child.name.IndexOf("Wall") >= 0 && Town.Data.level > 2)
+        {
+            countHPTownObject = 3;
+        }
+        FortificationsGameObject.Add(child, countHPTownObject);
+    }
+
+    public void AttackFortification(GameObject fortification)
+    {
+        Debug.Log($"AttackFortification {fortification.name}");
+        var AttackTownObject = FortificationsGameObject.Where(t => t.Key.name == fortification.name).First().Key;
+        // Town.HeroInTown
     }
 
     #region CreateDestroy

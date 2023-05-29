@@ -57,7 +57,7 @@ public class WarMachineCatapult : ScriptableAttributeWarMachine
     {
         Debug.Log($"Run effect by gameObject {gameObject.name}");
         await ((ArenaWarMachine)node.OccupiedUnit).ArenaWarMachineMonoBehavior.RunAttackShoot(null, gameObject.transform);
-
+        arenaManager.town.AttackFortification(gameObject);
         // Calculate damage.
 
         await UniTask.Delay(1);

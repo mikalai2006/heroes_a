@@ -235,7 +235,7 @@ MonoBehaviour:
   showPath: 1
   showShadowCursor: 1
   colorShadow: {r: 0, g: 0, b: 0, a: 0.33333334}
-  showGrid: 0
+  showGrid: 1
   showShadowGrid: 1
   AudioGeneral: {fileID: 11400000, guid: fe8d1e48c237f1a428344434599d0c24, type: 2}
   ArenaTestHeroes:

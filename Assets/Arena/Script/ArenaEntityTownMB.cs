@@ -22,15 +22,15 @@ public class ArenaEntityTownMB : MonoBehaviour
     // public GameObject _shoot3;
     private InputManager _inputManager;
     private Camera _camera;
-
-    [SerializeField] private GameObject moat;
-    [SerializeField] private GameObject wall1;
-    [SerializeField] private GameObject wall2;
-    [SerializeField] private GameObject wall3;
-    [SerializeField] private GameObject wall4;
-    [SerializeField] private GameObject tower1;
-    [SerializeField] private GameObject tower2;
-    [SerializeField] private GameObject tower3;
+    // [SerializeField] private List<Transform> listTownObjects = new ();
+    // [SerializeField] private GameObject moat;
+    // [SerializeField] private GameObject wall1;
+    // [SerializeField] private GameObject wall2;
+    // [SerializeField] private GameObject wall3;
+    // [SerializeField] private GameObject wall4;
+    // [SerializeField] private GameObject tower1;
+    // [SerializeField] private GameObject tower2;
+    // [SerializeField] private GameObject tower3;
     [SerializeField] private GameObject door;
     private Animator doorAnimator;
     public bool isOpenDoor = false;

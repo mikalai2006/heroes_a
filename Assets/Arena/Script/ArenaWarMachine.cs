@@ -238,7 +238,10 @@ public class ArenaWarMachine : ArenaEntityBase
                 break;
         }
 
-        _arenaManager.town.ArenaEntityTownMB.SetStatusColliders(false);
+        // if (_arenaManager.town != null)
+        // {
+        //     _arenaManager.town.ArenaEntityTownMB.SetStatusColliders(false);
+        // }
         EndRunWarMachine();
     }
 

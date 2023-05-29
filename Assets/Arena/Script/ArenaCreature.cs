@@ -224,6 +224,7 @@ public class ArenaCreature : ArenaEntityBase
 
     public async UniTask OpenDoor(GridArenaNode nodeForCheckDoor)
     {
+        if (_arenaManager.town == null) return;
         if (_arenaManager.town.ArenaEntityTownMB.isOpenDoor) return;
 
         if (nodeForCheckDoor.StateArenaNode.HasFlag(StateArenaNode.Door))

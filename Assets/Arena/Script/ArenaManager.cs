@@ -547,7 +547,10 @@ public class ArenaManager : MonoBehaviour
         {
             neiNode.StateArenaNode ^= StateArenaNode.Moved;
         };
-        town.ArenaEntityTownMB.SetStatusColliders(false);
+        if (town != null)
+        {
+            town.ArenaEntityTownMB.SetStatusColliders(false);
+        }
         AllMovedNodes.Clear();
         AllowMovedNodes.Clear();
         ResetButton();
@@ -923,23 +926,24 @@ public class ArenaManager : MonoBehaviour
 
         if (ResourceSystem.Instance != null)
         {
-            CreateHero();
+            if (DialogArenaData.town != null)
+            {
+                await CreateTown();
+            }
+
+            else
+            {
+                town = null;
+            }
+
+            CreateHeroes();
 
             CreateSchemaCreatures();
 
             await CreateCreatures();
 
             CreateSchema();
-
             // CreateObstacles();
-            if (DialogArenaData.town != null)
-            {
-                await CreateTown();
-            }
-            else
-            {
-                town = null;
-            }
             await CreateWarMachine();
 
             NextCreature(false, false);
@@ -1110,10 +1114,20 @@ public class ArenaManager : MonoBehaviour
         await town.CreateGameObject();
         await town.SetShootTown();
 
+        if (townEntity.HeroInTown != null)
+        {
+            enemy = DialogArenaData.town.HeroInTown;
+            var enemyArena = new ArenaHeroEntity(tileMapArenaUnits);
+            enemyArena.SetEntity(enemy);
+            enemyArena.SetPosition(new Vector3(width + 1.5f, 8.5f));
+            enemyArena.CreateMapGameObject();
+            enemy.ArenaHeroEntity = enemyArena;
+        }
     }
 
-    private void CreateHero()
+    private void CreateHeroes()
     {
+        // TODO - use only from DialogArenaData
         hero = LevelManager.Instance.ActivePlayer != null
             ? LevelManager.Instance.ActivePlayer.ActiveHero
             : DialogArenaData.hero; // new EntityHero(TypeFaction.Castle, heroes[0]);
@@ -1123,9 +1137,9 @@ public class ArenaManager : MonoBehaviour
         heroArena.CreateMapGameObject();
         hero.ArenaHeroEntity = heroArena;
 
-        enemy = DialogArenaData.enemy;
-        if (enemy != null)
+        if (DialogArenaData.enemy != null)
         {
+            enemy = DialogArenaData.enemy;
             var enemyArena = new ArenaHeroEntity(tileMapArenaUnits);
             enemyArena.SetEntity(enemy);
             enemyArena.SetPosition(new Vector3(width + 1.5f, 8.5f));

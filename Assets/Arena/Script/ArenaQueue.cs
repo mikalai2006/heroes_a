@@ -16,10 +16,12 @@ public class ArenaQueue
     public static event Action OnNextRound;
     public static event Action OnNextStep;
     public List<QueueItem> ListEntities = new List<QueueItem>();
+    public List<QueueItem> ListEntitiesPhaseWait = new List<QueueItem>();
     // LinkedList<ArenaEntity> queueEntity = new LinkedList<ArenaEntity>();
     public QueueItem activeEntity;
     public int ActiveRound;
     public EntityHero ActiveHero => activeEntity.arenaEntity.Hero;
+    private int nextTick = 1;
 
     public List<QueueItem> SetActiveEntity(QueueItem arenaEntity)
     {
@@ -32,6 +34,7 @@ public class ArenaQueue
         if (this.activeEntity.arenaEntity != null && !this.activeEntity.arenaEntity.Death)
         {
             ListEntities.Remove(activeEntity);
+
             if (def)
             {
                 activeEntity.arenaEntity.Data.isDefense = true;
@@ -40,10 +43,12 @@ public class ArenaQueue
             {
                 activeEntity.arenaEntity.Data.isDefense = false;
             }
+
             if (wait)
             {
                 // activeEntity.arenaEntity.Data.isDefense = false;
-                activeEntity.arenaEntity.Data.waitTick = 1;
+                activeEntity.arenaEntity.Data.waitTick = nextTick;
+                nextTick++;
                 var allRoundItems = ListEntities.Where(t => t.round == activeEntity.round);
                 var indexLastInRound = allRoundItems.Count();
                 ListEntities.Insert(indexLastInRound, activeEntity);
