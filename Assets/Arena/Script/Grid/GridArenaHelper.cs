@@ -165,6 +165,8 @@ public class GridArenaHelper
                     (
                         neighbourNode.StateArenaNode.HasFlag(StateArenaNode.Door)
                         &&
+                        !neighbourNode.StateArenaNode.HasFlag(StateArenaNode.OpenDoor)
+                        &&
                         (
                             (
                                 // for creatures not town.

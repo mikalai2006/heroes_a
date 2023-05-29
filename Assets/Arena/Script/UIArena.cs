@@ -40,6 +40,7 @@ public class UIArena : UILocaleBase
     private VisualElement _queueBlok;
     private Button _btnDirAttack;
     private Button _btnSpellBook;
+    private Button _btnWait;
     private Button _btnQueue;
     private const string _arenaButtons = "ArenaButtons";
     private Camera _cameraMain;
@@ -68,8 +69,8 @@ public class UIArena : UILocaleBase
         _helpLeftCreature = _leftSide.Q<VisualElement>("Creature");
         _queueBlok = _box.Q<VisualElement>("QueueBlok");
 
-        var btnWait = _box.Q<Button>("WaitButton");
-        btnWait.clickable.clicked += async () =>
+        _btnWait = _box.Q<Button>("WaitButton");
+        _btnWait.clickable.clicked += async () =>
         {
             await AudioManager.Instance.Click();
             OnClickWait();
@@ -275,6 +276,7 @@ public class UIArena : UILocaleBase
 
     private void ChangeStatusButton()
     {
+        // Button spellbook.
         if (
             arenaManager.ArenaQueue.ActiveHero != null
             &&
@@ -288,6 +290,18 @@ public class UIArena : UILocaleBase
         else
         {
             _btnSpellBook.SetEnabled(false);
+        }
+
+        // Button wait.
+        if (
+            arenaManager.ArenaQueue.activeEntity.arenaEntity.Data.waitTick > 0
+            )
+        {
+            _btnWait.SetEnabled(false);
+        }
+        else
+        {
+            _btnWait.SetEnabled(true);
         }
     }
 

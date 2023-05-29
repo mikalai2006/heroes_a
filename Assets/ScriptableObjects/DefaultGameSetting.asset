@@ -226,16 +226,16 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 548bfe8b458dd2240b104dd9d3eddf4d, type: 2}
   speedArenaAnimation: 0.1
   paintAllowAttackNode: 1
-  colorAllowAttackNode: {r: 1, g: 0, b: 0, a: 0.4117647}
-  colorNodeRunSpell: {r: 1, g: 0.88953507, b: 0, a: 0.21176471}
+  colorAllowAttackNode: {r: 1, g: 0, b: 0, a: 0.47058824}
+  colorNodeRunSpell: {r: 1, g: 0.88953507, b: 0, a: 0.47058824}
   paintAllowAttackCreature: 1
-  colorAllowAttackCreature: {r: 1, g: 0, b: 0, a: 0.11372549}
+  colorAllowAttackCreature: {r: 1, g: 0, b: 0, a: 0.3137255}
   paintActiveCreature: 1
   colorActiveCreature: {r: 0.77254903, g: 1, b: 0, a: 0.6392157}
   showPath: 1
   showShadowCursor: 1
   colorShadow: {r: 0, g: 0, b: 0, a: 0.33333334}
-  showGrid: 1
+  showGrid: 0
   showShadowGrid: 1
   AudioGeneral: {fileID: 11400000, guid: fe8d1e48c237f1a428344434599d0c24, type: 2}
   ArenaTestHeroes:

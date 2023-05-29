@@ -106,6 +106,7 @@ public class ArenaCreature : ArenaEntityBase
     // public TypeArenaPlayer TypeArenaPlayer;
     // public BaseEntity Entity { get; private set; }
     public TypeDirection Direction;
+    private GridArenaNode nodeDoor;
     // private EntityHero _hero;
     // public EntityHero Hero => _hero;
 
@@ -221,18 +222,49 @@ public class ArenaCreature : ArenaEntityBase
         Direction = direction;
     }
 
-    public async UniTask OpenDoor()
+    public async UniTask OpenDoor(GridArenaNode nodeForCheckDoor)
     {
-        Debug.Log("Wait door");
-        await _arenaManager.town.OpenDoor();
+        if (_arenaManager.town.ArenaEntityTownMB.isOpenDoor) return;
+
+        if (nodeForCheckDoor.StateArenaNode.HasFlag(StateArenaNode.Door))
+        {
+            nodeDoor = nodeForCheckDoor;
+            nodeForCheckDoor.StateArenaNode |= StateArenaNode.OpenDoor;
+        }
+
+        if (nodeForCheckDoor.RightNode != null
+            && nodeForCheckDoor.RightNode.StateArenaNode.HasFlag(StateArenaNode.Door)
+            && TypeArenaPlayer == TypeArenaPlayer.Right
+            )
+        {
+            nodeDoor = nodeForCheckDoor.RightNode;
+            nodeForCheckDoor.RightNode.StateArenaNode |= StateArenaNode.OpenDoor;
+        }
+
+        if (nodeDoor != null)
+        {
+            await _arenaManager.town.OpenDoor();
+        }
+
         await UniTask.Yield();
     }
 
-    public async void CloseDoor()
+    public async void CloseDoor(GridArenaNode nodeEnd)
     {
-        await UniTask.Delay(400);
-        Debug.Log("Wait door");
-        _arenaManager.town.CloseDoor();
+        if (nodeDoor == null) return;
+
+        // Check Door.
+        if (
+            nodeDoor != nodeEnd
+            && !nodeDoor.LeftNode.StateArenaNode.HasFlag(StateArenaNode.Deathed)
+            && !nodeDoor.LeftNode.StateArenaNode.HasFlag(StateArenaNode.Occupied)
+            )
+        {
+            await UniTask.Delay(400);
+            nodeDoor.StateArenaNode &= ~StateArenaNode.OpenDoor;
+            nodeDoor = null;
+            _arenaManager.town.CloseDoor();
+        }
     }
 
     public TypeDirection Rotate(GridArenaNode node)
@@ -575,6 +607,7 @@ public class ArenaCreature : ArenaEntityBase
             OccupiedNode.SetOcuppiedUnit(null);
             if (RelatedNode != null)
             {
+                RelatedNode.SetRelatedStatus(false);
                 RelatedNode.SetDeathedNode(this);
                 RelatedNode.SetOcuppiedUnit(null);
             }

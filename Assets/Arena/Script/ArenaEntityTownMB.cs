@@ -33,7 +33,7 @@ public class ArenaEntityTownMB : MonoBehaviour
     [SerializeField] private GameObject tower3;
     [SerializeField] private GameObject door;
     private Animator doorAnimator;
-    private bool isOpenDoor = false;
+    public bool isOpenDoor = false;
     // public List<Transform> _fortifications = new();
 
 
@@ -188,6 +188,8 @@ public class ArenaEntityTownMB : MonoBehaviour
     }
     internal void CloseDoor()
     {
+        if (!isOpenDoor) return;
+
         doorAnimator.Play("DoorClose");
         isOpenDoor = false;
         door.SetActive(false);
