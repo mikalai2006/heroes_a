@@ -74,7 +74,7 @@ public class SpellFireWall : ScriptableAttributeSpell
 
         int totalDamage = dataCurrent.Effect + (nodeWithSpell.SpellUnit.Hero.Data.PSkills[TypePrimarySkill.Power] * 10);
 
-        await entity.ArenaMonoBehavior.RunGettingHitSpell();
+        await entity.RunGettingHitSpell();
         entity.SetDamage(totalDamage);
     }
 

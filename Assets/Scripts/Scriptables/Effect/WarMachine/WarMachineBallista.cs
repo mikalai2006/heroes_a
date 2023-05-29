@@ -19,7 +19,7 @@ public class WarMachineBallista : ScriptableAttributeWarMachine
                 && t.OccupiedUnit.TypeArenaPlayer != arenaManager.ArenaQueue.activeEntity.arenaEntity.TypeArenaPlayer
             )
             .ToList();
-        arenaManager.ArenaQueue.activeEntity.arenaEntity.Data.typeAttack = TypeAttack.AttackWarMachine;
+        //arenaManager.ArenaQueue.activeEntity.arenaEntity.Data.typeAttack = TypeAttack.AttackWarMachine;
 
         // Checktype run.
         int levelSSkill = 0;
@@ -52,7 +52,7 @@ public class WarMachineBallista : ScriptableAttributeWarMachine
 
     public async override UniTask RunEffect(ArenaManager arenaManager, GridArenaNode node, GridArenaNode nodeToAttack, Player player = null)
     {
-        await node.OccupiedUnit.ArenaMonoBehavior.RunAttackShoot(nodeToAttack);
+        await ((ArenaWarMachine)node.OccupiedUnit).ArenaWarMachineMonoBehavior.RunAttackShoot(nodeToAttack);
 
         // Calculate damage.
 

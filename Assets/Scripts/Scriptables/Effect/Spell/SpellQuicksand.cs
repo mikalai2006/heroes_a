@@ -68,7 +68,7 @@ public class SpellQuicksand : ScriptableAttributeSpell
 
     public async override UniTask RunEffect(GridArenaNode node, EntityHero heroRunSpell, GridArenaNode nodeWithSpell, Player player = null)
     {
-        var entity = node.OccupiedUnit;
+        var entity = (ArenaCreature)node.OccupiedUnit;
 
         if (entity.Hero != nodeWithSpell.SpellUnit.Hero)
         {

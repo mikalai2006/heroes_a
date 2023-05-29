@@ -29,10 +29,10 @@ public class GridArenaNode : IHeapItem<GridArenaNode>
     private int Y;
     [NonSerialized] public Vector3Int position;
     [NonSerialized] public Vector3 center;
-    [NonSerialized] private ArenaEntity _ocuppiedUnit = null;
-    public ArenaEntity OccupiedUnit => _ocuppiedUnit;
-    [NonSerialized] private List<ArenaEntity> _deathedUnits = null;
-    public List<ArenaEntity> DeathedUnits => _deathedUnits;
+    [NonSerialized] private ArenaEntityBase _ocuppiedUnit = null;
+    public ArenaEntityBase OccupiedUnit => _ocuppiedUnit;
+    [NonSerialized] private List<ArenaEntityBase> _deathedUnits = null;
+    public List<ArenaEntityBase> DeathedUnits => _deathedUnits;
 
     private int xOffset => position.y % 2 != 0 ? 1 : 0;
     public GridArenaNode LeftNode => _grid.GetGridObject(new Vector3Int(X - 1, Y));
@@ -86,7 +86,7 @@ public class GridArenaNode : IHeapItem<GridArenaNode>
         fCost = gCost + hCost;
     }
 
-    public void SetDeathedNode(ArenaEntity entity)
+    public void SetDeathedNode(ArenaEntityBase entity)
     {
         if (_deathedUnits == null)
         {
@@ -117,7 +117,7 @@ public class GridArenaNode : IHeapItem<GridArenaNode>
         }
 
     }
-    public void SetOcuppiedUnit(ArenaEntity entity)
+    public void SetOcuppiedUnit(ArenaEntityBase entity)
     {
         _ocuppiedUnit = entity;
         if (entity == null)

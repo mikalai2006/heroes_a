@@ -223,7 +223,7 @@ MonoBehaviour:
   _tileMapDistance: {fileID: 1637570129}
   _tileMapShadow: {fileID: 1727087951}
   _tileMapUnitActive: {fileID: 192717395}
-  _tileMapDisableNode: {fileID: 975882357}
+  _tileMapAllowAttackNode: {fileID: 975882357}
   _tileMapAllowAttack: {fileID: 210828314}
   _tileMapPath: {fileID: 1563218023}
   _textPrefab: {fileID: 2423169752321950798, guid: 624f1428eb32a0c4ebd93502937ca8b9, type: 3}
@@ -231,6 +231,14 @@ MonoBehaviour:
   _tileHex: {fileID: 11400000, guid: 837044e8046fc594a9235c588146608b, type: 2}
   _tileHexShadow: {fileID: 11400000, guid: 55acea784c53c744e80c39744dd4bef6, type: 2}
   _tileHexActive: {fileID: 11400000, guid: 55acea784c53c744e80c39744dd4bef6, type: 2}
+  town:
+    Data:
+      status: 0
+      ShootEntities: []
+    FortificationsGameObject:
+      keys: []
+      values: 
+  clickedFortification: {fileID: 0}
   buttonAction: {fileID: 1874988815094525060, guid: 29feca8d9a5e3c34eb33fc7c8c93a4ff, type: 3}
   _buttonAction: {fileID: 0}
   buttonSpell: {fileID: 1874988815094525060, guid: 839fa7926c317b345b007036c4e245f3, type: 3}
@@ -294,34 +302,9 @@ MonoBehaviour:
           values: []
         path: []
         State: 0
-        Ballista:
-          Effects:
-            Effects: []
-            index: 0
-          Data:
-            idObject: 
-            value: 0
-        FirstAidTent:
-          Effects:
-            Effects: []
-            index: 0
-          Data:
-            idObject: 
-            value: 0
-        Catapult:
-          Effects:
-            Effects: []
-            index: 0
-          Data:
-            idObject: 
-            value: 0
-        AmmoCart:
-          Effects:
-            Effects: []
-            index: 0
-          Data:
-            idObject: 
-            value: 0
+        WarMachines:
+          keys: 
+          values: []
     enemy:
       Effects:
         Effects: []
@@ -351,34 +334,9 @@ MonoBehaviour:
           values: []
         path: []
         State: 0
-        Ballista:
-          Effects:
-            Effects: []
-            index: 0
-          Data:
-            idObject: 
-            value: 0
-        FirstAidTent:
-          Effects:
-            Effects: []
-            index: 0
-          Data:
-            idObject: 
-            value: 0
-        Catapult:
-          Effects:
-            Effects: []
-            index: 0
-          Data:
-            idObject: 
-            value: 0
-        AmmoCart:
-          Effects:
-            Effects: []
-            index: 0
-          Data:
-            idObject: 
-            value: 0
+        WarMachines:
+          keys: 
+          values: []
     creatureBank:
       Effects:
         Effects: []
@@ -1139,7 +1097,7 @@ GameObject:
   - component: {fileID: 975882357}
   - component: {fileID: 975882356}
   m_Layer: 0
-  m_Name: DisableNode
+  m_Name: AllowAttackNode
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

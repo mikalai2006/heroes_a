@@ -27,7 +27,6 @@ public class SpellStoneSkin : ScriptableAttributeSpell
     public async override UniTask AddEffect(GridArenaNode node, EntityHero heroRunSpell, ArenaManager arenaManager, Player player = null)
     {
         var creatureArena = node.OccupiedUnit;
-
         ScriptableAttributeSecondarySkill baseSSkill = SchoolMagic.BaseSecondarySkill;
         SpellItem dataCurrent = new();
         if (creatureArena.Hero != null)
@@ -62,7 +61,9 @@ public class SpellStoneSkin : ScriptableAttributeSpell
                AnimatePrefab,
                new Vector3(0, 1, 0),
                Quaternion.identity,
-               creatureArena.ArenaMonoBehavior.transform
+               creatureArena is ArenaCreature ?
+                ((ArenaCreature)creatureArena).ArenaMonoBehavior.transform
+                : ((ArenaWarMachine)creatureArena).ArenaWarMachineMonoBehavior.transform
            );
             var obj = await asset.Task;
             obj.gameObject.transform.localPosition = new Vector3(0, 1, 0);

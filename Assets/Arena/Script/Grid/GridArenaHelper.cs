@@ -266,7 +266,7 @@ public class GridArenaHelper
     public void CreateWeightCellByX(List<GridArenaNode> distanceNodes, GridArenaNode startNode)
     {
         List<GridArenaNode> allNodes = GetAllGridNodes();
-        ArenaEntity activeArenaEntity = startNode.OccupiedUnit;
+        ArenaEntityBase activeArenaEntity = startNode.OccupiedUnit;
 
         for (int i = 0; i < allNodes.Count; i++)
         {
@@ -342,6 +342,7 @@ public class GridArenaHelper
                 if (
                     !openListNodes.Contains(neighbourNode)
                     && dist <= distance
+                    && !neighbourNode.StateArenaNode.HasFlag(StateArenaNode.Disable)
                     )
                 {
                     openListNodes.Add(neighbourNode);
@@ -360,6 +361,7 @@ public class GridArenaHelper
                     if (
                         !closedListNodes.Contains(neighbourNode)
                         && dist <= distance
+                        && !neighbourNode.StateArenaNode.HasFlag(StateArenaNode.Disable)
                         )
                     {
                         closedListNodes.Add(neighbourNode);

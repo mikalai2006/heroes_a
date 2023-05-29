@@ -11,7 +11,7 @@ public class UIInfoCreatureArenaWindow : UIDialogBaseWindow
     private Button _buttonClose;
     protected TaskCompletionSource<DataResultBuildDialog> _processCompletionSource;
     protected DataResultBuildDialog _dataResultDialog;
-    private ArenaEntity _arenaEntity;
+    private ArenaEntityBase _arenaEntity;
 
     public override void Start()
     {
@@ -29,7 +29,7 @@ public class UIInfoCreatureArenaWindow : UIDialogBaseWindow
         _processCompletionSource.SetResult(_dataResultDialog);
     }
 
-    public async Task<DataResultBuildDialog> ProcessAction(ArenaEntity arenaEntity)
+    public async Task<DataResultBuildDialog> ProcessAction(ArenaEntityBase arenaEntity)
     {
         base.Init();
         _arenaEntity = arenaEntity;

@@ -68,7 +68,7 @@ public class ArenaEntitySpell
         else
         {
             Debug.Log($"Spell not maybe to cancel!");
-            await _arenaManager.ClickArena(OccupiedNode.position);
+            await _arenaManager.DrawPath(OccupiedNode);
         }
         await UniTask.Delay(1);
     }

@@ -50,7 +50,9 @@ public class SpellDispel : ScriptableAttributeSpell
                AnimatePrefab,
                new Vector3(0, 1, 0),
                Quaternion.identity,
-               entity.ArenaMonoBehavior.transform
+               entity is ArenaCreature ?
+                ((ArenaCreature)entity).ArenaMonoBehavior.transform
+                : ((ArenaWarMachine)entity).ArenaWarMachineMonoBehavior.transform
            );
             var obj = await asset.Task;
             obj.gameObject.transform.localPosition = new Vector3(0, 1, 0);

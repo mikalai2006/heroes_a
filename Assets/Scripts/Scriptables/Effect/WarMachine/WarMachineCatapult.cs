@@ -11,18 +11,7 @@ public class WarMachineCatapult : ScriptableAttributeWarMachine
 {
     public async override UniTask<ArenaResultChoose> ChooseTarget(ArenaManager arenaManager, EntityHero hero, Player player = null)
     {
-        // List<GridArenaNode> nodes = arenaManager
-        //     .GridArenaHelper
-        //     .GetAllGridNodes()
-        //     .Where(t =>
-        //         t.OccupiedUnit != null
-        //         && t.OccupiedUnit.TypeArenaPlayer != arenaManager.ArenaQueue.activeEntity.arenaEntity.TypeArenaPlayer
-        //     )
-        //     .ToList();
-        // arenaManager.ArenaQueue.activeEntity.arenaEntity.Data.typeAttack = TypeAttack.AttackWarMachine;
-        Debug.Log($"arenaManager.town.ArenaEntityTownMonobehavior._fortifications={arenaManager.town.ArenaEntityTownMonobehavior._fortifications.Count}");
-        arenaManager.clickedFortification = arenaManager.town.ArenaEntityTownMonobehavior._fortifications[3].gameObject;
-        // Checktype run.
+        // Check type run.
         int levelSSkill = 0;
         if (arenaManager.ArenaQueue.ActiveHero != null)
         {
@@ -35,6 +24,9 @@ public class WarMachineCatapult : ScriptableAttributeWarMachine
         {
             case 0:
                 typeRunEffect = ArenaTypeRunEffect.AutoChoose;
+                var fortification = arenaManager.town.FortificationsGameObject;
+                var keyGameObjectForAction = fortification.Keys.ElementAt(Random.Range(0, fortification.Keys.Count));
+                arenaManager.clickedFortification = keyGameObjectForAction.gameObject;
                 break;
             case 1:
             case 2:
@@ -63,10 +55,12 @@ public class WarMachineCatapult : ScriptableAttributeWarMachine
     // }
     public async override UniTask RunEffectByGameObject(ArenaManager arenaManager, GridArenaNode node, GameObject gameObject)
     {
-        await node.OccupiedUnit.ArenaMonoBehavior.RunAttackShoot(null, gameObject.transform);
         Debug.Log($"Run effect by gameObject {gameObject.name}");
+        await ((ArenaWarMachine)node.OccupiedUnit).ArenaWarMachineMonoBehavior.RunAttackShoot(null, gameObject.transform);
+
+        // Calculate damage.
+
         await UniTask.Delay(1);
-        // return base.RunEffectByGameObject(arenaManager, node, gameObject);
     }
 }
 

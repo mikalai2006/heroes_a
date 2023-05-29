@@ -16,9 +16,9 @@ public class ArenaEntityTownMonobehavior : MonoBehaviour
     public ArenaEntityTown ArenaEntityTown => _arenaEntityTown;
     [NonSerialized] private Animator _animator;
     [NonSerialized] private Transform _model;
-    [NonSerialized] private GameObject _shoot1;
-    [NonSerialized] private GameObject _shoot2;
-    [NonSerialized] private GameObject _shoot3;
+    public GameObject _shoot1;
+    public GameObject _shoot2;
+    public GameObject _shoot3;
     private InputManager _inputManager;
     private Camera _camera;
 
@@ -31,7 +31,7 @@ public class ArenaEntityTownMonobehavior : MonoBehaviour
     [SerializeField] private GameObject tower2;
     [SerializeField] private GameObject tower3;
     [SerializeField] private GameObject door;
-    public List<Transform> _fortifications;
+    // public List<Transform> _fortifications = new();
 
 
     #region Unity methods
@@ -50,19 +50,18 @@ public class ArenaEntityTownMonobehavior : MonoBehaviour
     public void Awake()
     {
         ArenaQueue.OnNextRound += NextRound;
-
-        _fortifications = gameObject.GetChildren(false);
-
         _animator = GetComponentInChildren<Animator>();
         _model = transform.Find("Model");
+        _camera = GameObject.FindGameObjectWithTag("ArenaCamera")?.GetComponent<Camera>();
+
     }
     #endregion
 
     public void SetStatusColliders(bool status)
     {
-        foreach (var go in _fortifications)
+        foreach (var go in ArenaEntityTown.FortificationsGameObject)
         {
-            var col = go.GetComponent<Collider2D>();
+            var col = go.Key.GetComponent<Collider2D>();
             if (col != null)
             {
                 col.enabled = status;
@@ -72,9 +71,19 @@ public class ArenaEntityTownMonobehavior : MonoBehaviour
 
     public void Init(ArenaEntityTown entityTown)
     {
-        _camera = GameObject.FindGameObjectWithTag("ArenaCamera")?.GetComponent<Camera>();
-
         _arenaEntityTown = entityTown;
+
+        var allChildren = gameObject.GetChildren(false);
+        foreach (var child in allChildren)
+        {
+            if (child.GetComponent<Collider2D>() != null)
+            {
+                ArenaEntityTown.AddFortification(child);
+            }
+        }
+
+
+        SetStatusColliders(false);
     }
 
     protected void OnDestroy()
@@ -117,7 +126,7 @@ public class ArenaEntityTownMonobehavior : MonoBehaviour
             if (
                 context.interaction is PressInteraction || context.interaction is TapInteraction
                 &&
-                _fortifications.Contains(rayHit.collider.gameObject.transform)
+                ArenaEntityTown.FortificationsGameObject.ContainsKey(rayHit.collider.gameObject.transform)
                 )
             {
                 ArenaEntityTown.ClickFortification(rayHit.collider.gameObject);

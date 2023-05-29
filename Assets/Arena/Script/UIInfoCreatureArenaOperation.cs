@@ -4,8 +4,8 @@ using Cysharp.Threading.Tasks;
 
 public class UIInfoCreatureArenaOperation : LocalAssetLoader
 {
-    private ArenaEntity _entityCreature;
-    public UIInfoCreatureArenaOperation(ArenaEntity entity)
+    private ArenaEntityBase _entityCreature;
+    public UIInfoCreatureArenaOperation(ArenaEntityBase entity)
     {
         _entityCreature = entity;
     }

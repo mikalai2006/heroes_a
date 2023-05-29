@@ -44,7 +44,7 @@ public class SpellBloodlust : ScriptableAttributeSpell
         }
 
         // Run effect.
-        await creatureArena.ArenaMonoBehavior.ColorPulse(Color.red, 3);
+        await creatureArena.ColorPulse(Color.red, 3);
 
         // Add duration.
         int countRound = heroRunSpell.Data.PSkills[TypePrimarySkill.Power];

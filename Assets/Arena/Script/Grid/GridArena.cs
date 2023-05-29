@@ -23,7 +23,7 @@ public class GridArena<T>
 
         for (int x = 0; x < _gridArray.GetLength(0); x++)
         {
-            for (int y = 1; y < _gridArray.GetLength(1); y++)
+            for (int y = 0; y < _gridArray.GetLength(1); y++)
             {
                 _gridArray[x, y] = createValue(this, gridArenaHelper, x, y);
             }

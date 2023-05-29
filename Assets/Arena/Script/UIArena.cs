@@ -113,7 +113,7 @@ public class UIArena : UILocaleBase
         };
 
         ArenaManager.OnChangeNodesForAttack += ChangeStatusButtonAttack;
-        ArenaEntity.OnChangeParamsCreature += ChangeParamsCreature;
+        ArenaCreature.OnChangeParamsCreature += ChangeParamsCreature;
         ArenaManager.OnAutoNextCreature += DrawInfo;
         ArenaQueue.OnNextStep += ChangeStatusButton;
         UIDialogSpellBook.OnClickSpell += ShowSpellInfo;
@@ -128,7 +128,7 @@ public class UIArena : UILocaleBase
     private void OnDestroy()
     {
         ArenaManager.OnChangeNodesForAttack -= ChangeStatusButtonAttack;
-        ArenaEntity.OnChangeParamsCreature -= ChangeParamsCreature;
+        ArenaCreature.OnChangeParamsCreature -= ChangeParamsCreature;
         ArenaManager.OnAutoNextCreature -= DrawInfo;
         ArenaQueue.OnNextStep -= ChangeStatusButton;
         UIDialogSpellBook.OnClickSpell -= ShowSpellInfo;
@@ -198,7 +198,7 @@ public class UIArena : UILocaleBase
         }
     }
 
-    private void DrawShortSpell(VisualElement box, ArenaEntity arenaEntity)
+    private void DrawShortSpell(VisualElement box, ArenaEntityBase arenaEntity)
     {
         box.Clear();
         var boxSpell = _templateShortSpellInfo.Instantiate();
@@ -216,10 +216,10 @@ public class UIArena : UILocaleBase
                 box.Remove(boxSpell);
                 OnCancelSpell?.Invoke();
             };
-            if (arenaManager.NodeForSpell != null)
+            if (arenaManager.clickedNode != null)
             {
-                var attackedCreature = arenaManager.NodeForSpell.OccupiedUnit != null
-                    ? arenaManager.NodeForSpell.OccupiedUnit.Entity.ScriptableDataAttribute
+                var attackedCreature = arenaManager.clickedNode.OccupiedUnit != null
+                    ? arenaManager.clickedNode.OccupiedUnit.Entity.ScriptableDataAttribute
                     : null;
                 if (attackedCreature != null)
                 {
@@ -309,9 +309,13 @@ public class UIArena : UILocaleBase
         foreach (var creature in arenaManager.ArenaQueue.ListEntities)
         {
             var entity = ((EntityCreature)creature.arenaEntity.Entity);
+
+            var sprite = creature.arenaEntity.Data.typeAttack == TypeAttack.AttackShootTown
+                ? arenaManager.town.Town.ConfigData.MenuSprite
+                : creature.arenaEntity.Entity.ScriptableDataAttribute.MenuSprite;
             var creatureElement = _templateQueueCreature.Instantiate();
             creatureElement.Q<VisualElement>("Img").style.backgroundImage
-                = new StyleBackground(creature.arenaEntity.Entity.ScriptableDataAttribute.MenuSprite);
+                = new StyleBackground(sprite);
             creatureElement.Q<VisualElement>("Img").style.width
                 = new StyleLength(new Length(58, LengthUnit.Pixel));
             // creatureElement.Q<VisualElement>("Img").style.height
@@ -332,7 +336,7 @@ public class UIArena : UILocaleBase
             creatureElement.RegisterCallback<ClickEvent>(async (ClickEvent evt) =>
             {
                 await AudioManager.Instance.Click();
-                creature.arenaEntity.ArenaMonoBehavior.ShowDialogInfo();
+                creature.arenaEntity.ShowDialogInfo();
             });
 
             if (startRound != creature.round)
@@ -455,7 +459,7 @@ public class UIArena : UILocaleBase
         }
     }
 
-    private void DrawCreatureInfo(VisualElement blokInfoCreature, ArenaEntity activeEntity, string text)
+    private void DrawCreatureInfo(VisualElement blokInfoCreature, ArenaEntityBase activeEntity, string text)
     {
         VisualElement infoBlok = blokInfoCreature.Q<VisualElement>("Info");
         infoBlok.Clear();

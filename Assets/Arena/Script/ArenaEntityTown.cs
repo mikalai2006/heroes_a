@@ -15,7 +15,7 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 public class ArenaEntityTownData
 {
     public bool status;
-    public List<ArenaEntity> ShootEntities = new();
+    public List<ArenaCreature> ShootEntities = new();
 }
 
 [Serializable]
@@ -32,13 +32,12 @@ public class ArenaEntityTown
     private Vector3 _positionPrefab;
     public Vector3 PositionPrefab => _positionPrefab;
     [NonSerialized] public ArenaEntityTownMonobehavior ArenaEntityTownMonobehavior;
-    // public TypeArenaPlayer TypeArenaPlayer;
-    // private EntityHero _hero;
-    // public EntityHero Hero => _hero;
+
+    public SerializableDictionary<Transform, int> FortificationsGameObject = new();
     private EntityTown _town;
     public EntityTown Town => _town;
 
-    public ArenaEntityTown(
+    public void Init(
         GridArenaNode node,
         EntityTown entityTown,
         ArenaManager arenaManager
@@ -47,23 +46,66 @@ public class ArenaEntityTown
         OccupiedNode = node;
         _town = entityTown;
         _arenaManager = arenaManager;
-        // ConfigDataTown = _town.ConfigData;
-        // node.SetSpellsUnit(this);
+
+    }
+
+    public async UniTask SetShootTown()
+    {
+        var shootsSlot = FortificationsGameObject.Where(t => t.Key.name == "Tower1").First();
 
         if (Town.Data.level > 0)
         {
             var castle = Town.Data.Generals.Where(t => t.Value.ConfigData.TypeBuild == TypeBuild.Castle).First();
-
         }
-        EntityCreature creatureShoot = new EntityCreature(Town.ConfigData.shootCreature);
-        var GridGameObject = new ArenaEntity(_arenaManager, Town.HeroInTown);
-        var size = creatureShoot.ConfigAttribute.CreatureParams.Size;
-        GridGameObject.TypeArenaPlayer = TypeArenaPlayer.Right;
-        GridGameObject.SetEntity(creatureShoot, null);
-        GridGameObject.Data.typeAttack = TypeAttack.AttackShootTown;
-        // GridGameObject.CreateMapGameObject(nodeObj);
-        Data.ShootEntities.Add(GridGameObject);
-        _arenaManager.ArenaQueue.AddEntity(GridGameObject);
+
+        Town.Data.level = 1;
+        Debug.Log($"Town.Data.level={Town.Data.level}");
+
+        switch (Town.Data.level)
+        {
+            case 0:
+            case 1:
+                // EntityCreature creatureShoot = new EntityCreature(Town.ConfigData.shootCreature);
+                // var newShootTown = new ArenaShootTown();
+                // newShootTown.Init(_arenaManager, _arenaManager.DialogArenaData.enemy);
+                var nodeObj = _arenaManager.GridArenaHelper.GridTile.GetGridObject(new Vector3Int(12, 12));
+                await CreateShooter(nodeObj);
+                // newShootTown.SetEntity(creatureShoot, nodeObj);
+                // newShootTown.TypeArenaPlayer = TypeArenaPlayer.Right;
+                // newShootTown.Data.speed = 1001;
+                // newShootTown.SetPosition(nodeObj);
+                // await newShootTown.CreateMapGameObject(nodeObj);
+                // _arenaManager.ArenaQueue.AddEntity(newShootTown);
+
+                // var newShootTown2 = new ArenaShootTown();
+                // newShootTown2.Init(_arenaManager, _arenaManager.DialogArenaData.enemy);
+                var nodeObj2 = _arenaManager.GridArenaHelper.GridTile.GetGridObject(new Vector3Int(12, 0));
+                await CreateShooter(nodeObj2);
+                // newShootTown2.SetEntity(creatureShoot, nodeObj2);
+                // newShootTown2.TypeArenaPlayer = TypeArenaPlayer.Right;
+                // newShootTown2.Data.speed = 1001;
+                // newShootTown2.SetPosition(nodeObj2);
+                // await newShootTown2.CreateMapGameObject(nodeObj2);
+                // _arenaManager.ArenaQueue.AddEntity(newShootTown2);
+
+                // var newShootTown3 = new ArenaShootTown();
+                // newShootTown3.Init(_arenaManager, _arenaManager.DialogArenaData.enemy);
+                var nodeObj3 = _arenaManager.GridArenaHelper.GridTile.GetGridObject(new Vector3Int(15, 7));
+                await CreateShooter(nodeObj3);
+                // newShootTown3.SetEntity(creatureShoot, nodeObj3);
+                // newShootTown3.TypeArenaPlayer = TypeArenaPlayer.Right;
+                // newShootTown3.Data.speed = 1001;
+                // newShootTown3.SetPosition(nodeObj3);
+                // await newShootTown3.CreateMapGameObject(nodeObj3);
+                // _arenaManager.ArenaQueue.AddEntity(newShootTown3);
+                break;
+            case 2:
+
+                break;
+            default:
+
+                break;
+        }
     }
 
     // public async void ClickEntityTown(InputAction.CallbackContext context)
@@ -94,23 +136,19 @@ public class ArenaEntityTown
     }
 
     #region CreateDestroy
-    public async UniTask CreateGameObject()
+    public async UniTask CreateShooter(GridArenaNode node)
     {
-        await LoadGameObject();
+        EntityCreature creatureShoot = new EntityCreature(Town.ConfigData.shootCreature);
+        var newShootTown = new ArenaShootTown();
+        newShootTown.Init(_arenaManager, _arenaManager.DialogArenaData.enemy);
+        newShootTown.SetEntity(creatureShoot, node);
+        newShootTown.TypeArenaPlayer = TypeArenaPlayer.Right;
+        newShootTown.Data.speed = 1001;
+        newShootTown.SetPosition(node);
+        await newShootTown.CreateMapGameObject();
+        _arenaManager.ArenaQueue.AddEntity(newShootTown);
     }
-    // public void AddRelatedNode(GridArenaNode node)
-    // {
-    //     _relatedNodes.Add(node);
-    // }
-
-    // public void DestroyObject()
-    // {
-    //     GameObject.Destroy(ArenaEntityTownMonobehavior);
-    //     // OccupiedNode.SetSpellsUnit(null);
-    //     // OccupiedNode.SetSpellsStatus(false);
-    // }
-
-    private async UniTask LoadGameObject()
+    public async UniTask CreateGameObject()
     {
         AssetReferenceGameObject gameObj = null;
         if (Town.ConfigData != null && Town.ConfigData.ArenaPrefab.RuntimeKeyIsValid())
@@ -136,6 +174,7 @@ public class ArenaEntityTown
 
         ArenaEntityTownMonobehavior = asset.Result.GetComponent<ArenaEntityTownMonobehavior>();
         ArenaEntityTownMonobehavior.Init(this);
+        await UniTask.Delay(1);
     }
 
     // public virtual void LoadedAsset(AsyncOperationHandle<GameObject> handle)
@@ -156,6 +195,11 @@ public class ArenaEntityTown
     {
         Debug.Log("TODO SetRound");
 
+    }
+
+    internal void AddFortification(Transform child)
+    {
+        FortificationsGameObject.Add(child, Town.Data.level);
     }
     #endregion
 }

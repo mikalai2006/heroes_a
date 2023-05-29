@@ -20,7 +20,7 @@ public class WarMachineFirstAidTent : ScriptableAttributeWarMachine
                 && t.OccupiedUnit.TypeArenaPlayer == arenaManager.ArenaQueue.activeEntity.arenaEntity.TypeArenaPlayer
             )
             .ToList();
-        arenaManager.ArenaQueue.activeEntity.arenaEntity.Data.typeAttack = TypeAttack.AttackWarMachine;
+        // arenaManager.ArenaQueue.activeEntity.arenaEntity.Data.typeAttack = TypeAttack.AttackWarMachine;
 
         // Checktype run.
         int levelSSkill = 0;
@@ -60,7 +60,9 @@ public class WarMachineFirstAidTent : ScriptableAttributeWarMachine
                        AnimatePrefab,
                        new Vector3(0, 1, 0),
                        Quaternion.identity,
-                       nodeToAction.OccupiedUnit.ArenaMonoBehavior.transform
+               nodeToAction.OccupiedUnit is ArenaCreature ?
+                ((ArenaCreature)nodeToAction.OccupiedUnit).ArenaMonoBehavior.transform
+                : ((ArenaWarMachine)nodeToAction.OccupiedUnit).ArenaWarMachineMonoBehavior.transform
                    );
             var obj = await asset.Task;
             obj.gameObject.transform.localPosition = new Vector3(0, 1, 0);

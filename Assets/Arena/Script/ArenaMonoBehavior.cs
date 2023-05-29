@@ -13,8 +13,8 @@ using UnityEngine.InputSystem.Interactions;
 public class ArenaMonoBehavior : MonoBehaviour // , IPointerDownHandler
 {
     // public UITown UITown;
-    [SerializeField] protected ArenaEntity _arenaEntity;
-    public ArenaEntity ArenaEntity => _arenaEntity;
+    [SerializeField] protected ArenaCreature _arenaEntity;
+    public ArenaCreature ArenaEntity => _arenaEntity;
     [NonSerialized] private Animator _animator;
     [NonSerialized] private Transform _model;
     [NonSerialized] private Transform _quantity;
@@ -29,6 +29,7 @@ public class ArenaMonoBehavior : MonoBehaviour // , IPointerDownHandler
     private CancellationTokenSource cancelTokenSource;
     private Vector2 _pos;
     private InputManager _inputManager;
+    private float _speedAnimation;
 
     #region Unity methods
     private void OnEnable()
@@ -45,7 +46,7 @@ public class ArenaMonoBehavior : MonoBehaviour // , IPointerDownHandler
     }
     public void Awake()
     {
-        ArenaEntity.OnChangeParamsCreature += RefreshQuantity;
+        ArenaCreature.OnChangeParamsCreature += RefreshQuantity;
         ArenaQueue.OnNextRound += NextRound;
 
         if (ShootPrefab != null)
@@ -63,11 +64,14 @@ public class ArenaMonoBehavior : MonoBehaviour // , IPointerDownHandler
 
     protected void OnDestroy()
     {
-        ArenaEntity.OnChangeParamsCreature -= RefreshQuantity;
+        ArenaCreature.OnChangeParamsCreature -= RefreshQuantity;
         ArenaQueue.OnNextRound -= NextRound;
-
-        ((ScriptableAttributeCreature)ArenaEntity.Entity.ScriptableDataAttribute).ArenaModel.ReleaseInstance(gameObject);
-        if (_shoot != null) Destroy(_shoot);
+        if (ArenaEntity.Entity != null)
+        {
+            // Debug.Log($"ArenaEntity.Entity{ArenaEntity.Entity.ScriptableDataAttribute.name}");
+            ((EntityCreature)ArenaEntity.Entity).ConfigAttribute.ArenaModel.ReleaseInstance(gameObject);
+            if (_shoot != null) Destroy(_shoot);
+        }
     }
 
     private void NextRound()
@@ -189,8 +193,9 @@ public class ArenaMonoBehavior : MonoBehaviour // , IPointerDownHandler
     }
     #endregion
 
-    public void Init(ArenaEntity arenaEntity)
+    public void Init(ArenaCreature arenaEntity)
     {
+        _speedAnimation = LevelManager.Instance.ConfigGameSettings.speedArenaAnimation;
         _camera = GameObject.FindGameObjectWithTag("ArenaCamera")?.GetComponent<Camera>();
 
         _arenaEntity = arenaEntity;
@@ -266,7 +271,7 @@ public class ArenaMonoBehavior : MonoBehaviour // , IPointerDownHandler
 
         if (entityData.CreatureParams.Movement == MovementType.Flying)
         {
-            var time = LevelManager.Instance.ConfigGameSettings.speedArenaAnimation * ArenaEntity.Path.Count;
+            var time = _speedAnimation * ArenaEntity.Path.Count;
 
             UpdateDirection(ArenaEntity.PositionPrefab, nodeEnd.position, nodeEnd);
             await SmoothLerp(transform.position, nodeEnd.center + difPos, time);
@@ -274,7 +279,7 @@ public class ArenaMonoBehavior : MonoBehaviour // , IPointerDownHandler
         }
         else
         {
-            var time = LevelManager.Instance.ConfigGameSettings.speedArenaAnimation;
+            var time = _speedAnimation;
 
             while (ArenaEntity.Path.Count > 0 && !cancellationToken.IsCancellationRequested)
             {
@@ -509,7 +514,7 @@ public class ArenaMonoBehavior : MonoBehaviour // , IPointerDownHandler
         _animator.Play(nameAnimationAttack, 0, 0f);
 
         _shoot.SetActive(true);
-        await SmoothLerpShoot(transform.position, positionToAttack, LevelManager.Instance.ConfigGameSettings.speedArenaAnimation * 2);
+        await SmoothLerpShoot(transform.position, positionToAttack, _speedAnimation * 2);
         _shoot.SetActive(false);
 
         await UniTask.Delay(200);
