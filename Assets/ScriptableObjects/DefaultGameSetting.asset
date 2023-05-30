@@ -238,6 +238,9 @@ MonoBehaviour:
   showGrid: 0
   showShadowGrid: 1
   AudioGeneral: {fileID: 11400000, guid: fe8d1e48c237f1a428344434599d0c24, type: 2}
+  ArenaTestTowns:
+  - {fileID: 11400000, guid: 39cffc0c06c34d14480207ab263ceb68, type: 2}
+  - {fileID: 11400000, guid: eb55ff1bda00c98489bfe686d6842599, type: 2}
   ArenaTestHeroes:
   - {fileID: 11400000, guid: 6ffb151385268c2468c11aa0926a7cf9, type: 2}
   - {fileID: 11400000, guid: 57be72433106473478d591f21ad47473, type: 2}

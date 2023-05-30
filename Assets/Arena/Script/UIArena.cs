@@ -143,7 +143,14 @@ public class UIArena : UILocaleBase
 
     public void Init()
     {
-        _bgImage.sprite = arenaManager.DialogArenaData.ArenaSetting.BgSprites[UnityEngine.Random.Range(0, arenaManager.DialogArenaData.ArenaSetting.BgSprites.Count)];
+        if (arenaManager.ArenaTown != null)
+        {
+            _bgImage.sprite = arenaManager.DialogArenaData.ArenaSetting.BgTownArena;
+        }
+        else
+        {
+            _bgImage.sprite = arenaManager.DialogArenaData.ArenaSetting.BgSprites[UnityEngine.Random.Range(0, arenaManager.DialogArenaData.ArenaSetting.BgSprites.Count)];
+        }
 
         OnLoadArena?.Invoke();
 

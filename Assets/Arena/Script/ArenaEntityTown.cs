@@ -38,10 +38,6 @@ public class ArenaEntityTown
     public EntityTown Town => _town;
     public bool isMoat = false;
 
-    public ArenaEntityTown()
-    {
-        Debug.Log($"Inint ArenaEntityTown");
-    }
     public void Init(
         GridArenaNode node,
         EntityTown entityTown,
@@ -61,6 +57,12 @@ public class ArenaEntityTown
         {
             isMoat = true;
         }
+
+
+        // Bridge.
+        var bridgeNode = _arenaManager.GridArenaHelper.GetNode(10, 6);
+        bridgeNode.StateArenaNode |= StateArenaNode.Bridge;
+        FortificationsNodes.Add("0_Bridge", bridgeNode);
     }
 
     public async UniTask OpenBridge()
@@ -166,6 +168,8 @@ public class ArenaEntityTown
                 var node = FortificationsNodes[transform.name];
                 node.StateArenaNode &= ~StateArenaNode.Disable;
                 node.StateArenaNode &= ~StateArenaNode.Wall;
+                node.StateArenaNode &= ~StateArenaNode.Bridge;
+                node.StateArenaNode &= ~StateArenaNode.OpenBridge;
             }
 
             // remove status bridge.

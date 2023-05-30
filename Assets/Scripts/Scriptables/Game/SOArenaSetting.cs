@@ -9,4 +9,5 @@ public class SOArenaSetting : ScriptableObject
     public List<Sprite> BgSprites;
     public TileLandscape NativeGround;
     public List<Sprite> Obstacles;
+    public Sprite BgTownArena;
 }

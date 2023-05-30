@@ -77,17 +77,15 @@ public class UIMenuApp : UILocaleBase
             UnitManager.Entities.Add(testHero.Id, testHero);
             var testEnemy = new EntityHero(TypeFaction.Castle, GameSetting.ArenaTestHeroes[1]);
             UnitManager.Entities.Add(testEnemy.Id, testEnemy);
-            var configTown = ResourceSystem.Instance
-                .GetEntityByType<ScriptableEntityTown>(TypeEntity.Town)
-                .Find(t => t.TypeFaction == TypeFaction.Castle);
-            var town = new EntityTown(TypeGround.Grass, configTown);
+            var configTown = GameSetting.ArenaTestTowns[Random.Range(0, GameSetting.ArenaTestTowns.Count)];
+            var town = new EntityTown(configTown.TypeGround, configTown);
             town.Data.level = 2;
             town.Data.HeroinTown = testEnemy.Id;
             var loadingOperations = new ArenaLoadOperation(new DialogArenaData()
             {
                 hero = testHero,
                 town = town,
-                ArenaSetting = GameSetting.ArenaSettings[Random.Range(0, GameSetting.ArenaSettings.Count)]
+                ArenaSetting = GameSetting.ArenaSettings.Find(t => t.NativeGround.typeGround == configTown.TypeGround)
             });
             var result = await loadingOperations.ShowHide();
 

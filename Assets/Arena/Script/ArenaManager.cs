@@ -999,9 +999,6 @@ public class ArenaManager : MonoBehaviour
             GridArenaHelper.GetNode(9, 3).StateArenaNode |= StateArenaNode.Moating;
             GridArenaHelper.GetNode(10, 2).StateArenaNode |= StateArenaNode.Moating;
             GridArenaHelper.GetNode(10, 1).StateArenaNode |= StateArenaNode.Moating;
-
-            // Bridge.
-            GridArenaHelper.GetNode(10, 6).StateArenaNode |= StateArenaNode.Bridge;
         }
         else if (DialogArenaData.creatureBank != null)
         {

@@ -68,6 +68,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e415ac95d35ab1f458a85098f58bfb8b, type: 2}
   - {fileID: 11400000, guid: 1dbe3da8bc400f643ba5668058b373a7, type: 2}
   - {fileID: 11400000, guid: c742ca2ca7fd4da43a0a7b0898fe4fb8, type: 2}
+  ArenaPrefab:
+    m_AssetGUID: 089ab651a61d30742880cb074a3dd2b3
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
   StartProgressBuilds:
   - Build: {fileID: 11400000, guid: 8725e54349f74644fbbbffa322dd2be1, type: 2}
     level: 0
@@ -92,6 +97,7 @@ MonoBehaviour:
   mines:
   - {fileID: 11400000, guid: eb2794684cfb9bc4eb3e342e33ed9b2f, type: 2}
   - {fileID: 11400000, guid: 67823b77ad812a94398ac2979a01ebc7, type: 2}
+  shootCreature: {fileID: 11400000, guid: 4fd41ea386a0ace4abad0946d8860497, type: 2}
   references:
     version: 2
     RefIds: []

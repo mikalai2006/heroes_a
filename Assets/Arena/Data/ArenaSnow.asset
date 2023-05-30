@@ -18,3 +18,4 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 3d2133589bf70bd448266e02d90f94a2, type: 3}
   NativeGround: {fileID: 11400000, guid: a4738e56e5475c143ac4fbc28b9c1c2b, type: 2}
   Obstacles: []
+  BgTownArena: {fileID: 21300000, guid: 1a86eee67a7feef40959da3146c0b1ef, type: 3}
