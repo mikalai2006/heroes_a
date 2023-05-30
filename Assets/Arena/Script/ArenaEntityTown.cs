@@ -126,6 +126,7 @@ public class ArenaEntityTown
         {
             var nodeObj3 = _arenaManager.GridArenaHelper.GridTile.GetGridObject(new Vector3Int(15, 7));
             var shootKeep = await CreateShooter(nodeObj3);
+            shootKeep.isHead = true;
             FortificationsShoots.Add("1_TowerKeep", shootKeep);
         }
 

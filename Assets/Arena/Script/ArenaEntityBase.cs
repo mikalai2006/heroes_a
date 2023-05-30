@@ -187,7 +187,7 @@ public abstract class ArenaEntityBase
         await UniTask.Yield();
     }
 
-    public void CalculateAttack(GridArenaNode nodeFromAttack, GridArenaNode nodeToAttack)
+    public virtual void CalculateAttack(GridArenaNode nodeFromAttack, GridArenaNode nodeToAttack)
     {
         var randomDamage = new System.Random();
         int totalDamage = 0;
