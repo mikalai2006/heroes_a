@@ -226,10 +226,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 548bfe8b458dd2240b104dd9d3eddf4d, type: 2}
   speedArenaAnimation: 0.1
   paintAllowAttackNode: 1
-  colorAllowAttackNode: {r: 1, g: 0, b: 0, a: 0.4117647}
-  colorNodeRunSpell: {r: 1, g: 0.88953507, b: 0, a: 0.21176471}
+  colorAllowAttackNode: {r: 1, g: 0, b: 0, a: 0.47058824}
+  colorNodeRunSpell: {r: 1, g: 0.88953507, b: 0, a: 0.47058824}
   paintAllowAttackCreature: 1
-  colorAllowAttackCreature: {r: 1, g: 0, b: 0, a: 0.11372549}
+  colorAllowAttackCreature: {r: 1, g: 0, b: 0, a: 0.3137255}
   paintActiveCreature: 1
   colorActiveCreature: {r: 0.77254903, g: 1, b: 0, a: 0.6392157}
   showPath: 1
@@ -238,6 +238,10 @@ MonoBehaviour:
   showGrid: 1
   showShadowGrid: 1
   AudioGeneral: {fileID: 11400000, guid: fe8d1e48c237f1a428344434599d0c24, type: 2}
+  ArenaTestTowns:
+  - {fileID: 11400000, guid: 67141cb8dce7b9a4db31cb4a75026253, type: 2}
+  - {fileID: 11400000, guid: 39cffc0c06c34d14480207ab263ceb68, type: 2}
+  - {fileID: 11400000, guid: eb55ff1bda00c98489bfe686d6842599, type: 2}
   ArenaTestHeroes:
   - {fileID: 11400000, guid: 6ffb151385268c2468c11aa0926a7cf9, type: 2}
   - {fileID: 11400000, guid: 57be72433106473478d591f21ad47473, type: 2}

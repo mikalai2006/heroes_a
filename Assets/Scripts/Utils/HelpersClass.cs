@@ -61,6 +61,12 @@ public static class Helpers
         return f;
     }
 
+    public static int GenerateChance(int start = 0, int end = 100)
+    {
+        System.Random random = new System.Random();
+        return random.Next(0, 100);
+    }
+
     private static Matrix4x4 _isoMatrix = Matrix4x4.Rotate(Quaternion.Euler(0, 45, 0));
     /// <summary>
     /// Vector 3 to Matrix4x4

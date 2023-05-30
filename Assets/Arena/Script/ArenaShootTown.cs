@@ -11,11 +11,13 @@ public class ArenaShootTown : ArenaEntityBase
 {
     [NonSerialized] public ArenaShootTownMB ArenaShootTownMB;
     private Transform transform;
+    public bool isHead;
 
     public override void Init(ArenaManager arenaManager, EntityHero hero)
     {
         base.Init(arenaManager, hero);
     }
+
     public void SetEntity(BaseEntity entity, GridArenaNode node)
     {
         _entity = entity;
@@ -28,7 +30,8 @@ public class ArenaShootTown : ArenaEntityBase
         Data.typeMove = creatureData.CreatureParams.Movement;
         Data.typeAttack = TypeAttack.AttackShoot;
         Data.quantity = ((EntityCreature)Entity).Data.value;
-        Data.countAttack = 1;
+
+        Data.countAttack = 1; // TODO - option
 
         Data.damageMin = creatureData.CreatureParams.DamageMin;
         Data.damageMax = creatureData.CreatureParams.DamageMax;
@@ -57,6 +60,7 @@ public class ArenaShootTown : ArenaEntityBase
         _centerNode = node.center;
         _positionPrefab = node.center;
         node.SetOcuppiedUnit(this);
+        node.StateArenaNode |= StateArenaNode.Excluded;
         _occupiedNode = node;
     }
 
@@ -148,7 +152,7 @@ public class ArenaShootTown : ArenaEntityBase
         {
             case ArenaTypeRunEffect.AutoChoose:
                 // TODO choose target algoritm.
-                Debug.Log($"Auto run shoot town! Artillery={levelSSkill}");
+                // Debug.Log($"Auto run shoot town! Artillery={levelSSkill}");
                 //TODO AI choose target.
                 var nodeToAttack = nodesForAttack[UnityEngine.Random.Range(0, nodesForAttack.Count)];
                 _arenaManager.clickedNode = nodeToAttack;
@@ -211,6 +215,26 @@ public class ArenaShootTown : ArenaEntityBase
                 CalculateAttack(nodeFromAttack, nodeToAttack);
             }
         }
+    }
+
+    public override void CalculateAttack(GridArenaNode nodeFromAttack, GridArenaNode nodeToAttack)
+    {
+        var town = _arenaManager.ArenaTown.Town;
+        if (town == null) return;
+        int countBuildingInTown = town.Data.Generals.Count + town.Data.Armys.Count;
+
+        int baseDamage = isHead
+            ? UnityEngine.Random.Range(10, 20)
+            : UnityEngine.Random.Range(6, 12);
+
+        int dopDamage = isHead
+            ? UnityEngine.Random.Range(2, 4) * countBuildingInTown
+            : UnityEngine.Random.Range(2, 4) * Mathf.CeilToInt(countBuildingInTown / 2);
+        int totalDamage = baseDamage + dopDamage;
+
+        // Debug.Log($"{Entity.ScriptableDataAttribute.name} run damage {totalDamage}/ base={baseDamage}/dopDamage={dopDamage}");
+
+        nodeToAttack.OccupiedUnit.SetDamage(totalDamage);
     }
 
 }

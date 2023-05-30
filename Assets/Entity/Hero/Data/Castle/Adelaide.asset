@@ -59,27 +59,29 @@ MonoBehaviour:
     value: 2
   - SecondarySkill: {fileID: 11400000, guid: 7f7e8be60bed4304a92c4341542e5e5e, type: 2}
     value: 2
+  - SecondarySkill: {fileID: 11400000, guid: b3653fec31423044eabbe48c254a0dc7, type: 2}
+    value: 2
   StartCreatures:
-  - creature: {fileID: 11400000, guid: e34ee2bd20d331149b4525b763a3d4ad, type: 2}
-    min: 2
-    max: 3
   - creature: {fileID: 11400000, guid: 7d1983f083e2c9a49bc2725df7d9691b, type: 2}
-    min: 3
-    max: 3000
-  - creature: {fileID: 11400000, guid: b93745913452c36469604bba8816e3d6, type: 2}
-    min: 2
-    max: 3000
-  - creature: {fileID: 11400000, guid: 6ea0b3ed958930e41ab8e76bc52ce1b9, type: 2}
-    min: 2
-    max: 3000
-  - creature: {fileID: 11400000, guid: d6c05d15cb4a7664387a7a4caa681702, type: 2}
-    min: 2
-    max: 3000
-  - creature: {fileID: 11400000, guid: c860fc307cbc9f346afc3fae4f08b1a2, type: 2}
-    min: 2
-    max: 3000
-  - creature: {fileID: 11400000, guid: e859ac4485df88141b1a4cef5d566334, type: 2}
-    min: 3
+    min: 20
+    max: 30
+  - creature: {fileID: 11400000, guid: 9b23414f36bb0be419f8266ca6c35f45, type: 2}
+    min: 20
+    max: 30
+  - creature: {fileID: 11400000, guid: ed3906efa43b4174ba60eadd0d6aa02b, type: 2}
+    min: 20
+    max: 30
+  - creature: {fileID: 11400000, guid: 4fd41ea386a0ace4abad0946d8860497, type: 2}
+    min: 20
+    max: 30
+  - creature: {fileID: 11400000, guid: 7df000dfe67f063478052d4e0578b42a, type: 2}
+    min: 20
+    max: 30
+  - creature: {fileID: 11400000, guid: 30e7175a5da25aa439308cab8f79b62b, type: 2}
+    min: 20
+    max: 30
+  - creature: {fileID: 11400000, guid: 9f3b6d3f88186174ea86b4e0f01dc676, type: 2}
+    min: 20
     max: 30
   StartSpells:
   - {fileID: 11400000, guid: 08c84490596087042ad4ccae387cb166, type: 2}
@@ -90,6 +92,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a4de2eed50695aa40a49254cbfea6906, type: 2}
   - {fileID: 11400000, guid: 68fa24297844d904f9b28c1ccb3707f8, type: 2}
   - {fileID: 11400000, guid: e9c45497960076d4c8496681b5a56557, type: 2}
+  - {fileID: 11400000, guid: b18e4e8a6ea1f9146a8322afb6d74359, type: 2}
   isBallista: 1
   isAmmoCart: 1
   isFirstAidTent: 1

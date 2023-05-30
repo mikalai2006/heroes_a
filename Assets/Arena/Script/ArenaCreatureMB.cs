@@ -76,10 +76,11 @@ public class ArenaCreatureMB : MonoBehaviour // , IPointerDownHandler
 
     private void NextRound()
     {
-        if (!_arenaEntity.Death)
-        {
-            _arenaEntity.SetRoundData();
-        }
+        // TODO
+        // if (!_arenaEntity.Death)
+        // {
+        //     _arenaEntity.SetRoundData();
+        // }
     }
 
 
@@ -186,9 +187,9 @@ public class ArenaCreatureMB : MonoBehaviour // , IPointerDownHandler
         _inputManager.Enable();
     }
 
-    private void ClickCreature(InputAction.CallbackContext context)
+    private async void ClickCreature(InputAction.CallbackContext context)
     {
-        ArenaEntity.ClickCreature();
+        await ArenaEntity.ClickCreature();
         // Debug.Log($"Click {name}");
     }
     #endregion
@@ -260,10 +261,20 @@ public class ArenaCreatureMB : MonoBehaviour // , IPointerDownHandler
     {
         var entityCreature = (EntityCreature)ArenaEntity.Entity;
         var entityData = (ScriptableAttributeCreature)entityCreature.ConfigAttribute;
-        GridArenaNode nodeDoor = null;
 
         var nodeStart = ArenaEntity.Path[0];
         var nodeEnd = ArenaEntity.Path[ArenaEntity.Path.Count - 1];
+
+        GridArenaNode nodeBridge = null;
+        if (nodeStart.StateArenaNode.HasFlag(StateArenaNode.OpenBridge))
+        {
+            nodeBridge = nodeStart;
+        };
+        if (nodeStart.OccupiedUnit.RelatedNode != null && nodeStart.OccupiedUnit.RelatedNode.StateArenaNode.HasFlag(StateArenaNode.OpenBridge))
+        {
+            nodeBridge = nodeStart.OccupiedUnit.RelatedNode;
+        };
+
         _animator.Play(string.Format("{0}{1}", _nameCreature, "Moving"), 0, 0f);
 
         var difPos = entityData.CreatureParams.Size == 2
@@ -274,28 +285,8 @@ public class ArenaCreatureMB : MonoBehaviour // , IPointerDownHandler
         {
             var time = _speedAnimation * ArenaEntity.Path.Count;
 
-            // Open Door.
-            if (
-                nodeEnd.StateArenaNode.HasFlag(StateArenaNode.Door)
-                || (
-                    nodeEnd.RightNode != null
-                    && nodeEnd.RightNode.StateArenaNode.HasFlag(StateArenaNode.Door)
-                    && ArenaEntity.TypeArenaPlayer == TypeArenaPlayer.Right
-                    )
-                )
-            {
-                await ArenaEntity.OpenDoor();
-                if (nodeEnd.StateArenaNode.HasFlag(StateArenaNode.Door))
-                {
-                    nodeDoor = nodeEnd;
-                    nodeEnd.StateArenaNode &= ~StateArenaNode.Door;
-                }
-                else if (nodeEnd.RightNode.StateArenaNode.HasFlag(StateArenaNode.Door))
-                {
-                    nodeDoor = nodeEnd.RightNode;
-                    nodeEnd.RightNode.StateArenaNode &= ~StateArenaNode.Door;
-                }
-            }
+            // Check Bridge.
+            await ArenaEntity.OpenBridge(nodeEnd);
 
             UpdateDirection(ArenaEntity.PositionPrefab, nodeEnd.position, nodeEnd);
             await SmoothLerp(transform.position, nodeEnd.center + difPos, time);
@@ -310,28 +301,8 @@ public class ArenaCreatureMB : MonoBehaviour // , IPointerDownHandler
                 var nodeTo = ArenaEntity.Path[0];
                 nodeEnd = nodeTo;
 
-                // Open Door.
-                if (
-                    nodeTo.StateArenaNode.HasFlag(StateArenaNode.Door)
-                    || (
-                        nodeTo.RightNode != null
-                        && nodeTo.RightNode.StateArenaNode.HasFlag(StateArenaNode.Door)
-                        && ArenaEntity.TypeArenaPlayer == TypeArenaPlayer.Right
-                        )
-                    )
-                {
-                    await ArenaEntity.OpenDoor();
-                    if (nodeEnd.StateArenaNode.HasFlag(StateArenaNode.Door))
-                    {
-                        nodeDoor = nodeTo;
-                        nodeTo.StateArenaNode &= ~StateArenaNode.Door;
-                    }
-                    else if (nodeTo.RightNode.StateArenaNode.HasFlag(StateArenaNode.Door))
-                    {
-                        nodeDoor = nodeTo.RightNode;
-                        nodeTo.RightNode.StateArenaNode &= ~StateArenaNode.Door;
-                    }
-                }
+                // Check Bridge.
+                await ArenaEntity.OpenBridge(nodeEnd);
 
                 // ScriptableEntityMapObject configNodeData
                 //     = (ScriptableEntityMapObject)nodeTo.OccupiedUnit?.ConfigData;
@@ -342,15 +313,6 @@ public class ArenaCreatureMB : MonoBehaviour // , IPointerDownHandler
 
                 await SmoothLerp(transform.position, nodeTo.center + difPos, time);
                 await UniTask.Yield();
-
-                // if (
-                //     !nodeTo.StateArenaNode.HasFlag(StateArenaNode.Door)
-                //     && ArenaEntity.man
-                //     // && (nodeTo.RightNode != null && nodeTo.RightNode.StateArenaNode.HasFlag(StateArenaNode.Door))
-                //     )
-                // {
-                //     ArenaEntity.CloseDoor();
-                // }
 
                 ArenaEntity.Path.RemoveAt(0);
 
@@ -369,17 +331,8 @@ public class ArenaCreatureMB : MonoBehaviour // , IPointerDownHandler
             ArenaEntity.ChangePosition(nodeEnd);
         }
 
-        // Check Door.
-        if (
-            nodeDoor != null
-            && !nodeEnd.StateArenaNode.HasFlag(StateArenaNode.Door)
-            && nodeEnd.RightNode != null
-            && !nodeEnd.RightNode.StateArenaNode.HasFlag(StateArenaNode.Door)
-            )
-        {
-            ArenaEntity.CloseDoor();
-            nodeDoor.StateArenaNode |= StateArenaNode.Door;
-        }
+        // Close Bridge.
+        ArenaEntity.CloseBridge(nodeEnd);
 
         await UniTask.Yield();
         _animator.Play(string.Format("{0}{1}", _nameCreature, "StopMoving"), 0, 0f);

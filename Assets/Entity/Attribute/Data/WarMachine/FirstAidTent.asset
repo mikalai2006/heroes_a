@@ -50,8 +50,8 @@ MonoBehaviour:
     Level: 1
     Attack: 0
     Defense: 0
-    DamageMin: 0
-    DamageMax: 0
+    DamageMin: 1
+    DamageMax: 25
     HP: 75
     Speed: 0
     Shoots: 0

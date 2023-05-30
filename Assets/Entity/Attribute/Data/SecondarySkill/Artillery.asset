@@ -100,7 +100,8 @@ MonoBehaviour:
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
-    value: 0
+    value: 100
+  Effects: []
   references:
     version: 2
     RefIds: []

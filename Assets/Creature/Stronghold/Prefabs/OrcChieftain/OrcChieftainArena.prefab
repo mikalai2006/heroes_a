@@ -116,7 +116,7 @@ PrefabInstance:
     - target: {fileID: -5896583525801940916, guid: 85e07074849dfd347aa575cbe88b7e5d, type: 3}
       propertyPath: ShootPrefab
       value: 
-      objectReference: {fileID: 721117037303667823, guid: 43d93ffa3aafe4141a0ae8f9ce008fdc, type: 3}
+      objectReference: {fileID: 8794104868956520350, guid: b18f2ec1990a02149b6ddd0931224b28, type: 3}
     - target: {fileID: 50873964902334322, guid: 85e07074849dfd347aa575cbe88b7e5d, type: 3}
       propertyPath: m_Name
       value: OrcChieftainArena

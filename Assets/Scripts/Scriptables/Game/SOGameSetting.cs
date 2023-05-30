@@ -62,6 +62,7 @@ public class SOGameSetting : ScriptableObject
 
     [Header("Setting Tests")]
     [Space(5)]
+    public List<ScriptableEntityTown> ArenaTestTowns;
     public List<ScriptableEntityHero> ArenaTestHeroes;
     [SerializeField] public AssetReferenceGameObject ArenaPlaceholderModel;
     [SerializeField] public AssetReferenceGameObject ArenaPlaceholderShootModel;

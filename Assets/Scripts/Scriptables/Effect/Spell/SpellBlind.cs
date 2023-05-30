@@ -16,6 +16,7 @@ public class SpellBlind : ScriptableAttributeSpell
             .GetAllGridNodes()
             .Where(t =>
                 t.OccupiedUnit != null
+                && !t.StateArenaNode.HasFlag(StateArenaNode.Excluded)
                 && t.OccupiedUnit.TypeArenaPlayer != arenaManager.ArenaQueue.activeEntity.arenaEntity.TypeArenaPlayer
             )
             .ToList();

@@ -93,6 +93,16 @@ public class ArenaWarMachine : ArenaEntityBase
         ArenaWarMachineMonoBehavior.Init(this);
     }
 
+    public override void SetDamage(int damage)
+    {
+        base.SetDamage(damage);
+
+        if (Death)
+        {
+            ArenaWarMachineMonoBehavior.RunDeath();
+        }
+    }
+
     public override async UniTask GetFightingNodes()
     {
         // _arenaManager.ClearAttackNode();
@@ -102,6 +112,19 @@ public class ArenaWarMachine : ArenaEntityBase
 
         var arenaEntity = _arenaManager.ArenaQueue.activeEntity.arenaEntity;
         var warMachineConfig = ((ScriptableAttributeWarMachine)((EntityCreature)_arenaManager.ArenaQueue.activeEntity.arenaEntity.Entity).ConfigAttribute);
+
+        // Check target for catapult.
+        if (warMachineConfig.TypeWarMachine == TypeWarMachine.Catapult)
+        {
+            var countNotDestructeFortification = _arenaManager.ArenaTown.FortificationsGameObject
+                .Where(t => t.Value != 0)
+                .ToList();
+            if (countNotDestructeFortification.Count == 0 && warMachineConfig.TypeWarMachine == TypeWarMachine.Catapult)
+            {
+                _arenaManager.NextCreature(false, false);
+            }
+        }
+
         var resultChoosed = await warMachineConfig
                 .ChooseTarget(_arenaManager, _arenaManager.ArenaQueue.ActiveHero);
 
@@ -140,10 +163,6 @@ public class ArenaWarMachine : ArenaEntityBase
                             _arenaManager.SetColorAllowFightNode(node, LevelManager.Instance.ConfigGameSettings.colorAllowAttackCreature);
                         }
                     }
-                }
-                else
-                {
-                    _arenaManager.town.ArenaEntityTownMB.SetStatusColliders(true);
                 }
                 break;
             case ArenaTypeRunEffect.AutoAll:
@@ -238,7 +257,10 @@ public class ArenaWarMachine : ArenaEntityBase
                 break;
         }
 
-        _arenaManager.town.ArenaEntityTownMB.SetStatusColliders(false);
+        // if (_arenaManager.town != null)
+        // {
+        //     _arenaManager.town.ArenaEntityTownMB.SetStatusColliders(false);
+        // }
         EndRunWarMachine();
     }
 

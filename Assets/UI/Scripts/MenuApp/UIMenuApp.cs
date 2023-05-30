@@ -49,19 +49,43 @@ public class UIMenuApp : UILocaleBase
             await AudioManager.Instance.Click();
             await DestroyMenu();
 
+            UnitManager.Entities.Clear();
             var testHero = new EntityHero(TypeFaction.Castle, GameSetting.ArenaTestHeroes[0]);
             var testEnemy = new EntityHero(TypeFaction.Castle, GameSetting.ArenaTestHeroes[1]);
-            var configTown = ResourceSystem.Instance
-                .GetEntityByType<ScriptableEntityTown>(TypeEntity.Town)
-                .Find(t => t.TypeFaction == TypeFaction.Castle);
-            var town = new EntityTown(TypeGround.Grass, configTown);
-
             var loadingOperations = new ArenaLoadOperation(new DialogArenaData()
             {
                 hero = testHero,
+                town = null,
                 enemy = testEnemy,
-                town = town,
                 ArenaSetting = GameSetting.ArenaSettings[Random.Range(0, GameSetting.ArenaSettings.Count)]
+            });
+            var result = await loadingOperations.ShowHide();
+
+            var loaderMenu = new Queue<ILoadingOperation>();
+            loaderMenu.Enqueue(new MenuAppOperation());
+            await GameManager.Instance.LoadingScreenProvider.LoadAndDestroy(loaderMenu);
+        };
+
+        var testArenaTownButton = Root.rootVisualElement.Q<Button>("TestArenaTown");
+        testArenaTownButton.clickable.clicked += async () =>
+        {
+            await AudioManager.Instance.Click();
+            await DestroyMenu();
+
+            UnitManager.Entities.Clear();
+            var testHero = new EntityHero(TypeFaction.Castle, GameSetting.ArenaTestHeroes[0]);
+            UnitManager.Entities.Add(testHero.Id, testHero);
+            var testEnemy = new EntityHero(TypeFaction.Castle, GameSetting.ArenaTestHeroes[1]);
+            UnitManager.Entities.Add(testEnemy.Id, testEnemy);
+            var configTown = GameSetting.ArenaTestTowns[Random.Range(0, GameSetting.ArenaTestTowns.Count)];
+            var town = new EntityTown(configTown.TypeGround, configTown);
+            town.Data.level = 2;
+            town.Data.HeroinTown = testEnemy.Id;
+            var loadingOperations = new ArenaLoadOperation(new DialogArenaData()
+            {
+                hero = testHero,
+                town = town,
+                ArenaSetting = GameSetting.ArenaSettings.Find(t => t.NativeGround.typeGround == configTown.TypeGround)
             });
             var result = await loadingOperations.ShowHide();
 

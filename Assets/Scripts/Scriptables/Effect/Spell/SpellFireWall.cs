@@ -8,15 +8,42 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "SpellFireWall", menuName = "Game/Attribute/Spell/20_FireWall", order = 20)]
 public class SpellFireWall : ScriptableAttributeSpell
 {
+    public int countRound;
     public async override UniTask<List<GridArenaNode>> ChooseTarget(ArenaManager arenaManager, EntityHero hero, Player player = null)
     {
+        var activeTypePlayer = arenaManager.ArenaQueue.activeEntity.arenaEntity.TypeArenaPlayer;
         List<GridArenaNode> nodes = arenaManager
             .GridArenaHelper
             .GetAllGridNodes()
             .Where(t =>
                 t.OccupiedUnit == null
                 && t.SpellUnit == null
-                && t.Neighbours().Count == 6
+                // && t.Neighbours().Count == 6
+                && (
+                    (
+                        activeTypePlayer == TypeArenaPlayer.Left
+                        && t.LeftTopNode != null
+                        && t.LeftTopNode.StateArenaNode.HasFlag(StateArenaNode.Empty)
+                        && !t.LeftTopNode.StateArenaNode.HasFlag(StateArenaNode.Disable)
+                        && t.LeftBottomNode != null
+                        && t.LeftBottomNode.StateArenaNode.HasFlag(StateArenaNode.Empty)
+                        && !t.LeftBottomNode.StateArenaNode.HasFlag(StateArenaNode.Disable)
+                    )
+                    ||
+                    (
+                        activeTypePlayer == TypeArenaPlayer.Right
+                        && t.RightTopNode != null
+                        && t.RightTopNode.StateArenaNode.HasFlag(StateArenaNode.Empty)
+                        && !t.RightTopNode.StateArenaNode.HasFlag(StateArenaNode.Disable)
+                        && t.RightBottomNode != null
+                        && t.RightBottomNode.StateArenaNode.HasFlag(StateArenaNode.Empty)
+                        && !t.RightBottomNode.StateArenaNode.HasFlag(StateArenaNode.Disable)
+                    )
+                )
+            // && t.Neighbours().Where(t =>
+            //     t.StateArenaNode.HasFlag(StateArenaNode.Disable)
+            //     || t.StateArenaNode.HasFlag(StateArenaNode.Occupied)
+            // ).Count() == 0
             )
             .ToList();
 
@@ -26,6 +53,7 @@ public class SpellFireWall : ScriptableAttributeSpell
 
     public async override UniTask AddEffect(GridArenaNode node, EntityHero heroRunSpell, ArenaManager arenaManager, Player player = null)
     {
+        var activeTypePlayer = arenaManager.ArenaQueue.activeEntity.arenaEntity.TypeArenaPlayer;
         var entity = node.OccupiedUnit;
         ScriptableAttributeSecondarySkill baseSSkill = SchoolMagic.BaseSecondarySkill;
         SpellItem dataCurrent = new();
@@ -40,20 +68,26 @@ public class SpellFireWall : ScriptableAttributeSpell
 
         ArenaEntitySpell newEntity = new ArenaEntitySpell(node, this, heroRunSpell, arenaManager);
         newEntity.CreateMapGameObject();
-        node.SpellsState.Add(this, 2);
+        node.SpellsState.Add(this, countRound);
         node.SetSpellsStatus(true);
 
-        var relatedEntity = new ArenaEntitySpell(node.LeftTopNode, this, heroRunSpell, arenaManager);
+        var nodeForRelated = activeTypePlayer == TypeArenaPlayer.Left
+            ? node.LeftTopNode
+            : node.RightTopNode;
+        var relatedEntity = new ArenaEntitySpell(nodeForRelated, this, heroRunSpell, arenaManager);
         relatedEntity.CreateMapGameObject();
-        newEntity.AddRelatedNode(node.LeftTopNode);
-        node.LeftTopNode.SpellsState.Add(this, 2);
+        newEntity.AddRelatedNode(nodeForRelated);
+        nodeForRelated.SpellsState.Add(this, countRound);
 
         if (levelSSkill >= 2)
         {
-            relatedEntity = new ArenaEntitySpell(node.LeftBottomNode, this, heroRunSpell, arenaManager);
+            var secondNodeForRelated = activeTypePlayer == TypeArenaPlayer.Left
+                ? node.LeftBottomNode
+                : node.RightBottomNode;
+            relatedEntity = new ArenaEntitySpell(secondNodeForRelated, this, heroRunSpell, arenaManager);
             relatedEntity.CreateMapGameObject();
-            newEntity.AddRelatedNode(node.LeftBottomNode);
-            node.LeftBottomNode.SpellsState.Add(this, 2);
+            newEntity.AddRelatedNode(secondNodeForRelated);
+            secondNodeForRelated.SpellsState.Add(this, countRound);
         }
 
         await UniTask.Delay(1);

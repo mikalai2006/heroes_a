@@ -14,7 +14,7 @@ public class SpellDispel : ScriptableAttributeSpell
         List<GridArenaNode> nodes = arenaManager
             .GridArenaHelper
             .GetAllGridNodes()
-            .Where(t => t.OccupiedUnit != null)
+            .Where(t => t.OccupiedUnit != null && !t.StateArenaNode.HasFlag(StateArenaNode.Excluded))
             .ToList();
 
         await UniTask.Delay(1);

@@ -78,7 +78,7 @@ public class ArenaManager : MonoBehaviour
 
     private EntityHero hero;
     private EntityHero enemy;
-    public ArenaEntityTown town;
+    public ArenaEntityTown ArenaTown = null;
     public GameObject clickedFortification;
     public GameObject buttonAction;
     public GameObject _buttonAction;
@@ -205,7 +205,7 @@ public class ArenaManager : MonoBehaviour
                         && neiNode.LeftNode.OccupiedUnit == null
                         && activeArenaEntity.TypeArenaPlayer == TypeArenaPlayer.Right
                         && neiNode.OccupiedUnit != activeArenaEntity.OccupiedNode.OccupiedUnit
-                        && !neiNode.LeftNode.StateArenaNode.HasFlag(StateArenaNode.Door)
+                        && !neiNode.LeftNode.StateArenaNode.HasFlag(StateArenaNode.Bridge)
                         )
                     {
                         neiNode.LeftNode.StateArenaNode |= StateArenaNode.Moved;
@@ -216,7 +216,7 @@ public class ArenaManager : MonoBehaviour
                         && activeArenaEntity.TypeArenaPlayer == TypeArenaPlayer.Left
                         && neiNode.RightNode.OccupiedUnit == null
                         && neiNode.OccupiedUnit != activeArenaEntity.OccupiedNode.OccupiedUnit
-                        && !neiNode.RightNode.StateArenaNode.HasFlag(StateArenaNode.Door)
+                        && !neiNode.RightNode.StateArenaNode.HasFlag(StateArenaNode.Bridge)
                         )
                     {
                         neiNode.RightNode.StateArenaNode |= StateArenaNode.Moved;
@@ -327,13 +327,17 @@ public class ArenaManager : MonoBehaviour
 
     public void DrawButtonAction()
     {
+        if (clickedNode == null) return;
         RuleTile ruleCursor = CursorRule.NotAllow;
         Vector3 positionButton = new Vector3(clickedNode.center.x, clickedNode.center.y, zCoord);
+        // create direction icon.
+        var scale = new Vector3(1, 1, 1);
 
         if (ChoosedSpell == null)
         {
+            ArenaEntityBase activeArenaEntity = ArenaQueue.activeEntity.arenaEntity;
             ScriptableAttributeCreature activeCreatureData
-                = (ScriptableAttributeCreature)ArenaQueue.activeEntity.arenaEntity.Entity.ScriptableDataAttribute;
+                = (ScriptableAttributeCreature)activeArenaEntity.Entity.ScriptableDataAttribute;
 
             if (AllowPathNodes.Contains(clickedNode))
             {
@@ -346,11 +350,7 @@ public class ArenaManager : MonoBehaviour
                 if (KeyNodeFromAttack != -1 && AttackedCreature != null)
                 {
                     var nodesForAttack = NodesForAttackActiveCreature[KeyNodeFromAttack];
-                    // var neighboursNodesEnemy = GridArenaHelper
-                    //     .GetNeighbourList(ArenaQueue.activeEntity.OccupiedNode)
-                    //     .Where(t => t.OccupiedUnit != null && t.OccupiedUnit.TypeArenaPlayer != ArenaQueue.activeEntity.TypeArenaPlayer);
-                    // if (ChoosedSpell == null)
-                    // {
+
                     switch (ArenaQueue.activeEntity.arenaEntity.Data.typeAttack)
                     {
                         case TypeAttack.Attack:
@@ -399,57 +399,17 @@ public class ArenaManager : MonoBehaviour
                             ruleCursor = CursorRule.FightFromLeft;
                             break;
                     }
-
-                    // if (ArenaQueue.activeEntity.arenaEntity.Data.shoots > 0 && ArenaQueue.activeEntity.arenaEntity.Data.typeAttack == TypeAttack.AttackShoot)
-                    // {
-                    //     // check distance.
-                    //     if (nodesForAttack.nodeToAttack.DistanceTo(ArenaQueue.activeEntity.arenaEntity.OccupiedNode) <= ArenaQueue.activeEntity.arenaEntity.Speed)
-                    //     {
-                    //         ruleCursor = CursorRule.Shoot;
-                    //     }
-                    //     else
-                    //     {
-                    //         ruleCursor = CursorRule.ShootHalf;
-                    //     }
-                    //     positionButton = new Vector3(nodesForAttack.nodeToAttack.center.x, nodesForAttack.nodeToAttack.center.y, zCoord);
-                    // }
-                    // else
-                    // {
-                    //     Vector3 difPos = nodesForAttack.nodeFromAttack.center - nodesForAttack.nodeToAttack.center;
-                    //     if (difPos.x > 0 && difPos.y > 0)
-                    //     {
-                    //         ruleCursor = CursorRule.FightFromTopRight;
-                    //     }
-                    //     else if (difPos.x < 0 && difPos.y > 0)
-                    //     {
-                    //         ruleCursor = CursorRule.FightFromTopLeft;
-                    //     }
-                    //     else if (difPos.x > 0 && difPos.y == 0)
-                    //     {
-                    //         ruleCursor = CursorRule.FightFromRight;
-                    //     }
-                    //     else if (difPos.x < 0 && difPos.y == 0)
-                    //     {
-                    //         ruleCursor = CursorRule.FightFromLeft;
-                    //     }
-                    //     else if (difPos.x < 0 && difPos.y < 0)
-                    //     {
-                    //         ruleCursor = CursorRule.FightFromBottomLeft;
-                    //     }
-                    //     else if (difPos.x > 0 && difPos.y < 0)
-                    //     {
-                    //         ruleCursor = CursorRule.FightFromBottomRight;
-                    //     }
-                    //     // _buttonAction.transform.position = new Vector3(clickedNode.center.x, clickedNode.center.y, -5);
-                    // }
-                    // // }
-                    // // else
-                    // // {
-                    // //     // Spell cursor.
-                    // //     ruleCursor = CursorRule.Spell;
-                    // //     positionButton = new Vector3(nodesForAttack.nodeToAttack.center.x, nodesForAttack.nodeToAttack.center.y, zCoord);
-                    // // }
                 }
+            }
+
+            // Check move cursor for inverse direction.
+            if (
+                (ruleCursor == CursorRule.GoFlying || ruleCursor == CursorRule.GoGround)
+                &&
+                activeArenaEntity.OccupiedNode.center.x > clickedNode.center.x
+            )
+            {
+                scale = new Vector3(-1, 1, 1);
             }
         }
 
@@ -458,6 +418,7 @@ public class ArenaManager : MonoBehaviour
         _buttonWarMachine.SetActive(false);
         _buttonAction.GetComponent<SpriteRenderer>().sprite = ruleCursor.m_DefaultSprite;
         _buttonAction.transform.position = positionButton;
+        _buttonAction.transform.localScale = scale;
         activeCursor = ruleCursor;
         // _tileMapCursor.SetTile(clickedNode.position, ruleCursor);
     }
@@ -547,7 +508,11 @@ public class ArenaManager : MonoBehaviour
         {
             neiNode.StateArenaNode ^= StateArenaNode.Moved;
         };
-        town.ArenaEntityTownMB.SetStatusColliders(false);
+
+        if (ArenaTown != null && ArenaTown.ArenaEntityTownMB != null)
+        {
+            ArenaTown.ArenaEntityTownMB.SetStatusColliders(false);
+        }
         AllMovedNodes.Clear();
         AllowMovedNodes.Clear();
         ResetButton();
@@ -923,23 +888,19 @@ public class ArenaManager : MonoBehaviour
 
         if (ResourceSystem.Instance != null)
         {
-            CreateHero();
+            if (DialogArenaData.town != null)
+            {
+                await CreateTown();
+            }
+
+            CreateHeroes();
 
             CreateSchemaCreatures();
 
             await CreateCreatures();
 
             CreateSchema();
-
             // CreateObstacles();
-            if (DialogArenaData.town != null)
-            {
-                await CreateTown();
-            }
-            else
-            {
-                town = null;
-            }
             await CreateWarMachine();
 
             NextCreature(false, false);
@@ -970,37 +931,6 @@ public class ArenaManager : MonoBehaviour
     {
         if (DialogArenaData.town != null)
         {
-            // Disable indestructible nodes.
-            GridArenaHelper.GetNode(11, 11).StateArenaNode |= StateArenaNode.Disable;
-            GridArenaHelper.GetNode(10, 9).StateArenaNode |= StateArenaNode.Disable;
-            GridArenaHelper.GetNode(10, 8).StateArenaNode |= StateArenaNode.Disable;
-            GridArenaHelper.GetNode(9, 5).StateArenaNode |= StateArenaNode.Disable;
-            GridArenaHelper.GetNode(10, 3).StateArenaNode |= StateArenaNode.Disable;
-            GridArenaHelper.GetNode(11, 2).StateArenaNode |= StateArenaNode.Disable;
-
-            // Destructible Wall nodes.
-            // (11, 10) (9, 7) (10, 4) (11, 1)
-            GridArenaHelper.GetNode(11, 10).StateArenaNode |= StateArenaNode.Wall | StateArenaNode.Disable;
-            GridArenaHelper.GetNode(9, 7).StateArenaNode |= StateArenaNode.Wall | StateArenaNode.Disable;
-            GridArenaHelper.GetNode(10, 4).StateArenaNode |= StateArenaNode.Wall | StateArenaNode.Disable;
-            GridArenaHelper.GetNode(11, 1).StateArenaNode |= StateArenaNode.Wall | StateArenaNode.Disable;
-
-            // Moat nodes.
-            // 10,11; 10,10; 9,9; 9,8; 8,7; 9,6; 8,5; 9,4; 9,3; 10,2; 10,1;
-            GridArenaHelper.GetNode(10, 11).StateArenaNode |= StateArenaNode.Moating;
-            GridArenaHelper.GetNode(10, 10).StateArenaNode |= StateArenaNode.Moating;
-            GridArenaHelper.GetNode(9, 9).StateArenaNode |= StateArenaNode.Moating;
-            GridArenaHelper.GetNode(9, 8).StateArenaNode |= StateArenaNode.Moating;
-            GridArenaHelper.GetNode(8, 7).StateArenaNode |= StateArenaNode.Moating;
-            // GridArenaHelper.GetNode(9, 6).StateArenaNode |= StateArenaNode.Moating;
-            GridArenaHelper.GetNode(8, 5).StateArenaNode |= StateArenaNode.Moating;
-            GridArenaHelper.GetNode(9, 4).StateArenaNode |= StateArenaNode.Moating;
-            GridArenaHelper.GetNode(9, 3).StateArenaNode |= StateArenaNode.Moating;
-            GridArenaHelper.GetNode(10, 2).StateArenaNode |= StateArenaNode.Moating;
-            GridArenaHelper.GetNode(10, 1).StateArenaNode |= StateArenaNode.Moating;
-
-            // Door.
-            GridArenaHelper.GetNode(10, 6).StateArenaNode |= StateArenaNode.Door;
         }
         else if (DialogArenaData.creatureBank != null)
         {
@@ -1010,12 +940,15 @@ public class ArenaManager : MonoBehaviour
 
     private async UniTask CreateWarMachine()
     {
-        if (hero.Data.WarMachines.ContainsKey(TypeWarMachine.Catapult) && town != null)
+        if (
+            hero.Data.WarMachines.ContainsKey(TypeWarMachine.Catapult)
+            && DialogArenaData.town != null
+            && DialogArenaData.town.Data.level != -1
+            )
         {
             var catapult = (EntityCreature)hero.Data.WarMachines[TypeWarMachine.Catapult];
             var GridGameObject = new ArenaWarMachine();
             GridGameObject.Init(this, hero);
-            var size = catapult.ConfigAttribute.CreatureParams.Size;
             var nodeObj = GridArenaHelper.GridTile.GetGridObject(new Vector3Int(0, 4));
             GridGameObject.TypeArenaPlayer = TypeArenaPlayer.Left;
             GridGameObject.SetEntity(catapult, nodeObj);
@@ -1031,9 +964,23 @@ public class ArenaManager : MonoBehaviour
             var ballista = (EntityCreature)hero.Data.WarMachines[TypeWarMachine.Ballista];
             var GridGameObject = new ArenaWarMachine();
             GridGameObject.Init(this, hero);
-            var size = ballista.ConfigAttribute.CreatureParams.Size;
             var nodeObj = GridArenaHelper.GridTile.GetGridObject(new Vector3Int(0, 8));
             GridGameObject.TypeArenaPlayer = TypeArenaPlayer.Left;
+            GridGameObject.SetEntity(ballista, nodeObj);
+            GridGameObject.SetPosition(nodeObj);
+            GridGameObject.Data.typeAttack = TypeAttack.AttackShoot;
+
+            await GridGameObject.CreateMapGameObject(nodeObj);
+
+            ArenaQueue.AddEntity(GridGameObject);
+        }
+        if (enemy.Data.WarMachines.ContainsKey(TypeWarMachine.Ballista))
+        {
+            var ballista = (EntityCreature)enemy.Data.WarMachines[TypeWarMachine.Ballista];
+            var GridGameObject = new ArenaWarMachine();
+            GridGameObject.Init(this, enemy);
+            var nodeObj = GridArenaHelper.GridTile.GetGridObject(new Vector3Int(width - 1, 8));
+            GridGameObject.TypeArenaPlayer = TypeArenaPlayer.Right;
             GridGameObject.SetEntity(ballista, nodeObj);
             GridGameObject.SetPosition(nodeObj);
             GridGameObject.Data.typeAttack = TypeAttack.AttackShoot;
@@ -1047,9 +994,23 @@ public class ArenaManager : MonoBehaviour
             var ammoCart = (EntityCreature)hero.Data.WarMachines[TypeWarMachine.AmmoCart];
             var GridGameObject = new ArenaWarMachine();
             GridGameObject.Init(this, hero);
-            var size = ammoCart.ConfigAttribute.CreatureParams.Size;
             var nodeObj = GridArenaHelper.GridTile.GetGridObject(new Vector3Int(0, 10));
             GridGameObject.TypeArenaPlayer = TypeArenaPlayer.Left;
+            GridGameObject.SetEntity(ammoCart, nodeObj);
+            GridGameObject.SetPosition(nodeObj);
+            GridGameObject.Data.typeAttack = TypeAttack.Attack;
+
+            await GridGameObject.CreateMapGameObject(nodeObj);
+
+            ArenaQueue.AddEntity(GridGameObject);
+        }
+        if (enemy.Data.WarMachines.ContainsKey(TypeWarMachine.AmmoCart))
+        {
+            var ammoCart = (EntityCreature)enemy.Data.WarMachines[TypeWarMachine.AmmoCart];
+            var GridGameObject = new ArenaWarMachine();
+            GridGameObject.Init(this, enemy);
+            var nodeObj = GridArenaHelper.GridTile.GetGridObject(new Vector3Int(width - 1, 10));
+            GridGameObject.TypeArenaPlayer = TypeArenaPlayer.Right;
             GridGameObject.SetEntity(ammoCart, nodeObj);
             GridGameObject.SetPosition(nodeObj);
             GridGameObject.Data.typeAttack = TypeAttack.Attack;
@@ -1063,9 +1024,23 @@ public class ArenaManager : MonoBehaviour
             var firstAidTent = (EntityCreature)hero.Data.WarMachines[TypeWarMachine.FirstAidTent];
             var GridGameObject = new ArenaWarMachine();
             GridGameObject.Init(this, hero);
-            var size = firstAidTent.ConfigAttribute.CreatureParams.Size;
             var nodeObj = GridArenaHelper.GridTile.GetGridObject(new Vector3Int(0, 2));
             GridGameObject.TypeArenaPlayer = TypeArenaPlayer.Left;
+            GridGameObject.SetEntity(firstAidTent, nodeObj);
+            GridGameObject.SetPosition(nodeObj);
+            GridGameObject.Data.typeAttack = TypeAttack.Aid;
+
+            await GridGameObject.CreateMapGameObject(nodeObj);
+
+            ArenaQueue.AddEntity(GridGameObject);
+        }
+        if (enemy.Data.WarMachines.ContainsKey(TypeWarMachine.FirstAidTent))
+        {
+            var firstAidTent = (EntityCreature)enemy.Data.WarMachines[TypeWarMachine.FirstAidTent];
+            var GridGameObject = new ArenaWarMachine();
+            GridGameObject.Init(this, enemy);
+            var nodeObj = GridArenaHelper.GridTile.GetGridObject(new Vector3Int(width - 1, 2));
+            GridGameObject.TypeArenaPlayer = TypeArenaPlayer.Right;
             GridGameObject.SetEntity(firstAidTent, nodeObj);
             GridGameObject.SetPosition(nodeObj);
             GridGameObject.Data.typeAttack = TypeAttack.Aid;
@@ -1103,17 +1078,34 @@ public class ArenaManager : MonoBehaviour
 
     private async UniTask CreateTown()
     {
-        var townEntity = DialogArenaData.town;
-        var node = GridArenaHelper.GetNode(new Vector3Int(10, 5));
-        town = new ArenaEntityTown();
-        town.Init(node, townEntity, this);
-        await town.CreateGameObject();
-        await town.SetShootTown();
+        if (DialogArenaData.town.Data.level > -1)
+        {
+            var townEntity = DialogArenaData.town;
+            var node = GridArenaHelper.GetNode(new Vector3Int(10, 5));
+            ArenaTown = new ArenaEntityTown();
+            ArenaTown.Init(node, townEntity, this);
+            await ArenaTown.CreateGameObject();
+            await ArenaTown.SetShootTown();
+        }
+        else
+        {
+            ArenaTown = null;
+        }
 
+        if (DialogArenaData.town.HeroInTown != null)
+        {
+            enemy = DialogArenaData.town.HeroInTown;
+            var enemyArena = new ArenaHeroEntity(tileMapArenaUnits);
+            enemyArena.SetEntity(enemy);
+            enemyArena.SetPosition(new Vector3(width + 1.5f, 8.5f));
+            enemyArena.CreateMapGameObject();
+            enemy.ArenaHeroEntity = enemyArena;
+        }
     }
 
-    private void CreateHero()
+    private void CreateHeroes()
     {
+        // TODO - use only from DialogArenaData
         hero = LevelManager.Instance.ActivePlayer != null
             ? LevelManager.Instance.ActivePlayer.ActiveHero
             : DialogArenaData.hero; // new EntityHero(TypeFaction.Castle, heroes[0]);
@@ -1123,9 +1115,9 @@ public class ArenaManager : MonoBehaviour
         heroArena.CreateMapGameObject();
         hero.ArenaHeroEntity = heroArena;
 
-        enemy = DialogArenaData.enemy;
-        if (enemy != null)
+        if (DialogArenaData.enemy != null)
         {
+            enemy = DialogArenaData.enemy;
             var enemyArena = new ArenaHeroEntity(tileMapArenaUnits);
             enemyArena.SetEntity(enemy);
             enemyArena.SetPosition(new Vector3(width + 1.5f, 8.5f));
@@ -1164,7 +1156,7 @@ public class ArenaManager : MonoBehaviour
                 var GridGameObject = new ArenaCreature();
                 GridGameObject.Init(this, enemy);
                 var size = ((EntityCreature)creature.Value).ConfigAttribute.CreatureParams.Size;
-                var nodeObj = GridArenaHelper.GridTile.GetGridObject(new Vector3Int(width - size, schemaCreaturesHero[i]));
+                var nodeObj = GridArenaHelper.GridTile.GetGridObject(new Vector3Int(width - size, schemaEnemyCreatures[i]));
                 GridGameObject.TypeArenaPlayer = TypeArenaPlayer.Right;
                 GridGameObject.SetEntity(creature.Value, nodeObj);
                 GridGameObject.SetPosition(nodeObj);

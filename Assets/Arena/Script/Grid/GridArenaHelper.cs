@@ -161,34 +161,35 @@ public class GridArenaHelper
                 if (
                     !walk
                     ||
-                    // Check door.
+                    // break enemy town if close bridge.
                     (
-                        neighbourNode.StateArenaNode.HasFlag(StateArenaNode.Door)
+                        startNode.OccupiedUnit.TypeArenaPlayer != TypeArenaPlayer.Right
                         &&
                         (
                             (
-                                // for creatures not town.
-                                (
-                                    startNode.OccupiedUnit.TypeArenaPlayer != TypeArenaPlayer.Right
-                                    ||
-                                    (
-                                        // for creatures by town.
-                                        startNode.OccupiedUnit.TypeArenaPlayer == TypeArenaPlayer.Right
-                                        && neighbourNode.LeftNode != null
-                                        && neighbourNode.LeftNode.OccupiedUnit != null
-                                    )
-                                )
-                                &&
-                                // not flying creatures.
-                                startNode.OccupiedUnit.Data.typeMove != MovementType.Flying
+                                neighbourNode.StateArenaNode.HasFlag(StateArenaNode.Bridge)
+                                && !neighbourNode.StateArenaNode.HasFlag(StateArenaNode.OpenBridge)
                             )
-                        ||
+                            ||
                             (
-                                neighbourNode.LeftNode != null
-                                && (
-                                    neighbourNode.LeftNode.StateArenaNode.HasFlag(StateArenaNode.Deathed)
-                                    || neighbourNode.LeftNode.OccupiedUnit != null
-                                )
+                                neighbourNode.RightNode != null
+                                && neighbourNode.RightNode.StateArenaNode.HasFlag(StateArenaNode.Bridge)
+                                && !neighbourNode.RightNode.StateArenaNode.HasFlag(StateArenaNode.OpenBridge)
+                            )
+                        )
+                    )
+                    ||
+                    // break defense town if busy node behind bridge.
+                    (
+                        startNode.OccupiedUnit.TypeArenaPlayer == TypeArenaPlayer.Right
+                        &&
+                        (
+                            (
+                                neighbourNode.StateArenaNode.HasFlag(StateArenaNode.Bridge)
+                                && !neighbourNode.StateArenaNode.HasFlag(StateArenaNode.OpenBridge)
+                                && neighbourNode.LeftNode != null
+                                && neighbourNode.LeftNode.LeftNode != null
+                                && neighbourNode.LeftNode.LeftNode.StateArenaNode.HasFlag(StateArenaNode.Occupied)
                             )
                         )
                     )

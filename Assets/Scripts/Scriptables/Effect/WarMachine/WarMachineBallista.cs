@@ -52,12 +52,48 @@ public class WarMachineBallista : ScriptableAttributeWarMachine
 
     public async override UniTask RunEffect(ArenaManager arenaManager, GridArenaNode node, GridArenaNode nodeToAttack, Player player = null)
     {
-        await ((ArenaWarMachine)node.OccupiedUnit).ArenaWarMachineMonoBehavior.RunAttackShoot(nodeToAttack);
-
         // Calculate damage.
+        int baseDamage = Random.Range(CreatureParams.DamageMin, CreatureParams.DamageMin)
+            * (arenaManager.ArenaQueue.ActiveHero.Data.PSkills[TypePrimarySkill.Attack] + 1);
 
+        // Check Artillery and Archery.
+        int levelSSkill = 0;
+        int dopDamage = 0;
+        int countAttack = 1;
+        if (arenaManager.ArenaQueue.ActiveHero != null)
+        {
+            levelSSkill = arenaManager.ArenaQueue.ActiveHero.Data.SSkills.ContainsKey(TypeSecondarySkill.Artillery)
+                ? arenaManager.ArenaQueue.ActiveHero.Data.SSkills[TypeSecondarySkill.Artillery].level + 1
+                : 0;
+            if (levelSSkill > 0)
+            {
+                var pSkill = arenaManager.ArenaQueue.ActiveHero.Data.SSkills[TypeSecondarySkill.Artillery];
+                dopDamage = ((baseDamage * pSkill.value) / 100);
+                // Calculate count attack.
+                if (levelSSkill > 0)
+                {
+                    countAttack = 2;
+                }
+            }
+            levelSSkill = arenaManager.ArenaQueue.ActiveHero.Data.SSkills.ContainsKey(TypeSecondarySkill.Archery)
+                ? arenaManager.ArenaQueue.ActiveHero.Data.SSkills[TypeSecondarySkill.Archery].level + 1
+                : 0;
+            if (levelSSkill > 0)
+            {
+                var pSkill = arenaManager.ArenaQueue.ActiveHero.Data.SSkills[TypeSecondarySkill.Archery];
+                dopDamage = dopDamage + ((baseDamage * pSkill.value) / 100);
+            }
+        }
+
+        // run attack.
+        for (int i = 0; i < countAttack; i++)
+        {
+            await ((ArenaWarMachine)node.OccupiedUnit).ArenaWarMachineMonoBehavior.RunAttackShoot(nodeToAttack);
+            nodeToAttack.OccupiedUnit.SetDamage(baseDamage + dopDamage);
+        }
 
         await UniTask.Delay(1);
     }
+
 }
 

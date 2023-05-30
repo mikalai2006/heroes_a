@@ -16,6 +16,7 @@ public class SpellPrecision : ScriptableAttributeSpell
             .GetAllGridNodes()
             .Where(t =>
                 t.OccupiedUnit != null
+                && !t.StateArenaNode.HasFlag(StateArenaNode.Excluded)
                 && t.OccupiedUnit.TypeArenaPlayer == arenaManager.ArenaQueue.activeEntity.arenaEntity.TypeArenaPlayer
                 && ((EntityCreature)t.OccupiedUnit.Entity).ConfigAttribute.CreatureParams.Shoots > 0
             )

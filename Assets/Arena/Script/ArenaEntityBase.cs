@@ -146,7 +146,29 @@ public abstract class ArenaEntityBase
     }
     public virtual void SetDamage(int damage)
     {
+        Data.totalHP -= damage;
+        if (Death)
+        {
+            Data.totalHP = 0;
+            Data.quantity = 0;
+            _arenaManager.ArenaQueue.RemoveEntity(this);
 
+            OccupiedNode.SetDeathedNode(this);
+            OccupiedNode.SetOcuppiedUnit(null);
+            if (RelatedNode != null)
+            {
+                RelatedNode.SetRelatedStatus(false);
+                RelatedNode.SetDeathedNode(this);
+                RelatedNode.SetOcuppiedUnit(null);
+            }
+        }
+        else
+        {
+            Data.quantity = (int)Math.Ceiling((double)Data.totalHP / (double)Data.HP);
+        }
+        Debug.Log($"Quantity::: quantity={Data.quantity},{Data.totalHP},{Data.HP}[totalHP{Data.totalHP}]");
+        // OnChangeParamsCreature?.Invoke();
+        UpdateEntity();
     }
     public async virtual UniTask GoCounterAttack(GridArenaNode nodeFromAttack, GridArenaNode nodeToAttack)
     {
@@ -165,7 +187,7 @@ public abstract class ArenaEntityBase
         await UniTask.Yield();
     }
 
-    public void CalculateAttack(GridArenaNode nodeFromAttack, GridArenaNode nodeToAttack)
+    public virtual void CalculateAttack(GridArenaNode nodeFromAttack, GridArenaNode nodeToAttack)
     {
         var randomDamage = new System.Random();
         int totalDamage = 0;
