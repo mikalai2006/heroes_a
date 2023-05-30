@@ -93,6 +93,16 @@ public class ArenaWarMachine : ArenaEntityBase
         ArenaWarMachineMonoBehavior.Init(this);
     }
 
+    public override void SetDamage(int damage)
+    {
+        base.SetDamage(damage);
+
+        if (Death)
+        {
+            ArenaWarMachineMonoBehavior.RunDeath();
+        }
+    }
+
     public override async UniTask GetFightingNodes()
     {
         // _arenaManager.ClearAttackNode();

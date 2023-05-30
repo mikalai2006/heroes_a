@@ -59,9 +59,9 @@ MonoBehaviour:
     value: 2
   - SecondarySkill: {fileID: 11400000, guid: 470e94f5e23819448ac29936897125d9, type: 2}
     value: 0
-  - SecondarySkill: {fileID: 11400000, guid: 2c060e15242dcbd45808ada6fa521278, type: 2}
+  - SecondarySkill: {fileID: 11400000, guid: 2cbdf2de5831fc144b37408fd9ee6e8d, type: 2}
     value: 2
-  - SecondarySkill: {fileID: 11400000, guid: fa3203a5ee7c3ff4ebb5cca62988acab, type: 2}
+  - SecondarySkill: {fileID: 11400000, guid: 901384e2bd5925a458fe52bc9e2e9d14, type: 2}
     value: 2
   - SecondarySkill: {fileID: 11400000, guid: b3653fec31423044eabbe48c254a0dc7, type: 2}
     value: 2

@@ -18,6 +18,7 @@ public class WarMachineFirstAidTent : ScriptableAttributeWarMachine
             .Where(t =>
                 t.OccupiedUnit != null
                 && t.OccupiedUnit.TypeArenaPlayer == arenaManager.ArenaQueue.activeEntity.arenaEntity.TypeArenaPlayer
+                && (((EntityCreature)t.OccupiedUnit.Entity).ConfigAttribute.TypeAttribute != TypeAttribute.WarMachine)
             )
             .ToList();
         // arenaManager.ArenaQueue.activeEntity.arenaEntity.Data.typeAttack = TypeAttack.AttackWarMachine;
@@ -68,10 +69,23 @@ public class WarMachineFirstAidTent : ScriptableAttributeWarMachine
             obj.gameObject.transform.localPosition = new Vector3(0, 1, 0);
             await UniTask.Delay(1000);
             Addressables.Release(asset);
-            // Calculate cure.
-            var entity = node.OccupiedUnit;
-
         }
+
+        // Calculate cure.
+        int recoveryHP = Random.Range(CreatureParams.DamageMin, CreatureParams.DamageMax);
+        var levelSSkill = arenaManager.ArenaQueue.ActiveHero.Data.SSkills.ContainsKey(TypeSecondarySkill.FirstAid)
+            ? arenaManager.ArenaQueue.ActiveHero.Data.SSkills[TypeSecondarySkill.FirstAid].level + 1
+            : 0;
+        if (levelSSkill > 0)
+        {
+            var pSkill = arenaManager.ArenaQueue.ActiveHero.Data.SSkills[TypeSecondarySkill.FirstAid];
+            recoveryHP = Random.Range(1, pSkill.value);
+        }
+
+        var entity = nodeToAction.OccupiedUnit;
+        Debug.Log($"{name}::: Before cure: {entity.Data.totalHP}");
+        entity.SetDamage(-recoveryHP);
+        Debug.Log($"{name}::: After cure: {entity.Data.totalHP}[{recoveryHP}]");
 
         await UniTask.Delay(1);
     }

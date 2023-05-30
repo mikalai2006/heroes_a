@@ -971,34 +971,6 @@ public class ArenaManager : MonoBehaviour
     {
         if (DialogArenaData.town != null)
         {
-            // Disable indestructible nodes.
-            GridArenaHelper.GetNode(11, 11).StateArenaNode |= StateArenaNode.Disable;
-            GridArenaHelper.GetNode(10, 9).StateArenaNode |= StateArenaNode.Disable;
-            GridArenaHelper.GetNode(10, 8).StateArenaNode |= StateArenaNode.Disable;
-            GridArenaHelper.GetNode(9, 5).StateArenaNode |= StateArenaNode.Disable;
-            GridArenaHelper.GetNode(10, 3).StateArenaNode |= StateArenaNode.Disable;
-            GridArenaHelper.GetNode(11, 2).StateArenaNode |= StateArenaNode.Disable;
-
-            // Destructible Wall nodes.
-            // (11, 10) (9, 7) (10, 4) (11, 1)
-            GridArenaHelper.GetNode(11, 10).StateArenaNode |= StateArenaNode.Wall | StateArenaNode.Disable;
-            GridArenaHelper.GetNode(9, 7).StateArenaNode |= StateArenaNode.Wall | StateArenaNode.Disable;
-            GridArenaHelper.GetNode(10, 4).StateArenaNode |= StateArenaNode.Wall | StateArenaNode.Disable;
-            GridArenaHelper.GetNode(11, 1).StateArenaNode |= StateArenaNode.Wall | StateArenaNode.Disable;
-
-            // Moat nodes.
-            // 10,11; 10,10; 9,9; 9,8; 8,7; 9,6; 8,5; 9,4; 9,3; 10,2; 10,1;
-            GridArenaHelper.GetNode(10, 11).StateArenaNode |= StateArenaNode.Moating;
-            GridArenaHelper.GetNode(10, 10).StateArenaNode |= StateArenaNode.Moating;
-            GridArenaHelper.GetNode(9, 9).StateArenaNode |= StateArenaNode.Moating;
-            GridArenaHelper.GetNode(9, 8).StateArenaNode |= StateArenaNode.Moating;
-            GridArenaHelper.GetNode(8, 7).StateArenaNode |= StateArenaNode.Moating;
-            // GridArenaHelper.GetNode(9, 6).StateArenaNode |= StateArenaNode.Moating;
-            GridArenaHelper.GetNode(8, 5).StateArenaNode |= StateArenaNode.Moating;
-            GridArenaHelper.GetNode(9, 4).StateArenaNode |= StateArenaNode.Moating;
-            GridArenaHelper.GetNode(9, 3).StateArenaNode |= StateArenaNode.Moating;
-            GridArenaHelper.GetNode(10, 2).StateArenaNode |= StateArenaNode.Moating;
-            GridArenaHelper.GetNode(10, 1).StateArenaNode |= StateArenaNode.Moating;
         }
         else if (DialogArenaData.creatureBank != null)
         {

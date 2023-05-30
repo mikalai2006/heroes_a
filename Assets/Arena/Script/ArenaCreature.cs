@@ -608,30 +608,12 @@ public class ArenaCreature : ArenaEntityBase
 
     public override void SetDamage(int damage)
     {
-        Data.totalHP -= damage;
+        base.SetDamage(damage);
+
         if (Death)
         {
-            Data.totalHP = 0;
-            Data.quantity = 0;
-            _arenaManager.ArenaQueue.RemoveEntity(this);
-
             ArenaMonoBehavior.RunDeath();
-            OccupiedNode.SetDeathedNode(this);
-            OccupiedNode.SetOcuppiedUnit(null);
-            if (RelatedNode != null)
-            {
-                RelatedNode.SetRelatedStatus(false);
-                RelatedNode.SetDeathedNode(this);
-                RelatedNode.SetOcuppiedUnit(null);
-            }
         }
-        else
-        {
-            Data.quantity = (int)Math.Ceiling((double)Data.totalHP / (double)Data.HP);
-        }
-        Debug.Log($"Quantity::: quantity={Data.quantity},{Data.totalHP},{Data.HP}");
-        // OnChangeParamsCreature?.Invoke();
-        UpdateEntity();
     }
 
     public override async UniTask GoAttack(GridArenaNode nodeFromAttack, GridArenaNode nodeToAttack)
