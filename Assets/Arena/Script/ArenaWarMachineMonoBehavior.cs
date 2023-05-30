@@ -109,9 +109,9 @@ public class ArenaWarMachineMonoBehavior : MonoBehaviour // , IPointerDownHandle
         _inputManager.Enable();
     }
 
-    private void ClickCreature(InputAction.CallbackContext context)
+    private async void ClickCreature(InputAction.CallbackContext context)
     {
-        ArenaEntity.ClickCreature();
+        await ArenaEntity.ClickCreature();
         // Debug.Log($"Click {name}");
     }
     #endregion

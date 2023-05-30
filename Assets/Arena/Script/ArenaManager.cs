@@ -330,11 +330,14 @@ public class ArenaManager : MonoBehaviour
         if (clickedNode == null) return;
         RuleTile ruleCursor = CursorRule.NotAllow;
         Vector3 positionButton = new Vector3(clickedNode.center.x, clickedNode.center.y, zCoord);
+        // create direction icon.
+        var scale = new Vector3(1, 1, 1);
 
         if (ChoosedSpell == null)
         {
+            ArenaEntityBase activeArenaEntity = ArenaQueue.activeEntity.arenaEntity;
             ScriptableAttributeCreature activeCreatureData
-                = (ScriptableAttributeCreature)ArenaQueue.activeEntity.arenaEntity.Entity.ScriptableDataAttribute;
+                = (ScriptableAttributeCreature)activeArenaEntity.Entity.ScriptableDataAttribute;
 
             if (AllowPathNodes.Contains(clickedNode))
             {
@@ -347,11 +350,7 @@ public class ArenaManager : MonoBehaviour
                 if (KeyNodeFromAttack != -1 && AttackedCreature != null)
                 {
                     var nodesForAttack = NodesForAttackActiveCreature[KeyNodeFromAttack];
-                    // var neighboursNodesEnemy = GridArenaHelper
-                    //     .GetNeighbourList(ArenaQueue.activeEntity.OccupiedNode)
-                    //     .Where(t => t.OccupiedUnit != null && t.OccupiedUnit.TypeArenaPlayer != ArenaQueue.activeEntity.TypeArenaPlayer);
-                    // if (ChoosedSpell == null)
-                    // {
+
                     switch (ArenaQueue.activeEntity.arenaEntity.Data.typeAttack)
                     {
                         case TypeAttack.Attack:
@@ -400,57 +399,17 @@ public class ArenaManager : MonoBehaviour
                             ruleCursor = CursorRule.FightFromLeft;
                             break;
                     }
-
-                    // if (ArenaQueue.activeEntity.arenaEntity.Data.shoots > 0 && ArenaQueue.activeEntity.arenaEntity.Data.typeAttack == TypeAttack.AttackShoot)
-                    // {
-                    //     // check distance.
-                    //     if (nodesForAttack.nodeToAttack.DistanceTo(ArenaQueue.activeEntity.arenaEntity.OccupiedNode) <= ArenaQueue.activeEntity.arenaEntity.Speed)
-                    //     {
-                    //         ruleCursor = CursorRule.Shoot;
-                    //     }
-                    //     else
-                    //     {
-                    //         ruleCursor = CursorRule.ShootHalf;
-                    //     }
-                    //     positionButton = new Vector3(nodesForAttack.nodeToAttack.center.x, nodesForAttack.nodeToAttack.center.y, zCoord);
-                    // }
-                    // else
-                    // {
-                    //     Vector3 difPos = nodesForAttack.nodeFromAttack.center - nodesForAttack.nodeToAttack.center;
-                    //     if (difPos.x > 0 && difPos.y > 0)
-                    //     {
-                    //         ruleCursor = CursorRule.FightFromTopRight;
-                    //     }
-                    //     else if (difPos.x < 0 && difPos.y > 0)
-                    //     {
-                    //         ruleCursor = CursorRule.FightFromTopLeft;
-                    //     }
-                    //     else if (difPos.x > 0 && difPos.y == 0)
-                    //     {
-                    //         ruleCursor = CursorRule.FightFromRight;
-                    //     }
-                    //     else if (difPos.x < 0 && difPos.y == 0)
-                    //     {
-                    //         ruleCursor = CursorRule.FightFromLeft;
-                    //     }
-                    //     else if (difPos.x < 0 && difPos.y < 0)
-                    //     {
-                    //         ruleCursor = CursorRule.FightFromBottomLeft;
-                    //     }
-                    //     else if (difPos.x > 0 && difPos.y < 0)
-                    //     {
-                    //         ruleCursor = CursorRule.FightFromBottomRight;
-                    //     }
-                    //     // _buttonAction.transform.position = new Vector3(clickedNode.center.x, clickedNode.center.y, -5);
-                    // }
-                    // // }
-                    // // else
-                    // // {
-                    // //     // Spell cursor.
-                    // //     ruleCursor = CursorRule.Spell;
-                    // //     positionButton = new Vector3(nodesForAttack.nodeToAttack.center.x, nodesForAttack.nodeToAttack.center.y, zCoord);
-                    // // }
                 }
+            }
+
+            // Check move cursor for inverse direction.
+            if (
+                (ruleCursor == CursorRule.GoFlying || ruleCursor == CursorRule.GoGround)
+                &&
+                activeArenaEntity.OccupiedNode.center.x > clickedNode.center.x
+            )
+            {
+                scale = new Vector3(-1, 1, 1);
             }
         }
 
@@ -459,6 +418,7 @@ public class ArenaManager : MonoBehaviour
         _buttonWarMachine.SetActive(false);
         _buttonAction.GetComponent<SpriteRenderer>().sprite = ruleCursor.m_DefaultSprite;
         _buttonAction.transform.position = positionButton;
+        _buttonAction.transform.localScale = scale;
         activeCursor = ruleCursor;
         // _tileMapCursor.SetTile(clickedNode.position, ruleCursor);
     }

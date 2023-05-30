@@ -76,10 +76,11 @@ public class ArenaCreatureMB : MonoBehaviour // , IPointerDownHandler
 
     private void NextRound()
     {
-        if (!_arenaEntity.Death)
-        {
-            _arenaEntity.SetRoundData();
-        }
+        // TODO
+        // if (!_arenaEntity.Death)
+        // {
+        //     _arenaEntity.SetRoundData();
+        // }
     }
 
 
@@ -186,9 +187,9 @@ public class ArenaCreatureMB : MonoBehaviour // , IPointerDownHandler
         _inputManager.Enable();
     }
 
-    private void ClickCreature(InputAction.CallbackContext context)
+    private async void ClickCreature(InputAction.CallbackContext context)
     {
-        ArenaEntity.ClickCreature();
+        await ArenaEntity.ClickCreature();
         // Debug.Log($"Click {name}");
     }
     #endregion
