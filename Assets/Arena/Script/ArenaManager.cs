@@ -78,7 +78,7 @@ public class ArenaManager : MonoBehaviour
 
     private EntityHero hero;
     private EntityHero enemy;
-    public ArenaEntityTown town;
+    public ArenaEntityTown ArenaTown = null;
     public GameObject clickedFortification;
     public GameObject buttonAction;
     public GameObject _buttonAction;
@@ -548,9 +548,10 @@ public class ArenaManager : MonoBehaviour
         {
             neiNode.StateArenaNode ^= StateArenaNode.Moved;
         };
-        if (town != null)
+
+        if (ArenaTown != null && ArenaTown.ArenaEntityTownMB != null)
         {
-            town.ArenaEntityTownMB.SetStatusColliders(false);
+            ArenaTown.ArenaEntityTownMB.SetStatusColliders(false);
         }
         AllMovedNodes.Clear();
         AllowMovedNodes.Clear();
@@ -932,11 +933,6 @@ public class ArenaManager : MonoBehaviour
                 await CreateTown();
             }
 
-            else
-            {
-                town = null;
-            }
-
             CreateHeroes();
 
             CreateSchemaCreatures();
@@ -1015,7 +1011,11 @@ public class ArenaManager : MonoBehaviour
 
     private async UniTask CreateWarMachine()
     {
-        if (hero.Data.WarMachines.ContainsKey(TypeWarMachine.Catapult) && town != null)
+        if (
+            hero.Data.WarMachines.ContainsKey(TypeWarMachine.Catapult)
+            && DialogArenaData.town != null
+            && DialogArenaData.town.Data.level != -1
+            )
         {
             var catapult = (EntityCreature)hero.Data.WarMachines[TypeWarMachine.Catapult];
             var GridGameObject = new ArenaWarMachine();
@@ -1108,14 +1108,21 @@ public class ArenaManager : MonoBehaviour
 
     private async UniTask CreateTown()
     {
-        var townEntity = DialogArenaData.town;
-        var node = GridArenaHelper.GetNode(new Vector3Int(10, 5));
-        town = new ArenaEntityTown();
-        town.Init(node, townEntity, this);
-        await town.CreateGameObject();
-        await town.SetShootTown();
+        if (DialogArenaData.town.Data.level > -1)
+        {
+            var townEntity = DialogArenaData.town;
+            var node = GridArenaHelper.GetNode(new Vector3Int(10, 5));
+            ArenaTown = new ArenaEntityTown();
+            ArenaTown.Init(node, townEntity, this);
+            await ArenaTown.CreateGameObject();
+            await ArenaTown.SetShootTown();
+        }
+        else
+        {
+            ArenaTown = null;
+        }
 
-        if (townEntity.HeroInTown != null)
+        if (DialogArenaData.town.HeroInTown != null)
         {
             enemy = DialogArenaData.town.HeroInTown;
             var enemyArena = new ArenaHeroEntity(tileMapArenaUnits);

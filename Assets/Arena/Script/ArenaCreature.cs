@@ -224,7 +224,7 @@ public class ArenaCreature : ArenaEntityBase
 
     public async UniTask OpenBridge(GridArenaNode nodeForCheckBridge)
     {
-        if (_arenaManager.town == null) return;
+        if (_arenaManager.ArenaTown == null) return;
         // if (_arenaManager.town.ArenaEntityTownMB.isOpenBridge) return;
 
         if (nodeForCheckBridge.StateArenaNode.HasFlag(StateArenaNode.Bridge))
@@ -253,7 +253,7 @@ public class ArenaCreature : ArenaEntityBase
 
         if (nodeBridge != null)
         {
-            await _arenaManager.town.OpenBridge();
+            await _arenaManager.ArenaTown.OpenBridge();
         }
 
         await UniTask.Yield();
@@ -276,7 +276,7 @@ public class ArenaCreature : ArenaEntityBase
             await UniTask.Delay(400);
             nodeBridge.StateArenaNode &= ~StateArenaNode.OpenBridge;
             nodeBridge = null;
-            _arenaManager.town.CloseBridge();
+            _arenaManager.ArenaTown.CloseBridge();
         }
     }
 

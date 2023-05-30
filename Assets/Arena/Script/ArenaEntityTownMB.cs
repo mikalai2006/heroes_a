@@ -23,7 +23,7 @@ public class ArenaEntityTownMB : MonoBehaviour
     private InputManager _inputManager;
     private Camera _camera;
     // [SerializeField] private List<Transform> listTownObjects = new ();
-    // [SerializeField] private GameObject moat;
+    public GameObject moat;
     // [SerializeField] private GameObject wall1;
     // [SerializeField] private GameObject wall2;
     // [SerializeField] private GameObject wall3;
@@ -32,6 +32,7 @@ public class ArenaEntityTownMB : MonoBehaviour
     // [SerializeField] private GameObject tower2;
     // [SerializeField] private GameObject tower3;
     [SerializeField] private GameObject bridge;
+    private Transform bridgeTarget;
     private Animator bridgeAnimator;
     public bool isOpenBridge = false;
     // public List<Transform> _fortifications = new();
@@ -56,8 +57,11 @@ public class ArenaEntityTownMB : MonoBehaviour
         _animator = GetComponentInChildren<Animator>();
         _model = transform.Find("Model");
         _camera = GameObject.FindGameObjectWithTag("ArenaCamera")?.GetComponent<Camera>();
-        bridgeAnimator = bridge.transform.GetChild(0).GetComponent<Animator>();
-        bridge.SetActive(false);
+        bridgeTarget = bridge.transform.GetChild(1);
+        bridgeAnimator = bridgeTarget.GetComponent<Animator>();
+        bridgeTarget.gameObject.SetActive(false);
+
+        moat.SetActive(false);
     }
     #endregion
 
@@ -68,7 +72,14 @@ public class ArenaEntityTownMB : MonoBehaviour
             var col = go.Key.GetComponent<Collider2D>();
             if (col != null)
             {
-                col.enabled = status;
+                if (go.Value == 0)
+                {
+                    col.enabled = false;
+                }
+                else
+                {
+                    col.enabled = status;
+                }
             }
         }
     }
@@ -87,6 +98,11 @@ public class ArenaEntityTownMB : MonoBehaviour
         }
 
         SetStatusColliders(false);
+
+        if (_arenaEntityTown.isMoat)
+        {
+            moat.SetActive(true);
+        }
     }
 
     protected void OnDestroy()
@@ -180,7 +196,7 @@ public class ArenaEntityTownMB : MonoBehaviour
 
     internal async UniTask OpenBridge()
     {
-        bridge.SetActive(true);
+        bridgeTarget.gameObject.SetActive(true);
         bridgeAnimator.Play("BridgeOpen");
         isOpenBridge = true;
 
@@ -192,6 +208,36 @@ public class ArenaEntityTownMB : MonoBehaviour
 
         bridgeAnimator.Play("BridgeClose");
         isOpenBridge = false;
-        bridge.SetActive(false);
+        bridgeTarget.gameObject.SetActive(false);
+    }
+
+    internal async UniTask ResreshObject(Transform transform, int totalDamage)
+    {
+        Debug.Log($"ResreshObject::: {transform}[totalDamage={totalDamage}]");
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            transform.GetChild(i).gameObject.SetActive(false);
+        }
+        if (totalDamage > 0)
+        {
+            var level = totalDamage;
+            if (transform.childCount <= level)
+            {
+                level = level - 1;
+            }
+            transform.GetChild(level).gameObject.SetActive(true);
+
+            // if bridge close - disable transform.
+            if (transform.name.IndexOf("Bridge") != -1 && !isOpenBridge)
+            {
+                transform.GetChild(level).gameObject.SetActive(false);
+            }
+        }
+        else
+        {
+            transform.GetChild(0).gameObject.SetActive(true);
+            // transform.gameObject.SetActive(false);
+        }
+        await UniTask.Delay(1);
     }
 }

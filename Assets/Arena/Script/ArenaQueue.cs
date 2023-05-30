@@ -89,13 +89,14 @@ public class ArenaQueue
         Refresh();
     }
 
-    internal void RemoveEntity(ArenaCreature arenaEntity)
+    internal void RemoveEntity(ArenaEntityBase arenaEntity)
     {
         var index = ListEntities.FindIndex(t => t.arenaEntity == arenaEntity);
         if (index != -1)
         {
             ListEntities.RemoveAt(index);
         }
+        Refresh();
     }
 
     public List<QueueItem> Refresh()

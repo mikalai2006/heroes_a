@@ -63,24 +63,6 @@ MonoBehaviour:
   - creature: {fileID: 11400000, guid: e34ee2bd20d331149b4525b763a3d4ad, type: 2}
     min: 2
     max: 3
-  - creature: {fileID: 11400000, guid: 7d1983f083e2c9a49bc2725df7d9691b, type: 2}
-    min: 3
-    max: 3000
-  - creature: {fileID: 11400000, guid: b93745913452c36469604bba8816e3d6, type: 2}
-    min: 2
-    max: 3000
-  - creature: {fileID: 11400000, guid: 6ea0b3ed958930e41ab8e76bc52ce1b9, type: 2}
-    min: 2
-    max: 3000
-  - creature: {fileID: 11400000, guid: d6c05d15cb4a7664387a7a4caa681702, type: 2}
-    min: 2
-    max: 3000
-  - creature: {fileID: 11400000, guid: c860fc307cbc9f346afc3fae4f08b1a2, type: 2}
-    min: 2
-    max: 3000
-  - creature: {fileID: 11400000, guid: e859ac4485df88141b1a4cef5d566334, type: 2}
-    min: 3
-    max: 30
   StartSpells:
   - {fileID: 11400000, guid: 08c84490596087042ad4ccae387cb166, type: 2}
   - {fileID: 11400000, guid: f0b6ce2de2ab0db4ea5d460c4e7461df, type: 2}

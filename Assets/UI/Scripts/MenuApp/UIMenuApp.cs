@@ -55,6 +55,7 @@ public class UIMenuApp : UILocaleBase
             var loadingOperations = new ArenaLoadOperation(new DialogArenaData()
             {
                 hero = testHero,
+                town = null,
                 enemy = testEnemy,
                 ArenaSetting = GameSetting.ArenaSettings[Random.Range(0, GameSetting.ArenaSettings.Count)]
             });
@@ -80,6 +81,7 @@ public class UIMenuApp : UILocaleBase
                 .GetEntityByType<ScriptableEntityTown>(TypeEntity.Town)
                 .Find(t => t.TypeFaction == TypeFaction.Castle);
             var town = new EntityTown(TypeGround.Grass, configTown);
+            town.Data.level = 2;
             town.Data.HeroinTown = testEnemy.Id;
             var loadingOperations = new ArenaLoadOperation(new DialogArenaData()
             {

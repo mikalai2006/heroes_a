@@ -325,7 +325,7 @@ public class UIArena : UILocaleBase
             var entity = ((EntityCreature)creature.arenaEntity.Entity);
 
             var sprite = creature.arenaEntity.Data.typeAttack == TypeAttack.AttackShootTown
-                ? arenaManager.town.Town.ConfigData.MenuSprite
+                ? arenaManager.ArenaTown.Town.ConfigData.MenuSprite
                 : creature.arenaEntity.Entity.ScriptableDataAttribute.MenuSprite;
             var creatureElement = _templateQueueCreature.Instantiate();
             creatureElement.Q<VisualElement>("Img").style.backgroundImage
