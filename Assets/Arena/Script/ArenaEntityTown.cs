@@ -228,7 +228,7 @@ public class ArenaEntityTown
     {
         EntityCreature creatureShoot = new EntityCreature(Town.ConfigData.shootCreature);
         var newShootTown = new ArenaShootTown();
-        newShootTown.Init(_arenaManager, _arenaManager.DialogArenaData.enemy);
+        newShootTown.Init(_arenaManager, _arenaManager.ArenaTown.Town.HeroInTown);
         newShootTown.SetEntity(creatureShoot, node);
         newShootTown.TypeArenaPlayer = TypeArenaPlayer.Right;
         newShootTown.Data.speed = 1001;

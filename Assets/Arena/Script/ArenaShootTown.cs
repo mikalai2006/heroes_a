@@ -134,6 +134,7 @@ public class ArenaShootTown : ArenaEntityBase
                 ? _arenaManager.ArenaQueue.ActiveHero.Data.SSkills[TypeSecondarySkill.Artillery].level + 1
                 : 0;
         }
+        Debug.Log($"Auto run shoot town! Artillery={levelSSkill}");
         ArenaTypeRunEffect typeRunEffect = ArenaTypeRunEffect.AutoChoose;
         switch (levelSSkill)
         {

@@ -59,6 +59,8 @@ MonoBehaviour:
     value: 2
   - SecondarySkill: {fileID: 11400000, guid: 7f7e8be60bed4304a92c4341542e5e5e, type: 2}
     value: 2
+  - SecondarySkill: {fileID: 11400000, guid: b3653fec31423044eabbe48c254a0dc7, type: 2}
+    value: 2
   StartCreatures:
   - creature: {fileID: 11400000, guid: 7d1983f083e2c9a49bc2725df7d9691b, type: 2}
     min: 20
