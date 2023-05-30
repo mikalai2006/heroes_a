@@ -16,6 +16,7 @@ public class SpellRemoveObstacle : ScriptableAttributeSpell
             .GetAllGridNodes()
             .Where(t =>
                 t.OccupiedUnit == null
+                && !t.StateArenaNode.HasFlag(StateArenaNode.Excluded)
                 && t.StateArenaNode.HasFlag(StateArenaNode.Spellsed)
             )
             .ToList();

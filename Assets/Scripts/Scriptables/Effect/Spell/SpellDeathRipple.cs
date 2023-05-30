@@ -16,6 +16,7 @@ public class SpellDeathRipple : ScriptableAttributeSpell
             .GetAllGridNodes()
             .Where(t =>
                 t.OccupiedUnit != null
+                && !t.StateArenaNode.HasFlag(StateArenaNode.Excluded)
                 && ((ScriptableAttributeCreature)t.OccupiedUnit.Entity.ScriptableDataAttribute).TypeFaction != TypeFaction.Necropolis
             )
             .ToList();

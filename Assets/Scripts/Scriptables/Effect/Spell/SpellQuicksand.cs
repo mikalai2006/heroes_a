@@ -15,6 +15,8 @@ public class SpellQuicksand : ScriptableAttributeSpell
             .GetAllGridNodes()
             .Where(t =>
                 t.OccupiedUnit == null
+                && !t.StateArenaNode.HasFlag(StateArenaNode.Disable)
+                && !t.StateArenaNode.HasFlag(StateArenaNode.Excluded)
                 && !t.StateArenaNode.HasFlag(StateArenaNode.Spellsed)
             )
             .ToList();

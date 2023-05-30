@@ -19,6 +19,7 @@ public enum StateArenaNode
     Wall = 1 << 9,
     Bridge = 1 << 10,
     OpenBridge = 1 << 11,
+    Excluded = 1 << 12
 }
 
 [Serializable]
@@ -40,7 +41,9 @@ public class GridArenaNode : IHeapItem<GridArenaNode>
     public GridArenaNode LeftNode => _grid.GetGridObject(new Vector3Int(X - 1, Y));
     public GridArenaNode RightNode => _grid.GetGridObject(new Vector3Int(X + 1, Y));
     public GridArenaNode LeftTopNode => _grid.GetGridObject(new Vector3Int(X + xOffset - 1, Y + 1));
+    public GridArenaNode RightTopNode => _grid.GetGridObject(new Vector3Int(X + xOffset, Y + 1));
     public GridArenaNode LeftBottomNode => _grid.GetGridObject(new Vector3Int(X + xOffset - 1, Y - 1));
+    public GridArenaNode RightBottomNode => _grid.GetGridObject(new Vector3Int(X + xOffset, Y - 1));
     public int level = 0;
     public int weight = 0;
     private int heapIndex;

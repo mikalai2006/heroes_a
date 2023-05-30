@@ -92,6 +92,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a4de2eed50695aa40a49254cbfea6906, type: 2}
   - {fileID: 11400000, guid: 68fa24297844d904f9b28c1ccb3707f8, type: 2}
   - {fileID: 11400000, guid: e9c45497960076d4c8496681b5a56557, type: 2}
+  - {fileID: 11400000, guid: b18e4e8a6ea1f9146a8322afb6d74359, type: 2}
   isBallista: 1
   isAmmoCart: 1
   isFirstAidTent: 1
