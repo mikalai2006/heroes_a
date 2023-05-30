@@ -1155,7 +1155,7 @@ public class ArenaManager : MonoBehaviour
                 var GridGameObject = new ArenaCreature();
                 GridGameObject.Init(this, enemy);
                 var size = ((EntityCreature)creature.Value).ConfigAttribute.CreatureParams.Size;
-                var nodeObj = GridArenaHelper.GridTile.GetGridObject(new Vector3Int(width - size, schemaCreaturesHero[i]));
+                var nodeObj = GridArenaHelper.GridTile.GetGridObject(new Vector3Int(width - size, schemaEnemyCreatures[i]));
                 GridGameObject.TypeArenaPlayer = TypeArenaPlayer.Right;
                 GridGameObject.SetEntity(creature.Value, nodeObj);
                 GridGameObject.SetPosition(nodeObj);
