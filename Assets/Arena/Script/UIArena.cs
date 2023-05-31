@@ -326,12 +326,15 @@ public class UIArena : UILocaleBase
         int startRound = arenaManager.ArenaQueue.activeEntity.round;
         roundElement.Q<Label>("Round").text = startRound.ToString();
         _queueBlok.Add(roundElement);
-
-        foreach (var creature in arenaManager.ArenaQueue.ListEntities)
+        var fullQueue = arenaManager.ArenaQueue.GetQueue();
+        var maxCountQueueItem = fullQueue.Count < LevelManager.Instance.ConfigGameSettings.arenaMaxCountQueue
+            ? fullQueue.Count
+            : LevelManager.Instance.ConfigGameSettings.arenaMaxCountQueue;
+        foreach (var creature in arenaManager.ArenaQueue.GetQueue().GetRange(0, maxCountQueueItem))
         {
             var entity = ((EntityCreature)creature.arenaEntity.Entity);
 
-            var sprite = creature.arenaEntity.Data.typeAttack == TypeAttack.AttackShootTown
+            var sprite = creature.arenaEntity is ArenaShootTown
                 ? arenaManager.ArenaTown.Town.ConfigData.MenuSprite
                 : creature.arenaEntity.Entity.ScriptableDataAttribute.MenuSprite;
             var creatureElement = _templateQueueCreature.Instantiate();

@@ -224,6 +224,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: fa40c4e0896592b4285b302b88cbf934, type: 2}
   - {fileID: 11400000, guid: 16c748b79c69ed9429cda5ff1da596a2, type: 2}
   - {fileID: 11400000, guid: 548bfe8b458dd2240b104dd9d3eddf4d, type: 2}
+  arenaMaxCountQueue: 15
   speedArenaAnimation: 0.1
   paintAllowAttackNode: 1
   colorAllowAttackNode: {r: 1, g: 0, b: 0, a: 0.47058824}

@@ -974,21 +974,6 @@ public class ArenaManager : MonoBehaviour
 
             ArenaQueue.AddEntity(GridGameObject);
         }
-        if (enemy.Data.WarMachines.ContainsKey(TypeWarMachine.Ballista))
-        {
-            var ballista = (EntityCreature)enemy.Data.WarMachines[TypeWarMachine.Ballista];
-            var GridGameObject = new ArenaWarMachine();
-            GridGameObject.Init(this, enemy);
-            var nodeObj = GridArenaHelper.GridTile.GetGridObject(new Vector3Int(width - 1, 8));
-            GridGameObject.TypeArenaPlayer = TypeArenaPlayer.Right;
-            GridGameObject.SetEntity(ballista, nodeObj);
-            GridGameObject.SetPosition(nodeObj);
-            GridGameObject.Data.typeAttack = TypeAttack.AttackShoot;
-
-            await GridGameObject.CreateMapGameObject(nodeObj);
-
-            ArenaQueue.AddEntity(GridGameObject);
-        }
         if (hero.Data.WarMachines.ContainsKey(TypeWarMachine.AmmoCart))
         {
             var ammoCart = (EntityCreature)hero.Data.WarMachines[TypeWarMachine.AmmoCart];
@@ -996,21 +981,6 @@ public class ArenaManager : MonoBehaviour
             GridGameObject.Init(this, hero);
             var nodeObj = GridArenaHelper.GridTile.GetGridObject(new Vector3Int(0, 10));
             GridGameObject.TypeArenaPlayer = TypeArenaPlayer.Left;
-            GridGameObject.SetEntity(ammoCart, nodeObj);
-            GridGameObject.SetPosition(nodeObj);
-            GridGameObject.Data.typeAttack = TypeAttack.Attack;
-
-            await GridGameObject.CreateMapGameObject(nodeObj);
-
-            ArenaQueue.AddEntity(GridGameObject);
-        }
-        if (enemy.Data.WarMachines.ContainsKey(TypeWarMachine.AmmoCart))
-        {
-            var ammoCart = (EntityCreature)enemy.Data.WarMachines[TypeWarMachine.AmmoCart];
-            var GridGameObject = new ArenaWarMachine();
-            GridGameObject.Init(this, enemy);
-            var nodeObj = GridArenaHelper.GridTile.GetGridObject(new Vector3Int(width - 1, 10));
-            GridGameObject.TypeArenaPlayer = TypeArenaPlayer.Right;
             GridGameObject.SetEntity(ammoCart, nodeObj);
             GridGameObject.SetPosition(nodeObj);
             GridGameObject.Data.typeAttack = TypeAttack.Attack;
@@ -1034,20 +1004,53 @@ public class ArenaManager : MonoBehaviour
 
             ArenaQueue.AddEntity(GridGameObject);
         }
-        if (enemy.Data.WarMachines.ContainsKey(TypeWarMachine.FirstAidTent))
+        if (enemy != null)
         {
-            var firstAidTent = (EntityCreature)enemy.Data.WarMachines[TypeWarMachine.FirstAidTent];
-            var GridGameObject = new ArenaWarMachine();
-            GridGameObject.Init(this, enemy);
-            var nodeObj = GridArenaHelper.GridTile.GetGridObject(new Vector3Int(width - 1, 2));
-            GridGameObject.TypeArenaPlayer = TypeArenaPlayer.Right;
-            GridGameObject.SetEntity(firstAidTent, nodeObj);
-            GridGameObject.SetPosition(nodeObj);
-            GridGameObject.Data.typeAttack = TypeAttack.Aid;
+            if (enemy.Data.WarMachines.ContainsKey(TypeWarMachine.AmmoCart))
+            {
+                var ammoCart = (EntityCreature)enemy.Data.WarMachines[TypeWarMachine.AmmoCart];
+                var GridGameObject = new ArenaWarMachine();
+                GridGameObject.Init(this, enemy);
+                var nodeObj = GridArenaHelper.GridTile.GetGridObject(new Vector3Int(width - 1, 10));
+                GridGameObject.TypeArenaPlayer = TypeArenaPlayer.Right;
+                GridGameObject.SetEntity(ammoCart, nodeObj);
+                GridGameObject.SetPosition(nodeObj);
+                GridGameObject.Data.typeAttack = TypeAttack.Attack;
 
-            await GridGameObject.CreateMapGameObject(nodeObj);
+                await GridGameObject.CreateMapGameObject(nodeObj);
 
-            ArenaQueue.AddEntity(GridGameObject);
+                ArenaQueue.AddEntity(GridGameObject);
+            }
+            if (enemy.Data.WarMachines.ContainsKey(TypeWarMachine.Ballista))
+            {
+                var ballista = (EntityCreature)enemy.Data.WarMachines[TypeWarMachine.Ballista];
+                var GridGameObject = new ArenaWarMachine();
+                GridGameObject.Init(this, enemy);
+                var nodeObj = GridArenaHelper.GridTile.GetGridObject(new Vector3Int(width - 1, 8));
+                GridGameObject.TypeArenaPlayer = TypeArenaPlayer.Right;
+                GridGameObject.SetEntity(ballista, nodeObj);
+                GridGameObject.SetPosition(nodeObj);
+                GridGameObject.Data.typeAttack = TypeAttack.AttackShoot;
+
+                await GridGameObject.CreateMapGameObject(nodeObj);
+
+                ArenaQueue.AddEntity(GridGameObject);
+            }
+            if (enemy.Data.WarMachines.ContainsKey(TypeWarMachine.FirstAidTent))
+            {
+                var firstAidTent = (EntityCreature)enemy.Data.WarMachines[TypeWarMachine.FirstAidTent];
+                var GridGameObject = new ArenaWarMachine();
+                GridGameObject.Init(this, enemy);
+                var nodeObj = GridArenaHelper.GridTile.GetGridObject(new Vector3Int(width - 1, 2));
+                GridGameObject.TypeArenaPlayer = TypeArenaPlayer.Right;
+                GridGameObject.SetEntity(firstAidTent, nodeObj);
+                GridGameObject.SetPosition(nodeObj);
+                GridGameObject.Data.typeAttack = TypeAttack.Aid;
+
+                await GridGameObject.CreateMapGameObject(nodeObj);
+
+                ArenaQueue.AddEntity(GridGameObject);
+            }
         }
     }
 

@@ -31,7 +31,7 @@ public enum TypeAttack
     Attack = 0,
     AttackShoot = 1,
     AttackCatapult = 2,
-    AttackShootTown = 3,
+    // AttackShootTown = 3,
     Aid = 4,
     // CatapultShoot = 2,
     // AttackSpell = 2
@@ -647,7 +647,7 @@ public class ArenaCreature : ArenaEntityBase
                 }
             }
         }
-        else if (typeAttack == TypeAttack.AttackShoot || typeAttack == TypeAttack.AttackShootTown)
+        else if (typeAttack == TypeAttack.AttackShoot)
         {
             // Debug.Log($"ShootAttack [{this.Entity.ScriptableDataAttribute.name}] / [{entityForAttack.Entity.ScriptableDataAttribute.name}]");
 

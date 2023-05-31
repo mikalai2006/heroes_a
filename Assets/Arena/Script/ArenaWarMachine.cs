@@ -93,6 +93,11 @@ public class ArenaWarMachine : ArenaEntityBase
         ArenaWarMachineMonoBehavior.Init(this);
     }
 
+    public override void ShowDialogInfo()
+    {
+        ArenaWarMachineMonoBehavior.ShowDialogInfo();
+    }
+
     public override void SetDamage(int damage)
     {
         base.SetDamage(damage);
