@@ -4,7 +4,6 @@ using System.Threading;
 using Cysharp.Threading.Tasks;
 
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Interactions;
 

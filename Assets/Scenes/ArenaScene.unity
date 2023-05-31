@@ -218,7 +218,7 @@ MonoBehaviour:
   activeCursor: {fileID: 0}
   width: 15
   height: 11
-  _tileMapArenaGrid: {fileID: 1204608557}
+  tileMapArenaGrid: {fileID: 1204608557}
   tileMapArenaUnits: {fileID: 442698473}
   _tileMapDistance: {fileID: 1637570129}
   _tileMapShadow: {fileID: 1727087951}
@@ -231,13 +231,6 @@ MonoBehaviour:
   _tileHex: {fileID: 11400000, guid: 837044e8046fc594a9235c588146608b, type: 2}
   _tileHexShadow: {fileID: 11400000, guid: 55acea784c53c744e80c39744dd4bef6, type: 2}
   _tileHexActive: {fileID: 11400000, guid: 55acea784c53c744e80c39744dd4bef6, type: 2}
-  town:
-    Data:
-      status: 0
-      ShootEntities: []
-    FortificationsGameObject:
-      keys: []
-      values: 
   clickedFortification: {fileID: 0}
   buttonAction: {fileID: 1874988815094525060, guid: 29feca8d9a5e3c34eb33fc7c8c93a4ff, type: 3}
   _buttonAction: {fileID: 0}
@@ -246,6 +239,11 @@ MonoBehaviour:
   buttonWarMachine: {fileID: 1874988815094525060, guid: df7df605ceb71c14a814918448b65104, type: 3}
   _buttonWarMachine: {fileID: 0}
   NodesForAttackActiveCreature: []
+  KeyNodeFromAttack: -1
+  clickedNode:
+    StateArenaNode: 0
+    level: 0
+    weight: 0
   _camera: {fileID: 815242362}
   isRunningAction: 0
   DialogArenaData:

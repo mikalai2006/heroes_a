@@ -42,11 +42,6 @@ public class ArenaShootTownMB : MonoBehaviour
             _shoot.SetActive(false);
         }
         _arenaEntity = arenaEntity;
-        // _collider.layerOverridePriority = 11 - _arenaEntity.OccupiedNode.position.y;
-        // gameObject.transform.localPosition = new Vector3(
-        //     gameObject.transform.position.x,
-        //     gameObject.transform.position.y,
-        //     0);
 
         var splitName = ArenaEntity.Entity.ScriptableDataAttribute.name.Split('_');
         _nameCreature = splitName.Length > 1 ? splitName[1] : splitName[0];

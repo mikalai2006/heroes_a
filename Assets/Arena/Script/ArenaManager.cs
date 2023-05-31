@@ -55,7 +55,7 @@ public class ArenaManager : MonoBehaviour
     public static event Action OnShowState;
     [SerializeField] private int width = 15;
     [SerializeField] private int height = 11;
-    [SerializeField] private Tilemap _tileMapArenaGrid;
+    [SerializeField] public Tilemap tileMapArenaGrid;
     [SerializeField] public Tilemap tileMapArenaUnits;
     [SerializeField] public Tilemap _tileMapDistance;
     [SerializeField] private Tilemap _tileMapShadow;
@@ -545,12 +545,12 @@ public class ArenaManager : MonoBehaviour
             }
 
             Vector2 posMouse = _camera.ScreenToWorldPoint(pos);
-            Vector3Int tilePos = _tileMapArenaGrid.WorldToCell(posMouse);
+            Vector3Int tilePos = tileMapArenaGrid.WorldToCell(posMouse);
 
             GridArenaNode node = GridArenaHelper.GridTile.GetGridObject(tilePos);
             Debug.Log($"Click node::: {node}");
 
-            if (rayHit.collider.gameObject == _tileMapArenaGrid.gameObject)
+            if (rayHit.collider.gameObject == tileMapArenaGrid.gameObject)
             {
                 ClearAttackNode();
                 if (ChoosedSpell != null && node != null)
@@ -619,6 +619,11 @@ public class ArenaManager : MonoBehaviour
 
     public async void ChooseNextPositionForAttack()
     {
+        if (NodesForAttackActiveCreature.Count() == 0)
+        {
+            DrawNotAllowButton();
+            return;
+        }
         int nextIndex = KeyNodeFromAttack + 1;
         int indexNextAttackNode = nextIndex >= NodesForAttackActiveCreature.Count()
             ? 0
@@ -879,7 +884,7 @@ public class ArenaManager : MonoBehaviour
                 {
                     if (settingGame.showGrid)
                     {
-                        _tileMapArenaGrid.SetTile(nodeObj.position, _tileHex);
+                        tileMapArenaGrid.SetTile(nodeObj.position, _tileHex);
                     }
                 }
                 // SetTextMeshNode(nodeObj);
@@ -910,7 +915,7 @@ public class ArenaManager : MonoBehaviour
     }
     private void setSizeTileMap()
     {
-        BoxCollider2D colliderTileMap = _tileMapArenaGrid.GetComponent<BoxCollider2D>();
+        BoxCollider2D colliderTileMap = tileMapArenaGrid.GetComponent<BoxCollider2D>();
         colliderTileMap.offset = new Vector2(7.25f, 4.6f);
         colliderTileMap.size = new Vector2(width + 0.5f, height - 3);
     }

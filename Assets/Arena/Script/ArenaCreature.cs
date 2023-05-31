@@ -109,6 +109,7 @@ public class ArenaCreature : ArenaEntityBase
     private GridArenaNode nodeBridge;
     // private EntityHero _hero;
     // public EntityHero Hero => _hero;
+    private GridArenaNode lastClickedNode;
 
     public override void Init(ArenaManager arenaManager, EntityHero hero)
     {
@@ -224,7 +225,7 @@ public class ArenaCreature : ArenaEntityBase
 
     public async UniTask OpenBridge(GridArenaNode nodeForCheckBridge)
     {
-        if (_arenaManager.ArenaTown == null) return;
+        if (arenaManager.ArenaTown == null) return;
         // if (_arenaManager.town.ArenaEntityTownMB.isOpenBridge) return;
 
         if (nodeForCheckBridge.StateArenaNode.HasFlag(StateArenaNode.Bridge))
@@ -253,7 +254,7 @@ public class ArenaCreature : ArenaEntityBase
 
         if (nodeBridge != null)
         {
-            await _arenaManager.ArenaTown.OpenBridge();
+            await arenaManager.ArenaTown.OpenBridge();
         }
 
         await UniTask.Yield();
@@ -276,7 +277,7 @@ public class ArenaCreature : ArenaEntityBase
             await UniTask.Delay(400);
             nodeBridge.StateArenaNode &= ~StateArenaNode.OpenBridge;
             nodeBridge = null;
-            _arenaManager.ArenaTown.CloseBridge();
+            arenaManager.ArenaTown.CloseBridge();
         }
     }
 
@@ -312,10 +313,13 @@ public class ArenaCreature : ArenaEntityBase
         SetPosition(node);
     }
 
-    public override async UniTask ClickCreature()
+    public override async UniTask ClickCreature(Vector3Int clickPosition)
     {
-        await base.ClickCreature();
-        if (!_arenaManager.FightingOccupiedNodes.Contains(OccupiedNode)) return;
+        await base.ClickCreature(clickPosition);
+
+        // GridArenaNode nodeByClickPosition = arenaManager.GridArenaHelper.GridTile.GetGridObject(clickPosition);
+
+        if (!arenaManager.FightingOccupiedNodes.Contains(OccupiedNode)) return;
 
         // var creature = ((EntityCreature)_arenaManager.ArenaQueue.activeEntity.arenaEntity.Entity);
         // switch (_arenaManager.ArenaQueue.activeEntity.arenaEntity.Data.typeAttack)
@@ -330,32 +334,33 @@ public class ArenaCreature : ArenaEntityBase
         //     default:
 
         // Choose spell.
-        var activeSpell = _arenaManager.ArenaQueue.ActiveHero != null && _arenaManager.ArenaQueue.ActiveHero.SpellBook != null
-        ? _arenaManager.ArenaQueue.ActiveHero.SpellBook.ChoosedSpell
+        var activeSpell = arenaManager.ArenaQueue.ActiveHero != null && arenaManager.ArenaQueue.ActiveHero.SpellBook != null
+        ? arenaManager.ArenaQueue.ActiveHero.SpellBook.ChoosedSpell
         : null;
         if (activeSpell != null)
         {
             Debug.Log($"Choose creature for spell!");
-            _arenaManager.CreateButtonSpell(OccupiedNode);
+            arenaManager.CreateButtonSpell(OccupiedNode);
             // return;
         }
         else
         {
             Debug.Log($"{GetType()}::: Choose creature node for attack {OccupiedNode}!");
-            if (_arenaManager.AttackedCreature == this)
+            if (arenaManager.AttackedCreature == this && arenaManager.clickedNode == lastClickedNode)
             {
-                _arenaManager.ChooseNextPositionForAttack();
+                arenaManager.ChooseNextPositionForAttack();
             }
             else
             {
-                if (_arenaManager.AttackedCreature != this && _arenaManager.AttackedCreature != null)
-                {
-                    _arenaManager.ClearAttackNode();
-                }
-                _arenaManager.clickedNode = OccupiedNode;
-                _arenaManager.AttackedCreature = this;
-                _arenaManager.ArenaQueue.activeEntity.arenaEntity.CreateButtonAttackNode(OccupiedNode);
-                Debug.Log($"{GetType()}::: _arenaManager.clickedNode= {_arenaManager.clickedNode}!");
+                // if (arenaManager.AttackedCreature != this && arenaManager.AttackedCreature != null)
+                // {
+                arenaManager.ClearAttackNode();
+                // }
+                // arenaManager.clickedNode = nodeByClickPosition; //OccupiedNode;
+                arenaManager.AttackedCreature = this;
+                lastClickedNode = arenaManager.clickedNode;
+                arenaManager.ArenaQueue.activeEntity.arenaEntity.CreateButtonAttackNode(arenaManager.clickedNode);
+                Debug.Log($"{GetType()}::: _arenaManager.clickedNode= {arenaManager.clickedNode}!");
             }
         }
         //         break;
@@ -447,30 +452,30 @@ public class ArenaCreature : ArenaEntityBase
     public override async UniTask ClickButtonAction()
     {
         Debug.Log($"{GetType()}::: ClickButtonAction");
-        _arenaManager.isRunningAction = true;
+        arenaManager.isRunningAction = true;
 
         await AudioManager.Instance.Click();
 
-        if (_arenaManager.activeCursor == _arenaManager.CursorRule.NotAllow)
+        if (arenaManager.activeCursor == arenaManager.CursorRule.NotAllow)
         {
-            _arenaManager.isRunningAction = false;
+            arenaManager.isRunningAction = false;
             return;
         };
 
         if (
-            ((_arenaManager.AttackedCreature != null && _arenaManager.ArenaQueue.activeEntity.arenaEntity.Data.typeAttack == TypeAttack.Attack)
-            || _arenaManager.AttackedCreature == null)
-            && _arenaManager.ArenaQueue.activeEntity.arenaEntity.Data.speed > 0
+            ((arenaManager.AttackedCreature != null && arenaManager.ArenaQueue.activeEntity.arenaEntity.Data.typeAttack == TypeAttack.Attack)
+            || arenaManager.AttackedCreature == null)
+            && arenaManager.ArenaQueue.activeEntity.arenaEntity.Data.speed > 0
             )
         {
             // Move creature.
-            await ((ArenaCreature)_arenaManager.ArenaQueue.activeEntity.arenaEntity).ArenaMonoBehavior.MoveCreature();
+            await ((ArenaCreature)arenaManager.ArenaQueue.activeEntity.arenaEntity).ArenaMonoBehavior.MoveCreature();
         }
 
         // Attack, if exist KeyNodeFromAttack
-        if (_arenaManager.AttackedCreature != null)
+        if (arenaManager.AttackedCreature != null)
         {
-            var nodes = _arenaManager.NodesForAttackActiveCreature[_arenaManager.KeyNodeFromAttack];
+            var nodes = arenaManager.NodesForAttackActiveCreature[arenaManager.KeyNodeFromAttack];
             if (nodes.nodeFromAttack.OccupiedUnit != null)
             {
                 await nodes.nodeFromAttack.OccupiedUnit.GoAttack(nodes.nodeFromAttack, nodes.nodeToAttack);
@@ -478,17 +483,17 @@ public class ArenaCreature : ArenaEntityBase
         }
 
         // Clear clicked node.
-        _arenaManager.clickedNode = null;
-        _arenaManager.ClearAttackNode();
+        arenaManager.clickedNode = null;
+        arenaManager.ClearAttackNode();
 
         // Next creature.
         // await GoEntity();
-        _arenaManager.NextCreature(false, false);
+        arenaManager.NextCreature(false, false);
 
         // DrawCursor
         // if (_arenaManager.clickedNode != null) DrawButtonAction();
 
-        _arenaManager.isRunningAction = false;
+        arenaManager.isRunningAction = false;
     }
 
     // private void ChooseNextPositionForAttack()
@@ -619,7 +624,7 @@ public class ArenaCreature : ArenaEntityBase
     public override async UniTask GoAttack(GridArenaNode nodeFromAttack, GridArenaNode nodeToAttack)
     {
         var entityForAttack = nodeToAttack.OccupiedUnit;
-        var typeAttack = _arenaManager.ArenaQueue.activeEntity.arenaEntity.Data.typeAttack;
+        var typeAttack = arenaManager.ArenaQueue.activeEntity.arenaEntity.Data.typeAttack;
         if (typeAttack == TypeAttack.Attack)
         {
             // Debug.Log($"Attack [{this.Entity.ScriptableDataAttribute.name}] / [{entityForAttack.Entity.ScriptableDataAttribute.name}]");
@@ -810,7 +815,7 @@ public class ArenaCreature : ArenaEntityBase
             gameObj,
             PositionPrefab, // + new Vector3(0, -.25f, 0),
             Quaternion.identity,
-            _arenaManager.tileMapArenaUnits.transform
+            arenaManager.tileMapArenaUnits.transform
             );
         await asset.Task;
         ArenaMonoBehavior = asset.Result.GetComponent<ArenaCreatureMB>();
@@ -837,13 +842,13 @@ public class ArenaCreature : ArenaEntityBase
     public async override UniTask GetFightingNodes()
     {
         // _tileMapAllowAttack.ClearAllTiles();
-        await _arenaManager.CreateMoveArea();
+        await arenaManager.CreateMoveArea();
 
-        var arenaEntity = _arenaManager.ArenaQueue.activeEntity.arenaEntity;
+        var arenaEntity = arenaManager.ArenaQueue.activeEntity.arenaEntity;
 
         var creatureData = ((ScriptableAttributeCreature)arenaEntity.Entity.ScriptableDataAttribute);
 
-        var occupiedNodes = _arenaManager.GridArenaHelper
+        var occupiedNodes = arenaManager.GridArenaHelper
             .GetAllGridNodes()
             .Where(t =>
                 t.OccupiedUnit != null
@@ -876,17 +881,17 @@ public class ArenaCreature : ArenaEntityBase
             {
                 arenaEntity.SetTypeAttack(TypeAttack.Attack);
                 var neighbours = node.Neighbours(); //GridArenaHelper.GetNeighbourList(node);
-                if (_arenaManager.AllowPathNodes.Intersect(neighbours).Count() > 0)
+                if (arenaManager.AllowPathNodes.Intersect(neighbours).Count() > 0)
                 {
-                    _arenaManager.FightingOccupiedNodes.Add(node);
-                    _arenaManager.SetColorAllowFightNode(node, LevelManager.Instance.ConfigGameSettings.colorAllowAttackCreature);
+                    arenaManager.FightingOccupiedNodes.Add(node);
+                    arenaManager.SetColorAllowFightNode(node, LevelManager.Instance.ConfigGameSettings.colorAllowAttackCreature);
                 }
             }
             else
             {
                 arenaEntity.SetTypeAttack(TypeAttack.AttackShoot);
-                _arenaManager.FightingOccupiedNodes.Add(node);
-                _arenaManager.SetColorAllowFightNode(node, LevelManager.Instance.ConfigGameSettings.colorAllowAttackCreature);
+                arenaManager.FightingOccupiedNodes.Add(node);
+                arenaManager.SetColorAllowFightNode(node, LevelManager.Instance.ConfigGameSettings.colorAllowAttackCreature);
             }
         }
 

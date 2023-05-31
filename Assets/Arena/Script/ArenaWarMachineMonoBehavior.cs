@@ -3,16 +3,13 @@ using System.Threading;
 
 using Cysharp.Threading.Tasks;
 
-using TMPro;
 
 using UnityEngine;
-// using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Interactions;
 
-public class ArenaWarMachineMonoBehavior : MonoBehaviour // , IPointerDownHandler
+public class ArenaWarMachineMonoBehavior : MonoBehaviour
 {
-    // public UITown UITown;
     [SerializeField] protected ArenaWarMachine _arenaEntity;
     public ArenaWarMachine ArenaEntity => _arenaEntity;
     [NonSerialized] private Animator _animator;
@@ -111,7 +108,10 @@ public class ArenaWarMachineMonoBehavior : MonoBehaviour // , IPointerDownHandle
 
     private async void ClickCreature(InputAction.CallbackContext context)
     {
-        await ArenaEntity.ClickCreature();
+        var pos = _inputManager.clickPosition();
+        Vector2 posMouse = _camera.ScreenToWorldPoint(pos);
+        Vector3Int tilePos = ArenaEntity.arenaManager.tileMapArenaGrid.WorldToCell(posMouse);
+        await ArenaEntity.ClickCreature(tilePos);
         // Debug.Log($"Click {name}");
     }
     #endregion
@@ -131,33 +131,9 @@ public class ArenaWarMachineMonoBehavior : MonoBehaviour // , IPointerDownHandle
         {
             _model.transform.localScale = new Vector3(-1, 1, 1);
         }
-        // for (int y = 0; y < transform.childCount; y++)
-        // {
-        //     // obj.TypeBuild = build.BuildLevels[i].TypeBuild;
-
-        //     Transform child = transform.GetChild(y);
-        //     if (null == child)
-        //         continue;
-        // }
         var splitName = ArenaEntity.Entity.ScriptableDataAttribute.name.Split('_');
         _nameCreature = splitName.Length > 1 ? splitName[1] : splitName[0];
-
-        // RefreshQuantity();
     }
-
-    // private void RefreshQuantity()
-    // {
-    //     int value = _arenaEntity.Data.quantity;
-    //     _quantityText.text = value.ToString();
-    //     if (value <= 0)
-    //     {
-    //         _quantity.gameObject.SetActive(false);
-    //     }
-    //     else
-    //     {
-    //         _quantity.gameObject.SetActive(true);
-    //     }
-    // }
 
     internal async UniTask RunGettingHit(GridArenaNode nodeFromAttack)
     {

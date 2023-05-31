@@ -6,13 +6,11 @@ using Cysharp.Threading.Tasks;
 using TMPro;
 
 using UnityEngine;
-// using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Interactions;
 
-public class ArenaCreatureMB : MonoBehaviour // , IPointerDownHandler
+public class ArenaCreatureMB : MonoBehaviour
 {
-    // public UITown UITown;
     [SerializeField] protected ArenaCreature _arenaEntity;
     public ArenaCreature ArenaEntity => _arenaEntity;
     [NonSerialized] private Animator _animator;
@@ -74,31 +72,14 @@ public class ArenaCreatureMB : MonoBehaviour // , IPointerDownHandler
         }
     }
 
-    private void NextRound()
+    private async void NextRound()
     {
         // TODO
-        // if (!_arenaEntity.Death)
-        // {
-        //     _arenaEntity.SetRoundData();
-        // }
+        if (!_arenaEntity.Death)
+        {
+            await _arenaEntity.SetRoundData();
+        }
     }
-
-
-
-    // public void OnPointerDown(PointerEventData eventData)
-    // {
-    //     Debug.Log($"Click entity::: {ArenaEntity.Entity.ScriptableDataAttribute.name}");
-    // }
-    // // public async void OnPointerClick(PointerEventData eventData)
-    // // {
-    // //     Debug.Log($"Click entity {ArenaEntity.ConfigData.name}");
-    // //     await UniTask.Delay(1);
-    // // }
-
-    // public void GetPosition(InputAction.CallbackContext context)
-    // {
-    //     _pos = context.ReadValue<Vector2>();
-    // }
 
     public void OnClick(InputAction.CallbackContext context)
     {
@@ -123,58 +104,6 @@ public class ArenaCreatureMB : MonoBehaviour // , IPointerDownHandler
         }
     }
 
-    // public void OnInteraction(InputAction.CallbackContext context)
-    // {
-    //     if (context.performed)
-    //     {
-    //         if (context.interaction is PressInteraction || context.interaction is TapInteraction)
-    //         {
-    //             Debug.Log($"OnInteraction::: {context.interaction} - {context.phase} - {context.ReadValue<Vector2>()}");
-    //             OnDo(context);
-    //         }
-
-    //         else if (context.interaction is HoldInteraction)
-    //         {
-    //             Debug.Log($"OnInteraction::: {context.interaction} - {context.phase} - {context.ReadValue<Vector2>()}");
-    //             OnDo(context);
-    //         }
-    //         // This exception should never get thrown, but in case it does then at least we know where it came from
-    //         else throw new System.Exception("OnEscape received unrecognized button interaction '" + context.interaction + "'");
-    //     }
-    //     // switch (context.phase)
-    //     // {
-    //     //     case InputActionPhase.Started:
-    //     //         if (context.interaction is HoldInteraction || context.interaction is SlowTapInteraction)
-    //     //         {
-    //     //             Debug.Log($"HoldStart::: {context.interaction} - {context.phase}");
-    //     //         }
-    //     //         else
-    //     //         {
-    //     //             Debug.Log($"Press(Tap)::: {context.interaction} - {context.phase} - {context.ReadValue<Vector2>()}");
-    //     //             OnDo(context);
-    //     //         }
-    //     //         break;
-
-    //     //     case InputActionPhase.Performed:
-    //     //         if (context.interaction is HoldInteraction || context.interaction is SlowTapInteraction)
-    //     //         {
-    //     //             Debug.Log($"HoldRelease::: {context.interaction} - {context.phase}- {context.ReadValue<Vector2>()}");
-    //     //             OnDo(context);
-    //     //         }
-    //     //         else
-    //     //         {
-    //     //             Debug.Log($"Press(Tap)::: {context.interaction} - {context.phase} - {context.ReadValue<Vector2>()}");
-    //     //             OnDo(context);
-    //     //         }
-    //     //         break;
-
-    //     //     case InputActionPhase.Canceled:
-    //     //         Debug.Log($"Cancel::: {context.interaction} - {context.phase}");
-    //     //         break;
-    //     // }
-
-    // }
-
     public async void ShowDialogInfo()
     {
         _inputManager.Disable();
@@ -189,7 +118,10 @@ public class ArenaCreatureMB : MonoBehaviour // , IPointerDownHandler
 
     private async void ClickCreature(InputAction.CallbackContext context)
     {
-        await ArenaEntity.ClickCreature();
+        var pos = _inputManager.clickPosition();
+        Vector2 posMouse = _camera.ScreenToWorldPoint(pos);
+        Vector3Int tilePos = ArenaEntity.arenaManager.tileMapArenaGrid.WorldToCell(posMouse);
+        await ArenaEntity.ClickCreature(tilePos);
         // Debug.Log($"Click {name}");
     }
     #endregion
@@ -210,14 +142,7 @@ public class ArenaCreatureMB : MonoBehaviour // , IPointerDownHandler
         {
             _model.transform.localScale = new Vector3(-1, 1, 1);
         }
-        // for (int y = 0; y < transform.childCount; y++)
-        // {
-        //     // obj.TypeBuild = build.BuildLevels[i].TypeBuild;
 
-        //     Transform child = transform.GetChild(y);
-        //     if (null == child)
-        //         continue;
-        // }
         var splitName = ArenaEntity.Entity.ScriptableDataAttribute.name.Split('_');
         _nameCreature = splitName.Length > 1 ? splitName[1] : splitName[0];
 
@@ -240,22 +165,16 @@ public class ArenaCreatureMB : MonoBehaviour // , IPointerDownHandler
 
     public async UniTask MoveCreature()
     {
-        // Rotate(ArenaEntity.Path[0]);
-
-        // _animator.SetBool("move", true);
         _animator.Play(string.Format("{0}{1}", _nameCreature, "StartMoving"), 0, 0f);
         if (ArenaEntity.Path[ArenaEntity.Path.Count - 1] != ArenaEntity.Path[0])
         {
             await UniTask.Delay(200);
             var entityHero = (EntityCreature)_arenaEntity.Entity;
-            // if (entityHero.IsExistPath)
-            // {
-            // if (entityHero.Data.path[0] == _mapObject.OccupiedNode) entityHero.Data.path.RemoveAt(0);
+
             cancelTokenSource = new CancellationTokenSource();
             await MoveEntity(cancelTokenSource.Token);
         }
         NormalizeDirection();
-        // }
     }
     private async UniTask MoveEntity(CancellationToken cancellationToken)
     {
@@ -304,11 +223,6 @@ public class ArenaCreatureMB : MonoBehaviour // , IPointerDownHandler
                 // Check Bridge.
                 await ArenaEntity.OpenBridge(nodeEnd);
 
-                // ScriptableEntityMapObject configNodeData
-                //     = (ScriptableEntityMapObject)nodeTo.OccupiedUnit?.ConfigData;
-
-                //Rotate(nodeTo);
-
                 UpdateDirection(ArenaEntity.PositionPrefab, nodeTo.position, nodeTo);
 
                 await SmoothLerp(transform.position, nodeTo.center + difPos, time);
@@ -342,16 +256,6 @@ public class ArenaCreatureMB : MonoBehaviour // , IPointerDownHandler
         _animator.Play(string.Format("{0}{1}", _nameCreature, "Idle"), 0, 0f);
     }
 
-    // public async UniTask DoObject(GridTileNode nodeTo, BaseMapEntity mapEntity, GridTileNode nodePrev)
-    // {
-    //     var entityCreature = (EntityCreature)ArenaEntity.Entity;
-
-    //     _animator.SetBool("isWalking", false);
-
-    //     entityCreature.ChangeHitHero(nodeTo, nodePrev);
-    //     entityCreature.SetPathHero(null);
-    // }
-
     private async UniTask SmoothLerp(Vector3 startPosition, Vector3 endPosition, float time)
     {
         // float time = LevelManager.Instance.ConfigGameSettings.speedArenaAnimation;
@@ -381,11 +285,6 @@ public class ArenaCreatureMB : MonoBehaviour // , IPointerDownHandler
             }
 
             Vector3 direction = endPosition - startPosition;
-            //Debug.Log($"Animator change::: {direction}");
-            // _animator.SetFloat("X", (float)direction.x);
-            // _animator.SetFloat("Y", direction.y);
-
-            // _animator.SetBool("walk", true);
         }
     }
 
@@ -532,7 +431,7 @@ public class ArenaCreatureMB : MonoBehaviour // , IPointerDownHandler
         }
 
         string nameAnimationAttack = string.Format("{0}{1}", _nameCreature, nameAnimAttack);
-        Debug.Log($"Shoot {nameAnimationAttack}");
+        // Debug.Log($"Shoot {nameAnimationAttack}");
 
         _animator.Play(nameAnimationAttack, 0, 0f);
 
@@ -543,13 +442,6 @@ public class ArenaCreatureMB : MonoBehaviour // , IPointerDownHandler
         await UniTask.Delay(200);
 
         if (nodeForAttack != null) await nodeForAttack.OccupiedUnit.RunGettingHit(_arenaEntity.OccupiedNode);
-        // if (_arenaEntity.Data.isDefense)
-        // {
-        // }
-        // else
-        // {
-        //     await nodeForAttack.OccupiedUnit.ArenaMonoBehavior.RunGettingHit(_arenaEntity.OccupiedNode);
-        // }
 
         NormalizeDirection();
         _animator.Play(string.Format("{0}{1}", _nameCreature, "Idle"), 0, 0f);
@@ -577,7 +469,6 @@ public class ArenaCreatureMB : MonoBehaviour // , IPointerDownHandler
         {
             _shoot.transform.position = Vector3.Lerp(startPosition, endPosition, (elapsedTime / time));
             elapsedTime += Time.deltaTime;
-            // yield return null;
             await UniTask.Yield();
         }
     }
@@ -586,10 +477,6 @@ public class ArenaCreatureMB : MonoBehaviour // , IPointerDownHandler
     {
         // Animate.
         string nameAnimDefend = "GettingHit";
-        // if (_arenaEntity.Data.isDefense)
-        // {
-        //     nameAnimDefend = "Defend";
-        // }
 
         string nameAnimationAttack = string.Format("{0}{1}", _nameCreature, nameAnimDefend);
 
