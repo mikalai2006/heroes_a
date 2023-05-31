@@ -41,7 +41,7 @@ public class SpellShield : ScriptableAttributeSpell
         // Add modification data.
         if (!creatureArena.Data.DefenseModificators.ContainsKey(this))
         {
-            creatureArena.Data.DefenseModificators.Add(this, dataCurrent.Effect);
+            creatureArena.Data.DefenseModificators.Add(this, creatureArena.Data.defense - (creatureArena.Data.defense * dataCurrent.Effect / 100));
         }
 
         // Add duration.

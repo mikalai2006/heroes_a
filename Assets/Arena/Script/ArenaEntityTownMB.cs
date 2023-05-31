@@ -213,7 +213,6 @@ public class ArenaEntityTownMB : MonoBehaviour
 
     internal async UniTask ResreshObject(Transform transform, int totalDamage)
     {
-        Debug.Log($"ResreshObject::: {transform}[totalDamage={totalDamage}]");
         for (int i = 0; i < transform.childCount; i++)
         {
             transform.GetChild(i).gameObject.SetActive(false);

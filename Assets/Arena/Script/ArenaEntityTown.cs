@@ -48,10 +48,8 @@ public class ArenaEntityTown
         _town = entityTown;
         _arenaManager = arenaManager;
 
-        Debug.Log($"Town.Data.level={Town.Data.level}");
         if (Town.Data.level > -1)
         {
-
             // Disable indestructible nodes.
             _arenaManager.GridArenaHelper.GetNode(11, 11).StateArenaNode |= StateArenaNode.Disable;
             _arenaManager.GridArenaHelper.GetNode(10, 9).StateArenaNode |= StateArenaNode.Disable;
@@ -87,7 +85,6 @@ public class ArenaEntityTown
             _arenaManager.GridArenaHelper.GetNode(10, 2).StateArenaNode |= StateArenaNode.Moating;
             _arenaManager.GridArenaHelper.GetNode(10, 1).StateArenaNode |= StateArenaNode.Moating;
         }
-
 
         // Bridge.
         var bridgeNode = _arenaManager.GridArenaHelper.GetNode(10, 6);
@@ -126,7 +123,8 @@ public class ArenaEntityTown
         {
             var nodeObj3 = _arenaManager.GridArenaHelper.GridTile.GetGridObject(new Vector3Int(15, 7));
             var shootKeep = await CreateShooter(nodeObj3);
-            shootKeep.isHead = true;
+            // shootKeep.isHead = true;
+            shootKeep.SetData(true);
             FortificationsShoots.Add("1_TowerKeep", shootKeep);
         }
 
@@ -134,9 +132,11 @@ public class ArenaEntityTown
         {
             var nodeObj = _arenaManager.GridArenaHelper.GridTile.GetGridObject(new Vector3Int(12, 12));
             var shootTower1 = await CreateShooter(nodeObj);
+            shootTower1.SetData(false);
             FortificationsShoots.Add("2_Tower1", shootTower1);
             var nodeObj2 = _arenaManager.GridArenaHelper.GridTile.GetGridObject(new Vector3Int(12, 0));
             var shootTower2 = await CreateShooter(nodeObj2);
+            shootTower2.SetData(false);
             FortificationsShoots.Add("2_Tower2", shootTower2);
         }
     }
@@ -160,7 +160,7 @@ public class ArenaEntityTown
 
     public void ClickFortification(GameObject clickedObject)
     {
-        Debug.Log($"Click fortification {clickedObject.name}");
+        // Debug.Log($"Click fortification {clickedObject.name}");
         _arenaManager.clickedNode = null;
 
         _arenaManager.CreateButtonCatapult(clickedObject);
@@ -184,8 +184,7 @@ public class ArenaEntityTown
 
     public async UniTask AttackFortification(Transform transform, int damage)
     {
-        Debug.Log($"AttackFortification::: object={transform.name}, damage={damage}");
-
+        // Debug.Log($"AttackFortification::: object={transform.name}, damage={damage}");
         FortificationsGameObject[transform] = FortificationsGameObject[transform] - damage;
         if (FortificationsGameObject[transform] < 0) FortificationsGameObject[transform] = 0;
 

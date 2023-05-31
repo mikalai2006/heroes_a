@@ -18,7 +18,8 @@ public class WarMachineFirstAidTent : ScriptableAttributeWarMachine
             .Where(t =>
                 t.OccupiedUnit != null
                 && t.OccupiedUnit.TypeArenaPlayer == arenaManager.ArenaQueue.activeEntity.arenaEntity.TypeArenaPlayer
-                && (((EntityCreature)t.OccupiedUnit.Entity).ConfigAttribute.TypeAttribute != TypeAttribute.WarMachine)
+                // && (((EntityCreature)t.OccupiedUnit.Entity).ConfigAttribute.TypeAttribute != TypeAttribute.WarMachine)
+                && t.OccupiedUnit is ArenaCreature
             )
             .ToList();
         // arenaManager.ArenaQueue.activeEntity.arenaEntity.Data.typeAttack = TypeAttack.AttackWarMachine;

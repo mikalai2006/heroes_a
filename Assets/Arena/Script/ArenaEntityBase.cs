@@ -348,6 +348,7 @@ public abstract class ArenaEntityBase
         {
             Debug.Log($"Creature not maybe to attack!");
             _arenaManager.DrawNotAllowButton();
+            _arenaManager.clickedNode = null;
             return;
         }
 

@@ -78,7 +78,6 @@ public class ArenaQueue
         //     .Concat(ListEntitiesPhaseWait)
         //     .Concat(ListEntities.Where(t => t.round != ActiveRound));
 
-        Debug.Log($"queue count = {GetQueue().Count()}");
         activeEntity = GetQueue().ElementAt(0);
 
         if (ActiveRound != activeEntity.round)

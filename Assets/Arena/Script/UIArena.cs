@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 using Cysharp.Threading.Tasks;
@@ -493,23 +494,73 @@ public class UIArena : UILocaleBase
 
         infoBlok.Q<Label>().text = text;
 
-        ScriptableAttributeCreature creatureData = (ScriptableAttributeCreature)activeEntity.Entity.ScriptableDataAttribute;
+        ScriptableAttributeCreature creatureData = ((EntityCreature)activeEntity.Entity).ConfigAttribute;
+        // var parameters = creatureData.CreatureParams;
+        var sprite = activeEntity is ArenaShootTown
+            ? arenaManager.ArenaTown.Town.ConfigData.MenuSprite
+            : creatureData.MenuSprite;
+
         infoBlok.Q<VisualElement>("Ava").style.backgroundImage
-            = new StyleBackground(creatureData.MenuSprite);
+            = new StyleBackground(sprite);
 
-        var dataPlural = new Dictionary<string, int> { { "value", 1 } };
-        var arguments = new[] { dataPlural };
-        var titlePlural = Helpers.GetLocalizedPluralString(
-            creatureData.Text.title,
-            arguments,
-            dataPlural
+        string titlePlural;
+        if (activeEntity is ArenaShootTown)
+        {
+            titlePlural = arenaManager.ArenaTown.Town.ConfigData.Text.title.GetLocalizedString();
+            infoBlok.Q<VisualElement>("RowQuantity").style.display = DisplayStyle.None;
+            infoBlok.Q<VisualElement>("RowHP").style.display = DisplayStyle.None;
+            infoBlok.Q<VisualElement>("RowAttack").style.display = DisplayStyle.None;
+            infoBlok.Q<VisualElement>("RowDefense").style.display = DisplayStyle.None;
+
+            infoBlok.Q<Label>("Damage").text = string.Format(
+                "{0}-{1}",
+                activeEntity.Data.damageMin + activeEntity.Data.DamageModificators.Values.Sum(),
+                activeEntity.Data.damageMax + activeEntity.Data.DamageModificators.Values.Sum()
             );
-        infoBlok.Q<Label>("Name").text = titlePlural;
+        }
+        else
+        {
+            var dataPlural = new Dictionary<string, int> { { "value", 1 } };
+            var arguments = new[] { dataPlural };
+            titlePlural = Helpers.GetLocalizedPluralString(
+                creatureData.Text.title,
+                arguments,
+                dataPlural
+                );
 
-        infoBlok.Q<Label>("Attack").text = string.Format("{0}", creatureData.CreatureParams.Attack);
-        infoBlok.Q<Label>("Defense").text = string.Format("{0}", creatureData.CreatureParams.Defense);
-        infoBlok.Q<Label>("Damage").text = string.Format("{0}-{1}", creatureData.CreatureParams.DamageMin, creatureData.CreatureParams.DamageMax);
-        infoBlok.Q<Label>("Hp").text = string.Format("{0}", creatureData.CreatureParams.HP);
+            infoBlok.Q<Label>("Attack").text = string.Format(
+                "<size=80%>{0}</size> (<color=#FFFFAB>{1}</color>)",
+                activeEntity.Data.attack,
+                activeEntity.Data.attack + activeEntity.Data.AttackModificators.Values.Sum()
+            );
+            infoBlok.Q<Label>("Defense").text = string.Format(
+                "<size=80%>{0}</size> (<color=#FFFFAB>{1}</color>)",
+                activeEntity.Data.defense,
+                activeEntity.Data.defense + activeEntity.Data.DefenseModificators.Values.Sum()
+            );
+            int currentHP = activeEntity.Data.totalHP - (activeEntity.Data.HP * (activeEntity.Data.quantity - 1));
+            infoBlok.Q<Label>("HP").text = string.Format(
+                "<size=80%>{0}</size> (<color=#FFFFAB><b>{1}</b></color>)",
+                creatureData.CreatureParams.HP,
+                currentHP == 0 ? activeEntity.Data.HP : currentHP
+            );
+            infoBlok.Q<Label>("Quantity").text = string.Format("<color=#FFFFAB>{0}</color>", activeEntity.Data.quantity);
+
+            string templateDamage = "<color=#FFFFAB>{0}-{1}</color>";
+            var damageMin = activeEntity.Data.damageMin + activeEntity.Data.DamageModificators.Values.Sum();
+            var damageMax = activeEntity.Data.damageMax + activeEntity.Data.DamageModificators.Values.Sum();
+            if (damageMin == damageMax)
+            {
+                templateDamage = "<color=#FFFFAB>{0}</color>";
+            }
+            infoBlok.Q<Label>("Damage").text = string.Format(
+                templateDamage,
+                damageMin,
+                damageMax
+            );
+        }
+
+        infoBlok.Q<Label>("Name").text = titlePlural;
 
         base.Localize(_box);
     }

@@ -90,7 +90,7 @@ public class ArenaWarMachineMonoBehavior : MonoBehaviour // , IPointerDownHandle
                 }
                 else if (context.interaction is HoldInteraction)
                 {
-                    Debug.Log($"Hold::: {gameObject.name}");
+                    // Debug.Log($"Hold::: {gameObject.name}");
                     ShowDialogInfo();
                 }
             }
@@ -204,7 +204,7 @@ public class ArenaWarMachineMonoBehavior : MonoBehaviour // , IPointerDownHandle
         }
 
         string nameAnimationAttack = string.Format("{0}{1}", _nameCreature, nameAnimAttack);
-        Debug.Log($"Shoot {nameAnimationAttack}");
+        // Debug.Log($"Shoot {nameAnimationAttack}");
 
         _animator.Play(nameAnimationAttack, 0, 0f);
 
@@ -262,7 +262,7 @@ public class ArenaWarMachineMonoBehavior : MonoBehaviour // , IPointerDownHandle
 
     internal void RunDeath()
     {
-        Debug.Log("RunDeath");
+        // Debug.Log("RunDeath");
         string nameAnim = "Death";
 
         string nameAnimation = string.Format("{0}{1}", _nameCreature, nameAnim);

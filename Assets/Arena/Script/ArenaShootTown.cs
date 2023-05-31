@@ -162,7 +162,7 @@ public class ArenaShootTown : ArenaEntityBase
                 break;
             case ArenaTypeRunEffect.Choosed:
                 // TODO choose target algoritm.
-                Debug.Log("Create button shoot town!");
+                // Debug.Log("Create button shoot town!");
                 break;
         }
 
@@ -223,9 +223,7 @@ public class ArenaShootTown : ArenaEntityBase
         if (town == null) return;
         int countBuildingInTown = town.Data.Generals.Count + town.Data.Armys.Count;
 
-        int baseDamage = isHead
-            ? UnityEngine.Random.Range(10, 20)
-            : UnityEngine.Random.Range(6, 12);
+        int baseDamage = UnityEngine.Random.Range(Data.damageMin, Data.damageMax);
 
         int dopDamage = isHead
             ? UnityEngine.Random.Range(2, 4) * countBuildingInTown
@@ -237,4 +235,19 @@ public class ArenaShootTown : ArenaEntityBase
         nodeToAttack.OccupiedUnit.SetDamage(totalDamage);
     }
 
+    internal void SetData(bool isHeadTower)
+    {
+        isHead = isHeadTower;
+        var town = _arenaManager.ArenaTown.Town;
+        if (town == null) return;
+        int countBuildingInTown = town.Data.Generals.Count + town.Data.Armys.Count;
+
+        Data.damageMin = isHead ? 10 : 6;
+        Data.damageMax = isHead ? 20 : 12;
+
+        int dopDamage = isHead
+            ? UnityEngine.Random.Range(2, 4) * countBuildingInTown
+            : UnityEngine.Random.Range(2, 4) * Mathf.CeilToInt(countBuildingInTown / 2);
+        Data.DamageModificators.Add(((EntityCreature)Entity).ConfigAttribute, dopDamage);
+    }
 }

@@ -164,11 +164,11 @@ public class WarMachineCatapult : ScriptableAttributeWarMachine
                 // var transform = wallsObjects[UnityEngine.Random.Range(0, wallsObjects.Count)].Key.gameObject.transform;
                 await ArenaWarMachineMonoBehavior.RunAttackShoot(null, randomObject);
                 await arenaManager.ArenaTown.AttackFortification(randomObject, valueDamage);
-                Debug.Log($"{name}:::RunEffectByGameObject randomObject| objectForAttack={randomObject.name} / damage={valueDamage}[chance={chance}");
+                // Debug.Log($"{name}:::RunEffectByGameObject randomObject| objectForAttack={randomObject.name} / damage={valueDamage}[chance={chance}");
             }
             else
             {
-                Debug.Log($"{name}:::RunEffectByGameObject isHitShoot| objectForAttack={objectGorAttack.name} / damage={valueDamage}[chance={chance}");
+                // Debug.Log($"{name}:::RunEffectByGameObject isHitShoot| objectForAttack={objectGorAttack.name} / damage={valueDamage}[chance={chance}");
             }
             arenaManager.ArenaTown.ArenaEntityTownMB.SetStatusColliders(false);
         }

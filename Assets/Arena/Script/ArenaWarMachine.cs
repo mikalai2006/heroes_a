@@ -238,7 +238,7 @@ public class ArenaWarMachine : ArenaEntityBase
 
     public override async UniTask ClickButtonAction()
     {
-        Debug.Log($"{this.GetType()} ClickButtonAction {_arenaManager.clickedNode}");
+        // Debug.Log($"{this.GetType()} ClickButtonAction {_arenaManager.clickedNode}");
         var warMachine = ((ScriptableAttributeWarMachine)((EntityCreature)Entity).ConfigAttribute);
         if (_arenaManager.clickedFortification == null && warMachine.TypeWarMachine == TypeWarMachine.Catapult)
             return;
