@@ -32,6 +32,7 @@ public class UIArena : UILocaleBase
     public static event Action OnClickAttack;
     public static event Action OnUnloadArena;
     public static event Action OnLoadArena;
+    public static event Action OnClickAutoBattle;
 
     private VisualElement _box;
     private VisualElement _leftSide;
@@ -42,6 +43,9 @@ public class UIArena : UILocaleBase
     private Button _btnDirAttack;
     private Button _btnSpellBook;
     private Button _btnWait;
+    private Button _btnAuto;
+    private Button _btnRun;
+    private Button _btnDefense;
     private Button _btnQueue;
     private const string _arenaButtons = "ArenaButtons";
     private Camera _cameraMain;
@@ -51,6 +55,7 @@ public class UIArena : UILocaleBase
     private GameObject grid;
     protected TaskCompletionSource<ResultDialogArenaData> _processCompletionSource;
     protected ResultDialogArenaData _dataResultDialog;
+    protected DialogArenaData _dialogArenaData;
 
     private void Awake()
     {
@@ -59,7 +64,6 @@ public class UIArena : UILocaleBase
 
         _cameraMain = Camera.main;
         _cameraMain.gameObject.SetActive(false);
-
 
         _box = _uiDoc.rootVisualElement;
 
@@ -77,15 +81,22 @@ public class UIArena : UILocaleBase
             OnClickWait();
         };
 
-        var btnDefense = _box.Q<Button>("DefenseButton");
-        btnDefense.clickable.clicked += async () =>
+        _btnAuto = _box.Q<Button>("AutoButton");
+        _btnAuto.clickable.clicked += async () =>
+        {
+            await AudioManager.Instance.Click();
+            OnClickAuto();
+        };
+
+        _btnDefense = _box.Q<Button>("DefenseButton");
+        _btnDefense.clickable.clicked += async () =>
         {
             await AudioManager.Instance.Click();
             OnClickDefense();
         };
 
-        var btnRunCreature = _box.Q<Button>("RunButton");
-        btnRunCreature.clickable.clicked += async () =>
+        _btnRun = _box.Q<Button>("RunButton");
+        _btnRun.clickable.clicked += async () =>
         {
             await AudioManager.Instance.Click();
             OnClickClose();
@@ -162,8 +173,9 @@ public class UIArena : UILocaleBase
         base.Localize(_box);
     }
 
-    public async Task<ResultDialogArenaData> ProcessAction()
+    public async Task<ResultDialogArenaData> ProcessAction(DialogArenaData dialogArenaData)
     {
+        _dialogArenaData = dialogArenaData;
         _dataResultDialog = new ResultDialogArenaData();
         _processCompletionSource = new TaskCompletionSource<ResultDialogArenaData>();
 
@@ -180,7 +192,7 @@ public class UIArena : UILocaleBase
 
     private void ShowSpellInfo()
     {
-        if (arenaManager.ArenaQueue.ActiveHero.SpellBook.ChoosedSpell == null)
+        if (arenaManager.ArenaQueue.ActiveHero.Entity.SpellBook.ChoosedSpell == null)
         {
             return;
         }
@@ -212,7 +224,7 @@ public class UIArena : UILocaleBase
         box.Clear();
         var boxSpell = _templateShortSpellInfo.Instantiate();
 
-        var spellBook = arenaManager.ArenaQueue.ActiveHero.SpellBook;
+        var spellBook = arenaManager.ArenaQueue.ActiveHero.Entity.SpellBook;
         if (spellBook != null)
         {
             boxSpell.Q<VisualElement>("Ava").style.backgroundImage
@@ -284,32 +296,43 @@ public class UIArena : UILocaleBase
 
     private void ChangeStatusButton()
     {
-        // Button spellbook.
-        if (
-            arenaManager.ArenaQueue.ActiveHero != null
-            &&
-            arenaManager.ArenaQueue.ActiveHero.SpellBook != null
-            &&
-            arenaManager.ArenaQueue.ActiveHero.SpellBook.countCreatedSpell > 0
-            )
-        {
-            _btnSpellBook.SetEnabled(true);
-        }
-        else
+        if (arenaManager.ArenaQueue.ActiveHero.Data.autoRun)
         {
             _btnSpellBook.SetEnabled(false);
-        }
-
-        // Button wait.
-        if (
-            arenaManager.ArenaQueue.activeEntity.arenaEntity.Data.waitTick > 0
-            )
-        {
             _btnWait.SetEnabled(false);
+            _btnDirAttack.SetEnabled(false);
+            // _btnRun.SetEnabled(false);
+            _btnDefense.SetEnabled(false);
         }
         else
         {
-            _btnWait.SetEnabled(true);
+            // Button spellbook.
+            if (
+                arenaManager.ArenaQueue.ActiveHero.Entity != null
+                &&
+                arenaManager.ArenaQueue.ActiveHero.Entity.SpellBook != null
+                &&
+                arenaManager.ArenaQueue.ActiveHero.Entity.SpellBook.countCreatedSpell > 0
+                )
+            {
+                _btnSpellBook.SetEnabled(true);
+            }
+            else
+            {
+                _btnSpellBook.SetEnabled(false);
+            }
+
+            // Button wait.
+            if (
+                arenaManager.ArenaQueue.activeEntity.arenaEntity.Data.waitTick > 0
+                )
+            {
+                _btnWait.SetEnabled(false);
+            }
+            else
+            {
+                _btnWait.SetEnabled(true);
+            }
         }
     }
 
@@ -407,9 +430,17 @@ public class UIArena : UILocaleBase
         DrawInfo();
     }
 
+    private void OnClickAuto()
+    {
+        OnClickAutoBattle?.Invoke();
+    }
+
     private void ChangeStatusButtonAttack()
     {
-        if (arenaManager.NodesForAttackActiveCreature.Count > 0)
+        if (
+            arenaManager.NodesForAttackActiveCreature.Count > 0
+            && !arenaManager.ArenaQueue.ActiveHero.Data.autoRun
+            )
         {
             _btnDirAttack.SetEnabled(true);
         }
@@ -417,6 +448,7 @@ public class UIArena : UILocaleBase
         {
             _btnDirAttack.SetEnabled(false);
         }
+
         DrawHelpAttackedCreature();
     }
 

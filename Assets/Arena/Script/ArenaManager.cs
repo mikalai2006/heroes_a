@@ -76,8 +76,8 @@ public class ArenaManager : MonoBehaviour
     private int zCoord = -14;
     private SerializableDictionary<int, List<int>> schemaCreatures = new();
 
-    private EntityHero hero;
-    private EntityHero enemy;
+    public ArenaHeroEntity hero;
+    public ArenaHeroEntity enemy;
     public ArenaEntityTown ArenaTown = null;
     public GameObject clickedFortification;
     public GameObject buttonAction;
@@ -106,9 +106,11 @@ public class ArenaManager : MonoBehaviour
     public bool isRunningAction;
     public DialogArenaData DialogArenaData;
     public ScriptableAttributeSpell ChoosedSpell
-        => ArenaQueue.ActiveHero != null && ArenaQueue.ActiveHero.SpellBook != null ?
-            ArenaQueue.ActiveHero.SpellBook.ChoosedSpell
-            : null;
+        => ArenaQueue.ActiveHero != null
+            && ArenaQueue.ActiveHero.Entity != null
+            && ArenaQueue.ActiveHero.Entity.SpellBook != null
+                ? ArenaQueue.ActiveHero.Entity.SpellBook.ChoosedSpell
+                : null;
     private InputManager inputManager;
 
 
@@ -146,29 +148,31 @@ public class ArenaManager : MonoBehaviour
             transform
         );
         // inputManager.OnStartTouch += OnClick;
-        UIArena.OnNextCreature += NextCreature;
+        UIArena.OnNextCreature += RunNextCreature;
         UIArena.OnOpenSpellBook += OpenSpellBook;
         UIArena.OnClickAttack += ActionClickButton;
         UIDialogSpellBook.OnClickSpell += ChooseSpell;
         UIArena.OnCancelSpell += EndSpell;
+        UIArena.OnClickAutoBattle += ClickButtonAutoBattle;
 
         // CreateArena();
 
     }
     private void OnDestroy()
     {
-        UIArena.OnNextCreature -= NextCreature;
+        UIArena.OnNextCreature -= RunNextCreature;
         UIArena.OnOpenSpellBook -= OpenSpellBook;
         UIArena.OnClickAttack -= ActionClickButton;
         UIDialogSpellBook.OnClickSpell -= ChooseSpell;
         UIArena.OnCancelSpell -= EndSpell;
+        UIArena.OnClickAutoBattle -= ClickButtonAutoBattle;
     }
 
     private async void OpenSpellBook()
     {
         inputManager.Disable();
 
-        var dialogWindow = new DialogSpellBookOperation(ArenaQueue.ActiveHero);
+        var dialogWindow = new DialogSpellBookOperation(ArenaQueue.ActiveHero.Entity);
         var result = await dialogWindow.ShowAndHide();
 
         inputManager.Enable();
@@ -275,7 +279,17 @@ public class ArenaManager : MonoBehaviour
         await UniTask.Delay(1);
     }
 
-    public async void NextCreature(bool wait, bool def)
+    private async void RunNextCreature(bool wait, bool def)
+    {
+        await NextCreature(wait, def);
+    }
+
+    private async void ClickButtonAutoBattle()
+    {
+        await ArenaQueue.ActiveHero.SetStatusAutoRun(!ArenaQueue.ActiveHero.Data.autoRun);
+    }
+
+    public async UniTask NextCreature(bool wait, bool def)
     {
         // Check end battle.
         var countCreaturesLeft = ArenaQueue.ListEntities.Where(t => t.arenaEntity.TypeArenaPlayer == TypeArenaPlayer.Left).Count();
@@ -283,21 +297,27 @@ public class ArenaManager : MonoBehaviour
         if (countCreaturesLeft == 0 || countCreaturesRight == 0)
         {
             await CalculateStat();
-            return;
         }
-
-        ArenaQueue.NextCreature(wait, def);
-
-        await ArenaQueue.activeEntity.arenaEntity.GetFightingNodes();
-
-        // lighting active creature.
-        LightingActiveNode();
-
-        OnAutoNextCreature?.Invoke();
-
-        if (!ArenaQueue.activeEntity.arenaEntity.Data.isRun)
+        else
         {
-            NextCreature(false, false);
+            ArenaQueue.NextCreature(wait, def);
+
+            await ArenaQueue.activeEntity.arenaEntity.GetFightingNodes();
+
+            // lighting active creature.
+            LightingActiveNode();
+
+            OnAutoNextCreature?.Invoke();
+
+            if (!ArenaQueue.activeEntity.arenaEntity.Data.isRun)
+            {
+                await NextCreature(false, false);
+            }
+            else if (ArenaQueue.ActiveHero.Data.autoRun)
+            {
+                // Run AI
+                await ArenaQueue.ActiveHero.AI.Run();
+            }
         }
     }
 
@@ -501,7 +521,7 @@ public class ArenaManager : MonoBehaviour
         PathNodes.Clear();
         if (ChoosedSpell != null)
         {
-            ArenaQueue.ActiveHero.SpellBook.ChooseSpell(null);
+            ArenaQueue.ActiveHero.Entity.SpellBook.ChooseSpell(null);
         }
 
         foreach (var neiNode in AllMovedNodes)
@@ -665,20 +685,20 @@ public class ArenaManager : MonoBehaviour
             // if expert school, fun for all.
             var baseSSkill = ChoosedSpell.SchoolMagic.BaseSecondarySkill;
             if (
-                ArenaQueue.ActiveHero.Data.SSkills.ContainsKey(baseSSkill.TypeTwoSkill)
+                ArenaQueue.ActiveHero.Entity.Data.SSkills.ContainsKey(baseSSkill.TypeTwoSkill)
                 && ChoosedSpell.typeSpellRun == TypeSpellRun.Collective
                 )
             {
-                var dataSSkill = ArenaQueue.ActiveHero.Data.SSkills[baseSSkill.TypeTwoSkill];
+                var dataSSkill = ArenaQueue.ActiveHero.Entity.Data.SSkills[baseSSkill.TypeTwoSkill];
                 if (dataSSkill.level >= 2)
                 {
                     List<UniTask> listTasks = new();
                     for (int i = 0; i < FightingOccupiedNodes.Count; i++)
                     {
                         // listTasks.Add(FightingOccupiedNodes.ElementAt(i).OccupiedUnit.RunSpell());
-                        listTasks.Add(ArenaQueue.ActiveHero.SpellBook.RunSpellCombat(FightingOccupiedNodes.ElementAt(i), this));
+                        listTasks.Add(ArenaQueue.ActiveHero.Entity.SpellBook.RunSpellCombat(FightingOccupiedNodes.ElementAt(i), ArenaQueue.ActiveHero, this));
                     }
-                    await ArenaQueue.ActiveHero.ArenaHeroEntity.ArenaHeroMonoBehavior.RunSpellAnimation();
+                    await ArenaQueue.ActiveHero.ArenaHeroMonoBehavior.RunSpellAnimation();
                     await UniTask.WhenAll(listTasks);
                     ArenaQueue.Refresh();
                     EndSpell();
@@ -688,9 +708,9 @@ public class ArenaManager : MonoBehaviour
         // if immediately run spell.
         if (ChoosedSpell != null && ChoosedSpell.typeSpellRun == TypeSpellRun.Immediately)
         {
-            await ArenaQueue.ActiveHero.ArenaHeroEntity.ArenaHeroMonoBehavior.RunSpellAnimation();
-            await ArenaQueue.ActiveHero.SpellBook
-                .RunSpellCombat(FightingOccupiedNodes[UnityEngine.Random.Range(0, FightingOccupiedNodes.Count - 1)], this);
+            await ArenaQueue.ActiveHero.ArenaHeroMonoBehavior.RunSpellAnimation();
+            await ArenaQueue.ActiveHero.Entity.SpellBook
+                .RunSpellCombat(FightingOccupiedNodes[UnityEngine.Random.Range(0, FightingOccupiedNodes.Count - 1)], ArenaQueue.ActiveHero, this);
             ArenaQueue.Refresh();
             EndSpell();
         }
@@ -728,8 +748,8 @@ public class ArenaManager : MonoBehaviour
 
         await AudioManager.Instance.Click();
         // await NodeForSpell.OccupiedUnit.RunSpell();
-        await ArenaQueue.ActiveHero.ArenaHeroEntity.ArenaHeroMonoBehavior.RunSpellAnimation();
-        await ArenaQueue.ActiveHero.SpellBook.RunSpellCombat(clickedNode, this);
+        await ArenaQueue.ActiveHero.ArenaHeroMonoBehavior.RunSpellAnimation();
+        await ArenaQueue.ActiveHero.Entity.SpellBook.RunSpellCombat(clickedNode, ArenaQueue.ActiveHero, this);
         _buttonSpell.SetActive(false);
 
         ArenaQueue.Refresh();
@@ -741,7 +761,7 @@ public class ArenaManager : MonoBehaviour
     {
         _tileMapAllowAttack.ClearAllTiles();
         _buttonSpell.SetActive(false);
-        ArenaQueue.ActiveHero.SpellBook.ChooseSpell(null);
+        ArenaQueue.ActiveHero.Entity.SpellBook.ChooseSpell(null);
         await ArenaQueue.activeEntity.arenaEntity.GetFightingNodes();
         clickedNode = null;
         OnAutoNextCreature?.Invoke();
@@ -893,12 +913,12 @@ public class ArenaManager : MonoBehaviour
 
         if (ResourceSystem.Instance != null)
         {
+            await CreateHeroes();
+
             if (DialogArenaData.town != null)
             {
                 await CreateTown();
             }
-
-            CreateHeroes();
 
             CreateSchemaCreatures();
 
@@ -908,7 +928,7 @@ public class ArenaManager : MonoBehaviour
             // CreateObstacles();
             await CreateWarMachine();
 
-            NextCreature(false, false);
+            await NextCreature(false, false);
 
             setSizeTileMap();
         }
@@ -946,12 +966,12 @@ public class ArenaManager : MonoBehaviour
     private async UniTask CreateWarMachine()
     {
         if (
-            hero.Data.WarMachines.ContainsKey(TypeWarMachine.Catapult)
+            hero.Entity.Data.WarMachines.ContainsKey(TypeWarMachine.Catapult)
             && DialogArenaData.town != null
             && DialogArenaData.town.Data.level != -1
             )
         {
-            var catapult = (EntityCreature)hero.Data.WarMachines[TypeWarMachine.Catapult];
+            var catapult = (EntityCreature)hero.Entity.Data.WarMachines[TypeWarMachine.Catapult];
             var GridGameObject = new ArenaWarMachine();
             GridGameObject.Init(this, hero);
             var nodeObj = GridArenaHelper.GridTile.GetGridObject(new Vector3Int(0, 4));
@@ -964,9 +984,9 @@ public class ArenaManager : MonoBehaviour
 
             ArenaQueue.AddEntity(GridGameObject);
         }
-        if (hero.Data.WarMachines.ContainsKey(TypeWarMachine.Ballista))
+        if (hero.Entity.Data.WarMachines.ContainsKey(TypeWarMachine.Ballista))
         {
-            var ballista = (EntityCreature)hero.Data.WarMachines[TypeWarMachine.Ballista];
+            var ballista = (EntityCreature)hero.Entity.Data.WarMachines[TypeWarMachine.Ballista];
             var GridGameObject = new ArenaWarMachine();
             GridGameObject.Init(this, hero);
             var nodeObj = GridArenaHelper.GridTile.GetGridObject(new Vector3Int(0, 8));
@@ -979,9 +999,9 @@ public class ArenaManager : MonoBehaviour
 
             ArenaQueue.AddEntity(GridGameObject);
         }
-        if (hero.Data.WarMachines.ContainsKey(TypeWarMachine.AmmoCart))
+        if (hero.Entity.Data.WarMachines.ContainsKey(TypeWarMachine.AmmoCart))
         {
-            var ammoCart = (EntityCreature)hero.Data.WarMachines[TypeWarMachine.AmmoCart];
+            var ammoCart = (EntityCreature)hero.Entity.Data.WarMachines[TypeWarMachine.AmmoCart];
             var GridGameObject = new ArenaWarMachine();
             GridGameObject.Init(this, hero);
             var nodeObj = GridArenaHelper.GridTile.GetGridObject(new Vector3Int(0, 10));
@@ -994,9 +1014,9 @@ public class ArenaManager : MonoBehaviour
 
             ArenaQueue.AddEntity(GridGameObject);
         }
-        if (hero.Data.WarMachines.ContainsKey(TypeWarMachine.FirstAidTent))
+        if (hero.Entity.Data.WarMachines.ContainsKey(TypeWarMachine.FirstAidTent))
         {
-            var firstAidTent = (EntityCreature)hero.Data.WarMachines[TypeWarMachine.FirstAidTent];
+            var firstAidTent = (EntityCreature)hero.Entity.Data.WarMachines[TypeWarMachine.FirstAidTent];
             var GridGameObject = new ArenaWarMachine();
             GridGameObject.Init(this, hero);
             var nodeObj = GridArenaHelper.GridTile.GetGridObject(new Vector3Int(0, 2));
@@ -1009,11 +1029,11 @@ public class ArenaManager : MonoBehaviour
 
             ArenaQueue.AddEntity(GridGameObject);
         }
-        if (enemy != null)
+        if (enemy != null && enemy.Data.typeArenaHero != TypeArenaHero.Hidden)
         {
-            if (enemy.Data.WarMachines.ContainsKey(TypeWarMachine.AmmoCart))
+            if (enemy.Entity.Data.WarMachines.ContainsKey(TypeWarMachine.AmmoCart))
             {
-                var ammoCart = (EntityCreature)enemy.Data.WarMachines[TypeWarMachine.AmmoCart];
+                var ammoCart = (EntityCreature)enemy.Entity.Data.WarMachines[TypeWarMachine.AmmoCart];
                 var GridGameObject = new ArenaWarMachine();
                 GridGameObject.Init(this, enemy);
                 var nodeObj = GridArenaHelper.GridTile.GetGridObject(new Vector3Int(width - 1, 10));
@@ -1026,9 +1046,9 @@ public class ArenaManager : MonoBehaviour
 
                 ArenaQueue.AddEntity(GridGameObject);
             }
-            if (enemy.Data.WarMachines.ContainsKey(TypeWarMachine.Ballista))
+            if (enemy.Entity.Data.WarMachines.ContainsKey(TypeWarMachine.Ballista))
             {
-                var ballista = (EntityCreature)enemy.Data.WarMachines[TypeWarMachine.Ballista];
+                var ballista = (EntityCreature)enemy.Entity.Data.WarMachines[TypeWarMachine.Ballista];
                 var GridGameObject = new ArenaWarMachine();
                 GridGameObject.Init(this, enemy);
                 var nodeObj = GridArenaHelper.GridTile.GetGridObject(new Vector3Int(width - 1, 8));
@@ -1041,9 +1061,9 @@ public class ArenaManager : MonoBehaviour
 
                 ArenaQueue.AddEntity(GridGameObject);
             }
-            if (enemy.Data.WarMachines.ContainsKey(TypeWarMachine.FirstAidTent))
+            if (enemy.Entity.Data.WarMachines.ContainsKey(TypeWarMachine.FirstAidTent))
             {
-                var firstAidTent = (EntityCreature)enemy.Data.WarMachines[TypeWarMachine.FirstAidTent];
+                var firstAidTent = (EntityCreature)enemy.Entity.Data.WarMachines[TypeWarMachine.FirstAidTent];
                 var GridGameObject = new ArenaWarMachine();
                 GridGameObject.Init(this, enemy);
                 var nodeObj = GridArenaHelper.GridTile.GetGridObject(new Vector3Int(width - 1, 2));
@@ -1088,10 +1108,9 @@ public class ArenaManager : MonoBehaviour
     {
         if (DialogArenaData.town.Data.level > -1)
         {
-            var townEntity = DialogArenaData.town;
-            var node = GridArenaHelper.GetNode(new Vector3Int(10, 5));
             ArenaTown = new ArenaEntityTown();
-            ArenaTown.Init(node, townEntity, this);
+            var node = GridArenaHelper.GetNode(new Vector3Int(10, 5));
+            ArenaTown.Init(node, DialogArenaData.town, this);
             await ArenaTown.CreateGameObject();
             await ArenaTown.SetShootTown();
         }
@@ -1100,43 +1119,47 @@ public class ArenaManager : MonoBehaviour
             ArenaTown = null;
         }
 
-        if (DialogArenaData.town.HeroInTown != null)
-        {
-            enemy = DialogArenaData.town.HeroInTown;
-            var enemyArena = new ArenaHeroEntity(tileMapArenaUnits);
-            enemyArena.SetEntity(enemy);
-            enemyArena.SetPosition(new Vector3(width + 1.5f, 8.5f));
-            enemyArena.CreateMapGameObject();
-            enemy.ArenaHeroEntity = enemyArena;
-        }
+        // if (DialogArenaData.town.HeroInTown != null)
+        // {
+        //     // enemy = DialogArenaData.town.HeroInTown;
+        //     enemy = new ArenaHeroEntity(tileMapArenaUnits);
+        //     enemy.SetEntity(this, DialogArenaData.town.HeroInTown, TypeArenaHero.Visible, new Vector3(width + 1.5f, 8.5f));
+        // }
     }
 
-    private void CreateHeroes()
+    private async UniTask CreateHeroes()
     {
-        // TODO - use only from DialogArenaData
-        hero = LevelManager.Instance.ActivePlayer != null
-            ? LevelManager.Instance.ActivePlayer.ActiveHero
-            : DialogArenaData.hero; // new EntityHero(TypeFaction.Castle, heroes[0]);
-        var heroArena = new ArenaHeroEntity(tileMapArenaUnits);
-        heroArena.SetEntity(hero);
-        heroArena.SetPosition(new Vector3(-2, 8.5f));
-        heroArena.CreateMapGameObject();
-        hero.ArenaHeroEntity = heroArena;
+        var positionRightHero = new Vector3(width + 1.5f, 8.5f);
+        var positionLeftHero = new Vector3(-2, 8.5f);
 
-        if (DialogArenaData.enemy != null)
+        hero = new ArenaHeroEntity(tileMapArenaUnits);
+        await hero.SetEntity(this, DialogArenaData.heroAttacking, TypeArenaHero.Visible, positionLeftHero);
+
+        if (DialogArenaData.heroDefending != null)
         {
-            enemy = DialogArenaData.enemy;
-            var enemyArena = new ArenaHeroEntity(tileMapArenaUnits);
-            enemyArena.SetEntity(enemy);
-            enemyArena.SetPosition(new Vector3(width + 1.5f, 8.5f));
-            enemyArena.CreateMapGameObject();
-            enemy.ArenaHeroEntity = enemyArena;
+            enemy = new ArenaHeroEntity(tileMapArenaUnits);
+            await enemy.SetEntity(this, DialogArenaData.heroDefending, TypeArenaHero.Visible, positionRightHero);
         }
+        else if (
+            DialogArenaData.town != null
+            && DialogArenaData.town.Data.level > -1
+            && DialogArenaData.town.HeroInTown != null
+            )
+        {
+            enemy = new ArenaHeroEntity(tileMapArenaUnits);
+            await enemy.SetEntity(this, DialogArenaData.town.HeroInTown, TypeArenaHero.Visible, positionRightHero);
+        }
+        else
+        {
+            enemy = new ArenaHeroEntity(tileMapArenaUnits);
+            await enemy.SetEntity(this, null, TypeArenaHero.Hidden, positionRightHero);
+        }
+
     }
 
     private async UniTask CreateCreatures()
     {
-        var heroCreatures = hero.Data.Creatures.Where(t => t.Value != null).ToList();
+        var heroCreatures = hero.Entity.Data.Creatures.Where(t => t.Value != null).ToList();
         var schemaCreaturesHero = schemaCreatures[heroCreatures.Count];
         for (int i = 0; i < heroCreatures.Count; i++)
         {
@@ -1154,9 +1177,9 @@ public class ArenaManager : MonoBehaviour
             ArenaQueue.AddEntity(GridGameObject);
         }
 
-        if (enemy != null)
+        if (enemy.Data.typeArenaHero == TypeArenaHero.Visible)
         {
-            var enemyCreatures = enemy.Data.Creatures.Where(t => t.Value != null).ToList();
+            var enemyCreatures = enemy.Entity.Data.Creatures.Where(t => t.Value != null).ToList();
             var schemaEnemyCreatures = schemaCreatures[enemyCreatures.Count];
             for (int i = 0; i < enemyCreatures.Count; i++)
             {
@@ -1176,7 +1199,7 @@ public class ArenaManager : MonoBehaviour
         }
         else
         {
-            var allAIHeroCreatures = heroCreatures.Select(t => t.Value.totalAI).Sum() * hero.Streight;
+            var allAIHeroCreatures = heroCreatures.Select(t => t.Value.totalAI).Sum() * hero.Entity.Streight;
             var allAICreatures = DialogArenaData.creature.totalAI;
 
             // Calculate count stack.
@@ -1223,7 +1246,7 @@ public class ArenaManager : MonoBehaviour
                 creatureEntity.SetValueCreature(i < maxCountStack - 1 ? countCreatureOneStack : countCreatureOneStack + remainder);
 
                 var GridGameObject = new ArenaCreature();
-                GridGameObject.Init(this, null);
+                GridGameObject.Init(this, enemy);
                 var size = creatureConfig.CreatureParams.Size;
                 var nodeObj = GridArenaHelper.GridTile.GetGridObject(new Vector3Int(width - size, _schemaCreatures[i]));
                 GridGameObject.TypeArenaPlayer = TypeArenaPlayer.Right;
@@ -1631,6 +1654,4 @@ public class ArenaManager : MonoBehaviour
     //     ChooseNextPositionForAttack();
     //     OnChangeNodesForAttack?.Invoke();
     // }
-
-
 }

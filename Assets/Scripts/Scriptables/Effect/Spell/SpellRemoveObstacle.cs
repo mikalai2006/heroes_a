@@ -9,7 +9,7 @@ using UnityEngine.AddressableAssets;
 [CreateAssetMenu(fileName = "RemoveObstacle", menuName = "Game/Attribute/Spell/27_RemoveObstacle", order = 27)]
 public class SpellRemoveObstacle : ScriptableAttributeSpell
 {
-    public async override UniTask<List<GridArenaNode>> ChooseTarget(ArenaManager arenaManager, EntityHero hero, Player player = null)
+    public async override UniTask<List<GridArenaNode>> ChooseTarget(ArenaManager arenaManager, ArenaHeroEntity hero, Player player = null)
     {
         List<GridArenaNode> nodes = arenaManager
             .GridArenaHelper
@@ -24,15 +24,15 @@ public class SpellRemoveObstacle : ScriptableAttributeSpell
         await UniTask.Delay(1);
         return nodes;
     }
-    public async override UniTask AddEffect(GridArenaNode node, EntityHero heroRunSpell, ArenaManager arenaManager, Player player = null)
+    public async override UniTask AddEffect(GridArenaNode node, ArenaHeroEntity heroRunSpell, ArenaManager arenaManager, Player player = null)
     {
         ScriptableAttributeSecondarySkill baseSSkill = SchoolMagic.BaseSecondarySkill;
         SpellItem dataCurrent = new();
         int levelSSkill = 0;
         if (heroRunSpell != null)
         {
-            levelSSkill = heroRunSpell.Data.SSkills.ContainsKey(baseSSkill.TypeTwoSkill)
-                ? heroRunSpell.Data.SSkills[baseSSkill.TypeTwoSkill].level + 1
+            levelSSkill = heroRunSpell.Entity.Data.SSkills.ContainsKey(baseSSkill.TypeTwoSkill)
+                ? heroRunSpell.Entity.Data.SSkills[baseSSkill.TypeTwoSkill].level + 1
                 : 0;
             dataCurrent = LevelData[levelSSkill];
         }

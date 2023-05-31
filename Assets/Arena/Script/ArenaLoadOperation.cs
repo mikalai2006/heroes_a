@@ -11,8 +11,8 @@ using UnityEngine.ResourceManagement.ResourceProviders;
 public struct DialogArenaData
 {
     public EntityTown town;
-    public EntityHero hero;
-    public EntityHero enemy;
+    public EntityHero heroAttacking;
+    public EntityHero heroDefending;
     public EntityMapObject creatureBank;
     public EntityCreature creature;
     public SOArenaSetting ArenaSetting;
@@ -49,7 +49,7 @@ namespace Loader
                 UIArena.Init();
             }
 
-            var result = await UIArena.ProcessAction();
+            var result = await UIArena.ProcessAction(_dialogArenaData);
             await Unload();
             return result;
         }

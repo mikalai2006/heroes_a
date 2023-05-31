@@ -13,7 +13,7 @@ public class ArenaShootTown : ArenaEntityBase
     private Transform transform;
     public bool isHead;
 
-    public override void Init(ArenaManager arenaManager, EntityHero hero)
+    public override void Init(ArenaManager arenaManager, ArenaHeroEntity hero)
     {
         base.Init(arenaManager, hero);
     }
@@ -103,7 +103,7 @@ public class ArenaShootTown : ArenaEntityBase
         ArenaShootTownMB.Init(this, shoots);
     }
 
-    public override async UniTask GetFightingNodes()
+    public override async UniTask<List<GridArenaNode>> GetFightingNodes()
     {
         arenaManager.ClearAttackNode();
         arenaManager.FightingOccupiedNodes.Clear();
@@ -131,8 +131,8 @@ public class ArenaShootTown : ArenaEntityBase
         int levelSSkill = 0;
         if (arenaManager.ArenaQueue.ActiveHero != null)
         {
-            levelSSkill = arenaManager.ArenaQueue.ActiveHero.Data.SSkills.ContainsKey(TypeSecondarySkill.Artillery)
-                ? arenaManager.ArenaQueue.ActiveHero.Data.SSkills[TypeSecondarySkill.Artillery].level + 1
+            levelSSkill = arenaManager.ArenaQueue.ActiveHero.Entity.Data.SSkills.ContainsKey(TypeSecondarySkill.Artillery)
+                ? arenaManager.ArenaQueue.ActiveHero.Entity.Data.SSkills[TypeSecondarySkill.Artillery].level + 1
                 : 0;
         }
         ArenaTypeRunEffect typeRunEffect = ArenaTypeRunEffect.AutoChoose;
@@ -167,6 +167,7 @@ public class ArenaShootTown : ArenaEntityBase
         }
 
         await UniTask.Yield();
+        return arenaManager.FightingOccupiedNodes;
     }
 
     public override async UniTask ClickButtonAction()
@@ -195,7 +196,7 @@ public class ArenaShootTown : ArenaEntityBase
 
         // Next creature.
         // await GoEntity();
-        arenaManager.NextCreature(false, false);
+        await arenaManager.NextCreature(false, false);
 
         // EndRunWarMachine();
         arenaManager.isRunningAction = false;

@@ -246,6 +246,8 @@ MonoBehaviour:
   ArenaTestHeroes:
   - {fileID: 11400000, guid: 6ffb151385268c2468c11aa0926a7cf9, type: 2}
   - {fileID: 11400000, guid: 57be72433106473478d591f21ad47473, type: 2}
+  typeTestRightPlayer: 2
+  typeTestLeftPlayer: 0
   ArenaPlaceholderModel:
     m_AssetGUID: 3e52e3b730df77e4c83258db01c17448
     m_SubObjectName: 

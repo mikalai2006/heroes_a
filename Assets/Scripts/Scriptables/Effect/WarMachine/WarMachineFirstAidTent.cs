@@ -10,13 +10,15 @@ using UnityEngine.AddressableAssets;
 public class WarMachineFirstAidTent : ScriptableAttributeWarMachine
 {
     public AssetReferenceGameObject AnimatePrefab;
-    public async override UniTask<ArenaResultChoose> ChooseTarget(ArenaManager arenaManager, EntityHero hero, Player player = null)
+    public async override UniTask<ArenaResultChoose> ChooseTarget(ArenaManager arenaManager, ArenaHeroEntity hero, Player player = null)
     {
         List<GridArenaNode> nodes = arenaManager
             .GridArenaHelper
             .GetAllGridNodes()
             .Where(t =>
                 t.OccupiedUnit != null
+                && !t.StateArenaNode.HasFlag(StateArenaNode.Excluded)
+                && t.StateArenaNode.HasFlag(StateArenaNode.Occupied)
                 && t.OccupiedUnit.TypeArenaPlayer == arenaManager.ArenaQueue.activeEntity.arenaEntity.TypeArenaPlayer
                 // && (((EntityCreature)t.OccupiedUnit.Entity).ConfigAttribute.TypeAttribute != TypeAttribute.WarMachine)
                 && t.OccupiedUnit is ArenaCreature
@@ -28,8 +30,8 @@ public class WarMachineFirstAidTent : ScriptableAttributeWarMachine
         int levelSSkill = 0;
         if (arenaManager.ArenaQueue.ActiveHero != null)
         {
-            levelSSkill = arenaManager.ArenaQueue.ActiveHero.Data.SSkills.ContainsKey(TypeSecondarySkill.FirstAid)
-                ? arenaManager.ArenaQueue.ActiveHero.Data.SSkills[TypeSecondarySkill.FirstAid].level + 1
+            levelSSkill = arenaManager.ArenaQueue.ActiveHero.Entity.Data.SSkills.ContainsKey(TypeSecondarySkill.FirstAid)
+                ? arenaManager.ArenaQueue.ActiveHero.Entity.Data.SSkills[TypeSecondarySkill.FirstAid].level + 1
                 : 0;
         }
         ArenaTypeRunEffect typeRunEffect = ArenaTypeRunEffect.AutoChoose;
@@ -74,12 +76,12 @@ public class WarMachineFirstAidTent : ScriptableAttributeWarMachine
 
         // Calculate cure.
         int recoveryHP = Random.Range(CreatureParams.DamageMin, CreatureParams.DamageMax);
-        var levelSSkill = arenaManager.ArenaQueue.ActiveHero.Data.SSkills.ContainsKey(TypeSecondarySkill.FirstAid)
-            ? arenaManager.ArenaQueue.ActiveHero.Data.SSkills[TypeSecondarySkill.FirstAid].level + 1
+        var levelSSkill = arenaManager.ArenaQueue.ActiveHero.Entity.Data.SSkills.ContainsKey(TypeSecondarySkill.FirstAid)
+            ? arenaManager.ArenaQueue.ActiveHero.Entity.Data.SSkills[TypeSecondarySkill.FirstAid].level + 1
             : 0;
         if (levelSSkill > 0)
         {
-            var pSkill = arenaManager.ArenaQueue.ActiveHero.Data.SSkills[TypeSecondarySkill.FirstAid];
+            var pSkill = arenaManager.ArenaQueue.ActiveHero.Entity.Data.SSkills[TypeSecondarySkill.FirstAid];
             recoveryHP = Random.Range(1, pSkill.value);
         }
 
@@ -88,7 +90,7 @@ public class WarMachineFirstAidTent : ScriptableAttributeWarMachine
         entity.SetDamage(-recoveryHP);
         Debug.Log($"{name}::: After cure: {entity.Data.totalHP}[{recoveryHP}]");
 
-        await UniTask.Delay(1);
+        await UniTask.Yield();
     }
 }
 

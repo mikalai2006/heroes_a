@@ -111,7 +111,7 @@ public class ArenaCreature : ArenaEntityBase
     // public EntityHero Hero => _hero;
     private GridArenaNode lastClickedNode;
 
-    public override void Init(ArenaManager arenaManager, EntityHero hero)
+    public override void Init(ArenaManager arenaManager, ArenaHeroEntity hero)
     {
         base.Init(arenaManager, hero);
     }
@@ -290,18 +290,10 @@ public class ArenaCreature : ArenaEntityBase
             if (difference < 0)
             {
                 SetDirection(TypeDirection.Left);
-                // RelatedNode.SetOcuppiedUnit(null);
-                // _relatedNode = node.RightNode;
-                // RelatedNode.SetOcuppiedUnit(this);
-                // Debug.Log($"Rotate Left::: {node.RightNode}");
             }
             else if (difference > 0)
             {
                 SetDirection(TypeDirection.Right);
-                // RelatedNode.SetOcuppiedUnit(null);
-                // _relatedNode = node.LeftNode;
-                // RelatedNode.SetOcuppiedUnit(this);
-                // Debug.Log($"Rotate Right::: {node.LeftNode}");
             }
         }
 
@@ -319,24 +311,14 @@ public class ArenaCreature : ArenaEntityBase
 
         // GridArenaNode nodeByClickPosition = arenaManager.GridArenaHelper.GridTile.GetGridObject(clickPosition);
 
-        if (!arenaManager.FightingOccupiedNodes.Contains(OccupiedNode)) return;
-
-        // var creature = ((EntityCreature)_arenaManager.ArenaQueue.activeEntity.arenaEntity.Entity);
-        // switch (_arenaManager.ArenaQueue.activeEntity.arenaEntity.Data.typeAttack)
-        // {
-        //     case TypeAttack.AttackWarMachine:
-        //         _arenaManager.CreateButtonWarMachine(OccupiedNode);
-        //         break;
-        //     case TypeAttack.AttackShootTown:
-        //         _arenaManager.ArenaQueue.activeEntity.arenaEntity.CreateButtonAttackNode();
-        //         Debug.Log($"Choose creature for shoot town attack!");
-        //         break;
-        //     default:
+        if (!arenaManager.FightingOccupiedNodes.Contains(arenaManager.clickedNode)) return;
 
         // Choose spell.
-        var activeSpell = arenaManager.ArenaQueue.ActiveHero != null && arenaManager.ArenaQueue.ActiveHero.SpellBook != null
-        ? arenaManager.ArenaQueue.ActiveHero.SpellBook.ChoosedSpell
-        : null;
+        var activeSpell = arenaManager.ArenaQueue.ActiveHero != null
+            && arenaManager.ArenaQueue.ActiveHero.Entity != null
+            && arenaManager.ArenaQueue.ActiveHero.Entity.SpellBook != null
+                ? arenaManager.ArenaQueue.ActiveHero.Entity.SpellBook.ChoosedSpell
+                : null;
         if (activeSpell != null)
         {
             Debug.Log($"Choose creature for spell!");
@@ -363,100 +345,21 @@ public class ArenaCreature : ArenaEntityBase
                 Debug.Log($"{GetType()}::: _arenaManager.clickedNode= {arenaManager.clickedNode}!");
             }
         }
-        //         break;
-        // }
-        // if (creature.ConfigAttribute.TypeAttribute == TypeAttribute.Creature)
-        // {
-        //     Debug.Log($"Choose creature for attack!");
-        //     _arenaManager.CreateButtonAttackNode(this);
-        // }
-        // else
-        // {
-        //     Debug.Log($"Choose target for war machine!");
-        //     _arenaManager.CreateButtonWarMachine(OccupiedNode);
-        // }
+
+        await UniTask.Yield();
     }
-
-    // public override void CreateButtonAttackNode(GridArenaNode clickedNode)
-    // {
-    //     var allowNodes = _arenaManager.AllowPathNodes.Concat(_arenaManager.AllowMovedNodes).ToList();
-
-    //     var neighbourNodesEnemyEntity = _arenaManager.ArenaQueue.activeEntity.arenaEntity.OccupiedNode
-    //         .Neighbours()
-    //         // GridArenaHelper
-    //         // .GetNeighbourList(ArenaQueue.activeEntity.arenaEntity.OccupiedNode)
-    //         .Where(t => t.OccupiedUnit != null && t.OccupiedUnit.TypeArenaPlayer != _arenaManager.ArenaQueue.activeEntity.arenaEntity.TypeArenaPlayer);
-    //     // var activeSpell = ArenaQueue.ActiveHero.SpellBook != null
-    //     //     ? ArenaQueue.ActiveHero.SpellBook.ChoosedSpell
-    //     //     : null;
-    //     if (
-    //         (_arenaManager.ArenaQueue.activeEntity.arenaEntity.Data.shoots == 0
-    //         || neighbourNodesEnemyEntity.Count() > 0)
-    //         && _arenaManager.ChoosedSpell == null
-    //         )
-    //     {
-    //         List<GridArenaNode> neighbours = clickedNode
-    //             .Neighbours()
-    //             // GridArenaHelper.GetNeighbourList(clickedEntity.OccupiedNode)
-    //             .Where(t => t.OccupiedUnit == null || t.OccupiedUnit == _arenaManager.ArenaQueue.activeEntity.arenaEntity)
-    //             .ToList();
-    //         var allowNeighbours = neighbours.Intersect(allowNodes).ToList();
-    //         foreach (var node in allowNeighbours)
-    //         {
-    //             _arenaManager.NodesForAttackActiveCreature.Add(new AttackItemNode()
-    //             {
-    //                 nodeFromAttack = node,
-    //                 nodeToAttack = clickedNode
-    //             });
-    //         }
-
-    //         if (RelatedNode != null)
-    //         {
-    //             List<GridArenaNode> neighboursRelatedNode
-    //                 = RelatedNode.Neighbours()
-    //                 // GridArenaHelper.GetNeighbourList(clickedEntity.RelatedNode)
-    //                 .Where(t => t.OccupiedUnit == null || t.OccupiedUnit == _arenaManager.ArenaQueue.activeEntity.arenaEntity)
-    //                 .ToList();
-    //             // neighbours = neighbours.Concat(neighboursRelatedNode).ToList();
-    //             var allowNeighboursRelatedNode = neighboursRelatedNode.Intersect(allowNodes).ToList();
-    //             foreach (var node in allowNeighboursRelatedNode)
-    //             {
-    //                 _arenaManager.NodesForAttackActiveCreature.Add(new AttackItemNode()
-    //                 {
-    //                     nodeFromAttack = node,
-    //                     nodeToAttack = RelatedNode
-    //                 });
-    //             }
-    //         }
-    //     }
-    //     else
-    //     {
-    //         _arenaManager.NodesForAttackActiveCreature.Add(new AttackItemNode()
-    //         {
-    //             nodeFromAttack = _arenaManager.ArenaQueue.activeEntity.arenaEntity.OccupiedNode,
-    //             nodeToAttack = clickedNode
-    //         });
-    //     }
-
-    //     // NodesForAttackActiveCreature = neighbours.Intersect(allowNodes).ToList();
-
-
-    //     // GridArenaNode randomFirstNode
-    //     //     = NodesForAttackActiveCreature[UnityEngine.Random.Range(0, NodesForAttackActiveCreature.Count)];
-    //     // clickedNode = NodesForAttackActiveCreature[1];
-    //     _arenaManager.ChooseNextPositionForAttack();
-    //     _arenaManager.DrawAttackNodes();
-    //     // _arenaManager.clickedNode = OccupiedNode;
-    // }
 
     public override async UniTask ClickButtonAction()
     {
         Debug.Log($"{GetType()}::: ClickButtonAction");
         arenaManager.isRunningAction = true;
 
-        await AudioManager.Instance.Click();
+        if (!arenaManager.ArenaQueue.ActiveHero.Data.autoRun) await AudioManager.Instance.Click();
 
-        if (arenaManager.activeCursor == arenaManager.CursorRule.NotAllow)
+        if (
+            arenaManager.activeCursor == arenaManager.CursorRule.NotAllow
+            && !arenaManager.ArenaQueue.ActiveHero.Data.autoRun
+        )
         {
             arenaManager.isRunningAction = false;
             return;
@@ -469,7 +372,7 @@ public class ArenaCreature : ArenaEntityBase
             )
         {
             // Move creature.
-            await ((ArenaCreature)arenaManager.ArenaQueue.activeEntity.arenaEntity).ArenaMonoBehavior.MoveCreature();
+            await MoveCreature();
         }
 
         // Attack, if exist KeyNodeFromAttack
@@ -482,119 +385,25 @@ public class ArenaCreature : ArenaEntityBase
             }
         }
 
-        // Clear clicked node.
-        arenaManager.clickedNode = null;
-        arenaManager.ClearAttackNode();
+        // // Clear clicked node.
+        // arenaManager.clickedNode = null;
+        // arenaManager.ClearAttackNode();
 
-        // Next creature.
-        // await GoEntity();
-        arenaManager.NextCreature(false, false);
+        // // Next creature.
+        // // await GoEntity();
+        arenaManager.isRunningAction = false;
+        await arenaManager.NextCreature(false, false);
 
         // DrawCursor
         // if (_arenaManager.clickedNode != null) DrawButtonAction();
 
-        arenaManager.isRunningAction = false;
     }
 
-    // private void ChooseNextPositionForAttack()
-    // {
-    //     _arenaManager.ChooseNextPositionForAttack();
-    // }
-
-    private void DrawButtonAction()
+    public override async UniTask MoveCreature()
     {
-
-        // RuleTile ruleCursor = CursorRule.NotAllow;
-
-        // // ScriptableAttributeSpell activeSpell = ArenaQueue.ActiveHero != null
-        // //     ? ArenaQueue.ActiveHero.SpellBook.ChoosedSpell
-        // //     : null;
-        // Vector3 positionButton = new Vector3(clickedNode.center.x, clickedNode.center.y, zCoord);
-
-        // if (ChoosedSpell == null)
-        // {
-        //     ScriptableAttributeCreature activeCreatureData
-        //         = (ScriptableAttributeCreature)ArenaQueue.activeEntity.arenaEntity.Entity.ScriptableDataAttribute;
-
-        //     if (AllowPathNodes.Contains(clickedNode))
-        //     {
-        //         ruleCursor = activeCreatureData.CreatureParams.Movement == MovementType.Flying
-        //             ? CursorRule.GoFlying
-        //             : CursorRule.GoGround;
-        //     }
-        //     if (NodesForAttackActiveCreature.Count > 0)
-        //     {
-        //         if (KeyNodeFromAttack != -1 && AttackedCreature != null)
-        //         {
-        //             var nodesForAttack = NodesForAttackActiveCreature[KeyNodeFromAttack];
-        //             // var neighboursNodesEnemy = GridArenaHelper
-        //             //     .GetNeighbourList(ArenaQueue.activeEntity.OccupiedNode)
-        //             //     .Where(t => t.OccupiedUnit != null && t.OccupiedUnit.TypeArenaPlayer != ArenaQueue.activeEntity.TypeArenaPlayer);
-        //             if (ChoosedSpell == null)
-        //             {
-        //                 ruleCursor = CursorRule.FightFromLeft;
-        //                 if (ArenaQueue.activeEntity.arenaEntity.Data.shoots > 0 && ArenaQueue.activeEntity.arenaEntity.Data.typeAttack == TypeAttack.AttackShoot)
-        //                 {
-        //                     // check distance.
-        //                     if (nodesForAttack.nodeToAttack.DistanceTo(ArenaQueue.activeEntity.arenaEntity.OccupiedNode) <= ArenaQueue.activeEntity.arenaEntity.Speed)
-        //                     {
-        //                         ruleCursor = CursorRule.Shoot;
-        //                     }
-        //                     else
-        //                     {
-        //                         ruleCursor = CursorRule.ShootHalf;
-        //                     }
-        //                     positionButton = new Vector3(nodesForAttack.nodeToAttack.center.x, nodesForAttack.nodeToAttack.center.y, zCoord);
-        //                 }
-        //                 else
-        //                 {
-        //                     Vector3 difPos = nodesForAttack.nodeFromAttack.center - nodesForAttack.nodeToAttack.center;
-        //                     if (difPos.x > 0 && difPos.y > 0)
-        //                     {
-        //                         ruleCursor = CursorRule.FightFromTopRight;
-        //                     }
-        //                     else if (difPos.x < 0 && difPos.y > 0)
-        //                     {
-        //                         ruleCursor = CursorRule.FightFromTopLeft;
-        //                     }
-        //                     else if (difPos.x > 0 && difPos.y == 0)
-        //                     {
-        //                         ruleCursor = CursorRule.FightFromRight;
-        //                     }
-        //                     else if (difPos.x < 0 && difPos.y == 0)
-        //                     {
-        //                         ruleCursor = CursorRule.FightFromLeft;
-        //                     }
-        //                     else if (difPos.x < 0 && difPos.y < 0)
-        //                     {
-        //                         ruleCursor = CursorRule.FightFromBottomLeft;
-        //                     }
-        //                     else if (difPos.x > 0 && difPos.y < 0)
-        //                     {
-        //                         ruleCursor = CursorRule.FightFromBottomRight;
-        //                     }
-        //                     // _buttonAction.transform.position = new Vector3(clickedNode.center.x, clickedNode.center.y, -5);
-        //                 }
-        //             }
-        //             else
-        //             {
-        //                 // Spell cursor.
-        //                 ruleCursor = CursorRule.Spell;
-        //                 positionButton = new Vector3(nodesForAttack.nodeToAttack.center.x, nodesForAttack.nodeToAttack.center.y, zCoord);
-        //             }
-        //         }
-        //     }
-        // }
-
-        // _buttonAction.SetActive(true);
-        // _buttonSpell.SetActive(false);
-        // _buttonWarMachine.SetActive(false);
-        // _buttonAction.GetComponent<SpriteRenderer>().sprite = ruleCursor.m_DefaultSprite;
-        // _buttonAction.transform.position = positionButton;
-        // activeCursor = ruleCursor;
-        // // _tileMapCursor.SetTile(clickedNode.position, ruleCursor);
+        await base.MoveCreature();
+        await ((ArenaCreature)arenaManager.ArenaQueue.activeEntity.arenaEntity).ArenaMonoBehavior.MoveCreature();
     }
-
 
     public void DoHero(Player player)
     {
@@ -670,69 +479,6 @@ public class ArenaCreature : ArenaEntityBase
             }
         }
     }
-
-    // internal async UniTask GoRunSpell()
-    // {
-    //     Debug.Log("GoRunSpell");
-    //     var activeSpell = _arenaManager.ArenaQueue.ActiveHero != null
-    //         ? _arenaManager.ArenaQueue.ActiveHero.Data.SpellBook.ChoosedSpell
-    //         : null;
-
-    //     if (activeSpell.AnimatePrefab.RuntimeKeyIsValid())
-    //     {
-
-    //         Debug.Log("InstantiateAsync");
-    //         Addressables.InstantiateAsync(
-    //             activeSpell.AnimatePrefab,
-    //             new Vector3(0, 1, 0),
-    //             Quaternion.identity,
-    //             ArenaMonoBehavior.transform
-    //             ).Completed += RunSpellResult;
-    //     }
-    //     else
-    //     {
-    //         await RunSpell();
-    //     }
-
-    //     await UniTask.Delay(1);
-    // }
-
-    // public async void RunSpellResult(AsyncOperationHandle<GameObject> handle)
-    // {
-    //     if (handle.Status == AsyncOperationStatus.Succeeded)
-    //     {
-    //         handle.Result.gameObject.transform.localPosition = new Vector3(0, 1, 0);
-    //         await RunSpell();
-    //         await UniTask.Delay(1000);
-    //         Addressables.Release(handle);
-    //     }
-    //     else
-    //     {
-    //         Debug.LogError($"Error Load prefab::: {handle.Status}");
-    //     }
-    // }
-
-    // internal async UniTask RunSpell()
-    // {
-    //     Debug.Log($"Run spell!");
-    //     var heroRunSpell = _arenaManager.ArenaQueue.ActiveHero;
-    //     var choosedSpell = _arenaManager.ArenaQueue.ActiveHero.Data.SpellBook.ChoosedSpell;
-    //     await choosedSpell.AddEffect(this, heroRunSpell);
-    //     if (choosedSpell.typeSpellDuration != TypeSpellDuration.Instant)
-    //     {
-    //         int countRound = heroRunSpell.Data.PSkills[TypePrimarySkill.Power];
-    //         if (Data.SpellsState.ContainsKey(choosedSpell))
-    //         {
-    //             Data.SpellsState[choosedSpell] = countRound;
-    //         }
-    //         else
-    //         {
-    //             Data.SpellsState.Add(choosedSpell, countRound);
-    //         }
-    //     }
-    //     // _arenaManager.ArenaQueue.ActiveHero.Data.SpellBook.ChooseSpell(null);
-    //     // OnChangeParamsCreature?.Invoke();
-    // }
 
     public override async UniTask GoCounterAttack(GridArenaNode nodeFromAttack, GridArenaNode nodeToAttack)
     {
@@ -822,24 +568,9 @@ public class ArenaCreature : ArenaEntityBase
         // Debug.Log($"Spawn Entity::: {r_asset.name}");
         ArenaMonoBehavior.Init(this);
     }
-
-    // public virtual void LoadedAsset()
-    // {
-    //     if (handle.Status == AsyncOperationStatus.Succeeded)
-    //     {
-    //         var r_asset = handle.Result;
-    //         ArenaMonoBehavior = r_asset.GetComponent<ArenaMonoBehavior>();
-    //         // Debug.Log($"Spawn Entity::: {r_asset.name}");
-    //         ArenaMonoBehavior.Init(this);
-    //     }
-    //     else
-    //     {
-    //         Debug.LogError($"Error Load prefab::: {handle.Status}");
-    //     }
-    // }
     #endregion
 
-    public async override UniTask GetFightingNodes()
+    public async override UniTask<List<GridArenaNode>> GetFightingNodes()
     {
         // _tileMapAllowAttack.ClearAllTiles();
         await arenaManager.CreateMoveArea();
@@ -852,6 +583,8 @@ public class ArenaCreature : ArenaEntityBase
             .GetAllGridNodes()
             .Where(t =>
                 t.OccupiedUnit != null
+                && !t.StateArenaNode.HasFlag(StateArenaNode.Excluded)
+                && t.StateArenaNode.HasFlag(StateArenaNode.Occupied)
                 && t.OccupiedUnit.TypeArenaPlayer != arenaEntity.TypeArenaPlayer
                 // && !t.StateArenaNode.HasFlag(StateArenaNode.Deathed)
                 );
@@ -865,6 +598,8 @@ public class ArenaCreature : ArenaEntityBase
                 //     .GetNeighbourList(arenaEntity.OccupiedNode)
                 .Where(t =>
                     t.OccupiedUnit != null
+                    && !t.StateArenaNode.HasFlag(StateArenaNode.Excluded)
+                    && t.StateArenaNode.HasFlag(StateArenaNode.Occupied)
                     && t.OccupiedUnit.TypeArenaPlayer != arenaEntity.TypeArenaPlayer
                     // && !t.StateArenaNode.HasFlag(StateArenaNode.Deathed)
                     )
@@ -896,5 +631,6 @@ public class ArenaCreature : ArenaEntityBase
         }
 
         await UniTask.Yield();
+        return arenaManager.FightingOccupiedNodes;
     }
 }

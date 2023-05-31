@@ -65,6 +65,8 @@ public class SOGameSetting : ScriptableObject
     [Space(5)]
     public List<ScriptableEntityTown> ArenaTestTowns;
     public List<ScriptableEntityHero> ArenaTestHeroes;
+    public PlayerType typeTestRightPlayer;
+    public PlayerType typeTestLeftPlayer;
     [SerializeField] public AssetReferenceGameObject ArenaPlaceholderModel;
     [SerializeField] public AssetReferenceGameObject ArenaPlaceholderShootModel;
 }

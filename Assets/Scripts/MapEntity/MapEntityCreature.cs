@@ -195,7 +195,7 @@ public class MapEntityCreature : BaseMapEntity, IDialogMapObjectOperation
         // TODO ARENA
         var loadingOperations = new ArenaLoadOperation(new DialogArenaData()
         {
-            hero = player.ActiveHero,
+            heroAttacking = player.ActiveHero,
             creature = entityCreature,
             town = null,
             ArenaSetting = arenaSetting[Random.Range(0, arenaSetting.Count())]

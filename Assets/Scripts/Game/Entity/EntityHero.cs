@@ -18,7 +18,7 @@ public class EntityHero : BaseEntity
     [NonSerialized] public EntityBook SpellBook;
     //sqrt((Attack × 0.05 + 1) × (Defense × 0.05 + 1))
     public int Streight => (int)((Data.PSkills[TypePrimarySkill.Attack] * 0.05f + 1) * (Data.PSkills[TypePrimarySkill.Defense] * 0.05f + 1));
-    [NonSerialized] public ArenaHeroEntity ArenaHeroEntity;
+    // [NonSerialized] public ArenaHeroEntity ArenaHeroEntity;
     public ScriptableEntityHero ConfigData => (ScriptableEntityHero)ScriptableData;
     // public ScriptableAttributeHero ConfigAttribute => (ScriptableAttributeHero)ScriptableDataAttribute;
 

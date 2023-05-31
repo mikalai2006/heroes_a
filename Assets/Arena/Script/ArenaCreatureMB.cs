@@ -165,6 +165,12 @@ public class ArenaCreatureMB : MonoBehaviour
 
     public async UniTask MoveCreature()
     {
+        // if (ArenaEntity.Path.Count == 0)
+        // {
+        //     await UniTask.Yield();
+        //     return;
+        // }
+
         _animator.Play(string.Format("{0}{1}", _nameCreature, "StartMoving"), 0, 0f);
         if (ArenaEntity.Path[ArenaEntity.Path.Count - 1] != ArenaEntity.Path[0])
         {
@@ -226,7 +232,7 @@ public class ArenaCreatureMB : MonoBehaviour
                 UpdateDirection(ArenaEntity.PositionPrefab, nodeTo.position, nodeTo);
 
                 await SmoothLerp(transform.position, nodeTo.center + difPos, time);
-                await UniTask.Yield();
+                // await UniTask.Yield();
 
                 ArenaEntity.Path.RemoveAt(0);
 

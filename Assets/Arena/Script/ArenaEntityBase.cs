@@ -6,77 +6,6 @@ using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
 
 using UnityEngine;
-using UnityEngine.AddressableAssets;
-using UnityEngine.EventSystems;
-using UnityEngine.ResourceManagement.AsyncOperations;
-using UnityEngine.Tilemaps;
-
-// [Serializable]
-// public enum TypeArenaPlayer
-// {
-//     Left = 0,
-//     Right = 1,
-// }
-
-// [Serializable]
-// public enum TypeDirection
-// {
-//     Right = 0,
-//     Left = 1
-// }
-
-// [Serializable]
-// public enum TypeAttack
-// {
-//     Attack = 0,
-//     AttackShoot = 1,
-//     AttackWarMachine = 2,
-//     AttackShootTown = 3,
-//     // CatapultShoot = 2,
-//     // AttackSpell = 2
-// }
-
-// // [Serializable]
-// // public struct ModificatorItem {
-// //     public int round;
-// //     public ScriptableAttribute Spell;
-// // }
-
-// [Serializable]
-// public class ArenaEntityData
-// {
-//     public bool isRun;
-//     public int waitTick;
-//     public TypeAttack typeAttack;
-//     public int lucky;
-//     public Dictionary<ScriptableAttribute, int> LuckyModificators = new();
-//     public int attack;
-//     public Dictionary<ScriptableAttribute, int> AttackModificators = new();
-//     public bool isDefense;
-//     public int defense;
-//     public Dictionary<ScriptableAttribute, int> DefenseModificators = new();
-//     public int speed;
-//     public Dictionary<ScriptableAttribute, int> SpeedModificators = new();
-//     public int fireDefense;
-//     public Dictionary<ScriptableAttribute, int> FireDefenseModificators = new();
-//     public int airDefense;
-//     public Dictionary<ScriptableAttribute, int> AirDefenseModificators = new();
-//     public int waterDefense;
-//     public Dictionary<ScriptableAttribute, int> WaterDefenseModificators = new();
-//     public MovementType typeMove;
-//     public int shoots;
-//     public int quantity;
-//     public int counterAttack;
-//     public int countAttack;
-//     public int damageMin;
-//     public int damageMax;
-//     public Dictionary<ScriptableAttribute, int> DamageModificators = new();
-//     public int maxHP;
-//     public int totalHP;
-//     public int HP { get; internal set; }
-//     // int - quantity round
-//     public Dictionary<ScriptableAttributeSpell, int> SpellsState = new();
-// }
 
 [Serializable]
 public abstract class ArenaEntityBase
@@ -106,10 +35,10 @@ public abstract class ArenaEntityBase
     protected BaseEntity _entity;
     public BaseEntity Entity => _entity;
     // public TypeDirection Direction;
-    protected EntityHero _hero;
-    public EntityHero Hero => _hero;
+    protected ArenaHeroEntity _hero;
+    public ArenaHeroEntity Hero => _hero;
 
-    public virtual void Init(ArenaManager arenaManager, EntityHero hero)
+    public virtual void Init(ArenaManager arenaManager, ArenaHeroEntity hero)
     {
         this.arenaManager = arenaManager;
         _hero = hero;
@@ -236,7 +165,13 @@ public abstract class ArenaEntityBase
         }
     }
 
-    public virtual async UniTask GetFightingNodes()
+    public virtual async UniTask<List<GridArenaNode>> GetFightingNodes()
+    {
+        await UniTask.Yield();
+        return new();
+    }
+
+    public virtual async UniTask MoveCreature()
     {
         await UniTask.Yield();
     }
@@ -340,7 +275,7 @@ public abstract class ArenaEntityBase
         }
 
         // Run sound click.
-        await AudioManager.Instance.Click();
+        if (!arenaManager.ArenaQueue.ActiveHero.Data.autoRun) await AudioManager.Instance.Click();
 
         // Set active node.
         GridArenaNode nodeByClickPosition = arenaManager.GridArenaHelper.GridTile.GetGridObject(clickPosition);
@@ -354,7 +289,7 @@ public abstract class ArenaEntityBase
         }
 
         // Check not allow node.
-        if (!arenaManager.FightingOccupiedNodes.Contains(OccupiedNode))
+        if (!arenaManager.FightingOccupiedNodes.Contains(arenaManager.clickedNode))
         {
             Debug.Log($"Creature not maybe to attack!");
             arenaManager.DrawNotAllowButton();

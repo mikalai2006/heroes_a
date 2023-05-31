@@ -43,6 +43,8 @@ public class UIMenuApp : UILocaleBase
             await GameManager.Instance.AssetProvider.UnloadAsset(_environment);
         };
 
+        PlayerType PlayerType = GameSetting.typeTestLeftPlayer;
+        PlayerType PlayerType2 = GameSetting.typeTestRightPlayer;
         var testArenaButton = Root.rootVisualElement.Q<Button>("TestArena");
         testArenaButton.clickable.clicked += async () =>
         {
@@ -50,13 +52,52 @@ public class UIMenuApp : UILocaleBase
             await DestroyMenu();
 
             UnitManager.Entities.Clear();
+
+            // Create test hero.
             var testHero = new EntityHero(TypeFaction.Castle, GameSetting.ArenaTestHeroes[0]);
+            Player player = new Player();
+            PlayerData dataPlayer = new PlayerData()
+            {
+                id = 0,
+                color = GameSetting.colors[0],
+                playerType = PlayerType,
+                command = 0
+            };
+            StartSetting startSetting = new StartSetting();
+            startSetting.TypePlayerItem = new()
+            {
+                title = "Test Player",
+                TypePlayer = PlayerType
+            };
+            dataPlayer.playerType = startSetting.TypePlayerItem.TypePlayer;
+            player.New(dataPlayer);
+            testHero.SetPlayer(player);
+
+            // Create second test hero.
             var testEnemy = new EntityHero(TypeFaction.Castle, GameSetting.ArenaTestHeroes[1]);
+            Player playerSecond = new Player();
+            PlayerData dataPlayerSecond = new PlayerData()
+            {
+                id = 1,
+                color = GameSetting.colors[1],
+                playerType = PlayerType2,
+                command = 1
+            };
+            StartSetting startSettingSecond = new StartSetting();
+            startSettingSecond.TypePlayerItem = new()
+            {
+                title = "Test Player",
+                TypePlayer = PlayerType2
+            };
+            dataPlayerSecond.playerType = startSettingSecond.TypePlayerItem.TypePlayer;
+            playerSecond.New(dataPlayerSecond);
+            testEnemy.SetPlayer(playerSecond);
+
             var loadingOperations = new ArenaLoadOperation(new DialogArenaData()
             {
-                hero = testHero,
+                heroAttacking = testHero,
                 town = null,
-                enemy = testEnemy,
+                heroDefending = testEnemy,
                 ArenaSetting = GameSetting.ArenaSettings[Random.Range(0, GameSetting.ArenaSettings.Count)]
             });
             var result = await loadingOperations.ShowHide();
@@ -73,17 +114,56 @@ public class UIMenuApp : UILocaleBase
             await DestroyMenu();
 
             UnitManager.Entities.Clear();
+
+            // Create test hero.
             var testHero = new EntityHero(TypeFaction.Castle, GameSetting.ArenaTestHeroes[0]);
             UnitManager.Entities.Add(testHero.Id, testHero);
+            Player player = new Player();
+            PlayerData dataPlayer = new PlayerData()
+            {
+                id = 0,
+                color = GameSetting.colors[0],
+                playerType = PlayerType,
+                command = 0
+            };
+            StartSetting startSetting = new StartSetting();
+            startSetting.TypePlayerItem = new()
+            {
+                title = "Test Player",
+                TypePlayer = PlayerType
+            };
+            dataPlayer.playerType = startSetting.TypePlayerItem.TypePlayer;
+            player.New(dataPlayer);
+            testHero.SetPlayer(player);
+
+            // create test second hero.
             var testEnemy = new EntityHero(TypeFaction.Castle, GameSetting.ArenaTestHeroes[1]);
             UnitManager.Entities.Add(testEnemy.Id, testEnemy);
+            Player playerSecond = new Player();
+            PlayerData dataPlayerSecond = new PlayerData()
+            {
+                id = 1,
+                color = GameSetting.colors[1],
+                playerType = PlayerType2,
+                command = 1
+            };
+            StartSetting startSettingSecond = new StartSetting();
+            startSettingSecond.TypePlayerItem = new()
+            {
+                title = "Test Player",
+                TypePlayer = PlayerType2
+            };
+            dataPlayerSecond.playerType = startSettingSecond.TypePlayerItem.TypePlayer;
+            playerSecond.New(dataPlayerSecond);
+            testEnemy.SetPlayer(playerSecond);
+
             var configTown = GameSetting.ArenaTestTowns[Random.Range(0, GameSetting.ArenaTestTowns.Count)];
             var town = new EntityTown(configTown.TypeGround, configTown);
             town.Data.level = 2;
             town.Data.HeroinTown = testEnemy.Id;
             var loadingOperations = new ArenaLoadOperation(new DialogArenaData()
             {
-                hero = testHero,
+                heroAttacking = testHero,
                 town = town,
                 ArenaSetting = GameSetting.ArenaSettings.Find(t => t.NativeGround.typeGround == configTown.TypeGround)
             });

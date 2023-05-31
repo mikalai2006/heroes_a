@@ -16,7 +16,7 @@ public class ScriptableAttributeWarMachine : ScriptableAttributeCreature
     //     await UniTask.Delay(1);
     // }
 
-    public virtual async UniTask<ArenaResultChoose> ChooseTarget(ArenaManager arenaManager, EntityHero hero, Player player = null)
+    public virtual async UniTask<ArenaResultChoose> ChooseTarget(ArenaManager arenaManager, ArenaHeroEntity hero, Player player = null)
     {
         await UniTask.Delay(1);
         return new();
@@ -24,7 +24,7 @@ public class ScriptableAttributeWarMachine : ScriptableAttributeCreature
 
     public virtual async UniTask RunEffect(ArenaManager arenaManager, GridArenaNode node, GridArenaNode nodeForAttack, Player player = null)
     {
-        await UniTask.Delay(1);
+        await UniTask.Yield();
     }
 
     public virtual async UniTask RunEffectByGameObject(ArenaManager arenaManager, GridArenaNode node, GameObject gameObject)

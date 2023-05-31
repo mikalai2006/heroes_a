@@ -37,13 +37,13 @@ public class ArenaEntitySpell
     public Vector3 PositionPrefab => _positionPrefab;
     [NonSerialized] public ArenaSpellMonoBehavior ArenaSpellMonoBehavior;
     public TypeArenaPlayer TypeArenaPlayer;
-    private EntityHero _hero;
-    public EntityHero Hero => _hero;
+    private ArenaHeroEntity _hero;
+    public ArenaHeroEntity Hero => _hero;
 
     public ArenaEntitySpell(
         GridArenaNode node,
         ScriptableAttributeSpell configData,
-        EntityHero heroRunSpell,
+        ArenaHeroEntity heroRunSpell,
         ArenaManager arenaManager
         )
     {

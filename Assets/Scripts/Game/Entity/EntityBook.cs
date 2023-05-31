@@ -162,10 +162,10 @@ public class EntityBook
         countCreatedSpell = LevelManager.Instance.ConfigGameSettings.countSpellPerRound;
     }
 
-    internal async UniTask RunSpellCombat(GridArenaNode node, ArenaManager arenaManager)
+    internal async UniTask RunSpellCombat(GridArenaNode node, ArenaHeroEntity arenaHero, ArenaManager arenaManager)
     {
         Debug.Log($"Run RunSpellCombat!");
-        await ChoosedSpell.AddEffect(node, _hero, arenaManager);
+        await ChoosedSpell.AddEffect(node, arenaHero, arenaManager);
         countCreatedSpell--;
         // if (ChoosedSpell.typeSpellDuration != TypeSpellDuration.Instant)
         // {

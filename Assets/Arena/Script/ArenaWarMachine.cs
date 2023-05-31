@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -12,7 +11,7 @@ public class ArenaWarMachine : ArenaEntityBase
 {
     [NonSerialized] public ArenaWarMachineMonoBehavior ArenaWarMachineMonoBehavior;
 
-    public override void Init(ArenaManager arenaManager, EntityHero hero)
+    public override void Init(ArenaManager arenaManager, ArenaHeroEntity hero)
     {
         base.Init(arenaManager, hero);
     }
@@ -108,7 +107,7 @@ public class ArenaWarMachine : ArenaEntityBase
         }
     }
 
-    public override async UniTask GetFightingNodes()
+    public override async UniTask<List<GridArenaNode>> GetFightingNodes()
     {
         // _arenaManager.ClearAttackNode();
         // //_tileMapAllowAttack.ClearAllTiles();
@@ -126,7 +125,7 @@ public class ArenaWarMachine : ArenaEntityBase
                 .ToList();
             if (countNotDestructeFortification.Count == 0 && warMachineConfig.TypeWarMachine == TypeWarMachine.Catapult)
             {
-                arenaManager.NextCreature(false, false);
+                await arenaManager.NextCreature(false, false);
             }
         }
 
@@ -155,7 +154,7 @@ public class ArenaWarMachine : ArenaEntityBase
                         arenaManager.clickedFortification
                     );
                 }
-                arenaManager.NextCreature(false, false); // EndRunWarMachine();
+                await arenaManager.NextCreature(false, false); // EndRunWarMachine();
                 break;
             case ArenaTypeRunEffect.Choosed:
                 if (warMachineConfig.TypeWarMachine != TypeWarMachine.Catapult)
@@ -177,20 +176,24 @@ public class ArenaWarMachine : ArenaEntityBase
                     listTasks.Add(warMachineConfig.RunEffect(arenaManager, arenaManager.ArenaQueue.activeEntity.arenaEntity.OccupiedNode, nodeForAction));
                 }
                 await UniTask.WhenAll(listTasks);
-                arenaManager.NextCreature(false, false); // EndRunWarMachine();
+                await arenaManager.NextCreature(false, false); // EndRunWarMachine();
                 break;
         }
+        return arenaManager.FightingOccupiedNodes;
     }
 
     public override async UniTask ClickCreature(Vector3Int clickPosition)
     {
         await base.ClickCreature(clickPosition);
-        if (!arenaManager.FightingOccupiedNodes.Contains(OccupiedNode)) return;
+
+        if (!arenaManager.FightingOccupiedNodes.Contains(arenaManager.clickedNode)) return;
 
         // Choose spell.
-        var activeSpell = arenaManager.ArenaQueue.ActiveHero != null && arenaManager.ArenaQueue.ActiveHero.SpellBook != null
-        ? arenaManager.ArenaQueue.ActiveHero.SpellBook.ChoosedSpell
-        : null;
+        var activeSpell = arenaManager.ArenaQueue.ActiveHero != null
+            && arenaManager.ArenaQueue.ActiveHero.Entity != null
+            && arenaManager.ArenaQueue.ActiveHero.Entity.SpellBook != null
+                ? arenaManager.ArenaQueue.ActiveHero.Entity.SpellBook.ChoosedSpell
+                : null;
         if (activeSpell != null)
         {
             Debug.Log($"Choose creature for spell!");
@@ -217,24 +220,24 @@ public class ArenaWarMachine : ArenaEntityBase
         }
     }
 
-    public override async UniTask GoAttack(GridArenaNode nodeFromAttack, GridArenaNode nodeToAttack)
-    {
-        var entityForAttack = nodeToAttack.OccupiedUnit;
-        var typeAttack = arenaManager.ArenaQueue.activeEntity.arenaEntity.Data.typeAttack;
+    // public override async UniTask GoAttack(GridArenaNode nodeFromAttack, GridArenaNode nodeToAttack)
+    // {
+    //     var entityForAttack = nodeToAttack.OccupiedUnit;
+    //     var typeAttack = arenaManager.ArenaQueue.activeEntity.arenaEntity.Data.typeAttack;
 
-        for (int i = 0; i < Data.countAttack; i++)
-        {
-            if (
-                nodeToAttack.OccupiedUnit != null
-                && !nodeToAttack.OccupiedUnit.Death
-                && !Death
-                )
-            {
-                await ArenaWarMachineMonoBehavior.RunAttackShoot(nodeToAttack);
-                CalculateAttack(nodeFromAttack, nodeToAttack);
-            }
-        }
-    }
+    //     for (int i = 0; i < Data.countAttack; i++)
+    //     {
+    //         if (
+    //             nodeToAttack.OccupiedUnit != null
+    //             && !nodeToAttack.OccupiedUnit.Death
+    //             && !Death
+    //             )
+    //         {
+    //             await ArenaWarMachineMonoBehavior.RunAttackShoot(nodeToAttack);
+    //             CalculateAttack(nodeFromAttack, nodeToAttack);
+    //         }
+    //     }
+    // }
 
     public override async UniTask ClickButtonAction()
     {
@@ -246,44 +249,55 @@ public class ArenaWarMachine : ArenaEntityBase
             return;
 
         arenaManager.isRunningAction = true;
-        await AudioManager.Instance.Click();
-
+        if (!arenaManager.ArenaQueue.ActiveHero.Data.autoRun) await AudioManager.Instance.Click();
 
         arenaManager._buttonWarMachine.SetActive(false);
-        // // await ((ScriptableAttributeWarMachine)ArenaQueue.activeEntity.arenaEntity.Entity.ScriptableDataAttribute)
-        // //     .AddEffect();
-        switch (warMachine.TypeWarMachine)
+        // // // await ((ScriptableAttributeWarMachine)ArenaQueue.activeEntity.arenaEntity.Entity.ScriptableDataAttribute)
+        // // //     .AddEffect();
+        // switch (warMachine.TypeWarMachine)
+        // {
+        //     case TypeWarMachine.Catapult:
+        //         await warMachine.RunEffectByGameObject(arenaManager, OccupiedNode, arenaManager.clickedFortification);
+        //         break;
+        //     default:
+        //         await warMachine.RunEffect(arenaManager, OccupiedNode, arenaManager.clickedNode);
+        //         break;
+        // }
+
+        if (warMachine.TypeWarMachine == TypeWarMachine.Catapult)
         {
-            case TypeWarMachine.Catapult:
-                await warMachine.RunEffectByGameObject(arenaManager, OccupiedNode, arenaManager.clickedFortification);
-                break;
-            default:
-                await warMachine.RunEffect(arenaManager, OccupiedNode, arenaManager.clickedNode);
-                break;
+            await warMachine.RunEffectByGameObject(arenaManager, OccupiedNode, arenaManager.clickedFortification);
+        }
+        else
+        {
+            await warMachine.RunEffect(arenaManager, OccupiedNode, arenaManager.clickedNode);
         }
 
-        // if (_arenaManager.town != null)
-        // {
-        //     _arenaManager.town.ArenaEntityTownMB.SetStatusColliders(false);
-        // }
-        EndRunWarMachine();
-    }
-
-    private void EndRunWarMachine()
-    {
-        // Clear clicked node.
-        arenaManager.clickedNode = null;
-        arenaManager.ClearAttackNode();
-
-        // Next creature.
-        // await GoEntity();
-        arenaManager.NextCreature(false, false);
-
-        // DrawCursor
-        if (arenaManager.clickedNode != null) arenaManager.DrawButtonAction();
+        // // if (_arenaManager.town != null)
+        // // {
+        // //     _arenaManager.town.ArenaEntityTownMB.SetStatusColliders(false);
+        // // }
+        // EndRunWarMachine();
 
         arenaManager.isRunningAction = false;
+        await arenaManager.NextCreature(false, false);
     }
+
+    // private void EndRunWarMachine()
+    // {
+    //     // Clear clicked node.
+    //     arenaManager.clickedNode = null;
+    //     arenaManager.ClearAttackNode();
+
+    //     // Next creature.
+    //     // await GoEntity();
+    //     arenaManager.isRunningAction = false;
+    //     arenaManager.NextCreature(false, false);
+
+    //     // // DrawCursor
+    //     // if (arenaManager.clickedNode != null) arenaManager.DrawButtonAction();
+
+    // }
 
     // public override void CreateButtonAttackNode()
     // {

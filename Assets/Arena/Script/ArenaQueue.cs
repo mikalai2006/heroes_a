@@ -20,7 +20,7 @@ public class ArenaQueue
     // LinkedList<ArenaEntity> queueEntity = new LinkedList<ArenaEntity>();
     public QueueItem activeEntity;
     public int ActiveRound;
-    public EntityHero ActiveHero => activeEntity.arenaEntity.Hero;
+    public ArenaHeroEntity ActiveHero => activeEntity.arenaEntity.Hero;
     private int nextTick = 1;
 
     public List<QueueItem> SetActiveEntity(QueueItem arenaEntity)
