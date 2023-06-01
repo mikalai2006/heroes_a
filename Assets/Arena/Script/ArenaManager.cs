@@ -1088,6 +1088,18 @@ public class ArenaManager : MonoBehaviour
     {
         if (maxCountObstacle == 0) return;
 
+        // Create not removed obstacle.
+        var spriteHeadObstacle = DialogArenaData.ArenaSetting.ObstaclesNotRemove
+            .OrderBy(t => UnityEngine.Random.value)
+            .First();
+        var nodeForHeadObstacle = GridArenaHelper.GetNode(7, 6);
+        // var worktextureHeadSprite = Helpers.DuplicateTexture(spriteHeadObstacle.texture);
+        var tileHeadSprite = ScriptableObject.CreateInstance<Tile>();
+        tileHeadSprite.sprite = spriteHeadObstacle;
+        _tileMapObstacles.SetTile(nodeForHeadObstacle.position, tileHeadSprite);
+        CreateObstacle(nodeForHeadObstacle, spriteHeadObstacle);
+
+        // Create shallow obstacles.
         var potentialSprites = DialogArenaData.ArenaSetting.Obstacles
             .OrderBy(t => UnityEngine.Random.value)
             .ToList()
@@ -1104,66 +1116,70 @@ public class ArenaManager : MonoBehaviour
         int counCreatedtObstacle = 0;
         while (counCreatedtObstacle < maxCountObstacle && potentialNodes.Count > 0)
         {
-            var nodeForObstacle = potentialNodes[0];
-            var spriteForObstacle = potentialSprites[0];
-            if (nodeForObstacle.Neighbours().Count == 6)
-            {
-                var worktexture = Helpers.DuplicateTexture(spriteForObstacle.texture);
-                var tile = ScriptableObject.CreateInstance<Tile>();
-                tile.sprite = spriteForObstacle;
-                // Calculate area sprite.
-                var extents = spriteForObstacle.bounds.extents;
-                var minX = nodeForObstacle.center.x - extents.x;
-                var maxX = nodeForObstacle.center.x + extents.x;
-                var minY = nodeForObstacle.center.y - extents.y;
-                var maxY = nodeForObstacle.center.y + extents.y;
-
-                int maxDistance = (int)Math.Round(Math.Max(extents.x, extents.y));
-
-                // Get neighbours by distance.
-                var neighboursDistance = GridArenaHelper.GetNeighboursAtDistance(nodeForObstacle, maxDistance);
-                if (neighboursDistance.Where(t =>
-                    t.StateArenaNode.HasFlag(StateArenaNode.Obstacles)
-                    || t.StateArenaNode.HasFlag(StateArenaNode.Occupied)
-                    || t.StateArenaNode.HasFlag(StateArenaNode.Disable)
-                    || t.StateArenaNode.HasFlag(StateArenaNode.Spellsed)
-                    )
-                    .Count() == 0
-                )
-                {
-                    // Debug.Log($"spriteForObstacle::: {spriteForObstacle.bounds} |nodeForObstacle={nodeForObstacle}");
-                    // Debug.Log($"Sprite size::: {spriteForObstacle.bounds.size.x * spriteForObstacle.pixelsPerUnit}x{spriteForObstacle.bounds.size.y * spriteForObstacle.pixelsPerUnit}");
-                    // // Debug.Log($"maxDistance::: {maxDistance}");
-                    // // Debug.Log($"Area border::: minX={minX},maxX={maxX},minY={minY},maxY={maxY}");
-                    _tileMapObstacles.SetTile(nodeForObstacle.position, tile);
-                    counCreatedtObstacle++;
-                    foreach (var neiNode in neighboursDistance)
-                    {
-                        var difX = (int)((extents.x + (neiNode.center.x - nodeForObstacle.center.x)) * spriteForObstacle.pixelsPerUnit);
-                        var difY = (int)((extents.y + (neiNode.center.y - nodeForObstacle.center.y)) * spriteForObstacle.pixelsPerUnit);
-                        // Debug.Log($"difX={difX}:difY={difY}||{worktexture.GetPixel(difX, difY).a != 0}||{neiNode.center}---{nodeForObstacle.center}");
-                        if (
-                            neiNode.center.x > minX
-                            && neiNode.center.x < maxX
-                            && neiNode.center.y < maxY
-                            && neiNode.center.y > minY
-                            && worktexture.GetPixel(difX, difY).a != 0
-                        )
-                        {
-                            neiNode.StateArenaNode |= StateArenaNode.Spellsed;
-                            neiNode.StateArenaNode |= StateArenaNode.Disable;
-                            _tileMapShadow.SetTile(neiNode.position, _tileHexShadow);
-                            _tileMapShadow.SetTileFlags(neiNode.position, TileFlags.None);
-                            _tileMapShadow.SetColor(neiNode.position, nodeForObstacle == neiNode ? Color.magenta : Color.yellow);
-                            _tileMapShadow.SetTileFlags(neiNode.position, TileFlags.LockColor);
-                        }
-                    }
-                    potentialSprites.RemoveAt(0);
-                }
-            }
+            int countCreate = CreateObstacle(potentialNodes[0], potentialSprites[UnityEngine.Random.Range(0, potentialSprites.Count)]);
+            counCreatedtObstacle += countCreate;
             potentialNodes.RemoveAt(0);
         }
+    }
 
+    private int CreateObstacle(GridArenaNode nodeForObstacle, Sprite spriteForObstacle)
+    {
+        int counCreatedtObstacle = 0;
+        if (nodeForObstacle.Neighbours().Count == 6)
+        {
+            var worktexture = Helpers.DuplicateTexture(spriteForObstacle.texture);
+            var tile = ScriptableObject.CreateInstance<Tile>();
+            tile.sprite = spriteForObstacle;
+            // Calculate area sprite.
+            var extents = spriteForObstacle.bounds.extents;
+            var minX = nodeForObstacle.center.x - extents.x;
+            var maxX = nodeForObstacle.center.x + extents.x;
+            var minY = nodeForObstacle.center.y - extents.y;
+            var maxY = nodeForObstacle.center.y + extents.y;
+
+            int maxDistance = Mathf.RoundToInt(Math.Max(extents.x, extents.y));
+
+            // Get neighbours by distance.
+            var neighboursDistance = GridArenaHelper.GetNeighboursAtDistance(nodeForObstacle, maxDistance);
+            if (neighboursDistance.Where(t =>
+                t.StateArenaNode.HasFlag(StateArenaNode.Obstacles)
+                || t.StateArenaNode.HasFlag(StateArenaNode.Occupied)
+                || t.StateArenaNode.HasFlag(StateArenaNode.Disable)
+                || t.StateArenaNode.HasFlag(StateArenaNode.Spellsed)
+                )
+                .Count() == 0
+            )
+            {
+                _tileMapObstacles.SetTile(nodeForObstacle.position, tile);
+                counCreatedtObstacle++;
+                foreach (var neiNode in neighboursDistance)
+                {
+                    var difX = (int)((extents.x + (neiNode.center.x - nodeForObstacle.center.x)) * spriteForObstacle.pixelsPerUnit);
+                    var difY = (int)((extents.y + (neiNode.center.y - nodeForObstacle.center.y)) * spriteForObstacle.pixelsPerUnit);
+                    // Debug.Log($"difX={difX}:difY={difY}||{worktexture.GetPixel(difX, difY).a != 0}||{neiNode.center}---{nodeForObstacle.center}");
+                    var pixelCenter = worktexture.GetPixel(difX, difY);
+                    if (
+                        neiNode.center.x > minX
+                        && neiNode.center.x < maxX
+                        && neiNode.center.y < maxY
+                        && neiNode.center.y > minY
+                        && pixelCenter.a != 0f
+                    )
+                    {
+                        neiNode.StateArenaNode |= StateArenaNode.Spellsed;
+                        neiNode.StateArenaNode |= StateArenaNode.Disable;
+                        if (nodeForObstacle != neiNode)
+                        {
+                            _tileMapObstacles.SetTile(neiNode.position, _tileHexShadow);
+                            _tileMapObstacles.SetTileFlags(neiNode.position, TileFlags.None);
+                            _tileMapObstacles.SetColor(neiNode.position, nodeForObstacle == neiNode ? Color.magenta : Color.yellow);
+                            _tileMapObstacles.SetTileFlags(neiNode.position, TileFlags.LockColor);
+                        }
+                    }
+                }
+            }
+        }
+        return counCreatedtObstacle;
     }
 
     private async UniTask CreateTown()

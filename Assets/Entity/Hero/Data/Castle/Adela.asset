@@ -55,7 +55,7 @@ MonoBehaviour:
     value: 0
   - SecondarySkill: {fileID: 11400000, guid: 1d1748c1f68aa4a46b72dc60507f14b6, type: 2}
     value: 0
-  - SecondarySkill: {fileID: 11400000, guid: f2d574356e14eb74f89ac88c56b5df18, type: 2}
+  - SecondarySkill: {fileID: 11400000, guid: 2c060e15242dcbd45808ada6fa521278, type: 2}
     value: 2
   - SecondarySkill: {fileID: 11400000, guid: 470e94f5e23819448ac29936897125d9, type: 2}
     value: 0
@@ -68,7 +68,7 @@ MonoBehaviour:
   - SecondarySkill: {fileID: 11400000, guid: 75f4fc7d8a73dbf40afbcad79987193c, type: 2}
     value: 2
   StartCreatures:
-  - creature: {fileID: 11400000, guid: e859ac4485df88141b1a4cef5d566334, type: 2}
+  - creature: {fileID: 11400000, guid: 7d1983f083e2c9a49bc2725df7d9691b, type: 2}
     min: 10
     max: 20
   - creature: {fileID: 11400000, guid: e34ee2bd20d331149b4525b763a3d4ad, type: 2}

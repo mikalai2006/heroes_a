@@ -66,7 +66,7 @@ public class SpellFireWall : ScriptableAttributeSpell
             dataCurrent = LevelData[levelSSkill];
         }
 
-        ArenaEntitySpell newEntity = new ArenaEntitySpell(node, this, heroRunSpell, arenaManager);
+        ArenaObstacle newEntity = new ArenaObstacle(node, this, heroRunSpell, arenaManager);
         newEntity.CreateMapGameObject();
         node.SpellsState.Add(this, countRound);
         node.SetSpellsStatus(true);
@@ -74,7 +74,7 @@ public class SpellFireWall : ScriptableAttributeSpell
         var nodeForRelated = activeTypePlayer == TypeArenaPlayer.Left
             ? node.LeftTopNode
             : node.RightTopNode;
-        var relatedEntity = new ArenaEntitySpell(nodeForRelated, this, heroRunSpell, arenaManager);
+        var relatedEntity = new ArenaObstacle(nodeForRelated, this, heroRunSpell, arenaManager);
         relatedEntity.CreateMapGameObject();
         newEntity.AddRelatedNode(nodeForRelated);
         nodeForRelated.SpellsState.Add(this, countRound);
@@ -84,7 +84,7 @@ public class SpellFireWall : ScriptableAttributeSpell
             var secondNodeForRelated = activeTypePlayer == TypeArenaPlayer.Left
                 ? node.LeftBottomNode
                 : node.RightBottomNode;
-            relatedEntity = new ArenaEntitySpell(secondNodeForRelated, this, heroRunSpell, arenaManager);
+            relatedEntity = new ArenaObstacle(secondNodeForRelated, this, heroRunSpell, arenaManager);
             relatedEntity.CreateMapGameObject();
             newEntity.AddRelatedNode(secondNodeForRelated);
             secondNodeForRelated.SpellsState.Add(this, countRound);

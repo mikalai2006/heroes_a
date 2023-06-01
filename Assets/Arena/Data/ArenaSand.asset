@@ -23,4 +23,11 @@ MonoBehaviour:
   - {fileID: 21300000, guid: eb15b4791ec609e4dbfefde0c2e8bcb9, type: 3}
   - {fileID: 21300000, guid: 5b5b705148e54344c9cbd6eb3082e3a6, type: 3}
   - {fileID: 21300000, guid: 8e77a7215ab411f46801e9060559f8e5, type: 3}
+  ObstaclesNotRemove:
+  - {fileID: 21300000, guid: e13cf48c03062e748890354e57a9a744, type: 3}
+  - {fileID: 21300000, guid: 0222eea7e999e6c499e5a4c59e691a16, type: 3}
+  - {fileID: 21300000, guid: 3596b5b99c8c47a4a9819d445b64dee6, type: 3}
+  - {fileID: 21300000, guid: 1b3b4a1f9dcda9f40912bb1706a50286, type: 3}
+  - {fileID: 21300000, guid: 775a03aca669de640898088e63c6fe6f, type: 3}
+  - {fileID: 21300000, guid: 2210ae9a96f0d4c48b9637460eb60089, type: 3}
   BgTownArena: {fileID: 21300000, guid: 7c7c4f239c1b8e740963cbfb550f316f, type: 3}

@@ -44,7 +44,7 @@ public class SpellRemoveObstacle : ScriptableAttributeSpell
                AnimatePrefab,
                new Vector3(0, 1, 0),
                Quaternion.identity,
-               node.SpellUnit.ArenaSpellMonoBehavior.transform
+               node.SpellUnit.ArenaObstacleMB.transform
            );
             var obj = await asset.Task;
             obj.gameObject.transform.localPosition = new Vector3(0, 1, 0);

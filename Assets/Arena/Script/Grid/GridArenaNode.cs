@@ -62,8 +62,8 @@ public class GridArenaNode : IHeapItem<GridArenaNode>
     [NonSerialized] public float gCost;
     [NonSerialized] public float hCost;
     [NonSerialized] public float fCost;
-    [NonSerialized] private ArenaEntitySpell _spellsUnit = null;
-    public ArenaEntitySpell SpellUnit => _spellsUnit;
+    [NonSerialized] private ArenaObstacle _spellsUnit = null;
+    public ArenaObstacle SpellUnit => _spellsUnit;
     // int - quantity round
     public Dictionary<ScriptableAttributeSpell, int> SpellsState = new();
 
@@ -137,7 +137,7 @@ public class GridArenaNode : IHeapItem<GridArenaNode>
         }
 
     }
-    public void SetSpellsUnit(ArenaEntitySpell entity)
+    public void SetSpellsUnit(ArenaObstacle entity)
     {
         _spellsUnit = entity;
     }

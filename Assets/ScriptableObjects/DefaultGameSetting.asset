@@ -221,10 +221,10 @@ MonoBehaviour:
     movementValue: 2000
   countCellClearSky: 4
   ArenaSettings:
-  - {fileID: 11400000, guid: fa40c4e0896592b4285b302b88cbf934, type: 2}
   - {fileID: 11400000, guid: 16c748b79c69ed9429cda5ff1da596a2, type: 2}
   - {fileID: 11400000, guid: 548bfe8b458dd2240b104dd9d3eddf4d, type: 2}
   - {fileID: 11400000, guid: 0d73249e613424942b3f1fa684cc50f2, type: 2}
+  - {fileID: 11400000, guid: fa40c4e0896592b4285b302b88cbf934, type: 2}
   arenaMaxCountQueue: 15
   speedArenaAnimation: 0.1
   paintAllowAttackNode: 1

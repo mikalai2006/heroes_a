@@ -53,7 +53,7 @@ public class SpellQuicksand : ScriptableAttributeSpell
             var nodeForEffect = allowNodes[0];
             if (!nodeForEffect.StateArenaNode.HasFlag(StateArenaNode.Spellsed))
             {
-                ArenaEntitySpell newEntity = new ArenaEntitySpell(nodeForEffect, this, heroRunSpell, arenaManager);
+                ArenaObstacle newEntity = new ArenaObstacle(nodeForEffect, this, heroRunSpell, arenaManager);
                 newEntity.CreateMapGameObject();
                 nodeForEffect.SpellsState.Add(this, 1000);
                 nodeForEffect.SetSpellsStatus(true);
