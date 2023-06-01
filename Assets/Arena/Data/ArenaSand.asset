@@ -17,5 +17,10 @@ MonoBehaviour:
   - {fileID: 21300000, guid: d0f451cfe163d3e49a9d765f1ce887de, type: 3}
   - {fileID: 21300000, guid: 2f959e0b462133544b6f3642c0fc1dc9, type: 3}
   NativeGround: {fileID: 11400000, guid: 713eb55eeb1dd5c4f8f1ea1cfcf76d5e, type: 2}
-  Obstacles: []
+  Obstacles:
+  - {fileID: 21300000, guid: 7a0845662ccfc0f48a5dadd5bd96d559, type: 3}
+  - {fileID: 21300000, guid: 3039ff1b3228c264d903dde74d7f81a8, type: 3}
+  - {fileID: 21300000, guid: eb15b4791ec609e4dbfefde0c2e8bcb9, type: 3}
+  - {fileID: 21300000, guid: 5b5b705148e54344c9cbd6eb3082e3a6, type: 3}
+  - {fileID: 21300000, guid: 8e77a7215ab411f46801e9060559f8e5, type: 3}
   BgTownArena: {fileID: 21300000, guid: 7c7c4f239c1b8e740963cbfb550f316f, type: 3}

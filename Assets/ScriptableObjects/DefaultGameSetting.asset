@@ -224,6 +224,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: fa40c4e0896592b4285b302b88cbf934, type: 2}
   - {fileID: 11400000, guid: 16c748b79c69ed9429cda5ff1da596a2, type: 2}
   - {fileID: 11400000, guid: 548bfe8b458dd2240b104dd9d3eddf4d, type: 2}
+  - {fileID: 11400000, guid: 0d73249e613424942b3f1fa684cc50f2, type: 2}
   arenaMaxCountQueue: 15
   speedArenaAnimation: 0.1
   paintAllowAttackNode: 1
@@ -236,8 +237,9 @@ MonoBehaviour:
   showPath: 1
   showShadowCursor: 1
   colorShadow: {r: 0, g: 0, b: 0, a: 0.33333334}
-  showGrid: 1
+  showGrid: 0
   showShadowGrid: 1
+  arenaMaxCountObstacles: 3
   AudioGeneral: {fileID: 11400000, guid: fe8d1e48c237f1a428344434599d0c24, type: 2}
   ArenaTestTowns:
   - {fileID: 11400000, guid: 67141cb8dce7b9a4db31cb4a75026253, type: 2}

@@ -58,6 +58,7 @@ public class SOGameSetting : ScriptableObject
     public Color colorShadow;
     public bool showGrid;
     public bool showShadowGrid;
+    public int arenaMaxCountObstacles;
 
     public SOGameAudio AudioGeneral;
 

@@ -324,7 +324,11 @@ public abstract class ArenaEntityBase
             // Get neighbours.
             List<GridArenaNode> neighbours = clickedNode
                 .Neighbours()
-                .Where(t => t.OccupiedUnit == null || t.OccupiedUnit == arenaManager.ArenaQueue.activeEntity.arenaEntity)
+                .Where(t =>
+                    (t.OccupiedUnit == null
+                    || t.OccupiedUnit == arenaManager.ArenaQueue.activeEntity.arenaEntity)
+                    && !t.StateArenaNode.HasFlag(StateArenaNode.Disable)
+                )
                 .ToList();
             // // GridArenaHelper.GetNeighbourList(clickedEntity.OccupiedNode)
             // .Where(t => t.OccupiedUnit == null || t.OccupiedUnit == arenaManager.ArenaQueue.activeEntity.arenaEntity)

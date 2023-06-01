@@ -63,6 +63,7 @@ public class ArenaManager : MonoBehaviour
     [SerializeField] private Tilemap _tileMapAllowAttackNode;
     [SerializeField] private Tilemap _tileMapAllowAttack;
     [SerializeField] private Tilemap _tileMapPath;
+    [SerializeField] private Tilemap _tileMapObstacles;
 
     [SerializeField] public GameObject _textPrefab;
     [SerializeField] public GameObject _textCanvas;
@@ -86,6 +87,7 @@ public class ArenaManager : MonoBehaviour
     public GameObject _buttonSpell;
     public GameObject buttonWarMachine;
     public GameObject _buttonWarMachine;
+    private int maxCountObstacle = 0;
     // [NonSerialized] public List<ArenaEntity> ArenaEnteties;
     [NonSerialized] public List<GridArenaNode> DistanceNodes = new();
     [NonSerialized] public List<GridArenaNode> PathNodes = new();
@@ -156,7 +158,7 @@ public class ArenaManager : MonoBehaviour
         UIArena.OnClickAutoBattle += ClickButtonAutoBattle;
 
         // CreateArena();
-
+        maxCountObstacle = LevelManager.Instance.ConfigGameSettings.arenaMaxCountObstacles;
     }
     private void OnDestroy()
     {
@@ -925,12 +927,14 @@ public class ArenaManager : MonoBehaviour
             await CreateCreatures();
 
             CreateSchema();
-            // CreateObstacles();
+
             await CreateWarMachine();
 
-            await NextCreature(false, false);
-
             setSizeTileMap();
+
+            CreateObstacles();
+
+            await NextCreature(false, false);
         }
     }
     private void setSizeTileMap()
@@ -956,6 +960,7 @@ public class ArenaManager : MonoBehaviour
     {
         if (DialogArenaData.town != null)
         {
+
         }
         else if (DialogArenaData.creatureBank != null)
         {
@@ -1081,31 +1086,90 @@ public class ArenaManager : MonoBehaviour
 
     private void CreateObstacles()
     {
+        if (maxCountObstacle == 0) return;
+
+        var potentialSprites = DialogArenaData.ArenaSetting.Obstacles
+            .OrderBy(t => UnityEngine.Random.value)
+            .ToList()
+            .GetRange(0, maxCountObstacle);
         var potentialNodes = GridArenaHelper.GetAllGridNodes()
             .Where(t =>
                 // t.Neighbours().Count == 6
-                t.position.x > 2 && t.position.x < width - 2
-                && t.position.y > 2 && t.position.y < height - 2
+                t.position.x > 3 && t.position.x < width - 3
+                && t.position.y > 3 && t.position.y < height - 3
             )
             .OrderBy(t => UnityEngine.Random.value)
             .ToList();
-        int counCreatedtObstacle = 0;
-        int maxCountObstacle = 3;
-        while (counCreatedtObstacle < maxCountObstacle)
-        {
 
+        int counCreatedtObstacle = 0;
+        while (counCreatedtObstacle < maxCountObstacle && potentialNodes.Count > 0)
+        {
             var nodeForObstacle = potentialNodes[0];
+            var spriteForObstacle = potentialSprites[0];
             if (nodeForObstacle.Neighbours().Count == 6)
             {
-                nodeForObstacle.StateArenaNode |= StateArenaNode.Spellsed;
-                counCreatedtObstacle++;
+                var worktexture = Helpers.DuplicateTexture(spriteForObstacle.texture);
+                var tile = ScriptableObject.CreateInstance<Tile>();
+                tile.sprite = spriteForObstacle;
+                // Calculate area sprite.
+                var extents = spriteForObstacle.bounds.extents;
+                var minX = nodeForObstacle.center.x - extents.x;
+                var maxX = nodeForObstacle.center.x + extents.x;
+                var minY = nodeForObstacle.center.y - extents.y;
+                var maxY = nodeForObstacle.center.y + extents.y;
+
+                int maxDistance = (int)Math.Round(Math.Max(extents.x, extents.y));
+
+                // Get neighbours by distance.
+                var neighboursDistance = GridArenaHelper.GetNeighboursAtDistance(nodeForObstacle, maxDistance);
+                if (neighboursDistance.Where(t =>
+                    t.StateArenaNode.HasFlag(StateArenaNode.Obstacles)
+                    || t.StateArenaNode.HasFlag(StateArenaNode.Occupied)
+                    || t.StateArenaNode.HasFlag(StateArenaNode.Disable)
+                    || t.StateArenaNode.HasFlag(StateArenaNode.Spellsed)
+                    )
+                    .Count() == 0
+                )
+                {
+                    // Debug.Log($"spriteForObstacle::: {spriteForObstacle.bounds} |nodeForObstacle={nodeForObstacle}");
+                    // Debug.Log($"Sprite size::: {spriteForObstacle.bounds.size.x * spriteForObstacle.pixelsPerUnit}x{spriteForObstacle.bounds.size.y * spriteForObstacle.pixelsPerUnit}");
+                    // // Debug.Log($"maxDistance::: {maxDistance}");
+                    // // Debug.Log($"Area border::: minX={minX},maxX={maxX},minY={minY},maxY={maxY}");
+                    _tileMapObstacles.SetTile(nodeForObstacle.position, tile);
+                    counCreatedtObstacle++;
+                    foreach (var neiNode in neighboursDistance)
+                    {
+                        var difX = (int)((extents.x + (neiNode.center.x - nodeForObstacle.center.x)) * spriteForObstacle.pixelsPerUnit);
+                        var difY = (int)((extents.y + (neiNode.center.y - nodeForObstacle.center.y)) * spriteForObstacle.pixelsPerUnit);
+                        // Debug.Log($"difX={difX}:difY={difY}||{worktexture.GetPixel(difX, difY).a != 0}||{neiNode.center}---{nodeForObstacle.center}");
+                        if (
+                            neiNode.center.x > minX
+                            && neiNode.center.x < maxX
+                            && neiNode.center.y < maxY
+                            && neiNode.center.y > minY
+                            && worktexture.GetPixel(difX, difY).a != 0
+                        )
+                        {
+                            neiNode.StateArenaNode |= StateArenaNode.Spellsed;
+                            neiNode.StateArenaNode |= StateArenaNode.Disable;
+                            _tileMapShadow.SetTile(neiNode.position, _tileHexShadow);
+                            _tileMapShadow.SetTileFlags(neiNode.position, TileFlags.None);
+                            _tileMapShadow.SetColor(neiNode.position, nodeForObstacle == neiNode ? Color.magenta : Color.yellow);
+                            _tileMapShadow.SetTileFlags(neiNode.position, TileFlags.LockColor);
+                        }
+                    }
+                    potentialSprites.RemoveAt(0);
+                }
             }
+            potentialNodes.RemoveAt(0);
         }
 
     }
 
     private async UniTask CreateTown()
     {
+        maxCountObstacle = 0;
+
         if (DialogArenaData.town.Data.level > -1)
         {
             ArenaTown = new ArenaEntityTown();
