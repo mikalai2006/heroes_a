@@ -28,6 +28,7 @@ public class Constants
         public const string UI_TOWN_BUILD_ITEM = "UITownBuildItemDialog";
         public const string UI_LOGIN = "UILogin";
         public const string UI_GAME_MENU = "UIGameMenu";
+        public const string UI_ARENA_SETTING = "UIArenaSetting";
         public const string UI_TOWN = "UITown";
         public const string UI_DIALOG_SPELLBOOK = "UIDialogSpellBook";
         public const string UI_INFO_ARENA_CREATURE = "UIInfoArenaCreature";

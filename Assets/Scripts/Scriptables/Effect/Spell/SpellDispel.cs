@@ -9,7 +9,7 @@ using UnityEngine.AddressableAssets;
 [CreateAssetMenu(fileName = "SpellDispel", menuName = "Game/Attribute/Spell/5_Dispel", order = 5)]
 public class SpellDispel : ScriptableAttributeSpell
 {
-    public async override UniTask<List<GridArenaNode>> ChooseTarget(ArenaManager arenaManager, EntityHero hero, Player player = null)
+    public async override UniTask<List<GridArenaNode>> ChooseTarget(ArenaManager arenaManager, ArenaHeroEntity hero, Player player = null)
     {
         List<GridArenaNode> nodes = arenaManager
             .GridArenaHelper
@@ -21,7 +21,7 @@ public class SpellDispel : ScriptableAttributeSpell
         return nodes;
     }
 
-    public async override UniTask AddEffect(GridArenaNode node, EntityHero heroRunSpell, ArenaManager arenaManager, Player player = null)
+    public async override UniTask AddEffect(GridArenaNode node, ArenaHeroEntity heroRunSpell, ArenaManager arenaManager, Player player = null)
     {
         var entity = node.OccupiedUnit;
         ScriptableAttributeSecondarySkill baseSSkill = SchoolMagic.BaseSecondarySkill;
@@ -29,8 +29,8 @@ public class SpellDispel : ScriptableAttributeSpell
         int levelSSkill = 0;
         if (entity.Hero != null)
         {
-            levelSSkill = entity.Hero.Data.SSkills.ContainsKey(baseSSkill.TypeTwoSkill)
-                ? entity.Hero.Data.SSkills[baseSSkill.TypeTwoSkill].level + 1
+            levelSSkill = entity.Hero.Entity.Data.SSkills.ContainsKey(baseSSkill.TypeTwoSkill)
+                ? entity.Hero.Entity.Data.SSkills[baseSSkill.TypeTwoSkill].level + 1
                 : 0;
             dataCurrent = LevelData[levelSSkill];
         }

@@ -5,13 +5,15 @@ public struct ArenaStatResult
 {
     public bool isOk;
 }
-public struct ArenaStat
+public struct ArenaStatData
 {
+    public ArenaManager arenaManager;
 }
+
 public class UIArenaEndStatOperation : LocalAssetLoader
 {
-    private ArenaStat _stat;
-    public UIArenaEndStatOperation(ArenaStat stat)
+    private ArenaStatData _stat;
+    public UIArenaEndStatOperation(ArenaStatData stat)
     {
         _stat = stat;
     }

@@ -6,86 +6,16 @@ using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
 
 using UnityEngine;
-using UnityEngine.AddressableAssets;
-using UnityEngine.EventSystems;
-using UnityEngine.ResourceManagement.AsyncOperations;
-using UnityEngine.Tilemaps;
-
-// [Serializable]
-// public enum TypeArenaPlayer
-// {
-//     Left = 0,
-//     Right = 1,
-// }
-
-// [Serializable]
-// public enum TypeDirection
-// {
-//     Right = 0,
-//     Left = 1
-// }
-
-// [Serializable]
-// public enum TypeAttack
-// {
-//     Attack = 0,
-//     AttackShoot = 1,
-//     AttackWarMachine = 2,
-//     AttackShootTown = 3,
-//     // CatapultShoot = 2,
-//     // AttackSpell = 2
-// }
-
-// // [Serializable]
-// // public struct ModificatorItem {
-// //     public int round;
-// //     public ScriptableAttribute Spell;
-// // }
-
-// [Serializable]
-// public class ArenaEntityData
-// {
-//     public bool isRun;
-//     public int waitTick;
-//     public TypeAttack typeAttack;
-//     public int lucky;
-//     public Dictionary<ScriptableAttribute, int> LuckyModificators = new();
-//     public int attack;
-//     public Dictionary<ScriptableAttribute, int> AttackModificators = new();
-//     public bool isDefense;
-//     public int defense;
-//     public Dictionary<ScriptableAttribute, int> DefenseModificators = new();
-//     public int speed;
-//     public Dictionary<ScriptableAttribute, int> SpeedModificators = new();
-//     public int fireDefense;
-//     public Dictionary<ScriptableAttribute, int> FireDefenseModificators = new();
-//     public int airDefense;
-//     public Dictionary<ScriptableAttribute, int> AirDefenseModificators = new();
-//     public int waterDefense;
-//     public Dictionary<ScriptableAttribute, int> WaterDefenseModificators = new();
-//     public MovementType typeMove;
-//     public int shoots;
-//     public int quantity;
-//     public int counterAttack;
-//     public int countAttack;
-//     public int damageMin;
-//     public int damageMax;
-//     public Dictionary<ScriptableAttribute, int> DamageModificators = new();
-//     public int maxHP;
-//     public int totalHP;
-//     public int HP { get; internal set; }
-//     // int - quantity round
-//     public Dictionary<ScriptableAttributeSpell, int> SpellsState = new();
-// }
 
 [Serializable]
 public abstract class ArenaEntityBase
 {
     public ArenaEntityData Data = new();
     public bool Death => Data.totalHP <= 0;
+    public int totalAI => Data.quantity * ((EntityCreature)Entity).ConfigAttribute.CreatureParams.AI;
     public int Speed => Data.speed + Data.SpeedModificators.Values.Sum();
 
-    protected ArenaManager _arenaManager;
+    public ArenaManager arenaManager;
     public static event Action OnChangeParamsCreature;
 
     [SerializeField] protected ScriptableEntity _configData;
@@ -106,12 +36,12 @@ public abstract class ArenaEntityBase
     protected BaseEntity _entity;
     public BaseEntity Entity => _entity;
     // public TypeDirection Direction;
-    protected EntityHero _hero;
-    public EntityHero Hero => _hero;
+    protected ArenaHeroEntity _hero;
+    public ArenaHeroEntity Hero => _hero;
 
-    public virtual void Init(ArenaManager arenaManager, EntityHero hero)
+    public virtual void Init(ArenaManager arenaManager, ArenaHeroEntity hero)
     {
-        _arenaManager = arenaManager;
+        this.arenaManager = arenaManager;
         _hero = hero;
     }
 
@@ -151,7 +81,7 @@ public abstract class ArenaEntityBase
         {
             Data.totalHP = 0;
             Data.quantity = 0;
-            _arenaManager.ArenaQueue.RemoveEntity(this);
+            arenaManager.ArenaQueue.RemoveEntity(this);
 
             OccupiedNode.SetDeathedNode(this);
             OccupiedNode.SetOcuppiedUnit(null);
@@ -236,7 +166,13 @@ public abstract class ArenaEntityBase
         }
     }
 
-    public virtual async UniTask GetFightingNodes()
+    public virtual async UniTask<List<GridArenaNode>> GetFightingNodes()
+    {
+        await UniTask.Yield();
+        return new();
+    }
+
+    public virtual async UniTask MoveCreature()
     {
         await UniTask.Yield();
     }
@@ -331,143 +267,141 @@ public abstract class ArenaEntityBase
     //     SetPosition(node);
     // }
 
-    public async virtual UniTask ClickCreature()
+    public async virtual UniTask ClickCreature(Vector3Int clickPosition)
     {
         // Exit if arena run.
-        if (_arenaManager.isRunningAction)
+        if (arenaManager.isRunningAction)
         {
             return;
         }
 
         // Run sound click.
-        await AudioManager.Instance.Click();
+        if (!arenaManager.ArenaQueue.ActiveHero.Data.autoRun) await AudioManager.Instance.Click();
 
-        _arenaManager.clickedNode = OccupiedNode;
+        // Set active node.
+        GridArenaNode nodeByClickPosition = arenaManager.GridArenaHelper.GridTile.GetGridObject(clickPosition);
+        if (RelatedNode != null && nodeByClickPosition == RelatedNode)
+        {
+            arenaManager.clickedNode = RelatedNode;
+        }
+        else
+        {
+            arenaManager.clickedNode = OccupiedNode;
+        }
 
-        if (!_arenaManager.FightingOccupiedNodes.Contains(OccupiedNode))
+        // Check not allow node.
+        if (!arenaManager.FightingOccupiedNodes.Contains(arenaManager.clickedNode))
         {
             Debug.Log($"Creature not maybe to attack!");
-            _arenaManager.DrawNotAllowButton();
+            arenaManager.DrawNotAllowButton();
+            arenaManager.clickedNode = null;
             return;
         }
 
-
-        // if (!_arenaManager.isRunningAction)
-        // {
-        //     Debug.Log("ClickCreature");
-        //     await AudioManager.Instance.Click();
-        //     if (_arenaManager.FightingOccupiedNodes.Contains(OccupiedNode))
-        //     {
-        //         var activeSpell = _arenaManager.ArenaQueue.ActiveHero != null && _arenaManager.ArenaQueue.ActiveHero.SpellBook != null
-        //         ? _arenaManager.ArenaQueue.ActiveHero.SpellBook.ChoosedSpell
-        //         : null;
-
-        //         if (activeSpell == null)
-        //         {
-        //             var creature = ((EntityCreature)_arenaManager.ArenaQueue.activeEntity.arenaEntity.Entity);
-        //             switch (_arenaManager.ArenaQueue.activeEntity.arenaEntity.Data.typeAttack)
-        //             {
-        //                 case TypeAttack.AttackWarMachine:
-        //                     _arenaManager.CreateButtonWarMachine(OccupiedNode);
-        //                     break;
-        //                 case TypeAttack.AttackShootTown:
-        //                     Debug.Log($"Choose creature for shoot town attack!");
-        //                     break;
-        //                 default:
-        //                     _arenaManager.CreateButtonAttackNode(this);
-        //                     break;
-        //             }
-        //         }
-        //         else
-        //         {
-        //             Debug.Log($"Choose creature for spell!");
-        //             _arenaManager.CreateButtonSpell(OccupiedNode);
-        //         }
-        //     }
-        //     else
-        //     {
-        //         Debug.Log($"Creature not maybe to attack!");
-        //     }
-        // }
-        await UniTask.Delay(1);
+        await UniTask.Yield();
     }
 
     public virtual void CreateButtonAttackNode(GridArenaNode clickedNode)
     {
-        if (_arenaManager.ChoosedSpell != null) return;
+        if (arenaManager.ChoosedSpell != null) return;
 
-        var allowNodes = _arenaManager.AllowPathNodes.Concat(_arenaManager.AllowMovedNodes).ToList();
-
-        var neighbourNodesEnemyEntity = _arenaManager.ArenaQueue.activeEntity.arenaEntity.OccupiedNode
-            .Neighbours()
-            // GridArenaHelper
-            // .GetNeighbourList(ArenaQueue.activeEntity.arenaEntity.OccupiedNode)
-            .Where(t => t.OccupiedUnit != null && t.OccupiedUnit.TypeArenaPlayer != _arenaManager.ArenaQueue.activeEntity.arenaEntity.TypeArenaPlayer);
-        // var activeSpell = ArenaQueue.ActiveHero.SpellBook != null
-        //     ? ArenaQueue.ActiveHero.SpellBook.ChoosedSpell
-        //     : null;
+        var allowNodes = arenaManager.AllowPathNodes.Concat(arenaManager.AllowMovedNodes).ToList();
+        var activeEntity = arenaManager.ArenaQueue.activeEntity.arenaEntity;
+        // var neighbourNodesEnemyEntity = arenaManager.ArenaQueue.activeEntity.arenaEntity.OccupiedNode
+        //     .Neighbours()
+        //     // GridArenaHelper
+        //     // .GetNeighbourList(ArenaQueue.activeEntity.arenaEntity.OccupiedNode)
+        //     .Where(t => t.OccupiedUnit != null && t.OccupiedUnit.TypeArenaPlayer != arenaManager.ArenaQueue.activeEntity.arenaEntity.TypeArenaPlayer);
+        // // var activeSpell = ArenaQueue.ActiveHero.SpellBook != null
+        // //     ? ArenaQueue.ActiveHero.SpellBook.ChoosedSpell
+        // //     : null;
         if (
             // (_arenaManager.ArenaQueue.activeEntity.arenaEntity.Data.shoots == 0
             // || neighbourNodesEnemyEntity.Count() > 0)
             // &&
-            _arenaManager.ArenaQueue.activeEntity.arenaEntity.Data.typeAttack == TypeAttack.Attack
+            activeEntity.Data.typeAttack == TypeAttack.Attack
             )
         {
+            // Get neighbours.
             List<GridArenaNode> neighbours = clickedNode
                 .Neighbours()
-                // GridArenaHelper.GetNeighbourList(clickedEntity.OccupiedNode)
-                .Where(t => t.OccupiedUnit == null || t.OccupiedUnit == _arenaManager.ArenaQueue.activeEntity.arenaEntity)
+                .Where(t =>
+                    (t.OccupiedUnit == null
+                    || t.OccupiedUnit == arenaManager.ArenaQueue.activeEntity.arenaEntity)
+                    && !t.StateArenaNode.HasFlag(StateArenaNode.Disable)
+                )
                 .ToList();
-            var allowNeighbours = neighbours.Intersect(allowNodes).ToList();
+            // // GridArenaHelper.GetNeighbourList(clickedEntity.OccupiedNode)
+            // .Where(t => t.OccupiedUnit == null || t.OccupiedUnit == arenaManager.ArenaQueue.activeEntity.arenaEntity)
+            // .ToList();
+
+            // Normalize queue nodes.
+            GridArenaNode firstNode = null;
+            float minDistance = 100f;
+            for (int i = 0; i < neighbours.Count; i++)
+            {
+                var currentDistance = neighbours[i].DistanceTo(activeEntity.OccupiedNode);
+                if (currentDistance < minDistance)
+                {
+                    firstNode = neighbours[i];
+                    minDistance = currentDistance;
+                }
+            };
+            int indexFirstNode = neighbours.FindIndex(t => t == firstNode);
+            List<GridArenaNode> queueNeighbours = neighbours
+                .GetRange(indexFirstNode, neighbours.Count - indexFirstNode)
+                .Concat(neighbours.GetRange(0, indexFirstNode))
+                .ToList();
+
+            var allowNeighbours = queueNeighbours.Intersect(allowNodes).ToList();
             foreach (var node in allowNeighbours)
             {
-                _arenaManager.NodesForAttackActiveCreature.Add(new AttackItemNode()
+                arenaManager.NodesForAttackActiveCreature.Add(new AttackItemNode()
                 {
                     nodeFromAttack = node,
                     nodeToAttack = clickedNode
                 });
             }
 
-            if (clickedNode.OccupiedUnit.RelatedNode != null)
-            {
-                List<GridArenaNode> neighboursRelatedNode
-                    = clickedNode.OccupiedUnit.RelatedNode.Neighbours()
-                    // GridArenaHelper.GetNeighbourList(clickedEntity.RelatedNode)
-                    .Where(t =>
-                        (t.OccupiedUnit == null
-                        || t.OccupiedUnit == _arenaManager.ArenaQueue.activeEntity.arenaEntity)
-                        // && !allowNeighbours.Contains(t)
-                        )
-                    .ToList();
-                // neighbours = neighbours.Concat(neighboursRelatedNode).ToList();
-                var allowNeighboursRelatedNode = neighboursRelatedNode.Intersect(allowNodes).ToList();
-                foreach (var node in allowNeighboursRelatedNode)
-                {
-                    _arenaManager.NodesForAttackActiveCreature.Add(new AttackItemNode()
-                    {
-                        nodeFromAttack = node,
-                        nodeToAttack = clickedNode
-                    });
-                }
-            }
+            // if (clickedNode.OccupiedUnit.RelatedNode != null)
+            // {
+            //     List<GridArenaNode> neighboursRelatedNode
+            //         = clickedNode.OccupiedUnit.RelatedNode.Neighbours()
+            //         // GridArenaHelper.GetNeighbourList(clickedEntity.RelatedNode)
+            //         .Where(t =>
+            //             (t.OccupiedUnit == null
+            //             || t.OccupiedUnit == _arenaManager.ArenaQueue.activeEntity.arenaEntity)
+            //             // && !allowNeighbours.Contains(t)
+            //             )
+            //         .ToList();
+            //     // neighbours = neighbours.Concat(neighboursRelatedNode).ToList();
+            //     var allowNeighboursRelatedNode = neighboursRelatedNode.Intersect(allowNodes).ToList();
+            //     foreach (var node in allowNeighboursRelatedNode)
+            //     {
+            //         _arenaManager.NodesForAttackActiveCreature.Add(new AttackItemNode()
+            //         {
+            //             nodeFromAttack = node,
+            //             nodeToAttack = clickedNode
+            //         });
+            //     }
+            // }
         }
         else
         {
-            _arenaManager.NodesForAttackActiveCreature.Add(new AttackItemNode()
+            arenaManager.NodesForAttackActiveCreature.Add(new AttackItemNode()
             {
-                nodeFromAttack = _arenaManager.ArenaQueue.activeEntity.arenaEntity.OccupiedNode,
+                nodeFromAttack = arenaManager.ArenaQueue.activeEntity.arenaEntity.OccupiedNode,
                 nodeToAttack = clickedNode
             });
         }
 
         // NodesForAttackActiveCreature = neighbours.Intersect(allowNodes).ToList();
 
-
         // GridArenaNode randomFirstNode
         //     = NodesForAttackActiveCreature[UnityEngine.Random.Range(0, NodesForAttackActiveCreature.Count)];
         // clickedNode = NodesForAttackActiveCreature[1];
-        _arenaManager.ChooseNextPositionForAttack();
-        _arenaManager.DrawAttackNodes();
+        arenaManager.ChooseNextPositionForAttack();
+        arenaManager.DrawAttackNodes();
         // _arenaManager.clickedNode = OccupiedNode;
     }
 

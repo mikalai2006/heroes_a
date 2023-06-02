@@ -9,7 +9,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "AmmoCart", menuName = "Game/Attribute/WarMachine/AmmoCart")]
 public class WarMachineAmmoCart : ScriptableAttributeWarMachine
 {
-    public async override UniTask<ArenaResultChoose> ChooseTarget(ArenaManager arenaManager, EntityHero hero, Player player = null)
+    public async override UniTask<ArenaResultChoose> ChooseTarget(ArenaManager arenaManager, ArenaHeroEntity hero, Player player = null)
     {
         List<GridArenaNode> nodes = arenaManager
             .GridArenaHelper

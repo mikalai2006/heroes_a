@@ -35,13 +35,13 @@ public class ArenaEntityObstacle
     public Vector3 PositionPrefab => _positionPrefab;
     [NonSerialized] public ArenaEntityObstacleMonobehavior ArenaEntityObstacleMonobehavior;
     public TypeArenaPlayer TypeArenaPlayer;
-    private EntityHero _hero;
-    public EntityHero Hero => _hero;
+    private ArenaHeroEntity _hero;
+    public ArenaHeroEntity Hero => _hero;
 
     public ArenaEntityObstacle(
         GridArenaNode node,
         ScriptableAttributeSpell configData,
-        EntityHero heroRunSpell,
+        ArenaHeroEntity heroRunSpell,
         ArenaManager arenaManager
         )
     {
@@ -57,7 +57,7 @@ public class ArenaEntityObstacle
     {
         Debug.Log("ClickEntitySpell");
         await AudioManager.Instance.Click();
-        if (_arenaManager.FightingOccupiedNodes.Contains(OccupiedNode))
+        if (_arenaManager.FightingOccupiedNodes.Contains(_arenaManager.clickedNode))
         {
 
             Debug.Log($"Choose spell for spell!");

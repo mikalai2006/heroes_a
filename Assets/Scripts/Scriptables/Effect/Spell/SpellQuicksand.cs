@@ -8,7 +8,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Quicksand", menuName = "Game/Attribute/Spell/26_Quicksand", order = 26)]
 public class SpellQuicksand : ScriptableAttributeSpell
 {
-    public async override UniTask<List<GridArenaNode>> ChooseTarget(ArenaManager arenaManager, EntityHero hero, Player player = null)
+    public async override UniTask<List<GridArenaNode>> ChooseTarget(ArenaManager arenaManager, ArenaHeroEntity hero, Player player = null)
     {
         List<GridArenaNode> nodes = arenaManager
             .GridArenaHelper
@@ -25,15 +25,15 @@ public class SpellQuicksand : ScriptableAttributeSpell
         return nodes;
     }
 
-    public async override UniTask AddEffect(GridArenaNode node, EntityHero heroRunSpell, ArenaManager arenaManager, Player player = null)
+    public async override UniTask AddEffect(GridArenaNode node, ArenaHeroEntity heroRunSpell, ArenaManager arenaManager, Player player = null)
     {
         ScriptableAttributeSecondarySkill baseSSkill = SchoolMagic.BaseSecondarySkill;
         SpellItem dataCurrent = LevelData[0];
         int levelSSkill = 0;
         if (heroRunSpell != null)
         {
-            levelSSkill = heroRunSpell.Data.SSkills.ContainsKey(baseSSkill.TypeTwoSkill)
-                ? heroRunSpell.Data.SSkills[baseSSkill.TypeTwoSkill].level + 1
+            levelSSkill = heroRunSpell.Entity.Data.SSkills.ContainsKey(baseSSkill.TypeTwoSkill)
+                ? heroRunSpell.Entity.Data.SSkills[baseSSkill.TypeTwoSkill].level + 1
                 : 0;
             dataCurrent = LevelData[levelSSkill];
         }
@@ -53,7 +53,7 @@ public class SpellQuicksand : ScriptableAttributeSpell
             var nodeForEffect = allowNodes[0];
             if (!nodeForEffect.StateArenaNode.HasFlag(StateArenaNode.Spellsed))
             {
-                ArenaEntitySpell newEntity = new ArenaEntitySpell(nodeForEffect, this, heroRunSpell, arenaManager);
+                ArenaObstacle newEntity = new ArenaObstacle(nodeForEffect, this, heroRunSpell, arenaManager);
                 newEntity.CreateMapGameObject();
                 nodeForEffect.SpellsState.Add(this, 1000);
                 nodeForEffect.SetSpellsStatus(true);
@@ -68,7 +68,7 @@ public class SpellQuicksand : ScriptableAttributeSpell
         await UniTask.Delay(1);
     }
 
-    public async override UniTask RunEffect(GridArenaNode node, EntityHero heroRunSpell, GridArenaNode nodeWithSpell, Player player = null)
+    public async override UniTask RunEffect(GridArenaNode node, ArenaHeroEntity heroRunSpell, GridArenaNode nodeWithSpell, Player player = null)
     {
         var entity = (ArenaCreature)node.OccupiedUnit;
 
@@ -80,7 +80,7 @@ public class SpellQuicksand : ScriptableAttributeSpell
         await UniTask.Delay(1);
     }
 
-    public async override UniTask RemoveEffect(GridArenaNode node, EntityHero hero, Player player = null)
+    public async override UniTask RemoveEffect(GridArenaNode node, ArenaHeroEntity hero, Player player = null)
     {
         node.SpellsState.Remove(this);
         node.SpellUnit.DestroyMapObject();

@@ -302,8 +302,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0533ff87d0f3cda4e8de5c25664f06d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zoomMin: 5
-  zoomMax: 8
   tileMap: {fileID: 63901569}
   ignoreUI: {fileID: 580471022}
 --- !u!1 &92953581
@@ -2021,9 +2019,7 @@ GameObject:
   - component: {fileID: 1321082045}
   - component: {fileID: 1321082044}
   - component: {fileID: 1321082043}
-  - component: {fileID: 1321082042}
   - component: {fileID: 1321082046}
-  - component: {fileID: 1321082047}
   m_Layer: 0
   m_Name: Grid
   m_TagString: Map
@@ -2031,21 +2027,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1321082042
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1321082041}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 635a3b2e47a170942b6ced282ed4add2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  zoomMin: 5
-  zoomMax: 8
-  tileMap: {fileID: 63901569}
 --- !u!114 &1321082043
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2112,19 +2093,6 @@ MonoBehaviour:
   zoomMax: 8
   speed: 0.5
   tileMap: {fileID: 63901569}
---- !u!114 &1321082047
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1321082041}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3261a8dfb4a48fb489708d9b7832c1e5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 0.01
 --- !u!1 &1488888037
 GameObject:
   m_ObjectHideFlags: 0

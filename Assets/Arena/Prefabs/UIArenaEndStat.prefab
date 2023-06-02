@@ -50,6 +50,7 @@ MonoBehaviour:
       m_TableCollectionName: GUID:9b6db77d8a0719a4490c3b7aad12567c
   _uiDoc: {fileID: 4029751754905209298}
   _templateInsertBlok: {fileID: 9197481963319205126, guid: 00eb6cda0f074894d809a82090156e52, type: 3}
+  _templateCreatureInfoSmall: {fileID: 9197481963319205126, guid: 4b65d6b06dd2523448b0328c764690b2, type: 3}
 --- !u!1 &7290614245296102405
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,7 +9,7 @@ using UnityEngine.AddressableAssets;
 [CreateAssetMenu(fileName = "SpellCurse", menuName = "Game/Attribute/Spell/4_Curse", order = 4)]
 public class SpellCurse : ScriptableAttributeSpell
 {
-    public async override UniTask<List<GridArenaNode>> ChooseTarget(ArenaManager arenaManager, EntityHero hero, Player player = null)
+    public async override UniTask<List<GridArenaNode>> ChooseTarget(ArenaManager arenaManager, ArenaHeroEntity hero, Player player = null)
     {
         List<GridArenaNode> nodes = arenaManager
             .GridArenaHelper
@@ -25,7 +25,7 @@ public class SpellCurse : ScriptableAttributeSpell
         return nodes;
     }
 
-    public async override UniTask AddEffect(GridArenaNode node, EntityHero heroRunSpell, ArenaManager arenaManager, Player player = null)
+    public async override UniTask AddEffect(GridArenaNode node, ArenaHeroEntity heroRunSpell, ArenaManager arenaManager, Player player = null)
     {
         await base.AddEffect(node, heroRunSpell, arenaManager);
 
@@ -34,8 +34,8 @@ public class SpellCurse : ScriptableAttributeSpell
         SpellItem dataCurrent = new();
         if (creatureArena.Hero != null)
         {
-            int levelSSkill = heroRunSpell.Data.SSkills.ContainsKey(baseSSkill.TypeTwoSkill)
-                ? heroRunSpell.Data.SSkills[baseSSkill.TypeTwoSkill].level + 1
+            int levelSSkill = heroRunSpell.Entity.Data.SSkills.ContainsKey(baseSSkill.TypeTwoSkill)
+                ? heroRunSpell.Entity.Data.SSkills[baseSSkill.TypeTwoSkill].level + 1
                 : 0;
             dataCurrent = LevelData[levelSSkill];
         }
@@ -48,7 +48,7 @@ public class SpellCurse : ScriptableAttributeSpell
         }
 
         // Add duration.
-        int countRound = heroRunSpell.Data.PSkills[TypePrimarySkill.Power];
+        int countRound = heroRunSpell.Entity.Data.PSkills[TypePrimarySkill.Power];
         if (creatureArena.Data.SpellsState.ContainsKey(this))
         {
             creatureArena.Data.SpellsState[this] = countRound;
@@ -76,7 +76,7 @@ public class SpellCurse : ScriptableAttributeSpell
         }
     }
 
-    public override UniTask RemoveEffect(GridArenaNode node, EntityHero hero, Player player = null)
+    public override UniTask RemoveEffect(GridArenaNode node, ArenaHeroEntity hero, Player player = null)
     {
         var entity = node.OccupiedUnit;
         entity.Data.damageMin = ((ScriptableAttributeCreature)entity.Entity.ScriptableDataAttribute).CreatureParams.DamageMin;

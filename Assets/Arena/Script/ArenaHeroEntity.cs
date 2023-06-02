@@ -1,14 +1,26 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 using Cysharp.Threading.Tasks;
 
 using UnityEngine;
 using UnityEngine.AddressableAssets;
-using UnityEngine.EventSystems;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.Tilemaps;
+
+public enum TypeArenaHero
+{
+    Visible = 0,
+    Hidden = 1
+}
+public enum TypearenaHeroStatus
+{
+    None = 0,
+    Victorious = 1,
+    Defendied = 2,
+    PayOffed = 3,
+    Runned = 4,
+}
 
 [Serializable]
 public struct ArenaHeroEntityData
@@ -21,6 +33,11 @@ public struct ArenaHeroEntityData
     public int ballisticChanceNoDamage;
     public int ballisticChance1Damage;
     public int ballisticChance2Damage;
+
+    public bool autoRun;
+    public TypeArenaHero typeArenaHero;
+    public PlayerType playerType;
+    public Dictionary<BaseEntity, ArenaCreature> ArenaCreatures;
 }
 
 [Serializable]
@@ -28,7 +45,7 @@ public class ArenaHeroEntity
 {
     public ArenaHeroEntityData Data;
     private Tilemap _tileMapArenaUnits;
-
+    public TypearenaHeroStatus typearenaHeroStatus;
     [SerializeField]
     public ScriptableEntityHero _configData;
     public ScriptableEntityHero ConfigData => _configData;
@@ -37,13 +54,20 @@ public class ArenaHeroEntity
     [NonSerialized] public ArenaHeroMonoBehavior ArenaHeroMonoBehavior;
     public EntityHero Entity { get; private set; }
 
+    public AIArena AI;
+    private ArenaManager _arenaManager;
+    // private EntityHero EntityHero;
+
     public ArenaHeroEntity(Tilemap tileMapArenaUnits)
     {
         _tileMapArenaUnits = tileMapArenaUnits;
     }
 
-    public void SetEntity(BaseEntity entity)
+    public async UniTask SetEntity(ArenaManager arenaManager, BaseEntity entity, TypeArenaHero typeArenaHero, Vector3 pos)
     {
+        _arenaManager = arenaManager;
+        _position = pos;
+
         Data = new()
         {
             ballisticShoot = 1,
@@ -55,18 +79,69 @@ public class ArenaHeroEntity
             ballisticChance1Damage = 60,
             ballisticChance2Damage = 30
         };
+        Data.ArenaCreatures = new();
 
         Entity = ((EntityHero)entity);
-        _configData = Entity.ConfigData;
+
+        await CreateAI(typeArenaHero);
+
         if (entity != null && Entity.SpellBook != null)
         {
+            _configData = Entity.ConfigData;
+
             Entity.SpellBook.SetCountSpellPerRound();
         }
+
+        if (entity != null && entity.Player != null)
+        {
+            Data.playerType = Entity.Player.DataPlayer.playerType;
+        }
+        else
+        {
+            Data.playerType = PlayerType.Bot;
+        }
+
     }
 
-    public void SetPosition(Vector3 pos)
+    public async UniTask CreateAI(TypeArenaHero typeArenaHero)
     {
-        _position = pos;
+        Data.typeArenaHero = typeArenaHero;
+
+        AI = new AIArena();
+        AI.Init(_arenaManager, this);
+
+        if (typeArenaHero == TypeArenaHero.Hidden)
+        // if not hero (only creatures), set autoRun.
+        {
+            // await SetStatusAutoRun(true);
+            Data.autoRun = true;
+        }
+        else
+        // else create hero visual.
+        {
+            CreateMapGameObject();
+            // await SetStatusAutoRun(false);
+            Data.autoRun = false;
+        }
+
+        // if bot - set autoRun.
+        if (
+            Entity == null
+            || (Entity != null && Entity.Player != null && Entity.Player.DataPlayer.playerType == PlayerType.Bot))
+        {
+            Data.autoRun = true;
+            // await SetStatusAutoRun(true);
+        }
+
+    }
+
+    public async UniTask SetStatusAutoRun(bool status)
+    {
+        Data.autoRun = status;
+        if (status)
+        {
+            await AI.Run();
+        }
     }
 
     public void DestroyMapObject()

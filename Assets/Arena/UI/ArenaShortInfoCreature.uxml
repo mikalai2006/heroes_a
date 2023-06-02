@@ -5,30 +5,30 @@
             <ui:Label tabindex="-1" text="Label" display-tooltip-when-elided="true" name="Title" class="p-05 m-0" />
         </ui:VisualElement>
         <ui:VisualElement>
-            <ui:VisualElement class="border-1 border-color p-1 bg" style="align-items: center;">
+            <ui:VisualElement class="border-color p-1 bg" style="align-items: center;">
                 <ui:VisualElement name="Ava" style="background-image: url(&apos;project://database/Assets/Creature/Inferno/Prefabs/Archdevil/ArchdevilMenu.png?fileID=2800000&amp;guid=94e93ee578c4ad943a3caa203fe69b10&amp;type=3#ArchdevilMenu&apos;); width: 58px; height: 64px;" />
                 <ui:Label tabindex="-1" text="HornedDemon" display-tooltip-when-elided="true" name="Name" class="m-0 p-0 text-sm" style="white-space: normal; -unity-text-align: upper-center;" />
             </ui:VisualElement>
         </ui:VisualElement>
-        <ui:VisualElement class="pt-1">
-            <ui:VisualElement class="border-1 border-color p-1 bg">
-                <ui:VisualElement class="text-sm" style="flex-direction: row; align-items: center;">
-                    <ui:Label tabindex="-1" text="#attack" display-tooltip-when-elided="true" class="m-0 p-0" />
-                    <ui:Label tabindex="-1" text="5" display-tooltip-when-elided="true" name="Attack" class="m-0 p-0" style="-unity-text-align: upper-right; flex-grow: 1;" />
-                </ui:VisualElement>
-                <ui:VisualElement class="text-sm" style="flex-direction: row; align-items: center;">
-                    <ui:Label tabindex="-1" text="#defense" display-tooltip-when-elided="true" class="m-0 p-0" />
-                    <ui:Label tabindex="-1" text="5" display-tooltip-when-elided="true" name="Defense" class="m-0 p-0" style="-unity-text-align: upper-right; flex-grow: 1;" />
-                </ui:VisualElement>
-                <ui:VisualElement class="text-sm" style="flex-direction: row; align-items: center;">
-                    <ui:Label tabindex="-1" text="#damage" display-tooltip-when-elided="true" class="m-0 p-0" />
-                    <ui:Label tabindex="-1" text="5" display-tooltip-when-elided="true" name="Damage" class="m-0 p-0" style="-unity-text-align: upper-right; flex-grow: 1;" />
-                </ui:VisualElement>
-                <ui:VisualElement class="text-sm" style="flex-direction: row; align-items: center;">
-                    <ui:Label tabindex="-1" text="#hp" display-tooltip-when-elided="true" class="m-0 p-0" />
-                    <ui:Label tabindex="-1" text="5" display-tooltip-when-elided="true" name="Hp" class="m-0 p-0" style="-unity-text-align: upper-right; flex-grow: 1;" />
-                </ui:VisualElement>
-            </ui:VisualElement>
+        <ui:VisualElement name="RowQuantity" style="flex-grow: 1; flex-direction: row;">
+            <ui:Label tabindex="-1" text="#quantity" display-tooltip-when-elided="true" class="m-0 p-0 text-primary" style="position: absolute;" />
+            <ui:Label tabindex="-1" text="1223" display-tooltip-when-elided="true" name="Quantity" class="text-lg p-0 font-bold" style="padding-top: 10px;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="RowHP" style="flex-grow: 1; flex-direction: row;">
+            <ui:Label tabindex="-1" text="#hp" display-tooltip-when-elided="true" class="m-0 p-0 text-primary" style="position: absolute;" />
+            <ui:Label tabindex="-1" text="1223" display-tooltip-when-elided="true" name="HP" class="text-lg p-0" style="padding-top: 10px;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="RowAttack" style="flex-grow: 1; flex-direction: row;">
+            <ui:Label tabindex="-1" text="#attack" display-tooltip-when-elided="true" class="m-0 p-0 text-primary" style="position: absolute;" />
+            <ui:Label tabindex="-1" text="1223" display-tooltip-when-elided="true" name="Attack" class="p-0 text-lg" style="padding-top: 10px;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="RowDefense" style="flex-grow: 1; flex-direction: row;">
+            <ui:Label tabindex="-1" text="#defense" display-tooltip-when-elided="true" class="m-0 p-0 text-primary" style="position: absolute;" />
+            <ui:Label tabindex="-1" text="1223" display-tooltip-when-elided="true" name="Defense" class="text-lg p-0" style="padding-top: 10px;" />
+        </ui:VisualElement>
+        <ui:VisualElement style="flex-grow: 1; flex-direction: row;">
+            <ui:Label tabindex="-1" text="#damage" display-tooltip-when-elided="true" class="m-0 p-0 text-primary" style="position: absolute;" />
+            <ui:Label tabindex="-1" text="1223" display-tooltip-when-elided="true" name="Damage" class="text-lg p-0" style="padding-top: 10px;" />
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

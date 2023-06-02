@@ -9,7 +9,7 @@ using UnityEngine.AddressableAssets;
 [CreateAssetMenu(fileName = "SpellDisruptingRay", menuName = "Game/Attribute/Spell/19_DisruptingRay", order = 19)]
 public class SpellDisruptingRay : ScriptableAttributeSpell
 {
-    public async override UniTask<List<GridArenaNode>> ChooseTarget(ArenaManager arenaManager, EntityHero hero, Player player = null)
+    public async override UniTask<List<GridArenaNode>> ChooseTarget(ArenaManager arenaManager, ArenaHeroEntity hero, Player player = null)
     {
         List<GridArenaNode> nodes = arenaManager
             .GridArenaHelper
@@ -25,7 +25,7 @@ public class SpellDisruptingRay : ScriptableAttributeSpell
         return nodes;
     }
 
-    public async override UniTask AddEffect(GridArenaNode node, EntityHero heroRunSpell, ArenaManager arenaManager, Player player = null)
+    public async override UniTask AddEffect(GridArenaNode node, ArenaHeroEntity heroRunSpell, ArenaManager arenaManager, Player player = null)
     {
         await base.AddEffect(node, heroRunSpell, arenaManager);
 
@@ -34,8 +34,8 @@ public class SpellDisruptingRay : ScriptableAttributeSpell
         SpellItem dataCurrent = new();
         if (creatureArena.Hero != null)
         {
-            int levelSSkill = heroRunSpell.Data.SSkills.ContainsKey(baseSSkill.TypeTwoSkill)
-                ? heroRunSpell.Data.SSkills[baseSSkill.TypeTwoSkill].level + 1
+            int levelSSkill = heroRunSpell.Entity.Data.SSkills.ContainsKey(baseSSkill.TypeTwoSkill)
+                ? heroRunSpell.Entity.Data.SSkills[baseSSkill.TypeTwoSkill].level + 1
                 : 0;
             dataCurrent = LevelData[levelSSkill];
         }
@@ -88,7 +88,7 @@ public class SpellDisruptingRay : ScriptableAttributeSpell
         }
     }
 
-    public override UniTask RemoveEffect(GridArenaNode node, EntityHero hero, Player player = null)
+    public override UniTask RemoveEffect(GridArenaNode node, ArenaHeroEntity hero, Player player = null)
     {
         var entity = node.OccupiedUnit;
 

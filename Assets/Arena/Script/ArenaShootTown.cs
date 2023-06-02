@@ -13,7 +13,7 @@ public class ArenaShootTown : ArenaEntityBase
     private Transform transform;
     public bool isHead;
 
-    public override void Init(ArenaManager arenaManager, EntityHero hero)
+    public override void Init(ArenaManager arenaManager, ArenaHeroEntity hero)
     {
         base.Init(arenaManager, hero);
     }
@@ -92,7 +92,7 @@ public class ArenaShootTown : ArenaEntityBase
             gameObj,
             PositionPrefab,
             Quaternion.identity,
-            _arenaManager.tileMapArenaUnits.transform
+            arenaManager.tileMapArenaUnits.transform
             );
         await asset.Task;
         var comp = asset.Result.GetComponent<ArenaCreatureMB>();
@@ -103,18 +103,18 @@ public class ArenaShootTown : ArenaEntityBase
         ArenaShootTownMB.Init(this, shoots);
     }
 
-    public override async UniTask GetFightingNodes()
+    public override async UniTask<List<GridArenaNode>> GetFightingNodes()
     {
-        _arenaManager.ClearAttackNode();
-        _arenaManager.FightingOccupiedNodes.Clear();
+        arenaManager.ClearAttackNode();
+        arenaManager.FightingOccupiedNodes.Clear();
 
-        var arenaEntity = _arenaManager.ArenaQueue.activeEntity.arenaEntity;
+        var arenaEntity = arenaManager.ArenaQueue.activeEntity.arenaEntity;
 
-        var nodesForAttack = _arenaManager.GridArenaHelper
+        var nodesForAttack = arenaManager.GridArenaHelper
             .GetAllGridNodes()
             .Where(t =>
                 t.OccupiedUnit != null
-                && t.OccupiedUnit.TypeArenaPlayer != _arenaManager.ArenaQueue.activeEntity.arenaEntity.TypeArenaPlayer
+                && t.OccupiedUnit.TypeArenaPlayer != arenaManager.ArenaQueue.activeEntity.arenaEntity.TypeArenaPlayer
             )
             .ToList(); ;
 
@@ -122,17 +122,17 @@ public class ArenaShootTown : ArenaEntityBase
         {
             if (!node.StateArenaNode.HasFlag(StateArenaNode.Related))
             {
-                _arenaManager.FightingOccupiedNodes.Add(node);
-                _arenaManager.SetColorAllowFightNode(node, LevelManager.Instance.ConfigGameSettings.colorAllowAttackCreature);
+                arenaManager.FightingOccupiedNodes.Add(node);
+                arenaManager.SetColorAllowFightNode(node, LevelManager.Instance.ConfigGameSettings.colorAllowAttackCreature);
             }
         }
 
         // Check type run.
         int levelSSkill = 0;
-        if (_arenaManager.ArenaQueue.ActiveHero != null)
+        if (arenaManager.ArenaQueue.ActiveHero != null)
         {
-            levelSSkill = _arenaManager.ArenaQueue.ActiveHero.Data.SSkills.ContainsKey(TypeSecondarySkill.Artillery)
-                ? _arenaManager.ArenaQueue.ActiveHero.Data.SSkills[TypeSecondarySkill.Artillery].level + 1
+            levelSSkill = arenaManager.ArenaQueue.ActiveHero.Entity.Data.SSkills.ContainsKey(TypeSecondarySkill.Artillery)
+                ? arenaManager.ArenaQueue.ActiveHero.Entity.Data.SSkills[TypeSecondarySkill.Artillery].level + 1
                 : 0;
         }
         ArenaTypeRunEffect typeRunEffect = ArenaTypeRunEffect.AutoChoose;
@@ -155,34 +155,35 @@ public class ArenaShootTown : ArenaEntityBase
                 // Debug.Log($"Auto run shoot town! Artillery={levelSSkill}");
                 //TODO AI choose target.
                 var nodeToAttack = nodesForAttack[UnityEngine.Random.Range(0, nodesForAttack.Count)];
-                _arenaManager.clickedNode = nodeToAttack;
-                _arenaManager.AttackedCreature = nodeToAttack.OccupiedUnit;
+                arenaManager.clickedNode = nodeToAttack;
+                arenaManager.AttackedCreature = nodeToAttack.OccupiedUnit;
                 CreateButtonAttackNode(nodeToAttack);
                 await ClickButtonAction();
                 break;
             case ArenaTypeRunEffect.Choosed:
                 // TODO choose target algoritm.
-                Debug.Log("Create button shoot town!");
+                // Debug.Log("Create button shoot town!");
                 break;
         }
 
         await UniTask.Yield();
+        return arenaManager.FightingOccupiedNodes;
     }
 
     public override async UniTask ClickButtonAction()
     {
-        _arenaManager.isRunningAction = true;
+        arenaManager.isRunningAction = true;
         // await AudioManager.Instance.Click();
 
-        if (_arenaManager.activeCursor == _arenaManager.CursorRule.NotAllow)
+        if (arenaManager.activeCursor == arenaManager.CursorRule.NotAllow)
         {
-            _arenaManager.isRunningAction = false;
+            arenaManager.isRunningAction = false;
             return;
         };
 
-        if (_arenaManager.AttackedCreature != null)
+        if (arenaManager.AttackedCreature != null)
         {
-            var nodes = _arenaManager.NodesForAttackActiveCreature[_arenaManager.KeyNodeFromAttack];
+            var nodes = arenaManager.NodesForAttackActiveCreature[arenaManager.KeyNodeFromAttack];
             if (nodes.nodeFromAttack.OccupiedUnit != null)
             {
                 await nodes.nodeFromAttack.OccupiedUnit.GoAttack(nodes.nodeFromAttack, nodes.nodeToAttack);
@@ -190,15 +191,15 @@ public class ArenaShootTown : ArenaEntityBase
         }
 
         // Clear clicked node.
-        _arenaManager.clickedNode = null;
-        _arenaManager.ClearAttackNode();
+        arenaManager.clickedNode = null;
+        arenaManager.ClearAttackNode();
 
         // Next creature.
         // await GoEntity();
-        _arenaManager.NextCreature(false, false);
+        await arenaManager.NextCreature(false, false);
 
         // EndRunWarMachine();
-        _arenaManager.isRunningAction = false;
+        arenaManager.isRunningAction = false;
     }
 
     public override async UniTask GoAttack(GridArenaNode nodeFromAttack, GridArenaNode nodeToAttack)
@@ -219,13 +220,11 @@ public class ArenaShootTown : ArenaEntityBase
 
     public override void CalculateAttack(GridArenaNode nodeFromAttack, GridArenaNode nodeToAttack)
     {
-        var town = _arenaManager.ArenaTown.Town;
+        var town = arenaManager.ArenaTown.Town;
         if (town == null) return;
         int countBuildingInTown = town.Data.Generals.Count + town.Data.Armys.Count;
 
-        int baseDamage = isHead
-            ? UnityEngine.Random.Range(10, 20)
-            : UnityEngine.Random.Range(6, 12);
+        int baseDamage = UnityEngine.Random.Range(Data.damageMin, Data.damageMax);
 
         int dopDamage = isHead
             ? UnityEngine.Random.Range(2, 4) * countBuildingInTown
@@ -237,4 +236,19 @@ public class ArenaShootTown : ArenaEntityBase
         nodeToAttack.OccupiedUnit.SetDamage(totalDamage);
     }
 
+    internal void SetData(bool isHeadTower)
+    {
+        isHead = isHeadTower;
+        var town = arenaManager.ArenaTown.Town;
+        if (town == null) return;
+        int countBuildingInTown = town.Data.Generals.Count + town.Data.Armys.Count;
+
+        Data.damageMin = isHead ? 10 : 6;
+        Data.damageMax = isHead ? 20 : 12;
+
+        int dopDamage = isHead
+            ? UnityEngine.Random.Range(2, 4) * countBuildingInTown
+            : UnityEngine.Random.Range(2, 4) * Mathf.CeilToInt(countBuildingInTown / 2);
+        Data.DamageModificators.Add(((EntityCreature)Entity).ConfigAttribute, dopDamage);
+    }
 }

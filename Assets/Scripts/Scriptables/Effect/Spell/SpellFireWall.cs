@@ -9,7 +9,7 @@ using UnityEngine;
 public class SpellFireWall : ScriptableAttributeSpell
 {
     public int countRound;
-    public async override UniTask<List<GridArenaNode>> ChooseTarget(ArenaManager arenaManager, EntityHero hero, Player player = null)
+    public async override UniTask<List<GridArenaNode>> ChooseTarget(ArenaManager arenaManager, ArenaHeroEntity hero, Player player = null)
     {
         var activeTypePlayer = arenaManager.ArenaQueue.activeEntity.arenaEntity.TypeArenaPlayer;
         List<GridArenaNode> nodes = arenaManager
@@ -51,7 +51,7 @@ public class SpellFireWall : ScriptableAttributeSpell
         return nodes;
     }
 
-    public async override UniTask AddEffect(GridArenaNode node, EntityHero heroRunSpell, ArenaManager arenaManager, Player player = null)
+    public async override UniTask AddEffect(GridArenaNode node, ArenaHeroEntity heroRunSpell, ArenaManager arenaManager, Player player = null)
     {
         var activeTypePlayer = arenaManager.ArenaQueue.activeEntity.arenaEntity.TypeArenaPlayer;
         var entity = node.OccupiedUnit;
@@ -60,13 +60,13 @@ public class SpellFireWall : ScriptableAttributeSpell
         int levelSSkill = 0;
         if (heroRunSpell != null)
         {
-            levelSSkill = heroRunSpell.Data.SSkills.ContainsKey(baseSSkill.TypeTwoSkill)
-                ? heroRunSpell.Data.SSkills[baseSSkill.TypeTwoSkill].level + 1
+            levelSSkill = heroRunSpell.Entity.Data.SSkills.ContainsKey(baseSSkill.TypeTwoSkill)
+                ? heroRunSpell.Entity.Data.SSkills[baseSSkill.TypeTwoSkill].level + 1
                 : 0;
             dataCurrent = LevelData[levelSSkill];
         }
 
-        ArenaEntitySpell newEntity = new ArenaEntitySpell(node, this, heroRunSpell, arenaManager);
+        ArenaObstacle newEntity = new ArenaObstacle(node, this, heroRunSpell, arenaManager);
         newEntity.CreateMapGameObject();
         node.SpellsState.Add(this, countRound);
         node.SetSpellsStatus(true);
@@ -74,7 +74,7 @@ public class SpellFireWall : ScriptableAttributeSpell
         var nodeForRelated = activeTypePlayer == TypeArenaPlayer.Left
             ? node.LeftTopNode
             : node.RightTopNode;
-        var relatedEntity = new ArenaEntitySpell(nodeForRelated, this, heroRunSpell, arenaManager);
+        var relatedEntity = new ArenaObstacle(nodeForRelated, this, heroRunSpell, arenaManager);
         relatedEntity.CreateMapGameObject();
         newEntity.AddRelatedNode(nodeForRelated);
         nodeForRelated.SpellsState.Add(this, countRound);
@@ -84,7 +84,7 @@ public class SpellFireWall : ScriptableAttributeSpell
             var secondNodeForRelated = activeTypePlayer == TypeArenaPlayer.Left
                 ? node.LeftBottomNode
                 : node.RightBottomNode;
-            relatedEntity = new ArenaEntitySpell(secondNodeForRelated, this, heroRunSpell, arenaManager);
+            relatedEntity = new ArenaObstacle(secondNodeForRelated, this, heroRunSpell, arenaManager);
             relatedEntity.CreateMapGameObject();
             newEntity.AddRelatedNode(secondNodeForRelated);
             secondNodeForRelated.SpellsState.Add(this, countRound);
@@ -93,26 +93,26 @@ public class SpellFireWall : ScriptableAttributeSpell
         await UniTask.Delay(1);
     }
 
-    public async override UniTask RunEffect(GridArenaNode node, EntityHero heroForSpell, GridArenaNode nodeWithSpell, Player player = null)
+    public async override UniTask RunEffect(GridArenaNode node, ArenaHeroEntity heroForSpell, GridArenaNode nodeWithSpell, Player player = null)
     {
         var entity = node.OccupiedUnit;
         ScriptableAttributeSecondarySkill baseSSkill = SchoolMagic.BaseSecondarySkill;
         SpellItem dataCurrent = new();
         if (nodeWithSpell.SpellUnit.Hero != null)
         {
-            int levelSSkill = nodeWithSpell.SpellUnit.Hero.Data.SSkills.ContainsKey(baseSSkill.TypeTwoSkill)
-            ? nodeWithSpell.SpellUnit.Hero.Data.SSkills[baseSSkill.TypeTwoSkill].level + 1
+            int levelSSkill = nodeWithSpell.SpellUnit.Hero.Entity.Data.SSkills.ContainsKey(baseSSkill.TypeTwoSkill)
+            ? nodeWithSpell.SpellUnit.Hero.Entity.Data.SSkills[baseSSkill.TypeTwoSkill].level + 1
             : 0;
             dataCurrent = LevelData[levelSSkill];
         }
 
-        int totalDamage = dataCurrent.Effect + (nodeWithSpell.SpellUnit.Hero.Data.PSkills[TypePrimarySkill.Power] * 10);
+        int totalDamage = dataCurrent.Effect + (nodeWithSpell.SpellUnit.Hero.Entity.Data.PSkills[TypePrimarySkill.Power] * 10);
 
         await entity.RunGettingHitSpell();
         entity.SetDamage(totalDamage);
     }
 
-    public async override UniTask RemoveEffect(GridArenaNode node, EntityHero hero, Player player = null)
+    public async override UniTask RemoveEffect(GridArenaNode node, ArenaHeroEntity hero, Player player = null)
     {
         // Remove related units from related nodes.
         foreach (var relatedNode in node.SpellUnit.RelatedNodes)

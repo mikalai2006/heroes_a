@@ -9,7 +9,7 @@ using UnityEngine.AddressableAssets;
 [CreateAssetMenu(fileName = "Bless", menuName = "Game/Attribute/Spell/1_Bless", order = 1)]
 public class SpellBless : ScriptableAttributeSpell
 {
-    public async override UniTask<List<GridArenaNode>> ChooseTarget(ArenaManager arenaManager, EntityHero hero, Player player = null)
+    public async override UniTask<List<GridArenaNode>> ChooseTarget(ArenaManager arenaManager, ArenaHeroEntity hero, Player player = null)
     {
         List<GridArenaNode> nodes = arenaManager
             .GridArenaHelper
@@ -25,7 +25,7 @@ public class SpellBless : ScriptableAttributeSpell
         return nodes;
     }
 
-    public async override UniTask AddEffect(GridArenaNode node, EntityHero heroRunSpell, ArenaManager arenaManager, Player player = null)
+    public async override UniTask AddEffect(GridArenaNode node, ArenaHeroEntity heroRunSpell, ArenaManager arenaManager, Player player = null)
     {
         await base.AddEffect(node, heroRunSpell, arenaManager);
 
@@ -34,8 +34,8 @@ public class SpellBless : ScriptableAttributeSpell
         SpellItem dataCurrent = new();
         if (creatureArena.Hero != null)
         {
-            int levelSSkill = creatureArena.Hero.Data.SSkills.ContainsKey(baseSSkill.TypeTwoSkill)
-                ? creatureArena.Hero.Data.SSkills[baseSSkill.TypeTwoSkill].level + 1
+            int levelSSkill = creatureArena.Hero.Entity.Data.SSkills.ContainsKey(baseSSkill.TypeTwoSkill)
+                ? creatureArena.Hero.Entity.Data.SSkills[baseSSkill.TypeTwoSkill].level + 1
                 : 0;
             dataCurrent = LevelData[levelSSkill];
         }
@@ -49,7 +49,7 @@ public class SpellBless : ScriptableAttributeSpell
         }
 
         // Add duration.
-        int countRound = heroRunSpell.Data.PSkills[TypePrimarySkill.Power];
+        int countRound = heroRunSpell.Entity.Data.PSkills[TypePrimarySkill.Power];
         if (creatureArena.Data.SpellsState.ContainsKey(this))
         {
             creatureArena.Data.SpellsState[this] = countRound;
@@ -77,7 +77,7 @@ public class SpellBless : ScriptableAttributeSpell
         }
     }
 
-    public async override UniTask RemoveEffect(GridArenaNode node, EntityHero hero, Player player = null)
+    public async override UniTask RemoveEffect(GridArenaNode node, ArenaHeroEntity hero, Player player = null)
     {
         var entity = node.OccupiedUnit;
         entity.Data.damageMin = ((ScriptableAttributeCreature)entity.Entity.ScriptableDataAttribute).CreatureParams.DamageMin;

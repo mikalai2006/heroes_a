@@ -44,6 +44,7 @@ public class SOGameSetting : ScriptableObject
     [Header("Setting Arena")]
     [Space(5)]
     public List<SOArenaSetting> ArenaSettings;
+    public int arenaMaxCountQueue;
     [Range(.05f, 1f)] public float speedArenaAnimation;
     public bool paintAllowAttackNode;
     public Color colorAllowAttackNode;
@@ -57,6 +58,7 @@ public class SOGameSetting : ScriptableObject
     public Color colorShadow;
     public bool showGrid;
     public bool showShadowGrid;
+    public int arenaMaxCountObstacles;
 
     public SOGameAudio AudioGeneral;
 
@@ -64,7 +66,10 @@ public class SOGameSetting : ScriptableObject
     [Space(5)]
     public List<ScriptableEntityTown> ArenaTestTowns;
     public List<ScriptableEntityHero> ArenaTestHeroes;
+    public PlayerType typeTestRightPlayer;
+    public PlayerType typeTestLeftPlayer;
     [SerializeField] public AssetReferenceGameObject ArenaPlaceholderModel;
+    [SerializeField] public AssetReferenceGameObject ArenaPlaceholderSize2Model;
     [SerializeField] public AssetReferenceGameObject ArenaPlaceholderShootModel;
 }
 

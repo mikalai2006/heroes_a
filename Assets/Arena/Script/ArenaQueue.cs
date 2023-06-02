@@ -20,7 +20,7 @@ public class ArenaQueue
     // LinkedList<ArenaEntity> queueEntity = new LinkedList<ArenaEntity>();
     public QueueItem activeEntity;
     public int ActiveRound;
-    public EntityHero ActiveHero => activeEntity.arenaEntity.Hero;
+    public ArenaHeroEntity ActiveHero => activeEntity.arenaEntity.Hero;
     private int nextTick = 1;
 
     public List<QueueItem> SetActiveEntity(QueueItem arenaEntity)
@@ -31,9 +31,18 @@ public class ArenaQueue
 
     public void NextCreature(bool wait, bool def)
     {
+        // var nextRound = ListEntities.ElementAt(1).round;
+
         if (this.activeEntity.arenaEntity != null && !this.activeEntity.arenaEntity.Death)
         {
-            ListEntities.Remove(activeEntity);
+            if (activeEntity.arenaEntity.Data.waitTick > 0)
+            {
+                ListEntitiesPhaseWait.Remove(activeEntity);
+            }
+            else
+            {
+                ListEntities.Remove(activeEntity);
+            }
 
             if (def)
             {
@@ -46,16 +55,15 @@ public class ArenaQueue
 
             if (wait)
             {
-                // activeEntity.arenaEntity.Data.isDefense = false;
                 activeEntity.arenaEntity.Data.waitTick = nextTick;
                 nextTick++;
-                var allRoundItems = ListEntities.Where(t => t.round == activeEntity.round);
-                var indexLastInRound = allRoundItems.Count();
-                ListEntities.Insert(indexLastInRound, activeEntity);
+                // var allRoundItems = ListEntities.Where(t => t.round == activeEntity.round);
+                // var indexLastInRound = allRoundItems.Count();
+                // ListEntities.Insert(indexLastInRound, activeEntity);
+                ListEntitiesPhaseWait.Add(activeEntity);
             }
             else
             {
-                // activeEntity.arenaEntity.Data.isDefense = false;
                 activeEntity.round += 1;
                 activeEntity.arenaEntity.Data.waitTick = 0;
                 ListEntities.Add(activeEntity);
@@ -64,12 +72,19 @@ public class ArenaQueue
         }
 
         Refresh();
-        activeEntity = ListEntities.ElementAt(0);
+
+        // var queue = ListEntities
+        //     .Where(t => t.round == ActiveRound)
+        //     .Concat(ListEntitiesPhaseWait)
+        //     .Concat(ListEntities.Where(t => t.round != ActiveRound));
+
+        activeEntity = GetQueue().ElementAt(0);
 
         if (ActiveRound != activeEntity.round)
         {
             OnNextRound?.Invoke();
         }
+
         ActiveRound = activeEntity.round;
 
         OnNextStep?.Invoke();
@@ -96,16 +111,36 @@ public class ArenaQueue
         {
             ListEntities.RemoveAt(index);
         }
+        var indexWaited = ListEntitiesPhaseWait.FindIndex(t => t.arenaEntity == arenaEntity);
+        if (indexWaited != -1)
+        {
+            ListEntitiesPhaseWait.RemoveAt(indexWaited);
+        }
         Refresh();
+    }
+
+    public List<QueueItem> GetQueue()
+    {
+        return ListEntities
+            .Where(t => t.round == ActiveRound)
+            .Concat(ListEntitiesPhaseWait)
+            .Concat(ListEntities.Where(t => t.round != ActiveRound))
+            .ToList();
     }
 
     public List<QueueItem> Refresh()
     {
         ListEntities = ListEntities
             .OrderBy(t => t.round)
-            .ThenBy(t => t.arenaEntity.Data.waitTick)
+            // .ThenBy(t => t.arenaEntity.Data.waitTick)
             .ThenBy(t => -t.arenaEntity.Speed)
             .ToList();
-        return ListEntities;
+
+        ListEntitiesPhaseWait = ListEntitiesPhaseWait
+            .OrderBy(t => t.round)
+            // .ThenBy(t => t.arenaEntity.Data.waitTick)
+            .ThenBy(t => t.arenaEntity.Speed)
+            .ToList();
+        return GetQueue();
     }
 }

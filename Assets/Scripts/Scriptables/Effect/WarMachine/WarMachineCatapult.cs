@@ -9,17 +9,17 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Catapult", menuName = "Game/Attribute/WarMachine/Catapult")]
 public class WarMachineCatapult : ScriptableAttributeWarMachine
 {
-    public async override UniTask<ArenaResultChoose> ChooseTarget(ArenaManager arenaManager, EntityHero hero, Player player = null)
+    public async override UniTask<ArenaResultChoose> ChooseTarget(ArenaManager arenaManager, ArenaHeroEntity hero, Player player = null)
     {
         // Check type run.
         int levelSSkill = 0;
         if (arenaManager.ArenaQueue.ActiveHero != null)
         {
-            levelSSkill = arenaManager.ArenaQueue.ActiveHero.Data.SSkills.ContainsKey(TypeSecondarySkill.Ballistics)
-                ? arenaManager.ArenaQueue.ActiveHero.Data.SSkills[TypeSecondarySkill.Ballistics].level + 1
+            levelSSkill = arenaManager.ArenaQueue.ActiveHero.Entity.Data.SSkills.ContainsKey(TypeSecondarySkill.Ballistics)
+                ? arenaManager.ArenaQueue.ActiveHero.Entity.Data.SSkills[TypeSecondarySkill.Ballistics].level + 1
                 : 0;
         }
-        var dataActiveHero = arenaManager.ArenaQueue.ActiveHero.ArenaHeroEntity;
+        var dataActiveHero = arenaManager.ArenaQueue.ActiveHero;
         ArenaTypeRunEffect typeRunEffect = ArenaTypeRunEffect.AutoChoose;
 
         arenaManager.ArenaTown.ArenaEntityTownMB.SetStatusColliders(true);
@@ -87,7 +87,7 @@ public class WarMachineCatapult : ScriptableAttributeWarMachine
 
         var objectGorAttack = gameObject.transform;
 
-        var dataActiveHero = arenaManager.ArenaQueue.ActiveHero.ArenaHeroEntity.Data;
+        var dataActiveHero = arenaManager.ArenaQueue.ActiveHero.Data;
         for (int i = 0; i < dataActiveHero.ballisticShoot; i++)
         {
             var valueHPobjectGorAttack = arenaManager.ArenaTown.FortificationsGameObject[gameObject.transform];
@@ -164,11 +164,11 @@ public class WarMachineCatapult : ScriptableAttributeWarMachine
                 // var transform = wallsObjects[UnityEngine.Random.Range(0, wallsObjects.Count)].Key.gameObject.transform;
                 await ArenaWarMachineMonoBehavior.RunAttackShoot(null, randomObject);
                 await arenaManager.ArenaTown.AttackFortification(randomObject, valueDamage);
-                Debug.Log($"{name}:::RunEffectByGameObject randomObject| objectForAttack={randomObject.name} / damage={valueDamage}[chance={chance}");
+                // Debug.Log($"{name}:::RunEffectByGameObject randomObject| objectForAttack={randomObject.name} / damage={valueDamage}[chance={chance}");
             }
             else
             {
-                Debug.Log($"{name}:::RunEffectByGameObject isHitShoot| objectForAttack={objectGorAttack.name} / damage={valueDamage}[chance={chance}");
+                // Debug.Log($"{name}:::RunEffectByGameObject isHitShoot| objectForAttack={objectGorAttack.name} / damage={valueDamage}[chance={chance}");
             }
             arenaManager.ArenaTown.ArenaEntityTownMB.SetStatusColliders(false);
         }

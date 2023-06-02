@@ -223,6 +223,7 @@ public class UIDialogSpellBook : UIDialogBaseWindow
             newNodeElementSpell.AddToClassList("button");
             newNodeElementSpell.AddToClassList("border-0");
             newNodeElementSpell.AddToClassList("m-0");
+            newNodeElementSpell.AddToClassList("p-0");
             newNodeElementSpell.AddToClassList("bg-transparent");
             newNodeElementSpell.AddToClassList("w-33");
             newNodeElementSpell.AddToClassList("h-33");

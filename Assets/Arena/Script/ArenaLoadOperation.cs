@@ -11,8 +11,8 @@ using UnityEngine.ResourceManagement.ResourceProviders;
 public struct DialogArenaData
 {
     public EntityTown town;
-    public EntityHero hero;
-    public EntityHero enemy;
+    public EntityHero heroAttacking;
+    public EntityHero heroDefending;
     public EntityMapObject creatureBank;
     public EntityCreature creature;
     public SOArenaSetting ArenaSetting;
@@ -40,16 +40,16 @@ namespace Loader
             _scene = await GameManager.Instance.AssetProvider.LoadSceneAdditive(Constants.Scenes.SCENE_ARENA);
             // var rootObjects = _scene.Scene.GetRootGameObjects();
 
-            UIArena UIArena = GameObject.FindGameObjectWithTag("UIArena")?.GetComponent<UIArena>();
+            ArenaManager arenaManager = GameObject.FindGameObjectWithTag("ArenaManager").GetComponent<ArenaManager>();
+            arenaManager.CreateArena(_dialogArenaData);
 
-            ArenaManager ArenaManager = GameObject.FindGameObjectWithTag("ArenaManager")?.GetComponent<ArenaManager>();
-            ArenaManager.CreateArena(_dialogArenaData);
+            UIArena UIArena = GameObject.FindGameObjectWithTag("UIArena").GetComponent<UIArena>();
             if (UIArena != null)
             {
-                UIArena.Init();
+                UIArena.Init(arenaManager);
             }
 
-            var result = await UIArena.ProcessAction();
+            var result = await UIArena.ProcessAction(_dialogArenaData);
             await Unload();
             return result;
         }

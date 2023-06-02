@@ -11,6 +11,7 @@ public struct DataDialogHelp
     public string Header;
     public string Description;
     public Sprite Sprite;
+    public bool showCancelButton;
 }
 
 public class DialogHelpProvider : LocalAssetLoader

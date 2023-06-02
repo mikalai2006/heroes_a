@@ -9,7 +9,7 @@ using UnityEngine.AddressableAssets;
 [CreateAssetMenu(fileName = "SpellDeathRipple", menuName = "Game/Attribute/Spell/17_DeathRipple", order = 17)]
 public class SpellDeathRipple : ScriptableAttributeSpell
 {
-    public async override UniTask<List<GridArenaNode>> ChooseTarget(ArenaManager arenaManager, EntityHero hero, Player player = null)
+    public async override UniTask<List<GridArenaNode>> ChooseTarget(ArenaManager arenaManager, ArenaHeroEntity hero, Player player = null)
     {
         List<GridArenaNode> nodes = arenaManager
             .GridArenaHelper
@@ -25,7 +25,7 @@ public class SpellDeathRipple : ScriptableAttributeSpell
         return nodes;
     }
 
-    public async override UniTask AddEffect(GridArenaNode node, EntityHero heroRunSpell, ArenaManager arenaManager, Player player = null)
+    public async override UniTask AddEffect(GridArenaNode node, ArenaHeroEntity heroRunSpell, ArenaManager arenaManager, Player player = null)
     {
         await base.AddEffect(node, heroRunSpell, arenaManager);
 
@@ -34,14 +34,14 @@ public class SpellDeathRipple : ScriptableAttributeSpell
         SpellItem dataCurrent = new();
         if (creatureArena.Hero != null)
         {
-            int levelSSkill = heroRunSpell.Data.SSkills.ContainsKey(baseSSkill.TypeTwoSkill)
-                ? heroRunSpell.Data.SSkills[baseSSkill.TypeTwoSkill].level + 1
+            int levelSSkill = heroRunSpell.Entity.Data.SSkills.ContainsKey(baseSSkill.TypeTwoSkill)
+                ? heroRunSpell.Entity.Data.SSkills[baseSSkill.TypeTwoSkill].level + 1
                 : 0;
             dataCurrent = LevelData[levelSSkill];
         }
 
         // Add modification data.
-        var totalDamage = dataCurrent.Effect + creatureArena.Hero.Data.PSkills[TypePrimarySkill.Power] * 5;
+        var totalDamage = dataCurrent.Effect + creatureArena.Hero.Entity.Data.PSkills[TypePrimarySkill.Power] * 5;
 
         // Run effect.
         if (AnimatePrefab.RuntimeKeyIsValid())

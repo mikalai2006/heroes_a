@@ -18,5 +18,22 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 2d25500e80a0f56478d7eaa600babd4e, type: 3}
   - {fileID: 21300000, guid: a26dcd60df9f4c0469397da6add70a4a, type: 3}
   NativeGround: {fileID: 11400000, guid: 38bc4c5db54034b4fa0f71098aaa740e, type: 2}
-  Obstacles: []
+  Obstacles:
+  - {fileID: 21300000, guid: a933f470d1415c94891a7761284a9dc1, type: 3}
+  - {fileID: 21300000, guid: ef0cd985bad5d8b4687177d058c869bc, type: 3}
+  - {fileID: 21300000, guid: 2a335ad44c4b9b247ba5243d0e6340f7, type: 3}
+  - {fileID: 21300000, guid: 211399bf603504c41a8e9e5a69aa9013, type: 3}
+  - {fileID: 21300000, guid: 116ec54c1911be94e8082ca15788c9a2, type: 3}
+  - {fileID: 21300000, guid: 42040fc88f8aa6b4face2651edc544be, type: 3}
+  - {fileID: 21300000, guid: 83f5270e78566044a850c29a1290430a, type: 3}
+  - {fileID: 21300000, guid: 1a3ec29ca9429b947a32613526657d61, type: 3}
+  ObstaclesNotRemove:
+  - {fileID: 21300000, guid: c5395482db0211c429ed1f74262fc5f9, type: 3}
+  - {fileID: 21300000, guid: 7d06a1b1222bfbe438562799f56f4341, type: 3}
+  - {fileID: 21300000, guid: 900f3c85b7cc85b4f83a7c943704547d, type: 3}
+  - {fileID: 21300000, guid: 892a2f081289f7c429348c173b75800b, type: 3}
+  - {fileID: 21300000, guid: 684e67bac97a463488029dc09c5e1cf2, type: 3}
+  - {fileID: 21300000, guid: 10eab9700a05aa94f884fb3861f47533, type: 3}
+  - {fileID: 21300000, guid: b0e37d1302c493740bffd4d7c544a9dc, type: 3}
+  - {fileID: 21300000, guid: f5ecb503f4fa4a84fb6672ec366096f9, type: 3}
   BgTownArena: {fileID: 21300000, guid: 7c7c4f239c1b8e740963cbfb550f316f, type: 3}

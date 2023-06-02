@@ -54,7 +54,7 @@ public class GridArenaHelper
         {
             if (startNode.OccupiedUnit.TypeArenaPlayer == TypeArenaPlayer.Right)
             {
-                if (endNode.RightNode == null)
+                if (endNode.RightNode == null || endNode.RightNode.StateArenaNode.HasFlag(StateArenaNode.Disable))
                 {
                     endNode = endNode.LeftNode;
                 }
@@ -72,7 +72,7 @@ public class GridArenaHelper
             }
             else
             {
-                if (endNode.LeftNode == null)
+                if (endNode.LeftNode == null || endNode.LeftNode.StateArenaNode.HasFlag(StateArenaNode.Disable))
                 {
                     endNode = endNode.RightNode;
                 }
@@ -366,7 +366,7 @@ public class GridArenaHelper
         HashSet<GridArenaNode> openListNodes = new HashSet<GridArenaNode>() { startNode };
         HashSet<GridArenaNode> closedListNodes = new HashSet<GridArenaNode>();
 
-        var entity = ((EntityCreature)startNode.OccupiedUnit.Entity).ConfigAttribute;
+        // var entity = ((EntityCreature)startNode.OccupiedUnit.Entity).ConfigAttribute;
 
         while (openListNodes.Count > 0)
         {
@@ -391,7 +391,7 @@ public class GridArenaHelper
             }
         }
 
-        var relatedNode = startNode.OccupiedUnit.RelatedNode;
+        var relatedNode = startNode.OccupiedUnit != null ? startNode.OccupiedUnit.RelatedNode : null;
         if (relatedNode != null)
         {
             foreach (GridArenaNode neighbourNode in GetAllGridNodes())
