@@ -41,6 +41,7 @@ MonoBehaviour:
       m_LocalVariables: []
   TypeFaction: 0
   TypeGround: 4
+  MiniSprite: {fileID: 21300000, guid: a2d60c3626296824898bf22aef9d3611, type: 3}
   ArenaModel:
     m_AssetGUID: afed990aab20bca4fb7f836fc6b7a2de
     m_SubObjectName: 

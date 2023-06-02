@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7951845779183359875}
-  - component: {fileID: 1044631299270492228}
   - component: {fileID: -4927658883443804845}
+  - component: {fileID: -4114748977722155620}
   m_Layer: 0
   m_Name: Quicksand
   m_TagString: Untagged
@@ -34,21 +34,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1044631299270492228
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6299875546532532495}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dccb2e3454e04f2449b0de9ec4aa7bb3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _arenaSpellEntity:
-    ConfigDataSpell: {fileID: 0}
-    TypeArenaPlayer: 0
 --- !u!61 &-4927658883443804845
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -94,6 +79,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &-4114748977722155620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6299875546532532495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56e60a08e3603784bb60c928975b17a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _arenaSpellEntity:
+    ConfigDataSpell: {fileID: 0}
+    TypeArenaPlayer: 0
 --- !u!1 &6932321589522578329
 GameObject:
   m_ObjectHideFlags: 0

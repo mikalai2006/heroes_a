@@ -12,6 +12,7 @@ public abstract class ArenaEntityBase
 {
     public ArenaEntityData Data = new();
     public bool Death => Data.totalHP <= 0;
+    public int totalAI => Data.quantity * ((EntityCreature)Entity).ConfigAttribute.CreatureParams.AI;
     public int Speed => Data.speed + Data.SpeedModificators.Values.Sum();
 
     public ArenaManager arenaManager;

@@ -118,6 +118,7 @@ public class ArenaCreature : ArenaEntityBase
 
     public async void SetEntity(BaseEntity entity, GridArenaNode node)
     {
+        Hero.Data.ArenaCreatures.Add(entity, this);
         _entity = entity;
         _configData = Entity.ScriptableData;
         _occupiedNode = node;

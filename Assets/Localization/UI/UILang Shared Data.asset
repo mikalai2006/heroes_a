@@ -439,6 +439,102 @@ MonoBehaviour:
     m_Key: quantity
     m_Metadata:
       m_Items: []
+  - m_Id: 24076782564179968
+    m_Key: attacked
+    m_Metadata:
+      m_Items: []
+  - m_Id: 24076834384805888
+    m_Key: defended
+    m_Metadata:
+      m_Items: []
+  - m_Id: 24076904232550400
+    m_Key: battlecasualties
+    m_Metadata:
+      m_Items: []
+  - m_Id: 24086829675479040
+    m_Key: victorious
+    m_Metadata:
+      m_Items: []
+  - m_Id: 24086881298972672
+    m_Key: defeated
+    m_Metadata:
+      m_Items: []
+  - m_Id: 24094399937019904
+    m_Key: yourwin_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 24094440672100352
+    m_Key: yourwin_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 24094638928461824
+    m_Key: yourdefendied_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 24094685040640000
+    m_Key: yourdefendied_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 24274720921911296
+    m_Key: settingbattle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 24284117534408704
+    m_Key: showgrid
+    m_Metadata:
+      m_Items: []
+  - m_Id: 24284177181605888
+    m_Key: showshadow
+    m_Metadata:
+      m_Items: []
+  - m_Id: 24284249373966336
+    m_Key: showshadowcursor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 24346640610656256
+    m_Key: yes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 24346679730929664
+    m_Key: no
+    m_Metadata:
+      m_Items: []
+  - m_Id: 24370246912737280
+    m_Key: askrun_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 24370303498092544
+    m_Key: askrun_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 24406805041020928
+    m_Key: enemy_payoff
+    m_Metadata:
+      m_Items: []
+  - m_Id: 24406970808303616
+    m_Key: enemy_run_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 24407028492566528
+    m_Key: hero_payoff_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 24407200228343808
+    m_Key: hero_run_t
+    m_Metadata:
+      m_Items: []
+  - m_Id: 24407531616108544
+    m_Key: hero_run_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 24407645910892544
+    m_Key: hero_payoff_d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 24418164067696640
+    m_Key: hero_askrun
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 using Cysharp.Threading.Tasks;
 
@@ -11,6 +12,14 @@ public enum TypeArenaHero
 {
     Visible = 0,
     Hidden = 1
+}
+public enum TypearenaHeroStatus
+{
+    None = 0,
+    Victorious = 1,
+    Defendied = 2,
+    PayOffed = 3,
+    Runned = 4,
 }
 
 [Serializable]
@@ -28,6 +37,7 @@ public struct ArenaHeroEntityData
     public bool autoRun;
     public TypeArenaHero typeArenaHero;
     public PlayerType playerType;
+    public Dictionary<BaseEntity, ArenaCreature> ArenaCreatures;
 }
 
 [Serializable]
@@ -35,7 +45,7 @@ public class ArenaHeroEntity
 {
     public ArenaHeroEntityData Data;
     private Tilemap _tileMapArenaUnits;
-
+    public TypearenaHeroStatus typearenaHeroStatus;
     [SerializeField]
     public ScriptableEntityHero _configData;
     public ScriptableEntityHero ConfigData => _configData;
@@ -69,6 +79,7 @@ public class ArenaHeroEntity
             ballisticChance1Damage = 60,
             ballisticChance2Damage = 30
         };
+        Data.ArenaCreatures = new();
 
         Entity = ((EntityHero)entity);
 
@@ -102,13 +113,15 @@ public class ArenaHeroEntity
         if (typeArenaHero == TypeArenaHero.Hidden)
         // if not hero (only creatures), set autoRun.
         {
-            await SetStatusAutoRun(true);
+            // await SetStatusAutoRun(true);
+            Data.autoRun = true;
         }
         else
         // else create hero visual.
         {
             CreateMapGameObject();
-            await SetStatusAutoRun(false);
+            // await SetStatusAutoRun(false);
+            Data.autoRun = false;
         }
 
         // if bot - set autoRun.
@@ -116,7 +129,8 @@ public class ArenaHeroEntity
             Entity == null
             || (Entity != null && Entity.Player != null && Entity.Player.DataPlayer.playerType == PlayerType.Bot))
         {
-            await SetStatusAutoRun(true);
+            Data.autoRun = true;
+            // await SetStatusAutoRun(true);
         }
 
     }

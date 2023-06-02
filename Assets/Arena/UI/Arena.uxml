@@ -29,7 +29,7 @@
                 <ui:Button display-tooltip-when-elided="true" name="AutoButton" class="button button_bg button_text m-px h-full button_bordered" style="background-image: url(&apos;project://database/Assets/Arena/Sprites/Buttons/BattleAuto.png?fileID=2800000&amp;guid=b1d2e6e8047d64244b0296379d633aa8&amp;type=3#BattleAuto&apos;); -unity-background-scale-mode: scale-to-fit;" />
             </ui:VisualElement>
             <ui:VisualElement class="w-25">
-                <ui:Button display-tooltip-when-elided="true" name="QueueButton" class="button button_bg button_text m-px h-full button_bordered" style="background-image: url(&apos;project://database/Packages/com.unity.timeline/Editor/StyleSheets/Images/Shared/TimelineWarning.png?fileID=2800000&amp;guid=1732e542f535d374bbfa7565fc78414e&amp;type=3#TimelineWarning&apos;); -unity-background-scale-mode: scale-to-fit;" />
+                <ui:Button display-tooltip-when-elided="true" name="QueueButton" class="button button_bg button_text m-px h-full button_bordered" style="background-image: url(&apos;project://database/Assets/UI/Sprites/Buttons/queue.png?fileID=2800000&amp;guid=6d90149300a3ab94a81626b0e4a02979&amp;type=3#queue&apos;); -unity-background-scale-mode: scale-and-crop;" />
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement class="border-color p-05" style="flex-grow: 1; border-left-width: 1px; border-right-width: 1px;">

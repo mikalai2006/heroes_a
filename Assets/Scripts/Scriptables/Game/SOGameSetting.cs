@@ -69,6 +69,7 @@ public class SOGameSetting : ScriptableObject
     public PlayerType typeTestRightPlayer;
     public PlayerType typeTestLeftPlayer;
     [SerializeField] public AssetReferenceGameObject ArenaPlaceholderModel;
+    [SerializeField] public AssetReferenceGameObject ArenaPlaceholderSize2Model;
     [SerializeField] public AssetReferenceGameObject ArenaPlaceholderShootModel;
 }
 

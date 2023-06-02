@@ -1,0 +1,7 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/Toolkit/Base.uss?fileID=7433441132597879392&amp;guid=fa07b064290e7384d9ad2e26e79f5953&amp;type=3#Base" />
+    <ui:Button display-tooltip-when-elided="true" name="Button" class="bg button button_bordered p-1 m-0" style="width: 50px; height: 40px;">
+        <ui:VisualElement name="Yes" style="width: 100%; height: 100%; background-image: url(&apos;project://database/Assets/UI/Sprites/Buttons/sysopchk.png?fileID=2800000&amp;guid=aa747a896422614499633bed027e729d&amp;type=3#sysopchk&apos;);" />
+        <ui:VisualElement name="No" style="width: 100%; height: 100%; background-image: url(&apos;project://database/Assets/UI/Sprites/Buttons/sysopnul.png?fileID=2800000&amp;guid=61568197e8cd9684893844baa4f2b6ea&amp;type=3#sysopnul&apos;); display: none;" />
+    </ui:Button>
+</ui:UXML>

@@ -1,0 +1,12 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/Toolkit/Base.uss?fileID=7433441132597879392&amp;guid=fa07b064290e7384d9ad2e26e79f5953&amp;type=3#Base" />
+    <ui:Button display-tooltip-when-elided="true" class="p-0 m-0 bg-transparent border-0 py-1" style="align-items: center;">
+        <ui:VisualElement name="VisualElement" style="width: 32px; height: 32px;">
+            <ui:VisualElement name="VisualElement" style="flex-grow: 1;">
+                <ui:VisualElement class="inset-0" style="width: 100%; height: 100%;" />
+                <ui:VisualElement name="Img" class="h-full w-full" style="background-image: url(&apos;project://database/Assets/Creature/_Sprites/CPrS013C.png?fileID=2800000&amp;guid=b8d9d6395d0e5c344a154acfb38995ab&amp;type=3#CPrS013C&apos;);" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:Button>
+    <ui:Label tabindex="-1" display-tooltip-when-elided="true" name="Value" text="123" class="text-secondary m-0 p-05 text-center" />
+</ui:UXML>

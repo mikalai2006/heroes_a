@@ -111,6 +111,11 @@ public class ArenaQueue
         {
             ListEntities.RemoveAt(index);
         }
+        var indexWaited = ListEntitiesPhaseWait.FindIndex(t => t.arenaEntity == arenaEntity);
+        if (indexWaited != -1)
+        {
+            ListEntitiesPhaseWait.RemoveAt(indexWaited);
+        }
         Refresh();
     }
 

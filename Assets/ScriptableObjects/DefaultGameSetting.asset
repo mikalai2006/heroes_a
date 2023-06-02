@@ -255,6 +255,11 @@ MonoBehaviour:
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
+  ArenaPlaceholderSize2Model:
+    m_AssetGUID: 6be40cc065532424d8f0710b236daa73
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
   ArenaPlaceholderShootModel:
     m_AssetGUID: 1f58c5967b1743748b171ef8c91a9505
     m_SubObjectName: 

@@ -69,6 +69,10 @@ public class ArenaWarMachine : ArenaEntityBase
             {
                 gameObj = LevelManager.Instance.ConfigGameSettings.ArenaPlaceholderShootModel;
             }
+            else if (configCreature.CreatureParams.Size == 2)
+            {
+                gameObj = LevelManager.Instance.ConfigGameSettings.ArenaPlaceholderSize2Model;
+            }
             else
             {
                 gameObj = LevelManager.Instance.ConfigGameSettings.ArenaPlaceholderModel;

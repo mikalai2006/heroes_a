@@ -18,6 +18,7 @@ public class UIDialogHelpWindow : UILocaleBase
 
     private VisualElement _generalBlok;
     private Button _buttonOk;
+    private Button _buttonCancel;
     private Label _headerLabel;
     private Label _descriptionLabel;
     private VisualElement _boxSpriteObject;
@@ -51,6 +52,10 @@ public class UIDialogHelpWindow : UILocaleBase
 
         _buttonOk = _root.Q<Button>(_nameButtonOk);
         _buttonOk.clickable.clicked += OnClickOk;
+
+        _buttonCancel = _root.Q<Button>("ButtonCancel");
+        _buttonCancel.clickable.clicked += OnClickCancel;
+
         _headerLabel = _root.Q<Label>(_nameHeaderLabel);
         _descriptionLabel = _root.Q<Label>(_nameDescriptionLabel);
         _boxSpriteObject = _root.Q<VisualElement>(_nameSpriteElement);
@@ -62,6 +67,12 @@ public class UIDialogHelpWindow : UILocaleBase
     {
         _dataDialog = dataDialog;
         _dataResultDialog = new DataResultDialog();
+
+        if (_dataDialog.showCancelButton)
+        {
+            _buttonCancel.style.display = DisplayStyle.Flex;
+        }
+
         _headerLabel.text = _dataDialog.Header;
         _descriptionLabel.text = _dataDialog.Description;
         if (_dataDialog.Sprite != null)
@@ -98,6 +109,15 @@ public class UIDialogHelpWindow : UILocaleBase
     {
         await AudioManager.Instance.Click();
         _dataResultDialog.isOk = true;
+        _processCompletionSource.SetResult(_dataResultDialog);
+
+        processAction?.Invoke();
+    }
+
+    private async void OnClickCancel()
+    {
+        await AudioManager.Instance.Click();
+        _dataResultDialog.isOk = false;
         _processCompletionSource.SetResult(_dataResultDialog);
 
         processAction?.Invoke();

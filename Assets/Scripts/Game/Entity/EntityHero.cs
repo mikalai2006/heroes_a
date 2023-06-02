@@ -145,6 +145,9 @@ public class EntityHero : BaseEntity
             // Create movement data.
             Data.mp = GetMoveMentPoints();
 
+            // Set start value mana.
+            Data.mana = GetMana();
+
             UnitManager.IdsExistsHeroes?.Add(ScriptableData.idObject);
         }
         else

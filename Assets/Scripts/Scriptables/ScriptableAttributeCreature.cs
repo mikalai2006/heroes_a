@@ -10,6 +10,7 @@ public class ScriptableAttributeCreature : ScriptableAttribute
     public TypeFaction TypeFaction;
     public TypeGround TypeGround;
     // [SerializeField] public new AssetReferenceGameObject MapPrefab;
+    public Sprite MiniSprite;
     [SerializeField] public AssetReferenceGameObject ArenaModel;
     [SerializeField] public DataCreatureParams CreatureParams;
 }

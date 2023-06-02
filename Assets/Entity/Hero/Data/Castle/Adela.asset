@@ -69,7 +69,7 @@ MonoBehaviour:
     value: 2
   StartCreatures:
   - creature: {fileID: 11400000, guid: 7d1983f083e2c9a49bc2725df7d9691b, type: 2}
-    min: 10
+    min: 20
     max: 20
   - creature: {fileID: 11400000, guid: e34ee2bd20d331149b4525b763a3d4ad, type: 2}
     min: 10

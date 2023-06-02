@@ -1,25 +1,39 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
-
+using UnityEngine;
+using UnityEngine.Localization;
 using UnityEngine.UIElements;
 
 public class UIArenaEndStatWindow : UIDialogBaseWindow
 {
+    [SerializeField] private VisualTreeAsset _templateCreatureInfoSmall;
     private readonly string _nameButtonClose = "Cancel";
     private Button _buttonClose;
+    private VisualElement _AttackedDeadCreature;
+    private VisualElement _DefendedDeadCreature;
     public static event Action OnCloseStat;
     protected TaskCompletionSource<ArenaStatResult> _processCompletionSource;
     protected ArenaStatResult _dataResultDialog;
-    private ArenaStat _stat;
+    private ArenaStatData _statData;
 
     public override void Start()
     {
         base.Start();
 
+        Title.style.display = DisplayStyle.None;
+        Panel.AddToClassList("w-75");
+
         _buttonClose = DialogApp.rootVisualElement.Q<TemplateContainer>(_nameButtonClose).Q<Button>("Btn");
         _buttonClose.clickable.clicked += OnClickClose;
 
+        _DefendedDeadCreature = root.Q<VisualElement>("DefendedDeadCreature");
+        _DefendedDeadCreature.Clear();
+
+        _AttackedDeadCreature = root.Q<VisualElement>("AttackedDeadCreature");
+        _AttackedDeadCreature.Clear();
     }
 
     private async void OnClickClose()
@@ -30,10 +44,10 @@ public class UIArenaEndStatWindow : UIDialogBaseWindow
         OnCloseStat?.Invoke();
     }
 
-    public async Task<ArenaStatResult> ProcessAction(ArenaStat stat)
+    public async Task<ArenaStatResult> ProcessAction(ArenaStatData stat)
     {
         base.Init();
-        _stat = stat;
+        _statData = stat;
 
         _dataResultDialog = new ArenaStatResult();
         _processCompletionSource = new TaskCompletionSource<ArenaStatResult>();
@@ -45,54 +59,100 @@ public class UIArenaEndStatWindow : UIDialogBaseWindow
 
     private void DrawStat()
     {
-        // var creature = _stat.Entity;
-        // var creatureData = ((EntityCreature)_stat.Entity).ConfigAttribute;
-        // var parameters = ((ScriptableAttributeCreature)_stat.Entity.ScriptableDataAttribute).CreatureParams;
-        // root.Q<Label>("AttackValue").text
-        //     = string.Format("{0}({1})", parameters.Attack, parameters.Attack + _stat.Data.AttackModificators.Values.Sum());
-        // //  = parameters.Attack.ToString();
-        // root.Q<Label>("DefenseValue").text
-        //     = string.Format("{0}({1})", parameters.Defense, parameters.Defense + _stat.Data.DefenseModificators.Values.Sum());
-        // // = parameters.Defense.ToString();
-        // if (parameters.Shoots != 0)
-        // {
-        //     root.Q<Label>("AmmountValue").text = parameters.Shoots.ToString();
-        // }
-        // root.Q<Label>("DamageValue").text
-        //     = string.Format("{0}-{1}", parameters.DamageMin, parameters.DamageMax);
-        // root.Q<Label>("HPValue").text = parameters.HP.ToString();
-        // int currentHP = _stat.Data.totalHP - (_stat.Data.HP * (_stat.Data.quantity - 1));
-        // root.Q<Label>("HPAValue").text
-        //     = (currentHP == 0 ? _stat.Data.HP : currentHP).ToString();
-        // root.Q<Label>("SpeedValue").text
-        //     = string.Format("{0}({1})", parameters.Speed, _stat.Speed);
+        DrawDeadedCreatures(_statData.arenaManager.ArenaStat.DeadedCreaturesAttacked, _AttackedDeadCreature);
+        DrawDeadedCreatures(_statData.arenaManager.ArenaStat.DeadedCreaturesDefendied, _DefendedDeadCreature);
 
-        // VisualElement elementSprite = root.Q<VisualElement>("AnimationBlok");
-        // elementSprite.style.backgroundImage
-        //     = new StyleBackground(creatureData.MenuSprite);
+        var textMoveVictorious = new LocalizedString(Constants.LanguageTable.LANG_TABLE_UILANG, "victorious").GetLocalizedString();
+        var textDefendied = new LocalizedString(Constants.LanguageTable.LANG_TABLE_UILANG, "defeated").GetLocalizedString();
 
-        // root.Q<Label>("Quantity").text = _stat.Data.quantity.ToString();
+        LocalizedString titleStat = new();
+        LocalizedString descriptionStat = new();
+        switch (_statData.arenaManager.heroLeft.typearenaHeroStatus)
+        {
+            case TypearenaHeroStatus.Victorious:
+                titleStat = new LocalizedString(Constants.LanguageTable.LANG_TABLE_UILANG, "yourwin_t");
+                descriptionStat = new LocalizedString(Constants.LanguageTable.LANG_TABLE_UILANG, "yourwin_d");
+                break;
+            case TypearenaHeroStatus.Defendied:
+                titleStat = new LocalizedString(Constants.LanguageTable.LANG_TABLE_UILANG, "yourdefendied_t");
+                descriptionStat = new LocalizedString(Constants.LanguageTable.LANG_TABLE_UILANG, "yourdefendied_d");
+                break;
+            case TypearenaHeroStatus.Runned:
+                titleStat = new LocalizedString(Constants.LanguageTable.LANG_TABLE_UILANG, "hero_run_t");
+                descriptionStat = new LocalizedString(Constants.LanguageTable.LANG_TABLE_UILANG, "hero_run_d");
+                break;
+            case TypearenaHeroStatus.PayOffed:
+                titleStat = new LocalizedString(Constants.LanguageTable.LANG_TABLE_UILANG, "hero_payoff_t");
+                descriptionStat = new LocalizedString(Constants.LanguageTable.LANG_TABLE_UILANG, "hero_payoff_d");
+                break;
+        }
 
-        // VisualElement activeSpell = root.Q<VisualElement>("ActiveSpell");
-        // activeSpell.Clear();
-        // foreach (var spellItem in _stat.Data.SpellsState)
-        // {
-        //     Button btn = new Button();
-        //     btn.AddToClassList("button");
-        //     btn.AddToClassList("bg-transparent");
-        //     btn.AddToClassList("button_bordered");
-        //     btn.AddToClassList("m-05");
-        //     btn.AddToClassList("p-0");
-        //     btn.style.width = new StyleLength(new Length(80, LengthUnit.Pixel));
-        //     btn.style.height = new StyleLength(new Length(60, LengthUnit.Pixel));
-        //     VisualElement imgSpell = new VisualElement();
-        //     imgSpell.AddToClassList("w-full");
-        //     imgSpell.AddToClassList("h-full");
-        //     imgSpell.style.backgroundImage
-        //         = new StyleBackground(spellItem.Key.MenuSprite);
-        //     btn.Add(imgSpell);
-        //     activeSpell.Add(btn);
-        // }
+        var hero = ((EntityHero)_statData.arenaManager.heroLeft.Entity);
+        var dataSmart = new Dictionary<string, string> {
+            { "value", _statData.arenaManager.ArenaStat.totalExperienceHero.ToString() },
+            { "name", hero.Data.name },
+            { "gender", hero.ConfigData.TypeGender.ToString() }
+            };
+        var arguments = new[] { dataSmart };
+        var titleSmart = Helpers.GetLocalizedPluralString(
+            titleStat,
+            arguments,
+            dataSmart
+            );
+        var descriptionSmart = Helpers.GetLocalizedPluralString(
+            descriptionStat,
+            arguments,
+            dataSmart
+            );
+
+        root.Q<Label>("StatResult").text
+            = string.Format("{0}\r\n\r\n{1}", titleSmart, descriptionSmart);
+
+        root.Q<Label>("Status1").text = textMoveVictorious;
+        root.Q<Label>("LeftName").text = hero.Data.name;
+        root.Q<VisualElement>("LeftAva").style.backgroundImage
+                = new StyleBackground(hero.ConfigData.MenuSprite);
+
+        var enemy = ((EntityHero)_statData.arenaManager.heroRight.Entity);
+        root.Q<Label>("Status2").text = textDefendied;
+        if (enemy != null)
+        {
+            root.Q<Label>("RightName").text = enemy.Data.name;
+            root.Q<VisualElement>("RightAva").style.backgroundImage
+                    = new StyleBackground(enemy.ConfigData.MenuSprite);
+        }
+        else
+        {
+            var creature = ((EntityCreature)_statData.arenaManager.heroRight.Data.ArenaCreatures.First().Value.Entity);
+            root.Q<Label>("RightName").text = creature.ConfigAttribute.Text.title.GetLocalizedString();
+            root.Q<VisualElement>("RightAva").style.backgroundImage
+                    = new StyleBackground(creature.ConfigAttribute.MenuSprite);
+        }
+    }
+
+    private void DrawDeadedCreatures(Dictionary<ArenaEntityBase, int> deadedCreatures, VisualElement parentElement)
+    {
+        if (deadedCreatures.Count > 0)
+        {
+            foreach (var creatureItem in deadedCreatures)
+            {
+                EntityCreature creature = (EntityCreature)creatureItem.Key.Entity;
+
+                VisualElement creatureElement = _templateCreatureInfoSmall.Instantiate();
+                creatureElement.AddToClassList("pr-1");
+                creatureElement.Q<VisualElement>("Img").style.backgroundImage
+                    = new StyleBackground(creature.ConfigAttribute.MiniSprite);
+                creatureElement.Q<Label>("Value").text = string.Format("{0}", creatureItem.Value);
+                parentElement.Add(creatureElement);
+            }
+        }
+        else
+        {
+            var noText = new Label();
+            noText.AddToClassList("text-lg");
+            noText.text = new LocalizedString(Constants.LanguageTable.LANG_TABLE_UILANG, "no").GetLocalizedString();
+            parentElement.Add(noText);
+        }
     }
 }
 
