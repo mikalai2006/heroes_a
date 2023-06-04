@@ -5,6 +5,7 @@ using System.Linq;
 using Cysharp.Threading.Tasks;
 
 using UnityEngine;
+using UnityEngine.Localization;
 
 [System.Serializable]
 public class EntityBook
@@ -164,9 +165,21 @@ public class EntityBook
 
     internal async UniTask RunSpellCombat(GridArenaNode node, ArenaHeroEntity arenaHero, ArenaManager arenaManager)
     {
-        Debug.Log($"Run RunSpellCombat!");
+        var dataSmart = new Dictionary<string, object> {
+            { "name", Helpers.GetColorString(_hero.Data.name) },
+            { "spellname", Helpers.GetColorString(ChoosedSpell.Text.title.GetLocalizedString()) }
+            };
+        var arguments = new[] { dataSmart };
+        var textSmart = Helpers.GetLocalizedPluralString(
+            new LocalizedString(Constants.LanguageTable.LANG_STAT, "runspell"),
+            arguments,
+            dataSmart
+            );
+        arenaManager.ArenaStat.AddItem(textSmart);
+
         await ChoosedSpell.AddEffect(node, arenaHero, arenaManager);
         countCreatedSpell--;
+
         // if (ChoosedSpell.typeSpellDuration != TypeSpellDuration.Instant)
         // {
         //     int countRound = _hero.Data.PSkills[TypePrimarySkill.Power];

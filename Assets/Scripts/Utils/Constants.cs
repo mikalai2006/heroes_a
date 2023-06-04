@@ -33,6 +33,7 @@ public class Constants
         public const string UI_DIALOG_SPELLBOOK = "UIDialogSpellBook";
         public const string UI_INFO_ARENA_CREATURE = "UIInfoArenaCreature";
         public const string UI_INFO_ARENA_ENDSTAT = "UIArenaEndStat";
+        public const string UI_INFO_ARENA_FULLSTAT = "UIArenaFullStat";
         public const string UI_DIALOG_ARENA_HEROINFO = "UIInfoArenaHero";
 
     }
@@ -68,5 +69,6 @@ public class Constants
         public const string LANG_TABLE_UILANG = "UILang";
         public const string LANG_TABLE_SPELLBOOK = "SpellBook";
         public const string LANG_TABLE_BUILD = "BuildText";
+        public const string LANG_STAT = "Stat";
     }
 }

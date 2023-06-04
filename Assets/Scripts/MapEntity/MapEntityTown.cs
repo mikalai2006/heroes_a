@@ -34,6 +34,13 @@ public class MapEntityTown : BaseMapEntity
     {
         await base.OnGoHero(player);
         Debug.Log("On hero in town");
+
+        if (player != MapObject.Entity?.Player)
+        {
+            MapObject.Entity.SetPlayer(player);
+            SetPlayer(player);
+        }
+
         if (LevelManager.Instance.ActivePlayer.DataPlayer.playerType != PlayerType.Bot)
         {
             var loadingOperations = new Queue<ILoadingOperation>();

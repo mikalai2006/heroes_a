@@ -1344,4 +1344,4 @@ MonoBehaviour:
     - rid: 4227538729639346178
       type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
       data:
-        m_Entries: 008052bd793600000080d25e383c0000
+        m_Entries: 008052bd793600000080d25e383c00000080127bf5de2600

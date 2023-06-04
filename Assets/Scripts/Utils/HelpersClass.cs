@@ -380,6 +380,19 @@ public static class Helpers
         return localizedString.GetLocalizedString(dictionary);
     }
 
+    public static string GetNameByValue(LocalizedString localizedString, int value)
+    {
+        var data = new Dictionary<string, int> {
+            { "value", value },
+        };
+        var arguments = new[] { data };
+        return Helpers.GetLocalizedPluralString(
+            localizedString,
+            arguments,
+            data
+            );
+    }
+
     public static string GetColorString(string str)
     {
         return " <color=#FFFFAB>" + str + "</color>";

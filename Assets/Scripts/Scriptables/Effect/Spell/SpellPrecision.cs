@@ -42,9 +42,9 @@ public class SpellPrecision : ScriptableAttributeSpell
         }
 
         // Add modification data.
-        if (!creatureArena.Data.AttackModificators.ContainsKey(this))
+        if (!creatureArena.Data.AttackShootModificators.ContainsKey(this))
         {
-            creatureArena.Data.AttackModificators.Add(this, dataCurrent.Effect);
+            creatureArena.Data.AttackShootModificators.Add(this, dataCurrent.Effect);
         }
 
         // Add duration.

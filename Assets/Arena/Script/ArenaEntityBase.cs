@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
 
 using UnityEngine;
+using UnityEngine.Localization;
 
 [Serializable]
 public abstract class ArenaEntityBase
@@ -81,6 +82,7 @@ public abstract class ArenaEntityBase
         {
             Data.totalHP = 0;
             Data.quantity = 0;
+            Data.totalRecoveryHP = 0;
             arenaManager.ArenaQueue.RemoveEntity(this);
 
             OccupiedNode.SetDeathedNode(this);
@@ -140,9 +142,124 @@ public abstract class ArenaEntityBase
             totalDamage = (int)Math.Ceiling(totalRandomDamage * (Data.quantity / 10.0));
         }
 
-        Debug.Log($"{Entity.ScriptableDataAttribute.name} run damage {totalDamage}");
+        // Debug.Log($"{Entity.ScriptableDataAttribute.name} run damage {totalDamage}");
+        var dataSmart = new Dictionary<string, object> {
+            { "value", Data.quantity},
+            { "name", Helpers.GetNameByValue(((EntityCreature)Entity).ConfigAttribute.Text.title, Data.quantity)},
+            { "damage", totalDamage },
+            { "name2", Helpers.GetNameByValue(((EntityCreature)nodeToAttack.OccupiedUnit.Entity).ConfigAttribute.Text.title, 5) }
+            };
+        var arguments = new[] { dataSmart };
+        var textSmart = Helpers.GetLocalizedPluralString(
+            new LocalizedString(Constants.LanguageTable.LANG_STAT, "setdamage_creature"),
+            arguments,
+            dataSmart
+            );
+        arenaManager.ArenaStat.AddItem(textSmart);
+
         var entityForAttack = nodeToAttack.OccupiedUnit;
         entityForAttack.SetDamage(totalDamage);
+    }
+
+    public virtual RangeDamage CalculateRangeDamage(AttackItemNode attackItemNode)
+    {
+        var defendedCreature = attackItemNode.nodeToAttack.OccupiedUnit;
+        int minTotalDamage = 0;
+        int maxTotalDamage = 0;
+        int dopDamage = Data.DamageModificators.Values.Sum();
+
+        // base damage
+        float minBaseDamage = 0f, maxBaseDamage = 0f;
+        if (Data.quantity <= 10)
+        {
+            for (int i = 0; i < Data.quantity; i++)
+            {
+                minBaseDamage += Data.damageMin + dopDamage;
+                maxBaseDamage += Data.damageMax + dopDamage;
+            }
+        }
+        else
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                minBaseDamage += Data.damageMin + dopDamage;
+                maxBaseDamage += Data.damageMax + dopDamage;
+            }
+
+            minBaseDamage = (int)Math.Ceiling(minBaseDamage * (Data.quantity / 10.0));
+            maxBaseDamage = (int)Math.Ceiling(maxBaseDamage * (Data.quantity / 10.0));
+        }
+
+        // modificators.
+        float i1, i2, i3, i4, i5, r1, r2, r3, r4, r5, r6, r7, r8;
+        i1 = i2 = i3 = i4 = i5 = r1 = r2 = r3 = r4 = r5 = r6 = r7 = r8 = 0f;
+        // i1, r1 - Разница Атака-Защита
+        int vAttack = Data.attack + Data.AttackModificators.Values.Sum() + (Hero.Entity != null ? Hero.Entity.Data.PSkills[TypePrimarySkill.Attack] : 0);
+        int vDefense = defendedCreature.Data.defense + defendedCreature.Data.DefenseModificators.Values.Sum() + (defendedCreature.Hero.Entity != null ? defendedCreature.Hero.Entity.Data.PSkills[TypePrimarySkill.Defense] : 0);
+        Debug.Log($"vAttack={vAttack},vDefense={vDefense}");
+        if (vAttack >= vDefense)
+        {
+            int add = vAttack - vDefense;
+            if (add >= 60)
+            {
+                add = 60;
+            }
+            i1 = add * 0.05f;
+            r1 = 0;
+        }
+        else if (vDefense >= vAttack)
+        {
+            int add = (vAttack - vDefense <= -28) ? 28 : vDefense - vAttack;
+            i1 = 0;
+            r1 = add * 0.025f;
+        }
+
+        // i2, i3 - Факторы вторичного навыка атаки
+
+        // i4 - Удача как боевой модификатор
+        // i5 - Способности существ
+        // r2, r3 - Факторы вторичного навыка защиты
+        // r4 - Магические щиты
+        // r5 - Штраф за дальность и ближний бой
+        // r6 - Штраф за препятствие
+        // r7 - Заклинания разума
+        // r8 - Специальности существ
+
+        // total damage.
+        // baseDamage * (1 + i1 + i2 + i3 + i4 + i5) * (1 - r1) * (1 - r2 - r3) * (1 - r4) * (1 - r5) * (1 -r6) * (1 - r7) * (1 - r8)
+        minTotalDamage = Mathf.RoundToInt(minBaseDamage * (1 + i1) * (1 - r1));
+        maxTotalDamage = Mathf.RoundToInt(maxBaseDamage * (1 + i1) * (1 - r1));
+
+        Debug.Log(string.Format(
+            "minT={0}-maxT={1}::: minB={2},maxB={3},i1={4},r1={5}",
+            minTotalDamage,
+            maxTotalDamage,
+            minBaseDamage,
+            maxBaseDamage,
+            i1,
+            r1
+        ));
+        // Create and show text info.
+        var dataSmart = new Dictionary<string, object> {
+            { "value", Data.quantity},
+            { "name", Helpers.GetNameByValue(((EntityCreature)Entity).ConfigAttribute.Text.title, Data.quantity)},
+            { "damage", string.Format("{0}-{1}", minTotalDamage, maxTotalDamage) },
+            { "value2", defendedCreature.Data.quantity },
+            { "name2", Helpers.GetNameByValue(((EntityCreature)defendedCreature.Entity).ConfigAttribute.Text.title, defendedCreature.Data.quantity) }
+            };
+        var arguments = new[] { dataSmart };
+        var textSmart = Helpers.GetLocalizedPluralString(
+            new LocalizedString(Constants.LanguageTable.LANG_STAT, "maybedamage"),
+            arguments,
+            dataSmart
+            );
+        arenaManager.ArenaStat.ShowInfo(textSmart);
+
+        return new()
+        {
+            maxDamage = maxTotalDamage,
+            minDamage = minTotalDamage
+        };
     }
 
     public virtual async UniTask ClickButtonAction()
@@ -402,6 +519,7 @@ public abstract class ArenaEntityBase
         // clickedNode = NodesForAttackActiveCreature[1];
         arenaManager.ChooseNextPositionForAttack();
         arenaManager.DrawAttackNodes();
+        CalculateRangeDamage(arenaManager.NodesForAttackActiveCreature[arenaManager.KeyNodeFromAttack]);
         // _arenaManager.clickedNode = OccupiedNode;
     }
 
@@ -690,4 +808,10 @@ public abstract class ArenaEntityBase
     // //     }
     // // }
     #endregion
+}
+
+public struct RangeDamage
+{
+    public int minDamage;
+    public int maxDamage;
 }

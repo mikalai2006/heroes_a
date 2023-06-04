@@ -9,6 +9,7 @@ using TMPro;
 
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Localization;
 using UnityEngine.Tilemaps;
 
 [Serializable]
@@ -342,10 +343,6 @@ public class ArenaManager : MonoBehaviour
         else
         {
             ArenaQueue.NextCreature(wait, def);
-
-            var creature = (EntityCreature)ArenaQueue.activeEntity.arenaEntity.Entity;
-
-            ArenaStat.AddItem(string.Format("{0}", creature.ConfigAttribute.Text.title));
 
             await ArenaQueue.activeEntity.arenaEntity.GetFightingNodes();
 
@@ -694,7 +691,7 @@ public class ArenaManager : MonoBehaviour
             ? 0
             : nextIndex;
         KeyNodeFromAttack = indexNextAttackNode;
-        Debug.Log($"{NodesForAttackActiveCreature.Count()}/{indexNextAttackNode}");
+        // Debug.Log($"{NodesForAttackActiveCreature.Count()}/{indexNextAttackNode}");
 
         if (ArenaQueue.activeEntity.arenaEntity.Data.typeAttack == TypeAttack.Attack)
         {

@@ -33,7 +33,7 @@
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement class="border-color p-05" style="flex-grow: 1; border-left-width: 1px; border-right-width: 1px;">
-            <ui:Label tabindex="-1" text="Information" display-tooltip-when-elided="true" name="Stat" class="text pt-0" />
+            <ui:Label tabindex="-1" text="Information&#10;2&#10;3" display-tooltip-when-elided="true" name="Stat" class="pt-0 text-secondary" />
         </ui:VisualElement>
         <ui:VisualElement name="ArenaRightButtons" class="aside_blok_list" style="flex-grow: 0; flex-shrink: 0; flex-direction: row;">
             <ui:VisualElement style="width: 80px; flex-grow: 1;">

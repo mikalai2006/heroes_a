@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: Stat Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: Stat
+  m_TableCollectionNameGuidString: 278166e8257578b4d992e4a04820e7bf
+  m_Entries:
+  - m_Id: 488729903104
+    m_Key: cure_stat
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9679473377280
+    m_Key: move_creature
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10041466978304
+    m_Key: defende_creature
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10510251753472
+    m_Key: wait_creature
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18274298527744
+    m_Key: attack_ctreature
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18646094217216
+    m_Key: setdamage_creature
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21624918278144
+    m_Key: runspell
+    m_Metadata:
+      m_Items: []
+  - m_Id: 24080423223296
+    m_Key: maybedamage
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 366247384622039042
+  references:
+    version: 2
+    RefIds:
+    - rid: 366247384622039042
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1685730705991

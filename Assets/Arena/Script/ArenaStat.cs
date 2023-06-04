@@ -8,7 +8,7 @@ public class ArenaStat
     private ArenaManager _arenaManager;
     public List<string> ListStat = new List<string>();
     public Dictionary<ArenaEntityBase, int> DeadedCreatures = new();
-    // public Dictionary<ArenaHeroEntity, int> TotalExperiencies = new();
+    public string FullText => string.Join("\r\n", ListStat);
     public Dictionary<ArenaEntityBase, int> DeadedCreaturesAttacked => DeadedCreatures
         .Where(t => t.Key.Hero == _arenaManager.heroLeft)
         .ToDictionary(t => t.Key, t => t.Value);
@@ -28,8 +28,15 @@ public class ArenaStat
     {
         ListStat.Add(text);
 
-        string lastStatItem = ListStat[ListStat.Count - 1];
-        OnAddStat?.Invoke(lastStatItem);
+        var lastStatItem = ListStat.Skip(Math.Max(0, ListStat.Count - 3));
+        string result = string.Join("\r\n", lastStatItem);
+
+        OnAddStat?.Invoke(result);
+    }
+
+    public void ShowInfo(string text)
+    {
+        OnAddStat?.Invoke(text);
     }
 
     public void AddDeadedCreature(ArenaEntityBase arenaEntity, int quantity)

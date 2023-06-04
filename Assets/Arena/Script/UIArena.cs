@@ -132,6 +132,11 @@ public class UIArena : UILocaleBase
         };
 
         _statBlok = _box.Q<Label>("Stat");
+        _statBlok.RegisterCallback<ClickEvent>(async (ClickEvent evt) =>
+        {
+            await AudioManager.Instance.Click();
+            await ShowFullStat();
+        }, TrickleDown.NoTrickleDown);
 
         ArenaManager.OnChangeNodesForAttack += ChangeStatusButtonAttack;
         ArenaCreature.OnChangeParamsCreature += ChangeParamsCreature;
@@ -649,6 +654,17 @@ public class UIArena : UILocaleBase
         // }
         await _arenaManager.CalculateStat();
         // UnloadArena();
+    }
+
+    private async UniTask ShowFullStat()
+    {
+        _arenaManager.DisableInputSystem();
+        var loaderStat = new UIArenaFullStatOperation(new ArenaStatData()
+        {
+            arenaManager = _arenaManager
+        });
+        await loaderStat.ShowAndHide();
+        _arenaManager.EnableInputSystem();
     }
 
     private async UniTask OnClickRun()

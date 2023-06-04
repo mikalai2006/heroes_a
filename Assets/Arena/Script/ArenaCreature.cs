@@ -7,9 +7,7 @@ using Cysharp.Threading.Tasks;
 
 using UnityEngine;
 using UnityEngine.AddressableAssets;
-using UnityEngine.EventSystems;
-using UnityEngine.ResourceManagement.AsyncOperations;
-using UnityEngine.Tilemaps;
+using UnityEngine.Localization;
 
 [Serializable]
 public enum TypeArenaPlayer
@@ -53,6 +51,7 @@ public class ArenaEntityData
     public Dictionary<ScriptableAttribute, int> LuckyModificators = new();
     public int attack;
     public Dictionary<ScriptableAttribute, int> AttackModificators = new();
+    public Dictionary<ScriptableAttribute, int> AttackShootModificators = new();
     public bool isDefense;
     public int defense;
     public Dictionary<ScriptableAttribute, int> DefenseModificators = new();
@@ -74,7 +73,9 @@ public class ArenaEntityData
     public Dictionary<ScriptableAttribute, int> DamageModificators = new();
     public int maxHP;
     public int totalHP;
+    public int totalRecoveryHP;
     public int HP { get; internal set; }
+    public Dictionary<ScriptableAttribute, int> HPModificators = new();
     // int - quantity round
     public Dictionary<ScriptableAttributeSpell, int> SpellsState = new();
 }
@@ -403,6 +404,20 @@ public class ArenaCreature : ArenaEntityBase
     public override async UniTask MoveCreature()
     {
         await base.MoveCreature();
+        var name = Helpers.GetNameByValue(((EntityCreature)Entity).ConfigAttribute.Text.title, Data.quantity);
+
+        var dataSmart = new Dictionary<string, object> {
+            { "name",  name},
+            { "value", Data.quantity}
+            };
+        var arguments = new[] { dataSmart };
+        var textSmart = Helpers.GetLocalizedPluralString(
+            new LocalizedString(Constants.LanguageTable.LANG_STAT, "move_creature"),
+            arguments,
+            dataSmart
+            );
+        arenaManager.ArenaStat.AddItem(textSmart);
+
         await ((ArenaCreature)arenaManager.ArenaQueue.activeEntity.arenaEntity).ArenaMonoBehavior.MoveCreature();
     }
 

@@ -14,7 +14,7 @@
                         </ui:VisualElement>
                     </ui:VisualElement>
                     <ui:VisualElement name="LeftAva" style="width: 58px; height: 64px; background-image: url(&apos;project://database/Assets/Entity/Hero/Sprites/Castle/Sprites/Sorsha.png?fileID=21300000&amp;guid=0af1b5b0a79024e44afdf4418cf6e796&amp;type=3#Sorsha&apos;); margin-left: 3px; margin-right: 3px; margin-top: 3px; margin-bottom: 0;" />
-                    <ui:Label tabindex="-1" text="Label" display-tooltip-when-elided="true" name="LeftName" class="text-primary p-0 text_md" />
+                    <ui:Label tabindex="-1" text="Label" display-tooltip-when-elided="true" name="LeftName" class="text-primary p-0 text_md" style="white-space: normal;" />
                 </ui:VisualElement>
                 <ui:VisualElement class="p-05" style="flex-grow: 1;">
                     <ui:VisualElement class="box_shadow text-center">
@@ -56,7 +56,7 @@
                         </ui:VisualElement>
                     </ui:VisualElement>
                     <ui:VisualElement name="RightAva" style="width: 58px; height: 64px; background-image: url(&apos;project://database/Assets/Entity/Hero/Sprites/Castle/Sprites/Sorsha.png?fileID=21300000&amp;guid=0af1b5b0a79024e44afdf4418cf6e796&amp;type=3#Sorsha&apos;); margin-left: 3px; margin-right: 3px; margin-top: 3px; margin-bottom: 0;" />
-                    <ui:Label tabindex="-1" text="Labelsdfs" display-tooltip-when-elided="true" name="RightName" class="text-primary p-0 text_md" />
+                    <ui:Label tabindex="-1" text="Labelsdfs" display-tooltip-when-elided="true" name="RightName" class="text-primary p-0 text_md" style="white-space: normal;" />
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>

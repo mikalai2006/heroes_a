@@ -21,6 +21,7 @@ public struct DialogArenaData
 public struct ResultDialogArenaData
 {
     public bool isEnd;
+    public int experience;
 }
 
 namespace Loader

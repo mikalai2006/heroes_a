@@ -28,19 +28,19 @@ public class AIArena
 
         Debug.Log($"streightCreaturesHero={streightCreaturesHeroLeft}, streightCreaturesEnemy={streightCreaturesHeroRight}");
 
-        // Capitulation bot hero.
-        if (
-            streightCreaturesHeroLeft > streightCreaturesHeroRight
-            && _arenaHeroEntity == _arenaManager.heroRight
-            && _arenaManager.ArenaTown == null
-            && _arenaHeroEntity.Entity != null
-            )
-        {
-            _arenaHeroEntity.typearenaHeroStatus = TypearenaHeroStatus.Runned;
-            _arenaManager.heroLeft.typearenaHeroStatus = TypearenaHeroStatus.Victorious;
-            await _arenaManager.CalculateStat();
-            return;
-        }
+        // // Capitulation bot hero.
+        // if (
+        //     streightCreaturesHeroLeft > streightCreaturesHeroRight
+        //     && _arenaHeroEntity == _arenaManager.heroRight
+        //     && _arenaManager.ArenaTown == null
+        //     && _arenaHeroEntity.Entity != null
+        //     )
+        // {
+        //     _arenaHeroEntity.typearenaHeroStatus = TypearenaHeroStatus.Runned;
+        //     _arenaManager.heroLeft.typearenaHeroStatus = TypearenaHeroStatus.Victorious;
+        //     await _arenaManager.CalculateStat();
+        //     return;
+        // }
 
         // Capitulation user hero.
         if (streightCreaturesHeroLeft < streightCreaturesHeroRight && _arenaHeroEntity == _arenaManager.heroLeft)
