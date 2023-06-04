@@ -1394,9 +1394,9 @@ public class ArenaManager : MonoBehaviour
                         neiNode.StateArenaNode |= StateArenaNode.Disable;
                         neiNode.StateArenaNode |= StateArenaNode.Obstacles;
                         _tileMapObstacles.SetTile(neiNode.position, _tileHexShadow);
-                        _tileMapObstacles.SetTileFlags(neiNode.position, TileFlags.None);
-                        _tileMapObstacles.SetColor(neiNode.position, nodeForObstacle == neiNode ? Color.magenta : Color.yellow);
-                        _tileMapObstacles.SetTileFlags(neiNode.position, TileFlags.LockColor);
+                        // _tileMapObstacles.SetTileFlags(neiNode.position, TileFlags.None);
+                        // _tileMapObstacles.SetColor(neiNode.position, nodeForObstacle == neiNode ? Color.magenta : Color.yellow);
+                        // _tileMapObstacles.SetTileFlags(neiNode.position, TileFlags.LockColor);
                     }
                 }
             }

@@ -622,10 +622,10 @@ public class EntityHero : BaseEntity
 
         MapObject.OccupiedNode = newNode;
         MapObject.OccupiedNode.SetAsGuested(MapObject);
-        if (MapObject.OccupiedNode.OccupiedUnit == null)
-        {
-            MapObject.OccupiedNode.SetOcuppiedUnit(MapObject);
-        }
+        // if (MapObject.OccupiedNode.OccupiedUnit == null)
+        // {
+        //     MapObject.OccupiedNode.SetOcuppiedUnit(MapObject);
+        // }
     }
 
     public void SetClearSky(Vector3Int startPosition)
