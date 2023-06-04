@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 using Assets;
 
@@ -13,7 +14,7 @@ public struct DialogArenaData
     public EntityTown town;
     public EntityHero heroAttacking;
     public EntityHero heroDefending;
-    public EntityMapObject creatureBank;
+    public List<EntityCreature> creaturesBank;
     public EntityCreature creature;
     public SOArenaSetting ArenaSetting;
 }
@@ -21,7 +22,10 @@ public struct DialogArenaData
 public struct ResultDialogArenaData
 {
     public bool isEnd;
-    public int experience;
+    public int experienceLeft;
+    public int experienceRight;
+    public bool isWinLeftHero;
+    public bool isWinRightHero;
 }
 
 namespace Loader

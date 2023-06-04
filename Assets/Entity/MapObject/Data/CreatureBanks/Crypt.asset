@@ -14,9 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   idEffect: Crypt1
   creatures:
-  - creature: {fileID: 11400000, guid: b770f4df671795844af7854c6469b998, type: 2}
-    value: 5
-  - creature: {fileID: 11400000, guid: b770f4df671795844af7854c6469b998, type: 2}
+  - creature: {fileID: 11400000, guid: 45a286b764d7a864683d354b9e7d65fb, type: 2}
+    value: 10
+  - creature: {fileID: 11400000, guid: 45a286b764d7a864683d354b9e7d65fb, type: 2}
+    value: 10
+  - creature: {fileID: 11400000, guid: 45a286b764d7a864683d354b9e7d65fb, type: 2}
+    value: 20
+  - creature: {fileID: 11400000, guid: 45a286b764d7a864683d354b9e7d65fb, type: 2}
     value: 5
   resources:
   - Resource: {fileID: 11400000, guid: 3894d4d068775c343b5c4bf1510dee33, type: 2}

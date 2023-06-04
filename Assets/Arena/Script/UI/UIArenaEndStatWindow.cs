@@ -59,8 +59,8 @@ public class UIArenaEndStatWindow : UIDialogBaseWindow
 
     private void DrawStat()
     {
-        DrawDeadedCreatures(_statData.arenaManager.ArenaStat.DeadedCreaturesAttacked, _AttackedDeadCreature);
-        DrawDeadedCreatures(_statData.arenaManager.ArenaStat.DeadedCreaturesDefendied, _DefendedDeadCreature);
+        DrawDeadedCreatures(_statData.arenaManager.ArenaStat.DeadedCreaturesLeft, _AttackedDeadCreature);
+        DrawDeadedCreatures(_statData.arenaManager.ArenaStat.DeadedCreaturesRight, _DefendedDeadCreature);
 
         var textMoveVictorious = new LocalizedString(Constants.LanguageTable.LANG_TABLE_UILANG, "victorious").GetLocalizedString();
         var textDefendied = new LocalizedString(Constants.LanguageTable.LANG_TABLE_UILANG, "defeated").GetLocalizedString();
@@ -89,7 +89,7 @@ public class UIArenaEndStatWindow : UIDialogBaseWindow
 
         var hero = ((EntityHero)_statData.arenaManager.heroLeft.Entity);
         var dataSmart = new Dictionary<string, string> {
-            { "value", _statData.arenaManager.ArenaStat.totalExperienceHero.ToString() },
+            { "value", _statData.arenaManager.ArenaStat.totalExperienceLeftHero.ToString() },
             { "name", hero.Data.name },
             { "gender", hero.ConfigData.TypeGender.ToString() }
             };
@@ -124,7 +124,14 @@ public class UIArenaEndStatWindow : UIDialogBaseWindow
         else
         {
             var creature = ((EntityCreature)_statData.arenaManager.heroRight.Data.ArenaCreatures.First().Value.Entity);
-            root.Q<Label>("RightName").text = creature.ConfigAttribute.Text.title.GetLocalizedString();
+            var dataCreature = new Dictionary<string, int> { { "value", 1 } };
+            var argumentsCreature = new[] { dataCreature };
+            var titleCreature = Helpers.GetLocalizedPluralString(
+                creature.ConfigAttribute.Text.title,
+                argumentsCreature,
+                dataCreature
+                );
+            root.Q<Label>("RightName").text = titleCreature;
             root.Q<VisualElement>("RightAva").style.backgroundImage
                     = new StyleBackground(creature.ConfigAttribute.MenuSprite);
         }

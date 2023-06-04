@@ -4,6 +4,8 @@ using System.Threading.Tasks;
 
 using Cysharp.Threading.Tasks;
 
+using Loader;
+
 using UnityEngine;
 using UnityEngine.Localization;
 
@@ -22,17 +24,39 @@ public class EffectCreatureBank : BaseEffect
         var resultEffect = new EffectResult();
 
         var _activePlayer = LevelManager.Instance.ActivePlayer;
-        var dialogData = new DataDialogHelp()
-        {
-            Header = "Arena",
-            Description = "Utopia",
-        };
-        var dialogWindow = new DialogHelpProvider(dialogData);
-        var result = await dialogWindow.ShowAndHide();
+        // var dialogData = new DataDialogHelp()
+        // {
+        //     Header = "Arena",
+        //     Description = "Utopia",
+        // };
+        // var dialogWindow = new DialogHelpProvider(dialogData);
+        // var result = await dialogWindow.ShowAndHide();
 
-        if (result.isOk)
+        // Get setting for arena.
+        var arenaSetting = LevelManager.Instance.ConfigGameSettings.ArenaSettings
+            .Where(t => t.NativeGround.typeGround == entity.MapObject.OccupiedNode.TypeGround)
+            .ToList();
+        // TODO ARENA
+        var creaturesBank = new List<EntityCreature>();
+        foreach (var creature in ((EntityMapObject)entity).Data.Defenders)
         {
-            resultEffect.ok = result.isOk;
+            // var entityCreature = new EntityCreature(creature.creature);
+            // entityCreature.SetValueCreature(creature.value);
+            creaturesBank.Add(creature);
+        }
+        var loadingOperations = new ArenaLoadOperation(new DialogArenaData()
+        {
+            heroAttacking = player.ActiveHero,
+            creature = null,
+            creaturesBank = creaturesBank,
+            town = null,
+            ArenaSetting = arenaSetting[Random.Range(0, arenaSetting.Count())]
+        });
+        var result = await loadingOperations.ShowHide();
+
+        if (result.isWinLeftHero)
+        {
+            resultEffect.ok = result.isWinLeftHero;
             // Show Dialog.
             if (_activePlayer.DataPlayer.playerType != PlayerType.Bot)
             {
@@ -95,10 +119,11 @@ public class EffectCreatureBank : BaseEffect
         return await _processCompletionSource.Task;
     }
 
-    // public override void SetData(BaseEntity entity)
-    // {
-    //     Debug.Log($"EffectRandomArtifact::: Set Data {RandomArtifact.idObject}");
-    // }
+    public override void SetData(BaseEntity entity)
+    {
+        // Debug.Log($"EffectRandomArtifact::: Set Data {RandomArtifact.idObject}");
+        entity.SetDefenders(creatures);
+    }
 }
 
 

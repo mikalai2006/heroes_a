@@ -142,6 +142,7 @@ public class UIArena : UILocaleBase
         ArenaCreature.OnChangeParamsCreature += ChangeParamsCreature;
         ArenaManager.OnAutoNextCreature += DrawInfo;
         ArenaQueue.OnNextStep += ChangeStatusButton;
+        // ArenaManager.OnRefreshButton += ChangeStatusButton;
         UIDialogSpellBook.OnClickSpell += ShowSpellInfo;
         ArenaManager.OnChooseCreatureForSpell += ShowSpellInfo;
         ArenaManager.OnHideSpellInfo += HideSpellInfo;
@@ -158,6 +159,7 @@ public class UIArena : UILocaleBase
         ArenaCreature.OnChangeParamsCreature -= ChangeParamsCreature;
         ArenaManager.OnAutoNextCreature -= DrawInfo;
         ArenaQueue.OnNextStep -= ChangeStatusButton;
+        // ArenaManager.OnRefreshButton -= ChangeStatusButton;
         UIDialogSpellBook.OnClickSpell -= ShowSpellInfo;
         ArenaManager.OnChooseCreatureForSpell -= ShowSpellInfo;
         ArenaManager.OnHideSpellInfo -= HideSpellInfo;
@@ -320,8 +322,8 @@ public class UIArena : UILocaleBase
     {
         if (
             _arenaManager.ArenaQueue.ActiveHero.Data.autoRun
-            ||
-            _arenaManager.ArenaQueue.ActiveHero.Data.playerType == PlayerType.Bot
+            // ||
+            // _arenaManager.ArenaQueue.ActiveHero.Data.playerType == PlayerType.Bot
             )
         {
             _btnSpellBook.SetEnabled(false);
@@ -329,10 +331,12 @@ public class UIArena : UILocaleBase
             _btnDirAttack.SetEnabled(false);
             // _btnRun.SetEnabled(false);
             _btnDefense.SetEnabled(false);
+            _btnRun.SetEnabled(false);
         }
         else
         {
             _btnDefense.SetEnabled(true);
+            _btnRun.SetEnabled(true);
             // Button spellbook.
             if (
                 _arenaManager.ArenaQueue.ActiveHero.Entity != null
@@ -461,6 +465,7 @@ public class UIArena : UILocaleBase
     private void OnClickAuto()
     {
         OnClickAutoBattle?.Invoke();
+        ChangeStatusButton();
     }
 
     private void ChangeStatusButtonAttack()
@@ -694,6 +699,10 @@ public class UIArena : UILocaleBase
         if (grid != null) grid.SetActive(true);
 
         _dataResultDialog.isEnd = true;
+        _dataResultDialog.experienceLeft = _arenaManager.ArenaStat.totalExperienceLeftHero;
+        _dataResultDialog.experienceRight = _arenaManager.ArenaStat.totalExperienceRightHero;
+        _dataResultDialog.isWinLeftHero = _arenaManager.ArenaStat.isWinLeftHero;
+        _dataResultDialog.isWinRightHero = _arenaManager.ArenaStat.isWinRightHero;
         _processCompletionSource.SetResult(_dataResultDialog);
 
         OnUnloadArena?.Invoke();

@@ -119,7 +119,7 @@ public class ArenaHeroEntity
         else
         // else create hero visual.
         {
-            CreateMapGameObject();
+            await CreateMapGameObject();
             // await SetStatusAutoRun(false);
             Data.autoRun = false;
         }
@@ -149,13 +149,8 @@ public class ArenaHeroEntity
 
     }
 
-    public void CreateMapGameObject()
-    {
-        LoadGameObject();
-    }
-
     #region LoadAsset
-    private void LoadGameObject()
+    private async UniTask CreateMapGameObject()
     {
         AssetReferenceGameObject gameObj = null;
         // if (ConfigData.MapPrefab.RuntimeKeyIsValid())
@@ -174,27 +169,17 @@ public class ArenaHeroEntity
             return;
         }
 
-        Addressables.InstantiateAsync(
+        var asset = Addressables.InstantiateAsync(
             gameObj,
             Position, // + new Vector3(0, -.25f, 0),
             Quaternion.identity,
             _tileMapArenaUnits.transform
-            ).Completed += LoadedAsset;
-    }
+            );
+        await asset.Task;
+        ArenaHeroMonoBehavior = asset.Result.GetComponent<ArenaHeroMonoBehavior>();
+        // Debug.Log($"Spawn Entity::: {r_asset.name}");
+        ArenaHeroMonoBehavior.Init(this);
 
-    public virtual void LoadedAsset(AsyncOperationHandle<GameObject> handle)
-    {
-        if (handle.Status == AsyncOperationStatus.Succeeded)
-        {
-            var r_asset = handle.Result;
-            ArenaHeroMonoBehavior = r_asset.GetComponent<ArenaHeroMonoBehavior>();
-            // Debug.Log($"Spawn Entity::: {r_asset.name}");
-            ArenaHeroMonoBehavior.Init(this);
-        }
-        else
-        {
-            Debug.LogError($"Error Load prefab::: {handle.Status}");
-        }
     }
     #endregion
 }

@@ -37,6 +37,17 @@ public class EntityMapObject : BaseEntity
         }
     }
 
+    public override void SetDefenders(List<BankCreatureProtected> creatures)
+    {
+        Data.Defenders = new();
+        foreach (var creatureItem in creatures)
+        {
+            var defender = new EntityCreature(creatureItem.creature);
+            defender.SetValueCreature(creatureItem.value);
+            Data.Defenders.Add(defender);
+        }
+    }
+
     public void SetData()
     {
         ScriptableEntityMapObject configData = (ScriptableEntityMapObject)ScriptableData;
@@ -84,4 +95,5 @@ public class EntityMapObject : BaseEntity
 [System.Serializable]
 public struct DataEntityMapObject
 {
+    public List<EntityCreature> Defenders;
 }

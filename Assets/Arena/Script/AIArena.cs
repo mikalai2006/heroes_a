@@ -1,7 +1,5 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 using Cysharp.Threading.Tasks;
 
@@ -93,6 +91,8 @@ public class AIArena
     {
         var choosedForActionNode = _arenaManager.FightingOccupiedNodes[UnityEngine.Random.Range(0, _arenaManager.FightingOccupiedNodes.Count - 1)];
 
+        if (choosedForActionNode.OccupiedUnit == null) return;
+
         await choosedForActionNode.OccupiedUnit.ClickCreature(choosedForActionNode.position);
 
         await _arenaManager.ArenaQueue.activeEntity.arenaEntity.ClickButtonAction();
@@ -103,8 +103,19 @@ public class AIArena
         var activeCreature = _arenaManager.ArenaQueue.activeEntity.arenaEntity;
 
         var allowNodes = _arenaManager.AllowPathNodes
-            .Where(t => t != activeCreature.OccupiedNode && t != activeCreature.RelatedNode)
+            .Where(t =>
+                t != activeCreature.OccupiedNode
+                && t != activeCreature.RelatedNode
+                )
             .ToList();
+        if (activeCreature.TypeArenaPlayer == TypeArenaPlayer.Left)
+        {
+            allowNodes = allowNodes.Where(t => t.position.x >= activeCreature.OccupiedNode.position.x).ToList();
+        }
+        else if (activeCreature.TypeArenaPlayer == TypeArenaPlayer.Right)
+        {
+            allowNodes = allowNodes.Where(t => t.position.x <= activeCreature.OccupiedNode.position.x).ToList();
+        }
         var nodeForMove = allowNodes[UnityEngine.Random.Range(0, allowNodes.Count)];
 
         _arenaManager.ClearAttackNode();

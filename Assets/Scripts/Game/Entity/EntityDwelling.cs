@@ -12,12 +12,14 @@ public struct DataEntityDwelling
     public int idPlayer;
     public int growth;
     public int dopGrowth;
+    public int quantityDefenders;
 }
 
 [System.Serializable]
 public class EntityDwelling : BaseEntity
 {
     [SerializeField] public DataEntityDwelling Data = new DataEntityDwelling();
+    [NonSerialized] public EntityCreature Defender;
     public ScriptableEntityDwelling ConfigData => (ScriptableEntityDwelling)ScriptableData;
     public EntityDwelling(
         ScriptableEntityDwelling configData,
@@ -31,6 +33,11 @@ public class EntityDwelling : BaseEntity
             _idEntity = ScriptableData.idObject;
             Data.idPlayer = -1;
             SetData();
+
+            Defender = new EntityCreature(ConfigData.Creature[0]);
+            Data.quantityDefenders = Defender.Data.value = ConfigData.Creature[0].CreatureParams.Level > 1
+                ? ConfigData.Creature[0].CreatureParams.Growth * 3
+                : 0;
         }
         else
         {
@@ -43,6 +50,9 @@ public class EntityDwelling : BaseEntity
             _id = saveData.id;
             _idEntity = saveData.idEntity;
             Effects = saveData.Effects;
+
+            Defender = new EntityCreature(ConfigData.Creature[0]);
+            Defender.Data.value = Data.quantityDefenders;
         }
     }
 

@@ -54,6 +54,7 @@ public class ArenaManager : MonoBehaviour
     // [SerializeField] private Tilemap _tileMapCursor;
     // public static event Action OnSetNextCreature;
     public static event Action OnChangeNodesForAttack;
+    public static event Action OnRefreshButton;
     // public static event Action OnEndBattle;
     // public static event Action OnRunFromBattle;
     public static event Action OnAutoNextCreature;
@@ -82,7 +83,7 @@ public class ArenaManager : MonoBehaviour
     [SerializeField] public Tile _tileHexShadow;
     [SerializeField] public Tile _tileHexActive;
     private int zCoord = -14;
-    private SerializableDictionary<int, List<int>> schemaCreatures = new();
+    // private SerializableDictionary<int, List<Vector2>> schemaCreatures = new();
 
     public ArenaHeroEntity heroLeft;
     public ArenaHeroEntity heroRight;
@@ -317,6 +318,7 @@ public class ArenaManager : MonoBehaviour
     private async void ClickButtonAutoBattle()
     {
         await ArenaQueue.ActiveHero.SetStatusAutoRun(!ArenaQueue.ActiveHero.Data.autoRun);
+        OnRefreshButton?.Invoke();
     }
 
     public async UniTask NextCreature(bool wait, bool def)
@@ -886,13 +888,43 @@ public class ArenaManager : MonoBehaviour
                 heroRight.Entity.Data.Creatures[key].Data.value = newValue;
             }
         }
-        else
+        else if (DialogArenaData.creature != null)
         {
             var newValue = heroRight.Data.ArenaCreatures.Values.Select(t => t.Data.quantity).Sum();
-            ArenaStat.AddDeadedCreature(heroRight.Data.ArenaCreatures.First().Value, DialogArenaData.creature.Data.value - newValue);
+            if (DialogArenaData.creature.Data.value - newValue > 0)
+            {
+                ArenaStat.AddDeadedCreature(heroRight.Data.ArenaCreatures.First().Value, DialogArenaData.creature.Data.value - newValue);
+            }
             DialogArenaData.creature.Data.value = newValue;
         }
+        else if (DialogArenaData.creaturesBank != null)
+        {
+            var creaturesBank = heroRight.Data.ArenaCreatures.Values.ToList();
+            foreach (var creatureItem in creaturesBank)
+            {
+                var key = DialogArenaData.creaturesBank.FirstOrDefault(x => x == creatureItem.Entity);
+                // empty slot.
+                if (creatureItem == null) continue;
 
+                // if creature is deaded.
+                if (heroRight.Data.ArenaCreatures[key].Death)
+                {
+                    ArenaStat.AddDeadedCreature(heroRight.Data.ArenaCreatures[key], key.Data.value);
+                    heroRight.Data.ArenaCreatures[key] = null;
+                    continue;
+                }
+
+                var newValue = heroRight.Data.ArenaCreatures[key].Data.quantity;
+                if (key.Data.value - newValue > 0)
+                {
+                    ArenaStat.AddDeadedCreature(heroRight.Data.ArenaCreatures[key], key.Data.value - newValue);
+                }
+                key.Data.value = newValue;
+            }
+        }
+
+        ArenaStat.isWinRightHero = ArenaQueue.ListEntities.Where(t => t.arenaEntity.TypeArenaPlayer == TypeArenaPlayer.Left).Count() == 0;
+        ArenaStat.isWinLeftHero = ArenaQueue.ListEntities.Where(t => t.arenaEntity.TypeArenaPlayer == TypeArenaPlayer.Right).Count() == 0;
         OnShowState?.Invoke();
         await UniTask.Delay(1);
     }
@@ -1008,17 +1040,18 @@ public class ArenaManager : MonoBehaviour
             await CreateTown();
         }
 
-        CreateSchemaCreatures();
+        // CreateSchemaCreatures();
 
         await CreateCreatures();
 
-        CreateSchema();
+        if (DialogArenaData.creaturesBank == null)
+        {
+            await CreateWarMachine();
 
-        await CreateWarMachine();
+            CreateObstacles();
+        }
 
         setSizeTileMap();
-
-        CreateObstacles();
 
         await NextCreature(false, false);
     }
@@ -1057,28 +1090,88 @@ public class ArenaManager : MonoBehaviour
         colliderTileMap.size = new Vector2(width + 0.5f, height - 3);
     }
 
-    private void CreateSchemaCreatures()
+    private SerializableDictionary<int, List<Vector2Int>> CreateSchemaCreatures(int x)
     {
-        schemaCreatures.Clear();
-        schemaCreatures.Add(1, new List<int>() { 6 });
-        schemaCreatures.Add(2, new List<int>() { 9, 3 });
-        schemaCreatures.Add(3, new List<int>() { 9, 6, 3 });
-        schemaCreatures.Add(4, new List<int>() { 9, 7, 6, 3 });
-        schemaCreatures.Add(5, new List<int>() { 9, 7, 6, 5, 3 });
-        schemaCreatures.Add(6, new List<int>() { 11, 9, 7, 5, 3, 1 });
-        schemaCreatures.Add(7, new List<int>() { 11, 9, 7, 6, 5, 3, 1 });
-    }
-
-    private void CreateSchema()
-    {
-        if (DialogArenaData.town != null)
+        SerializableDictionary<int, List<Vector2Int>> schemaCreatures = new();
+        if (DialogArenaData.creaturesBank != null)
         {
-
+            schemaCreatures.Clear();
+            schemaCreatures.Add(1, new List<Vector2Int>() {
+                new Vector2Int(5, 8)
+            });
+            schemaCreatures.Add(2, new List<Vector2Int>() {
+                new Vector2Int(5, 8),
+                new Vector2Int(9, 8)
+            });
+            schemaCreatures.Add(3, new List<Vector2Int>() {
+                new Vector2Int(5, 8),
+                new Vector2Int(9, 8),
+                new Vector2Int(4, 6)
+            });
+            schemaCreatures.Add(4, new List<Vector2Int>() {
+                new Vector2Int(5, 8),
+                new Vector2Int(9, 8),
+                new Vector2Int(4, 6),
+                new Vector2Int(7, 6)
+            });
+            schemaCreatures.Add(5, new List<Vector2Int>() {
+                new Vector2Int(5, 8),
+                new Vector2Int(9, 8),
+                new Vector2Int(4, 6),
+                new Vector2Int(7, 6),
+                new Vector2Int(10, 6)
+                });
+            schemaCreatures.Add(6, new List<Vector2Int>() {
+                new Vector2Int(5, 8),
+                new Vector2Int(9, 8),
+                new Vector2Int(4, 6),
+                new Vector2Int(7, 6),
+                new Vector2Int(10, 6),
+                new Vector2Int(5, 4)
+                });
+            schemaCreatures.Add(7, new List<Vector2Int>() {
+                new Vector2Int(5, 8),
+                new Vector2Int(9, 8),
+                new Vector2Int(4, 6),
+                new Vector2Int(7, 6),
+                new Vector2Int(10, 6),
+                new Vector2Int(5, 4),
+                new Vector2Int(9, 4)
+                });
         }
-        else if (DialogArenaData.creatureBank != null)
+        else
         {
-
+            schemaCreatures.Clear();
+            schemaCreatures.Add(1, new List<Vector2Int>() { new Vector2Int(x, 6) });
+            schemaCreatures.Add(2, new List<Vector2Int>() { new Vector2Int(x, 9), new Vector2Int(x, 3) });
+            schemaCreatures.Add(3, new List<Vector2Int>() { new Vector2Int(x, 9), new Vector2Int(x, 6), new Vector2Int(x, 3) });
+            schemaCreatures.Add(4, new List<Vector2Int>() { new Vector2Int(x, 9), new Vector2Int(x, 7), new Vector2Int(x, 6), new Vector2Int(x, 3) });
+            schemaCreatures.Add(5, new List<Vector2Int>() {
+                new Vector2Int(x, 9),
+                new Vector2Int(x, 7),
+                new Vector2Int(x, 6),
+                new Vector2Int(x, 5),
+                new Vector2Int(x, 3)
+                });
+            schemaCreatures.Add(6, new List<Vector2Int>() {
+                new Vector2Int(x, 11),
+                new Vector2Int(x, 9),
+                new Vector2Int(x, 7),
+                new Vector2Int(x, 5),
+                new Vector2Int(x, 3),
+                new Vector2Int(x, 1)
+                });
+            schemaCreatures.Add(7, new List<Vector2Int>() {
+                new Vector2Int(x, 11),
+                new Vector2Int(x, 9),
+                new Vector2Int(x, 7),
+                new Vector2Int(x, 6),
+                new Vector2Int(x, 5),
+                new Vector2Int(x, 3),
+                new Vector2Int(x, 1)
+                });
         }
+        return schemaCreatures;
     }
 
     private async UniTask CreateWarMachine()
@@ -1369,14 +1462,17 @@ public class ArenaManager : MonoBehaviour
     private async UniTask CreateCreatures()
     {
         var heroCreatures = heroLeft.Entity.Data.Creatures.Where(t => t.Value != null).ToList();
-        var schemaCreaturesHero = schemaCreatures[heroCreatures.Count];
+        var schemaCreaturesHero = CreateSchemaCreatures(1)[heroCreatures.Count];
         for (int i = 0; i < heroCreatures.Count; i++)
         {
             var creature = heroCreatures[i];
             var GridGameObject = new ArenaCreature();
             GridGameObject.Init(this, heroLeft);
             var size = ((EntityCreature)creature.Value).ConfigAttribute.CreatureParams.Size;
-            var nodeObj = GridArenaHelper.GridTile.GetGridObject(new Vector3Int(size - 1, schemaCreaturesHero[i]));
+            var x = DialogArenaData.creaturesBank != null
+                ? size > 1 ? schemaCreaturesHero[i].x + 1 : schemaCreaturesHero[i].x
+                : size - schemaCreaturesHero[i].x;
+            var nodeObj = GridArenaHelper.GridTile.GetGridObject(new Vector3Int(x, schemaCreaturesHero[i].y));
             GridGameObject.TypeArenaPlayer = TypeArenaPlayer.Left;
             GridGameObject.SetEntity(creature.Value, nodeObj);
             GridGameObject.SetPosition(nodeObj);
@@ -1389,14 +1485,14 @@ public class ArenaManager : MonoBehaviour
         if (heroRight.Data.typeArenaHero == TypeArenaHero.Visible)
         {
             var enemyCreatures = heroRight.Entity.Data.Creatures.Where(t => t.Value != null).ToList();
-            var schemaEnemyCreatures = schemaCreatures[enemyCreatures.Count];
+            var schemaEnemyCreatures = CreateSchemaCreatures(width)[enemyCreatures.Count];
             for (int i = 0; i < enemyCreatures.Count; i++)
             {
                 var creature = enemyCreatures[i];
                 var GridGameObject = new ArenaCreature();
                 GridGameObject.Init(this, heroRight);
                 var size = ((EntityCreature)creature.Value).ConfigAttribute.CreatureParams.Size;
-                var nodeObj = GridArenaHelper.GridTile.GetGridObject(new Vector3Int(width - size, schemaEnemyCreatures[i]));
+                var nodeObj = GridArenaHelper.GridTile.GetGridObject(new Vector3Int(schemaEnemyCreatures[i].x - size, schemaEnemyCreatures[i].y));
                 GridGameObject.TypeArenaPlayer = TypeArenaPlayer.Right;
                 GridGameObject.SetEntity(creature.Value, nodeObj);
                 GridGameObject.SetPosition(nodeObj);
@@ -1408,64 +1504,97 @@ public class ArenaManager : MonoBehaviour
         }
         else
         {
-            var allAIHeroCreatures = heroCreatures.Select(t => t.Value.totalAI).Sum() * heroLeft.Entity.Streight;
-            var allAICreatures = DialogArenaData.creature.totalAI;
-
-            // Calculate count stack.
-            int procentHp = allAIHeroCreatures / allAICreatures * 100;
-            var maxCountStack = 1;
-            switch (procentHp)
+            if (DialogArenaData.creaturesBank != null)
             {
-                case int n when (n >= 200):
-                    maxCountStack = UnityEngine.Random.Range(1, 3);
-                    break;
-                case int n when (n >= 150 && n < 200):
-                    maxCountStack = UnityEngine.Random.Range(2, 4);
-                    break;
-                case int n when (n >= 100 && n < 150):
-                    maxCountStack = UnityEngine.Random.Range(3, 5);
-                    break;
-                case int n when (n >= 67 && n < 100):
-                    maxCountStack = UnityEngine.Random.Range(4, 6);
-                    break;
-                case int n when (n >= 50 && n < 67):
-                    maxCountStack = UnityEngine.Random.Range(5, 7);
-                    break;
-                case int n when (n < 50):
-                    maxCountStack = UnityEngine.Random.Range(6, 7);
-                    break;
+                var creatures = DialogArenaData.creaturesBank;
+                var _schemaCreaturesBank = new List<Vector2Int>() {
+                    new Vector2Int(15, 6),
+                    new Vector2Int(1, 1),
+                    new Vector2Int(1, 11),
+                    new Vector2Int(15, 1),
+                    new Vector2Int(15, 11)
+                };
+                for (int i = 0; i < creatures.Count; i++)
+                {
+                    var creatureEntity = creatures[i];
+                    var creatureConfig = creatureEntity.ConfigAttribute;
+                    var GridGameObject = new ArenaCreature();
+                    GridGameObject.Init(this, heroRight);
+                    var size = creatureConfig.CreatureParams.Size;
+                    var dif = _schemaCreaturesBank[i].x < 2 && size > 1 ? 1 : 0;
+                    var position = new Vector3Int(Mathf.Abs(size - _schemaCreaturesBank[i].x - dif), _schemaCreaturesBank[i].y);
+                    var nodeObj = GridArenaHelper.GridTile.GetGridObject(position);
+                    GridGameObject.TypeArenaPlayer = TypeArenaPlayer.Right;
+                    GridGameObject.SetEntity(creatureEntity, nodeObj);
+                    GridGameObject.SetPosition(nodeObj);
+
+                    await GridGameObject.CreateMapGameObject(nodeObj);
+
+                    ArenaQueue.AddEntity(GridGameObject);
+                }
+            }
+            else
+            {
+                var allAIHeroCreatures = heroCreatures.Select(t => t.Value.totalAI).Sum() * heroLeft.Entity.Streight;
+                var allAICreatures = DialogArenaData.creature.totalAI;
+
+                // Calculate count stack.
+                int procentHp = allAIHeroCreatures / allAICreatures * 100;
+                var maxCountStack = 1;
+                switch (procentHp)
+                {
+                    case int n when (n >= 200):
+                        maxCountStack = UnityEngine.Random.Range(1, 3);
+                        break;
+                    case int n when (n >= 150 && n < 200):
+                        maxCountStack = UnityEngine.Random.Range(2, 4);
+                        break;
+                    case int n when (n >= 100 && n < 150):
+                        maxCountStack = UnityEngine.Random.Range(3, 5);
+                        break;
+                    case int n when (n >= 67 && n < 100):
+                        maxCountStack = UnityEngine.Random.Range(4, 6);
+                        break;
+                    case int n when (n >= 50 && n < 67):
+                        maxCountStack = UnityEngine.Random.Range(5, 7);
+                        break;
+                    case int n when (n < 50):
+                        maxCountStack = UnityEngine.Random.Range(6, 7);
+                        break;
+                }
+
+                // Create stack creatures.
+                // SerializableDictionary<int, EntityCreature> enemyCreaturesAll = new();
+                if (DialogArenaData.creature.Data.value < maxCountStack)
+                {
+                    maxCountStack = DialogArenaData.creature.Data.value;
+                }
+                int countCreatureOneStack = DialogArenaData.creature.Data.value / maxCountStack;
+                int remainder = DialogArenaData.creature.Data.value % maxCountStack;
+
+                // Debug.Log($"Battles::: {allAIHeroCreatures}/{allAICreatures} [{procentHp}]({maxCountStack})");
+
+                var _schemaCreatures = CreateSchemaCreatures(width)[maxCountStack];
+                for (int i = 0; i < maxCountStack; i++)
+                {
+                    var creatureConfig = DialogArenaData.creature.ConfigAttribute;
+                    var creatureEntity = new EntityCreature(creatureConfig);
+                    creatureEntity.SetValueCreature(i < maxCountStack - 1 ? countCreatureOneStack : countCreatureOneStack + remainder);
+
+                    var GridGameObject = new ArenaCreature();
+                    GridGameObject.Init(this, heroRight);
+                    var size = creatureConfig.CreatureParams.Size;
+                    var nodeObj = GridArenaHelper.GridTile.GetGridObject(new Vector3Int(_schemaCreatures[i].x - size, _schemaCreatures[i].y));
+                    GridGameObject.TypeArenaPlayer = TypeArenaPlayer.Right;
+                    GridGameObject.SetEntity(creatureEntity, nodeObj);
+                    GridGameObject.SetPosition(nodeObj);
+
+                    await GridGameObject.CreateMapGameObject(nodeObj);
+
+                    ArenaQueue.AddEntity(GridGameObject);
+                }
             }
 
-            // Create stack creatures.
-            // SerializableDictionary<int, EntityCreature> enemyCreaturesAll = new();
-            if (DialogArenaData.creature.Data.value < maxCountStack)
-            {
-                maxCountStack = DialogArenaData.creature.Data.value;
-            }
-            int countCreatureOneStack = DialogArenaData.creature.Data.value / maxCountStack;
-            int remainder = DialogArenaData.creature.Data.value % maxCountStack;
-
-            // Debug.Log($"Battles::: {allAIHeroCreatures}/{allAICreatures} [{procentHp}]({maxCountStack})");
-
-            var _schemaCreatures = schemaCreatures[maxCountStack];
-            for (int i = 0; i < maxCountStack; i++)
-            {
-                var creatureConfig = DialogArenaData.creature.ConfigAttribute;
-                var creatureEntity = new EntityCreature(creatureConfig);
-                creatureEntity.SetValueCreature(i < maxCountStack - 1 ? countCreatureOneStack : countCreatureOneStack + remainder);
-
-                var GridGameObject = new ArenaCreature();
-                GridGameObject.Init(this, heroRight);
-                var size = creatureConfig.CreatureParams.Size;
-                var nodeObj = GridArenaHelper.GridTile.GetGridObject(new Vector3Int(width - size, _schemaCreatures[i]));
-                GridGameObject.TypeArenaPlayer = TypeArenaPlayer.Right;
-                GridGameObject.SetEntity(creatureEntity, nodeObj);
-                GridGameObject.SetPosition(nodeObj);
-
-                await GridGameObject.CreateMapGameObject(nodeObj);
-
-                ArenaQueue.AddEntity(GridGameObject);
-            }
         }
         // SetColorDisableNode();
     }

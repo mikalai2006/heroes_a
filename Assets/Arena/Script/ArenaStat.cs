@@ -8,16 +8,18 @@ public class ArenaStat
     private ArenaManager _arenaManager;
     public List<string> ListStat = new List<string>();
     public Dictionary<ArenaEntityBase, int> DeadedCreatures = new();
+    public bool isWinRightHero;
+    public bool isWinLeftHero;
+
     public string FullText => string.Join("\r\n", ListStat);
-    public Dictionary<ArenaEntityBase, int> DeadedCreaturesAttacked => DeadedCreatures
+    public Dictionary<ArenaEntityBase, int> DeadedCreaturesLeft => DeadedCreatures
         .Where(t => t.Key.Hero == _arenaManager.heroLeft)
         .ToDictionary(t => t.Key, t => t.Value);
-    public int totalExperienceEnemy => DeadedCreaturesDefendied.Select(t => t.Key.Data.HP * t.Value).Sum();
-
-    public Dictionary<ArenaEntityBase, int> DeadedCreaturesDefendied => DeadedCreatures
+    public int totalExperienceRightHero => DeadedCreaturesLeft.Select(t => t.Key.Data.HP * t.Value).Sum();
+    public Dictionary<ArenaEntityBase, int> DeadedCreaturesRight => DeadedCreatures
         .Where(t => t.Key.Hero != _arenaManager.heroLeft)
         .ToDictionary(t => t.Key, t => t.Value);
-    public int totalExperienceHero => DeadedCreaturesDefendied.Select(t => t.Key.Data.HP * t.Value).Sum();
+    public int totalExperienceLeftHero => DeadedCreaturesRight.Select(t => t.Key.Data.HP * t.Value).Sum();
 
     public void Init(ArenaManager arenaManager)
     {

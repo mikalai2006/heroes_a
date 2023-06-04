@@ -187,7 +187,6 @@ public class MapEntityCreature : BaseMapEntity, IDialogMapObjectOperation
         MapObject.ProtectedNode.DisableProtectedNeigbours(_mapObject);
         MapObject.OccupiedNode.DisableProtectedNeigbours(_mapObject);
 
-
         // Get setting for arena.
         var arenaSetting = LevelManager.Instance.ConfigGameSettings.ArenaSettings
             .Where(t => t.NativeGround.typeGround == MapObject.OccupiedNode.TypeGround)
@@ -202,12 +201,17 @@ public class MapEntityCreature : BaseMapEntity, IDialogMapObjectOperation
         });
         var result = await loadingOperations.ShowHide();
 
-        Debug.Log("End battle");
-
         // await player.ActiveHero.ChangeExperience(entityCreature.ConfigAttribute.CreatureParams.HP * entityCreature.Data.value);
 
         MapObject.DoHero(player);
 
         Destroy(gameObject);
+
+        if (result.isWinLeftHero)
+        {
+            await player.ActiveHero.ChangeExperience(result.experienceLeft);
+        }
+
+        Debug.Log("End battle");
     }
 }

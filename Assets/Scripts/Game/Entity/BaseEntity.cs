@@ -117,4 +117,8 @@ public abstract class BaseEntity
         _player = player;
     }
 
+    public virtual void SetDefenders(List<BankCreatureProtected> creatures)
+    {
+
+    }
 }

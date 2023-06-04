@@ -14,10 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   idEffect: CreatureBank1
   creatures:
-  - creature: {fileID: 11400000, guid: b770f4df671795844af7854c6469b998, type: 2}
-    value: 5
-  - creature: {fileID: 11400000, guid: b770f4df671795844af7854c6469b998, type: 2}
-    value: 5
+  - creature: {fileID: 11400000, guid: 6ea0b3ed958930e41ab8e76bc52ce1b9, type: 2}
+    value: 4
+  - creature: {fileID: 11400000, guid: 7d1983f083e2c9a49bc2725df7d9691b, type: 2}
+    value: 1
+  - creature: {fileID: 11400000, guid: 6ea0b3ed958930e41ab8e76bc52ce1b9, type: 2}
+    value: 2
+  - creature: {fileID: 11400000, guid: e34ee2bd20d331149b4525b763a3d4ad, type: 2}
+    value: 3
+  - creature: {fileID: 11400000, guid: 6ea0b3ed958930e41ab8e76bc52ce1b9, type: 2}
+    value: 4
   resources:
   - Resource: {fileID: 11400000, guid: 3894d4d068775c343b5c4bf1510dee33, type: 2}
     value: 10000

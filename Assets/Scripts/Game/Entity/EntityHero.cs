@@ -205,6 +205,24 @@ public class EntityHero : BaseEntity
             // }
             _id = saveData.id;
             _idEntity = saveData.idEntity;
+
+            // Create War Machine.
+            AddWarMachine(TypeWarMachine.Catapult);
+
+            if (ConfigData.isBallista)
+            {
+                AddWarMachine(TypeWarMachine.Ballista);
+            }
+
+            if (ConfigData.isAmmoCart)
+            {
+                AddWarMachine(TypeWarMachine.AmmoCart);
+            }
+
+            if (ConfigData.isFirstAidTent)
+            {
+                AddWarMachine(TypeWarMachine.FirstAidTent);
+            }
         }
         // Create artifacts.
         Data.Artifacts = new List<EntityArtifact>();

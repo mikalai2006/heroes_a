@@ -507,6 +507,10 @@ MonoBehaviour:
     m_Key: armygroup_desc
     m_Metadata:
       m_Items: []
+  - m_Id: 24892652530073600
+    m_Key: dwellingdef_d
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
