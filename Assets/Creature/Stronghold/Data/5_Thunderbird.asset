@@ -43,7 +43,7 @@ MonoBehaviour:
   TypeGround: 16
   MiniSprite: {fileID: 21300000, guid: 28f6f3a686eca314e94129f95de45092, type: 3}
   ArenaModel:
-    m_AssetGUID: 
+    m_AssetGUID: f42cc57c5eb13c942a8d5071b9cc38d4
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
