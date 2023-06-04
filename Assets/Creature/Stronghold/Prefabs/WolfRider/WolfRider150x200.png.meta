@@ -1,0 +1,1326 @@
+fileFormatVersion: 2
+guid: 43f2b0496cde0054da4ec60d464840f1
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 40
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: WolfRiderIdle_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1050
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02a08ce061cbd254f98052a0b206b815
+      internalID: -1752388986
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WolfRiderIdle_1
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 1050
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: abe5e3c867fb0934db4b2cd954e20e7f
+      internalID: 249112880
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WolfRiderIdle_2
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 1050
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 71fe083c308a6eb41a1c1e4f0f139b95
+      internalID: 1144680293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WolfRiderIdle_3
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 1050
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e58d6380eebd02d49a1d01ec151ab11e
+      internalID: 9207804
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WolfRiderIdleMouseOver_0
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 1050
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca706809a1b1cfa47bb5cfa3a56bf566
+      internalID: 1200646879
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WolfRiderIdleMouseOver_1
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 1050
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e99c8d3b41f2c0b40a2b6ef2d06b70d8
+      internalID: -1854259505
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WolfRiderIdleMouseOver_2
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 1050
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f68e431bf6823345b3ed8485a1959c1
+      internalID: 1435336676
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WolfRiderIdleMouseOver_3
+      rect:
+        serializedVersion: 2
+        x: 1400
+        y: 1050
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 851dc0aec43432b4791671766e84db32
+      internalID: 1134537457
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WolfRiderAttackStraight_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 900
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 632d3c821fb4c2447816bb1dce1b008f
+      internalID: -813876520
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WolfRiderAttackStraight_1
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 900
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a613d4f5a5fa994a8ff16ac379fabbc
+      internalID: 1960877633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WolfRiderAttackStraight_2
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 900
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2bc158a77aa29af4d96207e82f6c02ee
+      internalID: -1664027082
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WolfRiderAttackStraight_3
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 900
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6330f95b07b623449bf3230063cfe2a6
+      internalID: 987395125
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WolfRiderAttackStraight_4
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 900
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4e30949d9ee6ac479ab2b08c802c0f9
+      internalID: -1697284716
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WolfRiderAttackStraight_5
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 900
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9047c7e9a737fd40a827a49e749f572
+      internalID: 1133391641
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WolfRiderAttackUp_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 750
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62d500c06a7c4774abd5b95378c9d008
+      internalID: 1872891245
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WolfRiderAttackUp_1
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 750
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47b0ac1cdcb9e8f41bf03d4fb0897789
+      internalID: -273473825
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WolfRiderAttackUp_2
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 750
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65dde3a134b71314c9a0119f728af6ee
+      internalID: 83148678
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WolfRiderAttackUp_3
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 750
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e3cb96265005614a9b85addd257eb6d
+      internalID: 248476918
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WolfRiderAttackUp_4
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 750
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de8c30afd3d86bf459b2aa620b07c5af
+      internalID: -1655038771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WolfRiderAttackUp_5
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 750
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c0209f1426c0e64f89e48090313c52e
+      internalID: -410403208
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WolfRiderAttackDown_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 600
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a8b96a7145e6eb4c9aa993f679c71d9
+      internalID: -1640647453
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WolfRiderAttackDown_1
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 600
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8abceb576abf67342aed7c929fc23b93
+      internalID: 386628509
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WolfRiderAttackDown_2
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 600
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e689cab0eb8a014794db6834ae1cd18
+      internalID: -46368713
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WolfRiderAttackDown_3
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 600
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e67381d1793344140a3406f41f711db9
+      internalID: 1552889400
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WolfRiderAttackDown_4
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 600
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f87a9305d797cd449397195a31e46a5
+      internalID: -1469778544
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WolfRiderAttackDown_5
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 600
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: da0c57d87a18bb84890fa14eebf67964
+      internalID: 785158536
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WolfRiderGettingHit_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 450
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fbaefe8ff13ecfc4ab24fe93ad382372
+      internalID: 277212436
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WolfRiderGettingHit_1
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 450
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6472385305145c14e92cb982aa05a0f6
+      internalID: -327364014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WolfRiderGettingHit_2
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 450
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d5f6d9e8a3802264184e74b1e2195d08
+      internalID: -1928469312
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WolfRiderGettingHit_3
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 450
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a4de30763d8a6ec4da3b89cc109482bc
+      internalID: -1870059727
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WolfRiderGettingHit_4
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 450
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b58a38bb429930242a5a00103fe26cd5
+      internalID: 169160266
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WolfRiderGettingHit_5
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 450
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8126fc4a94a75804f98ae1b4d63d1c65
+      internalID: 2044411991
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WolfRiderDeath_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 300
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06f9efb213b5e7a4b84da6e9fe450b0b
+      internalID: 273942641
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WolfRiderDeath_1
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 300
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 810101d2f14e8914da5a70de6d300265
+      internalID: -2006494200
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WolfRiderDeath_2
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 300
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e73513df1dea2014ab224e17bf99ce38
+      internalID: 120230342
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WolfRiderDeath_3
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 300
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f960e20158503c4586529418096f1dd
+      internalID: 1233442025
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WolfRiderDeath_4
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 300
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa4cbb1a43221d547b570c7a9a2bb676
+      internalID: 1995976197
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WolfRiderDeath_5
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 300
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f1213f8118b14954e95f075eba0ef4b4
+      internalID: -459887409
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WolfRiderDefend_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 150
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53c86884928b9ee4094df23a90f6651d
+      internalID: -671022975
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WolfRiderDefend_1
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 150
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92e18d0aded86d2429af0fe35fc78b87
+      internalID: 1531245303
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WolfRiderDefend_2
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 150
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b8461027661fa7047a2f14b415f33f18
+      internalID: 766481179
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WolfRiderDefend_3
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 150
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a34ca155810edd941807a568dbf9390e
+      internalID: 1152556858
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WolfRiderDefend_4
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 150
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 38d40a713a4b0494782eab00c16f2a19
+      internalID: -1804741877
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WolfRiderDefend_5
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 150
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a8f73e4553c026548a9547d955fdfc1f
+      internalID: -772146094
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WolfRiderTurn_0
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 150
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82e05baf9fa09804bb5e5bb12abe0ed2
+      internalID: -372947732
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WolfRiderTurn_1
+      rect:
+        serializedVersion: 2
+        x: 1400
+        y: 150
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b3698ac498b7f454c89594ed6adc7368
+      internalID: 468885740
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WolfRiderMoving_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f75c8ee6c9f6a3141bbb27d2f1382a10
+      internalID: 1655689333
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WolfRiderMoving_1
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 0
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 235b1ab0792a7ec48875ef42b743378a
+      internalID: -1385216442
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WolfRiderMoving_2
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 0
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 46b453aef4c23b94c9ac7c2d5e8e6d35
+      internalID: 1825210562
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WolfRiderMoving_3
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 0
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 211638fd61313094b824a4651e9f1b30
+      internalID: 1208848634
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WolfRiderMoving_4
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 0
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6236e9e6911ec6e419e725e9c268763a
+      internalID: 1047059966
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WolfRiderMoving_5
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 0
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9d0222650323224cabf2e4710410a34
+      internalID: 1774212961
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WolfRiderStartMoving_0
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 0
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 704e48dd26b225648a4abdc51d55db21
+      internalID: -1040960584
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WolfRiderStopMoving_0
+      rect:
+        serializedVersion: 2
+        x: 1400
+        y: 0
+        width: 200
+        height: 150
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a49557ae7cfb3124d9bdadae70aabfee
+      internalID: 515201195
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      WolfRider150x200_14: 708654818
+      WolfRider150x200_15: -1328665307
+      WolfRiderAttackDown_0: -1640647453
+      WolfRiderAttackDown_1: 386628509
+      WolfRiderAttackDown_2: -46368713
+      WolfRiderAttackDown_3: 1552889400
+      WolfRiderAttackDown_4: -1469778544
+      WolfRiderAttackDown_5: 785158536
+      WolfRiderAttackStraight_0: -813876520
+      WolfRiderAttackStraight_1: 1960877633
+      WolfRiderAttackStraight_2: -1664027082
+      WolfRiderAttackStraight_3: 987395125
+      WolfRiderAttackStraight_4: -1697284716
+      WolfRiderAttackStraight_5: 1133391641
+      WolfRiderAttackUp_0: 1872891245
+      WolfRiderAttackUp_1: -273473825
+      WolfRiderAttackUp_2: 83148678
+      WolfRiderAttackUp_3: 248476918
+      WolfRiderAttackUp_4: -1655038771
+      WolfRiderAttackUp_5: -410403208
+      WolfRiderDeath_0: 273942641
+      WolfRiderDeath_1: -2006494200
+      WolfRiderDeath_2: 120230342
+      WolfRiderDeath_3: 1233442025
+      WolfRiderDeath_4: 1995976197
+      WolfRiderDeath_5: -459887409
+      WolfRiderDefend_0: -671022975
+      WolfRiderDefend_1: 1531245303
+      WolfRiderDefend_2: 766481179
+      WolfRiderDefend_3: 1152556858
+      WolfRiderDefend_4: -1804741877
+      WolfRiderDefend_5: -772146094
+      WolfRiderGettingHit_0: 277212436
+      WolfRiderGettingHit_1: -327364014
+      WolfRiderGettingHit_2: -1928469312
+      WolfRiderGettingHit_3: -1870059727
+      WolfRiderGettingHit_4: 169160266
+      WolfRiderGettingHit_5: 2044411991
+      WolfRiderIdleMouseOver_0: 1200646879
+      WolfRiderIdleMouseOver_1: -1854259505
+      WolfRiderIdleMouseOver_2: 1435336676
+      WolfRiderIdleMouseOver_3: 1134537457
+      WolfRiderIdle_0: -1752388986
+      WolfRiderIdle_1: 249112880
+      WolfRiderIdle_2: 1144680293
+      WolfRiderIdle_3: 9207804
+      WolfRiderMoving_0: 1655689333
+      WolfRiderMoving_1: -1385216442
+      WolfRiderMoving_2: 1825210562
+      WolfRiderMoving_3: 1208848634
+      WolfRiderMoving_4: 1047059966
+      WolfRiderMoving_5: 1774212961
+      WolfRiderStartMoving_0: -1040960584
+      WolfRiderStopMoving_0: 515201195
+      WolfRiderTurn_0: -372947732
+      WolfRiderTurn_1: 468885740
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

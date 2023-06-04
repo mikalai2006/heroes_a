@@ -1,0 +1,1500 @@
+fileFormatVersion: 2
+guid: fd89d72259080cb44a613b4061914d21
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 40
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: ThunderbirdIdle_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1400
+        width: 350
+        height: 200
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 187235f0fb50f284ea3c0f27c57b2115
+      internalID: 896654344
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderbirdIdle_1
+      rect:
+        serializedVersion: 2
+        x: 350
+        y: 1400
+        width: 350
+        height: 200
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d56c1f975a97bc4ba454dca1ad31045
+      internalID: -1421403161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderbirdIdle_2
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 1400
+        width: 350
+        height: 200
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af8bc8900f02d6845b7730db1b4f3300
+      internalID: 2041440274
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderbirdIdle_3
+      rect:
+        serializedVersion: 2
+        x: 1050
+        y: 1400
+        width: 350
+        height: 200
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0be3fb6f71b77e14291e0cabb1be4b0e
+      internalID: -499140850
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderbirdIdleMouseOver_0
+      rect:
+        serializedVersion: 2
+        x: 1400
+        y: 1400
+        width: 350
+        height: 200
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3f7c176e41b33441acaed657453f4fa
+      internalID: -563710753
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderbirdIdleMouseOver_1
+      rect:
+        serializedVersion: 2
+        x: 1750
+        y: 1400
+        width: 350
+        height: 200
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9eeeee198de647458c93a38f1b2f940
+      internalID: -1826121013
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderbirdIdleMouseOver_2
+      rect:
+        serializedVersion: 2
+        x: 2100
+        y: 1400
+        width: 350
+        height: 200
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 29415a962c5ff2b4b93f3c5be17a9d1f
+      internalID: 779395689
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderbirdAttackStraight_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1200
+        width: 350
+        height: 200
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3fde975426fb73c4890c4762398b0333
+      internalID: -1722606330
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderbirdAttackStraight_1
+      rect:
+        serializedVersion: 2
+        x: 349
+        y: 1200
+        width: 350
+        height: 200
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cef95f35a51c6e647b7b201d3effc776
+      internalID: 1173391974
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderbirdAttackStraight_2
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 1200
+        width: 350
+        height: 200
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 901a7296f9e02674b9f6ce3e0b82c2b9
+      internalID: 1738888597
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderbirdAttackStraight_3
+      rect:
+        serializedVersion: 2
+        x: 1050
+        y: 1200
+        width: 350
+        height: 200
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd217a4a233185b4e94edadc3979b4f3
+      internalID: 1803128056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderbirdAttackStraight_4
+      rect:
+        serializedVersion: 2
+        x: 1400
+        y: 1200
+        width: 350
+        height: 200
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e6c6f27045376e43bee767cd67eedc4
+      internalID: 1366353887
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderbirdAttackStraight_5
+      rect:
+        serializedVersion: 2
+        x: 1750
+        y: 1200
+        width: 350
+        height: 200
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95d98b45adbfcfe45bff482007e92d0b
+      internalID: -388642210
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderbirdAttackStraight_6
+      rect:
+        serializedVersion: 2
+        x: 2100
+        y: 1200
+        width: 350
+        height: 200
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f4550aa29206e9498953f84195d4563
+      internalID: 224989643
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderbirdAttackUp_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1000
+        width: 350
+        height: 200
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d4fc736b735cf6041abc48c3fca2e76e
+      internalID: 674809972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderbirdAttackUp_1
+      rect:
+        serializedVersion: 2
+        x: 350
+        y: 1000
+        width: 350
+        height: 200
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2132666264603584990417a804e15562
+      internalID: 1987764513
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderbirdAttackUp_2
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 1000
+        width: 350
+        height: 200
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47a2d525e7ea8c6448f635a6dde2e9cd
+      internalID: 761360771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderbirdAttackUp_3
+      rect:
+        serializedVersion: 2
+        x: 1050
+        y: 1000
+        width: 350
+        height: 200
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1171c85bbe7d7e845a1be40365ec38dd
+      internalID: -1900318967
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderbirdAttackUp_4
+      rect:
+        serializedVersion: 2
+        x: 1400
+        y: 1001
+        width: 350
+        height: 200
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a44ade7594953a24bb1303384c6aa7e2
+      internalID: -977876640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderbirdAttackUp_5
+      rect:
+        serializedVersion: 2
+        x: 1750
+        y: 1000
+        width: 350
+        height: 200
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d2f70f1183f3a4849b9ae41f0fa57e86
+      internalID: -195530300
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderbirdAttackUp_6
+      rect:
+        serializedVersion: 2
+        x: 2100
+        y: 1000
+        width: 350
+        height: 200
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1833c4b0f9bbcf348bbf771aff5d2bd7
+      internalID: 1977662293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderbirdAttackUp_7
+      rect:
+        serializedVersion: 2
+        x: 2450
+        y: 1000
+        width: 350
+        height: 200
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7052447bbe790f94d85732d7647d680d
+      internalID: -618342369
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderbirdAttackDown_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 800
+        width: 350
+        height: 200
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff610a60b370a8344ba4d1b4b2fd4350
+      internalID: 1734979911
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderbirdAttackDown_1
+      rect:
+        serializedVersion: 2
+        x: 350
+        y: 800
+        width: 350
+        height: 200
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 48d66b0c354901748a440b7f1490bbbe
+      internalID: -2067961930
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderbirdAttackDown_2
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 800
+        width: 350
+        height: 200
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7fa95d4d2f49a0540816ab5ea83cf8bf
+      internalID: -83936661
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderbirdAttackDown_3
+      rect:
+        serializedVersion: 2
+        x: 1050
+        y: 800
+        width: 350
+        height: 200
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a768da184c797064eb0290ea04c2c01c
+      internalID: -969149824
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderbirdAttackDown_4
+      rect:
+        serializedVersion: 2
+        x: 1400
+        y: 800
+        width: 350
+        height: 200
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b2cc84727a52294abea9750cce40b8a
+      internalID: 940697078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderbirdAttackDown_5
+      rect:
+        serializedVersion: 2
+        x: 1750
+        y: 800
+        width: 350
+        height: 200
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c25ced9f7c0001240bc2e916caf78a55
+      internalID: -1017544593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderbirdAttackDown_6
+      rect:
+        serializedVersion: 2
+        x: 2100
+        y: 800
+        width: 350
+        height: 200
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d4d9ba38da533a46a23bd3318c9e979
+      internalID: 98280643
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderbirdAttackDown_7
+      rect:
+        serializedVersion: 2
+        x: 2450
+        y: 800
+        width: 350
+        height: 200
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75aa494f259f8c1439e2d04f0a42d152
+      internalID: -447192226
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderbirdGettingHit_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 600
+        width: 350
+        height: 200
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d40cb02910a264c46b45ead18d3721bc
+      internalID: 778341438
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderbirdGettingHit_1
+      rect:
+        serializedVersion: 2
+        x: 350
+        y: 600
+        width: 350
+        height: 200
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed75aa4ee6ce28b409dfc54f9840aaec
+      internalID: 569676593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderbirdGettingHit_2
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 600
+        width: 350
+        height: 200
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 072274f09119db940ac6d8922f3d00d6
+      internalID: 443167555
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderbirdGettingHit_3
+      rect:
+        serializedVersion: 2
+        x: 1050
+        y: 600
+        width: 350
+        height: 200
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42ada95716184a54d86a62d2af32cb53
+      internalID: 368978166
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderbirdGettingHit_4
+      rect:
+        serializedVersion: 2
+        x: 1400
+        y: 600
+        width: 350
+        height: 200
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c17653613e2b6694b8f661ea3687a47e
+      internalID: -1917968949
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderbirdGettingHit_5
+      rect:
+        serializedVersion: 2
+        x: 1750
+        y: 600
+        width: 350
+        height: 200
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 978adf1fc50089047add1f850e1fbba6
+      internalID: 1063132282
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderbirdTurn_0
+      rect:
+        serializedVersion: 2
+        x: 2100
+        y: 600
+        width: 350
+        height: 200
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e63b81cff1b958428e6af1ccbfe27aa
+      internalID: 1294200073
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderbirdTurn_1
+      rect:
+        serializedVersion: 2
+        x: 2450
+        y: 600
+        width: 350
+        height: 200
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 454e7dc711e9d6c47b6f9f6a5be20a9a
+      internalID: 1775647131
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderbirdDeath_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 400
+        width: 350
+        height: 200
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a32058147ad399b41b78c8aa73f14b10
+      internalID: -1870371369
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderbirdDeath_1
+      rect:
+        serializedVersion: 2
+        x: 350
+        y: 400
+        width: 350
+        height: 200
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2079112b0bbb3f64c8900c6553e2152e
+      internalID: 321358435
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderbirdDeath_2
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 400
+        width: 350
+        height: 200
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4125fc2a98d3e541ad561f1ea028ce9
+      internalID: -907243699
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderbirdDeath_3
+      rect:
+        serializedVersion: 2
+        x: 1050
+        y: 400
+        width: 350
+        height: 200
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 807ce259527d10745a1d95dbe2be2fb4
+      internalID: -396340878
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderbirdDeath_4
+      rect:
+        serializedVersion: 2
+        x: 1400
+        y: 400
+        width: 350
+        height: 200
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 121dd554fae6fce4fa37f41845179864
+      internalID: -1042657435
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderbirdDeath_5
+      rect:
+        serializedVersion: 2
+        x: 1750
+        y: 400
+        width: 350
+        height: 200
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1df55367f0aca32419e2eb7b0dd56522
+      internalID: 1350610287
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderbirdDeath_6
+      rect:
+        serializedVersion: 2
+        x: 2100
+        y: 400
+        width: 350
+        height: 200
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 39a06fc208cf78940b6665e270bac14f
+      internalID: 470290808
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Thunderbird200x350_45
+      rect:
+        serializedVersion: 2
+        x: 2450
+        y: 400
+        width: 350
+        height: 200
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 01931e240a6f8b24eb6d41099796c39b
+      internalID: -1510498609
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderbirdDefend_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 200
+        width: 350
+        height: 200
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0aaef65dc40736248ae4bdde54c899bf
+      internalID: 878161793
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderbirdDefend_1
+      rect:
+        serializedVersion: 2
+        x: 350
+        y: 200
+        width: 350
+        height: 200
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96a1fca25ef71604683505a06f4fc8a5
+      internalID: 1912638344
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderbirdDefend_2
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 200
+        width: 350
+        height: 200
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eabb931dbc039724dae541814ceca73f
+      internalID: -1020363136
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderbirdDefend_3
+      rect:
+        serializedVersion: 2
+        x: 1050
+        y: 200
+        width: 350
+        height: 200
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a61c3726a506f7f45bc31790661f1ba9
+      internalID: 1826037103
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderbirdMoving_0
+      rect:
+        serializedVersion: 2
+        x: 1400
+        y: 200
+        width: 350
+        height: 200
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c8ffa731fb9c8ad4bb24b375fc762774
+      internalID: 315741315
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderbirdMoving_1
+      rect:
+        serializedVersion: 2
+        x: 1750
+        y: 200
+        width: 350
+        height: 200
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42e22e34d8c5a1c428b9a7b301302713
+      internalID: -2033131957
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderbirdMoving_2
+      rect:
+        serializedVersion: 2
+        x: 2100
+        y: 200
+        width: 350
+        height: 200
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2acc24d448fa14f4592ca6a7468bd139
+      internalID: -1209261197
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderbirdMoving_3
+      rect:
+        serializedVersion: 2
+        x: 2450
+        y: 200
+        width: 350
+        height: 200
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee80c76e584965d4b909c49fb9478c7c
+      internalID: -1129797657
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderbirdStartMoving_0
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1
+        width: 350
+        height: 200
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 713c6c3c27d9cd4458db3d6de7229dee
+      internalID: -242307970
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderbirdStartMoving_1
+      rect:
+        serializedVersion: 2
+        x: 350
+        y: 0
+        width: 350
+        height: 200
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d1be5eb00d633e04bbeb07a564167871
+      internalID: -361143280
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderbirdStartMoving_2
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 0
+        width: 350
+        height: 200
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 187bf8419f29bfa4b939d30c2a3d6410
+      internalID: 1603263697
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderbirdStartMoving_3
+      rect:
+        serializedVersion: 2
+        x: 1050
+        y: 0
+        width: 350
+        height: 200
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9de2f4740ccf5e04e81c871529b75a51
+      internalID: -1224240559
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderbirdStopMoving_0
+      rect:
+        serializedVersion: 2
+        x: 1400
+        y: 0
+        width: 350
+        height: 200
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 606814a6fb43ed84b82a93ab0b2a72e7
+      internalID: 1691695886
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderbirdStopMoving_1
+      rect:
+        serializedVersion: 2
+        x: 1750
+        y: 0
+        width: 350
+        height: 200
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a877d0998d9f7214fa4c73e004e39932
+      internalID: -1126390439
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderbirdStopMoving_2
+      rect:
+        serializedVersion: 2
+        x: 2100
+        y: 0
+        width: 350
+        height: 200
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd2823a6a2c750043b2a8132c70e743c
+      internalID: -2064445850
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderbirdStopMoving_3
+      rect:
+        serializedVersion: 2
+        x: 2450
+        y: 0
+        width: 350
+        height: 200
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e74a99066e88b444eb7c532f81455a18
+      internalID: 1637691966
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Thunderbird200x350_45: -1510498609
+      ThunderbirdAttackDown_0: 1734979911
+      ThunderbirdAttackDown_1: -2067961930
+      ThunderbirdAttackDown_2: -83936661
+      ThunderbirdAttackDown_3: -969149824
+      ThunderbirdAttackDown_4: 940697078
+      ThunderbirdAttackDown_5: -1017544593
+      ThunderbirdAttackDown_6: 98280643
+      ThunderbirdAttackDown_7: -447192226
+      ThunderbirdAttackStraight_0: -1722606330
+      ThunderbirdAttackStraight_1: 1173391974
+      ThunderbirdAttackStraight_2: 1738888597
+      ThunderbirdAttackStraight_3: 1803128056
+      ThunderbirdAttackStraight_4: 1366353887
+      ThunderbirdAttackStraight_5: -388642210
+      ThunderbirdAttackStraight_6: 224989643
+      ThunderbirdAttackUp_0: 674809972
+      ThunderbirdAttackUp_1: 1987764513
+      ThunderbirdAttackUp_2: 761360771
+      ThunderbirdAttackUp_3: -1900318967
+      ThunderbirdAttackUp_4: -977876640
+      ThunderbirdAttackUp_5: -195530300
+      ThunderbirdAttackUp_6: 1977662293
+      ThunderbirdAttackUp_7: -618342369
+      ThunderbirdDeath_0: -1870371369
+      ThunderbirdDeath_1: 321358435
+      ThunderbirdDeath_2: -907243699
+      ThunderbirdDeath_3: -396340878
+      ThunderbirdDeath_4: -1042657435
+      ThunderbirdDeath_5: 1350610287
+      ThunderbirdDeath_6: 470290808
+      ThunderbirdDefend_0: 878161793
+      ThunderbirdDefend_1: 1912638344
+      ThunderbirdDefend_2: -1020363136
+      ThunderbirdDefend_3: 1826037103
+      ThunderbirdGettingHit_0: 778341438
+      ThunderbirdGettingHit_1: 569676593
+      ThunderbirdGettingHit_2: 443167555
+      ThunderbirdGettingHit_3: 368978166
+      ThunderbirdGettingHit_4: -1917968949
+      ThunderbirdGettingHit_5: 1063132282
+      ThunderbirdIdleMouseOver_0: -563710753
+      ThunderbirdIdleMouseOver_1: -1826121013
+      ThunderbirdIdleMouseOver_2: 779395689
+      ThunderbirdIdle_0: 896654344
+      ThunderbirdIdle_1: -1421403161
+      ThunderbirdIdle_2: 2041440274
+      ThunderbirdIdle_3: -499140850
+      ThunderbirdMoving_0: 315741315
+      ThunderbirdMoving_1: -2033131957
+      ThunderbirdMoving_2: -1209261197
+      ThunderbirdMoving_3: -1129797657
+      ThunderbirdStartMoving_0: -242307970
+      ThunderbirdStartMoving_1: -361143280
+      ThunderbirdStartMoving_2: 1603263697
+      ThunderbirdStartMoving_3: -1224240559
+      ThunderbirdStopMoving_0: 1691695886
+      ThunderbirdStopMoving_1: -1126390439
+      ThunderbirdStopMoving_2: -2064445850
+      ThunderbirdStopMoving_3: 1637691966
+      ThunderbirdTurn_0: 1294200073
+      ThunderbirdTurn_1: 1775647131
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
