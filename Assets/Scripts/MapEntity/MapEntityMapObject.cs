@@ -3,6 +3,8 @@ using System.Linq;
 
 using Cysharp.Threading.Tasks;
 
+using UnityEngine;
+
 public class MapEntityMapObject : BaseMapEntity, IDialogMapObjectOperation
 {
     private DataDialogMapObjectGroup _dialogData;
@@ -50,6 +52,7 @@ public class MapEntityMapObject : BaseMapEntity, IDialogMapObjectOperation
 
     public async override UniTask OnGoHero(Player player)
     {
+        Debug.Log($"OnGoHero");
         await base.OnGoHero(player);
 
         MapObject entity = (MapObject)_mapObject;

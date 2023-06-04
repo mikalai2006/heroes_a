@@ -216,13 +216,13 @@ public class LevelManager : Singleton<LevelManager>, ISaveDataPlay, ISaveDataGam
         Level = new DataLevel();
         Level = dataPlay.Level;
         Level.Settings.countPlayer = dataPlay.Level.Settings.countPlayer;
-        for (int i = 0; i < dataPlay.Level.Settings.countPlayer; i++)
-        {
-            var data = dataPlay.Level.listPlayer[i];
-            var player = new Player();
-            player.Load(dataPlay.Level.listPlayer[i].DataPlayer);
-            Level.listPlayer.Add(player);
-        }
+        // for (int i = 0; i < dataPlay.Level.Settings.countPlayer; i++)
+        // {
+        //     var data = dataPlay.Level.listPlayer[i];
+        //     var player = new Player();
+        //     player.Load(dataPlay.Level.listPlayer[i].DataPlayer);
+        //     Level.listPlayer.Add(player);
+        // }
 
         //foreach (Player player in level.listPlayer)
         //{

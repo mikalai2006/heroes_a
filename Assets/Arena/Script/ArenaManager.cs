@@ -899,27 +899,27 @@ public class ArenaManager : MonoBehaviour
         }
         else if (DialogArenaData.creaturesBank != null)
         {
-            var creaturesBank = heroRight.Data.ArenaCreatures.Values.ToList();
+            var creaturesBank = DialogArenaData.creaturesBank.Data.Defenders.Values.ToList();
             foreach (var creatureItem in creaturesBank)
             {
-                var key = DialogArenaData.creaturesBank.FirstOrDefault(x => x == creatureItem.Entity);
+                var key = DialogArenaData.creaturesBank.Data.Defenders.FirstOrDefault(x => x.Value == creatureItem).Key;
                 // empty slot.
                 if (creatureItem == null) continue;
 
                 // if creature is deaded.
-                if (heroRight.Data.ArenaCreatures[key].Death)
+                if (heroRight.Data.ArenaCreatures[creatureItem].Death)
                 {
-                    ArenaStat.AddDeadedCreature(heroRight.Data.ArenaCreatures[key], key.Data.value);
-                    heroRight.Data.ArenaCreatures[key] = null;
+                    ArenaStat.AddDeadedCreature(heroRight.Data.ArenaCreatures[creatureItem], DialogArenaData.creaturesBank.Data.Defenders[key].Data.value);
+                    DialogArenaData.creaturesBank.Data.Defenders[key].SetValueCreature(0);
                     continue;
                 }
 
-                var newValue = heroRight.Data.ArenaCreatures[key].Data.quantity;
-                if (key.Data.value - newValue > 0)
+                var newValue = heroRight.Data.ArenaCreatures[creatureItem].Data.quantity;
+                if (DialogArenaData.creaturesBank.Data.Defenders[key].Data.value - newValue > 0)
                 {
-                    ArenaStat.AddDeadedCreature(heroRight.Data.ArenaCreatures[key], key.Data.value - newValue);
+                    ArenaStat.AddDeadedCreature(heroRight.Data.ArenaCreatures[creatureItem], DialogArenaData.creaturesBank.Data.Defenders[key].Data.value - newValue);
                 }
-                key.Data.value = newValue;
+                DialogArenaData.creaturesBank.Data.Defenders[key].Data.value = newValue;
             }
         }
 
@@ -1506,7 +1506,7 @@ public class ArenaManager : MonoBehaviour
         {
             if (DialogArenaData.creaturesBank != null)
             {
-                var creatures = DialogArenaData.creaturesBank;
+                var creatures = DialogArenaData.creaturesBank.Data.Defenders;
                 var _schemaCreaturesBank = new List<Vector2Int>() {
                     new Vector2Int(15, 6),
                     new Vector2Int(1, 1),
@@ -1517,20 +1517,23 @@ public class ArenaManager : MonoBehaviour
                 for (int i = 0; i < creatures.Count; i++)
                 {
                     var creatureEntity = creatures[i];
-                    var creatureConfig = creatureEntity.ConfigAttribute;
-                    var GridGameObject = new ArenaCreature();
-                    GridGameObject.Init(this, heroRight);
-                    var size = creatureConfig.CreatureParams.Size;
-                    var dif = _schemaCreaturesBank[i].x < 2 && size > 1 ? 1 : 0;
-                    var position = new Vector3Int(Mathf.Abs(size - _schemaCreaturesBank[i].x - dif), _schemaCreaturesBank[i].y);
-                    var nodeObj = GridArenaHelper.GridTile.GetGridObject(position);
-                    GridGameObject.TypeArenaPlayer = TypeArenaPlayer.Right;
-                    GridGameObject.SetEntity(creatureEntity, nodeObj);
-                    GridGameObject.SetPosition(nodeObj);
+                    if (creatureEntity != null && creatureEntity.Data.value != 0)
+                    {
+                        var creatureConfig = creatureEntity.ConfigAttribute;
+                        var GridGameObject = new ArenaCreature();
+                        GridGameObject.Init(this, heroRight);
+                        var size = creatureConfig.CreatureParams.Size;
+                        var dif = _schemaCreaturesBank[i].x < 2 && size > 1 ? 1 : 0;
+                        var position = new Vector3Int(Mathf.Abs(size - _schemaCreaturesBank[i].x - dif), _schemaCreaturesBank[i].y);
+                        var nodeObj = GridArenaHelper.GridTile.GetGridObject(position);
+                        GridGameObject.TypeArenaPlayer = TypeArenaPlayer.Right;
+                        GridGameObject.SetEntity(creatureEntity, nodeObj);
+                        GridGameObject.SetPosition(nodeObj);
 
-                    await GridGameObject.CreateMapGameObject(nodeObj);
+                        await GridGameObject.CreateMapGameObject(nodeObj);
 
-                    ArenaQueue.AddEntity(GridGameObject);
+                        ArenaQueue.AddEntity(GridGameObject);
+                    }
                 }
             }
             else

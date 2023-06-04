@@ -99,7 +99,7 @@ public abstract class BaseMapEntity : MonoBehaviour//, IPointerDownHandler
                     {
 
                         Vector3 posObject = transform.position;
-                        if (activeHero.Data.path.Count > 0 && activeHero.Data.path[activeHero.Data.path.Count - 1].position == posObject)
+                        if (activeHero.Data.path != null && activeHero.Data.path.Count > 0 && activeHero.Data.path[activeHero.Data.path.Count - 1].position == posObject)
                         {
                             GameManager.Instance.ChangeState(GameState.StartMoveHero);
                         }

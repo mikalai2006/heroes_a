@@ -703,6 +703,8 @@ public class UIArena : UILocaleBase
         _dataResultDialog.experienceRight = _arenaManager.ArenaStat.totalExperienceRightHero;
         _dataResultDialog.isWinLeftHero = _arenaManager.ArenaStat.isWinLeftHero;
         _dataResultDialog.isWinRightHero = _arenaManager.ArenaStat.isWinRightHero;
+        _dataResultDialog.deathLeft = _arenaManager.ArenaStat.DeadedCreaturesLeft.ToDictionary(t => t.Key.Entity, t => t.Value);
+        _dataResultDialog.deathRight = _arenaManager.ArenaStat.DeadedCreaturesRight.ToDictionary(t => t.Key.Entity, t => t.Value);
         _processCompletionSource.SetResult(_dataResultDialog);
 
         OnUnloadArena?.Invoke();

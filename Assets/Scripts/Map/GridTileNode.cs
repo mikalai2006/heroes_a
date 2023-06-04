@@ -264,6 +264,7 @@ public class GridTileNode : IHeapItem<GridTileNode>
             "[x" + position.x + ",y" + position.y + "] \n" +
             "typeGround=" + TypeGround + ",\n" +
             "OccupiedUnit=" + OccupiedUnit?.ToString() + ",\n" +
+            "GuestedUnit=" + _guestedUnit?.ToString() + ",\n" +
             "StateNode=" + Convert.ToString((int)StateNode, 2) + ",\n" +
             "ProtectedUnit=" + ProtectedUnit?.ToString() + ",\n" +
             "countNeighbours=" + countRelatedNeighbors + ",\n" +

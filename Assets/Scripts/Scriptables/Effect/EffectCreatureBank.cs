@@ -37,18 +37,11 @@ public class EffectCreatureBank : BaseEffect
             .Where(t => t.NativeGround.typeGround == entity.MapObject.OccupiedNode.TypeGround)
             .ToList();
         // TODO ARENA
-        var creaturesBank = new List<EntityCreature>();
-        foreach (var creature in ((EntityMapObject)entity).Data.Defenders)
-        {
-            // var entityCreature = new EntityCreature(creature.creature);
-            // entityCreature.SetValueCreature(creature.value);
-            creaturesBank.Add(creature);
-        }
         var loadingOperations = new ArenaLoadOperation(new DialogArenaData()
         {
             heroAttacking = player.ActiveHero,
             creature = null,
-            creaturesBank = creaturesBank,
+            creaturesBank = (EntityMapObject)entity,
             town = null,
             ArenaSetting = arenaSetting[Random.Range(0, arenaSetting.Count())]
         });

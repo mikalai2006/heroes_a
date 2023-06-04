@@ -34,17 +34,34 @@ public class EntityMapObject : BaseEntity
             _id = saveData.id;
             _idEntity = saveData.idEntity;
             Effects = saveData.Effects;
+
+            var defenders = saveData.data.Defenders;
+            for (int i = 0; i < defenders.Count; i++)
+            {
+                var creature = defenders[i];
+                EntityCreature newCreature = null;
+                if (creature.Data.idObject != "" && creature.Data.value != 0)
+                {
+                    newCreature = new EntityCreature(null, new SaveDataUnit<DataCreature>()
+                    {
+                        data = creature.Data,
+                        idEntity = creature.Data.idObject,
+                    });
+                }
+                defenders[i] = newCreature;
+            }
         }
     }
 
     public override void SetDefenders(List<BankCreatureProtected> creatures)
     {
         Data.Defenders = new();
-        foreach (var creatureItem in creatures)
+        for (int i = 0; i < creatures.Count; i++)
         {
+            var creatureItem = creatures[i];
             var defender = new EntityCreature(creatureItem.creature);
             defender.SetValueCreature(creatureItem.value);
-            Data.Defenders.Add(defender);
+            Data.Defenders.Add(i, defender);
         }
     }
 
@@ -95,5 +112,6 @@ public class EntityMapObject : BaseEntity
 [System.Serializable]
 public struct DataEntityMapObject
 {
-    public List<EntityCreature> Defenders;
+    // public List<EntityCreature> Defenders;
+    public SerializableDictionary<int, EntityCreature> Defenders;
 }

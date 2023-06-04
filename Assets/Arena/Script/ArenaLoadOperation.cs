@@ -14,7 +14,7 @@ public struct DialogArenaData
     public EntityTown town;
     public EntityHero heroAttacking;
     public EntityHero heroDefending;
-    public List<EntityCreature> creaturesBank;
+    public EntityMapObject creaturesBank;
     public EntityCreature creature;
     public SOArenaSetting ArenaSetting;
 }
@@ -23,6 +23,8 @@ public struct ResultDialogArenaData
 {
     public bool isEnd;
     public int experienceLeft;
+    public Dictionary<BaseEntity, int> deathLeft;
+    public Dictionary<BaseEntity, int> deathRight;
     public int experienceRight;
     public bool isWinLeftHero;
     public bool isWinRightHero;

@@ -613,23 +613,19 @@ public class EntityHero : BaseEntity
     public void SetGuestForNode(GridTileNode newNode)
     {
         MapObject.OccupiedNode.SetAsGuested(null);
-        // OccupiedNode.SetAsGuested(null);
+        if (MapObject.OccupiedNode.OccupiedUnit == MapObject)
+        {
+            MapObject.OccupiedNode.SetOcuppiedUnit(null);
+        }
 
-        // OccupiedNode.SetOcuppiedUnit(null);
         SetPositionHero(newNode.position);
 
         MapObject.OccupiedNode = newNode;
         MapObject.OccupiedNode.SetAsGuested(MapObject);
-
-        // if (newNode.OccupiedUnit == null)
-        // {
-        //     OccupiedNode = newNode;
-        // }
-        // else
-        // {
-        //     OccupiedNode = newNode;
-        //     newNode.SetAsGuested(this);
-        // }
+        if (MapObject.OccupiedNode.OccupiedUnit == null)
+        {
+            MapObject.OccupiedNode.SetOcuppiedUnit(MapObject);
+        }
     }
 
     public void SetClearSky(Vector3Int startPosition)
