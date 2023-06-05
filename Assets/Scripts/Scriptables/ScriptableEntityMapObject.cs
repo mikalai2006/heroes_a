@@ -50,6 +50,7 @@ public enum TypeWorkAttribute
 {
     All = 0,
     One = 1,
+    OneNoDialog = 2,
 }
 
 [System.Serializable]

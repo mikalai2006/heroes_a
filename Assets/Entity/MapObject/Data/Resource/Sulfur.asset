@@ -63,7 +63,7 @@ MonoBehaviour:
   listTypeNoPath: 
   listRuleInput: 
   TypeWorkObject: 1
-  TypeWorkEffect: 0
+  TypeWorkEffect: 2
   Effects:
   - Item:
       description:

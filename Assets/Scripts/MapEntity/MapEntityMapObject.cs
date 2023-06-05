@@ -28,6 +28,7 @@ public class MapEntityMapObject : BaseMapEntity, IDialogMapObjectOperation
         {
             effect.CreateDialogData(ref _dialogData, _mapObject.Entity);
         }
+
         var groups = new List<DataDialogMapObjectGroup>();
 
         groups.Add(_dialogData);
@@ -52,14 +53,22 @@ public class MapEntityMapObject : BaseMapEntity, IDialogMapObjectOperation
 
     public async override UniTask OnGoHero(Player player)
     {
-        Debug.Log($"OnGoHero");
         await base.OnGoHero(player);
 
-        MapObject entity = (MapObject)_mapObject;
+        // EntityMapObject entity = (EntityMapObject)_mapObject.Entity;
+        ScriptableEntityMapObject configData = (ScriptableEntityMapObject)_mapObject.ConfigData;
+        // if (entity.ConfigData.TypeMapObject == TypeMapObject.Resources) {
+        //     return;
+        // }
+
         if (LevelManager.Instance.ActivePlayer.DataPlayer.playerType != PlayerType.Bot)
         {
+            if (configData.TypeWorkEffect == TypeWorkAttribute.OneNoDialog)
+            {
+                await OnHeroGo(player, default);
+                return;
+            }
 
-            ScriptableEntityMapObject configData = (ScriptableEntityMapObject)_mapObject.ConfigData;
             DataResultDialog result = await OnTriggeredHero();
             if (result.isOk)
             {

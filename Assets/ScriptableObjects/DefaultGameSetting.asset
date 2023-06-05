@@ -228,11 +228,11 @@ MonoBehaviour:
   arenaMaxCountQueue: 15
   speedArenaAnimation: 0.1
   paintAllowAttackNode: 1
-  colorAllowAttackNode: {r: 1, g: 0.8901961, b: 0, a: 0.47058824}
+  colorAllowAttackNode: {r: 1, g: 0.8901961, b: 0, a: 0.19607843}
   colorNodeRunSpell: {r: 1, g: 0.88953507, b: 0, a: 0.47058824}
   paintAllowAttackCreature: 1
   colorAllowAttackCreature: {r: 1, g: 0.8901961, b: 0, a: 0.47058824}
-  paintActiveCreature: 1
+  paintActiveCreature: 0
   colorActiveCreature: {r: 0.77254903, g: 1, b: 0, a: 0.6392157}
   colorMaskCreature: {r: 0.10323429, g: 1, b: 0, a: 1}
   showPath: 1
