@@ -49,6 +49,7 @@ MonoBehaviour:
   Effects: []
   TypeFaction: 1
   Creature:
+  - {fileID: 11400000, guid: 895c0aaa61289ee498260bf96e0174a8, type: 2}
   - {fileID: 11400000, guid: 7d1983f083e2c9a49bc2725df7d9691b, type: 2}
   references:
     version: 2

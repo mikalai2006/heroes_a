@@ -50,6 +50,7 @@ MonoBehaviour:
   TypeFaction: 1
   Creature:
   - {fileID: 11400000, guid: 7df000dfe67f063478052d4e0578b42a, type: 2}
+  - {fileID: 11400000, guid: ed3906efa43b4174ba60eadd0d6aa02b, type: 2}
   references:
     version: 2
     RefIds: []
