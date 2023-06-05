@@ -247,4 +247,9 @@ public class ArenaWarMachineMonoBehavior : MonoBehaviour
         _collider.enabled = false;
         _model.GetComponent<SpriteRenderer>().sortingOrder = -1;
     }
+
+    public void SetColorModel(Color color)
+    {
+        _model.GetComponent<SpriteRenderer>().color = color;
+    }
 }

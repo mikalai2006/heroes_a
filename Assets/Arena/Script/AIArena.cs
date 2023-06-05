@@ -66,12 +66,12 @@ public class AIArena
             var result = await dialogWindow.ShowAndHide();
             if (result.isOk)
             {
-                _arenaManager.EnableInputSystem();
                 _arenaHeroEntity.typearenaHeroStatus = TypearenaHeroStatus.Runned;
                 _arenaManager.heroLeft.typearenaHeroStatus = TypearenaHeroStatus.Victorious;
                 await _arenaManager.CalculateStat();
                 return;
             }
+            _arenaManager.EnableInputSystem();
         }
 
 

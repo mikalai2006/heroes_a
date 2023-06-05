@@ -684,13 +684,13 @@ public class UIArena : UILocaleBase
 
         var dialogWindow = new DialogHelpProvider(dialogData);
         var result = await dialogWindow.ShowAndHide();
+        _arenaManager.EnableInputSystem();
         if (result.isOk)
         {
             _arenaManager.heroLeft.typearenaHeroStatus = TypearenaHeroStatus.Runned;
             _arenaManager.heroRight.typearenaHeroStatus = TypearenaHeroStatus.Victorious;
             await OnClickClose();
         }
-        _arenaManager.EnableInputSystem();
     }
 
     private void UnloadArena()

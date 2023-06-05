@@ -351,4 +351,11 @@ public class ArenaWarMachine : ArenaEntityBase
         await ArenaWarMachineMonoBehavior.RunGettingHitSpell();
         await RemoveSpellAction();
     }
+
+    public override void SetActiveColor(Color color)
+    {
+        base.SetActiveColor(color);
+
+        ArenaWarMachineMonoBehavior.SetColorModel(color);
+    }
 }

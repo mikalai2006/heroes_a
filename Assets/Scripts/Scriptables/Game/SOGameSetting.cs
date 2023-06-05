@@ -53,6 +53,7 @@ public class SOGameSetting : ScriptableObject
     public Color colorAllowAttackCreature;
     public bool paintActiveCreature;
     public Color colorActiveCreature;
+    public Color colorMaskCreature;
     public bool showPath;
     public bool showShadowCursor;
     public Color colorShadow;

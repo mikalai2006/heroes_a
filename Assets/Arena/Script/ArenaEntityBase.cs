@@ -808,6 +808,11 @@ public abstract class ArenaEntityBase
     // //     }
     // // }
     #endregion
+
+    public virtual void SetActiveColor(Color color)
+    {
+
+    }
 }
 
 public struct RangeDamage

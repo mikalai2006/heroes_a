@@ -649,4 +649,11 @@ public class ArenaCreature : ArenaEntityBase
         await UniTask.Yield();
         return arenaManager.FightingOccupiedNodes;
     }
+
+    public override void SetActiveColor(Color color)
+    {
+        base.SetActiveColor(color);
+
+        ArenaMonoBehavior.SetColorActive(color);
+    }
 }

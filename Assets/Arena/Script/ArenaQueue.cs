@@ -35,6 +35,8 @@ public class ArenaQueue
 
         if (this.activeEntity.arenaEntity != null && !this.activeEntity.arenaEntity.Death)
         {
+            activeEntity.arenaEntity.SetActiveColor(Color.white);
+
             if (activeEntity.arenaEntity.Data.waitTick > 0)
             {
                 ListEntitiesPhaseWait.Remove(activeEntity);
@@ -79,6 +81,7 @@ public class ArenaQueue
         //     .Concat(ListEntities.Where(t => t.round != ActiveRound));
 
         activeEntity = GetQueue().ElementAt(0);
+        activeEntity.arenaEntity.SetActiveColor(LevelManager.Instance.ConfigGameSettings.colorMaskCreature);
 
         if (ActiveRound != activeEntity.round)
         {

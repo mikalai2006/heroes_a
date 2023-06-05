@@ -521,4 +521,9 @@ public class ArenaCreatureMB : MonoBehaviour
             if (i < count - 1) await UniTask.Delay(time);
         }
     }
+
+    public void SetColorActive(Color color)
+    {
+        _model.GetComponent<SpriteRenderer>().color = color;
+    }
 }
