@@ -12,8 +12,8 @@ public class EventInputTilemap : MonoBehaviour
     private Vector3 Difference;
     private Vector3 ResetCamera;
     private Camera _camera;
-    private float timeDragging = 0.0f;
-    private float timeClickNotDrag = .05f;
+    // private float timeDragging = 0.0f;
+    // private float timeClickNotDrag = .1f;
     private float timeDragDelay = .1f;
     private int SizeEmptyEdge = 3;
     private float timeClickPrev;
@@ -28,12 +28,14 @@ public class EventInputTilemap : MonoBehaviour
         _inputManager.Enable();
         _inputManager.Click += OnClick;
         _inputManager.Drag += DragMap;
+        BaseMapEntity.OnDrag += DragMap;
     }
 
     private void OnDisable()
     {
         _inputManager.Click -= OnClick;
         _inputManager.Drag -= DragMap;
+        BaseMapEntity.OnDrag -= DragMap;
         _inputManager.Disable();
     }
     private void Awake()
@@ -108,7 +110,7 @@ public class EventInputTilemap : MonoBehaviour
     {
         if (
             context.performed
-            && timeDragging < timeClickNotDrag
+            && _inputManager.TimeDragging < _inputManager.timeClickNotDrag
             && !_inputManager.ClickedOnUi()
             && !_inputManager.Zooming
             && !_inputManager.Dragging
@@ -124,7 +126,6 @@ public class EventInputTilemap : MonoBehaviour
 
             if (rayHit.collider.gameObject == tileMap.gameObject)
             {
-
                 if (context.interaction is PressInteraction || context.interaction is TapInteraction)
                 {
                     Debug.Log($"{context.interaction},{tilePos}");
@@ -182,20 +183,20 @@ public class EventInputTilemap : MonoBehaviour
             // Vector2 posMouse = _camera.ScreenToWorldPoint(pos);
             // Vector3Int tilePos = tileMap.WorldToCell(posMouse);
 
-            if (rayHit.collider.gameObject == tileMap.gameObject)
-            {
-                _inputManager.SetDragging(true);
-                // Debug.Log("Start Dragging!");
-                OnStartDragTilemap();
-                dragCoroutine = StartCoroutine(Drag());
-            }
+            // if (rayHit.collider.gameObject == tileMap.gameObject)
+            // {
+            _inputManager.SetDragging(true);
+            Debug.Log("Start Dragging!");
+            OnStartDragTilemap();
+            dragCoroutine = StartCoroutine(Drag());
+            // }
         }
 
         if ((context.canceled && _inputManager.Dragging) || _inputManager.Zooming)
         {
             _inputManager.SetDragging(false);
             StopCoroutine(dragCoroutine);
-            // Debug.Log("Stop Dragging!");
+            Debug.Log("Stop Dragging!");
             StartCoroutine(StopDrag());
         }
     }
@@ -209,7 +210,8 @@ public class EventInputTilemap : MonoBehaviour
         Difference = Origin - _camera.ScreenToWorldPoint(_inputManager.clickPosition());
         if (Difference != Vector3.zero)
         {
-            timeDragging += Time.deltaTime;
+            float time = _inputManager.TimeDragging + Time.deltaTime;
+            _inputManager.SetTimeDragging(time);
             // Debug.Log($"Dragging {Difference} / time {timeDragging} , distance{Vector2.Distance(Difference, currentPos)}!");
             _camera.transform.position = ClampCamera(_camera.transform.position + Difference);
         }
@@ -226,10 +228,10 @@ public class EventInputTilemap : MonoBehaviour
 
     private IEnumerator StopDrag()
     {
-        if (timeDragging > 0)
+        if (_inputManager.TimeDragging > 0)
         {
             yield return new WaitForSeconds(.21f);
         }
-        timeDragging = 0;
+        _inputManager.SetTimeDragging(0);
     }
 }

@@ -9,6 +9,9 @@ public class GlobalMapInputManager
 {
     public delegate void ArenaClickEvent(InputAction.CallbackContext context);
     private static GlobalMapInputController _input = new();
+    public float timeClickNotDrag = .05f;
+    public static float _timeDragging = 0.0f;
+    public float TimeDragging => _timeDragging;
     private static bool _isDragging;
     public bool Dragging => _isDragging;
     private static bool _isZooming;
@@ -20,6 +23,10 @@ public class GlobalMapInputManager
     public void SetDragging(bool status)
     {
         _isDragging = status;
+    }
+    public void SetTimeDragging(float value)
+    {
+        _timeDragging = value;
     }
 
     public GlobalMapInputController.MoveZoomActions MoveZoom => _input.MoveZoom;

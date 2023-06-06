@@ -206,6 +206,15 @@ public class Player
         // }
     }
 
+    public bool GetOpenSkyByNode(Vector3Int position)
+    {
+        var node = GameManager.Instance.MapManager.GridTileHelper().GetNode(position);
+        var flag = ((NoskyMask)(1 << DataPlayer.id));
+        var nosky = LevelManager.Instance.Level.nosky;
+
+        return nosky.ContainsKey(node.position) && nosky[node.position].HasFlag(flag);
+    }
+
     public void AddMines(EntityMine mine)
     {
         // mine.SetPlayer(this);

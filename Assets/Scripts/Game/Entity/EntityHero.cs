@@ -18,6 +18,7 @@ public class EntityHero : BaseEntity
     [NonSerialized] public EntityBook SpellBook;
     //sqrt((Attack × 0.05 + 1) × (Defense × 0.05 + 1))
     public int Streight => (int)((Data.PSkills[TypePrimarySkill.Attack] * 0.05f + 1) * (Data.PSkills[TypePrimarySkill.Defense] * 0.05f + 1));
+    public int AIHeroCreatures => Data.Creatures.Select(t => t.Value != null ? t.Value.totalAI : 0).Sum() * Streight;
     // [NonSerialized] public ArenaHeroEntity ArenaHeroEntity;
     public ScriptableEntityHero ConfigData => (ScriptableEntityHero)ScriptableData;
     // public ScriptableAttributeHero ConfigAttribute => (ScriptableAttributeHero)ScriptableDataAttribute;
@@ -723,7 +724,10 @@ public class EntityHero : BaseEntity
             .FindPath(startPoint, endPoint, isDiagonal);
 
         // Debug.Log($"Draw path::: {endPoint}[{Position}]= {path.Count}");
-        this.SetPathHero(path);
+        if (path != null && path.Count > 0)
+        {
+            this.SetPathHero(path);
+        }
 
         // if (
         //     path == null
@@ -895,6 +899,10 @@ public class EntityHero : BaseEntity
 
     public void AIFindResource()
     {
+        if (Data.Creatures.Where(t => t.Value != null).Count() == 0)
+        {
+            return;
+        }
         //Find
         var potentialPoints = GameManager.Instance
             .MapManager
@@ -909,28 +917,53 @@ public class EntityHero : BaseEntity
         while (potentialPoints.Count > 0)
         {
             var node = potentialPoints[0];
-            if (node.OccupiedUnit != null && node.OccupiedUnit.ConfigData.TypeEntity == TypeEntity.MapObject)
+            int streightNeutralArmy = 0;
+
+            // get streight defenders.
+            if (
+                node.OccupiedUnit != null
+                && node.OccupiedUnit.Entity is EntityMapObject
+                && ((EntityMapObject)node.OccupiedUnit.Entity).Data.Defenders != null
+                && ((EntityMapObject)node.OccupiedUnit.Entity).Data.Defenders.Count > 0
+            )
             {
-                ScriptableEntityMapObject configData = (ScriptableEntityMapObject)node.OccupiedUnit.ConfigData;
-                if (
-                    node.StateNode.HasFlag(StateNode.Occupied)
-                    && !node.StateNode.HasFlag(StateNode.Guested)
-                    && !node.StateNode.HasFlag(StateNode.Empty)
-                    && (node.OccupiedUnit != null && node.OccupiedUnit.Entity.Player != Player)
-                    && !node.StateNode.HasFlag(StateNode.Visited)
-                    && node.position != MapObject.Position
-                    )
+                streightNeutralArmy = ((EntityMapObject)node.OccupiedUnit.Entity).Data.Defenders.Select(t => t.Value.totalAI).Sum();
+            }
+
+            // get streight protected unit.
+            if (
+                streightNeutralArmy == 0
+                && node.ProtectedUnit != null
+                && node.ProtectedUnit.Entity is EntityCreature
+            )
+            {
+                streightNeutralArmy = ((EntityCreature)node.ProtectedUnit.Entity).totalAI;
+            }
+            var streightHeroArmy = Streight * Data.Creatures.Select(t => t.Value?.totalAI).Sum();
+
+            Debug.Log($"streightNeutralArmy={streightNeutralArmy}");
+            Debug.Log($"streightHeroArmy={streightHeroArmy}");
+            Debug.Log($"levelAgr={ConfigData.ClassHero.levelAgression}, koof={(float)streightNeutralArmy / (float)streightHeroArmy}");
+
+            if (streightNeutralArmy > 0 && ((float)streightNeutralArmy / (float)streightHeroArmy >= ConfigData.ClassHero.levelAgression))
+            {
+                potentialPoints.RemoveAt(0);
+                return;
+            }
+
+            if (
+                node.StateNode.HasFlag(StateNode.Occupied)
+                && !node.StateNode.HasFlag(StateNode.Guested)
+                && !node.StateNode.HasFlag(StateNode.Empty)
+                && (node.OccupiedUnit != null && node.OccupiedUnit.Entity.Player != Player)
+                && !node.StateNode.HasFlag(StateNode.Visited)
+                && node.position != MapObject.Position
+                )
+            {
+                var path = FindPathForHero(node.position, true);
+                if (path != null)
                 {
-                    Debug.Log($"::: FindPathForHero [{MapObject.Position}] for [{node.position}-{configData.name}]");
-                    var path = FindPathForHero(node.position, true);
-                    if (path != null)
-                    {
-                        break;
-                    }
-                    else
-                    {
-                        potentialPoints.RemoveAt(0);
-                    }
+                    break;
                 }
                 else
                 {

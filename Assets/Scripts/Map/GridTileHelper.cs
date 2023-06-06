@@ -62,6 +62,10 @@ public class GridTileHelper
 
     public List<GridTileNode> FindPath(Vector3Int start, Vector3Int end, bool isDiagonal = false, bool ignoreNotWalkable = false)
     {
+        var flag = LevelManager.Instance.ActivePlayer == null
+            ? NoskyMask.None
+            : ((NoskyMask)(1 << LevelManager.Instance.ActivePlayer.DataPlayer.id));
+        var nosky = LevelManager.Instance.Level.nosky;
         // GameManager.Instance.MapManager.ResetTestTileMap();
 
         GridTileNode startNode = _gridTile.GetGridObject(start);
@@ -167,9 +171,16 @@ public class GridTileHelper
                 }
 
                 bool walk = (
+                    // Check open sky.
+                    (
+                        (nosky.ContainsKey(neighbourNode.position)
+                        && nosky[neighbourNode.position].HasFlag(flag))
+                        ||
+                        nosky.Count == 0
+                    )
                     // neighbourNode.Empty
                     // && neighbourNode.Enable
-                    neighbourNode.StateNode.HasFlag(StateNode.Empty)
+                    && neighbourNode.StateNode.HasFlag(StateNode.Empty)
                     && (
                         !neighbourNode.StateNode.HasFlag(StateNode.Protected)
                         || (
