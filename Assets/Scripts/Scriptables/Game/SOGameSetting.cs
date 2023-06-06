@@ -30,6 +30,7 @@ public class SOGameSetting : ScriptableObject
     public int countBuildPerDay;
     public int countRecoveryManaPerDay;
     public int countSpellPerRound;
+    public float timePulseNewBuild = 1.5f;
 
     [Header("Setting System")]
     [Space(5)]

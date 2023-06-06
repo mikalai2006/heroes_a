@@ -80,7 +80,7 @@ public class BuildMonoBehavior : MonoBehaviour, IPointerClickHandler
                 sprite.gameObject.AddComponent<Pulsable>();
             }
         }
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(LevelManager.Instance.ConfigGameSettings.timePulseNewBuild);
         foreach (Pulsable pulsable in GameObject.FindObjectsOfType<Pulsable>())
         {
             pulsable.Reset();
