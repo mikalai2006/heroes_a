@@ -186,7 +186,7 @@ public class EventInputTilemap : MonoBehaviour
             // if (rayHit.collider.gameObject == tileMap.gameObject)
             // {
             _inputManager.SetDragging(true);
-            Debug.Log("Start Dragging!");
+            // Debug.Log("Start Dragging!");
             OnStartDragTilemap();
             dragCoroutine = StartCoroutine(Drag());
             // }
@@ -196,7 +196,7 @@ public class EventInputTilemap : MonoBehaviour
         {
             _inputManager.SetDragging(false);
             StopCoroutine(dragCoroutine);
-            Debug.Log("Stop Dragging!");
+            // Debug.Log("Stop Dragging!");
             StartCoroutine(StopDrag());
         }
     }

@@ -91,7 +91,6 @@ public abstract class BaseMapEntity : MonoBehaviour//, IPointerDownHandler
 
     public async virtual void OnClick(InputAction.CallbackContext context)
     {
-        // Debug.Log($"Click mapObject /{context.interaction}");
         if (
             context.performed
             && _inputManager.TimeDragging < _inputManager.timeClickNotDrag
@@ -101,7 +100,7 @@ public abstract class BaseMapEntity : MonoBehaviour//, IPointerDownHandler
         {
             var rayHit = Physics2D.GetRayIntersection(_camera.ScreenPointToRay(_inputManager.clickPosition()));
             if (!rayHit.collider) return;
-            if (rayHit.collider.gameObject == gameObject) // _model.gameObject
+            if (rayHit.collider.gameObject == gameObject)
             {
                 if (context.interaction is PressInteraction || context.interaction is TapInteraction)
                 {
