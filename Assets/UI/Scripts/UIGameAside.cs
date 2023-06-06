@@ -63,7 +63,7 @@ public class UIGameAside : UILocaleBase
 
     private VisualElement _townbox;
 
-    const int countTown = 3;
+    private int _countTown = LevelManager.Instance.ConfigGameSettings.countTownAside;
     private GlobalMapInputManager _globalInputManager;
 
     // private SceneInstance _scene;
@@ -387,7 +387,7 @@ public class UIGameAside : UILocaleBase
     {
         _townbox.Clear();
 
-        for (int i = 0; i < countTown; i++)
+        for (int i = 0; i < _countTown; i++)
         {
             var newButtonTown = _templateButtonTown.Instantiate();
 
@@ -662,7 +662,7 @@ public class UIGameAside : UILocaleBase
     {
         var ArrowTopBtn = aside.Q<VisualElement>("arrowtop");
         var ArrowBottomBtn = aside.Q<VisualElement>("arrowbottom");
-        if (player.DataPlayer.PlayerDataReferences.ListTown.Count < countTown)
+        if (player.DataPlayer.PlayerDataReferences.ListTown.Count < _countTown)
         {
             ArrowTopBtn.SetEnabled(false);
             ArrowBottomBtn.SetEnabled(false);

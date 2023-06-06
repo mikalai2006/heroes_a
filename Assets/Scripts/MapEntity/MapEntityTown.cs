@@ -6,8 +6,8 @@ using Cysharp.Threading.Tasks;
 using Loader;
 
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.InputSystem;
+// using UnityEngine.EventSystems;
+// using UnityEngine.InputSystem;
 
 public class MapEntityTown : BaseMapEntity
 {

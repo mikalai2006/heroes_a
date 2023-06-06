@@ -49,10 +49,10 @@
     flex-grow: 0;
     flex-shrink: 0;
     white-space: nowrap;
-    padding-left: 4px;
-    padding-right: 4px;
-    padding-top: 4px;
-    padding-bottom: 4px;
+    padding-left: 2px;
+    padding-right: 2px;
+    padding-top: 2px;
+    padding-bottom: 2px;
 }
 
 .aside_actionbox {
@@ -68,7 +68,7 @@
 }
 
 .aside_town_button {
-    height: 26%;
+    height: 25%;
 }
 
 .aside_blok_list {

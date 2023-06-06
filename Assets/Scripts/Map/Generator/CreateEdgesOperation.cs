@@ -1,11 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Loader;
 using Cysharp.Threading.Tasks;
 using System;
-using System.Linq;
-using Random = UnityEngine.Random;
 using UnityEngine.Localization;
 
 public class CreateEdgesOperation : ILoadingOperation

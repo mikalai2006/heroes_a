@@ -23,7 +23,13 @@ public class SOGameSetting : ScriptableObject
     [SerializeField] public List<CostEntity> CostHero;
     [SerializeField] public List<Sprite> SpriteHall;
     [SerializeField] public List<Sprite> SpriteCastle;
+
+    [Header("Setting Game")]
+    public int countTownAside = 4;
     public int maxCountHero = 5;
+    public int countBuildPerDay;
+    public int countRecoveryManaPerDay;
+    public int countSpellPerRound;
 
     [Header("Setting System")]
     [Space(5)]
@@ -31,9 +37,6 @@ public class SOGameSetting : ScriptableObject
     [Range(10, 1000)] public int timeDelayDoBot;
     [Range(.05f, 1f)] public float speedHero;
     public AnimationCurve probabilityExperience;
-    public int countBuildPerDay;
-    public int countRecoveryManaPerDay;
-    public int countSpellPerRound;
 
     [Header("Setting Movement")]
     [Space(5)]

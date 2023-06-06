@@ -139,6 +139,7 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
         // Clear all tilemap.
         InitSetting();
 
+        Level = LevelManager.Instance.Level;
 
         // Create grid tile nodes.
         gridTileHelper = new GridTileHelper(gameModeData.width, gameModeData.height);
@@ -394,6 +395,12 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
             //     town.SetPlayer(LevelManager.Instance.GetPlayer(unitTown.data.idPlayer));
             // }
         }
+
+        ResetSky(Level.nosky);
+
+        CreateEdges();
+
+        LevelManager.Instance.ActivePlayer.DataPlayer.PlayerDataReferences.ListHero[0].SetHeroAsActive();
     }
 
     private void InitSetting()
@@ -509,9 +516,8 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
         operations.Enqueue(new CreateResourceEveryWeekOperation(this));
         operations.Enqueue(new CreateResourceOperation(this));
         operations.Enqueue(new CreateArtifactOperation(this));
-        operations.Enqueue(new CreateEdgesOperation(this));
+        // operations.Enqueue(new CreateEdgesOperation(this));
         await GameManager.Instance.LoadingScreenProvider.LoadAndDestroy(operations);
-
         // Application.targetFrameRate = -1;
 
 #if UNITY_EDITOR
@@ -525,6 +531,8 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
 
         setSizeTileMap();
         // await UniTask.Delay(1);
+
+        CreateEdges();
     }
 
     private void setSizeTileMap()
@@ -1080,5 +1088,24 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
     public void ResetUnitManager()
     {
         Helpers.DestroyChildren(BlokUnits.transform);
+    }
+
+    /// <summary>
+    /// Create edge borders map
+    /// </summary>
+    /// <returns>UniTask</returns>
+    private void CreateEdges()
+    {
+        int countEdgeTile = 3;
+        for (int x = -countEdgeTile; x < gameModeData.width + countEdgeTile; x++)
+        {
+            for (int y = -countEdgeTile; y < gameModeData.height + countEdgeTile; y++)
+            {
+                if (x < 0 || y < 0 || x > gameModeData.width - 1) //  || y > _root.gameModeData.height - 1
+                {
+                    _tileMapEdge.SetTile(new Vector3Int(x, y), _tileEdge);
+                }
+            }
+        }
     }
 }
