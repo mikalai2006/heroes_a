@@ -250,10 +250,27 @@ public class MapEntityHero : BaseMapEntity
     {
         float time = LevelManager.Instance.ConfigGameSettings.speedHero;
         float elapsedTime = 0;
+
+        var flag = (NoskyMask)(1 << LevelManager.Instance.ActiveUserPlayer.DataPlayer.id);
+        var posInt = new Vector3Int((int)endPosition.x, (int)endPosition.y);
         while (elapsedTime < time)
         {
             transform.position = Vector3.Lerp(startPosition, endPosition, (elapsedTime / time));
-            if (Camera.main != null)
+            if (
+                LevelManager.Instance.ConfigGameSettings.showDoBot
+                ||
+                (
+                    MapObject.Entity.Player != null
+                    &&
+                    MapObject.Entity.Player.DataPlayer.command == LevelManager.Instance.ActiveUserPlayer.DataPlayer.command
+                )
+                ||
+                (
+                    LevelManager.Instance.Level.nosky.ContainsKey(posInt)
+                    &&
+                    LevelManager.Instance.Level.nosky[posInt].HasFlag(flag)
+                )
+            )
             {
                 Camera.main.transform.position = Vector3.Lerp(
                     startPosition + new Vector3(0, 0, -10),

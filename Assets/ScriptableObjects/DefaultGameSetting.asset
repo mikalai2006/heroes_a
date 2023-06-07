@@ -78,7 +78,14 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 626ef0f949f41a34783ae40fb4879a9e, type: 3}
   - {fileID: 21300000, guid: 172a0974005dde84094bbdca5eda6923, type: 3}
   - {fileID: 21300000, guid: e0dc16f7d4c92af4e8a9e1173979128d, type: 3}
+  showBgColorMapObject: 0
+  showDoBot: 0
+  countTownAside: 4
   maxCountHero: 5
+  countBuildPerDay: 1
+  countRecoveryManaPerDay: 1
+  countSpellPerRound: 5
+  timePulseNewBuild: 1.5
   deltaDoubleClick: 0.5
   timeDelayDoBot: 267
   speedHero: 0.242
@@ -196,9 +203,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  countBuildPerDay: 1
-  countRecoveryManaPerDay: 1
-  countSpellPerRound: 5
   baseMovementValue: 1900
   DependencyCreatureOnMove:
   - levelCreature: 3

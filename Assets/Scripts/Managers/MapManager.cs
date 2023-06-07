@@ -1043,9 +1043,16 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
         GridTileNode startNode
             = gridTileHelper.GridTile.GetGridObject(startPosition);
         List<GridTileNode> listNode = gridTileHelper.GetNeighboursAtDistance(startNode, distance + countClearSky);
-        for (int i = 0; i < listNode.Count; i++)
+        if (
+            LevelManager.Instance.ConfigGameSettings.showDoBot
+            || LevelManager.Instance.ActivePlayer.DataPlayer.playerType != PlayerType.Bot
+            || LevelManager.Instance.ActivePlayer.DataPlayer.command == LevelManager.Instance.ActiveUserPlayer.DataPlayer.command
+        )
         {
-            _tileMapSky.SetTile(listNode[i].position, null);
+            for (int i = 0; i < listNode.Count; i++)
+            {
+                _tileMapSky.SetTile(listNode[i].position, null);
+            }
         }
         return listNode;
     }

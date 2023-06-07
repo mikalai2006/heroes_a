@@ -27,6 +27,7 @@ public class SOGameSetting : ScriptableObject
     [Header("Setting Global Map")]
     [Space(5)]
     public bool showBgColorMapObject;
+    [Tooltip("Show as walks bot other commandes")] public bool showDoBot;
 
     [Header("Setting Game")]
     [Space(5)]

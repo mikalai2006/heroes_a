@@ -146,7 +146,26 @@ public class MapObject
 
     public void SetPositionCamera(Vector3 pos)
     {
-        Camera.main.transform.position = pos + new Vector3(0, 0, -10);
+        var flag = (NoskyMask)(1 << LevelManager.Instance.ActiveUserPlayer.DataPlayer.id);
+        var posInt = new Vector3Int((int)pos.x, (int)pos.y);
+        if (
+            LevelManager.Instance.ConfigGameSettings.showDoBot
+            ||
+            (
+                Entity.Player != null
+                &&
+                Entity.Player.DataPlayer.command == LevelManager.Instance.ActiveUserPlayer.DataPlayer.command
+            )
+            ||
+            (
+                LevelManager.Instance.Level.nosky.ContainsKey(posInt)
+                &&
+                LevelManager.Instance.Level.nosky[posInt].HasFlag(flag)
+            )
+        )
+        {
+            Camera.main.transform.position = pos + new Vector3(0, 0, -10);
+        }
     }
 
     public void SetProtectedNode(GridTileNode protectedNode)

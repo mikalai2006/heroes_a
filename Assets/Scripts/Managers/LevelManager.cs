@@ -28,6 +28,14 @@ public class LevelManager : Singleton<LevelManager>, ISaveDataPlay, ISaveDataGam
             Level.listPlayer[Level.activePlayer] = value;
         }
     }
+    public Player ActiveUserPlayer
+    {
+        get { return Level.listPlayer.ElementAtOrDefault(Level.activeUserPlayer); }
+        set
+        {
+            Level.listPlayer[Level.activeUserPlayer] = value;
+        }
+    }
     private void Start()
     {
         DefaultSettings = Level;
@@ -133,7 +141,19 @@ public class LevelManager : Singleton<LevelManager>, ISaveDataPlay, ISaveDataGam
             Level.activePlayer = 0;
         }
 
-        GameManager.Instance.MapManager.ResetSky(Level.nosky);
+        if (ActivePlayer.DataPlayer.playerType != PlayerType.Bot)
+        {
+            ActiveUserPlayer = ActivePlayer;
+        }
+
+        if (
+            LevelManager.Instance.ConfigGameSettings.showDoBot
+            || LevelManager.Instance.ActivePlayer.DataPlayer.playerType != PlayerType.Bot
+        )
+        {
+            GameManager.Instance.MapManager.ResetSky(Level.nosky);
+        }
+
         GameManager.Instance.ChangeState(GameState.NextDay);
 
         if (ActivePlayer.ActiveHero == null)

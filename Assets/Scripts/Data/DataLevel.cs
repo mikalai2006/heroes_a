@@ -8,6 +8,7 @@ public class DataLevel
     [SerializeField] public List<Player> listPlayer;
     [SerializeField] public List<Area> listArea;
     [SerializeField] public int activePlayer;
+    [SerializeField] public int activeUserPlayer;
     [SerializeField] public DataGameSetting Settings;
     [SerializeField] public DataGameMode GameModeData;
     [SerializeField] public SerializableNoSky nosky = new SerializableNoSky();
