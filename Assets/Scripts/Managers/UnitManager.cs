@@ -74,7 +74,10 @@ public static class UnitManager
             // nodeCreature.SetOcuppiedUnit(entityMapObject);
 
             // entityMapObject.CreateMapGameObject(nodeCreature);
-            GameManager.Instance.MapManager.SetColorForTile(nodeCreature.position, Color.magenta);
+            if (LevelManager.Instance.ConfigGameSettings.showBgColorMapObject)
+            {
+                GameManager.Instance.MapManager.SetColorForTile(nodeCreature.position, Color.magenta);
+            }
             nodeCreature.SetProtectedNeigbours(entityMapObject, protectedNode);
         }
 
@@ -126,7 +129,10 @@ public static class UnitManager
             {
                 foreach (GridTileNode nodePath in list)
                 {
-                    GameManager.Instance.MapManager.SetColorForTile(nodePath.position, Color.black);
+                    if (LevelManager.Instance.ConfigGameSettings.showBgColorMapObject)
+                    {
+                        GameManager.Instance.MapManager.SetColorForTile(nodePath.position, Color.black);
+                    }
                     nodePath.SetDisableNode();
                     // nodePath.SetOcuppiedUnit(entity);
                     // SetDisableNode(nodePath, null, color);

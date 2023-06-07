@@ -710,7 +710,10 @@ public class GridTileHelper
 
         //node.SetState(TypeStateNode.Disabled);
         node.SetDisableNode();
-        GameManager.Instance.MapManager.SetColorForTile(node.position, color);
+        if (LevelManager.Instance.ConfigGameSettings.showBgColorMapObject)
+        {
+            GameManager.Instance.MapManager.SetColorForTile(node.position, color);
+        }
 
         if (listNoPath == null) return;
 

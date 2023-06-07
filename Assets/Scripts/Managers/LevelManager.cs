@@ -98,7 +98,7 @@ public class LevelManager : Singleton<LevelManager>, ISaveDataPlay, ISaveDataGam
                 id = i,
                 color = ConfigGameSettings.colors[i],
                 playerType = PlayerType.User,
-                command = 0
+                command = i
             };
             StartSetting startSetting = new StartSetting();
 

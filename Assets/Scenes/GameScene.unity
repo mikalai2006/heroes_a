@@ -1006,6 +1006,7 @@ MonoBehaviour:
     GoMapObject: {fileID: 11400000, guid: 70cd8251ea6604f4c9692ea50b9eb81d, type: 2}
     GoMove: {fileID: 11400000, guid: 8d8c3fdf9da78dc4ab9b9862e8fcb4e0, type: 2}
     GoAllowHero: {fileID: 11400000, guid: ec68993bdc15e6849a3ece673df7148f, type: 2}
+    DimensionDoor: {fileID: 11400000, guid: 347ce119b88fa92428192eb164201e8d, type: 2}
 --- !u!4 &856708584
 Transform:
   m_ObjectHideFlags: 0

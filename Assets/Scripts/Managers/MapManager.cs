@@ -974,6 +974,14 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
                     _tileMapCursor.SetTile(nodeNext.position, _cursorSprites.Attack);
 
                 }
+                else if (
+                    nodeNext.GuestedUnit != null
+                    && nodeNext.GuestedUnit.Entity.Player.DataPlayer.command != LevelManager.Instance.ActivePlayer.DataPlayer.command
+                )
+                {
+                    _tileMapCursor.SetTile(nodeNext.position, _cursorSprites.Attack);
+
+                }
                 else if (nodeNext.OccupiedUnit != null)
                 {
                     _tileMapCursor.SetTile(nodeNext.position, _cursorSprites.GoMapObject);

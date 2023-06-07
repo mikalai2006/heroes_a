@@ -46,9 +46,9 @@ public class CreateTerrainOperation : ILoadingOperation
                     tileNode.isEdge = true;
                 }
 
-                Color c = Color.blue;
+                // Color c = Color.blue;
 
-                c.a = (tileNode.KeyArea * .5f) * (tileNode.KeyArea * .2f);
+                // c.a = (tileNode.KeyArea * .5f) * (tileNode.KeyArea * .2f);
 
                 // _root.SetColorForTile(tileNode.position, c);
 
@@ -92,10 +92,7 @@ public class CreateTerrainOperation : ILoadingOperation
 
                 _root._listNatureNode.Add(new GridTileNatureNode(node, tileForDraw.idObject, false, tileForDraw.name));
 
-                //root.SetColorForTile(node._position, Color.green);
-
                 _root.gridTileHelper.SetDisableNode(node, tileForDraw.listTypeNoPath, Color.black);
-
             }
 
             LevelManager.Instance.RemoveArea(area);

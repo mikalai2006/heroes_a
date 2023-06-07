@@ -73,7 +73,6 @@ public class CreateBordersOperation : ILoadingOperation
                 _root._listNatureNode.Add(new GridTileNatureNode(tileNode, cornerTile.idObject, false, cornerTile.name));
 
                 _root.gridTileHelper.SetDisableNode(tileNode, cornerTile.listTypeNoPath, Color.blue);
-
             }
         }
 
@@ -112,7 +111,6 @@ public class CreateBordersOperation : ILoadingOperation
             _root._listNatureNode.Add(new GridTileNatureNode(tileNode, cornerTile.idObject, false, cornerTile.name));
 
             _root.gridTileHelper.SetDisableNode(tileNode, cornerTile.listTypeNoPath, Color.blue);
-
         }
 
         await UniTask.Delay(1);
@@ -174,7 +172,6 @@ public class CreateBordersOperation : ILoadingOperation
                         _root._listNatureNode.Add(new GridTileNatureNode(currentNode, tileForDraw.idObject, false, tileForDraw.name));
 
                         _root.gridTileHelper.SetDisableNode(currentNode, tileForDraw.listTypeNoPath, Color.black);
-
                     }
 
                     //area.countMountain++;

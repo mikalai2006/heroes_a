@@ -24,7 +24,12 @@ public class SOGameSetting : ScriptableObject
     [SerializeField] public List<Sprite> SpriteHall;
     [SerializeField] public List<Sprite> SpriteCastle;
 
+    [Header("Setting Global Map")]
+    [Space(5)]
+    public bool showBgColorMapObject;
+
     [Header("Setting Game")]
+    [Space(5)]
     public int countTownAside = 4;
     public int maxCountHero = 5;
     public int countBuildPerDay;
