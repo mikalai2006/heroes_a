@@ -108,15 +108,16 @@ public abstract class BaseMapEntity : MonoBehaviour//, IPointerDownHandler
                     if (activeHero != null)
                     {
 
-                        Vector3 posObject = transform.position;
+                        Vector3 posObject = MapObject.OccupiedNode.position; // transform.position;
                         Vector3Int end = new Vector3Int((int)posObject.x, (int)posObject.y);
                         if (activeHero.Data.path != null && activeHero.Data.path.Count > 0 && activeHero.Data.path[activeHero.Data.path.Count - 1].position == posObject)
                         {
+                            // Debug.Log($"Move hero");
                             GameManager.Instance.ChangeState(GameState.StartMoveHero);
                         }
                         else if (posObject != null && LevelManager.Instance.ActivePlayer.GetOpenSkyByNode(end))
                         {
-                            // Vector3Int end = new Vector3Int((int)posObject.x, (int)posObject.y);
+                            // Debug.Log($"Find path");
                             activeHero.FindPathForHero(end, true);
                         }
                     }

@@ -1002,8 +1002,10 @@ MonoBehaviour:
     DtoVTopRight: {fileID: 11400000, guid: b3d7881042eb5e74f894d209f6a02651, type: 2}
     DtoVBottomLeft: {fileID: 11400000, guid: b0cfbcefda9f0964b97e4a3603d5a7b5, type: 2}
     DtoVBottomRight: {fileID: 11400000, guid: 93ebf1d030de8b9409039c85e118c17e, type: 2}
-    Attack: {fileID: 11400000, guid: bfe3878683ded8d4fb4f865dc2e87ab1, type: 2}
-    GoMapObject: {fileID: 11400000, guid: 2c4eeac0150d24543ae016da4b21a637, type: 2}
+    Attack: {fileID: 11400000, guid: c312a04f8b978244caa4fdc03a56d0da, type: 2}
+    GoMapObject: {fileID: 11400000, guid: 70cd8251ea6604f4c9692ea50b9eb81d, type: 2}
+    GoMove: {fileID: 11400000, guid: 8d8c3fdf9da78dc4ab9b9862e8fcb4e0, type: 2}
+    GoAllowHero: {fileID: 11400000, guid: ec68993bdc15e6849a3ece673df7148f, type: 2}
 --- !u!4 &856708584
 Transform:
   m_ObjectHideFlags: 0

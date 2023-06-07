@@ -1,11 +1,14 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 
 using Cysharp.Threading.Tasks;
 
+using Loader;
+
 using UnityEngine;
+
+using Random = UnityEngine.Random;
 
 //[System.Serializable]
 public class MapEntityHero : BaseMapEntity
@@ -168,6 +171,27 @@ public class MapEntityHero : BaseMapEntity
                     cancelTokenSource.Dispose();
                 }
             }
+
+            if (!cancellationToken.IsCancellationRequested && nodeTo.GuestedUnit != null)
+            {
+                Debug.Log($"Hello guest!");
+                var maoObj = (ScriptableEntityMapObject)nodeTo.GuestedUnit.ConfigData;
+                if (maoObj.TypeMapObject == TypeMapObject.Hero)
+                {
+                    // // _canMove = false;
+                    // // _animator.SetBool("isWalking", false);
+                    // entityHero.ChangeHitHero(nodeTo);
+                    // await nodeTo.OccupiedUnit.MapObjectGameObject.OnGoHero(MapObjectClass.Player);
+                    // entityHero.SetPathHero(null);
+                    // cancelTokenSource.Cancel();
+                    // cancelTokenSource.Dispose();
+                    // // break;
+                    await DoObject(nodeTo, nodeTo.GuestedUnit.MapObjectGameObject, prevNode);
+                    cancelTokenSource.Cancel();
+                    cancelTokenSource.Dispose();
+                }
+            }
+
             if (!cancellationToken.IsCancellationRequested)
             {
                 UpdateAnimate(_mapObject.Position, nodeTo.position);
@@ -271,34 +295,73 @@ public class MapEntityHero : BaseMapEntity
     //     data.Data.hit += _hit * data.Data.speed;
     // }
 
-    private void OnMouseDown()
+    // private void OnMouseDown()
+    // {
+    //     // Only allow interaction when it's the hero turn
+    //     //if (GameManager.Instance.State != GameState.HeroTurn) return;
+
+    //     //// Don't move if we've already moved
+    //     //if (!_canMove) return;
+
+    //     // Show movement/attack options
+
+    //     // Eventually either deselect or ExecuteMove(). You could split ExecuteMove into multiple functions
+    //     // like Move() / Attack() / Dance()
+
+    //     //Debug.Log("Unit clicked");
+
+    //     if (LevelManager.Instance.ActivePlayer.DataPlayer.PlayerDataReferences.ListHero.Contains((EntityHero)this.MapObject.Entity))
+    //     {
+    //         //LevelManager.Instance.GetActivePlayer().SetActiveHero(this);
+    //         EntityHero entityHero = (EntityHero)_mapObject.Entity;
+    //         entityHero.SetHeroAsActive();
+    //         Debug.Log($"Check My hero {name}");
+    //     }
+    //     else
+    //     {
+    //         Debug.Log($"Check Enemy hero {name}");
+    //     }
+    // }
+
+    public async override UniTask OnGoHero(Player player)
     {
-        // Only allow interaction when it's the hero turn
-        //if (GameManager.Instance.State != GameState.HeroTurn) return;
+        await base.OnGoHero(player);
 
-        //// Don't move if we've already moved
-        //if (!_canMove) return;
+        _mapObject.OccupiedNode.ChangeStatusVisit(true);
 
-        // Show movement/attack options
-
-        // Eventually either deselect or ExecuteMove(). You could split ExecuteMove into multiple functions
-        // like Move() / Attack() / Dance()
-
-        //Debug.Log("Unit clicked");
-
-        if (LevelManager.Instance.ActivePlayer.DataPlayer.PlayerDataReferences.ListHero.Contains((EntityHero)this.MapObject.Entity))
+        if (LevelManager.Instance.ActivePlayer.DataPlayer.playerType != PlayerType.Bot)
         {
-            //LevelManager.Instance.GetActivePlayer().SetActiveHero(this);
-            EntityHero entityHero = (EntityHero)_mapObject.Entity;
-            entityHero.SetHeroAsActive();
-            Debug.Log($"Check My hero {name}");
+            // Get setting for arena.
+            var arenaSetting = LevelManager.Instance.ConfigGameSettings.ArenaSettings
+                .Where(t => t.NativeGround.typeGround == MapObject.OccupiedNode.TypeGround)
+                .ToList();
+            // TODO ARENA
+            var loadingOperations = new ArenaLoadOperation(new DialogArenaData()
+            {
+                heroAttacking = player.ActiveHero,
+                creature = null,
+                town = null,
+                heroDefending = (EntityHero)MapObject.Entity,
+                ArenaSetting = arenaSetting[Random.Range(0, arenaSetting.Count())]
+            });
+            var result = await loadingOperations.ShowHide();
+
+
+            if (result.isEnd)
+            {
+                _mapObject.DoHero(player);
+            }
+            else
+            {
+                // Click cancel.
+            }
         }
         else
         {
-            Debug.Log($"Check Enemy hero {name}");
+            // TODO Calculate result battle.
+
         }
     }
-
     //public virtual void ExecuteMove() {
     //    // Override this to do some hero-specific logic, then call this base method to clean up the turn
 

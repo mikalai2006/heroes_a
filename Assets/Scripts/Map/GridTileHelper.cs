@@ -199,7 +199,14 @@ public class GridTileHelper
                 if ((
                     !walk
                     || neighbourNode.StateNode.HasFlag(StateNode.Disable)
-                    || neighbourNode.StateNode.HasFlag(StateNode.Guested)
+                    || (
+                        neighbourNode.StateNode.HasFlag(StateNode.Guested)
+                        && (
+                            neighbourNode.GuestedUnit != null
+                            && startNode.GuestedUnit != null
+                            && neighbourNode.GuestedUnit.Entity.Player == startNode.GuestedUnit.Entity.Player
+                            )
+                        )
                     ) && !ignoreNotWalkable)
                 {
                     closedSet.Add(neighbourNode);

@@ -70,8 +70,9 @@ public struct Cursors
 
     [SerializeField] public TileBase Attack;
     [SerializeField] public TileBase GoMapObject;
-
-
+    [SerializeField] public TileBase GoMove;
+    [SerializeField] public TileBase GoAllowHero;
+    [SerializeField] public TileBase DimensionDoor;
 }
 public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
 {
