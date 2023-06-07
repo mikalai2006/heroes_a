@@ -73,6 +73,7 @@ public class EntityMapObject : BaseEntity
 
     public override void SetPlayer(Player player)
     {
+        MapObject.OccupiedNode.ChangeStatusVisit(true);
         // ScriptableEntityMapObject configData = (ScriptableEntityMapObject)ScriptableData;
         // // configData.RunHero(ref player, this);
         // // ScriptableResource dataScriptable = ResourceSystem.Instance.GetUnit<ScriptableResource>(idObject);

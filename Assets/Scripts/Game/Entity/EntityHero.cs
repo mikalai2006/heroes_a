@@ -895,6 +895,12 @@ public class EntityHero : BaseEntity
             await StartMove();
             // Debug.Log($"Data.hit after [hit={Data.hit}, path={Data.path.Count}], countProbe[{countProbe}]");
         }
+
+        // if (Data.mp > 0)
+        // {
+        //     FindPathForHero(Player.DataPlayer.PlayerDataReferences.ListTown[0].MapObject.OccupiedNode.position, true);
+        //     await StartMove();
+        // }
     }
 
     public void AIFindResource()
@@ -903,32 +909,45 @@ public class EntityHero : BaseEntity
         {
             return;
         }
+
+        // start data.
+        int countCheckNodes = 0;
+
+        var flag = ((NoskyMask)(1 << LevelManager.Instance.ActivePlayer.DataPlayer.id));
         //Find
         var potentialPoints = GameManager.Instance
             .MapManager
             .gridTileHelper
             .GetNeighboursAtDistance(MapObject.OccupiedNode, 25, true)
+            .Where(t =>
+                LevelManager.Instance.Level.nosky.ContainsKey(t.position)
+                && LevelManager.Instance.Level.nosky[t.position].HasFlag(flag)
+                && !t.StateNode.HasFlag(StateNode.Disable)
+                && t != MapObject.OccupiedNode
+                && (
+                    !t.StateNode.HasFlag(StateNode.Occupied)
+                    ||
+                    (t.StateNode.HasFlag(StateNode.Occupied) && !t.StateNode.HasFlag(StateNode.Protected))
+                )
+            )
             .OrderBy(t => GameManager.Instance
                 .MapManager
                 .gridTileHelper
                 .GetDistanceBetweeenPoints(MapObject.Position, t.position)
             ).ToList();
 
+        // Debug.Log($"potentialPoints={potentialPoints.Count}");
+        // Dictionary<BaseEntity, List<GridTileNatureNode>> potentialObjects = new();
+        // foreach(var node in potentialPoints) {
+        //     if (node.StateNode.HasFlag(StateNode.Empty)) {
+        //         potentialObjects.Add()
+        //     }
+        // }
+
         while (potentialPoints.Count > 0)
         {
             var node = potentialPoints[0];
             int streightNeutralArmy = 0;
-
-            // get streight defenders.
-            if (
-                node.OccupiedUnit != null
-                && node.OccupiedUnit.Entity is EntityMapObject
-                && ((EntityMapObject)node.OccupiedUnit.Entity).Data.Defenders != null
-                && ((EntityMapObject)node.OccupiedUnit.Entity).Data.Defenders.Count > 0
-            )
-            {
-                streightNeutralArmy = ((EntityMapObject)node.OccupiedUnit.Entity).Data.Defenders.Select(t => t.Value.totalAI).Sum();
-            }
 
             // get streight protected unit.
             if (
@@ -939,28 +958,45 @@ public class EntityHero : BaseEntity
             {
                 streightNeutralArmy = ((EntityCreature)node.ProtectedUnit.Entity).totalAI;
             }
-            var streightHeroArmy = Streight * Data.Creatures.Select(t => t.Value?.totalAI).Sum();
 
-            Debug.Log($"streightNeutralArmy={streightNeutralArmy}");
-            Debug.Log($"streightHeroArmy={streightHeroArmy}");
-            Debug.Log($"levelAgr={ConfigData.ClassHero.levelAgression}, koof={(float)streightNeutralArmy / (float)streightHeroArmy}");
+            // get streight defenders.
+            if (
+                streightNeutralArmy == 0
+                && node.OccupiedUnit != null
+                && node.OccupiedUnit.Entity is EntityMapObject
+                && ((EntityMapObject)node.OccupiedUnit.Entity).Data.Defenders != null
+                && ((EntityMapObject)node.OccupiedUnit.Entity).Data.Defenders.Count > 0
+            )
+            {
+                streightNeutralArmy = ((EntityMapObject)node.OccupiedUnit.Entity).Data.Defenders.Select(t => t.Value.totalAI).Sum();
+            }
+
+            var streightHeroArmy = Streight * Data.Creatures.Select(t => t.Value?.totalAI).Sum();
 
             if (streightNeutralArmy > 0 && ((float)streightNeutralArmy / (float)streightHeroArmy >= ConfigData.ClassHero.levelAgression))
             {
                 potentialPoints.RemoveAt(0);
-                return;
+                continue;
             }
 
+            // Debug.Log($"streightNeutralArmy={streightNeutralArmy}");
+            // Debug.Log($"streightHeroArmy={streightHeroArmy}");
+            // Debug.Log($"levelAgr={ConfigData.ClassHero.levelAgression}, koof={(float)streightNeutralArmy / (float)streightHeroArmy}");
+            // Debug.Log($"node={node}/{Player.ActiveHero.MapObject.OccupiedNode}");
+
             if (
-                node.StateNode.HasFlag(StateNode.Occupied)
-                && !node.StateNode.HasFlag(StateNode.Guested)
-                && !node.StateNode.HasFlag(StateNode.Empty)
-                && (node.OccupiedUnit != null && node.OccupiedUnit.Entity.Player != Player)
+                (node.OccupiedUnit != null
+                // node.StateNode.HasFlag(StateNode.Occupied)
+                // && !node.StateNode.HasFlag(StateNode.Protected)
+                // && !node.StateNode.HasFlag(StateNode.Guested)
+                // && !node.StateNode.HasFlag(StateNode.Empty)
+                && node.OccupiedUnit.Entity.Player != Player
                 && !node.StateNode.HasFlag(StateNode.Visited)
-                && node.position != MapObject.Position
+                && node != MapObject.OccupiedNode) // || countCheckNodes > 20
                 )
             {
                 var path = FindPathForHero(node.position, true);
+                // Debug.Log($"path={path?.Count}");
                 if (path != null)
                 {
                     break;
@@ -974,6 +1010,8 @@ public class EntityHero : BaseEntity
             {
                 potentialPoints.RemoveAt(0);
             }
+            countCheckNodes++;
+            // Debug.Log($"countCheckNodes={countCheckNodes}");
         }
     }
     #endregion

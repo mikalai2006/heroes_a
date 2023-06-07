@@ -785,10 +785,10 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
         TileBase clickedTile = _tileMap.GetTile(tilePos);
         GridTileNode node = gridTileHelper.GetNode(tilePos.x, tilePos.y);
 
-        if (!LevelManager.Instance.ActivePlayer.GetOpenSkyByNode(node.position))
-        {
-            return;
-        }
+        // if (!LevelManager.Instance.ActivePlayer.GetOpenSkyByNode(node.position))
+        // {
+        //     return;
+        // }
 
         if (clickedTile != null && !node.StateNode.HasFlag(StateNode.Disable))
         {
