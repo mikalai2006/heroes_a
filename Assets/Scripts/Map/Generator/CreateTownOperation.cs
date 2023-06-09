@@ -79,6 +79,7 @@ public class CreateTownOperation : ILoadingOperation
                         player.StartSetting.hero
                     );
                     hero.SetPlayer(player);
+                    hero.SetClearSky(node);
                 }
                 // TODO Spawn random hero
                 // int randomCountHero = Helpers.GenerateValueByRangeAndStep(1, 3, 1);

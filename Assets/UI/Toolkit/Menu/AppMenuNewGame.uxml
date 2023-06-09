@@ -1,9 +1,9 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
-    <ui:Template name="Col" src="project://database/Assets/UI/Toolkit/Col.uxml?fileID=9197481963319205126&amp;guid=aeb61825a88c3414e9945054eb442191&amp;type=3#Col" />
+    <ui:Template name="Col" src="project://database/Assets/UI/Toolkit/Menu/AppMenuNewGameCol.uxml?fileID=9197481963319205126&amp;guid=aeb61825a88c3414e9945054eb442191&amp;type=3#AppMenuNewGameCol" />
     <ui:Template name="Button" src="project://database/Assets/UI/Toolkit/Button.uxml?fileID=9197481963319205126&amp;guid=db5e7d04a42304542a4356b1519364b2&amp;type=3#Button" />
     <ui:Template name="ButtonWithImg" src="project://database/Assets/UI/Toolkit/ButtonWithImg.uxml?fileID=9197481963319205126&amp;guid=93de6cb7ebf6fca42bc3fdf8f26f3259&amp;type=3#ButtonWithImg" />
     <Style src="project://database/Assets/UI/Toolkit/Base.uss?fileID=7433441132597879392&amp;guid=fa07b064290e7384d9ad2e26e79f5953&amp;type=3#Base" />
-    <Style src="project://database/Assets/UI/Toolkit/Dialog.uss?fileID=7433441132597879392&amp;guid=2438f8d68703dce4ab75f8d1eda15062&amp;type=3#Dialog" />
+    <Style src="project://database/Assets/UI/Toolkit/Dialogs/UIDialog.uss?fileID=7433441132597879392&amp;guid=2438f8d68703dce4ab75f8d1eda15062&amp;type=3#UIDialog" />
     <Style src="project://database/Assets/UI/Toolkit/UnityBase.uss?fileID=7433441132597879392&amp;guid=c0905c354b5fb524e83bc41ae3debe10&amp;type=3#UnityBase" />
     <ui:VisualElement name="NewGameBox" class="dialog_box" style="align-items: flex-end;">
         <ui:VisualElement name="Panel" class="dialog_panel border-color bg" style="min-height: 100%; align-items: flex-end; flex-grow: 1;">
@@ -50,7 +50,7 @@
                             <AttributeOverrides element-name="Btn" text="#randommap" />
                         </ui:Instance>
                     </ui:VisualElement>
-                    <ui:VisualElement class="mt-2 box_shadow" style="flex-grow: 1;">
+                    <ui:VisualElement class="mt-2 box_shadow" style="flex-grow: 1; display: none;">
                         <ui:VisualElement class="box_bg p-1" style="flex-grow: 1;">
                             <ui:Label tabindex="-1" text="#descriptionmission" display-tooltip-when-elided="true" class="text-primary m-0 p-0" />
                             <ui:Label tabindex="-1" text="#missionrandom" display-tooltip-when-elided="true" class="text-secondary m-0 p-0" />
@@ -68,6 +68,18 @@
                             <ui:Label tabindex="-1" text="#lossalltown" display-tooltip-when-elided="true" class="text-secondary m-0 p-0" />
                         </ui:VisualElement>
                     </ui:VisualElement>
+                    <ui:VisualElement class="mt-2 box_shadow" style="flex-grow: 0;">
+                        <ui:VisualElement class="box_bg p-1 text-secondary" style="height: 40px; align-items: center; flex-direction: row; flex-shrink: 0;">
+                            <ui:VisualElement class="w-50" style="flex-direction: row; align-items: center;">
+                                <ui:Label tabindex="-1" text="#allies" display-tooltip-when-elided="true" class="m-0 p-0" />
+                                <ui:VisualElement name="AlliesFlags" style="flex-direction: row; padding-left: 5px; padding-right: 5px;" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="w-50" style="flex-direction: row; align-items: center;">
+                                <ui:Label tabindex="-1" text="#enemies" display-tooltip-when-elided="true" class="m-0 p-0" />
+                                <ui:VisualElement name="EnemiesFlags" style="flex-direction: row; padding-left: 5px; padding-right: 5px;" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                    </ui:VisualElement>
                     <ui:VisualElement name="Tabs" class="tab_box px-2 mt-2" style="display: none;">
                         <ui:Button text="#general" display-tooltip-when-elided="true" name="General" class="tab tab_active bg button text-lg p-4" />
                         <ui:Button text="#advance" display-tooltip-when-elided="true" name="Advance" class="tab button text-lg p-4 bg" />
@@ -80,16 +92,17 @@
                         </ui:VisualElement>
                     </ui:VisualElement>
                     <ui:VisualElement name="TabContentAdvance" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); display: none;" />
-                    <ui:VisualElement name="Complexity" class="mt-2 box_shadow" style="flex-grow: 0;">
-                        <ui:VisualElement class="box_bg p-1" style="flex-grow: 1;">
-                            <ui:VisualElement style="flex-direction: row;">
+                    <ui:VisualElement name="Complexity" class="mt-2 box_shadow" style="flex-shrink: 0;">
+                        <ui:VisualElement class="box_bg p-1" style="flex-grow: 1; flex-shrink: 0;">
+                            <ui:VisualElement style="flex-direction: row; flex-shrink: 0;">
                                 <ui:Label tabindex="-1" text="#complexity" display-tooltip-when-elided="true" class="text-primary m-0 p-0" />
                                 <ui:VisualElement class="w-25" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); align-self: center;">
                                     <ui:Label tabindex="-1" display-tooltip-when-elided="true" name="ComplexityValue" class="text-secondary text-center text_md p-0 m-0" style="-unity-text-align: upper-right;" />
                                 </ui:VisualElement>
                             </ui:VisualElement>
-                            <ui:VisualElement class="box_bg" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row;">
-                                <ui:VisualElement name="ComplexityList" class="p-1 w-75" style="flex-grow: 1; flex-direction: row;">
+                            <ui:VisualElement style="flex-grow: 1; flex-direction: row; flex-shrink: 0;">
+                                <ui:VisualElement name="ComplexityList" style="flex-grow: 1; flex-direction: row; flex-shrink: 0; max-height: 80px; min-height: 80px; max-width: 100%; flex-wrap: wrap;">
+                                    <ui:Instance template="ButtonWithImg" name="ButtonWithImg" class="w-125" />
                                     <ui:Instance template="ButtonWithImg" name="ButtonWithImg" class="w-125" />
                                 </ui:VisualElement>
                             </ui:VisualElement>
@@ -109,6 +122,20 @@
                         </ui:Instance>
                     </ui:VisualElement>
                 </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+    <ui:VisualElement name="GridTeamBlok" class="inset-0 text-secondary" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0.59); position: absolute; justify-content: center; align-items: center; display: none;">
+        <ui:VisualElement class="h-50 bg border-color border-1 p-1" style="flex-grow: 0; background-color: rgba(0, 0, 0, 0); flex-shrink: 0;">
+            <ui:Label tabindex="-1" text="#commandcondit" display-tooltip-when-elided="true" class="text_xl text-primary" />
+            <ui:VisualElement name="GridTeam" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);" />
+            <ui:VisualElement class="pt-1" style="flex-grow: 0; background-color: rgba(0, 0, 0, 0); flex-direction: row; justify-content: space-around;">
+                <ui:Instance template="Button" name="Close">
+                    <AttributeOverrides element-name="Btn" text="#close" />
+                </ui:Instance>
+                <ui:Instance template="Button" name="Ok">
+                    <AttributeOverrides element-name="Btn" text="#ok" />
+                </ui:Instance>
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>

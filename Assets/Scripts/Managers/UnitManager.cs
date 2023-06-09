@@ -110,9 +110,10 @@ public static class UnitManager
         // Debug.Log($"add entity {entity.ScriptableData.name}");
         newMapObject.CreateMapGameObject(node);
 
-        if (entity.ScriptableData.TypeEntity == TypeEntity.Hero)
+        if (entity is EntityHero) // entity.ScriptableData.TypeEntity== TypeEntity.Hero
         {
             node.SetAsGuested(newMapObject);
+            // ((EntityHero)entity).SetClearSky(node.position);
         }
 
         // GameManager.Instance.MapManager.SetColorForTile(pos, Color.magenta);

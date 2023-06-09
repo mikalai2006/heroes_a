@@ -187,16 +187,12 @@ MonoBehaviour:
     m_Key: advancedmapoption_d
     m_Metadata:
       m_Items: []
-  - m_Id: 7710644666269696
-    m_Key: countcommand
-    m_Metadata:
-      m_Items: []
   - m_Id: 7755343401746432
     m_Key: random
     m_Metadata:
       m_Items: []
   - m_Id: 7962634910597120
-    m_Key: countbotcommand
+    m_Key: commandcondit
     m_Metadata:
       m_Items: []
   - m_Id: 7978170482589696
@@ -533,6 +529,22 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 24418164067696640
     m_Key: hero_askrun
+    m_Metadata:
+      m_Items: []
+  - m_Id: 26197578547888128
+    m_Key: team
+    m_Metadata:
+      m_Items: []
+  - m_Id: 26201346781904896
+    m_Key: setup
+    m_Metadata:
+      m_Items: []
+  - m_Id: 26245603915890688
+    m_Key: allies
+    m_Metadata:
+      m_Items: []
+  - m_Id: 26245635322839040
+    m_Key: enemies
     m_Metadata:
       m_Items: []
   m_Metadata:

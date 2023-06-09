@@ -106,6 +106,11 @@ public class EffectCreatureBank : BaseEffect
             }
             _processCompletionSource.SetResult(resultEffect);
         }
+        else
+        {
+            resultEffect.ok = result.isWinRightHero;
+            _processCompletionSource.SetResult(resultEffect);
+        }
 
         Debug.Log("EffectCreatureBank::: Run!");
 

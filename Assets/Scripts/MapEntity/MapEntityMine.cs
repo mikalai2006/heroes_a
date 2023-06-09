@@ -59,6 +59,12 @@ public class MapEntityMine : BaseMapEntity, IDialogMapObjectOperation
     {
         await base.OnGoHero(player);
 
+        if (MapObject.Entity.Player != null && player.DataPlayer.team == MapObject.Entity.Player.DataPlayer.team)
+        {
+
+            return;
+        }
+
         if (LevelManager.Instance.ActivePlayer.DataPlayer.playerType != PlayerType.Bot)
         {
 

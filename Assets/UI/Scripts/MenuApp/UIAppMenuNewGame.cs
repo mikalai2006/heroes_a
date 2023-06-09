@@ -19,6 +19,7 @@ public class UIAppMenuNewGame : UILocaleBase
     private VisualElement _buttonAdvancedSetting;
     private VisualElement _boxContentSetting;
     private VisualElement _buttonRandomSetting;
+    private VisualElement _gridTeamBox;
     private VisualElement _boxOptions;
     private Button _btnNewGame;
     private string nameNameOption = "NameOption";
@@ -63,6 +64,8 @@ public class UIAppMenuNewGame : UILocaleBase
 
         ShowHideRandomOptions();
         ShowHideAdvancedOptions();
+        _gridTeamBox = _root.Q<VisualElement>("GridTeamBlok");
+        _gridTeamBox.style.display = DisplayStyle.None;
         // _tabContentAdvance = _box.Q<VisualElement>(nameTabContentAdvance);
         // _btnTabAdvance = _box.Q<Button>(nameTabAdvance);
         // _btnTabAdvance.clickable.clicked += () =>
@@ -479,9 +482,11 @@ public class UIAppMenuNewGame : UILocaleBase
 
         CreateListGameMode();
         AddOptionCountPlay();
-        AddOptionCountCommand();
+        // AddOptionCountCommand();
         AddOptionCountBot();
-        AddOptionCountBotCommand();
+        AddTeamButton();
+        // AddOptionCountBotCommand();
+        DrawCommandInfo();
         AddOptionStrenghtMonsters();
         AddCompexity();
         DrawAdvancedOptions();
@@ -539,7 +544,9 @@ public class UIAppMenuNewGame : UILocaleBase
             btn.Q<VisualElement>("img").style.backgroundImage
                 = new StyleBackground(item.sprite);
             btn.AddToClassList("w-125");
-            btn.style.height = new StyleLength(new Length(70, LengthUnit.Pixel));
+            btn.style.flexGrow = 1;
+            btn.style.flexShrink = 1;
+            // btn.style.height = new StyleLength(new Length(100, LengthUnit.Percent));
 
             if (Level.Settings.compexity == item.value)
             {
@@ -554,7 +561,8 @@ public class UIAppMenuNewGame : UILocaleBase
                     await AudioManager.Instance.Click();
                     Level.Settings.compexity = item.value;
 
-                    RefreshOptions();
+                    // RefreshOptions();
+                    AddCompexity();
                 };
             }
 
@@ -613,86 +621,262 @@ public class UIAppMenuNewGame : UILocaleBase
     //         Addressables.ReleaseInstance(this.gameObject);
     //     }
     // }
-
-    private void AddOptionCountBotCommand()
+    private void AddTeamButton()
     {
-        var Level = LevelManager.Instance.Level;
-        if (Level.Settings.countBot == 0) return;
+        _gridTeamBox.Q<VisualElement>("Close").Q<Button>("Btn").clickable.clicked += () =>
+        {
+            _gridTeamBox.style.display = DisplayStyle.None;
+        };
+        _gridTeamBox.Q<VisualElement>("Ok").Q<Button>("Btn").clickable.clicked += () =>
+        {
+            _gridTeamBox.style.display = DisplayStyle.None;
+            RefreshOptions();
+        };
 
         var newCol = _templateColumn.Instantiate();
-        newCol.Q<Label>(nameNameOption).text = "#countbotcommand";
-
+        newCol.Q<Label>(nameNameOption).text = "#commandcondit";
         var NewColBoxBtn = newCol.Q<VisualElement>(nameBoxOption);
         NewColBoxBtn.Clear();
 
-        for (int i = 0; i <= Level.Settings.countBot - 1; i++)
+        var newButtonBox = _templateButton.Instantiate();
+        var newBtn = newButtonBox.Q<Button>("Btn");
+        newBtn.clickable.clicked += () =>
         {
-            var newButtonBox = _templateButton.Instantiate();
-            var newBtn = newButtonBox.Q<Button>("Btn");
-            newBtn.text = i.ToString();
-            newBtn.name = i.ToString();
-            var j = i;
-
-            if (Level.Settings.countBotCommand == i)
-            {
-                newBtn.AddToClassList("button_checked");
-                newBtn.RemoveFromClassList("button_bg");
-                newBtn.RemoveFromClassList("button_bordered");
-            }
-            else
-            {
-                newBtn.clickable.clicked += async () =>
-                {
-                    await AudioManager.Instance.Click();
-                    // Debug.Log($"Click {j} button!");
-                    Level.Settings.countBotCommand = j;
-                    RefreshOptions();
-                };
-            }
-            NewColBoxBtn.Add(newButtonBox);
-        }
-
+            DrawTeamSetting();
+            _gridTeamBox.style.display = DisplayStyle.Flex;
+        };
+        var teamsetupText = new LocalizedString(Constants.LanguageTable.LANG_TABLE_UILANG, "setup").GetLocalizedString();
+        newBtn.text = string.Format("{0} ...", teamsetupText);
+        NewColBoxBtn.Add(newButtonBox);
         _boxOptions.Add(newCol);
+
     }
 
-    private void AddOptionCountCommand()
+    private void DrawCommandInfo()
     {
         var Level = LevelManager.Instance.Level;
-        var newCol = _templateColumn.Instantiate();
-        newCol.Q<Label>(nameNameOption).text = "#countcommand";
-
-        var NewColBoxBtn = newCol.Q<VisualElement>(nameBoxOption);
-        NewColBoxBtn.Clear();
-
-        for (int i = 0; i <= LevelManager.Instance.ConfigGameSettings.maxPlayer - 1; i++)
+        // Draw command info.
+        var blokAlliesFlags = _box.Q<VisualElement>("AlliesFlags");
+        blokAlliesFlags.Clear();
+        var blokEnemiesFlags = _box.Q<VisualElement>("EnemiesFlags");
+        blokEnemiesFlags.Clear();
+        List<Player> enemies = new();
+        List<Player> allies = new();
+        foreach (var pl in Level.listPlayer)
         {
-            var newButtonBox = _templateButton.Instantiate();
-            var newBtn = newButtonBox.Q<Button>("Btn");
-            newBtn.text = i.ToString();
-            newBtn.name = i.ToString();
-            var j = i;
-
-            if (Level.Settings.countCommand == i)
+            if (pl.DataPlayer.team == Level.listPlayer[0].DataPlayer.team)
             {
-                newBtn.AddToClassList("button_checked");
-                newBtn.RemoveFromClassList("button_bg");
-                newBtn.RemoveFromClassList("button_bordered");
+                allies.Add(pl);
             }
             else
             {
-                newBtn.clickable.clicked += async () =>
-                {
-                    await AudioManager.Instance.Click();
-                    // Debug.Log($"Click {j} button!");
-                    Level.Settings.countCommand = j;
-                    RefreshOptions();
-                };
+                enemies.Add(pl);
             }
-            NewColBoxBtn.Add(newButtonBox);
+        }
+        foreach (var enemy in enemies)
+        {
+            var flag = new VisualElement();
+            flag.style.width = new StyleLength(new Length(20, LengthUnit.Pixel));
+            flag.style.height = new StyleLength(new Length(30, LengthUnit.Pixel));
+            flag.style.backgroundImage
+                = new StyleBackground(LevelManager.Instance.ConfigGameSettings.flagSprite);
+            flag.style.unityBackgroundImageTintColor = enemy.DataPlayer.color;
+            blokEnemiesFlags.Add(flag);
+        }
+        foreach (var allie in allies)
+        {
+            var flag = new VisualElement();
+            flag.style.width = new StyleLength(new Length(20, LengthUnit.Pixel));
+            flag.style.height = new StyleLength(new Length(30, LengthUnit.Pixel));
+            flag.style.backgroundImage
+                = new StyleBackground(LevelManager.Instance.ConfigGameSettings.flagSprite);
+            flag.style.unityBackgroundImageTintColor = allie.DataPlayer.color;
+            blokAlliesFlags.Add(flag);
+        }
+    }
+
+    private void DrawTeamSetting()
+    {
+        DrawCommandInfo();
+
+        var Level = LevelManager.Instance.Level;
+        int maxCountTeam = Level.listPlayer.Count; //Level.Settings.countBot + Level.Settings.countPlayer;
+
+        var gridTeam = _gridTeamBox.Q<VisualElement>("GridTeam");
+        gridTeam.Clear();
+        _gridTeamBox.Q<VisualElement>("Close").Q<Button>("Btn").clickable.clicked += () =>
+        {
+            _gridTeamBox.style.display = DisplayStyle.None;
+        };
+        _gridTeamBox.Q<VisualElement>("Ok").Q<Button>("Btn").clickable.clicked += () =>
+        {
+            _gridTeamBox.style.display = DisplayStyle.None;
+            RefreshOptions();
+        };
+
+        var teamText = new LocalizedString(Constants.LanguageTable.LANG_TABLE_UILANG, "team").GetLocalizedString();
+
+
+        Dictionary<int, int> commands = new();
+        for (int k = 0; k < Level.listPlayer.Count; k++)
+        {
+            var pl = Level.listPlayer[k];
+            if (!commands.ContainsKey(pl.DataPlayer.team))
+            {
+                commands.Add(pl.DataPlayer.team, 1);
+            }
+            else
+            {
+                commands[pl.DataPlayer.team]++;
+            }
         }
 
-        _boxOptions.Add(newCol);
+        for (int i = 0; i < maxCountTeam; i++)
+        {
+            var row = new VisualElement();
+            var headerRow = new VisualElement();
+            headerRow.style.width = new StyleLength(new Length(100, LengthUnit.Pixel));
+            headerRow.Add(new Label() { text = string.Format("{0} {1}", teamText, i + 1) });
+            headerRow.style.alignItems = Align.Center;
+            row.Add(headerRow);
+            row.style.flexDirection = FlexDirection.Row;
+
+
+            for (int j = 0; j < maxCountTeam; j++)
+            {
+                var player = Level.listPlayer[j];
+
+                var col = new VisualElement();
+                col.style.width = new StyleLength(new Length(50, LengthUnit.Pixel));
+
+                var btnCol = new Button();
+                btnCol.AddToClassList("button");
+                btnCol.AddToClassList("button_bordered");
+                btnCol.AddToClassList("bg-transparent");
+                btnCol.AddToClassList("p-05");
+                btnCol.style.width = new StyleLength(new Length(40, LengthUnit.Pixel));
+                btnCol.style.height = new StyleLength(new Length(40, LengthUnit.Pixel));
+                btnCol.style.alignItems = Align.Center;
+                btnCol.style.alignContent = Align.Center;
+                btnCol.style.flexDirection = FlexDirection.Column;
+                // btnCol.text = string.Format("{0}x{1}", i, j);
+
+                if (player.DataPlayer.team == i)
+                {
+                    var flag = new VisualElement();
+                    flag.style.width = new StyleLength(new Length(20, LengthUnit.Pixel));
+                    flag.style.height = new StyleLength(new Length(30, LengthUnit.Pixel));
+                    flag.style.backgroundImage
+                        = new StyleBackground(LevelManager.Instance.ConfigGameSettings.flagSprite);
+                    flag.style.unityBackgroundImageTintColor = player.DataPlayer.color;
+                    flag.style.alignSelf = Align.Center;
+                    btnCol.Add(flag);
+                }
+                else
+                {
+                    var index = j;
+                    var newCommand = i;
+                    var countPlayersInNewCommand = commands.ContainsKey(i) ? commands[i] : 0;
+                    var countPlayersInOldCommand = commands.ContainsKey(player.DataPlayer.team) ? commands[player.DataPlayer.team] : 0;
+                    btnCol.clickable.clicked += () =>
+                    {
+                        // Debug.Log($"commands count={commands.Count()} | newCommand={newCommand}[i={i}] (countPlayersInNewCommand={countPlayersInNewCommand})[[[countPlayersInOldCommand={countPlayersInOldCommand}]]]");
+                        if (countPlayersInNewCommand < maxCountTeam - 1)
+                        {
+                            Level.Settings.teams[index] = newCommand;
+                            RefreshOptions();
+                            DrawTeamSetting();
+                        }
+                    };
+                }
+
+                col.Add(btnCol);
+                row.Add(col);
+            }
+
+            gridTeam.Add(row);
+        }
     }
+
+    // private void AddOptionCountBotCommand()
+    // {
+    //     var Level = LevelManager.Instance.Level;
+    //     if (Level.Settings.countBot == 0) return;
+
+    //     var newCol = _templateColumn.Instantiate();
+    //     newCol.Q<Label>(nameNameOption).text = "#countbotcommand";
+
+    //     var NewColBoxBtn = newCol.Q<VisualElement>(nameBoxOption);
+    //     NewColBoxBtn.Clear();
+
+    //     for (int i = 0; i <= Level.Settings.countBot - 1; i++)
+    //     {
+    //         var newButtonBox = _templateButton.Instantiate();
+    //         var newBtn = newButtonBox.Q<Button>("Btn");
+    //         newBtn.text = i.ToString();
+    //         newBtn.name = i.ToString();
+    //         var j = i;
+
+    //         if (Level.Settings.countBotCommand == i)
+    //         {
+    //             newBtn.AddToClassList("button_checked");
+    //             newBtn.RemoveFromClassList("button_bg");
+    //             newBtn.RemoveFromClassList("button_bordered");
+    //         }
+    //         else
+    //         {
+    //             newBtn.clickable.clicked += async () =>
+    //             {
+    //                 await AudioManager.Instance.Click();
+    //                 // Debug.Log($"Click {j} button!");
+    //                 Level.Settings.countBotCommand = j;
+    //                 RefreshOptions();
+    //             };
+    //         }
+    //         NewColBoxBtn.Add(newButtonBox);
+    //     }
+
+    //     _boxOptions.Add(newCol);
+    // }
+
+    // private void AddOptionCountCommand()
+    // {
+    //     var Level = LevelManager.Instance.Level;
+    //     var newCol = _templateColumn.Instantiate();
+    //     newCol.Q<Label>(nameNameOption).text = "#countcommand";
+
+    //     var NewColBoxBtn = newCol.Q<VisualElement>(nameBoxOption);
+    //     NewColBoxBtn.Clear();
+
+    //     for (int i = 0; i <= LevelManager.Instance.ConfigGameSettings.maxPlayer - 1; i++)
+    //     {
+    //         var newButtonBox = _templateButton.Instantiate();
+    //         var newBtn = newButtonBox.Q<Button>("Btn");
+    //         newBtn.text = i.ToString();
+    //         newBtn.name = i.ToString();
+    //         var j = i;
+
+    //         if (Level.Settings.countCommand == i)
+    //         {
+    //             newBtn.AddToClassList("button_checked");
+    //             newBtn.RemoveFromClassList("button_bg");
+    //             newBtn.RemoveFromClassList("button_bordered");
+    //         }
+    //         else
+    //         {
+    //             newBtn.clickable.clicked += async () =>
+    //             {
+    //                 await AudioManager.Instance.Click();
+    //                 // Debug.Log($"Click {j} button!");
+    //                 Level.Settings.countCommand = j;
+    //                 RefreshOptions();
+    //             };
+    //         }
+    //         NewColBoxBtn.Add(newButtonBox);
+    //     }
+
+    //     _boxOptions.Add(newCol);
+    // }
 
     private void AddOptionStrenghtMonsters()
     {

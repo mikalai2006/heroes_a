@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 066d350c9748e4742b01d4e080eac8b6, type: 3}
+  m_Name: SOUI
+  m_EditorClassIdentifier: 
+  idObject: soui
+  SpritesWaitStep:
+  - {fileID: 21300000, guid: 0eaee6df6af7e154f82f409d15d1c8fb, type: 3}
+  - {fileID: 21300000, guid: 38cc488774e7352499bb11c41d84f080, type: 3}
+  - {fileID: 21300000, guid: 1bbe1268295c977458fd643aeb979066, type: 3}
+  - {fileID: 21300000, guid: c1d79d93404542a4e88abafa470c2bde, type: 3}
+  - {fileID: 21300000, guid: f6c10371ea8129244926cb3dd3d9a010, type: 3}
+  - {fileID: 21300000, guid: 911fa6679685b4547b338ff4da019816, type: 3}
+  - {fileID: 21300000, guid: 62ed107f659a43d4b85c0b4f62764003, type: 3}
+  - {fileID: 21300000, guid: ad9ab1f0ba68f374eac41f8d533a03d3, type: 3}
+  - {fileID: 21300000, guid: 596baf51143c95a4d99c974e415cf8d8, type: 3}
+  - {fileID: 21300000, guid: d56c4deb6bdcc7e489b8166ac424bc52, type: 3}
+  flag: {fileID: 21300000, guid: 9ba8561b23d86314eb9b1ce9db045d18, type: 3}

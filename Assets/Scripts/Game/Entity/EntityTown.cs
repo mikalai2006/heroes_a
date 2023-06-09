@@ -181,7 +181,7 @@ public class EntityTown : BaseEntity
         }
 
         Data.idPlayer = player.DataPlayer.id;
-        player.AddTown(this);
+        //player.AddTown(this);
 
         if (first)
         {

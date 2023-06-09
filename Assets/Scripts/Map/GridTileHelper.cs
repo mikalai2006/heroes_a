@@ -64,7 +64,7 @@ public class GridTileHelper
     {
         var flag = LevelManager.Instance.ActivePlayer == null
             ? NoskyMask.None
-            : ((NoskyMask)(1 << LevelManager.Instance.ActivePlayer.DataPlayer.id));
+            : ((NoskyMask)(1 << LevelManager.Instance.ActivePlayer.DataPlayer.team));
         var nosky = LevelManager.Instance.Level.nosky;
         // GameManager.Instance.MapManager.ResetTestTileMap();
 
@@ -201,11 +201,12 @@ public class GridTileHelper
                     || neighbourNode.StateNode.HasFlag(StateNode.Disable)
                     || (
                         neighbourNode.StateNode.HasFlag(StateNode.Guested)
-                        && (
-                            neighbourNode.GuestedUnit != null
-                            && startNode.GuestedUnit != null
-                            && neighbourNode.GuestedUnit.Entity.Player == startNode.GuestedUnit.Entity.Player
-                            )
+                        && neighbourNode != endNode
+                        // && (
+                        //     neighbourNode.GuestedUnit != null
+                        //     && startNode.GuestedUnit != null
+                        //     && neighbourNode.GuestedUnit.Entity.Player == startNode.GuestedUnit.Entity.Player
+                        //     )
                         )
                     ) && !ignoreNotWalkable)
                 {

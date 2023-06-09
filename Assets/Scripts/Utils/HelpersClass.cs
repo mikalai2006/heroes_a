@@ -7,6 +7,7 @@ using System.Text;
 using UnityEngine;
 using UnityEngine.Localization;
 using UnityEngine.Localization.Settings;
+using UnityEngine.UIElements;
 
 /// <summary>
 /// A static class for general helpful methods
@@ -396,6 +397,18 @@ public static class Helpers
     public static string GetColorString(string str)
     {
         return " <color=#FFFFAB>" + str + "</color>";
+    }
+
+    public static void AnimateListSprites(VisualElement element, List<Sprite> listSprites)
+    {
+        int indexSprite = listSprites.FindIndex(t => t == element.style.backgroundImage.value.sprite);
+        indexSprite++;
+        if (indexSprite >= listSprites.Count)
+        {
+            indexSprite = 0;
+        }
+        element.style.backgroundImage
+            = new StyleBackground(listSprites.ElementAt(indexSprite));
     }
     // public static AsyncOperationHandle<string> LoadLocalizedSmartString(string tableRef, string tableEntryRef, Dictionary<string, string>[] args)
     // {

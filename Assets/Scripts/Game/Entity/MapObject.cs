@@ -154,7 +154,7 @@ public class MapObject
             (
                 Entity.Player != null
                 &&
-                Entity.Player.DataPlayer.command == LevelManager.Instance.ActiveUserPlayer.DataPlayer.command
+                Entity.Player.DataPlayer.team == LevelManager.Instance.ActiveUserPlayer.DataPlayer.team
             )
             ||
             (

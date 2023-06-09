@@ -61,7 +61,7 @@ public class UIMenuApp : UILocaleBase
                 id = 0,
                 color = GameSetting.colors[0],
                 playerType = PlayerType,
-                command = 0
+                team = 0
             };
             StartSetting startSetting = new StartSetting();
             startSetting.TypePlayerItem = new()
@@ -81,7 +81,7 @@ public class UIMenuApp : UILocaleBase
                 id = 1,
                 color = GameSetting.colors[1],
                 playerType = PlayerType2,
-                command = 1
+                team = 1
             };
             StartSetting startSettingSecond = new StartSetting();
             startSettingSecond.TypePlayerItem = new()
@@ -124,7 +124,7 @@ public class UIMenuApp : UILocaleBase
                 id = 0,
                 color = GameSetting.colors[0],
                 playerType = PlayerType,
-                command = 0
+                team = 0
             };
             StartSetting startSetting = new StartSetting();
             startSetting.TypePlayerItem = new()
@@ -145,7 +145,7 @@ public class UIMenuApp : UILocaleBase
                 id = 1,
                 color = GameSetting.colors[1],
                 playerType = PlayerType2,
-                command = 1
+                team = 1
             };
             StartSetting startSettingSecond = new StartSetting();
             startSettingSecond.TypePlayerItem = new()

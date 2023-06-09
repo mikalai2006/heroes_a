@@ -172,7 +172,13 @@ public class MapEntityHero : BaseMapEntity
                 }
             }
 
-            if (!cancellationToken.IsCancellationRequested && nodeTo.GuestedUnit != null)
+            if (
+                !cancellationToken.IsCancellationRequested
+                && nodeTo.GuestedUnit != null
+                // && MapObject.Entity != null
+                // && MapObject.Entity.Player != null
+                && MapObject != nodeTo.GuestedUnit
+            )
             {
                 Debug.Log($"Hello guest!");
                 var maoObj = (ScriptableEntityMapObject)nodeTo.GuestedUnit.ConfigData;
@@ -262,7 +268,7 @@ public class MapEntityHero : BaseMapEntity
                 (
                     MapObject.Entity.Player != null
                     &&
-                    MapObject.Entity.Player.DataPlayer.command == LevelManager.Instance.ActiveUserPlayer.DataPlayer.command
+                    MapObject.Entity.Player.DataPlayer.team == LevelManager.Instance.ActiveUserPlayer.DataPlayer.team
                 )
                 ||
                 (
@@ -306,12 +312,6 @@ public class MapEntityHero : BaseMapEntity
         }
     }
 
-    // public void ChangeHit(GridTileNode node, float _hit)
-    // {
-    //     var data = (EntityHero)_mapObject.Entity;
-    //     data.Data.hit += _hit * data.Data.speed;
-    // }
-
     // private void OnMouseDown()
     // {
     //     // Only allow interaction when it's the hero turn
@@ -348,29 +348,39 @@ public class MapEntityHero : BaseMapEntity
 
         if (LevelManager.Instance.ActivePlayer.DataPlayer.playerType != PlayerType.Bot)
         {
-            // Get setting for arena.
-            var arenaSetting = LevelManager.Instance.ConfigGameSettings.ArenaSettings
-                .Where(t => t.NativeGround.typeGround == MapObject.OccupiedNode.TypeGround)
-                .ToList();
-            // TODO ARENA
-            var loadingOperations = new ArenaLoadOperation(new DialogArenaData()
+            if (player.DataPlayer.team == MapObject.Entity.Player.DataPlayer.team)
+            // allies hero.
             {
-                heroAttacking = player.ActiveHero,
-                creature = null,
-                town = null,
-                heroDefending = (EntityHero)MapObject.Entity,
-                ArenaSetting = arenaSetting[Random.Range(0, arenaSetting.Count())]
-            });
-            var result = await loadingOperations.ShowHide();
-
-
-            if (result.isEnd)
-            {
-                _mapObject.DoHero(player);
+                Debug.Log($"Hello allies team hero!");
             }
             else
+            // enemy hero.
             {
-                // Click cancel.
+                // Get setting for arena.
+                var arenaSetting = LevelManager.Instance.ConfigGameSettings.ArenaSettings
+                    .Where(t => t.NativeGround.typeGround == MapObject.OccupiedNode.TypeGround)
+                    .ToList();
+                // TODO ARENA
+                var loadingOperations = new ArenaLoadOperation(new DialogArenaData()
+                {
+                    heroAttacking = player.ActiveHero,
+                    creature = null,
+                    town = null,
+                    heroDefending = (EntityHero)MapObject.Entity,
+                    ArenaSetting = arenaSetting[Random.Range(0, arenaSetting.Count())]
+                });
+                var result = await loadingOperations.ShowHide();
+
+
+                if (result.isEnd)
+                {
+                    _mapObject.DoHero(player);
+                }
+                else
+                {
+                    // Click cancel.
+                }
+
             }
         }
         else
@@ -379,38 +389,4 @@ public class MapEntityHero : BaseMapEntity
 
         }
     }
-    //public virtual void ExecuteMove() {
-    //    // Override this to do some hero-specific logic, then call this base method to clean up the turn
-
-    //    //_canMove = false;
-    //}
-
-    //public override void OnSaveUnit()
-    //{
-    //    SaveUnit(Data);
-    //}
-    //public override void OnLoadUnit(SaveDataUnit<DataHero> saveData)
-    //{
-    //    Data = saveData.data;
-    //    LoadUnit(saveData);
-    //}
-
-    // public void LoadDataPlay(DataPlay data)
-    // {
-    //     //throw new System.NotImplementedException();
-    // }
-
-    // public void SaveDataPlay(ref DataPlay data)
-    // {
-    //     var sdata = SaveUnit(Data);
-    //     data.Units.heroes.Add(sdata);
-    // }
-
-    // public override void OnLoadUnit<T>(SaveDataUnit<T> Data)
-    // {
-    //     base.OnLoadUnit(Data);
-    //     DataHero dh = Data.data as DataHero;
-    //     this.Data = dh;
-    // }
-
 }

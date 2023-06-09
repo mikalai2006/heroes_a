@@ -35,7 +35,10 @@ public class MapEntityTown : BaseMapEntity
         await base.OnGoHero(player);
         Debug.Log("On hero in town");
 
-        if (player != MapObject.Entity?.Player)
+        if (MapObject.Entity.Player == null
+            ||
+            (MapObject.Entity.Player != null && player.DataPlayer.team != MapObject.Entity.Player.DataPlayer.team)
+        )
         {
             MapObject.Entity.SetPlayer(player);
             SetPlayer(player);

@@ -12,9 +12,9 @@ public class PlayerData
     public int id;
     public Color color;
     public PlayerType playerType;
-    public int command;
+    public int team;
     // public TypePlayerItem playerType2;
-    // public string name;
+    public string title;
     // public int idArea;
     public TypeFaction typeFaction = TypeFaction.Neutral;
     public SerializableDictionary<TypeResource, int> Resource;
@@ -34,17 +34,16 @@ public class PlayerData
 [System.Serializable]
 public class PlayerDataReferences
 {
-    [SerializeField] public List<EntityHero> ListHero;
-    [SerializeField] public List<EntityTown> ListTown;
-    [SerializeField] public List<EntityMine> ListMines;
+    // [SerializeField] public List<EntityHero> ListHero;
+    // [SerializeField] public List<EntityTown> ListTown;
+    // [SerializeField] public List<EntityMine> ListMines;
     [SerializeField] public EntityHero ActiveHero;
     [SerializeField] public EntityTown ActiveTown;
-
     public PlayerDataReferences()
     {
-        ListTown = new List<EntityTown>();
-        ListHero = new List<EntityHero>();
-        ListMines = new List<EntityMine>();
+        // ListTown = new List<EntityTown>();
+        // ListHero = new List<EntityHero>();
+        // ListMines = new List<EntityMine>();
     }
 }
 
@@ -96,9 +95,23 @@ public class Player
     }
     public EntityHero ActiveHero => _data.PlayerDataReferences.ActiveHero;
     public EntityTown ActiveTown => _data.PlayerDataReferences.ActiveTown;
-    public bool IsMaxCountHero => _data.PlayerDataReferences.ListHero
+    public bool IsMaxCountHero => listHero.Values
             .Where(t => t.Data.State.HasFlag(StateHero.OnMap))
             .Count() == LevelManager.Instance.ConfigGameSettings.maxCountHero;
+    public Dictionary<string, EntityTown> listTown => UnitManager.Entities
+        .Where(t =>
+            t.Value.Player != null
+            && t.Value.Player.DataPlayer.id == LevelManager.Instance.ActivePlayer.DataPlayer.id
+            && t.Value.MapObject.Entity is EntityTown
+            )
+        .ToDictionary(t => t.Key, t => (EntityTown)t.Value);
+    public Dictionary<string, EntityHero> listHero => UnitManager.Entities
+        .Where(t =>
+            t.Value.Player != null
+            && t.Value.Player.DataPlayer.id == LevelManager.Instance.ActivePlayer.DataPlayer.id
+            && t.Value.MapObject.Entity is EntityHero
+            )
+        .ToDictionary(t => t.Key, t => (EntityHero)t.Value);
 
     public Player()
     {
@@ -176,15 +189,15 @@ public class Player
         _data.PlayerDataReferences.ActiveTown = entityTown;
     }
 
-    public void AddHero(EntityHero hero)
-    {
-        // hero.SetPlayer(DataPlayer);
-        DataPlayer.PlayerDataReferences.ListHero.Add(hero);
-    }
+    // public void AddHero(EntityHero hero)
+    // {
+    //     // hero.SetPlayer(DataPlayer);
+    //     DataPlayer.PlayerDataReferences.ListHero.Add(hero);
+    // }
 
     public void SetNosky(List<GridTileNode> listNode)
     {
-        var val = ((NoskyMask)(1 << LevelManager.Instance.ActivePlayer.DataPlayer.id));
+        var val = ((NoskyMask)(1 << DataPlayer.team));
         for (int i = 0; i < listNode.Count; i++)
         {
             var nosky = LevelManager.Instance.Level.nosky;
@@ -215,11 +228,11 @@ public class Player
         return nosky.ContainsKey(node.position) && nosky[node.position].HasFlag(flag);
     }
 
-    public void AddMines(EntityMine mine)
-    {
-        // mine.SetPlayer(this);
-        DataPlayer.PlayerDataReferences.ListMines.Add(mine);
-    }
+    // public void AddMines(EntityMine mine)
+    // {
+    //     // mine.SetPlayer(this);
+    //     DataPlayer.PlayerDataReferences.ListMines.Add(mine);
+    // }
     public void ChangeResource(TypeResource typeResource, int value = 0)
     {
         _data.Resource[typeResource] += value;
@@ -241,10 +254,10 @@ public class Player
         return result;
     }
 
-    public EntityHero GetHero(int id)
-    {
-        return DataPlayer.PlayerDataReferences.ListHero[id];
-    }
+    // public EntityHero GetHero(int id)
+    // {
+    //     return DataPlayer.PlayerDataReferences.ListHero[id];
+    // }
 
     public void BuyHero(ScriptableEntityHero configData)
     {
@@ -326,36 +339,43 @@ public class Player
         }
     }
 
-    public void AddTown(BaseEntity town)
-    {
-        // EntityTown _town = (EntityTown)town;
-        // _town.SetPlayer(DataPlayer);
-        if (_data.typeFaction == TypeFaction.Neutral)
-        {
-            // ScriptableEntityTown townConfig = (ScriptableEntityTown)((EntityTown)town).ConfigData;
-            _data.typeFaction = ((EntityTown)town).ConfigData.TypeFaction;
-        }
-        DataPlayer.PlayerDataReferences.ListTown.Add((EntityTown)town);
+    // public void AddTown(BaseEntity town)
+    // {
+    //     // EntityTown _town = (EntityTown)town;
+    //     // _town.SetPlayer(DataPlayer);
+    //     if (_data.typeFaction == TypeFaction.Neutral)
+    //     {
+    //         // ScriptableEntityTown townConfig = (ScriptableEntityTown)((EntityTown)town).ConfigData;
+    //         _data.typeFaction = ((EntityTown)town).ConfigData.TypeFaction;
+    //     }
+    //     DataPlayer.PlayerDataReferences.ListTown.Add((EntityTown)town);
 
-    }
+    // }
 
-    public EntityTown GetTown(int id)
-    {
-        return DataPlayer.PlayerDataReferences.ListTown[id];
-    }
+    // public void RemoveTown(BaseEntity town)
+    // {
+    //     DataPlayer.PlayerDataReferences.ListTown.Remove((EntityTown)town);
+
+    // }
+    // public EntityTown GetTown(int id)
+    // {
+    //     return DataPlayer.PlayerDataReferences.ListTown[id];
+    // }
 
     public async UniTask RunBot()
     {
         // Debug.Log($"Bot::: Start - {this.DataPlayer.id}");
-        foreach (var hero in _data.PlayerDataReferences.ListHero)
+        foreach (var heroItem in listHero)
         {
+            var hero = heroItem.Value;
             hero.SetHeroAsActive();
             await hero.AIFind();
         }
 
         // AI Make building.
-        foreach (var town in _data.PlayerDataReferences.ListTown)
+        foreach (var townItem in listTown)
         {
+            var town = townItem.Value;
             var allCurrentLevelsBuilding = town.GetLisNextLevelBuilds(town.ConfigData);
             Dictionary<ScriptableBuilding, int> allowBulding = new Dictionary<ScriptableBuilding, int>();
             foreach (var parentBuild in allCurrentLevelsBuilding)

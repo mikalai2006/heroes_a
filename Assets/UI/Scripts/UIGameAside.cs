@@ -66,6 +66,7 @@ public class UIGameAside : UILocaleBase
     private int _countTown = LevelManager.Instance.ConfigGameSettings.countTownAside;
     private GlobalMapInputManager _globalInputManager;
 
+    private SOGameSetting GameSetting => LevelManager.Instance.ConfigGameSettings;
     // private SceneInstance _scene;
 
     private void Start()
@@ -103,7 +104,11 @@ public class UIGameAside : UILocaleBase
     private void OnAfterStateChanged(GameState state)
     {
         player = LevelManager.Instance.ActivePlayer;
-        // if (player.DataPlayer.command == ) return;
+        if (player.DataPlayer.playerType != PlayerType.User)
+        {
+            ShowShortPlayerInfo();
+            return;
+        }
 
         switch (state)
         {
@@ -394,9 +399,9 @@ public class UIGameAside : UILocaleBase
             newButtonTown.style.flexGrow = 1;
             newButtonTown.AddToClassList(NameTownButton);
 
-            if (i < player.DataPlayer.PlayerDataReferences.ListTown.Count)
+            if (i < player.listTown.Count)
             {
-                EntityTown town = (EntityTown)player.DataPlayer.PlayerDataReferences.ListTown[i];
+                EntityTown town = (EntityTown)player.listTown.ElementAt(i).Value;
 
                 var activeSprite = town.ConfigData.LevelSprites.ElementAtOrDefault(town.Data.level + 1);
 
@@ -442,7 +447,7 @@ public class UIGameAside : UILocaleBase
     {
         _herobox.Clear();
 
-        var listHeroOnMap = player.DataPlayer.PlayerDataReferences.ListHero
+        var listHeroOnMap = player.listHero.Values
             .Where(h => h.Data.State.HasFlag(StateHero.OnMap)).ToList();
         for (int i = 0; i < 5; i++)
         {
@@ -526,6 +531,14 @@ public class UIGameAside : UILocaleBase
         // OnToogleEnableBtnGoHero();
         OnRedrawResource();
 
+
+        PaintOverlay();
+
+        SetEnableAllButton();
+    }
+
+    private void PaintOverlay()
+    {
         Color color = player.DataPlayer.color;
         color.a = LevelManager.Instance.ConfigGameSettings.alphaOverlay;
 
@@ -536,8 +549,6 @@ public class UIGameAside : UILocaleBase
         {
             overlay.style.backgroundColor = color;
         }
-
-        SetEnableAllButton();
     }
 
     private void SetEnableAllButton()
@@ -662,7 +673,7 @@ public class UIGameAside : UILocaleBase
     {
         var ArrowTopBtn = aside.Q<VisualElement>("arrowtop");
         var ArrowBottomBtn = aside.Q<VisualElement>("arrowbottom");
-        if (player.DataPlayer.PlayerDataReferences.ListTown.Count < _countTown)
+        if (player.listTown.Count < _countTown)
         {
             ArrowTopBtn.SetEnabled(false);
             ArrowBottomBtn.SetEnabled(false);
@@ -710,4 +721,69 @@ public class UIGameAside : UILocaleBase
         var gem = _footer.Q<Label>("GemValue");
         gem.text = player.DataPlayer.Resource[TypeResource.Gems].ToString();
     }
+
+    private void ShowShortPlayerInfo()
+    {
+        HideMapButtons();
+
+        UQueryBuilder<Button> buttons = new UQueryBuilder<Button>(_aside.rootVisualElement);
+        List<Button> listButtons = buttons.ToList();
+        foreach (var btn in listButtons)
+        {
+            btn?.SetEnabled(false);
+        }
+
+        boxinfo.Clear();
+
+        var infoBlok = new VisualElement();
+        infoBlok.style.flexGrow = 1;
+        infoBlok.style.alignItems = Align.Center;
+        infoBlok.AddToClassList("p-2");
+        infoBlok.AddToClassList("bg");
+        infoBlok.AddToClassList("text-secondary");
+
+        var text = new Label();
+        text.text = string.Format(
+            "{0} {1}",
+            new LocalizedString(Constants.LanguageTable.LANG_TABLE_UILANG, "movecreature").GetLocalizedString(),
+            Helpers.GetColorString(LevelManager.Instance.ActivePlayer.DataPlayer.title)
+            );
+
+        infoBlok.Add(text);
+        var infoRow = new VisualElement();
+        infoRow.style.flexDirection = FlexDirection.Row;
+        var _flagBlok = new VisualElement();
+        _flagBlok.AddToClassList("m-2");
+        _flagBlok.style.width = new StyleLength(new Length(58, LengthUnit.Pixel));
+        _flagBlok.style.height = new StyleLength(new Length(64, LengthUnit.Pixel));
+        _flagBlok.style.backgroundImage
+            = new StyleBackground(GameSetting.SoUI.flag);
+        _flagBlok.style.unityBackgroundImageTintColor = LevelManager.Instance.ActivePlayer.DataPlayer.color;
+        infoRow.Add(_flagBlok);
+
+        var _animateBlok = new VisualElement();
+        _animateBlok.AddToClassList("m-2");
+        _animateBlok.style.width = new StyleLength(new Length(58, LengthUnit.Pixel));
+        _animateBlok.style.height = new StyleLength(new Length(64, LengthUnit.Pixel));
+        _animateBlok.style.backgroundImage
+            = new StyleBackground(GameSetting.SoUI.SpritesWaitStep.ElementAt(0));
+        _animateBlok.schedule.Execute(() => Helpers.AnimateListSprites(_animateBlok, GameSetting.SoUI.SpritesWaitStep)).Every(100);
+        infoRow.Add(_animateBlok);
+        infoBlok.Add(infoRow);
+
+        boxinfo.Add(infoBlok);
+    }
+
+    // private void changeBgSprite()
+    // {
+    //     int indexSprite = GameSetting.SoUI.SpritesWaitStep.FindIndex(t => t == _animateBlok.style.backgroundImage.value.sprite);
+    //     indexSprite++;
+    //     if (indexSprite >= GameSetting.SoUI.SpritesWaitStep.Count)
+    //     {
+    //         indexSprite = 0;
+    //     }
+    //     _animateBlok.style.backgroundImage
+    //         = new StyleBackground(GameSetting.SoUI.SpritesWaitStep.ElementAt(indexSprite));
+    // }
+
 }

@@ -27,6 +27,7 @@ public class SOGameSetting : ScriptableObject
     [Header("Setting Global Map")]
     [Space(5)]
     public bool showBgColorMapObject;
+    public Sprite flagSprite;
     [Tooltip("Show as walks bot other commandes")] public bool showDoBot;
 
     [Header("Setting Game")]
@@ -40,6 +41,7 @@ public class SOGameSetting : ScriptableObject
 
     [Header("Setting System")]
     [Space(5)]
+    public SOUI SoUI;
     [Range(0.3f, 1f)] public float deltaDoubleClick;
     [Range(10, 1000)] public int timeDelayDoBot;
     [Range(.05f, 1f)] public float speedHero;

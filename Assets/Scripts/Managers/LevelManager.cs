@@ -31,10 +31,10 @@ public class LevelManager : Singleton<LevelManager>, ISaveDataPlay, ISaveDataGam
     public Player ActiveUserPlayer
     {
         get { return Level.listPlayer.ElementAtOrDefault(Level.activeUserPlayer); }
-        set
-        {
-            Level.listPlayer[Level.activeUserPlayer] = value;
-        }
+        // set
+        // {
+        //     Level.listPlayer[Level.activeUserPlayer] = value;
+        // }
     }
     private void Start()
     {
@@ -91,6 +91,7 @@ public class LevelManager : Singleton<LevelManager>, ISaveDataPlay, ISaveDataGam
     public void CreateListPlayer()
     {
         Level = DefaultSettings;
+        Level.nosky.Clear();
         Level.activePlayer = -1;
         Level.listPlayer = new List<Player>();
         Level.listArea = new List<Area>();
@@ -106,19 +107,21 @@ public class LevelManager : Singleton<LevelManager>, ISaveDataPlay, ISaveDataGam
                 id = i,
                 color = ConfigGameSettings.colors[i],
                 playerType = PlayerType.User,
-                command = i
+                team = Level.Settings.teams.ContainsKey(i) ? Level.Settings.teams[i] : i
             };
             StartSetting startSetting = new StartSetting();
+            player.StartSetting = startSetting;
 
             if (Level.Settings.TypeGame == TypeGame.MultipleOneDevice)
             {
-                startSetting.TypePlayerItem = TypePlayers[i];
+                startSetting.TypePlayerItem = i < TypePlayers.Count ? TypePlayers[i] : botType;
             }
             else
             {
                 startSetting.TypePlayerItem = i == 0 ? noBotType.First() : botType;
             }
             dataPlayer.playerType = startSetting.TypePlayerItem.TypePlayer;
+            dataPlayer.title = startSetting.TypePlayerItem.title;
 
             // Area area = new Area();
             // area.idPlayer = player.DataPlayer.id;
@@ -143,7 +146,7 @@ public class LevelManager : Singleton<LevelManager>, ISaveDataPlay, ISaveDataGam
 
         if (ActivePlayer.DataPlayer.playerType != PlayerType.Bot)
         {
-            ActiveUserPlayer = ActivePlayer;
+            Level.activeUserPlayer = Level.activePlayer;
         }
 
         if (
@@ -158,8 +161,8 @@ public class LevelManager : Singleton<LevelManager>, ISaveDataPlay, ISaveDataGam
 
         if (ActivePlayer.ActiveHero == null)
         {
-            if (ActivePlayer.DataPlayer.PlayerDataReferences.ListHero.Count > 0)
-                ActivePlayer.DataPlayer.PlayerDataReferences.ListHero[0].SetHeroAsActive();
+            if (ActivePlayer.listHero.Count > 0)
+                ActivePlayer.listHero.ElementAt(0).Value.SetHeroAsActive();
         }
         else
         {

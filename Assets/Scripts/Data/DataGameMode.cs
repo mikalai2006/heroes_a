@@ -30,12 +30,17 @@ public class DataGameSetting
 {
     public int compexity;
     public StrenghtMonster strenghtMonster;
+    public Dictionary<int, int> teams;
     public int countPlayer;
-    public int countCommand;
+    // public int countCommand;
     public int countBot;
-    public int countBotCommand;
+    // public int countBotCommand;
     public bool isWater;
     public TypeGame TypeGame;
+    public DataGameSetting()
+    {
+        teams = new();
+    }
 }
 
 [System.Serializable]

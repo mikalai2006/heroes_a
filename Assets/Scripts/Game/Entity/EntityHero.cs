@@ -351,7 +351,7 @@ public class EntityHero : BaseEntity
     {
         Player.SetActiveHero(this);
         MapObject.SetPositionCamera(MapObject.Position);
-        SetClearSky(MapObject.Position);
+        SetClearSky(MapObject.OccupiedNode);
 
         if (Data.path != null)
         {
@@ -364,7 +364,7 @@ public class EntityHero : BaseEntity
     {
         base.SetPlayer(player);
         Data.idPlayer = player.DataPlayer.id;
-        player.AddHero(this);
+        // player.AddHero(this);
     }
 
     public void AddWarMachine(TypeWarMachine typeWarMachine)
@@ -583,26 +583,27 @@ public class EntityHero : BaseEntity
         return result;
     }
 
-    public void SetPositionHero(Vector3Int newPosition)
+    public void SetPositionHero(GridTileNode newNode)
     {
         // MapObjectGameObject.transform.position = newPosition;// + new Vector3(.5f, .5f);
-        MapObject.SetPosition(newPosition);
+        MapObject.SetPosition(newNode.position);
         if (Player != null)
         {
             //SetPositionCamera(newPosition);
             // GameManager.Instance.MapManager.SetColorForTile(newPosition, Color.cyan);
-            SetClearSky(newPosition);
+            SetClearSky(newNode);
         }
     }
 
     public void FastMoveHero(Vector3Int newPosition)
     {
-        SetPositionHero(newPosition);
 
         var newNode = GameManager.Instance
             .MapManager
             .GridTileHelper()
             .GetNode(newPosition);
+
+        SetPositionHero(newNode);
 
         SetGuestForNode(newNode);
         MapObject.SetPositionCamera(newPosition);
@@ -619,7 +620,7 @@ public class EntityHero : BaseEntity
             MapObject.OccupiedNode.SetOcuppiedUnit(null);
         }
 
-        SetPositionHero(newNode.position);
+        SetPositionHero(newNode);
 
         MapObject.OccupiedNode = newNode;
         MapObject.OccupiedNode.SetAsGuested(MapObject);
@@ -629,15 +630,15 @@ public class EntityHero : BaseEntity
         // }
     }
 
-    public void SetClearSky(Vector3Int startPosition)
+    public void SetClearSky(GridTileNode startNode)
     {
         int scoutingValue = 0;
         if (Data.SSkills.ContainsKey(TypeSecondarySkill.Scouting))
             scoutingValue = Data.SSkills[TypeSecondarySkill.Scouting].value;
 
-        List<GridTileNode> noskyNode
-            = GameManager.Instance.MapManager.DrawSky(startPosition, scoutingValue);
-        Player.SetNosky(noskyNode);
+        List<GridTileNode> noskyNodes
+            = GameManager.Instance.MapManager.DrawSky(startNode, scoutingValue);
+        Player.SetNosky(noskyNodes);
     }
 
     public void AddArtifact(EntityArtifact artifact)
@@ -913,7 +914,7 @@ public class EntityHero : BaseEntity
         // start data.
         int countCheckNodes = 0;
 
-        var flag = ((NoskyMask)(1 << LevelManager.Instance.ActivePlayer.DataPlayer.id));
+        var flag = ((NoskyMask)(1 << LevelManager.Instance.ActivePlayer.DataPlayer.team));
         //Find
         var potentialPoints = GameManager.Instance
             .MapManager
@@ -948,6 +949,18 @@ public class EntityHero : BaseEntity
         {
             var node = potentialPoints[0];
             int streightNeutralArmy = 0;
+
+            // if visited another hero from team.
+            if (node.OccupiedUnit != null
+                && node.OccupiedUnit.Entity != null
+                && node.OccupiedUnit.Entity.Player != null
+                && node.OccupiedUnit.Entity.Player.DataPlayer.team == Player.DataPlayer.team
+                // && node.StateNode.HasFlag(StateNode.Visited)
+                )
+            {
+                potentialPoints.RemoveAt(0);
+                continue;
+            }
 
             // get streight protected unit.
             if (
@@ -990,7 +1003,7 @@ public class EntityHero : BaseEntity
                 // && !node.StateNode.HasFlag(StateNode.Protected)
                 // && !node.StateNode.HasFlag(StateNode.Guested)
                 // && !node.StateNode.HasFlag(StateNode.Empty)
-                && node.OccupiedUnit.Entity.Player != Player
+                // && node.OccupiedUnit.Entity.Player != Player
                 && !node.StateNode.HasFlag(StateNode.Visited)
                 && node != MapObject.OccupiedNode) // || countCheckNodes > 20
                 )

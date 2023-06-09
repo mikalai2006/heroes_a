@@ -401,7 +401,7 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
 
         CreateEdges();
 
-        LevelManager.Instance.ActivePlayer.DataPlayer.PlayerDataReferences.ListHero[0].SetHeroAsActive();
+        LevelManager.Instance.ActivePlayer.listHero.ElementAt(0).Value.SetHeroAsActive();
     }
 
     private void InitSetting()
@@ -976,10 +976,18 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
                 }
                 else if (
                     nodeNext.GuestedUnit != null
-                    && nodeNext.GuestedUnit.Entity.Player.DataPlayer.command != LevelManager.Instance.ActivePlayer.DataPlayer.command
+                    && nodeNext.GuestedUnit.Entity.Player.DataPlayer.team != LevelManager.Instance.ActivePlayer.DataPlayer.team
                 )
                 {
                     _tileMapCursor.SetTile(nodeNext.position, _cursorSprites.Attack);
+
+                }
+                else if (
+                    nodeNext.GuestedUnit != null
+                    && nodeNext.GuestedUnit.Entity.Player.DataPlayer.team == LevelManager.Instance.ActivePlayer.DataPlayer.team
+                )
+                {
+                    _tileMapCursor.SetTile(nodeNext.position, _cursorSprites.GoAllowHero);
 
                 }
                 else if (nodeNext.OccupiedUnit != null)
@@ -1037,16 +1045,24 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
         tileMap.SetColor(pos, color);
         tileMap.SetTileFlags(pos, TileFlags.LockColor);
     }
-    public List<GridTileNode> DrawSky(Vector3Int startPosition, int distance)
+
+    public List<GridTileNode> DrawSky(GridTileNode startNode, int distance)
     {
         int countClearSky = LevelManager.Instance.ConfigGameSettings.countCellClearSky;
-        GridTileNode startNode
-            = gridTileHelper.GridTile.GetGridObject(startPosition);
+        // GridTileNode startNode
+        //     = gridTileHelper.GridTile.GetGridObject(startPosition);
         List<GridTileNode> listNode = gridTileHelper.GetNeighboursAtDistance(startNode, distance + countClearSky);
         if (
             LevelManager.Instance.ConfigGameSettings.showDoBot
-            || LevelManager.Instance.ActivePlayer.DataPlayer.playerType != PlayerType.Bot
-            || LevelManager.Instance.ActivePlayer.DataPlayer.command == LevelManager.Instance.ActiveUserPlayer.DataPlayer.command
+            ||
+            (
+                LevelManager.Instance.ActivePlayer != null
+                &&
+                (
+                    LevelManager.Instance.ActivePlayer.DataPlayer.playerType != PlayerType.Bot
+                    || LevelManager.Instance.ActivePlayer.DataPlayer.team == LevelManager.Instance.ActiveUserPlayer.DataPlayer.team
+                )
+            )
         )
         {
             for (int i = 0; i < listNode.Count; i++)
@@ -1059,7 +1075,7 @@ public class MapManager : MonoBehaviour, ISaveDataGame, ILoadGame
 
     public void ResetSky(SerializableNoSky positions)
     {
-        var flag = (NoskyMask)(1 << LevelManager.Instance.ActivePlayer.DataPlayer.id);
+        var flag = (NoskyMask)(1 << LevelManager.Instance.ActivePlayer.DataPlayer.team);
         for (int x = -1; x < gameModeData.width + 1; x++)
         {
             for (int y = -1; y < gameModeData.height + 3; y++)
