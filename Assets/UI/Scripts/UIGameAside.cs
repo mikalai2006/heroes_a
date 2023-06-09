@@ -44,6 +44,7 @@ public class UIGameAside : UILocaleBase
     private string NameWrapper = "wrapper";
     private string NameAsideBoxInfo = "AsideBoxInfo";
     private string NameBtnGoHero = "ButtonGoHero";
+    private Button _btnGoHero;
     private string NameBtnGameMenu = "ButtonSettingMenu";
     private string NameBtnNextStep = "ButtonNextStep";
     private string NameFooter = "Footer";
@@ -74,7 +75,7 @@ public class UIGameAside : UILocaleBase
         _globalInputManager = new GlobalMapInputManager();
 
         GameManager.OnAfterStateChanged += OnAfterStateChanged;
-        EntityHero.onChangeParamsActiveHero += ChangeParamsActiveHero;
+        EntityHero.OnChangeParamsActiveHero += ChangeParamsActiveHero;
         UITownInfo.onMoveHero += DrawHeroBox;
         UITown.OnExitFromTown += DrawAside;
         UITown.OnInputToTown += HideMapButtons;
@@ -89,7 +90,7 @@ public class UIGameAside : UILocaleBase
     private void OnDestroy()
     {
         GameManager.OnAfterStateChanged -= OnAfterStateChanged;
-        EntityHero.onChangeParamsActiveHero -= ChangeParamsActiveHero;
+        EntityHero.OnChangeParamsActiveHero -= ChangeParamsActiveHero;
         UITownInfo.onMoveHero -= DrawHeroBox;
         UITown.OnExitFromTown -= DrawAside;
         UITown.OnInputToTown -= HideMapButtons;
@@ -162,6 +163,7 @@ public class UIGameAside : UILocaleBase
 
             BtnHero.Q<VisualElement>("Mana").style.height = new StyleLength(new Length(hero.Data.mana, LengthUnit.Percent));
         }
+        OnToogleEnableBtnGoHero();
     }
 
     private async UniTask<DataResultGameMenu> ShowGameMenu()
@@ -207,8 +209,8 @@ public class UIGameAside : UILocaleBase
                 }
             };
 
-            var btnGoHero = _aside.rootVisualElement.Q<Button>(NameBtnGoHero);
-            btnGoHero.RegisterCallback<ClickEvent>(OnMoveHero, TrickleDown.NoTrickleDown);
+            _btnGoHero = _aside.rootVisualElement.Q<Button>(NameBtnGoHero);
+            _btnGoHero.RegisterCallback<ClickEvent>(OnMoveHero, TrickleDown.NoTrickleDown);
 
             var btnNextStep = _aside.rootVisualElement.Q<Button>(NameBtnNextStep);
             btnNextStep.clickable.clicked += () =>
@@ -559,7 +561,7 @@ public class UIGameAside : UILocaleBase
         {
             btn.SetEnabled(true);
         }
-        // OnToogleEnableBtnGoHero();
+        OnToogleEnableBtnGoHero();
     }
 
     private void SetDisableAllButton()
@@ -574,15 +576,14 @@ public class UIGameAside : UILocaleBase
 
     private void OnToogleEnableBtnGoHero()
     {
-        Button btn = _aside.rootVisualElement.Q<Button>(NameBtnGoHero);
         EntityHero activeHero = player.ActiveHero;
-        if (activeHero != null)
+        if (activeHero != null && activeHero.IsExistPath)
         {
-            btn.SetEnabled(activeHero.IsExistPath);
+            _btnGoHero.SetEnabled(activeHero.IsExistPath);
         }
         else
         {
-            btn.SetEnabled(false);
+            _btnGoHero.SetEnabled(false);
         }
     }
 
@@ -616,7 +617,7 @@ public class UIGameAside : UILocaleBase
 
         hero.SetHeroAsActive();
         ChangeHeroInfo();
-        // OnToogleEnableBtnGoHero();
+        OnToogleEnableBtnGoHero();
     }
 
     private void ChangeHeroInfo()

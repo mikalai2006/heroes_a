@@ -1,19 +1,19 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+// using System.Threading.Tasks;
 
 using Cysharp.Threading.Tasks;
 
 using UnityEngine;
-using UnityEngine.Localization;
+// using UnityEngine.Localization;
 
 using Random = UnityEngine.Random;
 
 [Serializable]
 public class EntityHero : BaseEntity
 {
-    public static event Action<EntityHero> onChangeParamsActiveHero;
+    public static event Action<EntityHero> OnChangeParamsActiveHero;
     [SerializeField] public DataHero Data = new DataHero();
     [NonSerialized] public EntityBook SpellBook;
     //sqrt((Attack × 0.05 + 1) × (Defense × 0.05 + 1))
@@ -27,7 +27,7 @@ public class EntityHero : BaseEntity
     {
         get
         {
-            return Data.path.Count() > 0 && Data.mp > 0;
+            return Data.path != null && Data.path.Count > 0 && Data.mp > 0;
         }
         private set { }
     }
@@ -332,7 +332,7 @@ public class EntityHero : BaseEntity
 
         if (Player != null && Player.DataPlayer.playerType != PlayerType.Bot)
         {
-            onChangeParamsActiveHero?.Invoke(this);
+            OnChangeParamsActiveHero?.Invoke(this);
         }
     }
 
@@ -424,7 +424,7 @@ public class EntityHero : BaseEntity
         // Debug.Log($"ChangeHitHero:::[node {node.position}]{ScriptableData.name}-{Data.hit}");
         if (Player != null && Player.DataPlayer.playerType != PlayerType.Bot)
         {
-            onChangeParamsActiveHero?.Invoke(this);
+            OnChangeParamsActiveHero?.Invoke(this);
         }
     }
 
@@ -703,6 +703,8 @@ public class EntityHero : BaseEntity
         {
             Data.nextPosition = Vector3Int.zero;
         }
+        // GameManager.Instance.ChangeState(GameState.CreatePathHero);
+        // OnChangeParamsActiveHero?.Invoke(this);
     }
 
 
@@ -729,7 +731,7 @@ public class EntityHero : BaseEntity
         {
             this.SetPathHero(path);
         }
-
+        OnChangeParamsActiveHero?.Invoke(this);
         // if (
         //     path == null
         //     && Player.DataPlayer.playerType != PlayerType.Bot
